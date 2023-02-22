@@ -1,0 +1,102 @@
+---
+title: Elementor űrlap - Checkbox limitáció
+description: Elementor űrlap - hogyan állítsuk be, hogy csak limitált számban tudjanak a látogatók bejelölni Checkboxokat
+keywords:
+  - github
+sidebar_label: Elementor űrlap 
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# Elementor űrlap - Checkbox limitáció
+
+Előfordul, hogy arra van szükségünk, limitáljuk a checkbox (avagy jelölőnégyzet)-ben, hogy maximum mennyit tud a felhasználó bejelölni.
+
+## Előkészületek
+Először is, az Elementor űrlap, egy Pro funkció, ami azt jelenti, hogy az ingyenes verzióban nem elérhető. Ahhoz hogy ezt a feladatot eltudjuk készíteni
+egy kiegészítő kódra, jQuery-re lesz szükségünk. Mivel Elementor Pro-ról van szó, szerencsére van egy kifejezetten hasznos kiegészítés, amit 
+Custom Code nak hívnak. Ezt a menüpontot a **WordPress Admin - Elementor - Custom Code** menüpontban találod meg. Az előkészület első lépése, hogy a Custom Code  menüpontban
+létrehozunk egy új "Kódot".
+
+## Új Custom Code létrehozása
+
+Miután beléptél az Elementor - Custom Code menüpontba, kattints az **"Add New"** gombra. A Cím hozzáadása mezőbe olyan nevet válassz, amivel később
+tudod azonosítani az itt eltárolt kódokat. A következő a Helyzet **"head"** amit hagyhatsz alapértelmezetten, ahogy a **Priority**(prioritás) is. 
+
+
+:::tip Prioritás
+Minél kisebb számot írsz be, úgy sorolja előrébb a kódunk futását.  
+
+:::
+
+Ide később visszatérünk, mivel maga a kódot ide kell bemásolnunk. Mindenképpen hagyd nyitva, hogy könnyedén áttudj ide naivigálni, hogy bemásold a kódot.
+
+## Űrlap létrehozása
+*Ha már meglévő űrlappal akarsz dolgozni, nem kell újat használnod*  
+A következő lépés, hogy az Elementor szerkesztő felületen dobd be az Űrlap widgetet. Az űrlap mezőknél, állíts be egy Checkbox (jelölőnégyzet)
+mezőt, és adj hozzá néhány opciót. 
+
+Miután ezzel elkészültél, még egyetlen dolgot kell beállítanod. Az Űrlap Widgeten belül, ahol hozzáadtad a checkbox értékeket, kattints át a **Haladó**
+fülre. Ott látni fogsz egy ID és egy rövidkód mezőt. Az ID mezőbe másold be az alábbit: **mycheckboxfield**  
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/urlapkep1.png" alt="Elementor Űrlap"></img>
+</BrowserWindow>
+
+Mielőtt rátérnénk a kódra, az Űrlapodnak megkell adnod, egy egyedi azonosítót. Erre azért lesz szükség, hogy a kód csak akkor fusson végig, 
+ha a DOM ban valóban egyezést talál. Ezt megtudod tenni az **Űrlap Widget - Tartalom - További lehetőségek** résznél. A Form ID részbe másold be az alábbit:
+**myform1**
+
+## Kód alkalmazása
+Másold be az alábbi kódot a Custom Code-ba amit korábban létrehoztunk, majd kattints a **Közzététel** gombra. Itt egy hasonló ablak fog megjelenni
+mint amikor egy sablonrészt készítesz. Az itt megadott kondíció megegyezik azzal, mintha egy fejlécet készítenél, vagy Láblécet-t. Ha az űrlapod egyetlen
+oldalon lesz elérhető, megadhatod azt, de választhatod az Egész Oldal opciót is, amit alapértelmezetten felajánl.
+
+```js {2,4-5,8}
+
+    
+jQuery(document).ready(function($) {
+  if ($('#myform1').length === 0) {
+    return;
+  }
+
+  var maxChecked = 2; /* Limit hogy hány checkboxot tudunk bejelölni */
+  var checkedCount = 0;
+  var warningTextAdded = false;
+
+  $('input[id^="form-field-mycheckboxfield-"]').click(function() {
+    if (checkedCount >= maxChecked && $(this).prop('checked')) {
+      $(this).prop('checked', false);
+    } else {
+      if (!$(this).prop('checked')) {
+        checkedCount--;
+      } else {
+        checkedCount++;
+      }
+    }
+
+    if (checkedCount < maxChecked) {
+      $('#warning-text').remove();
+      warningTextAdded = false;
+    } else if (!warningTextAdded) {
+      var warningText = $('<div id="warning-text">Nem tudsz többet kijelölni</div>');
+      $('label[for^="form-field-mycheckboxfield-"]:last').after(warningText); /* itt tudod módosítani milyen figyelmztető szöveg jelenjen meg */
+      warningTextAdded = true;
+    }
+  });
+});
+    
+
+```
+
+**A var maxChecked = 2;** résznél tudod átírni, mennyi legyen a maximális checkbox amit betudnak jelölni. A kód lentebbi részében pedig átírhatod, hogy milyen
+üzenet jelenjen meg, ha elérik a limitet. Mivel ez a szöveg egy egyedi azonosítót is kap mellé **#warning-text**  Hivatkozhatsz rá CSS segítségével 
+és formázhatod a szöveg megjelenését.
+
+```js
+var warningText = $('<div id="warning-text">Nem tudsz többet kijelölni</div>'); 
+```
+
+
