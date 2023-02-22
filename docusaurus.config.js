@@ -126,7 +126,7 @@ const config = {
               },
               {
                 label: "Komplett weboldalak",
-                to: "docs/dokumentacio/komplett-weboldalak",
+                to: "/docs/dokumentacio/komplett-weboldalak",
               },
               {
                 label: "Üzemeltetés és karbantartás",
