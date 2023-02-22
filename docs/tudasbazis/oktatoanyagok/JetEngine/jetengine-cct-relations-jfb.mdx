@@ -1,0 +1,37 @@
+---
+title: JetEngine - JetFormbuilder CCT relations készítése 
+description: JetEngine CCT Relations - Hogyan kössünk össze egy CPT és egy CCT a JetFormbuilder segítségével
+keywords:
+  - jetengine
+sidebar_label: JetEngine CCT relations
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# JetEngine - JetFormbuilder - CCT+CPT relations készítése
+
+## Bevezető
+
+A JetEngine szerves részét képezi a **Relations rendszer**, amit magyarul kapcsolatoknak is hívhatunk. Ennek segítségével, összekapcsolhatunk két különböző CPT(Custom Post Type-ot)
+de akár CCT(Custom Content Type), User , vagy Taxonómiát is egymással. A Relations elkészítése a JetEngine segítségével nagyon egyszerűen elkészíthető. A komplikáció akkor 
+merülhet fel, ha a felhasználónak kívülről, tehát nem a WP Admin oldaláról kell hogy elvégezze, hanem Front-end oldalról.
+
+## JetFormbuilder
+
+A JetFormbuilder, röviden csak JFB, a Crocoblock önálló űrlap bővítménye, ami teljes egészében Gutenberg alapú. A JetEngine alapértelmezett Űrlap modulját hivatott leváltani.
+Ha eddig nem tetted meg a váltást, időszerű, ugyanis az eredeti JetEngine Form megkapta a Legacy jelzőt, ami azt jelenti, hogy már nem támogatják. A JFB segítségével
+tudunk úgynevezett **Frontend post submissionokat** készíteni, de ennél ma már sokkal többre képes. Ebben a leírásban, egy JFB kompatibilis módot fogunk végigvenni.
+
+## Feladat
+
+A feladat egyértelmű. Van egy Custom Post Type, és egy Custom Content Type létrehozva. Készítünk hozzá egy relations-t, és a bejelentkezett felhasználók egy űrlap kitöltésével össze 
+tudják kötni a CCT a CPT egy adott posztjához. Ebben a példában a CPT lesz a Parent elem, és a CCT a Child. Az űrlapunk a Parent elem single salbonjába lesz elhelyezve
+és amikor ott töltik ki az űrlapok, létrehozunk egy CCT és egyből összekapcsolódik az adott POST-al. Bonyolult? Megoldjuk ;)
+
+## Relations készítése
+
+Navigáljunk a **JetEngine - Relations** menüponra és kattintsunk az **Add New** gombra. A Name mezőbe adj meg egy nevet, amit szeretnél. A **Parent Object** mezőben
+válaszd ki a már létrehozott CPT-t. Ez lesz a példánkban a szülő. A **Child Object** mezőben pedig a CCT kell beállítanod. A **Relation Type** állítsd One to many-re.
