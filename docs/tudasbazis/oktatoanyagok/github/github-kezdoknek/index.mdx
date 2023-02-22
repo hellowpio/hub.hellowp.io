@@ -1,0 +1,157 @@
+---
+title: GitHub kezdőknek
+description: Új vagy a GitHubon? Itt találsz egy gyors bevezetést a GitHub használatába.
+keywords:
+  - github
+sidebar_label: GitHub kezdőknek
+sidebar_position: 0
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-github text-primary" /> GitHub kezdőknek
+
+A Git és a GitHub olyan népszerű eszközök, amelyeket a programozásban használnak. Segítenek abban, hogy különböző verzióit kezeld a kódodnak és együtt tudj dolgozni más fejlesztőkkel.
+
+A projektek építése a programozók alapvető része. A Git és a GitHub pedig elengedhetetlen eszközök, amelyeket a projektek építése során használsz másokkal együttműködve.
+
+De ha még nem használtad őket korábban, bonyolultnak tűnhetnek. Ezért készítettünk egy anyagot arról, hogyan működik a Git és a GitHub.
+
+### Mi az a Git és a GitHub?
+
+A Git-et 2005-ben Linus Torvalds fejlesztette ki nyílt forráskódú szoftverként, hogy nyomon követhesse a változásokat egy elosztott verziókezelő rendszerben.
+
+A Git a változásokat egy elosztott verziókezelő rendszeren keresztül követi. Ez azt jelenti, hogy a Git követni tudja a projekt különböző verzióinak állapotát, amíg fejleszted őket. Elosztott, mert hozzáférhetsz a kód fájljaidhoz egy másik számítógépről - és ugyanígy más fejlesztők is hozzáférhetnek.
+
+Ha nyílt forráskódú projektet építesz, szükséged lesz egy módra, hogy dokumentáld vagy nyomon kövesd a kódodat. Ez segít abban, hogy rendezetten tudj dolgozni, és nyomon tudd követni a végrehajtott változtatásokat. Ezt teszi lehetővé a Git.
+
+Azonban szükséged van egy helyre is, ahol hostolhatod a kódodat - ami lehetővé teszi, hogy minden projekt verzióját könnyebb és gyorsabb kontrollálni. Ebben segít a GitHub.
+
+A GitHub egy "hub" (egy hely vagy platform), ahol a Git felhasználók együtt építenek szoftvert. A GitHub emellett egy hosting szolgáltató és verziókezelő platform, amelyen nyílt forráskódú projekteken tudsz együttműködni és fájlokat megosztani. Amikor a GitHub-ot használod, a Git-et használod az alapoknál.
+
+### Miért érdemes megtanulni a Git-et és a GitHub-ot?
+
+2022-ben 20.5 millió új fejlesztő csatlakozott a GitHubhoz és több mint 85 millió új project indult szintén ebben az évben. [Forrás](https://octoverse.github.com/2022/global-tech-talent)
+
+Láthatjuk tehát, hogy milliók használják ezeket az eszközöket szerte a világon, és a számok csak növekednek.
+
+Ennek következtében egyre több vállalat követeli meg a Git és a GitHub használatát az új munkatársak részéről. Tehát ha fejlesztői munkára készülsz, ezek az alapvető készségek, amelyekkel rendelkezned kell.
+
+**Ha még nem használod a Git-et és a GitHub-ot, az egyértelmű - használnod kellene!**
+
+### A Git és a GitHub közti különbségek
+
+A Git egy verziókezelő rendszer, amely kezeli és nyomon követi a kódodat. A GitHub viszont egy szolgáltatás, amely lehetővé teszi a kód fájljainak hostolását, megosztását és kezelését az interneten.
+
+A GitHub-nak a Git az alapja, és lehetővé teszi, hogy könnyen kezeld a Git tárolóidat vagy mappáidat a platformján.
+
+Tehát a Git az effektív verziókezelő rendszer, és a GitHub a platform, ahol hostolod a kódodat.
+
+## Hogyan kezdj el használni a Git-et és a GitHub-ot?
+
+### 1. lépés - Telepítsd a Git-et
+
+A Git előre telepített a macOS újabb verzióin és a Linux alapú rendszereken, de bármikor ellenőrizheted, hogy telepítve van-e a Git a gépeden a terminálban.
+
+Ellenőrizd, hogy telepítve van-e a gépeden a Git az alábbi parancs segítségével:
+
+```bash
+git version
+```
+
+Amennyiben telepítve van a Git, akkor ki fogja írni például ezt: git version 2.37.1 (Apple Git-137.1)
+
+Ha nincs telepítve, akkor könnyedén letöltheted és telepítheted innen: https://git-scm.com/download
+
+<BrowserWindow url="https://git-scm.com/">
+  <img src="/img/git-scm-com.png" alt="git-scm.com"></img>
+</BrowserWindow>{" "}
+
+Kövesd az szükséges telepítési útmutatót az oldalon, amíg a telepítés be nem fejeződik. Nyisd meg a parancssort, majd írd be a `git version` parancsot annak ellenőrzésére, hogy a Git sikeresen telepítve lett-e.
+
+### 2. lépés - Hozz létre egy saját GitHub fiókot
+
+A GitHub fiók létrehozásához szükséges néhány személyes adatot megadni, például a nevedet, e-mail címedet megerősíteni, felhasználónevet és jelszót beállítani, és a fiókod néhány perc alatt elkészül.
+
+[A GitHub.com-on itt tudsz fiókot létrehozni.](https://github.com/signup)
+
+<BrowserWindow url="https://github.com/">
+  <img src="/img/github-com.png" alt="github.com"></img>
+</BrowserWindow>{" "}
+
+Természetesen, ha már van GitHub fiókod, akkor lépj be és ugorj a következő lépésre.
+
+### 3. lépés - Csatlakoztasd a GitHub fiókodat a Git fiókodhoz.
+
+Ezt parancssorból fogod elvégezni. **Az egyszerűbb hitelesítés érdekében azonos email címet és felhasználónevet adj meg a fenti git beállítás és a GitHub-os regisztráció során.**
+
+Git felhasználóneved beállításához írd be a következő parancsot a terminálban:
+
+```bash
+git config --global user.name "FELHASZNÁLÓNEVED"
+```
+
+Annak ellenőrzéséhez, hogy megfelelően beállítottad-e a Git felhasználóneved, írd be ezt:
+
+```bash
+git config --global user.name
+```
+
+Az eredménynek "FELHASZNÁLÓNEVED"-nek kell lennie.
+
+Git e-mail címed beállításához írd be a következő parancsot a terminálban:
+
+```bash
+git config --global user.email "azemailcimed@gmail.com"
+```
+
+Annak ellenőrzéséhez, hogy megfelelően beállítottad-e a Git e-mail címed, írd be ezt:
+
+```bash
+git config --global user.email
+```
+
+Az eredménynek "azemailcimed@gmail.com"-nak kell lennie.
+
+### 4. lépés - Készíts egy kódot a számítógépeden
+
+![Készíts egy kódot a számítógépeden](/img/pelda-konyvtar.png)
+
+### 5. lépés - Hozz létre egy GitHub repository-t
+
+Kattints a jobb felső sarokban található + jelre, hogy létrehozz egy új repository-t. A repository-k olyanok, mint a kód mappáid az interneten.
+
+<BrowserWindow url="https://github.com/">
+  <img src="/img/uj-repo.png" alt="github.com"></img>
+</BrowserWindow>{" "}
+
+Ezután az alábbi oldalra kerülsz:
+
+<BrowserWindow url="https://github.com/new">
+  <img src="/img/uj-repo-oldal.png" alt="github.com"></img>
+</BrowserWindow>{" "}
+
+Add meg a repository nevét, és adj hozzá egy leírást (ez opcionális).
+
+Kattints a "**Create repository**" gombra a repository létrehozásához. Ezután az alábbi oldalra kerülsz:
+
+<BrowserWindow url="https://github.com/new">
+  <img src="/img/uj-repo-oldal-kesz.png" alt="github.com"></img>
+</BrowserWindow>{" "}
+
+### 6. lépés - Készíts egy új repository-t a számítógépeden
+
+A beépített kódszerkesztő terminálját használhatod a Git használatához, hogy feltöltsd a kódodat a GitHub-ra. A VSCode-ban a terminál megnyitásához használd a ctrl + shift + ' billentyűkombinációt.
+
+Írd be a következő parancsokat egyenként a terminálban. Nyomd meg az Enter billentyűt a folytatáshoz minden parancs után.
+
+```bash
+echo "# pelda" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/trueqap/pelda.git
+git push -u origin main
+```

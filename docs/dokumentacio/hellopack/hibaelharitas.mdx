@@ -1,0 +1,53 @@
+---
+title: Csomagkezelő hibaelhárítása
+description: HelloPack csomegkezelő CLI parancsok
+keywords:
+  - hellopack
+sidebar_label: Csomagkezelő hibaelhárítása
+sidebar_position: 5.5
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-screwdriver-wrench text-primary" /> Csomagkezelő hibaelhárítása
+
+## Nem aktiválódik a csomagkezelő
+
+1. Nem él az előfizetésed. Itt ellenőrizheted: https://hellowp.io/hu/helloconsole/subscriptions/
+2. Ellenőrizd a HelloPack tesztelőt: **WordPress admin -> Eszközök -> HelloPack tesztelő** Amennyiben itt hibát látsz, akkor ezen indulj el. [A tesztelőről részletesebben](/docs/dokumentacio/hellopack/tesztelo)
+3. Ellenőrizd, hogy a telepítéskor nem sérült-e meg a csomagkezelő. Töltsd le újra a csomagkezelőt, és telepítsd fel újra.
+
+## Nem frissül a csomagkezelő
+
+Ez akkor lehetséges, ha
+
+1. Nem él az előfizetésed. Itt ellenőrizheted: https://hellowp.io/hu/helloconsole/subscriptions/
+2. Nem aktiváltad a csomagkezelőt. [Csomagkezelő aktiválása](/docs/dokumentacio/hellopack/aktivalas)
+3. A csomagkezelő nem a `wp-content/plugins/hellopack` mappában van. Ezt FTP-n keresztül tudod ellenőrizni. Egyszerűbb megoldás: töltsd le újra a csomagkezelőt, és telepítsd fel újra. [Csomagkezelő letöltése](/docs/dokumentacio/hellopack/letoltes-telepites)
+4. Ellenőrizd a HelloPack tesztelőt: **WordPress admin -> Eszközök -> HelloPack tesztelő** Amennyiben itt hibát látsz, akkor ezen indulj el. [A tesztelőről részletesebben](/docs/dokumentacio/hellopack/tesztelo)
+
+## Nem kapnak frissítést a bővítmények
+
+Ez akkor lehetséges, ha
+
+1. Nem él az előfizetésed. Itt ellenőrizheted: https://hellowp.io/hu/helloconsole/subscriptions/
+2. Nem aktiváltad a csomagkezelőt. [Csomagkezelő aktiválása](/docs/dokumentacio/hellopack/aktivalas)
+3. Ellenőrizd a HelloPack tesztelőt: **WordPress admin -> Eszközök -> HelloPack tesztelő** Amennyiben itt hibát látsz, akkor ezen indulj el. [A tesztelőről részletesebben](/docs/dokumentacio/hellopack/tesztelo)
+
+:::tip
+
+Gyakori probléma **Mac felhsználók körében**, hogy Safari böngésző automatikusan kitömöríti a ZIP fájlokat és ha már korábban letölötted a hellopack.zip-et, akkor az újabb verziókból készít egy hellopack-1, hellopack-2 stb... nevű mappát. Amennyiben ezt tömöríted be, vagy ezt másolod fel a szerverre, akkor mindig győződj meg róla, hogy a hellopack a hellopack mappába kerüljön. Tehát így: `wp-content/plugins/hellopack/` Erre azért van szükség, mert így fog zavartalanul működni a bővítmény.
+
+:::
+
+## Nem kapnak frissítést egy konkrét bővítmény
+
+1. Ellenőrizd, hogy a bővítmény a mappájában van-e: `wp-content/plugins/bovitmeny-neve` Például: az Elementor PRO bővítménynek itt kell lennie: `wp-content/plugins/elementor-pro`
+
+### Megoldás a rossz mappában lévő bővítményekhez
+
+Amennyiben nem a megfelelő mappában van.
+
+1. Kapcsold ki az érintett bővítményt és töröld le (nem okoz problémát)
+2. Töltsd le újra a bővítményt a HelloPack központból, és telepítsd fel újra. [Bővítmények letöltése és telepítése](/docs/dokumentacio/hellopack/letoltes-telepites)

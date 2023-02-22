@@ -1,0 +1,70 @@
+---
+title: Tesztelő
+description: HelloPack csomegkezelő tesztelése
+keywords:
+  - hellopack
+  - teszteles
+sidebar_label: Csomagkezelő tesztelő
+sidebar_position: 3
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-list-check text-primary" /> HelloPack tesztelő
+
+Annak érdekében, hogy azonnali visszejelzést kapj a HelloPack csomagkezelőd működéséről, készítettünk egy tesztelőt, amelyet a HelloPack admin felületen találsz.
+
+**Amennyiben minden rendben van, akkor ezt a képet kell látnod:**
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/hellopack-tesztelo.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>{" "}
+
+## A tesztelő a következőket ellenőrzi:
+
+### PHP memória limit
+
+A HelloPack csomagkezelőnek legalább 64 MB memória szükséges a működéséhel. Ez az érték viszont inkább azt mutatja, hogy a WordPress gyakorlati felhasználása mellett mennyi memóriára van szükség. Példa: ha Elementor PRO-t használsz, akkor az ajánlott érték 1024 MB. **Ajánlott beállítás: minimum 256 MB.**
+
+### PHP fájl feltöltési limit
+
+Ez a PHP beállítás határozza meg, hogy egy fájl mekkora méretig tölthető fel. Bár ennek a beállításnak nincs kimondottan minimum feltétele, hiszen attól még a WordPress és a HelloPack is tökélétesen fog működni, ha ez a szám alacsony, viszont nehézkessé fog válni a képek, bővítmények stb... feltöltése. **Ajánlott beállítás: minimum 64 MB.**
+
+### PHP Max Bemeneti Változók (max imput vars)
+
+Az "PHP Max Input Vars" az a maximális változók száma, amelyeket a szervered egyetlen függvényben használhat. Ahhoz, hogy egy WordPress megfelelően működjön, ezt az értéket 10000-re kell állítani. Ha az érték túl alacsony, akkor problémák lehetnek, például: nem menti el a WordPress a beállításokat, widgeteket, menüt stb... **Ajánlott beállítás: 10000.**
+
+### PHP futásideje (max execution time)
+
+A PHP futásideje azt határozza meg, hogy egy PHP fájl mennyi ideig fut. Ha ez az érték túl alacsony, akkor előfordulhat, hogy bizonyos műveletek nem működnek megfelelően.
+**Ajánlott beállítás: 120.**
+
+### HelloPack szerverek: API, kliens, letöltő
+
+Ezek a tesztek ellenőrzik a weboldalad és a szerverek közötti kommunikációt. Ha ezek a tesztek nem működnek megfelelően, akkor a HelloPack nem fog működni.
+
+### HelloPack API státusz
+
+A HelloPack API státusz ellenőrzi, hogy a HelloPack API kulcsod megfelelő-e. Ha nem, akkor a HelloPack nem fog működni.
+
+### WP Debug
+
+A WP Debug ellenőrzi, hogy a WordPress debug módja ki van-e kapcsolva. "Production" módban a debug módot nem ajánlott bekapcsolva tartani. Előfordulhatnak olyan "hibák", amelyek nem jelentenek semmi bajt, de a debug mód bekapcsolása miatt megjelennek.
+
+### ZipArchive támogatás
+
+A ZipArchive támogatás ellenőrzi, hogy a ZipArchive elérhető-e. Az "ZipArchive" egy PHP osztály, amely lehetővé teszi az archívumok (tömörített fájlok) kezelését. Az "ZipArchive" osztály segítségével a PHP képes olvasni, írni, módosítani és kicsomagolni ZIP formátumú archívumokat. ZipArchive nélkül a WordPress nem képes a bővítményeket és a témákat telepíteni zip fájlokból.
+
+### PHP verzió
+
+A PHP verzió ellenőrzi, hogy a PHP verzió megfelelő-e. A HelloPack csak a PHP 7.4 és újabb verziókkal kompatibilis.
+
+### WordPress fájl írási jogok
+
+Ez a rész ellenőrzi, hogy a WordPress fájljai, illetve könyvtárai (például plugins mappa) írhatóak-e. Ha nem, akkor nem tudsz új bővítményt telepíteni, illetve nem tudsz majd frissíteni sem.
+
+:::warning Figyelem
+
+A tesztelő olyan beállításokat ellenőriz, amelyek a WordPress, a bővítmények és a HelloPack megfelelő működéséhez szükségesek. Ezek mindegyike tárhely beállítás kérdése. Amennyiben piros jelölést látsz a tesztelőben, akkor a tárhelyed beállításai nem megfelelőek. Ilyen esetben nyugodtan vedd fel a kapcsolatot a szolgáltatóddal.
+:::

@@ -1,0 +1,50 @@
+---
+title: White-label
+description: HelloPack csomegkezelő CLI parancsok
+keywords:
+  - hellopack
+sidebar_label: Csomagkezelő White-label
+sidebar_position: 5
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-tags text-primary" /> HelloPack white-label
+
+## Mire jó a White-label funkció?
+
+A white-label funkció egy olyan eszköz, amely lehetővé teszi a fejlesztők számára, hogy testreszabják a terméküket úgy, hogy azok a saját márkaidentitásuknak feleljenek meg, és ne az eredeti termék nevét vagy logóját használják. Ezáltal az eredeti termék eltávolítható, vagy az eredeti fejlesztői által javasolt megjelenéstől eltérő módon jeleníthető meg. A whitelabel funkció használata különösen hasznos lehet azoknak a vállalkozásoknak, akik saját brandjüket szeretnék erősíteni.
+
+## Hogyan aktiválhatod a white-label funkciót?
+
+Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a
+
+```php title="wp-config.php"
+define('HELLOPACK_WHITELABEL', true);
+```
+
+sort a /_ That’s all, stop editing! Happy publishing. _/ sor fölé. Ezzel a HelloPack vizuális megjelenése módosíthatóvá válik.
+
+## HelloPack megjelenésének módosítása
+
+Miután a HELLOPACK_WHITELABEL konstans bekerült a wp-config.php-ba, a HelloPack minden szöveges része módosíthatóvá válik. A szöveg módosításához a WordPress nyelvrendszerét használhatod.
+
+### Szöveg átírása WordPress adminból LOCO bővítmény segítségével.
+
+1. Telepítsd és aktiváld a LOCO Translate bővítményt a WordPress admin felületén keresztül.
+2. A WordPress admin felületén kattints a LOCO Translate menüpontra.
+3. Válaszd ki a HelloPack bővítményt a projektlistából, majd válaszd ki a nyelvet.
+4. Keresd meg a szövegrészletet, amelyet módosítani szeretnél, majd kattints rá.
+5. Írd be az új fordítást a jobb oldali szerkesztő mezőbe, majd kattints a Mentés gombra.
+
+### Szöveg átírása manuálisan
+
+A wp-content/plugins/hellopack/languages mappából másold le a gépedre a nyelvi fájlokat. Módosítsd a szöveget például POEdit segítségével és másold vissza a wp-content/languages/plugins/ mappába a hellopack-hu-HU.po (magyar esetén) fájlt.
+
+:::caution Figyelem
+Annak érdekében, hogy a HelloPack frissítése ne írja felül a módosításokat, győződj meg róla, hogy a fordítás a `wp-content/languages/plugins` – mappában van. LOCO: Áthelyezés fül (fordítási nézetben)
+:::
+
+**A LOCO bővítményre csak a szöveg módosításáig van szükség, a későbbiekben nincs.
+**

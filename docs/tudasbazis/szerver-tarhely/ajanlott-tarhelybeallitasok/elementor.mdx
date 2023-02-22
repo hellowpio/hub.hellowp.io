@@ -1,0 +1,96 @@
+---
+title: Elementor ajánlott tárhelybeállítások
+description: Elementor ajánlott tárhelybeállítások
+keywords:
+  - hibaelharitas
+sidebar_label: Elementor
+sidebar_position: 3
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-elementor text-primary" /> Elementor ajánlott tárhelybeállítások
+
+Ezen az oldalon megpróbáljuk összefoglalni a rendszerkövetelményeket, amelyek szükségesek az Elementor használatához. Ha nem vagy biztos benne, hogy a szerver támogatja-e ezt, kérdezd meg a szolgáltatódat.
+
+### Az Elementor megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```bash php.ini
+php_value upload_max_filesize 128M
+php_value post_max_size 128M
+php_value max_execution_time 300
+php_value max_input_time 300
+php_value max_input_vars 10000
+php_value memory_limit 1024M
+```
+
+### Bizonytalan vagy? Nem tudod, hogy ezt hogy kell beállítani a tárhelyeden?
+
+Semmi gond, a szolgáltatód tud segíteni neked. Küldd el nekik az alábbi levelet:
+
+> Tisztelt Szolgáltatóm,
+>
+> Legyenek kedvesek a domain.hu (írd át a sajátodra) tárhelyhez vonatkozó PHP limiteket az alábbiakra állítani nekem:<br/><br/>
+> php_value upload_max_filesize 128M <br/>
+> php_value post_max_size 128M<br/>
+> php_value max_execution_time 300<br/>
+> php_value max_input_time 300<br/>
+> php_value max_input_vars 10000<br/>
+> php_value memory_limit 1024M<br/>
+>
+> Indoklás: a WordPress/Elementor megfelelő működéséhez a fenti beállításokra van szükségem.
+>
+> Köszönöm!<br/>
+> Üdvözlettel: XY
+
+## WordPress verzió
+
+WordPress 6.0 vagy újabb verzióval fog működni az Elementor megfelelően.
+
+## PHP verzió
+
+**PHP 7.4 vagy újabb verzióval kell rendelkezni, kivéve a PHP 8.1-et**
+
+Azt javasoljuk, hogy minimum PHP 7.4-en fusson az oldal. Az újabb verziók alatt is tökéletesen működik, kivéve az “új” 8.1-et, amit jelenleg még nem támogat 100%-osan.
+
+## Adatbázis
+
+MySQL 5.6 verzió vagy újabb, ill. MariaDB 10.0 verzió vagy újabb szükséges a megfelelő futáshoz. Ez igazából “alapértelmezett”, maga a WordPress futásához is erre van szükség, szóval a tárhelyek 99%-ban tökélet lesz.
+
+## WP/PHP Memória Limit
+
+Itt jön be az a rész, ami sok helyen problémát okoz az Elementor szerkesztőfelületének a betöltésében.
+
+### 256MB
+
+Amennyiben semmilyen más bővítményt nem használsz, ami kiegészítené az Elementor-t, akkor minimum 256 MB-nak kell lennie memóriának.
+
+### 512MB
+
+Ha az oldalon fut egy bővítmény, ami extra widgeteket tölt be (példa: WooCommerce, LearnDash), akkor már 512MB-ra lesz szükség.
+
+### Ajánlott: 768MB / 1024MB
+
+Az Elementor fejlesztői azt javasolják, hogy a megfelelő működéshez 768MB-ra állítsuk a PHP memóriát. A mi tapasztalatunk viszont az, hogy 768MB-nál még előjöhetnek problémák, ha mondjuk JET bővítmények is futnak az oldalon. A mi ajánlásunk 1024MB!
+
+:::note Megjegyzés
+Ez az érték eléggé magas, sok tárhelyszolglátató nem támogatja. Mielőtt tárhelyszolgáltatást választasz, mindenképpen kérdezd meg, hogy ezt támogatni fogják-e.
+:::
+
+## Böngésző
+
+Bármennyire is furán hangzik, de az Elementor szerkesztője részben a gépeden fut, szóval fontos, hogy milyen böngészőt használsz. Ahogyan a webtechnológia fejlődik, fontos, hogy a felhasználók naprakész legyenek a weboldalaikkal. A régebbi böngészők esetleg nem támogatják az Elementor által biztosított teljes funkciókészletet. Az alábbi táblázatban láthatod, mely böngészők támogatják az Elementort:
+
+| Böngésző      | Elementor szerkesztő       | Elementor frontend         | Frontend – mobilon       |
+| ------------- | -------------------------- | -------------------------- | ------------------------ |
+| Google Chrome | 100.x és újabbak           | 100.x és újabbak           | 100.x és újabbak         |
+| Microsoft     | Edge 100.x és újabbak      | 100.x és újabbak           | 100.x és újabbak         |
+| Brave         | 100.x és újabbak           | 100.x és újabbak           | 100.x és újabbak         |
+| Firefox       | 100.x és újabbak           | 100.x és újabbak           | 100.x és újabbak         |
+| Safari        | MacOS Safari 14 és újabbak | MacOS Safari 14 és újabbak | iOS Safari 14 és újabbak |
+| Egyéb         | Legújabb                   | Legújabb                   | Legújabb                 |
+
+## Milyen eszközön indul el a szerkesztő?
+
+Jelenleg nem lehet Elementorral szerkeszteni mobiltelefonokon és táblagépeken. Csak asztali számítógépeken fog a szerkesztő tökéltetésen működni!

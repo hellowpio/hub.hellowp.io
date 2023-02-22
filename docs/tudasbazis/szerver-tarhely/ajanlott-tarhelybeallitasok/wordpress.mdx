@@ -1,0 +1,55 @@
+---
+title: WordPress ajánlott tárhelybeállítások
+description: WordPress ajánlott tárhelybeállítások
+keywords:
+  - hibaelharitas
+sidebar_label: WordPress
+sidebar_position: 3
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-wordpress text-primary" /> WordPress ajánlott tárhelybeállítások
+
+Ezen az oldalon megpróbáljuk összefoglalni a rendszerkövetelményeket, amelyek szükségesek a WordPress használatához. Ha nem vagy biztos benne, hogy a szerver támogatja-e ezt, kérdezd meg a szolgáltatódat.
+
+### A WordPress megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```bash php.ini
+php_value upload_max_filesize 128M
+php_value post_max_size 256M
+php_value max_execution_time 300
+php_value max_input_time 300
+php_value max_input_vars 10000
+php_value memory_limit 256M
+```
+
+### Bizonytalan vagy? Nem tudod, hogy ezt hogy kell beállítani a tárhelyeden?
+
+Semmi gond, a szolgáltatód tud segíteni neked. Küldd el nekik az alábbi levelet:
+
+> Tisztelt Szolgáltatóm,
+>
+> Legyenek kedvesek a domain.hu (írd át a sajátodra) tárhelyhez vonatkozó PHP limiteket az alábbiakra állítani nekem:<br/><br/>
+> php_value upload_max_filesize 128M <br/>
+> php_value post_max_size 256M<br/>
+> php_value max_execution_time 300<br/>
+> php_value max_input_time 300<br/>
+> php_value max_input_vars 10000<br/>
+> php_value memory_limit 256M<br/>
+>
+> Indoklás: a WordPress CMS megfelelő működéséhez a fenti beállításokra van szükségem.
+>
+> Köszönöm!<br/>
+> Üdvözlettel: XY
+
+## PHP verzió
+
+**PHP 7.4 vagy újabb verzióval kell rendelkezni, kivéve a PHP 8.1-et**
+
+Azt javasoljuk, hogy minimum PHP 7.4-en fusson az oldal. Az újabb verziók alatt is tökéletesen működik, kivéve az “új” 8.1-et, amit jelenleg még nem támogat 100%-osan.
+
+## Adatbázis
+
+MySQL 5.6 verzió vagy újabb, ill. MariaDB 10.0 verzió vagy újabb szükséges a megfelelő futáshoz. Ez igazából “alapértelmezett”, maga a WordPress futásához is erre van szükség, szóval a tárhelyek 99%-ban tökélet lesz.

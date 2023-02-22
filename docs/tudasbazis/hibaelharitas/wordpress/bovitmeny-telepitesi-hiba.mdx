@@ -1,0 +1,28 @@
+---
+title: Bővítmény telepítési hiba
+description: Bővítmény telepítési hiba
+keywords:
+  - hibaelharitas
+sidebar_label: Bővítmény telepítési hiba
+sidebar_position: 3
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-sharp fa-regular fa-boxes-stacked text-primary" /> Bővítmény telepítési hiba
+
+WordPress bővítmény telepítése közben az alábbi hibaüzenetet kapod, ha megpróbálsz egy nem WordPress bővítményt telepíteni:
+
+```
+Csomag kitömörítése…
+Bővítmény telepítése…
+A csomag nem telepíthető. Érvénytelen bővítményeket találtunk.
+Bővítmény telepítési hiba.
+
+Tovább a Bővítmény telepítőhöz
+```
+
+## Megoldás
+
+Ellenőrizd a ZIP fájlt, hogy az pontosan micsoda. Gyakori hiba, hogy WordPress sablont próbálnak telepíteni bővítményként. A sablon telepítéséhez navigálj a WordPress admin felületen a **Megjelenés** menüpont alatt található **Sablonok** menüpontba. Itt kattints a **Új sablon telepítése** gombra, majd a **Sablon kiválasztása** gombra. Itt válaszd ki a ZIP fájlt, majd kattints a **Sablon telepítése** gombra.

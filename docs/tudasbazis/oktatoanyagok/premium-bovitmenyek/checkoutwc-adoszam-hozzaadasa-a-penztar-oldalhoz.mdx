@@ -1,0 +1,39 @@
+---
+title: "CheckoutWC: Adószám hozzáadása a pénztár oldalhoz"
+description: "CheckoutWC: Adószám hozzáadása a pénztár oldalhoz"
+keywords:
+  - github
+sidebar_label: "CheckoutWC: Adószám hozzáadása a pénztár oldalhoz"
+sidebar_position: 3
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-sharp fa-regular fa-code text-primary" /> CheckoutWC: Adószám hozzáadása a pénztár oldalhoz
+
+A CheckoutWC alapértelmezetten nem tudja az adószám kezelését a pénztár oldalon, mint ahogyan a WooCommerce sem, mivel kevés olyan ország van, ahol az adószám fontos lenne.
+
+## Megoldás
+
+### 1. lépés - Telepítsd az ingyenes HuCommerce bővítményt:
+
+<WPEmbed url="surbma-magyar-woocommerce" />
+
+### 2. lépés - Aktiváld az adószám mezőt a HuCommerce-ben:
+
+Kattints ide: **WooCommerce -> HuCommerce -> HuCommerce modulok -> Adószám** megjelenítése Itt tudod bekapcsolni az adószámot.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/hunadoszam-1.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>{" "}
+
+### 3. lépés - Aktiváld a számlázási adatokat a CheckoutWC-ben:
+
+**CheckoutWC -> Checkout -> Address Options** Itt tudod bekapcsolni a szükséges mezőket. Ne aggódj, ha nem látod az adószámot. A **Company mező bepipálásával** automatikusan megjelenik majd az Adószám mező is.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/hunadoszam-2.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>{" "}

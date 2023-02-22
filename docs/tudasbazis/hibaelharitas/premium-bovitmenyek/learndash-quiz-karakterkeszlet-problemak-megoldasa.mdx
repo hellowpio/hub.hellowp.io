@@ -1,0 +1,41 @@
+---
+title: LearnDash Quiz karakterkészlet problémák megoldása
+
+description: LearnDash Quiz karakterkészlet problémák megoldása
+keywords:
+  - hibaelharitas
+sidebar_label: LearnDash Quiz karakterkészlet problémák megoldása
+sidebar_position: 3
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-database text-primary" /> LearnDash Quiz karakterkészlet problémák megoldása
+
+Normál esetben a WordPress UTF-8 karakterkódolásúként hozza létre az táblákat az adatbázisban, akkor is, ha a szerveren nem ez az alapértelmezett. A LearnDash viszont a szerver beállításokat követi és például, ha a MySQL szerveren a latin1_swedish_ci az alapértelmezett, akkor latin1_swedish_ci-ben hozza létre a táblákat. Ezért fordulhat elő, hogy a árvíztűrő tükörfúrógép szavakból ez lesz: árvízt?r? tükörfúrógép. A megoldása roppant egyszerű. Lépj be phpMyAdmin és az SQL fül alatt található mezőbe másold be az alábbi sorokat:
+
+:::tip Tudtad?
+A **latin1_swedish_ci** karakterkészlet a Latin-1 (ISO 8859-1) karakterkészletet használja, amely tartalmazza az angol nyelv ábécéjét, valamint többnyire az európai nyelvek ábécéit és speciális karaktereit is. Az "swedish" (svéd) szó azért szerepel a karakterkészlet nevében, mert a karakterkészletet korábban Svédországban fejlesztették ki. Az **UTF-8** (Unicode Transformation Format-8) egy karakterkódolási rendszer, amely lehetővé teszi, hogy az összes karaktert és nyelvet reprezentálni lehessen a világon. Az UTF-8 több mint 1 millió karaktert támogat.
+:::
+
+```sql
+ALTER TABLE wp_learndash_pro_quiz_category CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_form CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_lock CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_master CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_prerequisite CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_question CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_statistic CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_statistic_ref CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_template CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_toplist CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_category CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_category CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE wp_learndash_pro_quiz_category CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+```
+
+:::warning Figyelem!
+Figyelj a megfelelő előtagra (wp\_) és minden javítás előtt készíts mentést az adatbázisról.
+:::

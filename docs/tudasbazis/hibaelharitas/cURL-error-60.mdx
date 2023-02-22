@@ -1,0 +1,37 @@
+---
+title: "cURL error 60: SSL certificate hiba megoldása"
+description: HelloPack csomegkezelő tesztelése
+keywords:
+  - hellopack
+  - teszteles
+sidebar_label: "cURL error 60: SSL certificate hiba megoldása"
+sidebar_position: 3
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-list-check text-primary" /> “cURL error 60: SSL certificate problem: certificate has expired” + Hotfix bővítmény
+
+:::warning Figyelem
+Ezt a megoldást csak akkor használd, ha az oldalad nem működik megfelelően a tárhelyed elavultsága miatt. Kérlek, csak addig használd, ameddig letisztázod a szolgáltatóddal a kérdést. Semmilyen módon nem ajánlott huzamosabb ideig használni ez a bővítményt, mert biztonsági kockázatokat hordozhat.
+:::
+
+Készítettünk bővítmény annak érdekében, hogy minden tárhelyen megfelelően működjenek az Let’s Encrypt frissítés miatt leállt bővítmények. A bővítmény egy filtert állít be, amelyik letiltja az HTTPS SSL tanúsítványok ellenőrzését a WordPress oldalakon.
+
+**Innen lehet letölteni:** [Hotfix bővítmény letöltése](/static/download/hellowp-ssl-problema-hotfix.zip)
+
+[Download this docx using Markdown](./assets/hellowp-ssl-problema-hotfix.zip)
+
+Megold egy pillanatnyi hibát, amit a Let’s Encrypt frissítése okoz elavult szervereken.
+
+**Telepítés:**
+
+Bővítmények -> Bővítmény feltöltése -> Kiválasztod a fájlt -> Telepítés most -> Bővítmény bekapcsolása
+
+**Az okokról bővebben:**
+https://letsencrypt.org/docs/dst-root-ca-x3-expiration-september-2021/
+
+**Tanácsok szerverüzemeltetőknek:**
+
+https://medium.com/geekculture/will-you-be-impacted-by-letsencrypt-dst-root-ca-x3-expiration-d54a018df257

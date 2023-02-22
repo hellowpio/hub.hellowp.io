@@ -1,0 +1,24 @@
+---
+title: Rendszerkövetelmények
+description: HelloPack csomegkezelő rendszerkövetelményei
+keywords:
+  - hellopack
+sidebar_label: Rendszerkövetelmények
+sidebar_position: 9
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-server text-primary" /> Rendszerkövetelmények
+
+A HelloPack követelményei 100%-ban megyeznek a [WordPress követelményeivel](https://wordpress.org/about/requirements/):
+
+1. PHP verzió 7.4 vagy újabb.
+2. MySQL verzió 5.7 vagy újabb | MariaDB verzió 10.3 vagy újabb.
+3. HTTPS támogatás
+4. Webszerver: Apache | Nginx | LiteSpeed
+
+:::note LiteSpeed
+LiteSpeed-et csak akkor ajánljuk, ha jól be van állítva. Gyakori hiba, hogy a rosszul beállított LiteSpeed cache alatt tartja az admin felületet, így pl. az Elementor nem fut megfelelően.
+:::
