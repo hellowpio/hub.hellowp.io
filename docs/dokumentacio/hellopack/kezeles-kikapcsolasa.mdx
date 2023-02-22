@@ -1,0 +1,42 @@
+---
+title: Bővítmények kezelésének kikapcsolása
+description: Bővítmények kezelésének kikapcsolása
+keywords:
+  - hellopack
+sidebar_label: Bővítmények kezelésének kikapcsolása
+
+sidebar_position: 5
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-tags text-primary" /> HelloPack bővítmények kezelésének kikapcsolása
+
+Szeretnéd beállítani, hogy a HelloPack ne kezeljen egy bővítményt a csomagkezelővel?
+
+A HelloPack kikapcsolja azoknak a bővítményeknek a figyelését, amiket a `HP_DISABLE_PLUGINS` konstansban definiálunk.
+
+## Használata
+
+Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a
+
+```php title="wp-config.php"
+define( 'HP_DISABLE_PLUGINS', 'cartflow-pro, elementor-pro' );
+```
+
+sort a /_ That’s all, stop editing! Happy publishing. _/ sor fölé.
+
+Fel kell sorolnod azoknak a bővítményeknek a **mappa neveit**, amit szeretnél kizárni. A fenti példa kizárja az Cartflow PRO és az Elementor PRO kezelését. Amennyiben több bővítményt szeretnél felvinni a listába, akkor vesszővel kell elválasztani őket. (A példában szereplő cartflow-pro-t és elementor-pro -t nyugodtan kitörölheted és írd a helyére azokat a bővítményeket, amelyeknek a kezelését ki szeretnéd kapcsolni.)
+
+**Hogyan szerkesztheted a wp-config.php-t?
+**
+
+1. FTP-n lépj be a szerverére
+2. Nyisd meg a wp-config.php fájlt
+3. Keresd meg a /_ That's all, stop editing! Happy publishing. _/ részt a fájl végén és másold be a kódot.
+4. Mentsd el a módosításokat
+
+:::note
+A bővítmények kezelésének kikapcsolásához minimum HelloPack 1.2.5 -ös verzióra van szükség.
+:::

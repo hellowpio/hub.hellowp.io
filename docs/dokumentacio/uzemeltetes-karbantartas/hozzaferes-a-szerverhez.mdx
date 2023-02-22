@@ -1,0 +1,49 @@
+---
+title: Hozzáférés a szerverhez
+description: Hozzáférés a szerverhez
+keywords:
+  - hellopack
+  - elementor
+sidebar_label: Hozzáférés a szerverhez
+sidebar_position: 2
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-sharp fa-solid fa-list-tree text-primary" /> Hozzáférés a szerverhez és a weboldalhoz
+
+Annak érdekében, hogy a weboldal karbantartása és fejlesztése zavartalan legyen, mi a GitHub PRO alapú verzikövetést és ellenőrzést ajánljuk, amit a legtöbb fejlesztő könnyedén tud használni.
+
+## Két lehetőség áll a rendelkezésedre:
+
+### 1. Git alapú verziókövetés + deploy
+
+Ma már nem használunk FTP-t vagy sFTP-t a weboldalak fejlesztéséhez, mivel a Git alapú verziókövetés és deploy segítségével sokkal egyszerűbb és gyorsabb a fejlesztés. A Git alapú fejlesztés nagy előnye, hogy minden fejlesztő, aki dolgozik az oldalon pontosan tudja, hogy ki mit módosított az oldalon, sőt a fejlesztés menetét is jobban átláthatja.
+
+A HelloWP szerverei úgy vannak felépítve, hogy automatikusan deployolják a weboldaladat, amint a GitHub-on a fejlesztők módosítják a forráskódot. A deploy folyamat automatikus, így a fejlesztőknek nem kell a szerverre bejelentkezniük, és nem kell manuálisan fájlokat feltölteni a szerverre.
+
+Új vagy a Git alapú verziókövetés világában? Nézd meg a [Git és GitHub alapok](/docs/tudasbazis/oktatoanyagok/github/github-kezdoknek/) című írásunkat.
+
+:::warning Figyelem!
+Amennyiben Git alapú verziókövetést használsz a weboldaladnál, akkor **ne írj felül fájlokat sFTP-n keresztül**. A fájlok felülírásával a verziókövetés nem fog működni, ami a weboldal működését is befolyásolhatja, illetve megállíthatja a deploy folyamatot.
+:::
+
+### 2. sFTP alapú hozzáférés
+
+A HelloWP szervereihez sFTP-n keresztül is hozzáférhetsz (a kapott hozzáféréssel), de ezt csak akkor ajánljuk, ha a weboldalad nem Git alapú verziókövetést használ.
+
+**Az alábbi klienseket ajánljuk a szerver eléréshez sFTP-n keresztül:**
+
+**Windows esetén:** [https://winscp.net/eng/download.php](https://winscp.net/eng/download.php)
+
+**Mac esetén:** [https://binarynights.com/](https://binarynights.com/)
+
+### 3. FTP alapú hozzáférés
+
+A HelloWP szervereihez FTP-n keresztül nem tudsz hozzáférni. Nem használjuk ezt a protokollt. A szerverekre csak sFTP-n keresztül tudsz hozzáférni.
+
+:::note Tudtad?
+FTP vagyis File Transfer Protocol egy kommunikációs protokoll, amely a fájlok átvitelét teszi lehetővé a hálózaton keresztül. Az **FTP protokollt Abhay Bhushan fejlesztette ki 1971-ben**, amikor még az MIT-n tanult. Az FTP először a 80-as évek elején vált elérhetővé az interneten, amikor az internet elődjének számító ARPANET hálózatot elérhetővé tették a civil felhasználók számára.
+:::

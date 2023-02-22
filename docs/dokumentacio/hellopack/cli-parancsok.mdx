@@ -1,0 +1,55 @@
+---
+title: CLI parancsok
+description: HelloPack csomegkezelő CLI parancsok
+keywords:
+  - hellopack
+sidebar_label: Csomagkezelő CLI parancsok
+sidebar_position: 4
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-square-terminal text-primary" /> HelloPack csomagkezelő CLI
+
+## Mi az a WP CLI?
+
+A WP-CLI egy parancssoros interfész (CLI) WordPress-hez. A WP-CLI lehetővé teszi, hogy a WordPress-t parancssorban használd, és könnyen végrehajtsd a feladatokat, amelyeket általában a WordPress adminisztrációs felületén keresztül végeznél. A WP-CLI használatával könnyen telepíthetsz, frissíthetsz, konfigurálhatsz és karbantarthatod a WordPress weboldaladat parancssoros interfész segítségével. A WP-CLI telepítése és használata több platformon is elérhető, beleértve a Windows, a macOS és a Linux rendszereket is.
+
+## HelloPack CLI parancsok konzol kódjai
+
+### License aktiválása
+
+Aktiválja a HelloPack licenszét a megadott licensz-kulccsal.
+
+** Paraméterek **
+
+- `<license-key>` - A HelloPack licensz-kulcsa.
+
+```bash
+wp hellopack license activate <license-key>
+```
+
+### License deaktiválása
+
+Törli a kulcsot a weboldalról és a hellowp.io szerveréről egyaránt.
+
+```bash
+wp hellopack license deactivate
+```
+
+### License statáusz lekérdezése
+
+Lekéri a HelloPack licenc státuszát.
+
+```bash
+wp hellopack license status
+```
+
+### CLI súgó
+
+Listázza a HelloPack CLI parancsokat.
+
+```bash
+wp hellopack license --help
+```

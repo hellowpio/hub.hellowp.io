@@ -1,0 +1,94 @@
+---
+title: Komplett weboldal telepítése All-in-One WP Migration bővítmény segítségével
+
+description: "Komplett weboldal telepítése All-in-One WP Migration bővítmény segítségével"
+keywords:
+  - github
+sidebar_label: "Telepítése AiO WP Migration bővítmény segítségével"
+sidebar_position: 3
+---
+
+import DocYoutube from "@site/src/components/DocYoutube";
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-sharp fa-regular fa-code text-primary" /> Komplett weboldal telepítése All-in-One WP Migration bővítmény segítségével
+
+Annak érdekében, hogy 1:1-ben azt a weboldalt kapd meg, amit a Demo-ban láttál és megvásároltál, az All-in-One WP Migration bővítmény segítségével importáljuk a demo tartalmát. Ez a bővítmény rendkívül jól működik és szinte az összes tárhelyszolgáltató által kínált tárhelyen elfut.
+
+**Mire lesz szükség?**
+
+- Megfelelő tárhelyre - [szükséges technikai követelmények](/docs/tudasbazis/szerver-tarhely/ajanlott-tarhelybeallitasok/wordpress).
+- Egy előretelepített WordPress-re. Az nem számít, hogy van-e tartalma, de jobb, ha teljesen üres.
+
+<DocYoutube video="https://www.youtube.com/watch?v=C6Lv4Xe-nro" />
+
+## 1.) lépés: All-in-One WP Migration telepítése
+
+<br />
+Lépj be a WordPress adminba és telepítsd a következő bővítményt: **All-in-One WP
+Migration**
+<br />
+<br />
+<WPEmbed url="all-in-one-wp-migration" />
+<br />
+
+1. WordPress admin
+2. Bővítmények
+3. Új hozzáadása
+4. Keresés “All-in-One WP Migration”
+5. Telepítés most
+6. Bekapcsolás
+
+## 2.) lépés: All-in-One WP Migration URL telepítése
+
+Miután telepítetted az All-in-One WP Migration bővítményt, szükséges még egy kiegészítő a All-in-One WP Migration URL.
+
+Töltsd le a All-in-One WP Migration URL bővítményt: **HelloWP -> Fiókom -> Letöltések**
+
+Majd telepítsd:
+
+1. WordPress admin
+2. Bővítmények
+3. Új hozzáadása
+4. Bővítmény feltöltése
+5. Bővítmény bekapcsolása
+
+## 3.) lépés: Bővítmények ellenőrzése
+
+Ellenőrizd, hogy a két bővítmény be van-e kapcsolva: **WordPress admin –> Bővítmények -> Telepített bővítmények**.
+
+:::note Fontos!
+Ne felejts el frissíteni, mert az All-in-One WP Migration URL elavult lehet. Kattints a bővítmények oldalon a bővítmény mellett látható “Check for updates” feliratra.
+:::
+
+## 4.) lépés: Tartalom importálása
+
+Importáljuk a Demo oldal tartalmát a weboldalunkba. Figyelem: ezzel felülírod az összes tartalmadat, beállításodat és az oldal kinézetét.
+
+1. WordPress admin
+2. All-in-One WP Migration
+3. Import -> Import from: URL (legördülő menü)
+4. Import gomb,
+5. Várj, amíg importálja a tartalmat (több perc lehet, NE zárd be a böngészőt)
+
+Amikor ezt a feliratot látod: “The import process will overwrite your website including the database, media, plugins, and themes. Please ensure that you have a backup of your data before proceeding to the next step.”
+
+Kattints a PROCEED gombra.
+
+## 5.) lépés: Weboldal ellenőrzése
+
+Annyi teendőd van még, hogy nyomsz egy mentés gombot a Közvetlen hivatkozások oldalon:
+
+1. WordPress admin
+2. Beállítások
+3. Közvetlen hivatkozások
+4. Módosítások mentése
+
+## Ezt a hibát látod?
+
+“Unable to import: URL Extension is not the latest version. You must update the plugin before you can use it.”
+
+Kihagytad a frissítést. Térj vissza 2. lépéshez.

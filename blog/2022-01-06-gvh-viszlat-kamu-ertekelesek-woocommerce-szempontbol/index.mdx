@@ -1,0 +1,70 @@
+---
+title: "GVH: Viszlát kamu értékelések!? WooCommerce szempontból"
+authors: [trueqap]
+tags: [gvh, komment]
+image: ./img/201019113559-amazon-reviews-lead-1024x575.jpg
+date: 2022-01-12
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+![Hogyan szabályozzuk a szabályozhatatlant?](./img/201019113559-amazon-reviews-lead-1024x575.jpg)
+
+Tegnap számos helyen felröppent a hír, miszerint 2022. május 28-tól a Gazdasági Versenyhivatal (GVH) bekeményít a webshopos értékelésekkel kapcsolatban és nem tűri meg a jövőben a vélemények manipulációját.
+
+<!--truncate-->
+
+**Mit nem tehet a kereskedő?**
+
+- Nem posztolhat olyan véleményt, amit nem a vásárló írt, tehát nem írhat kamu értékeléseket.
+- Nem válogathat, minden véleményt, a negatívat is kell tenni. A jövőben nem manipulálhat azzal, hogy csak a pozitív értékeléseket engedi megjeleníteni.
+
+**Milyen extra lépéseket kell tennie a kereskedőnek?**
+
+- Tudnia kell bizonyítani, hogy egy-egy értékelő valóban megvásárolta a terméket. Amennyiben erre nincs mód, akkor azt külön jeleznie kell az oldalon (például, hogy nem valós vásárló).
+- Amennyiben valamit kapott az értékelésért cserébe a vásárló, akkor azt is külön fel kell tüntetni az oldalon.
+- A vásárlót segíteni kell abban, hogy hogyan működik a weboldalon a értékelés (videó, képek, leírások stb…).
+- Lehetőséget kell biztosítani a vásárlóknak, hogy szűrjék a véleményeket (Például: értékelés alapján, dátum alapján).
+
+**A gazdasági Versenyhivatal a korábban már megfogalmazott ajánlásain túl az alábbiakra hívja fel a figyelmet:
+**
+
+- A termékekkel vagy szolgáltatásokkal szerzett, online térben megosztott tapasztalatokban más fogyasztók megbíznak, és hasznosíthatják vásárlási döntéseikhez. Ezért minden olyan értékelésnek, amelyet valamely szolgáltató fogyasztók által közzétett értékelésként mutat be, hitelesnek kell lennie, azaz valós fogyasztói véleményeket, megállapításokat és tapasztalatokat kell tükröznie. Ha a kereskedő lehetővé teszi (pl. foglalási kóddal vagy számlával) nem igazolt vásárlásból származó vélemények megjelenítését, akkor ezt jól érzékelhetően fel kell tüntetni a fogyasztói értékelésnél. Javasolt az esetleges ösztönzők alkalmazásával tett fogyasztói véleményeket is külön jelölni, vagyis ha a kereskedő az értékelésért például vásárlási kupont, árkedvezményt ajánlott fel.
+- A fogyasztók tájékoztatását segíti, ha az értékelés lehetőségével egyidejűleg, az értékelés helyének közelében vizuális eszközökkel – például ábrákkal, videóval támogatottan – közérthetően bemutatásra kerül a weboldal értékelési rendszere. Az ismertetőt célszerű a vélemény írására biztosított felületen (például hiperlinkkel), vagy könnyen elérhető menüpontban megjeleníteni.
+- Érdemes egyértelművé tenni a fogyasztó számára, hogy a kereskedő platformját, vagy az azon megvásárolható terméket, szolgáltatást értékelik.
+- A kereskedő nem válogathat az értékelések között oly módon, hogy kizárólag a pozitívakat jeleníti meg. Ha a kereskedő úgy dönt, hogy egyes pozitív tartalmú fogyasztói véleményeket, mint marketingeszközt a honlapján kiemelten is megjeleníti, biztosítania szükséges a kiegyensúlyozott tájékoztatást, és nem hallgathatja el, ha a céggel, annak termékével vagy szolgáltatásával kapcsolatosan kevésbé kedvező tapasztalatokról is beszámolnak a fogyasztók.
+- Javasolt lehetővé tenni a fogyasztó számára, hogy kiválaszthassa a vélemények megjelenítésének szempontját (pl. időrendiség, legrosszabb vagy legjobb értékelésekre szűrés).
+- A fogyasztói értékelések leadását javasolt egy észszerű időkorláthoz kötni. Főként szolgáltatások esetében nem szerencsés, ha a fogyasztók hetekkel vagy hónapokkal később is értékelést írhatnak (pl. egy szállodai szobáról vagy egy éttermi ebédről), hiszen ez esetben véleményüket az idő múlása is befolyásolhatja.
+
+Az ajánlások 2022. május 28-tól lesznek alkalmazandók. Ezen időponttól a terméket érintő jelentős információnak fog számítani, hogy a vállalkozás – ha úgy dönt, hogy közzétesz fogyasztói véleményeket – miként biztosítja, hogy a közzétett értékelések a terméket ténylegesen használó vagy megvásárló fogyasztóktól származnak.
+
+:::note Szerkesztői megjegyzés
+
+Én kimondottan szeretem olvasni a negatív kommenteket. Pontosabban azt, hogy erre milyen reakció érkezik a kereskedőtől. Ez sokszor többet elárul a cégről.
+
+:::
+
+### Mit kell tenned, ha WooCommerce-ed van?
+
+Szerencsére alapból tudja a legtöbb ajánlást a WooCommerce, így a problémák zömét megoldottuk.
+
+**Lépj be az adminba: **WordPress Admin -> WooCommerce -> Beállítások -> Termékek -> Értékelések
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img
+    src="/img/blog/image-2-1024x360.png"
+    alt="Az eddigi opcionális beállítások innentől (májustól) kötelezőek lesznek."
+  ></img>
+</BrowserWindow>
+
+Az eddigi opcionális beállítások innentől (májustól) kötelezőek lesznek.
+
+### WooCommerce Product Reviews Pro
+
+Az értékelések szűrésére, ill. professzionálisabb megjelenítésére mi a WooCommerce Product Reviews Pro bővítményt használjuk: https://woocommerce.com/products/woocommerce-product-reviews-pro/
+
+A bővítmény megoldja az ajánlások zömét. Például: szűrés, listázás, stb…
+
+### Amire még nincs megoldás… (de májusig lesz)
+
+Jelenleg olyat még nem tud a WooCommerce, amivel meg lehet oldani, hogy azokat a véleményeket megjelöljük, amiknek a szerzői valamit kaptak a beküldésért cserébe.
