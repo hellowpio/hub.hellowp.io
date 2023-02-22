@@ -54,7 +54,7 @@ Másold be az alábbi kódot a Custom Code-ba amit korábban létrehoztunk, majd
 mint amikor egy sablonrészt készítesz. Az itt megadott kondíció megegyezik azzal, mintha egy fejlécet készítenél, vagy Láblécet-t. Ha az űrlapod egyetlen
 oldalon lesz elérhető, megadhatod azt, de választhatod az Egész Oldal opciót is, amit alapértelmezetten felajánl.
 
-```js {2,4-5,8}
+```js {2,6,25}
 
     
 jQuery(document).ready(function($) {
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
       warningTextAdded = false;
     } else if (!warningTextAdded) {
       var warningText = $('<div id="warning-text">Nem tudsz többet kijelölni</div>');
-      $('label[for^="form-field-mycheckboxfield-"]:last').after(warningText); /* itt tudod módosítani milyen figyelmztető szöveg jelenjen meg */
+      $('label[for^="form-field-mycheckboxfield-"]:last').after(warningText); 
       warningTextAdded = true;
     }
   });
