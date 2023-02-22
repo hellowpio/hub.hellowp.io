@@ -126,11 +126,11 @@ const config = {
               },
               {
                 label: "Komplett weboldalak",
-                to: "/docs/sugo/komplett-weboldalak",
+                to: "docs/dokumentacio/komplett-weboldalak",
               },
               {
                 label: "Üzemeltetés és karbantartás",
-                to: "/docs/sugo/uzemeltetes-karbantartas",
+                to: "/docs/dokumentacio/uzemeltetes-karbantartas",
               },
             ],
           },
