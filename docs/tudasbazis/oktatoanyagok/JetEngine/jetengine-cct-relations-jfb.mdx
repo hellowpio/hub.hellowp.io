@@ -35,3 +35,34 @@ tudják kötni a CCT a CPT egy adott posztjához. Ebben a példában a CPT lesz 
 
 Navigáljunk a **JetEngine - Relations** menüponra és kattintsunk az **Add New** gombra. A Name mezőbe adj meg egy nevet, amit szeretnél. A **Parent Object** mezőben
 válaszd ki a már létrehozott CPT-t. Ez lesz a példánkban a szülő. A **Child Object** mezőben pedig a CCT kell beállítanod. A **Relation Type** állítsd One to many-re.
+
+:::tip Mi az a **Relation Type?**
+Ez a beállítás határozza meg, hogy mennyi elemet lehet egymással összekötni, legyen szó cpt, cct, user, vagy taxonómiáról. A **One to Many** azt jelenti
+egy parent elemhez több gyerek elemet kapcsolahatsz. 
+
+:::
+
+Az alábbi beállítások a *General Settings* panelen főként a Backend menedzsmentre vonatkoznak, hagyhatod alapértelmezetten. A **Register Separate DB** viszont javasolt bekapcsolni, ha 
+tudod hogy több száz vagy ezer kapcsolat lesz idővel az oldalon.
+
+## PHP kiegészítés
+
+Jelenleg ahhoz, hogy a CCT össze tudjuk kötni kívülről, egy extra php kiegészítésre van szükségünk. Az alábbi kódot bemásolhatod a *functions.php* fájlba, 
+vagy specifikus bővítménybe amibe PHP kódokat lehet megadni, mint például az alábbi **Code Snippets:**
+
+<WPEmbed url="code-snippets" />
+
+```php
+add_action( 'jet-engine/custom-content-types/created-item/cookshot', function ( $item, $item_id, $item_handler ) {  jet_form_builder()->form_handler->action_handler->request_data['inserted_cct_id'] = $item_id; }, 10, 3 ); 
+```
+
+Az itt látható kódban két elemet kell módosítanod, az első a "/created-item/**cookshot**". A Cookshot az én létrehozott Custom Content Type-om SLUG-ja. Ezt úgy tudod 
+megkeresni, hogy belekattintasz a **JetEngine - Custom Content Type** menüpontba.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/jetengine-cct-slug.png" alt="JetEngine - Custom Content Type összesítő"></img>
+</BrowserWindow>
+
+A saját SLUG-od kimásolod, és kicseréled, a cookshot-al. Az utolsó rész-t nem kötelező kicserélni, de ne felejtsd el. **['inserted_cct_id']** ez a JFB-ben
+egy rejtett mezőnk azonosítója lesz.
+
+## JetFormbuilder - Építsük meg az űrlapunkat.
