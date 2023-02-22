@@ -43,11 +43,11 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
 
-          editUrl: "https://github.com/hellowp.io/support.hellowp.io/",
+          editUrl: "https://github.com/hellowp.io/hub.hellowp.io/",
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/hellowp.io/support.hellowp.io/",
+          editUrl: "https://github.com/hellowp.io/hub.hellowp.io/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -108,7 +108,7 @@ const config = {
             position: "left",
           },
           {
-            href: "https://github.com/hellowpio/support.hellowp.io",
+            href: "https://github.com/hellowpio/hub.hellowp.io",
             label: "GitHub",
             position: "right",
             className: "header-github-link",
@@ -185,7 +185,7 @@ const config = {
               },
               {
                 label: "GitHub",
-                href: "https://github.com/hellowpio/support.hellowp.io",
+                href: "https://github.com/hellowpio/hub.hellowp.io",
               },
             ],
           },
