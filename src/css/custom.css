@@ -398,3 +398,29 @@ color: #e3e3e3;
   background-color: #2b62bb !important;
 }
 
+/* Content slider */
+
+.table-of-contents {
+  border-left-width: 3px;
+}
+.table-of-contents li {
+  position: relative;
+}
+.table-of-contents__link--active:before {
+  background: var(--bs-success);
+  bottom: 0;
+  content: " ";
+  left: -19px;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+ul ul .table-of-contents__link--active:before {
+  left: -35px;
+}
+
+.table-of-contents__link:hover, .table-of-contents__link:hover code, .table-of-contents__link--active, .table-of-contents__link--active code {
+  color: var(--bs-success);
+
+}
