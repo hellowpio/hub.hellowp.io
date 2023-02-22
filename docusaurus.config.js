@@ -43,11 +43,11 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
 
-          editUrl: "https://github.com/hellowp.io/hub.hellowp.io/",
+          editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/hellowp.io/hub.hellowp.io/",
+          editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
