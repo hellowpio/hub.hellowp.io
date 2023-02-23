@@ -15,13 +15,13 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 
 ## Bevezető
 
-A JetEngine szerves részét képezi a **Relations rendszer**, amit magyarul kapcsolatoknak is hívhatunk. Ennek segítségével, összekapcsolhatunk két különböző CPT(Custom Post Type-ot)
-de akár CCT(Custom Content Type), User , vagy Taxonómiát is egymással. A Relations elkészítése a JetEngine segítségével nagyon egyszerűen elkészíthető. A komplikáció akkor 
-merülhet fel, ha a felhasználónak kívülről, tehát nem a WP Admin oldaláról kell hogy elvégezze, hanem Front-end oldalról.
+A JetEngine szerves részét képezi a **Relations rendszer**, ami  magyarul kapcsolatokat jelent. Ennek segítségével, összekapcsolhatunk két különböző CPT(Custom Post Type-ot)
+de akár CCT(Custom Content Type), User , vagy Taxonómiát is egymással. Fontos megjegyezni, hogy a Relations nem egy olyan fejlesztés, amit a JetEngine talált ki, más fejlesztők
+és bővítmények is alkalmazzák ezt a technikát. Azt viszont jegyezzük meg, hogy a JetEngine csak a saját kapcsolat rendszerét ismeri fel alapértelmezetten.
 
 ## JetFormbuilder
 
-A JetFormbuilder, röviden csak JFB, a Crocoblock önálló űrlap bővítménye, ami teljes egészében Gutenberg alapú. A JetEngine alapértelmezett Űrlap modulját hivatott leváltani.
+A JetFormbuilder, továbbiakban csak JFB, a Crocoblock önálló űrlap bővítménye, ami Gutenberg alapú. A JetEngine alapértelmezett Űrlap modulját hivatott leváltani.
 Ha eddig nem tetted meg a váltást, időszerű, ugyanis az eredeti JetEngine Form megkapta a Legacy jelzőt, ami azt jelenti, hogy már nem támogatják. A JFB segítségével
 tudunk úgynevezett **Frontend post submissionokat** készíteni, de ennél ma már sokkal többre képes. Ebben a leírásban, egy JFB kompatibilis módot fogunk végigvenni.
 A **JetFormBuilder** ingyenes, és a Wordpress Bővítmények menüpontból tudod letölteni.
@@ -31,9 +31,14 @@ A **JetFormBuilder** ingyenes, és a Wordpress Bővítmények menüpontból tudo
 
 ## Feladat
 
-A feladat egyértelmű. Van egy Custom Post Type, és egy Custom Content Type létrehozva. Készítünk hozzá egy relations-t, és a bejelentkezett felhasználók egy űrlap kitöltésével össze 
+Van egy Custom Post Type, és egy Custom Content Type létrehozva. Készítünk hozzá egy **relations-t**, és a bejelentkezett felhasználók egy űrlap kitöltésével össze 
 tudják kötni a CCT a CPT egy adott posztjához. Ebben a példában a CPT lesz a Parent elem, és a CCT a Child. Az űrlapunk a Parent elem single salbonjába lesz elhelyezve
-és amikor ott töltik ki az űrlapok, létrehozunk egy CCT és egyből összekapcsolódik az adott POST-al. Bonyolult? Megoldjuk ;)
+és amikor ott töltik ki az űrlapok, létrehozunk egy CCT és egyből összekapcsolódik az adott POST-al. Bonyolult elsőre igaz? Nyugi, megoldjuk ;)
+
+:::tip Nem csak regisztrált felhasználóknak
+Ez a technika nem igényli, hogy a kitöltőnek kötelezően bejelentkezve kell lenni.
+
+:::
 
 ## Relations készítése
 
@@ -134,3 +139,27 @@ A **CHILD ITEM ID** mezőbe pedig az **inserted_cct_id** kell kiválasztanod. Az
 ### Űrlap beágyazása
 Az utolsó, amire szükséged van, hogy ezt az űrlapot beágyazd a Custom Post Type Single sablonod oldalába. Innentől kezdve amikor valaki kitölti az űrlapot 
 az adott post-on belül, létrehoz egy CCT Itemet, és hozzáköti a (cpt)post-hoz.
+
+## Query Builder
+Sok esetben szükségünk van arra, hogy ezeket a beküldött CCT itemeket megjelenítsük annál a cpt Post-nál, ahol ment a beküldés. (submit)
+Az alábbi módon tudunk lekérdezést csinálni hozzá a Query Builderben:  
+
+Mivel CCT akarsz megjeleníteni azzal kell kezdened miután az **Add new** gombra kattintottál a Query Builder menüben, hogy a **Query Type-ot** Custom content Type Query-ra állítod. A **From Content Type** itt kiválasztod a CCT amivel eddig dolgoztunk
+továbbá a Number mezőbe írj egy számot ha nem akarod, hogy végtelen számú CCT jelenjen meg egyszerre. Lejebb a Query résznél pedig az **Add new** gombra kattintunk.
+
+Field - Item ID  
+Compare - Equal  
+
+**Value** - Ennek a mezőnek van egy szürke dinamikus címke ikonja a jobb oldalon, arra kell kattintanod. Az itt megjelenő
+listából válaszd ki a **Related Items**
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/cctrelationsquery.png" alt="JetEngine - Custom Content Type összesítő"></img>
+</BrowserWindow>
+
+A következő felugró ablakban szintén kikell választani a *From Relation-t*, *From Object( - Child Object)*, *Initial Object ID From(Current Object ID)*
+
+:::note Eltérő Relations felépítés
+Az itt leírt beállítás csak akkor működik, ha ugyan ezt a kapcsolati felépítést, és metódusokat követted. Más esetben a **related item** beállításait igazítanod kell a te felépítésedhez.
+
+:::
