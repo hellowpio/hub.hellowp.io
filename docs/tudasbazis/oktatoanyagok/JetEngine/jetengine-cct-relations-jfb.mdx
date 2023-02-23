@@ -1,0 +1,136 @@
+---
+title: JetEngine - JetFormbuilder CCT relations készítése 
+description: JetEngine CCT Relations - Hogyan kössünk össze egy CPT és egy CCT a JetFormbuilder segítségével
+keywords:
+  - jetengine
+sidebar_label: JetEngine CCT relations
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# JetEngine - JetFormbuilder - CCT+CPT relations készítése
+
+## Bevezető
+
+A JetEngine szerves részét képezi a **Relations rendszer**, amit magyarul kapcsolatoknak is hívhatunk. Ennek segítségével, összekapcsolhatunk két különböző CPT(Custom Post Type-ot)
+de akár CCT(Custom Content Type), User , vagy Taxonómiát is egymással. A Relations elkészítése a JetEngine segítségével nagyon egyszerűen elkészíthető. A komplikáció akkor 
+merülhet fel, ha a felhasználónak kívülről, tehát nem a WP Admin oldaláról kell hogy elvégezze, hanem Front-end oldalról.
+
+## JetFormbuilder
+
+A JetFormbuilder, röviden csak JFB, a Crocoblock önálló űrlap bővítménye, ami teljes egészében Gutenberg alapú. A JetEngine alapértelmezett Űrlap modulját hivatott leváltani.
+Ha eddig nem tetted meg a váltást, időszerű, ugyanis az eredeti JetEngine Form megkapta a Legacy jelzőt, ami azt jelenti, hogy már nem támogatják. A JFB segítségével
+tudunk úgynevezett **Frontend post submissionokat** készíteni, de ennél ma már sokkal többre képes. Ebben a leírásban, egy JFB kompatibilis módot fogunk végigvenni.
+A **JetFormBuilder** ingyenes, és a Wordpress Bővítmények menüpontból tudod letölteni.
+
+<WPEmbed url="jetformbuilder" />
+
+
+## Feladat
+
+A feladat egyértelmű. Van egy Custom Post Type, és egy Custom Content Type létrehozva. Készítünk hozzá egy relations-t, és a bejelentkezett felhasználók egy űrlap kitöltésével össze 
+tudják kötni a CCT a CPT egy adott posztjához. Ebben a példában a CPT lesz a Parent elem, és a CCT a Child. Az űrlapunk a Parent elem single salbonjába lesz elhelyezve
+és amikor ott töltik ki az űrlapok, létrehozunk egy CCT és egyből összekapcsolódik az adott POST-al. Bonyolult? Megoldjuk ;)
+
+## Relations készítése
+
+Navigáljunk a **JetEngine - Relations** menüponra és kattintsunk az **Add New** gombra. A Name mezőbe adj meg egy nevet, amit szeretnél. A **Parent Object** mezőben
+válaszd ki a már létrehozott CPT-t. Ez lesz a példánkban a szülő. A **Child Object** mezőben pedig a CCT kell beállítanod. A **Relation Type** állítsd One to many-re.
+
+:::tip Mi az a **Relation Type?**
+Ez a beállítás határozza meg, hogy mennyi elemet lehet egymással összekötni, legyen szó cpt, cct, user, vagy taxonómiáról. A **One to Many** azt jelenti
+egy parent elemhez több gyerek elemet kapcsolahatsz. 
+
+:::
+
+Az alábbi beállítások a *General Settings* panelen főként a Backend menedzsmentre vonatkoznak, hagyhatod alapértelmezetten. A **Register Separate DB** viszont javasolt bekapcsolni, ha 
+tudod hogy több száz vagy ezer kapcsolat lesz idővel az oldalon.
+
+## PHP kiegészítés
+
+Jelenleg ahhoz, hogy a CCT össze tudjuk kötni kívülről, egy extra php kiegészítésre van szükségünk. Az alábbi kódot bemásolhatod a *functions.php* fájlba, 
+vagy specifikus bővítménybe amibe PHP kódokat lehet megadni, mint például az alábbi **Code Snippets:**
+
+<WPEmbed url="code-snippets" />
+
+```php
+add_action( 'jet-engine/custom-content-types/created-item/cookshot', function ( $item, $item_id, $item_handler ) {  jet_form_builder()->form_handler->action_handler->request_data['inserted_cct_id'] = $item_id; }, 10, 3 ); 
+```
+
+Az itt látható kódban két elemet kell módosítanod, az első a "/created-item/**cookshot**". A Cookshot az én létrehozott Custom Content Type-om SLUG-ja. Ezt úgy tudod 
+megkeresni, hogy belekattintasz a **JetEngine - Custom Content Type** menüpontba.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/jetengine-cct-slug.png" alt="JetEngine - Custom Content Type összesítő"></img>
+</BrowserWindow>
+
+A saját SLUG-od kimásolod, és kicseréled, a cookshot-al. Az utolsó rész-t nem kötelező kicserélni, de ne felejtsd el. **['inserted_cct_id']** ez a JFB-ben
+egy rejtett mezőnk azonosítója lesz.
+
+:::tip Hasznos tipp!
+A már létrehozott Custom Content Typeodnál, azt javasolom készíts egy egyszerű **text meta** mezőt, hogy a kapcsolódó CPT Post nevét az űrlap automatikusan
+bemásolja. Ezt kitudod rakni a CCT oszlopba is, így a backenden láthatod, az adott CCT melyik POST hoz küldték be.
+
+:::
+
+## JetFormbuilder - Építsük meg az űrlapunkat.
+
+:::warning Fontos! 
+Ez a példa úgy készül, hogy az űrlapot, a Custom Post Type single post sablonba fogjuk beállítani, mivel a CCT-nek nincs önálló single oldala úgy mint egy Custom Post Type-nak!
+
+:::
+
+Navigáljunk a **JetFormbuilder** menüpontba, és kattintsunk az **Add New** gombra. Mielőtt a létrehozott CCT metáit elkezdenéd hozzáadni, először add hozzá a kötelező 
+rendszer mezőket, amik mindegyike kivétel nélkül **Hidden Field-ek** Összesen alapvetően 3ra lesz szükséged, kötelező jelleggel, de ha szeretnéd bekötni az aktuális
+cpt post címét, akkor készíts egy negyediket is.
+
+### current_user_id - Hidden field
+Az első rejtett meződ nevezd el **current_user_id** a field value-t pedig állítsd **Current User ID**-ra. A Render In HTML hagyd bekapcsolva.
+
+### inserted_cct_id - Hidden field
+A soron következő rejtett meződ nevezd el **inserted_cct_id**-re, és állítsd a Field value-t **Manual Input-ra.** A Render In HTML hagyd bekapcsolva.
+
+**Emlékeztető!**
+A php kódban amit fentebb átírtunk, ezt a(z) **inserted_cct_id** köti össze, így ha azt átírtad, akkor ugyan arra nevezd el ezt a rejtett meződ!
+
+### post_id - Hidden field
+A harmadik rejtett meződet nevezd el **post_id**-re, és állítsd a Field value-t **Current Post ID**-re. A Render In HTML hagyd bekapcsolva.
+
+### post_title - Hidden field (opcionális)
+Ha szeretnéd akkor egy negyedik mezőt is hozzáadhatsz post_title néven. Itt a field value-t Current post title-re kell állítanod. A Render In HTML hagyd bekapcsolva.
+
+### CCT Meták
+A nehezén lassan túl vagyunk. Most már csak azokra a mezőkre van szükséged, amiket a CCT-nél létrehoztál.
+
+### Post submit Actions
+Az utolsó előtti lépés, hogy meghatározzuk az űrlapnak mi történjen ha valaki rákattint a submit gombra. Először az **Insert/update Custom Content Type item** re lesz szükséged.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/cct-jfb-action1.png" alt="JetEngine - JFB CCT Upload Action"></img>
+</BrowserWindow>  
+
+Itt beállítod melyik CCT, státusz, továbbá összekapcsolod a CCT metáidat. Egyetlen rejtett mezőt sem kell beállítanod, kivéve a post_title, HA csináltál egy ennek megfelelő
+metát a CCT-ben.
+
+Felmerül a kérdés, miért ennyire körülményes ez a feladat. A **Custom Content Type** egy másfajta sturktúrában menti az adatokat az adatbázisban, ezért
+mérföldekkel gyorsabb és hatékonyabb a Custom Post Typeokkal szemben. Míg két cpt relations összekötése a JetFormbuilder-ben kód mentesen, és könnyebben megoldható
+a CCT speciális kialakítást igényel.
+
+:::tip Post Submit actions - Számít a sorrend?
+Igen. Fontos a megfelelő sorrendbe állítani a műveleteket. Például egy **Redirect to page-t** javasolt hogy a legutolsó művelet legyen.
+
+:::
+
+A következő művelet amit hozzá kell adnod: **Connect Relation Items**. Az összekapcsolás valójában itt fog végrehajtódni. 
+
+A **Relation mezőbe**
+válaszd ki a korábban létrehozott Relation-t. A **PARENT ITEM ID** -be a **post_id** nek elnevezett rejtett meződet válaszd ki.
+A **CHILD ITEM ID** mezőbe pedig az **inserted_cct_id** kell kiválasztanod. Az utolsó **UPDATE CONTEXT**-nél pedig a **We updating parent items for the child object** kell választanod.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/cct-jfb-action2.png" alt="JetEngine - JFB CCT Upload Action"></img>
+</BrowserWindow>  
+
+### Űrlap beágyazása
+Az utolsó, amire szükséged van, hogy ezt az űrlapot beágyazd a Custom Post Type Single sablonod oldalába. Innentől kezdve amikor valaki kitölti az űrlapot 
+az adott post-on belül, létrehoz egy CCT Itemet, és hozzáköti a (cpt)post-hoz.
