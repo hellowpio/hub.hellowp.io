@@ -424,3 +424,13 @@ ul ul .table-of-contents__link--active:before {
   color: var(--bs-success);
   font-weight: 700;
 }
+
+/* Code */
+
+code:not([class]) {
+  font-size: .875em;
+  color: #d63384;
+  word-wrap: break-word;
+  background-color: unset !important;
+  border: none !important;
+}

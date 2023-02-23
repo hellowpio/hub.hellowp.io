@@ -1,0 +1,101 @@
+---
+title: "Child sablon készítése"
+description: "Hogyan készítsünk Child sablont WordPress-hez?"
+keywords:
+  - github
+sidebar_label: "Child sablon készítése"
+sidebar_position: 2
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-duotone fa-family-pants text-primary" /> Child sablon készítése
+
+Gyakorlott WordPress fejlesztők is beleesnek abba a hibába olykor, hogy közvetlenül átírják az aktív sablon fájljait. Mondjuk egy nyelvi fájlból fordíthatatlan sor miatt, vagy kisebb-nagyobb módosítások miatt.
+
+Ezzel az a gond, hogy nem lehet frissíteni nyugodt szívvel a sablont, hiszen biztosan elvesznek a módosítások. Ami a biztonsági kockázatokon túl, még számos problémát is okozhat, hiszen nem biztos, hogy a jövő WordPress verzióival is kompatibilis lesz a sablon frissítés nélkül.
+
+Természetesen erre van megoldás a WordPress-ben, ez a Child sablon rendszer.
+
+## Mi az a Child sablon?
+
+A Child sablon a WordPress témák egy olyan módja, amely lehetővé teszi, hogy egy meglévő sablonra építve készítsünk egyéni sablont anélkül, hogy a meglévő sablon forráskódját módosítanánk. A Child sablon az eredeti (szülő) sablon alapján készül, és lehetővé teszi, hogy a sablon kinézetét és funkcióit testreszabjuk, míg az eredeti sablon továbbra is változatlan marad. Ezáltal a sablon frissítésekor nem veszíthetünk el módosításainkat.
+
+## Hogyan készítsünk Child sablont?
+
+Relatíve egyszerű művelet. Készítenünk kell egy új mappát a sablonok könyvtárában (`wp-content/themes/child-sablon-neve`). Bármilyen nevet adhatunk neki, nincs jelentősége. **Ez a child sablon a twentyfifteen sablon alsablonja lesz.**
+
+### 1. Fájlok létrehozása
+
+```bash
+wp-content/
+├─ themes/
+│ ├─ child-sablon-neve/
+│ │ ├─ style.css
+│ │ ├─ functions.php
+│ │ └─ screenshot.png (opcionális)
+```
+
+### 2. Fájlok tartalma
+
+A `style.css` fájl tartalma:
+
+```css
+/*
+ Theme Name:   Példa Child Sablon
+ Theme URI:    http://example.com/twenty-fifteen-child/
+ Description:  Twenty Fifteen Child Theme
+ Author:       John Doe
+ Author URI:   http://example.com
+ Template:     twentyfifteen
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  twenty-fifteen-child
+*/
+```
+
+Itt a `Template: twentyfifteen` sor jelenti, hogy ez a child sablon a **twentyfifteen** sablon alsablonja lesz. A **Template** sor a lényege ennek a műveletnek. A **stlye.css** -ben állítjuk be, hogy a sablon egy child sablon lesz. Amennyiben nincs benne a **Template** sor, akkor a sablon egy önálló sablon lesz.
+
+:::caution Megjegyzés
+Template: **twentyfifteen** részhez egyszerűen írd a **twentyfifteen** helyére a fősablonod **MAPPA**-nevét.
+:::
+
+A `functions.php` fájl tartalma:
+
+```php
+<?php
+
+add_action( 'wp_enqueue_scripts', 'pelda_child_sablon_styles' );
+/* Enqueue parent styles */
+function pelda_child_sablon_styles() {
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+}
+```
+
+A `screenshot.png` fájl tartalma:
+
+Ez opcinális, készíthetsz egy képernyőképet az oldaladról és akkor az fog látszódni a WordPress admin -> Sablonok oldalon.
+
+### 2. Sablon beállítása
+
+A child sablon beállításának a lényegi része elkészült. Most már csak be kell állítani a WordPress admin felületén, hogy a child sablon legyen aktív.
+
+1. Menj a WordPress admin felületen a **Megjelenés** -> **Sablonok** oldalra.
+2. Kattints a child sablonra és nyomd meg az **Aktiválás** gombot.
+
+---
+
+## Child sablon function.php fájljának a módosítása
+
+Módosítani szeretnéd a child sablon `functions.php` fájlját?
+
+Kövesd a következő leírást: [Child sablon function.php fájljának a módosítása](/docs/tudasbazis/oktatoanyagok/wordpress/child-sablon-function-php-fajljanak-a-modositasa)
+
+:::success Tipp
+Gyakran módosítod a WordPress fájlokat? Akkor érdemes a VS Code app-ot használni: **Hasznos eszközök -> [VS Code](docs/tudasbazis/hasznos-eszkozok/kodszerkeszto-vscode)**
+:::
