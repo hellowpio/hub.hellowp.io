@@ -1,0 +1,117 @@
+---
+title: WordPress telepítése egy fájl segítségével
+description: WordPress telepítése könnyedén, egy telepítő fájl segítségével
+keywords:
+  - github
+sidebar_label: WordPress telepítése egy fájl segítségével
+sidebar_position: 3
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-duotone fa-star text-primary" /> WordPress telepítése könnyedén, egy telepítő fájl segítségével
+
+Ezzel a módszerrel a WordPress telepítése, illetve a fájlok másolásának az ideje a töredékére csökken, szemben a hagyományos “FTP-re másolásos” móddal. Ott ajánlott használni, ahol nincs más megoldás WordPress telepítésre.
+
+## Mire lesz szükséged?
+
+A telepítőprogram használatához FTP/sFTP/SSH hozzáférésre van szükség a tárhelyhez, ahová telepíteni szeretnéd a WordPress-t.
+
+Amint ez megvan, nincs más dolgod, mint felmásolni az alábbi fájlt oda, ahová a WordPress-t szeretnéd telepíteni és megnyitni a fájlt a böngészőben.
+
+Például: https://oldaladneve.hu/wptelepito.php
+
+## A fájl
+
+```php
+<?php
+
+//https://hub.hellowp.io/docs/tudasbazis/oktatoanyagok/uzemeltetes/wordpress-telepitese-konnyeden-egy-telepito-fajl-segitsegevel
+
+    echo '<pre>';
+    echo '<span style="color:blue">LETÖLTÉS...</span>'.PHP_EOL;
+
+    file_put_contents('wp.zip', file_get_contents('https://hu.wordpress.org/latest-hu_HU.zip'));
+
+    $zip = new ZipArchive();
+    $res = $zip->open('wp.zip');
+    if ($res === true) {
+        $zip->extractTo('./');
+        $zip->close();
+        unlink('wp.zip');
+
+        $files = find_all_files("wordpress");
+        $source = "wordpress/";
+        foreach ($files as $file) {
+            $file = substr($file, strlen("wordpress/"));
+            if (in_array($file, array(".",".."))) {
+                continue;
+            }
+            if (!is_dir($source.$file)) {
+                echo '[FÁJL] '.$source.$file .' -> '.$file . PHP_EOL;
+                rename($source.$file, $file);
+            } else {
+                echo '[KÖNYVTÁR]  '.$file . PHP_EOL;
+                mkdir($file);
+            }
+        }
+
+        foreach ($files as $file) {
+            if (in_array($file, array(".",".."))) {
+                continue;
+            }
+            if (is_dir($file)) {
+                echo '[TÖRLÉS]  '.$file . PHP_EOL;
+                recursive_rmdir($file);
+            }
+        }
+        recursive_rmdir('./wordpress');
+
+        if (file_exists('index.php')) {
+            echo '<meta http-equiv="refresh" content="1;url=index.php" />';
+        } else {
+            echo 'A telepítés sikertelen...';
+        }
+    } else {
+        echo 'A telepítés sikertelen...';
+    }
+
+    function find_all_files($dir)
+    {
+        $root = scandir($dir);
+        foreach ($root as $value) {
+            if ($value === '.' || $value === '..') {
+                continue;
+            }
+            $result[]="$dir/$value";
+            if (is_file("$dir/$value")) {
+                continue;
+            }
+            foreach (find_all_files("$dir/$value") as $value) {
+                $result[]=$value;
+            }
+        }
+        return $result;
+    }
+
+    function recursive_rmdir($src)
+    {
+        $dir = opendir($src);
+        while (false !== ($file = readdir($dir))) {
+            if (($file != '.') && ($file != '..')) {
+                $full = $src . '/' . $file;
+                if (is_dir($full)) {
+                    recursive_rmdir($full);
+                } else {
+                    unlink($full);
+                }
+            }
+        }
+        closedir($dir);
+        rmdir($src);
+    }
+
+```
