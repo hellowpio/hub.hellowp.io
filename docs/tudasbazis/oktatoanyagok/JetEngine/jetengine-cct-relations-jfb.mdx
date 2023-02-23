@@ -24,6 +24,10 @@ merülhet fel, ha a felhasználónak kívülről, tehát nem a WP Admin oldalár
 A JetFormbuilder, röviden csak JFB, a Crocoblock önálló űrlap bővítménye, ami teljes egészében Gutenberg alapú. A JetEngine alapértelmezett Űrlap modulját hivatott leváltani.
 Ha eddig nem tetted meg a váltást, időszerű, ugyanis az eredeti JetEngine Form megkapta a Legacy jelzőt, ami azt jelenti, hogy már nem támogatják. A JFB segítségével
 tudunk úgynevezett **Frontend post submissionokat** készíteni, de ennél ma már sokkal többre képes. Ebben a leírásban, egy JFB kompatibilis módot fogunk végigvenni.
+A **JetFormBuilder** ingyenes, és a Wordpress Bővítmények menüpontból tudod letölteni.
+
+<WPEmbed url="jetformbuilder" />
+
 
 ## Feladat
 
@@ -65,4 +69,68 @@ megkeresni, hogy belekattintasz a **JetEngine - Custom Content Type** menüpontb
 A saját SLUG-od kimásolod, és kicseréled, a cookshot-al. Az utolsó rész-t nem kötelező kicserélni, de ne felejtsd el. **['inserted_cct_id']** ez a JFB-ben
 egy rejtett mezőnk azonosítója lesz.
 
+:::tip Hasznos tipp!
+A már létrehozott Custom Content Typeodnál, azt javasolom készíts egy egyszerű **text meta** mezőt, hogy a kapcsolódó CPT Post nevét az űrlap automatikusan
+bemásolja. Ezt kitudod rakni a CCT oszlopba is, így a backenden láthatod, az adott CCT melyik POST hoz küldték be.
+
+:::
+
 ## JetFormbuilder - Építsük meg az űrlapunkat.
+
+:::warning Fontos! 
+Ez a példa úgy készül, hogy az űrlapot, a Custom Post Type single post sablonba fogjuk beállítani, mivel a CCT-nek nincs önálló single oldala úgy mint egy Custom Post Type-nak!
+
+:::
+
+Navigáljunk a **JetFormbuilder** menüpontba, és kattintsunk az **Add New** gombra. Mielőtt a létrehozott CCT metáit elkezdenéd hozzáadni, először add hozzá a kötelező 
+rendszer mezőket, amik mindegyike kivétel nélkül **Hidden Field-ek** Összesen alapvetően 3ra lesz szükséged, kötelező jelleggel, de ha szeretnéd bekötni az aktuális
+cpt post címét, akkor készíts egy negyediket is.
+
+### current_user_id - Hidden field
+Az első rejtett meződ nevezd el **current_user_id** a field value-t pedig állítsd **Current User ID**-ra. A Render In HTML hagyd bekapcsolva.
+
+### inserted_cct_id - Hidden field
+A soron következő rejtett meződ nevezd el **inserted_cct_id**-re, és állítsd a Field value-t **Manual Input-ra.** A Render In HTML hagyd bekapcsolva.
+
+**Emlékeztető!**
+A php kódban amit fentebb átírtunk, ezt a(z) **inserted_cct_id** köti össze, így ha azt átírtad, akkor ugyan arra nevezd el ezt a rejtett meződ!
+
+### post_id - Hidden field
+A harmadik rejtett meződet nevezd el **post_id**-re, és állítsd a Field value-t **Current Post ID**-re. A Render In HTML hagyd bekapcsolva.
+
+### post_title - Hidden field (opcionális)
+Ha szeretnéd akkor egy negyedik mezőt is hozzáadhatsz post_title néven. Itt a field value-t Current post title-re kell állítanod. A Render In HTML hagyd bekapcsolva.
+
+### CCT Meták
+A nehezén lassan túl vagyunk. Most már csak azokra a mezőkre van szükséged, amiket a CCT-nél létrehoztál.
+
+### Post submit Actions
+Az utolsó előtti lépés, hogy meghatározzuk az űrlapnak mi történjen ha valaki rákattint a submit gombra. Először az **Insert/update Custom Content Type item** re lesz szükséged.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/cct-jfb-action1.png" alt="JetEngine - JFB CCT Upload Action"></img>
+</BrowserWindow>  
+
+Itt beállítod melyik CCT, státusz, továbbá összekapcsolod a CCT metáidat. Egyetlen rejtett mezőt sem kell beállítanod, kivéve a post_title, HA csináltál egy ennek megfelelő
+metát a CCT-ben.
+
+Felmerül a kérdés, miért ennyire körülményes ez a feladat. A **Custom Content Type** egy másfajta sturktúrában menti az adatokat az adatbázisban, ezért
+mérföldekkel gyorsabb és hatékonyabb a Custom Post Typeokkal szemben. Míg két cpt relations összekötése a JetFormbuilder-ben kód mentesen, és könnyebben megoldható
+a CCT speciális kialakítást igényel.
+
+:::tip Post Submit actions - Számít a sorrend?
+Igen. Fontos a megfelelő sorrendbe állítani a műveleteket. Például egy **Redirect to page-t** javasolt hogy a legutolsó művelet legyen.
+
+:::
+
+A következő művelet amit hozzá kell adnod: **Connect Relation Items**. Az összekapcsolás valójában itt fog végrehajtódni. 
+
+A **Relation mezőbe**
+válaszd ki a korábban létrehozott Relation-t. A **PARENT ITEM ID** -be a **post_id** nek elnevezett rejtett meződet válaszd ki.
+A **CHILD ITEM ID** mezőbe pedig az **inserted_cct_id** kell kiválasztanod. Az utolsó **UPDATE CONTEXT**-nél pedig a **We updating parent items for the child object** kell választanod.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/cct-jfb-action2.png" alt="JetEngine - JFB CCT Upload Action"></img>
+</BrowserWindow>  
+
+### Űrlap beágyazása
+Az utolsó, amire szükséged van, hogy ezt az űrlapot beágyazd a Custom Post Type Single sablonod oldalába. Innentől kezdve amikor valaki kitölti az űrlapot 
+az adott post-on belül, létrehoz egy CCT Itemet, és hozzáköti a (cpt)post-hoz.
