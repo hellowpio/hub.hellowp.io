@@ -44,6 +44,8 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
 
           editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
+          showLastUpdateAuthor: false,
+          showLastUpdateTime: false,
         },
         blog: {
           showReadingTime: true,
@@ -52,6 +54,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+  
       }),
     ],
   ],
