@@ -1,0 +1,46 @@
+---
+title: Kaphatok egy phpMyAdmin-t?
+authors: [trueqap]
+tags: [phpmyadmin, mysql]
+image: ./img/phpmyadmin-768x277.jpeg
+date: 2021-05-13
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+![Hogyan szabályozzuk a szabályozhatatlant?](./img/phpmyadmin-768x277.jpeg)
+
+Ha annyi euróm lenne, ahányszor olyan üzenetet kaptam fejlesztőktől / partnerektől, hogy küldjek phpMyAdmin hozzáférést, már biztosan milliomos lennék belőle, holott a phpMyAdmin “telepítése” egyszerűbb, mint megírni egy email-t róla.
+
+<!--truncate-->
+
+:::info Tudtad?
+Az phpMyAdmin egy nyílt forrású eszköz, webes adatbázis-kezelő eszköz, amely lehetővé teszi az MySQL adatbázisok adminisztrálását egy grafikus felhasználói felületen keresztül. Az eszköz segítségével könnyedén hozzáadhatunk, szerkeszthetünk vagy törölhetünk adatokat az adatbázisból, valamint végrehajthatunk különböző SQL-parancsokat is. A phpMyAdmin széles körben használt a webfejlesztés területén.
+:::
+
+## 1.) phpMyAdmin letöltése
+
+A letöltéséhez látogass el ide: https://www.phpmyadmin.net/downloads/ Itt a legújabb verzió alatt látható ZIP csomagot válaszd ki. A különböző letölthető fájlok között a tömörítési módszer és tartalmazott nyelv a különbség. Én mindig az english-t és zip-et szoktam kiválasztani. A bejegyzés írásakor ez a legfrissebb: phpmyadmin-5.1.0-english.zip
+
+## 2.) phpMyAdmin telepítése
+
+A telepítés erős kifejezés, hiszen különösebben nincs telepítője. Annyi a dolgod, hogy kitömöríted a letöltött csomagot és a kapott fájlokat felmásolod FTP-n abba a mappába, ahol szeretnéd használni. Például: domained.hu/myadmin
+
+## 3.) phpMyAdmin belépés
+
+Miután felmásoltad a fájlokat, egyből használatra kész a rendszer. Írd be a böngészőbe a címét. Például: domained.hu/myadmin és annyi a dolgod, hogy beírod az adatbázishoz tartozó felhasználónevet és jelszót.
+
+Kész! Már használhatod is, van egy saját phpMyAdmin-od!
+
+## +1 WordPress MySQL adatok:
+
+A WordPress MySQL adatokat a `wp-config.php`-ban találod. Kb. így néz ki:
+
+```php wp-config.php
+/** The name of the database for WordPress */
+define('DB_NAME', 'adatbazisom_neve');
+/** MySQL database username */
+define('DB_USER', 'adatbazisom_felhasznaloneve');
+/** MySQL database password */
+define('DB_PASSWORD', 'adatbazisom_jelszava');
+```
