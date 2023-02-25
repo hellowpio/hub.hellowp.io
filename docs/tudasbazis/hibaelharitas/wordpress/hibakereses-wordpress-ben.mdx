@@ -1,0 +1,134 @@
+---
+title: WordPress-es hibakeresés és logolás
+description: WordPress-es hibakeresés és logolás
+keywords:
+  - hibaelharitas
+sidebar_label: Hibakeresés és logolás
+sidebar_position: 0
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+
+# <FontAwesomeIcon icon="fa-duotone fa-scroll-old text-primary" /> WordPress-es hibakeresés és logolás
+
+A PHP kód hibakeresése minden projekt része, azonban a WordPress speciális hibakereső rendszerekkel rendelkezik, amelyek egyszerűsítik a folyamatot és szabványosítják a kódot a WordPress alaprendszer, bővítmények és sablonok terén. Ezen az oldalon bemutatjuk a WordPress különböző hibakereső eszközeit, és hogy hogyan lehetsz produktívabb a kódolás során, valamint hogyan lehet javítani a kód általános minőségét és interoperabilitását.
+
+A nem programozóknak vagy általános felhasználóknak ezeket az opciókat használhatják az hibákról részletes információk megjelenítéséhez.
+
+## Példa wp-config.php a hibakereséshez
+
+```php config.php
+// WP_DEBUG mód engedélyezése
+define( 'WP_DEBUG', true );
+
+// Hibakeresési naplózás engedélyezése a /wp-content/debug.log fájlba
+define( 'WP_DEBUG_LOG', true );
+
+// Hibák és figyelmeztetések megjelenítésének letiltása
+define( 'WP_DEBUG_DISPLAY', false );
+@ini_set( 'display_errors', 0 );
+
+// Fejlesztői verziók használata a fő JS- és CSS-fájlokból (csak akkor szükséges, ha ezeket a fő fájlokat módosítja)
+define( 'SCRIPT_DEBUG', true );
+
+```
+
+:::note
+MEGJEGYZÉS: Ezt be kell szúrni a wp-config.php fájlban található /_ That's all, stop editing! Happy blogging. _/ SOR ELŐTT.
+:::
+
+## WP_DEBUG
+
+A `WP_DEBUG` egy PHP állandó (állandó globális változó), amelyet használhatunk a WordPress összes részén a "debug" mód aktiválásához. Alapértelmezésben hamisnak tekinthető, és általában az `wp-config.php` fájlban van beállítva true értékre a WordPress fejlesztési verzióiban.
+
+```php config.php
+// WP_DEBUG mód engedélyezése
+define( 'WP_DEBUG', true );
+
+```
+
+```php config.php
+// WP_DEBUG mód letiltása
+define( 'WP_DEBUG', false );
+
+```
+
+:::note
+A példában szereplő `true` és `false` értékek nem idézőjelekkel (') vannak körülvéve, mert logikai (igaz/hamis) értékek. Ha az állandókat 'false'-ra állítja, akkor azok igazként lesznek értelmezve, mert az idézőjelek miatt karakterláncként, és nem logikai értékként lesznek kezelve.
+:::
+
+### PHP Errors, Warnings, és Notices
+
+A `WP_DEBUG` engedélyezése azt eredményezi, hogy az összes PHP hibaüzenet, figyelmeztetés és figyelmeztető jelzés megjelenik. Ez módosítja a PHP alapértelmezett viselkedését, amely csak súlyos hibákat jelenít meg, és/vagy fehér "halálképernyőt" mutat, amikor hibák lépnek fel.
+
+Az összes PHP figyelmeztetés és jelzés megjelenítése gyakran hibaüzenetekhez vezet olyan dolgok esetén, amelyek nem tűnnek meghibásodottnak, de nem követik a PHP-ben a megfelelő adatbeviteli konvenciókat. Ezek a figyelmeztetések könnyen javíthatók, ha az érintett kód azonosításra kerül, és az eredményező kód szinte mindig ellenállóbb a hibákkal szemben, és könnyebben karbantartható.
+
+### Elavult (Deprecated) funkciók
+
+A `WP_DEBUG` engedélyezése értesítéseket is okoz a webhelyén használt elavult WordPress funkciókról és argumentumokról. Ezek olyan funkciók vagy funkció-argumentumok, amelyeket még nem távolítottak el a mag kódjából, de a közeljövőben tervezik az eltávolításukat. Az elavult funkciókról szóló értesítések általában az új funkcióra utalnak, amelyet helyette kell használni.
+
+## WP_DEBUG_LOG
+
+A `WP_DEBUG_LOG` a `WP_DEBUG` kiegészítője, amely lehetővé teszi az összes hiba mentését egy `debug.log` naplófájlba. Ez hasznos lehet, ha később szeretnéd áttekinteni az összes értesítést, vagy meg kell nézned az off-screen (pl. egy AJAX kérés vagy wp-cron futtatás közben generált) értesítéseket.
+
+Fontos megjegyezni, hogy ezzel a beállítással lehetővé válik a naplófájl írása a PHP beépített error_log() függvényével, ami például hasznos lehet a Ajax események hibakeresésekor.
+
+Amikor az értéke igazra (`TRUE`) van állítva, a napló a tartalomkönyvtárban (általában `wp-content/debug.log`) lesz mentve a webhely fájlrendszerében. Egyébként meg lehet adni egy érvényes fájl elérési útvonalát, hogy máshova lehessen menteni a fájlt.
+
+```php config.php
+define( 'WP_DEBUG_LOG', true );
+// - vagy -
+define( 'WP_DEBUG_LOG', '/tmp/wp-errors.log' );
+```
+
+:::note
+A `WP_DEBUG_LOG` funkció használatához a WP_DEBUG-nak (`TRUE`) be kell lennie engedélyezve. Ne felejtsd el, hogy a `WP_DEBUG_DISPLAY` kikapcsolható, ha szükséges.
+:::
+
+## WP_DEBUG_DISPLAY
+
+A `WP_DEBUG_DISPLAY` egy másik kiegészítője a `WP_DEBUG`-nak, amely szabályozza, hogy a hibakereső üzenetek megjelenjenek-e az oldal HTML-jében vagy sem. Az alapértelmezett érték "TRUE", ami megjeleníti a hibákat és figyelmeztetéseket, amint létrejönnek. Ha ezt az értéket hamisra ("FALSE") állítod, akkor az összes hibát elrejti. Ezt együtt kell használni a `WP_DEBUG_LOG` funkcióval, hogy a hibákat később áttekinthesd.
+
+```php config.php
+define( 'WP_DEBUG_DISPLAY', false );
+```
+
+:::note
+A `WP_DEBUG_DISPLAY` funkció használatához a `WP_DEBUG`-nak (true) be kell lennie engedélyezve. Ne felejtsd el, hogy a `WP_DEBUG_LOG` funkciót külön lehet szabályozni.
+:::
+
+## SCRIPT_DEBUG
+
+A `SCRIPT_DEBUG` egy kapcsolódó állandó, amely arra kényszeríti a WordPress-t, hogy a core CSS- és JavaScript fájljainak "fejlesztői" verzióját használja a normál, tömörített verziók helyett. Ez hasznos lehet, ha teszteled a beépített .js vagy .css fájlok módosításait. Az alapértelmezett érték hamis "FALSE".
+
+```php config.php
+define( 'SCRIPT_DEBUG', true );
+```
+
+## SAVEQUERIES
+
+A SAVEQUERIES definíció egy tömbben menti el az adatbázis-lekérdezéseket, és ezt a tömböt meg lehet jeleníteni a lekérdezések elemzéséhez. Az igaz értékre állított állandó minden lekérdezést eltárol, hogy mennyi ideig tartott a végrehajtása, és melyik függvény hívta meg.
+
+```php config.php
+define( 'SAVEQUERIES', true );
+```
+
+A tömb a globális `$wpdb->queries` változóban van tárolva.
+
+:::note
+Ez hatással lesz a webhely teljesítményére, ezért győződj meg róla, hogy kikapcsolod, amikor nem a hibakeresési folyamat része.
+:::
+
+## Hibakeresést segítő bővítmények
+
+Sok hibakereső bővítmény létezik a WordPress-hez, amelyek részletesebb információkat mutatnak az belső folyamatokról, akár egy adott összetevőre, akár általánosan. Íme néhány példa:
+
+### Query Monitor
+
+<WPEmbed url="query-monitor" />
+
+### Debug Bar
+
+<WPEmbed url="debug-bar" />
