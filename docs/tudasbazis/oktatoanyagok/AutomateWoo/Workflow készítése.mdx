@@ -62,3 +62,39 @@ a folyamathoz hozzáadva megnyitják.
 :::tip SMS konverzió
 Az Email-el ellentétben az SMS-nél nincs megnyitás követés.
 :::
+
+### Triggerek
+A Trigger az elsődleges és legfontosabb amit egy folyamat létrehozásakor be kell állítanunk. A szabályokkal, és műveletekkel ellentétben, egy folyamatnak csak egy 
+triggert lehet beállítani. Alapvetően ezzel határozzuk meg milyen esemény váltja ki a folyamatunkat, tehát, mi indítja el.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/folyamat-trigger.png" alt="Automatewoo triggerek"></img>
+</BrowserWindow>
+
+A legtöbb trigger esetében kapcsolódó beállítások is megjelennek, és egy rövid leírás, amely körbeírja a funkció működését.
+Válasszuk ki az alábbi triggert:   
+**Rendelés teljesítve / Order Completed**. A *Recheck status before run - Futtatás előtt ellenőrizze újra az állapotot* hagyjuk engedélyezve.
+
+### Szabályok / Rules
+A szabályok segítségével különböző feltételes kondíciókat adhatunk meg, tehát paraméterezhetjük a kapcsolódó triggerünket egy, vagy több kritérium megadásával.
+Fontos megjegyezni, hogy a *szabályok* megadása nem kötelező, de egyes triggerek esetében, például amit az előbb mi is kiválasztottunk: **Rendelés teljesítve**,
+szabályozhatjuk, hogy a teljesített rendelés milyen termékek esetében fusson csak le, ugyanis enélkül minden *teljesített rendeléskor* lefut.
+
+A szabályok esetében két operátor van, **és** / **vagy** ezek segítségével beállíthatjuk, hogy az adott triggerünk egyszerre legalább két szabálynak
+megkell hogy feleljen, vagy egy-egy-nek, tehát nem kötelező, hogy mindkét feltétel teljesüljön, elég csak az egyiknek a több közül. Mikor kiválasztjuk az első szabályt, 
+a legszélén megjelenik az **és / and** valamint egy törlés ikon. Fontos, hogy ha az **and / és**-re kattintunk egy következő szabályt adhatunk meg. Ha ismét a
+**Új szabálycsoport / + Add rule Group** gombra kattintunk, akkor lép életbe a **vagy / or** operátor.
+
+A példánkban az első szabály az, hogy meghatározzuk mely termékek esetében futhat le a folyamat. Kattintsunk az **Új szabálycsoport** gombra, és keressük ki a listából
+a **Rendelés - tételek / Order Items**. Sok szabály esetében miután meghatároztuk a feltételt, további operátorok állnak rendelkezésre, hogy pontosítani tudjuk a szabályunkat.
+Több típusú operátorral fogsz találkozni. A korábban kiválasztott szabályunk esetében kéttőt tudsz használni: **Tartalmazza, nem tartalmazza - Includes, does not includes**. 
+Ezek segítségével pontosíthatjuk a szabályunkat. Állíthatjuk úgy is, hogy nem tartalmazza, tehát kizárunk termékeket. Ideális választás, ha a legtöbb termék esetében
+a folyamatnak lekell futnia, és csak egy két kivétel van, ilyenkor elég a szabályt beállítani *nem tartalmazza*-ra majd kiválasztani hozzá a terméket. Az eredmény
+hogy a kiválasztott termék esetében a folyamat egyáltalán nem fog lefutni, de minden más termék esetében igen.
+
+:::tip Termékkategóriák és címkék
+Rengeteg szabály van, a fentihez kapcsolódóan akár termékkategóriák és címkékre is korlátozhatjuk a folyamat futását.
+:::
+
+Az operátor melletti választó mezőben pedig kiválaszthatjuk a termékeket. Ezen szabály esetében némi ellentmondásba keveredhetünk ugyanis többesszám jelzéssel van, 
+de valójában csak egy terméket lehet kiválasztani. Ha többet szeretnénk, célszerűbb a **Rendelés - tétel neve szöveges egyezést / Order Item name  text match** szabályt kiválasztani.
