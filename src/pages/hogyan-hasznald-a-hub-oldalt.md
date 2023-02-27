@@ -1,6 +1,6 @@
 # Hogyan használd a Hub oldalt?
 
-A HelloWP Hub elsődleges és legfontosabb célja az edukáció és nem kimondottan üzleti célú érdekek mentén hoztuk létre. Hiszünk abban, hogy ötvözni lehet a nyílt forrássú világot a üzleti élettel és a "nem minden a profit" filozófiával! Szeretnénk, ha a Hub oldalt a WordPress közösség is használhatá, sőt, bővíthetné is azt. Ezért egy olyan platformot hoztunk létre, aminek a tartalmát könnyedén lehet módosítani és bővíteni a közösség bármely tagjának.
+A HelloWP Hub elsődleges és legfontosabb célja az edukáció és nem kimondottan üzleti célú érdekek mentén hoztuk létre. Hiszünk abban, hogy ötvözni lehet a nyílt forrású világot a üzleti élettel és a "nem minden a profit" filozófiával! Szeretnénk, ha a Hub oldalt a WordPress közösség is használhatá, sőt, bővíthetné is azt. Ezért egy olyan platformot hoztunk létre, aminek a tartalmát könnyedén lehet módosítani és bővíteni a közösség bármely tagjának.
 
 ## Tudásbázis
 
