@@ -14,7 +14,7 @@ import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 A Git és a GitHub olyan népszerű eszközök, amelyeket a programozásban használnak. Segítenek abban, hogy különböző verzióit kezeld a kódodnak és együtt tudj dolgozni más fejlesztőkkel.
 
-A projektek építése a programozók alapvető része. A Git és a GitHub pedig elengedhetetlen eszközök, amelyeket a projektek építése során használsz másokkal együttműködve.
+A projektek építése a programozók munkájának alapvető része. A Git és a GitHub pedig elengedhetetlen eszközök, amelyeket a projektek építése során használsz másokkal együttműködve.
 
 De ha még nem használtad őket korábban, bonyolultnak tűnhetnek. Ezért készítettünk egy anyagot arról, hogyan működik a Git és a GitHub.
 
@@ -44,11 +44,13 @@ Ennek következtében egyre több vállalat követeli meg a Git és a GitHub has
 
 A Git egy verziókezelő rendszer, amely kezeli és nyomon követi a kódodat. A GitHub viszont egy szolgáltatás, amely lehetővé teszi a kód fájljainak hostolását, megosztását és kezelését az interneten.
 
-A GitHub-nak a Git az alapja, és lehetővé teszi, hogy könnyen kezeld a Git tárolóidat vagy mappáidat a platformján.
+A GitHub-nak a Git az alapja, és lehetővé teszi, hogy könnyen kezeld a Git repositoryaidat vagy mappáidat a platformján.
 
 Tehát a Git az effektív verziókezelő rendszer, és a GitHub a platform, ahol hostolod a kódodat.
 
 ## Hogyan kezdj el használni a Git-et és a GitHub-ot?
+
+Amennyiben untatnak a technikai részletek és csak gyorsan el szeretnéd kezdeni a Git-et és a GitHub-ot használni, akkor ugorj a [GitHub Desktop](https://desktop.github.com/) részhez. Ez egy grafikus felület, amely lehetővé teszi, hogy könnyen kezeld a Git-et és a GitHub-ot.
 
 ### 1. lépés - Telepítsd a Git-et
 
@@ -155,3 +157,77 @@ git branch -M main
 git remote add origin https://github.com/trueqap/pelda.git
 git push -u origin main
 ```
+
+:::note Megjegyzés
+A `git remote add origin https://github.com/trueqap/pelda.git` parancs a saját repositoryd linkjét fogja tartalmazni, és a neve a GitHub fiókod neve lesz.
+:::
+
+## A Git gyakran használt parancsai
+
+A Git több 100 paranccsal rendelkezik, amit szerencsére most nem fogok felsorolni. Most csak a leggyakoriabb parancsokat fogom bemutatni.
+
+### git init
+
+A **git init** parancs létrehoz egy új Git repositoryt a jelenlegi mappában. A Git segítségével nyomon követheted és kezelheted a mappában található fájlok változásait és verzióit.
+
+### git add
+
+A **git add** parancs hozzáadja a módosított fájlokat a következő commit-hoz. Ezután azok készen állnak a commit-ra.
+
+### git commit
+
+A git commit parancs elmenti a fájlok aktuális állapotát a helyi repositoryba, és hozzárendel egy egyedi azonosítót a változtatásokhoz. Ezenkívül lehetőséget ad arra, hogy egy üzenetet is adjunk a commit-hoz, amely részletesen leírja a változtatásokat.
+
+### git branch
+
+A git branch parancs létrehoz egy új ágat a projektben. Az ág lehetővé teszi, hogy párhuzamosan dolgozhassunk több funkcióval, majd ezeket a változtatásokat a fő ágba egyesítsük.
+
+### git remote add origin
+
+A git remote add origin parancs hozzáadja az upstream repository hivatkozását a lokális repository-hoz. Az "origin" nevet általában az upstream repository-hoz adott hivatkozásra használják.
+
+### git push
+
+A git push parancs feltölti a lokális repository-ban található változtatásokat az upstream repository-ba, így megoszthatjuk a munkánkat a csapat többi tagjával.
+
+## GitHub Desktop
+
+A GitHub Desktop egy olyan alkalmazás, amely lehetővé teszi, hogy az GitHub-on egy grafikus felületen keresztül dolgozz, nem pedig a parancssor vagy a webböngésző segítségével. A GitHub Desktop arra ösztönz téged és csapatodat, hogy a Git és a GitHub legjobb gyakorlatait használva dolgozzatok együtt. Használhatod a GitHub Desktop-ot a legtöbb Git parancs végrehajtására, és vizuális megerősítést kaphatsz a változásokról. A GitHub Desktop segítségével push-olhatsz, pull-olhatsz és klónozhatsz távoli repositorykat, és használhatsz együttműködési eszközöket, mint például az attribúcióhoz tartozó kötelezettségvállalások és a pull requestek létrehozása.
+
+![GitHub Desktop](/img/github-0.png)
+
+Ez az útmutató segít neked abban, hogy elkezd használni a GitHub Desktop alkalmazást. Az útmutató bemutatja, hogyan kell telepíteni és beállítani a programot, hogyan kell hitelesíteni a fiókodat, és hogyan lehet alapvető beállításokat végezni. Emellett megtudhatod, hogyan kell kezelni projekteket a GitHub Desktop segítségével, és hogyan lehet kapcsolódni a távoli tárolókhoz. Ha végigcsinálod az útmutatót, akkor már képes leszel együttműködni projekteken másokkal.
+
+:::tip Tudtad?
+A GitHub Desktop egy nyílt forrású alkalmazás, amelyet a GitHub fejleszt. A GitHub Desktop egy Electron alapú alkalmazás, amely a Node.js és a Chromium technológiákat használja. Itt találod a forráskódját: https://github.com/desktop/desktop
+:::
+
+### 1. lépés - Letöltés
+
+A GitHub Desktop letöltéséhez kattints a [https://desktop.github.com/](https://desktop.github.com/) linkre.
+
+### 2. lépés - Telepítés és hitelesítés
+
+A GitHub Desktop telepíthető bármelyik támogatott operációs rendszerre. Például: macOS, Windows.
+
+Miután telepítetted a GitHub Desktop-ot, hitelesítened kell az alkalmazást a GitHub fiókoddal. A hitelesítés lehetővé teszi a távoli tárolókhoz való csatlakozást a GitHub platformon.
+
+Mielőtt hitelesíthetnéd magad a GitHub felületen, szükséged lesz egy fiókra. További információkért a fiók létrehozásáról lásd a "[Hozz létre egy saját GitHub fiókot](#2-lépés---hozz-létre-egy-saját-github-fiókot)" című részt.
+
+#### Hitelesítés
+
+Indítsd el a GitHub Desktop alkalmazást, és kattints a **Sign in to GitHub.com** gombra.
+
+![Sign in to GitHub.com](/img/github-1.png)
+
+Ezután átugrik a GitHub felületére, ahol hitelesítened kell magad. Kattints az **Authorize desktop** gombra.
+
+![Hitelesítés a GitHub felületén](/img/github-2.png)
+
+### 3. lépés - Kész
+
+Ha sikeresen hitelesítetted magad, akkor a GitHub Desktop alkalmazás megjeleníti a **Welcome to GitHub Desktop** ablakot.
+
+![Elkészültél](/img/github-3.png)
+
+Innentől kezdve már képes vagy a GitHub Desktop alkalmazással dolgozni, és csatlakozni a távoli repositorykhoz.

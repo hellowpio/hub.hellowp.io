@@ -1,0 +1,80 @@
+---
+title: Elementor PRO hibaelhárítás
+description: Elementor PRO hibaelhárítás
+keywords:
+  - hellopack
+  - elementor
+sidebar_label: Elementor PRO hibaelhárítás
+sidebar_position: 10
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-regular fa-screwdriver-wrench text-primary" /> Elementor PRO hibaelhárítás
+
+Az Elementor Pro nagyon kényes tud lenni, hiszen nagy erőforrásigényes bővítményről van szó és az esetek többségében az a probléma, hogy nem megfelelően van beállítva a tárhely.
+
+## 1.) Tesztelő ellenőrzése
+
+Az első lépés, hogy a tesztelő oldalon próbáljuk meg megtalálni a probléma okát. Kattins a ide **WordPress admin -> Eszközök -> HelloPack tesztelő** és ellenőrizd a teszt eredményét. Amennyiben hibát talál, akkor arra javaslatokat is fog tenni a rendszer. [HelloPack tesztelő részletesebben](/docs/dokumentacio/hellopack/tesztelo)
+
+## 2.) Elementor PRO rendszerkövetelmények
+
+A következő rendszerkövetelményeket kell teljesíteni, hogy a bővítmény megfelelően működjön: [Elementor PRO tárhelybeállítások részletesebben](/docs/tudasbazis/szerver-tarhely/ajanlott-tarhelybeallitasok/elementor)
+
+:::warning FONTOS!
+Az Elementor PRO jelenleg **nem támogatja a PHP 8.1-et**. Az inkopatibilitás abban nyílvánul meg, hogy nem tud aktiválódni a bővítmény. Maximum PHP 8.0-ig használható.
+:::
+
+### Az Elementor megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```bash php.ini
+php_value upload_max_filesize 128M
+php_value post_max_size 128M
+php_value max_execution_time 300
+php_value max_input_time 300
+php_value max_input_vars 10000
+php_value memory_limit 1024M
+```
+
+### WordPress verzió
+
+WordPress 6.0 vagy újabb verzióval fog működni az Elementor megfelelően.
+
+### PHP verzió
+
+PHP 7.4 vagy újabb (maximum PHP 8.0) verzióval fog működni az Elementor megfelelően.
+
+### WP/PHP Memória Limit
+
+Az Elementor fejlesztői azt javasolják, hogy a megfelelő működéshez 768MB-ra állítsuk a PHP memóriát. A mi tapasztalatunk viszont az, hogy 768MB-nál még előjöhetnek problémák, ha mondjuk JET bővítmények is futnak az oldalon. A mi ajánlásunk 1024MB!
+
+## 3.) Elementor PRO nem frissül
+
+Ha az Elementor PRO nem frissül, akkor az alábbiakat kell megvizsgálni:
+
+- Ellenőrizd, hogy a HelloPack aktív-e, ha nem, akkor aktiváld. Ezt könnyedén ellenőrizheted a tesztelő segítségével: Kattins ide: **WordPress admin -> Eszközök -> HelloPack tesztelő -> HelloPack API státusz**. Amennyiben minden rendben van, akkor ezt fogod látni: "Sikeresen csatlakoztál a HelloPack API-kulcsoddal. Minden rendben van."
+- Ellenőrizd, hogy az Elementor PRO a megfelelő mappában van-e: Lépj fel FTP (vagy bármilyen fájlkezelő is megteszi) a szerverre és nézd meg, hogy az Elementor PRO mappája a megfelelő helyen van-e. A helyes mappa: **wp-content/plugins/elementor-pro**. Ha nem, akkor helyezd át a megfelelő helyre.
+
+## 4.) Hibákat generál az Elementor PRO aktiválás után
+
+Ha az Elementor PRO aktiválás után hibákat generál, akkor az alábbiakat kell megvizsgálni: Nézd át, hogy milyen Elementor PRO-ra épülő bővítményeket használsz még az oldalon. Általában az szokott lenni a probléma, hogy az Elementor (ingyenes) és/vagy az Elementor PRO nem kompatibilis a kiegészítő bővítmények valamelyikével és ezért nem tudja megfelelően betölteni az oldalt. Ebben az esetben az alábbiakat kell tenned:
+
+- Kapcsold ki az összes Elementorra épülő bővítményt az oldalon.
+- Frissítsd az Elementor PRO-t és FREE-t a legújabb verzióra.
+- Frissítsd az összes Elementorra épülő bővítményt a legújabb verzióra.
+- Kapcsold vissza **egyenként** a bővítményeket.
+
+## 5.) Nem működnek a beépített sablonok/blokkok/kits-ek
+
+Ha az Elementor PRO beépített sablonok, blokkok, kits-ek nem működnek, akkor az alábbiakat kell megvizsgálni:
+
+### Ellenőrizd, hogy össze van-e kötve az oldalad az elementor.com oldallal:
+
+A probléma az lehet, hogy nincs összekötve az oldalad az elementor.com oldallal. Ha össze van kötve, akkor ezt kell látnod a **WordPress admin -> Elementor -> License** oldalon:
+
+:::tip Nem ezt látod?
+Akkor az alábbiakat kell megtenned: [Elementor PRO összekötése az Elementor.com fiókkal](/docs/dokumentacio/hellopack/specialis-bovitmenyek/elementor-pro)
+:::
