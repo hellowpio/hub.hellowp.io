@@ -1,0 +1,54 @@
+---
+title: AutomateWoo - Workflow készítése
+description: Workflow, azaz Folyamat készítése
+keywords:
+  - automatewoo, workflow
+sidebar_label: Workflow készítése 
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+## Mi az a Workflow?
+
+Az AutomateWoo lényege, hogy folyamatokat készítsünk, amik bizonyos triggerek, és szabályok alapján fognak futni. A szabályokhoz műveleteket tudunk társítani, 
+ami nem csak emailek küldéséből állhat. Mielőtt készítünk egy saját workflowot nézzük át milyen lehetőségeink vannak. Kattintsunk a Workflows - Folyamatok menüpontra.
+Az AutomateWoo rendelkezik számos előre gyártott sablonnal (preset), melyeket az alábbi képen is láthatsz:
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/automatewoo-presets.png" alt="Automatewoo presets"></img>
+</BrowserWindow>
+
+Azt javaslom, amíg nem vagyunk járatosak egy folyamat felépítésében először készítsünk egy sajátot.
+
+## Folyamat felépítése
+
+Kattintsunk az Add new - Folyamat készítése gombra. 
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/workflow-attekintes.png" alt="Automatewoo uj workflow"></img>
+</BrowserWindow>
+
+Először beszéljük át az itt látható paneleket. Minden folyamatnak megadhatsz nevet, amelyt kizárólag belső azonosításra fogsz használni. Célszerű 
+olyan nevet megadni, amilyen feladatot ellát, így ha később térsz vissza, akkor is könnyedén tudni fogod pontosan ezt a folyamatot mire használod.
+A jobb oldali oszlopban az első panelnek nincs megnevezése, viszont két opciót tartalmaz:
+
+**Típus**  
+**Státusz**
+
+Alapvetően az Automatewoo lényege az automatizálás, viszont lehetőségünk van manuális futtatásra is, amit kézzel tudunk indítani. A manuális futtatás egyenlőre erősen
+korlátozott és csak a rendelés, és előfizetés*(Subscriptions bővítmény),* esetében alkalmazható, de ezt a későbbiekben a fejlesztők bővíteni kívánják.
+
+A **státusz** segítségével állíthatjuk be, hogy az adott folyamatunk, aktív, vagy kikapcsolt állapotban legyen. A workflow, csak akkor fog futni, ha a **státusz**
+aktív ra van állítva. 
+
+:::tip Alapértelmezett beállítások
+Ne felejtsd el, hogy közvetlenül egy folyamat létrehozásakor a workflow státusza **alapértelmezetten aktív,** így elsőként állítsd kikapcsolt ra, és ha kész vagy, ne felejtsd el
+aktív állapotra állítani!
+:::
+
+### Beállítások
+A következő oszlop, a **Beállítások.** Itt egyből ki is emelnénk a tranzakciós beállítást. Mivel alapvetően a felhasználónak bele kell egyeznie
+abba, hogy marketing célzatú emaileket küldjünk nekik, természetesen előfordulhat, hogy tájékoztató jellegű üzenetet szeretnénk megosztani a felhasználókkal. 
+Ezért, ha az adoott folyamat, email vagy sms műveletet tartalmaz, és szeretnénk ha az opt állapotától függetlenül megkapja a felhasználó, jelöljük be a **Tranzackiós jellegű** 
+jelölő négyzetet.
