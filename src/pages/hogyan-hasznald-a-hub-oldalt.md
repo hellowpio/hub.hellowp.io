@@ -1,6 +1,9 @@
 # Hogyan használd a Hub oldalt?
 
-A HelloWP Hub elsődleges és legfontosabb célja az edukáció és nem kimondottan üzleti célú érdekek mentén hoztuk létre. Hiszünk abban, hogy ötvözni lehet a nyílt forrású világot a üzleti élettel és a "nem minden a profit" filozófiával! Szeretnénk, ha a Hub oldalt a WordPress közösség is használhatá, sőt, bővíthetné is azt. Ezért egy olyan platformot hoztunk létre, aminek a tartalmát könnyedén lehet módosítani és bővíteni a közösség bármely tagjának.
+A HelloWP Hub elsődleges és legfontosabb célja az edukáció és nem kimondottan üzleti célú érdekek mentén hoztuk létre. Hiszünk abban, hogy ötvözni lehet a nyílt forrású világot a üzleti élettel és a "nem minden a profit" filozófiával! 
+
+Szeretnénk, ha a Hub oldalt a WordPress közösség is használhatná, sőt, könnyedén bővíthetné is azt. Ennek érdekében az oldal nyílt forrású és a GitHub-on is elérhető. A tartalma pedig CC BY-NC-SA 4.0 license alatt áll, amit bárki szabadon felhasználhat, módosíthat és terjeszthet az alábbi feltételek mellett: https://hub.hellowp.io/cc-by-nc-sa-4.0/
+Új tartalmat adnál hozzá, vagy módosítánád/kiegészítenéd a meglévőket? Nézd meg a [Tartalmak szerkesztése GitHub-on](#tartalmak-szerkesztése-github-on) című részt.
 
 ## Tudásbázis
 
@@ -17,7 +20,7 @@ Itt találod a HelloWP.io oldal részletesebb leírásait. Például: [Partnerpr
 
 ## Tartalmak szerkesztése GitHub-on
 
-A HelloWP! Hub minden tartalma módosítható a tartalom alján lévő "Szerkesztés GitHub-on" gombra kattintva. A GitHub-on történő szerkesztéshez szükséged lesz egy GitHub fiókra. 
+A HelloWP! Hub minden tartalma módosítható a lap alján lévő "Szerkesztés GitHub-on" gombra kattintva. A GitHub-on történő szerkesztéshez szükséged lesz egy GitHub fiókra. 
 
 :::tip Új vagy a GitHubon?
 Nézd át a [GitHub kezdőknek](/docs/tudasbazis/oktatoanyagok/github/github-kezdoknek/) című oktatóanyagunkat.
