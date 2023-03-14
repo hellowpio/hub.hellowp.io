@@ -19,7 +19,7 @@ hogy könnyedén megkapják a felmerülő kérdésre a választ.
 
 Sajnos a beépített Elementor widget nem rendelkezik ilyen funkcióval, sőt a legtöbb olyan kiegészítő, ami tartalmaz Toggle widgetet, szintén nem kezeli.
 Az alábbi kódban, egy saját lapozó és navigációs rendszert készítünk, aminek a segítségével, meghatározhatjuk, hogy egy oldalon hány lenyíló elem jelenhet meg.
-Nem kell aggódnod, ha sokat jelenítesz meg egyszerre, ugyanis a kód automatikusan az első elem tetejére scrollozza vissza a felhasználót.
+Nem kell aggódnod, ha sokat jelenítesz meg egyszerre, ugyanis a kód automatikusan az első elem tetejére görgeti vissza a felhasználót.
 <BrowserWindow url="https://peldaweboldal.hu">
   <img src="/img/togglewidget-minta.png" alt="Elementor Toggle widget lapozó"></img>
 </BrowserWindow>
@@ -27,26 +27,26 @@ Nem kell aggódnod, ha sokat jelenítesz meg egyszerre, ugyanis a kód automatik
 ## Előkészületek
 
 Kezdjük az első fázissal. Készítsd be a toggle widgeted, és legalább annyi elemet hozz létre benne, ami több lesz, mint amit az első oldalon szeretnél megjeleníteni.
-Értelem szerűen erre azért van szükség, hogy egyből tesztelni tudjuk a működést. A példa kódban 9 re van állítva, ezt csak módosítanod kell arra, amennyit
+Értelemszerűen erre azért van szükség, hogy egyből tesztelni tudjuk a működést. A példa kódban 9 re van állítva, ezt csak módosítanod kell arra, amennyit
 te szeretnél egy oldalon megjeleníteni. 
 
 A toggle widgetnek mindenképpen megkell adnod egy saját class-t, ezt azonosításra fogjuk használni. A saját class-t a szokásos módon a toggle widget haladó fülön tudod megadni
 az elrendezés fül legalsó mezőjében a **CSS Osztály**-nál. Itt írd be az alábbi értéket: **mytoggle**
 
-Az elkőkészület utolsó lépése, hogy egy html widgetet a toggle alá beraksz.
+Az előkészület utolsó lépése, hogy egy html widgetet a toggle alá beraksz.
 
 ## A kód használata
 
-Az alábbi megtalálható kódot teljes terjedelmében másold ki, és illeszd be a html widgetbe. Ha mindent jól csináltál, és több mint 9 toggle elemed van létrehozva,
+Az alábbi kódot teljes terjedelmében másold ki, és illeszd be a html widgetbe. Ha mindent jól csináltál, és több mint 9 toggle elemed van létrehozva,
 a további elemeket oldalakba sorrendezi be.
 
 :::tip Elementor szerkesztő
 Előfordul, hogy egyes scriptek a szerkesztőfelületen elsőre, vagy közvetlen a widget módosítás hatására nem működik. Ilyenkor mindig
-ellenőrizzük le, az oldalon is, vagy frissítsük a szerkesztőfelületet. 
+ellenőrizzük le az oldalon is, vagy frissítsük a szerkesztőfelületet. 
 
 :::
 
-```js {112,119,135,151,166}
+```js {118,125,141,157,172}
 <div class="my--pagination">
     <div class="my--page-links"></div>
     <div class="my--pagination-arrows">
@@ -309,7 +309,32 @@ A script továbbá tartalmaz egy kiegészítést is:
 
  ```   
 
- Ennek segítségével, amikor lapozunk, és szükséges, a látogatót vissza scrollozza a toggle-item első elemére. Ez főként akkor hasznos, 
+ Ennek segítségével, amikor lapozunk, és szükséges, a látogatót vissza görgeti a toggle-item első elemére. Ez főként akkor hasznos, 
       ha sok elemet jelenítünk meg oldalanként. 
       
+A kód továbbá tartalmaz két extra class-t. Az egyik az "active", amit az aktuális oldalszámra ráteszünk, a másik a disabled, amit a nyilak kapnak meg, 
+ha nincs több oldal. Ezek azért hasznosak, mert így a css be könnyedén készíthetünk eltérő megjelenést, és kimelhetjük például az aktuális oldal számának színét a 
+többitől.
 
+Amikor az oldal betöltődik, alapesetben az első oldalon állunk. Ezért, mindenképpen szükség van arra, hogy a lapozónk első száma rendelkezzen az active class-al.
+**$('.my--page-link:first-child').addClass('active');** 
+
+### CSS
+
+Ahhoz, hogy legyen valamiféle kinézete az egész lapozónak CSS -re van szükségünk. Egyszerű kinézetet készítettünk, amit könnyedén átírhatsz, hogy
+igazodjon a saját oldalad stílusához.
+
+A **.my--page-link** lesz az, ami a lapszámokra érvényes, tehát, ha szeretnéd megváltoztatni a számok színét, háttérét stb, azt úgy tudod megtenni, hogy
+erre a class-ra hivatkozol.
+
+Ha az aktív állapotú szám kinézetét szeretnéd módosítani akkor a **.my--page-link.active ** -ra kell hivaktoznod, amit a példában is láthatsz.
+A **.my--pagination-arrow** a navigációs nyilak konténer osztálya. Ha maga az ikont szeretnéd módosítani (például másik szín ) akkor a **.my--pagination-arrow i** kell 
+használnod.
+
+Ha a kikapcsolt állapotot akarod módosítani akkor a **.my--pagination-arrow.disabled** kell alkalmazni. Ezen kívül, mindkét navgiációs nyilat külön class-al jelöltük.
+Ha közvetlenül az ikon-t szeretnéd módosítani akkor az elején található html-ben kell átírni a FontAwesome-t arra amire neked van szükséged.
+
+```html
+<div class="my--pagination-arrow my--left-arrow"><i class="fas fa-chevron-left"></i></div>
+        <div class="my--pagination-arrow my--right-arrow"><i class="fas fa-chevron-right"></i></div>
+ ```         
