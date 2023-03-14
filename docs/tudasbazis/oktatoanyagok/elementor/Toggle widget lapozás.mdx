@@ -258,13 +258,13 @@ A Kódot három részre lehet bontani. HTML, CSS és JS (pontosabban jQuery). Em
 ### HTML
 
 A HTML részben készítjük el a lapozó, és navigációs elemeinket. Mivel egy kicsit speciálisabb elrendezésre volt szükségünk, a JS kód segítségével állítottuk
-be a navgiációs nyilakat úgy, hogy a bal oldali, a lapozó előtt, míg a jobb oldali a lapozó után, de ugyan úgy közvetlen mellette legyen.
+be a navigációs nyilakat úgy, hogy a bal oldali, a lapozó előtt, míg a jobb oldali a lapozó után, de ugyan úgy közvetlen mellette legyen.
 ```js
  $('.my--left-arrow').insertBefore($('.my--page-link:first-child'));
   $('.my--right-arrow').insertAfter($('.my--page-link:last-child'));
   ```
 
-Természetesen a HTML ben csak a vázat készítjük el, ugyanis az ilyen típusú megoldásoknál nem határozhatjuk meg manuálisan a lapszámolást, helyette
+Természetesen a HTML-ben csak a vázat készítjük el, ugyanis az ilyen típusú megoldásoknál nem határozhatjuk meg manuálisan a lapszámolást, helyette
 ezt a jquery segítségével fogjuk megvalósítani, így biztosítva azt, hogy könnyen kiegészíthető legyen anélkül, hogy manuálisan bele kellene nyúlni a kódba.
 
 A számok generálása az alábbi kódrészletben történik:
@@ -289,12 +289,12 @@ lapozót.
 Maga a jQuery felelős az egész rendszer működéséért, és ahogy fentebb is olvashattad, a html-t is módosítjuk vele. 
 A kód legelején található: **jQuery(document).ready(function($) {** biztosítja, hogy a script csak azután fut le, hogy a DOM ban minden elem elérhető.
 
-Közvetlen utána máris egy *if* feltétel látható, amelyt arra használnuk, hogy ha az adott oldalon a DOM ban nem található meg a **.mytoggle** class, akkor a kód
+Közvetlen utána máris egy *if* feltétel látható, amelyt arra használunk, hogy ha az adott oldalon a DOM ban nem található meg a **.mytoggle** class, akkor a kód
 nem fut tovább feleslegesen. Egyfelől ezért volt fontos, hogy az elején megadtuk ezt a classt a toggle widgetnek, továbbá, hogy behatároljuk
 a script mely widgetre legyen érvényes. Ha ezt a lépést kihagyjuk, akkor olyan toggle widgetre is lefut és érvényesíti a scriptet amire egyébként nem szeretnénk.
 
 Amit még érdemes kiemelnünk, az a ** $('.mytoggle .elementor-toggle-item').hide().slice(0, 9).show();** rész. Lényegében az itt meghatározott érték alapján a .hide először
-elrejti az elemeket, majd a .slice kiválasztja a listából az első 9 elemet, és a .show parancsal megjeleníti azt. 
+elrejti az elemeket, majd a .slice kiválasztja a listából az első 9 elemet, és a .show parancssal megjeleníti azt. 
 
 :::tip Indexelés
 A Javascript, valamint jQuery egyaránt 0 tól indexeli a tömböket és elemeket, ezért az első elem mindig 0, a második elem indexe 1 stb..
@@ -313,7 +313,7 @@ A script továbbá tartalmaz egy kiegészítést is:
       ha sok elemet jelenítünk meg oldalanként. 
       
 A kód továbbá tartalmaz két extra class-t. Az egyik az "active", amit az aktuális oldalszámra ráteszünk, a másik a disabled, amit a nyilak kapnak meg, 
-ha nincs több oldal. Ezek azért hasznosak, mert így a css be könnyedén készíthetünk eltérő megjelenést, és kimelhetjük például az aktuális oldal számának színét a 
+ha nincs több oldal. Ezek azért hasznosak, mert így a css be könnyedén készíthetünk eltérő megjelenést, és kiemelhetjük például az aktuális oldal számának színét a 
 többitől.
 
 Amikor az oldal betöltődik, alapesetben az első oldalon állunk. Ezért, mindenképpen szükség van arra, hogy a lapozónk első száma rendelkezzen az active class-al.
@@ -327,11 +327,11 @@ igazodjon a saját oldalad stílusához.
 A **.my--page-link** lesz az, ami a lapszámokra érvényes, tehát, ha szeretnéd megváltoztatni a számok színét, háttérét stb, azt úgy tudod megtenni, hogy
 erre a class-ra hivatkozol.
 
-Ha az aktív állapotú szám kinézetét szeretnéd módosítani akkor a **.my--page-link.active ** -ra kell hivaktoznod, amit a példában is láthatsz.
+Ha az aktív állapotú szám kinézetét szeretnéd módosítani akkor a **.my--page-link.active ** -ra kell hivatkoznod, amit a példában is láthatsz.
 A **.my--pagination-arrow** a navigációs nyilak konténer osztálya. Ha maga az ikont szeretnéd módosítani (például másik szín ) akkor a **.my--pagination-arrow i** kell 
 használnod.
 
-Ha a kikapcsolt állapotot akarod módosítani akkor a **.my--pagination-arrow.disabled** kell alkalmazni. Ezen kívül, mindkét navgiációs nyilat külön class-al jelöltük.
+Ha a kikapcsolt állapotot akarod módosítani akkor a **.my--pagination-arrow.disabled** kell alkalmazni. Ezen kívül, mindkét navigációs nyilat külön class-al jelöltük.
 Ha közvetlenül az ikon-t szeretnéd módosítani akkor az elején található html-ben kell átírni a FontAwesome-t arra amire neked van szükséged.
 
 ```html
