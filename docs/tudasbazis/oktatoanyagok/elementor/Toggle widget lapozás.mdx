@@ -1,6 +1,6 @@
 ---
 title: Elementor toggle widget - Lapozás funkció
-description: Az Elementor toggle widget kiegészítése lapozó, és navgiációs funkcióval
+description: Az Elementor toggle widget kiegészítése lapozó és navgiációs funkcióval
 keywords:
   - github
 sidebar_label: Elementor toggle widget
@@ -14,7 +14,7 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 ## Áttekintés
 
 Az Elementor **Toggle widget** egy könnyen használható elem, aminek a segítségével, például GYIK, azaz gyakran ismételt kérdések szekciót készíthetünk.
-Előfordulhat, hogy annyira sok elemet kellene készíteni, ami már túl sok, így inkább felosztanánk oldalakra, és lapozhatóvá tennénk, ezzel segítve a látogatókat,
+Előfordulhat, hogy annyira sok elemet kellene készíteni, ami már túl sok, így inkább felosztanánk oldalakra és lapozhatóvá tennénk, ezzel segítve a látogatókat,
 hogy könnyedén megkapják a felmerülő kérdésre a választ.
 
 Sajnos a beépített Elementor widget nem rendelkezik ilyen funkcióval, sőt a legtöbb olyan kiegészítő, ami tartalmaz Toggle widgetet, szintén nem kezeli.
@@ -26,18 +26,18 @@ Nem kell aggódnod, ha sokat jelenítesz meg egyszerre, ugyanis a kód automatik
 
 ## Előkészületek
 
-Kezdjük az első fázissal. Készítsd be a toggle widgeted, és legalább annyi elemet hozz létre benne, ami több lesz, mint amit az első oldalon szeretnél megjeleníteni.
+Kezdjük az első fázissal. Készítsd be a toggle widgeted és legalább annyi elemet hozz létre benne, ami több lesz, mint amit az első oldalon szeretnél megjeleníteni.
 Értelemszerűen erre azért van szükség, hogy egyből tesztelni tudjuk a működést. A példa kódban 9 re van állítva, ezt csak módosítanod kell arra, amennyit
 te szeretnél egy oldalon megjeleníteni. 
 
-A toggle widgetnek mindenképpen megkell adnod egy saját class-t, ezt azonosításra fogjuk használni. A saját class-t a szokásos módon a toggle widget haladó fülön tudod megadni
+A toggle widgetnek mindenképpen meg kell adnod egy saját class-t, ezt azonosításra fogjuk használni. A saját class-t a szokásos módon a toggle widget haladó fülön tudod megadni
 az elrendezés fül legalsó mezőjében a **CSS Osztály**-nál. Itt írd be az alábbi értéket: **mytoggle**
 
 Az előkészület utolsó lépése, hogy egy html widgetet a toggle alá beraksz.
 
 ## A kód használata
 
-Az alábbi kódot teljes terjedelmében másold ki, és illeszd be a html widgetbe. Ha mindent jól csináltál, és több mint 9 toggle elemed van létrehozva,
+Az alábbi kódot teljes terjedelmében másold ki és illeszd be a html widgetbe. Ha mindent jól csináltál és több mint 9 toggle elemed van létrehozva,
 a további elemeket oldalakba sorrendezi be.
 
 :::tip Elementor szerkesztő
@@ -248,7 +248,7 @@ Ezeket a sorokat kiemeltük a megjelenítésben.
 
 ## A kód működése
 
-Ha mindent jól csináltál, és több mint 9 toggle elemet állítottál be, akkor láthatod, hogy a lapozóban több szám is megjelent, és a további toggle elemek rejtve
+Ha mindent jól csináltál és több mint 9 toggle elemet állítottál be, akkor láthatod, hogy a lapozóban több szám is megjelent és a további toggle elemek rejtve
 vannak, amíg nem navigálunk át a következő oldalra. 
 
 Most tekintsük át a működést.
@@ -257,7 +257,7 @@ A Kódot három részre lehet bontani. HTML, CSS és JS (pontosabban jQuery). Em
 
 ### HTML
 
-A HTML részben készítjük el a lapozó, és navigációs elemeinket. Mivel egy kicsit speciálisabb elrendezésre volt szükségünk, a JS kód segítségével állítottuk
+A HTML részben készítjük el a lapozó és navigációs elemeinket. Mivel egy kicsit speciálisabb elrendezésre volt szükségünk, a JS kód segítségével állítottuk
 be a navigációs nyilakat úgy, hogy a bal oldali, a lapozó előtt, míg a jobb oldali a lapozó után, de ugyan úgy közvetlen mellette legyen.
 ```js
  $('.my--left-arrow').insertBefore($('.my--page-link:first-child'));
@@ -286,7 +286,7 @@ lapozót.
 
 ### jQuery
 
-Maga a jQuery felelős az egész rendszer működéséért, és ahogy fentebb is olvashattad, a html-t is módosítjuk vele. 
+Maga a jQuery felelős az egész rendszer működéséért és ahogy fentebb is olvashattad, a html-t is módosítjuk vele. 
 A kód legelején található: **jQuery(document).ready(function($) {** biztosítja, hogy a script csak azután fut le, hogy a DOM ban minden elem elérhető.
 
 Közvetlen utána máris egy *if* feltétel látható, amelyt arra használunk, hogy ha az adott oldalon a DOM ban nem található meg a **.mytoggle** class, akkor a kód
@@ -294,7 +294,7 @@ nem fut tovább feleslegesen. Egyfelől ezért volt fontos, hogy az elején mega
 a script mely widgetre legyen érvényes. Ha ezt a lépést kihagyjuk, akkor olyan toggle widgetre is lefut és érvényesíti a scriptet amire egyébként nem szeretnénk.
 
 Amit még érdemes kiemelnünk, az a ** $('.mytoggle .elementor-toggle-item').hide().slice(0, 9).show();** rész. Lényegében az itt meghatározott érték alapján a .hide először
-elrejti az elemeket, majd a .slice kiválasztja a listából az első 9 elemet, és a .show parancssal megjeleníti azt. 
+elrejti az elemeket, majd a .slice kiválasztja a listából az első 9 elemet és a .show parancssal megjeleníti azt. 
 
 :::tip Indexelés
 A Javascript, valamint jQuery egyaránt 0 tól indexeli a tömböket és elemeket, ezért az első elem mindig 0, a második elem indexe 1 stb..
@@ -309,11 +309,11 @@ A script továbbá tartalmaz egy kiegészítést is:
 
  ```   
 
- Ennek segítségével, amikor lapozunk, és szükséges, a látogatót vissza görgeti a toggle-item első elemére. Ez főként akkor hasznos, 
+ Ennek segítségével, amikor lapozunk és szükséges, a látogatót vissza görgeti a toggle-item első elemére. Ez főként akkor hasznos, 
       ha sok elemet jelenítünk meg oldalanként. 
       
 A kód továbbá tartalmaz két extra class-t. Az egyik az "active", amit az aktuális oldalszámra ráteszünk, a másik a disabled, amit a nyilak kapnak meg, 
-ha nincs több oldal. Ezek azért hasznosak, mert így a css be könnyedén készíthetünk eltérő megjelenést, és kiemelhetjük például az aktuális oldal számának színét a 
+ha nincs több oldal. Ezek azért hasznosak, mert így a css be könnyedén készíthetünk eltérő megjelenést és kiemelhetjük például az aktuális oldal számának színét a 
 többitől.
 
 Amikor az oldal betöltődik, alapesetben az első oldalon állunk. Ezért, mindenképpen szükség van arra, hogy a lapozónk első száma rendelkezzen az active class-al.
