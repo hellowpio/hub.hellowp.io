@@ -17,48 +17,52 @@ import CodeBlock from "@theme/CodeBlock";
 Miután telepítetted a HelloPack csomagkezelőt, a következő lépés, hogy aktiváld azt a weboldaladon.
 Ehhez létre kell hozni egy API kulcsot a HelloWP.io oldalán, amit aztán a WordPress weboldaladon a HelloPack csomagkezelőben megadva aktiválhatod a bővítményt. 
 
-### 1. HelloPack API kulcskészítés
+### 1. HelloPack API-kulcs létrehozása
 
-A **HelloConsole** (https://hellowp.io/hu/helloconsole/) oldalon a bal oldalsó sávban kattints a **HelloPack** feliratra, majd kattints az **API-kulcskészítő** menüpontra.
+A **HelloConsole** oldalon a bal oldalsó sávban kattints a **HelloPack** feliratra, majd kattints az **API-kulcskészítő** menüpontra, vagy látogass el a következő linkre: https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/
 
 <BrowserWindow url="https://hellowp.io">
   <img src="/img/hellopack-aktivalas-1.png" alt="HelloPack API-kulcskészítő pozíció"></img>
 </BrowserWindow>
 
 **Az API kulcs létrehozásához végezd el az alábbi lépéseket:** 
-1. **Add meg weboldalad domain címét**, pl.: weboldalamneve.hu *(ne használj https, http vagy egyéb speciális karaktereket)*
-2. **Másold ki** az **API KULCS** mezőben látható karaktereket (ezzel fogod aktiválni a HelloPack csomagkezelőt)
-3. **Válaszd ki**, hogy mely bővítményekhez szeretnél frissítéseket kapni (vagy válaszd a **Mindhez** opciót)
-4. **Kattints** az **Új API-kulcs készítése** gombra és készen is van az API kulcsod.
+1. Add meg weboldalad domain címét, pl.: weboldalamneve.hu *(ne használj https, http vagy egyéb speciális karaktereket)*
+2. Válaszd ki, hogy mely bővítményekhez szeretnél frissítéseket kapni (vagy hagyd meg a **Mindhez** opciót)
+3. Kattints az **Új API-kulcs készítése** gombra.
+4. A létrehozott API kulcs másolásához tekerj az oldal aljára és kattints az aktuális domain névvel egy sorban lévő sárga másolás ikonra.  *(A következő lépésben ezt az API kulcsot másoljuk be a HelloPack bővítmény API-kulcs mezőbe.)*
 
-**A következő lépésben ezt az API kulcsot másoljuk be a HelloPack bővítmény API-kulcs mezőbe. **
 
 <BrowserWindow url="https://hellowp.io">
-  <img src="/img/hellopack-aktivalas-2.png" alt="HelloPack API-kulcskészítő pozíció"></img>
+  <img src="/img/optimized-API kulcs generalas.gif" alt="HelloPack API-kulcskészítő pozíció"></img>
 </BrowserWindow>
 
-:::tip
-Az API kulcsod később bármikor megtekintheted a lap aljára görgetve, az adott weboldal nevével egysorban látható sárga kulcs ikonra kattintva. 
-  <BrowserWindow url="https://hellowp.io">
-  <img src="/img/hellopack-aktivalas-3.png" alt="HelloPack API-kulcskészítő pozíció"></img>
-</BrowserWindow>
-:::
 
 ### 2. HelloPack bővítmény aktiválása
 
-WordPress weboldalad vezérlőpultjában kattints a bal oldali sávban található **HelloPack** menüpontra. 
+**WordPress weboldalad vezérlőpultjában** kattints a bal oldali sávban található **HelloPack** menüpontra. 
 
-**Másold be** a korábban létrehozott API kulcsod az **API-kulcs** mezőbe, majd kattints az **API-KULCS AKTIVÁLÁSA** gombra. 
-<BrowserWindow url="https://hellowp.io">
-  <img src="/img/hellopack-aktivalas-4.png" alt="HelloPack API-kulcskészítő pozíció"></img>
-</BrowserWindow>
+1. Másold be a korábban létrehozott API kulcsod az **API-kulcs** mezőbe.
+2. Kattints az **API-KULCS AKTIVÁLÁSA** gombra. 
 
-**Sikeres aktiválás** esetén, a **Licensz állapota** a következő: **A csomagkezelő aktív**.
+Sikeres aktiválás esetén, a **Licensz állapota** a következő: **A csomagkezelő aktív**.
 
 <BrowserWindow url="https://hellowp.io">
-  <img src="/img/hellopack-aktivalas-5.png" alt="HelloPack API-kulcskészítő pozíció"></img>
+  <img src="/img/hellopack-aktivalas.gif" alt="HelloPack API-kulcskészítő pozíció"></img>
 </BrowserWindow>
 
+
+### Hogyan migrálj régi main/subAPI rendszerről az új API-kulcsra?
+
+1. **WordPress weboldalad vezérlőpultjában** kattints a bal oldali sávban található **HelloPack** menüpontra. 
+2. Kattints a **Helyi beállítások törlése** gombra. 
+
+<BrowserWindow url="https://hellowp.io">
+  <img src="/img/helyi-beallitasok-torlese.png" alt="HelloPack API-kulcskészítő pozíció"></img>
+</BrowserWindow>
+
+3. Hozz létre egy új API-kulcsot, majd másold ki. *(Részletesebben: [Új API-kulcs létrehozása](/docs/dokumentacio/hellopack/aktivalas#1-hellopack-api-kulcs-létrehozása))*
+4. Másold az új API-kulcsot a HelloPack bővítmény API-kulcs mezőbe, majd kattints az **API-kulcs aktiválása** gombra. *(Részletesebben: [HelloPack aktiválása](/docs/dokumentacio/hellopack/aktivalas#2-hellopack-bővítmény-aktiválása))*
+5. Kattints a **Licensz ellenőrzése** gombra. 
 
 ### <FontAwesomeIcon icon="fa-duotone fa-bug text-danger" /> Hibára futottál?
 
