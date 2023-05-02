@@ -1,0 +1,340 @@
+---
+title: Elementor toggle widget - Lapozás funkció
+description: Az Elementor toggle widget kiegészítése lapozó és navgiációs funkcióval
+keywords:
+  - github
+sidebar_label: Elementor toggle widget
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+## Áttekintés
+
+Az Elementor **Toggle widget** egy könnyen használható elem, aminek a segítségével, például GYIK, azaz gyakran ismételt kérdések szekciót készíthetünk.
+Előfordulhat, hogy annyira sok elemet kellene készíteni, ami már túl sok, így inkább felosztanánk oldalakra és lapozhatóvá tennénk, ezzel segítve a látogatókat,
+hogy könnyedén megkapják a felmerülő kérdésre a választ.
+
+Sajnos a beépített Elementor widget nem rendelkezik ilyen funkcióval, sőt a legtöbb olyan kiegészítő, ami tartalmaz Toggle widgetet, szintén nem kezeli.
+Az alábbi kódban, egy saját lapozó és navigációs rendszert készítünk, aminek a segítségével, meghatározhatjuk, hogy egy oldalon hány lenyíló elem jelenhet meg.
+Nem kell aggódnod, ha sokat jelenítesz meg egyszerre, ugyanis a kód automatikusan az első elem tetejére görgeti vissza a felhasználót.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/togglewidget-minta.png" alt="Elementor Toggle widget lapozó"></img>
+</BrowserWindow>
+
+## Előkészületek
+
+Kezdjük az első fázissal. Készítsd be a toggle widgeted és legalább annyi elemet hozz létre benne, ami több lesz, mint amit az első oldalon szeretnél megjeleníteni.
+Értelemszerűen erre azért van szükség, hogy egyből tesztelni tudjuk a működést. A példa kódban 9 re van állítva, ezt csak módosítanod kell arra, amennyit
+te szeretnél egy oldalon megjeleníteni. 
+
+A toggle widgetnek mindenképpen meg kell adnod egy saját class-t, ezt azonosításra fogjuk használni. A saját class-t a szokásos módon a toggle widget haladó fülön tudod megadni
+az elrendezés fül legalsó mezőjében a **CSS Osztály**-nál. Itt írd be az alábbi értéket: **mytoggle**
+
+Az előkészület utolsó lépése, hogy egy html widgetet a toggle alá beraksz.
+
+## A kód használata
+
+Az alábbi kódot teljes terjedelmében másold ki és illeszd be a html widgetbe. Ha mindent jól csináltál és több mint 9 toggle elemed van létrehozva,
+a további elemeket oldalakba sorrendezi be.
+
+:::tip Elementor szerkesztő
+Előfordul, hogy egyes scriptek a szerkesztőfelületen elsőre, vagy közvetlen a widget módosítás hatására nem működik. Ilyenkor mindig
+ellenőrizzük le az oldalon is, vagy frissítsük a szerkesztőfelületet. 
+
+:::
+
+```js {118,125,141,157,172}
+<div class="my--pagination">
+    <div class="my--page-links"></div>
+    <div class="my--pagination-arrows">
+        <div class="my--pagination-arrow my--left-arrow"><i class="fas fa-chevron-left"></i></div>
+        <div class="my--pagination-arrow my--right-arrow"><i class="fas fa-chevron-right"></i></div>
+    </div>
+</div>
+
+<style>
+    .my--pagination {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ikon pozició hotfix a toggle címsorhoz */
+.mytoggle .elementor-tab-title {
+    align-items: center;
+    display: flex;
+}
+
+.my--page-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my--page-link {
+    color: #858A8E;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    margin-right: 5px; /* Távolság az egyes lapozó elemek között */
+    margin-left: 5px;
+     transition: all .3s ease;
+}
+
+.my--page-link:hover { 
+    color: #E60000;
+   
+}
+
+.my--page-link.active {
+    color: #E60000;
+    border-bottom: 1px solid #E60000;
+}
+
+.my--pagination-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #BEBEBE;
+    border: 0px solid #E5E5E5;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    border-radius: 50%
+}
+
+.my--pagination-arrow:hover {
+    background-color: #E60000;
+    
+}
+
+.my--left-arrow {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.my--right-arrow {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.my--pagination-arrow i {
+    color: white;
+    font-size: 16px;
+}
+
+.my--pagination-arrow:hover i {
+    color: white;
+}
+
+.my--pagination-arrow.disabled {
+  opacity: 0.5; /* például átlátszóság csökkentése */
+  pointer-events: none; /* nopointer */
+  
+}
+
+
+@media only screen and (max-width: 767px) {
+    .my--pagination {
+        flex-direction: column;
+    }
+    .my--page-links {
+        margin-bottom: 10px;
+    }
+    .my--pagination-arrow {
+        margin-top: 0px;
+    }
+}
+
+</style>
+
+<script>
+
+jQuery(document).ready(function($) {
+  if (!$('.mytoggle').length) {
+    // Ha nincs '.mytoggle' osztályú elem a DOM-ban, akkor nem fut tovább a script
+    return;
+  }  
+    
+  var numItems = $('.mytoggle .elementor-toggle-item').length;
+  var numPages = Math.ceil(numItems / 9);
+  var pageLinks = '';
+  for (var i = 1; i <= numPages; i++) {
+    pageLinks += '<span class="my--page-link" data-page="' + i + '">' + i + '</span>';
+  }
+  $('.my--page-links').html(pageLinks);
+  $('.my--page-link:first-child').addClass('active');
+  $('.mytoggle .elementor-toggle-item').hide().slice(0, 9).show();
+  
+  // Az oldalak közötti navigáció nyilainak beszúrása
+  $('.my--left-arrow').insertBefore($('.my--page-link:first-child'));
+  $('.my--right-arrow').insertAfter($('.my--page-link:last-child'));
+  
+  // Kezdő beállítások
+  $('.my--left-arrow').addClass('disabled');
+  if (numPages === 1) {
+    $('.my--right-arrow').addClass('disabled');
+  }
+  
+  // Az oldalak közötti navigáció nyilainak triggere
+  $('.my--left-arrow').click(function() {
+    var currentPage = parseInt($('.my--page-link.active').data('page'));
+    if (currentPage > 1) {
+      $('.mytoggle .elementor-toggle-item').hide().slice((currentPage - 2) * 9, (currentPage - 1) * 9).show();
+      $('.my--page-link').removeClass('active');
+      $('.my--page-link[data-page="' + (currentPage - 1) + '"]').addClass('active');
+      $('html, body').animate({
+        scrollTop: $('.mytoggle .elementor-toggle-item').first().offset().top // Scroll az első toggle elemhez
+      }, 500);
+      $('.my--right-arrow').removeClass('disabled');
+    }
+    if (currentPage - 1 === 1) {
+      $('.my--left-arrow').addClass('disabled');
+    }
+  });
+  
+  $('.my--right-arrow').click(function() {
+    var currentPage = parseInt($('.my--page-link.active').data('page'));
+    if (currentPage < numPages) {
+      $('.mytoggle .elementor-toggle-item').hide().slice(currentPage * 9, (currentPage + 1) * 9).show();
+      $('.my--page-link').removeClass('active');
+      $('.my--page-link[data-page="' + (currentPage + 1) + '"]').addClass('active');
+      $('html, body').animate({
+        scrollTop: $('.mytoggle .elementor-toggle-item').first().offset().top // Scroll az első toggle elemhez
+      }, 500);
+      $('.my--left-arrow').removeClass('disabled');
+    }
+    if (currentPage + 1 === numPages) {
+      $('.my--right-arrow').addClass('disabled');
+    }
+  });
+  
+ $('.my--page-link').click(function() {
+var pageNum = $(this).data('page');
+$('.mytoggle .elementor-toggle-item').hide().slice((pageNum - 1) * 9, pageNum * 9).show();
+$('.my--page-link').removeClass('active');
+$(this).addClass('active');
+$('html, body').animate({
+  scrollTop: $('.mytoggle .elementor-toggle-item').first().offset().top // Scroll az első toggle elemhez
+}, 500);
+
+// Bal és jobb nyíl állapota az oldalak közötti navigáció kattintás után
+if (pageNum === 1) {
+  $('.my--left-arrow').addClass('disabled');
+  $('.my--right-arrow').removeClass('disabled');
+} else if (pageNum === numPages) {
+  $('.my--left-arrow').removeClass('disabled');
+  $('.my--right-arrow').addClass('disabled');
+} else {
+  $('.my--left-arrow, .my--right-arrow').removeClass('disabled');
+}
+});
+});
+</script>
+```
+
+:::tip Elemek számának módosítása oldalanként
+Ez a példa oldalanként 9 toggle elemet jelenít meg egyszerre. Ha ezt szeretnéd átírni, akkor mindenhol, ahol 9-es számot látsz, írd át arra, amire szeretnéd.
+Ezeket a sorokat kiemeltük a megjelenítésben. 
+
+:::
+
+## A kód működése
+
+Ha mindent jól csináltál és több mint 9 toggle elemet állítottál be, akkor láthatod, hogy a lapozóban több szám is megjelent és a további toggle elemek rejtve
+vannak, amíg nem navigálunk át a következő oldalra. 
+
+Most tekintsük át a működést.
+
+A Kódot három részre lehet bontani. HTML, CSS és JS (pontosabban jQuery). Emeljünk ki belőle pár érdekesebb kódrészletet.
+
+### HTML
+
+A HTML részben készítjük el a lapozó és navigációs elemeinket. Mivel egy kicsit speciálisabb elrendezésre volt szükségünk, a JS kód segítségével állítottuk
+be a navigációs nyilakat úgy, hogy a bal oldali, a lapozó előtt, míg a jobb oldali a lapozó után, de ugyan úgy közvetlen mellette legyen.
+```js
+ $('.my--left-arrow').insertBefore($('.my--page-link:first-child'));
+  $('.my--right-arrow').insertAfter($('.my--page-link:last-child'));
+  ```
+
+Természetesen a HTML-ben csak a vázat készítjük el, ugyanis az ilyen típusú megoldásoknál nem határozhatjuk meg manuálisan a lapszámolást, helyette
+ezt a jquery segítségével fogjuk megvalósítani, így biztosítva azt, hogy könnyen kiegészíthető legyen anélkül, hogy manuálisan bele kellene nyúlni a kódba.
+
+A számok generálása az alábbi kódrészletben történik:
+
+```js
+var numItems = $('.mytoggle .elementor-toggle-item').length;
+var numPages = Math.ceil(numItems / 9);
+var pageLinks = '';
+for (var i = 1; i <= numPages; i++) {
+  pageLinks += '<span class="my--page-link" data-page="' + i + '">' + i + '</span>';
+}
+$('.my--page-links').html(pageLinks);
+```
+
+Az Elementor toggle widget minden egyes toggle elemének van egy **.elementor-toggle-item** osztálya. A script ezeket számolja, majd
+a **numPages** változóba menti el mennyi oldalra lesz szükségünk. A **pageLinks** változóba generálunk html kódot a lapozási számokból, 
+majd ezt az html kódot a .my--page-links elembe helyezzük el a .html() metódus segítségével. Ezért nincs szükségünk arra, hogy a html-be manuálisan készítsünk
+lapozót.
+
+### jQuery
+
+Maga a jQuery felelős az egész rendszer működéséért és ahogy fentebb is olvashattad, a html-t is módosítjuk vele. 
+A kód legelején található: **jQuery(document).ready(function($) {** biztosítja, hogy a script csak azután fut le, hogy a DOM ban minden elem elérhető.
+
+Közvetlen utána máris egy *if* feltétel látható, amelyt arra használunk, hogy ha az adott oldalon a DOM ban nem található meg a **.mytoggle** class, akkor a kód
+nem fut tovább feleslegesen. Egyfelől ezért volt fontos, hogy az elején megadtuk ezt a classt a toggle widgetnek, továbbá, hogy behatároljuk
+a script mely widgetre legyen érvényes. Ha ezt a lépést kihagyjuk, akkor olyan toggle widgetre is lefut és érvényesíti a scriptet amire egyébként nem szeretnénk.
+
+Amit még érdemes kiemelnünk, az a ** $('.mytoggle .elementor-toggle-item').hide().slice(0, 9).show();** rész. Lényegében az itt meghatározott érték alapján a .hide először
+elrejti az elemeket, majd a .slice kiválasztja a listából az első 9 elemet és a .show parancssal megjeleníti azt. 
+
+:::tip Indexelés
+A Javascript, valamint jQuery egyaránt 0 tól indexeli a tömböket és elemeket, ezért az első elem mindig 0, a második elem indexe 1 stb..
+:::
+
+A script továbbá tartalmaz egy kiegészítést is:
+     
+ ```js
+ $('html, body').animate({
+        scrollTop: $('.mytoggle .elementor-toggle-item').first().offset().top // Scroll az első toggle elemhez
+      }, 500);
+
+ ```   
+
+ Ennek segítségével, amikor lapozunk és szükséges, a látogatót vissza görgeti a toggle-item első elemére. Ez főként akkor hasznos, 
+      ha sok elemet jelenítünk meg oldalanként. 
+      
+A kód továbbá tartalmaz két extra class-t. Az egyik az "active", amit az aktuális oldalszámra ráteszünk, a másik a disabled, amit a nyilak kapnak meg, 
+ha nincs több oldal. Ezek azért hasznosak, mert így a css be könnyedén készíthetünk eltérő megjelenést és kiemelhetjük például az aktuális oldal számának színét a 
+többitől.
+
+Amikor az oldal betöltődik, alapesetben az első oldalon állunk. Ezért, mindenképpen szükség van arra, hogy a lapozónk első száma rendelkezzen az active class-al.
+**$('.my--page-link:first-child').addClass('active');** 
+
+### CSS
+
+Ahhoz, hogy legyen valamiféle kinézete az egész lapozónak CSS -re van szükségünk. Egyszerű kinézetet készítettünk, amit könnyedén átírhatsz, hogy
+igazodjon a saját oldalad stílusához.
+
+A **.my--page-link** lesz az, ami a lapszámokra érvényes, tehát, ha szeretnéd megváltoztatni a számok színét, háttérét stb, azt úgy tudod megtenni, hogy
+erre a class-ra hivatkozol.
+
+Ha az aktív állapotú szám kinézetét szeretnéd módosítani akkor a **.my--page-link.active ** -ra kell hivatkoznod, amit a példában is láthatsz.
+A **.my--pagination-arrow** a navigációs nyilak konténer osztálya. Ha maga az ikont szeretnéd módosítani (például másik szín ) akkor a **.my--pagination-arrow i** kell 
+használnod.
+
+Ha a kikapcsolt állapotot akarod módosítani akkor a **.my--pagination-arrow.disabled** kell alkalmazni. Ezen kívül, mindkét navigációs nyilat külön class-al jelöltük.
+Ha közvetlenül az ikon-t szeretnéd módosítani akkor az elején található html-ben kell átírni a FontAwesome-t arra amire neked van szükséged.
+
+```html
+<div class="my--pagination-arrow my--left-arrow"><i class="fas fa-chevron-left"></i></div>
+        <div class="my--pagination-arrow my--right-arrow"><i class="fas fa-chevron-right"></i></div>
+ ```         
