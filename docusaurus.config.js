@@ -26,8 +26,17 @@ const config = {
     locales: ["hu"],
   },
 
-  plugins: ["docusaurus-plugin-sass"],
-
+  plugins: [
+    "docusaurus-plugin-sass",
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'GTM-5TBMCF6',
+        anonymizeIP: true,
+      },
+    ],
+  ],
+  
   scripts: [
     {
       src: "https://kit.fontawesome.com/11cbb0ec24.js",
