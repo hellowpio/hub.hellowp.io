@@ -1,0 +1,33 @@
+---
+title: Meta field vs Taxonomy
+description: Mikor hasznos a meta fields(egyedi mező), és mikor inkább a Taxonómiák?
+keywords:
+  - jetengine, cpt, cct, elementor
+sidebar_label: Meta vs Taxonomy
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+## Bevezető
+
+Az első, amivel tisztába kell lennünk, hogy mit jelent a WordPress-ben a Meta fields(egyedi mező), valamint Taxonomy(taxnómia) továbbá, hogy milyen esetben mit kell használni. 
+A leírás a JetEngine mentén fogja szemléltetni, de a közös halmaz változatlan. Amikor egy spcifikus funkciót említünk zárójelben jelezzük, ha egy fix JetEngine specifikus tulajdonság.
+
+## Mi az a meta field?
+A WordPressben minden bejegyzés, oldal, és egyéb egyedi bejegyzésnek vannak úgynevezett metaadatai, amit szokás meta fields, custom fields, és egyedi mezőnek is hívni. A továbbiakban 
+mi egyedi mezőként fogunk hivatkozni rá.
+
+Az egyedi mezők adatait a WordPress az adatbázisban alapértelmezetten a **wp_postmeta** táblában kezeli, és tárolja. Az itt lévő rekordok pedig 4 oszlopba rendeződnek: 
+*meta_id, post_id, meta_key, és meta_value*. Egyes bővítmények, mint például a Meta Box rendelkezik olyan funkcióval, amely a metaadatok tárolását más struktúrában végzi.
+Az egyedi mezőket arra használhatjuk, hogy az egyes posztokhoz (nem csak a bejegyzésre értendő!), további adatokat tudjunk hozzáadni. Ezen mezőket használhatjuk a lekérdezésekben is
+így szegmentáltan tudunk adatokat (például posztokat megjeleníteni), ami a meta értékétől függhetnek. A Wordpress alapértelmezetten biztosít lehetőséget arra, hogy PHP segítségével
+létrehozzunk saját egyedi mezőket / kezeljük őket.
+
+Az egyedi mezők bár rugalmasak, nagyobb adatmennyiség esetében ezek szűrése, lekérdezése lassabb lehet.
+Összegezve az egyedi mezők segítségével extra információkat lehet az adott poszthoz megadni, amiket utána használhatunk lekérdezésekhez, információk megjelenítéséhez. Alapvetően
+nincs limit megszabva a metákat illetően, érdemes fejben tartani, hogy igyekezzünk mértékkel használni.
+
+## Mi az a Taxonomy?
