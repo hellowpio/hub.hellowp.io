@@ -1,0 +1,133 @@
+---
+title: Új weboldal hozzáadása
+description: Új weboldal hozzáadása HelloCloud felületen
+keywords:
+  - hellocloud
+sidebar_label: Új weboldal hozzáadása
+sidebar_position: 0
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import CodeBlock from "@theme/CodeBlock";
+
+# <FontAwesomeIcon icon="fa-duotone fa-sparkles text-success" /> Új weboldal hozzáadása
+
+A HelloCloud segítségével létrehozhatsz **WordPress oldalt**, **PHP oldalt**, **Node.js oldalt**, **statikus HTML oldalt**, **Python oldalt**, vagy **fordított proxy**t is.
+
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-002.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+
+## WordPress weboldal létrehozása
+
+1.) Kattints a **Weboldalak** -> **Webhely hozzáadása** -> **WordPress oldal** gombra
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-003.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a szükséges adatokat: **Domain neve** (például: domain.hu), **Oldal címe**, **Admin felhasználónév** (ne admin-t használj), Admin jelszó (használd a jelszógenerátort), **Admin E-mail**, **Multisite** (opcionális). 
+
+
+:::danger WWW vagy non-WWW
+Nem szükséges külön felvinni a WWW és non-WWW verziót. Automatikusan beállítja a rendszer! Nyugodtan írd be a domain nevedet. Például: domain.hu és a www.domain.hu automatikusan rá fog irányítódni. (nem ajánlott már www-t használni)
+:::
+
+3.) Ha mindent helyesen adtál meg, akkor így fog kinézni a végeredmény:
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-004.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+Másold egy biztonságos helyre az adatokat. 
+
+
+## PHP weboldal létrehozása
+
+1.) Kattints a **Weboldalak** -> **Webhely hozzáadása** -> **PHP oldal** gombra
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-005.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a szükséges adatokat: **Alkalmazás** * típusa, **Domain neve** (például: domain.hu), **PHP verzió kiválasztás**, **Webhely felhasználónév** (ne admin-t használj), **Webhely felhasználói jelszó** (használd a jelszógenerátort).
+
+3.) Kattins a **létrehozás** gombra.
+
+4.) Lépj be a **Webhely felhasználó**val SSH-n keresztül. 
+
+### Alkalmazások típusai
+
+CakePHP 4, CodeIgniter 4, Contao 4, Drupal 10, Drupal 9, FuelPHP 1.8, Joomla 4, Laminas, Laravel 10, Laravel 9, Magento 2, Matomo 4, Mautic 4, Moodle 4, Neos 8, Nextcloud 25, OroCRM 5.0, OroCommerce 5.0, OwnCloud 10, PrestaShop 1.7, Shopware 6, Slim 4, Symfony 5, Symfony 6, TYPO3 12, WHMCS, WooCommerce, WordPress, Yii 2
+
+:::success FIGYELEM!
+A kiválasztható alkalmazások nem települnek automatikusan, csak a szerver beállítja a megfelelő szabályokat (például Vhost), hogy tökéletesen működjenek az alkalmazások. Könnyedén felmásolhatod a fájlokat SSH-n vagy FTP-n (nem ajánlott) keresztül. 
+:::
+
+## Node.js weboldal létrehozása
+
+1.) Kattints a **Weboldalak** -> **Webhely hozzáadása** -> **Node.js oldal** gombra
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-006.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a szükséges adatokat: **Domain neve** (például: domain.hu), **Node.js verzió**, **Alkalmazás port**ja, **Webhely felhasználó** (SSH user), **Webhely jelszó** (SSH jelszó)
+
+3.) Kattins a **létrehozás** gombra.
+
+4.) Lépj be a **Webhely felhasználó**val SSH-n keresztül. 
+
+## Statikus HTML weboldal létrehozása
+
+1.) Kattints a **Weboldalak** -> **Webhely hozzáadása** -> **Statikus HTML oldal** gombra
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-007.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a szükséges adatokat: **Domain neve** (például: domain.hu), **Webhely felhasználó** (SSH user), **Webhely jelszó** (SSH jelszó)
+
+3.) Kattins a **létrehozás** gombra.
+
+4.) Lépj be a **Webhely felhasználó**val SSH-n keresztül. 
+
+## Python weboldal létrehozása
+1.) Kattints a **Weboldalak** -> **Webhely hozzáadása** -> **Python oldal** gombra
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-008.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a szükséges adatokat: **Domain neve** (például: domain.hu), **Python verzió**, **Alkalmazás port**ja, **Webhely felhasználó** (SSH user), **Webhely jelszó** (SSH jelszó)
+
+3.) Kattins a **létrehozás** gombra.
+
+4.) Lépj be a **Webhely felhasználó**val SSH-n keresztül. 
+
+## Reverse (fordított) Proxy létrehozása
+1.) Kattints a **Weboldalak** -> **Webhely hozzáadása** -> **Fordított proxy létrehozása** gombra
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-009.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a szükséges adatokat: **Domain neve** (például: domain.hu), **Fordított proxy url (porttal)**, **Webhely felhasználó** (SSH user), **Webhely jelszó** (SSH jelszó)
+
+3.) Kattins a **létrehozás** gombra.
+
+4.) Lépj be a **Webhely felhasználó**val SSH-n keresztül. 
+
+### Mi az a reverse proxy? 
+
+A reverse proxy egy szerver, amely kéréseket fogad a kliensektől és továbbítja azokat a megfelelő belső szerverre, majd a belső szerver válaszát továbbítja vissza a kliens felé. Gyakorlatilag a kliensek és a belső szerverek között helyezkedik el, és a közöttük lévő kommunikációt kezeli és felügyeli.
+
+**A reverse proxy használatának több előnye is van, például:**
+
+- **Terheléselosztás:** A reverse proxy elosztja a bejövő kéréseket több szerver között, hogy egyenletesen osztja a terhelést, csökkentse az egyes szerverekre nehezedő stresszt, és biztosítsa a gyors és megbízható rendelkezésre állást.
+- **Gyorsítótárazás:** A reverse proxy gyorsítótárazhatja a belső szerverek által generált statikus tartalmakat (pl. képek, CSS fájlok, JavaScript fájlok), hogy gyorsabban tudja azokat a kliensek számára elérhetővé tenni és csökkenteni a belső szerverek terhelését.
+- **Biztonság:** A reverse proxy javítja a belső szerverek biztonságát, mivel azokat elrejti a kliensek elől. A kliensek csak a proxyval lépnek kapcsolatba, így a belső szervereket védettebbé teszi az esetleges támadásoktól.
+- **Kompresszió:** A reverse proxy képes kompressziót alkalmazni a kimenő válaszokon, ami csökkenti a válasz méretét és növeli a rendelkezésre állást.
+
+Ezek a funkciók jelentősen javíthatják a rendszer teljesítményét, biztonságát és skálázhatóságát.
