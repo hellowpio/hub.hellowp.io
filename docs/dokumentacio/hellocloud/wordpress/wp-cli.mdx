@@ -16,7 +16,9 @@ import CodeBlock from "@theme/CodeBlock";
 
 Minden szerver automatikusan WordPress CLI -vel érkezik. Ez egy nagyon hasznos eszköz mind a WordPress weboldalt üzemeltetőknek, mind a fejlesztőknek egyaránt.
 
-## WordPress adatbázis exportálása (mentése)
+## Adatbáziskezelés
+
+### WordPress adatbázis exportálása (mentése)
 
 A mysqldump segédprogram futtatása a DB_HOST, DB_NAME, DB_USER és DB_PASSWORD adatbázis-hitelesítési adatokkal, amelyek a wp-config.php fájlban vannak megadva. Elfogad bármilyen érvényes mysqldump kapcsolót.
 
@@ -31,7 +33,7 @@ Belépsz SSH-n a szerververre konzolból/terminálból és a WordPress gyökérk
 További lehetőségek: https://developer.wordpress.org/cli/commands/db/export/
 
 
-## WordPress adatbázis importálása (visszaállítása)
+### WordPress adatbázis importálása (visszaállítása)
 
 **Egyszerű mód: **
 
@@ -45,5 +47,5 @@ További lehetőségek: https://developer.wordpress.org/cli/commands/db/import/
 
 
 :::caution WP-CLI
-Ha még nem ismered a WP-CLI-t mindenképpen kezd el használni. Nem kell tanulni sem, hiszen pár parancsot kell megtanulni. Fel fogod tenni magadnak a kérdést: "**Hogy élhettem eddig WP-CLI nélkül?!**".
+Ha még nem ismered a WP-CLI-t mindenképpen kezd el használni. Nem sok dolgot tanulni sem, hiszen pár parancsot kell használni. Fel fogod tenni magadnak a kérdést: "**Hogy élhettem eddig WP-CLI nélkül?!**"
 :::
