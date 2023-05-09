@@ -1,0 +1,80 @@
+---
+title: Meta field vs Taxonomy
+description: Mikor hasznos a meta fields(egyedi mező), és mikor inkább a Taxonómiák?
+keywords:
+  - jetengine, cpt, cct, elementor
+sidebar_label: Meta vs Taxonomy
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+## Bevezető
+
+Az első, amivel tisztába kell lennünk, hogy mit jelent a WordPress-ben a Meta fields(egyedi mező), valamint Taxonomy(taxnómia) továbbá, hogy milyen esetben mit kell használni. 
+A leírás a JetEngine mentén fogja szemléltetni, de a közös halmaz változatlan. Amikor egy spcifikus funkciót említünk zárójelben jelezzük, ha egy fix JetEngine specifikus tulajdonság.
+
+## Mi az a meta field?
+A WordPressben minden bejegyzés, oldal, és egyéb egyedi bejegyzésnek vannak úgynevezett metaadatai, amit szokás meta fields, custom fields, és egyedi mezőnek is hívni. A továbbiakban 
+mi egyedi mezőként fogunk hivatkozni rá.
+
+Az egyedi mezők adatait a WordPress az adatbázisban alapértelmezetten a **wp_postmeta** táblában kezeli, és tárolja. Az itt lévő rekordok pedig 4 oszlopba rendeződnek: 
+*meta_id, post_id, meta_key, és meta_value*. Egyes bővítmények, mint például a Meta Box rendelkezik olyan funkcióval, amely a metaadatok tárolását más struktúrában végzi.
+Az egyedi mezőket arra használhatjuk, hogy az egyes posztokhoz (nem csak a bejegyzésre értendő!), további adatokat tudjunk hozzáadni. Ezen mezőket használhatjuk a lekérdezésekben is
+így szegmentáltan tudunk adatokat (például posztokat megjeleníteni), ami a meta értékétől függhetnek. A Wordpress alapértelmezetten biztosít lehetőséget arra, hogy PHP segítségével
+létrehozzunk saját egyedi mezőket / kezeljük őket.
+
+Az egyedi mezők bár rugalmasak, nagyobb adatmennyiség esetében ezek szűrése, lekérdezése lassabb lehet.
+Összegezve az egyedi mezők segítségével extra információkat lehet az adott poszthoz megadni, amiket utána használhatunk lekérdezésekhez, információk megjelenítéséhez. Alapvetően
+nincs limit megszabva a metákat illetően, érdemes fejben tartani, hogy igyekezzünk mértékkel használni.
+
+
+### Típusok
+Alapvetően az egyedi mezők kulcs érték párosok, amik sokféle adatot tárolhatnak kezdve a szöveg, szám, dátum, tömb, objektum, média stb..
+
+:::info Tudtad?
+
+A post címe, azaz *post_title,* valamint az *ID* nem metaadat, hanem attribútum, amelyek a **wp_posts** táblában tárolódnak.
+
+:::
+
+A JetEngine összesen 18+1 egyedi mezőtípussal rendelkezik jelenleg. Más bővítmények is vannak, amik segítségével egyedi mezőket társíthatunk a posztokhoz, például *Advanced Custom Fields(ACF),
+Meta Box, Pods,* stb.. Ezek a bővítmények mind tartalmazzák az általánosnak mondható típsuokat: Szöveg, szövegmező, jelölőnégyzet, rádiógombok, ismétlődők, galéria és még sorolhatnám.
+Minden típusnak megvan a maga haszna. A projektünk fogja részben meghatározni milyen típusokat fogunk felhasználni. Mivel a dokumentáció a **JetEngine**-ről szól, így most ezzel
+kapcsolatban fogjuk a példákat átnézni.
+
+
+## Mi az a Taxonomy?
+A Taxonomy magyarul taxonómiák segítségével csoportosíthatjuk és kategorizálhatjuk a posztokat. Ez segít a bejegyzések szervezésében. Fontos, hogy a taxonómiák az egyedi mezőkkel
+ellentétben rendelkeznek archív oldalakkal. Taxonómiákkal már alapértelmezetten is találkozol a WordPress-ben, ugyanis a bejegyzések kapásból kettővel is rendelkezik: Kategóriák és címkék néven.
+A taxonómián belül találhatóak a terms-ek. Magyarra fordítva a Kategória = taxonómia, a benne lévő kategória megnevezések például hírek = terms. A termseknek ugyan úgy van azonosítója
+és slug-ja is, azaz keresőbarát neve, továbbá leírása. Szintén ide tartozik a hierhacikus opció, amit jól szemléltet az alapértelmezett blog / bejegyzés felállás, ahol a kategóriákat csoportosíthatjuk,
+szemben a címkékkel, ahol eerre nincs lehetőség. Ez technikailag egyetlen funkció "false / true" értéke különbözteti meg. Bizonyos tekintetben a Taxonómia rendszer gyorsabb, mint
+az egyedi mezők.
+
+## Mikor mit használjunk? (JetEngine)
+Miután tisztáztuk a két legfontosabb dolgot. Nézzük meg konkrét példákkal bemutatva, hogy mikor melyiket ideálisabb használni. Mivel a JetEngine komplex lekérdezéseket is kezel,
+sőt mi magunk is összeállíthatjuk, alapvetően a tartalom lesz a főbb szempont. Figyelembe kell vennünk ha a projekt szűréseket is igényel, ugyanis egyes egyedi mezők szűrése nem megoldott még.
+Mivel itt most csak a JetSmartFilter(továbbiakban *JSF*) jöhet érdembe szóba, tudnunk kell azt, hogy a text, textarea, valamint wysiwyg-be tárolt adatok szűrése nem megoldható, csak ha a Jsf Search widgetét
+használjuk. Ez azt jelenti, hogy egy text mezőből nem fogunk tudni készíteni checkbox szűrőt. Ebből pedig az következik, hogy igyekezzünk a fentebb említett mezőket annak tudatában használni
+hogy ezen adatok szűrése némiképp korlátozott. Fontos tudni, hogy milyen csoportosításokat szeretnénk. ha nagyobb, akkor előnyösebb a Taxonómiákat igénybe venni.
+
+A Taxonómiák rendelkeznek archív oldallal, ezért ha egyes esetekben ezen oldalakat is igénybe szeretnénk venni, egyszerűbb a generált módokat igénybe venni. A metákat nem lehet 
+kategorizálni, és nem generálna archív csoportsító oldalakat is. Kategorikus kialakítást csak lekérdezésekkel lehet megoldani, ráadásul ha számos akár 100+ tárolt értékről lenne szó
+helytállóbb lehet a taxonómiák használata.
+
+:::caution Figyelem!
+
+A JetEngine Map listing rendszere nem képes taxonómia terms értékből google, vagy egyéb más helymeghatározást beállítani. Ha a térképes megjelenítés és geolokációs funkciók
+részét képezik a projektnek, a város, megye, ország típusú adatokat tároljuk metákban, vagy Glossary-ban, és ne Terms-ként.
+
+:::
+
+### Szempontok
+Vegyük sorba a szempontokat, amiken minden alkalommal, a projekt tervezési fázisában mennyj végig:
+
+
+
+## Példák
