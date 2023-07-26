@@ -1,0 +1,58 @@
+---
+title: "Weboldal: Beállítások"
+description: Weboldal beállítások kezelése HelloCloud felületen.
+keywords:
+  - hellocloud
+sidebar_label: "Beállítások"
+sidebar_position: 3
+---
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-gear text-primary" /> Weboldal: Beállítások
+
+## Domain beállítások és Weboldal felhasználó
+
+### Domain beállítások
+
+A **Domain beállítások**ban módosíthatod a weboldalad **gyökérkönyvtárát**. Alapértelmezés szerint a **domain nevet** fogja használni, de igényeidnek megfelelően módosíthatod.
+
+### Weboldal felhasználó
+
+Az **oldal felhasználói beállításoknál** átállíthatod a fő-**SSH felhasználó** jelszavát, vagy hozzáadhatsz **SSH kulcsokat** (ajánlott). Amennyiben több kulcsot szeretnél használni, egyszerűen csak új sorba másold be őket.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-013.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## PHP beállítások 
+
+A PHP beállításoknál módosíthatod a PHP verzióját, illetve más beállításokat is megváltoztathatsz, mint például:
+
+```text
+memory_limit
+max_execution_time
+max_input_time
+max_input_vars
+post_max_size
+upload_max_filesize
+```
+
+A leggyakoribb beállításokat igényeid szerint módosíthatod, de ha más paraméterértékeket szeretnél változtatni, felülírhatod őket a **További konfigurációs irányelvek** résznél.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-014.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## Weboldal törlése
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-015.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+Egy oldal törléséhez kattints a "Webhely törlése" gombra, és erősítsd meg a műveletet a domain név megadásával.
+
+:::danger FIGYELEM!
+ Egy oldal törlése véglegesen eltávolítja az összes oldalfájlt, adatbázist, felhasználót és konfigurációt, és ezek nem visszaállíthatók. 
+:::

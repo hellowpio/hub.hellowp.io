@@ -1,0 +1,59 @@
+---
+title: Adatbázisok
+description: Adatbázis kezelése HelloCloud felületen.
+keywords:
+  - hellocloud
+sidebar_label: "Adatbázisok"
+sidebar_position: 5
+---
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-database text-primary" /> Weboldal: Adatbázisok
+
+## Adatbázis hozzáadása
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-017.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## Adatbázis-felhasználó hozzáadása
+
+Kattints az **Adatbázis-felhasználó hozzáadása** gombra, hogy új felhasználót adhass hozzá az adatbázishoz. Add meg az **adatbázis-felhasználó nevét**, **jelszavát**, **válaszd ki az adatbázist** és a **jogosultságokat** (engedélyek).
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-019.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## Adatbázis és felhasználó törlése
+
+Adatbázis-felhasználó törléséhez kattints a **Törlés** gombra és erősítsd meg a műveletet.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-018.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+
+## phpMyAdmin
+
+A **phpMyAdmin** segítségével való adatbáziskezeléshez kattints a **Kezelésre**, és átirányításra kerülsz a phpMyAdminba. Nem szükséges bejelentkezni, ami jelentősen gyorsítja a munkavégzést.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-020.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## Adatbázis exportálása (WordPress)
+
+**Lásd Wordpress CLI: WP DB EXPORT**
+
+## Adatbázis importálása (WordPress)
+
+**Lásd Wordpress CLI: WP DB IMPORT**
+
+## Adatbázis biztonsági mentések
+A szerver automatikusan menti az adatbázisokat minden hajnalban és 7 napra visszamenőleg megtalálod őket a 
+`/home/ADOTT-SSH-USER/backups/` mappában. **Ne aggódj! A mentéseket nem a szerveren tároljuk, ez csak azért van itt, hogy egyszerűbb dolgod legyen.**
+
+## Távoli adatbázis-hozzáférés
+Alapértelmezetten nem engedélyezzük a szervereken a 3306-os port-ot a tűzfalon. Ennek biztonsági okai vannak. Amennyiben távolról szeretnéd elérni az adatbázist, akkor vedd fel a kapcsolatot az ügyfélszolgálattal és az egyik rendszergazdánk engedélyezi számodra.

@@ -1,0 +1,69 @@
+---
+title: Biztonság
+description: Biztonság kezelése HelloCloud felületen
+keywords:
+  - hellocloud
+sidebar_label: "Biztonság"
+sidebar_position: 8
+---
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-building-lock text-primary" /> Weboldal: Biztonság
+
+A szerveroldali biztonsági megoldásokon túl, további beállításokra van lehetőséged.
+
+## IP blokkolás
+
+Az IP blokkolásához kattints a **Biztonság fülre**, majd a jobb felső sarokban található **IP hozzáadása gombra**.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-030.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+A blokkolandó IP-címet ipv4 vagy ipv6 formátumban adhatod meg. A mentéshez kattints az **IP hozzáadása gombra**.
+
+**Példa: **
+
+- 4.4.4.4 (ipv4)
+- 192.168.0.1/32 (ipv4 CIDR Format)
+- 4a01:4f8:c010:8aea::/64 (ipv6)
+
+## Botok blokkolása
+
+Egy robot blokkolásához kattints a **Biztonság fülre**, majd a jobb felső sarokban található **Robot hozzáadása** gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-029.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+Add meg a robot nevét, és kattints a **Robot hozzáadása** gombra a mentéshez.
+
+:::caution Robotok neve
+A robot neve nem kisbetű- és nagybetű érzékeny. Példaként: a googlebot ugyanaz lenne, mint a GooGleBOT.
+:::
+
+## HTTP hitelesítés (Basic Authentication)
+
+A HTTP hitelesítés hasznos lehet ahhoz, hogy **megakadályozzuk a weboldalhoz való hozzáférést**, amikor nem szeretnéd nyilvánosságra hozni, például egy projekt fejlesztése alatt vagy tesztelési/előkészítő környezetekben.
+
+A HTTP hitelesítés engedélyezéséhez **használd a kapcsolót**, **adj meg egy felhasználónevet és jelszót**, majd kattints a **Mentés** gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-028.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## Cloudflare
+
+Ha a Cloudflare-t használod, akkor kapcsold be a "**Csak a Cloudflare forgalmat engedélyezése**" lehetőgéet. 
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-027.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+Győződj meg róla, hogy a DNS bejegyzéseid proxyzva (narancssárga felhő) vannak a Cloudflare hálózatán keresztül.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-024.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>

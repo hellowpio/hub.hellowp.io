@@ -1,0 +1,125 @@
+---
+title: "Weboldal: SSH/SFTP/FTP"
+description: SSH és FTP kezelése HelloCloud felületen
+keywords:
+  - hellocloud
+sidebar_label: SSH/SFTP/FTP
+sidebar_position: 8
+---
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-key-skeleton-left-right text-primary" /> Weboldal: SSH/SFTP/FTP
+
+
+## SSH
+
+### Mi az az SSH?
+
+Az SSH protokoll (más néven Secure Shell) egy módszer a távoli bejelentkezés biztonságos elérésére egyik számítógépről a másikra. Több alternatív lehetőséget kínál az erős hitelesítéshez, és az erős titkosítással biztosítja a kommunikáció biztonságát és integritását. ***Ezt javasoljuk!***
+
+### Felhasználó hozzáadása
+Új SSH felhasználó hozzáadásához kattints az **SSH/FTP fülre**, **írd be a felhasználói nevet és a jelszót**, majd kattints a** Felhasználó hozzáadása** gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-031.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+Add hozzá a nyilvános **SSH kulcsot**, ha nyilvános kulcs hitelesítéssel szeretnél bejelentkezni.
+
+### Felhasználó törlése
+Az SSH felhasználó törléséhez kattints az **SSH/FTP fülre**, majd a **Törlés** gombra, és erősítsd meg a műveletet.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-032.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+### Jelszó módosítása
+
+Az SSH felhasználó jelszavának megváltoztatásához kattints az **SSH/FTP fülre**, majd a felhasználói névre.
+
+Add** meg az új, erős jelszót**, vagy kattints az** Új jelszó generálása gombra**, és kattints a **Mentés** gombra.
+
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-033.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+### SSH bejelentkezés
+
+Az SSH-vel való bejelentkezéshez a szerverre **szükséged van egy terminálra**, mint például az **iTerm2** MacOS-hez vagy a **PuTTY** Windows-hoz.
+
+Az** SSH port 22-es** (alapértelmezett port). Mielőtt megpróbálsz SSH-n keresztül csatlakozni, **győződj meg róla, hogy a 22-es port nyitva van** az IP-címed számára.
+
+#### Linux és MacOS:
+
+**SSH bejelentkezés jelszóval**
+
+`ssh felhasznalonev@szerver-ip-cime`
+
+**SSH bejelentkezés privát kulccsal**
+
+`ssh -i kulcsod-megnevezese-es-utvonala.pem felhasznalonev@szerver-ip-cime`
+
+#### Windows:
+
+A **Host Name** mezőben írd be a **szerver IP-címét**, majd kattints az **Open** gombra. Port: 22
+
+![Putty SSH](/img/putty-SSH.png)
+
+A PuTTY a következő lépésben kéri, hogy adja meg a **felhasználónevet** és a **jelszót**.
+
+PuTTY letöltése: https://www.putty.org/
+
+
+### SFTP bejelentkezés
+
+Az SFTP-vel való bejelentkezéshez a szerverre szükséged van egy kliensre, mint például a FileZilla (https://filezilla-project.org/).
+
+:::caution 22-es port
+Győződj meg róla, hogy az SSH 22-es portja nyitva van az IP-címed számára (router stb...).
+:::
+
+Töltsd ki a **Cím, Felhasználónév, Jelszó és Port** mezőket, majd kattints a **Gyorskapcsolódás** gombra.
+
+![FileZilla SFTP](/img/filezilla-sftp-new.png)
+
+## FTP
+
+### Mi az az FTP?
+
+A **File Transfer Protocol** (FTP) egy szabványos hálózati protokoll, amelyet számítógépes fájlok átvitelére használnak a kliens és a szerver között egy számítógéphálózaton szöveges alapon. 1971-ben kifejlesztett technológia. **Ne használd! Nem ajánlott.** SFTP / SSH -t használj!
+
+### Felhasználó hozzáadása
+Új **FTP-felhasználó** hozzáadásához kattints az **SSH/FTP fülre**, írd be a **felhasználónevet, jelszót és a kezdőkönyvtár**at, majd kattints a **Felhasználó hozzáadása** gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-034.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+### Felhasználó törlése
+Az FTP felhasználó törléséhez kattints az **SSH/FTP fülre**, majd a **Törlés gombra** és erősítsd meg a műveletet.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-035.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+### Jelszó módosítása
+Az **FTP felhasználó** jelszavának megváltoztatásához kattints az **SSH/FTP** fülre, majd a **felhasználói névre**.
+
+Add meg az új, erős **jelszót**, vagy kattints az **Új jelszó generálása** gombra, és kattints a **Mentés** gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-036.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+### FTP bejelentkezés
+
+Töltsd ki a **Cím, Felhasználónév, Jelszó és Port** mezőket, majd kattints a **Gyorskapcsolódás** gombra.
+
+![FileZilla FTP](/img/filezilla-ftp-new.png)
+
+:::caution 21-es port
+Győződj meg róla, hogy az FTP 21-es portja nyitva van az IP-címed számára (router stb...).
+:::
+
+

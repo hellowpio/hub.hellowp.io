@@ -1,0 +1,33 @@
+---
+title: Vhost
+description: Vhost kezelése HelloCloud felületen
+keywords:
+  - hellocloud
+sidebar_label: Vhost
+sidebar_position: 4
+---
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-regular fa-gear-complex-code text-primary" /> Weboldal: Vhost 
+
+:::danger  FIGYELEM!
+A Vhost semmilyen beállítást nem igényel alapból. Ezt csak akkor módosítsd, ha valóban tudod, hogy mit csinálsz. 
+:::
+
+##  Vhost módosítása
+
+A Vhost szerkesztőben módosíthatod az NGINX VHost beállításait, ami lehetővé teszi az átírások, átirányítások, fordított proxyk és más beállítások alkalmazását.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-016.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+A háttérben a rendszer ellenőrzi a szintaxist és visszaállítja a változtatásokat a leállás megelőzése érdekében. Ilyenkor dob egy hibaüznetet. 
+
+### Mi az az NGINX VHost?
+
+Az NGINX egy nagy teljesítményű, könnyűsúlyú webszerver, fordított proxy szerver és e-mail proxy szerver. A "VHost" rövidítése a "virtual host" kifejezésnek, amely azt jelenti, hogy egyetlen fizikai szerveren több webhelyet vagy domént hozhatunk létre úgy, hogy mindegyik a saját különálló konfigurációval rendelkezik.
+
+Az NGINX VHost létrehozása lehetővé teszi az üzemeltetők számára, hogy azonos hardveren több webhelyet futtassanak, miközben a különböző webhelyek egymástól elkülönítve maradnak, úgyhogy a webszerver úgy kezeli őket, mintha külön külön szerverről futnának. Az NGINX VHost-ok konfigurációs fájlokban vannak meghatározva, és általában a kérések alapján a különböző szerver blokkokat állítják be illetve nevet és port használva szétválasztják őket egymástól.

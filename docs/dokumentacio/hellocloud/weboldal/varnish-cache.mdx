@@ -1,0 +1,62 @@
+---
+title: Varnish Cache
+description: Varnish Cache kezelése HelloCloud felületen
+keywords:
+  - hellocloud
+sidebar_label: Varnish Cache
+sidebar_position: 6
+---
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-solid fa-rabbit text-primary" /> Weboldal: Varnish Cache
+
+## Mi az a Varnish Cache
+
+A Varnish Cache egy gyorsítótárazó HTTP fordított proxy, amely 300–1000-szeresére növeli az oldalak sebességét. Az oldalad egy másolata a memóriába kerül tárolásra, miután egy felhasználó először meglátogatta azt.
+
+A Varnish Cache kulcsrakész megoldásként használható. Engedélyezd a Varnish Cache-t, és az oldalaid szárnyalni fognak.
+
+:::caution Webshopokon használnád?
+Figyelj arra, hogy melyik oldalt ne tegye bele a cache-be. Érdemes kizárni a pénztár, kosár, fiókom stb... oldalakat. Tehát a dinamikus tartalmakat megjelenítő részeket. 
+:::
+
+## Varnish beállítása
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-021.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+### Gyorsítótár címke előtag
+
+A **Gyorsítótár cmíke előtag** (Cache Tag Prefix) az összes oldalon használt fő gyorsítótári címke. 
+
+### Kizárt paraméterek
+
+A **Kizárt Paraméterek** olyan **GET** paraméterek listája, amelyek** letiltják a gyorsítótárazás**t. Tehát nem cache-ből fogja megjeleníteni a böngésző.
+
+Példaként a következő URL-címek nem kerülnek gyorsítótárazásra:
+
+- https://www.domain.hu/?noCache=1
+- https://www.domain.hu/?page=1&__SID=e71d59d553fc2d8faa774627c48a02ba
+
+
+### Kizárások
+:::caution FIGYELEM!
+Új kizárást adtál hozzá? Ne felejtsd el törölni a cachet.
+:::
+
+A Kizárások részben beállíthatod azokat a fájlokat vagy útvonalakat, amelyeket nem kell gyorsítótárazni.
+
+**Példa kizárások:**
+
+```php
+^/fiokom/ // Azon URL-ek, amelyek /fiokom/-al kezdődnek, nem kerülnek gyorsítótárazásra
+/kosar/ // Azon URL-ek, amelyek tartalmazzák a /kosar/-t, nem kerülnek gyorsítótárazásra
+wp-login.php // A fájl nem kerül gyorsítótárazásra
+```
+
+### Gyorsítótár törlése
+
+A Teljes gyorsítótár törlése eltávolítja egy weboldal teljes gyorsítótárát a Varnish Cache-ből.

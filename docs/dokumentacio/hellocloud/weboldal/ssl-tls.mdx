@@ -1,0 +1,79 @@
+---
+title: SSL
+description: SSL kezelése HelloCloud felületen
+keywords:
+  - hellocloud
+sidebar_label: SSL/TLS
+sidebar_position: 7
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-expeditedssl text-success" /> Weboldal: SSL/TLS
+
+Minden weboldalhoz automatikusan beállíthatsz SSL-t (erősen ajánlott!). Ennek természetesen nincs extra költsége, hiszen Let's Encrypt-et használunk.
+
+## Let's Encrypt tanúsítvány
+
+Egy ingyenes Let's Encrypt tanúsítvány kiadásához válaszd az **Új Let's Encrypt tanúsítvány** gombot.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-023.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+Add hozzá a domain neveket, és kattints a **Létrehozás és telepítés** gombra, hogy egy Let's Encrypt tanúsítványt kapj.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-022.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+:::danger NAGYON FONTOS!
+Győződj meg róla, hogy minden beállított domain A rekordja a szerver IP-jére mutat-e. Ha nem, akkor nem fog a folyamat befejeződni. Továbbá napi 25 lehetőséged van / domain, ez a próbálkozási limit.
+:::
+
+## Cloudflare tanúsítvány
+
+Nem szükséges Let's Encrypt tanúsítványt beállítani, ha a Cloudflare-t használod. Sőt, hibákat generál. Együtt ne használd a kettőt.
+
+1.) **Engedélyezd a Proxy használatát a DNS bejegyzéseidhez.**
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-024.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Kattints a bal oldali menüben az SSL/TLS-re, és válaszd a Teljes (FULL) módot.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-025.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+:::danger NAGYON FONTOS!
+Amennyiben a **FULL**-t választod, akkor ne felejtsd el engedélyezni a **Biztonság -> Cloudflare -> Csak a Cloudflare forgalmának engedélyezése** lehetőséget. Ha ezt nem szeretnéd használni, akkor Cloudflare oldalán használd a **Flexible** lehetőséget.
+:::
+
+## Tanúsítvány importálása
+
+Amennyiben **nem szeretnéd az ingyenes Let's Encrypt-et használni**, akkor van lehetőséged tanúsítványok importálására is.
+
+A weboldalak többsége számára megfelelőek az ingyenes Let's Encrypt tanúsítványok, azonban egyes esetekben, például egy kiterjesztett tanúsítványhoz, meg kell vásárolnod és importálnod a tanúsítványt.
+
+1.) Tanúsítvány importálásához kattints a **Import Tanúsítvány** gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-023.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+2.) Add meg a privát kulcsot, a tanúsítványt és a tanúsítványláncot, majd kattints az Importálás és telepítés gombra.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="https://cdn.hellowp.cloud/hub/hellocloud/hellocloud-026.png" alt="Kép leíró szövege"></img>
+</BrowserWindow>
+
+## Mi az az SSL?
+
+Az SSL (Secure Sockets Layer) egy titkosítási protokoll, amely az internetes kommunikáció biztonságos átvitelét segíti elő a kliens-szerver közötti kapcsolatok során. Az SSL tanúsítványokat használnak a webhelyek azonosítására és a kommunikáció titkosítására, megakadályozva az adatlopást és a közbeékelődő támadásokat. Az SSL használata révén a felhasználók biztonságban tudhatják személyes adataikat, beleértve a jelszavakat, a hitelkártyaszámokat és más érzékeny információkat. A modern internetes navigáció során az SSL-t általában SSL utódjával, a TLS (Transport Layer Security) protokollal együtt használják.
+
+## Mi az a Let's Encrypt?
+
+A Let's Encrypt egy szabad, nyílt és automatizált minősítő hatóság, amelynek célja az internetes kommunikáció biztonságának növelése az SSL/TLS tanúsítványok széles körű elérhetőségéről gondoskodva. Az alapítvány az Internet Security Research Group (ISRG) szervezetén belül működik, és a titkosítási és biztonsági szolgáltatások egyik legkedveltebb szolgáltatója. A Let's Encrypt leginkább a könnyen elérhető, ingyenes és automatikusan megújítható SSL/TLS tanúsítványairól ismert, ezáltal lehetővé téve a weboldalak számára, hogy biztonságos, titkosított kapcsolatot nyújtsanak a felhasználók számára.
