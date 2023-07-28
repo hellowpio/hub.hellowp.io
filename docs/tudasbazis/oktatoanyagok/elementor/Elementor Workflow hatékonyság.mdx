@@ -1,0 +1,90 @@
+---
+title: Elementor Workflow
+description: Hogyan növeld a munkafolyamatod hatékonyságát, sebességét Elementorban.
+keywords:
+  - elementor, workflow
+sidebar_label: Elementor Workflow
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+
+# Elementor Workflow
+
+### Munkafolyamat áttekintés
+
+A leírás főként az Elementorhoz kapcsolódik, de számos olyan pontot végig veszünk, amely jellemző a WordPress más oldalépítő, vagy natív fejlesztési menetéhez is.
+A Workflow, magyarul munkafolyamat egy a legfontosabb tényező, amit az idők során folyamatosan csiszolnunk kell. Minden elvégzett projekt és feladat növeli a munkafolyamatunk hatékonyságát, ami végső soron a produktivitást és a sebességet fogja pozitívan befolyásolni.
+
+:::info Figyelem!
+Kérlek vedd figyelembe, hogy az alábbi leírás számos eleme kapcsolódik az Elementor **Editor Top Bar** funckióhoz.
+
+:::
+
+A weboldal készítésének munkafolyamata, és annak fejlesztése akkor releváns  számunkra, ha a webfejlesztéssel szeretnénk foglalkozni. Amennyiben a weboldal készítésre csak egyszerű hobbiként, vagy szükség feladatként tekintünk, ez a leírás kevésbé lesz számodra hasznos.
+
+A webfejlesztés során számos alkalommal ütközünk bele abba, hogy egy, vagy akár több böngésző használata mellett, egyszerre kettő, három, vagy akár tíz lap is ugyan ahhoz
+az egy projekthez van megnyitva. Három lap az admin, kettő egy oldalépítő szerkesztőfelület, és két másik pedig 1-1 előnézet, amit folyamatosan monitorozunk. Azok számára
+akik egy monitorral dolgoznak, ez a felállás kifejezetten zavaró lehet. Sok esetben, egy tíz húsz perces szünet elteltével, sokszor kapkodunk a megnyitott lapok között, és másodperceket töltünk el azzal, hogy melyikbe is kell belépnem, ahol éppen azok az elemek vagy felület van, amivel dolgozni szeretnénk. Jellemzően ez az idő akár öt másodpercet is igénybe vehet. Ha erre az intervallumra azt mondod belefér, ráfogsz jönni, hogy igenis sokat számít. 
+
+Azáltal, hogy több lapot kezelsz, és megosztod a saját fókuszod, csökkented a produktivitást, mivel a figyelem több irányba terelődik. Minden lapon megnyitott elemet számon kell tartanod, hogy a következő alkalommal, oda navigálj, ahol abban a pillanatban dolgozni szeretnél. Ezek a lapok pedig sosem konstans, mivel
+sűrűn kell a fejlesztés folyamán ide oda ugrálni, ezáltal többször is cserélődni fognak. Mindezek mellett, az öt másodperccel együtt sem érzed azt, hogy ez komolyabban hátráltatna. Ezen tényezők mellé olyan nem elhanyagolható kiegészítő "mikro" idők is társulnak, mint a szerkesztőfelületek betöltődési ideje. Az Elementor és 
+különösen egy tartalmasabb oldal megnyitása akár tíz húsz másodpercet is igénybe vehet. Ez azt jelenti, hogy 15-20 másodpercet elpazarolsz feleslegesen. Ezt kiegészítjük
+olyan haszontalan másodpercekkel, míg átlépsz a vezérlőpultba, kikeresed a fejléc sablonod, és megnyisd a szerkesztőben. Ha ezt összevetjük, közelítünk egy teljesen feleslegesen elpazarolt perchez. 
+
+A sebesség természetesen nem minden, sőt! Fontos, hogy ne mennyen a minőség rovására. A fenti írásban olyan szituációkat írtam le, amit a legtöbb kezdő elkövet, és ezzel sokszor felesleges perceket vesztegetnek el, vagy túlságosan megosztják a figyelmüket, és mindennel próbálnak práhuzamosan haladni, ami a tapasztalat hiányában sokkal nagyobb hibaszázalékot eredményezhet a nap végén.
+
+
+### Billentyűparancsok
+A billentyűparancsok kifejezetten hasznosak, és segítenek a munkafolyamataink során. Míg az egérrel, A ból B pontba húzzuk a kurzort, netán még keressük is a gombot, amihez két másik megnyomása után jutunk csak el, ismét ott lyukadunk ki, hogy felesleges másodperceket pazaroltunk el, sőt esetlegesen kizökkentett minket a fókuszból. Nem csak az Elementor gyorsbillentyűit célszerű megtanulni, hanem maga a böngészőkét is. Egy új lap megnyitása (CTRL T), vagy a devtools előhívása (CTRL SHITF I) kötelező megjegyezni.
+
+Mivel a weboldal fejlesztések / szerkesztésekor rengeteget használjuk a billentyűzetet is, ezen funkciók alkalmazása egy idő után teljesen alapvetőnek számít, és annyira tudatosan használjuk őket, hogy az értékes másodpercek spórolása mellett, a fókuszt sem veszik el.
+
+Az Elementor esetében a mentés (CTRL S) ugyan úgy működik (revízióba ment), akár egy Visual Studio Code esetében, és persze a hagyományos visszavonás (CTRL Z), valamint beillesztés (CTRL V) és másolás (CTRL C) valamint duplikálás (CTRL D) egyaránt alkalmazható. Ezek tipikus szabvány parancsok, és szintén mindenhol megtalálható.
+
+:::tip Tudtad?
+Az Elementor 3.14 frissítése óta, lehetőség van a Drag n Drop mellett, egy kattintással a widgetet a szerkesztőfelületre dobni, anélkül, hogy megpróbálnánk 
+azt hagyományos módon Drag N drop alapon beilleszteni. Automatikusan oda helyezi kattintás követően a widgetet, ahol utoljára a szerkesztőfelületen voltunk.
+:::
+
+Az Elementorban ezen kívül, hasznos még a panel becsukás kinyitás (CTRL P), valamint a webhelybeállítások (CTRL K) gyorsbillentyűk.
+
+### Elementor workflow optimalizálás
+
+Most térjünk rá részletesebben az Elementor specifikus munkafolyamat optimalizációs segédfunkciókra.
+
+Még viszonylag friss, jelenleg Alfa verzióként megjelent **Editor Top Bar** egy nagyon hasznos újítás a weboldal készítők számára. Alapvetően jelentősen átrendezi a megszokott szerkesztő felületet, ami a régi felhasználók számára némi időbe telik míg megszokják, hosszútávon egy hatékonyabb, rugalmasabb szerkesztőfelületet kínál.
+
+Összpontosult a figyelem, így technikailag minden egy helyen, egy sávban fentre került. Korábban egyes funkciókhoz, bal lent, fent középen, valamint fent balra kellett figyelnünk, és megjegyezni mi hol van. Az új felület azon kívül hogy mindent egy sávba pakolt, esztétikusan, és egységesen három pontra helyezték, ezeket pedig csoportosították. A régi elrendezésben egyes menüpontok eléréséhez több kattintás, pontosabban navigálás kellett, ezeket is sikeresen redukálták. Az egyik legfontosabb rész,
+hogy mostantól a rezponzivitáshoz nem kell semmit megnyomni, hiszen eleve minden beállított rezponzív nézetünket megtaláljuk felül, és egyből navigálhatunk a különböző töréspontok között. (CTRL SHIFT M ) gyorsnavigáció.
+
+Az új **Top Bar** másik fontos funkciója a középen megjelenő gyors ablak, ahol a korábbi szerkesztett lapjainkat, és sablonainkat láthatjuk, továbbá extra Új oldal hozzáadás funkció is elérhető. Az egyes típusok például oldal, vagy sablon eltérő módon vannak jelölve, ezzel segítve a fejlesztőket a navigálásban. Ez az újfajta megoldás azt eredményezi, hogy akár egyetlen lapon is dolgozhatunk, szükség esetén felváltva, pillanatok alatt átugorva egyik szerkesztőfelületről a másikra. (mérsékelten használjuk!)
+
+Az Elementor Finder ennek a rendszernek a nagytestvére, ami sokkal régebb óta van velünk, ám nagyon ritkán tapasztalom azt, hogy használják. Az új Topbar rendszerrel ellentétben itt stilisztikai módosítások nem történtek, így egy fokkal kevésbé "látványosak" a szerkeszthető elemek, továbbá, a Keresőbe nincsenek korábban szerkesztett megjelenítések. Ezért is mondható el az, hogy a kereső, és az új Topbar ezen funkcionalitása két külön megoldást próbál megvalósítani. A Finder-t nem csak a szerkesztőfelületen hívhatod meg, hanem az admin menübe is bárhol, és persze a frontend-en is. (CTRL E)
+
+A kereső funkciója is kifejezetten hasznos, így érdemes megpróbálni hozzászokni a használatához, és amennyiben lehetséges, rendszeresen alkalmazni.
+
+### Transzparencia
+
+Legyél transzparens(átlátható) a munkád folyamán. Erre azért van szükség, mert hosszútávon kell gondolkodni. Attól, hogy ma tudod mit hogy neveztél el, és hol van
+nem biztos, hogy egy hét múlva is tudni fogod. Próbáld meg úgy kialakítani a modulok elnevezéseit, hogy azok egyértelműek legyenek számodra, akkor is, ha fél év múlva fogsz
+visszatérni az adott projektre. Önnálló dokumentumot fogunk írni, de itt is meg kell jegyeznem: **A CSS kódokat, ne tartsd az oldalakon belül, ha lehet se közvetlen a widgetek
+Custom CSS részében, se maga az oldalban. Igyekezz mindent, a szerkesztőfelületen kívül tárolni. Ehhez használhatod az Elementor Pro Custom Code funkcióját is.**
+
+### Elementor egyéb lehetőségek
+
+Az Elementorban van még két további a témához kapcsolódó hasznos funkciója. Az egyik az úgynevezett favorit widgets, azaz kedvenc widgetek funkció. Ez annyit tesz, hogy
+lehetőségünk van a widgeteket egy saját kedvencek csoportba rendezni, és így mindig a widget panel tetején lesznek. Kifejezetten hasznos, ha több olyan bővítményt is használunk
+amely jelentősen megnöveli a felhasználható elemeink számát. A sűrűn használt widgeteket egyszerűbb a tetejére rendezni, mintsem végiggörgetni, vagy rákeresni. (Főleg ha vegyesen magyar angol elnevezésekről van szó.)
+
+A másik funkció, amely régóta velünkvan, az a "szerkezet" másnéven Navigator. Ennek segítségével könnyedén navigálhatunk az oldal struktúrájában, és gyorsgörgetési funkciójának
+köszönhetően egyből oda is visz minket az Elementor szerkesztőfelületen (gyorsbillentyű a megnyitáshoz ctrl i.) Mindezeken felül lehetőségünk van átírni az alapértelmezett
+widget neveit. Ez elsőre plusz feladatnak tűnhet, azonban ha tudjuk, hogy az adott szerkesztett oldalra többször fogunk még visszatérni, érdemes szánni rá pár percet, hogy
+átnevezzük az egyes elemeket hogy a későbbiekben időt spóroljunk vele.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/navigator-elementor.png" alt="Elementor navigátor"></img>
+</BrowserWindow>

@@ -1,0 +1,451 @@
+---
+title: Ultimate Header 
+description: Elementor fejléc sablon készítése - Áttetszőség, animációk, scroll triggerek
+keywords:
+  - elementor, fejléc, ultimate, header
+sidebar_label: Ultimate Header
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# Elementor Ultimate Header 
+
+## Bevezető
+
+Elementor fejléc sablonszerkezetet készíteni egyszerű. De vannak olyan dizájnok, melyek jelentősen elrugaszkodnak a megszokott hagyományos felépítéstől.
+Az egyik ilyen eset, az úgynevezett **Transparent (áttetsző) fejléc.** 
+
+
+### Áttetsző fejléc készítése
+
+Kezdjük az elsővel. A feladat a következő reprodukálása:
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+Hagyományosan, amikor létrehozunk egy fejlécet az Elementorban, akkor elhelyezkedik az oldal tetjén. A mi feladatunk az, hogy a tartalmat "alá csúsztassuk" a fejlécnek,
+hogy megvalósítuk a dizájnban szereplő kinézetet. Valójában ez sokkal könnyeb mint elsőre gondolnád. A bevett szokás, és mondhatni a legelterjettebb megoldás, ha a fejlécünknek 
+egyszerűen adunk egy negatív margót, továbbá egy kellően magas z-index értéket. A negatív margónak a fejléc magasságával megegyező értéket szokás beállítani. Az Elementorban 
+csak minimum magassági értéket állíthatunk be, ami viszont nem minden esetben adja vissza a valós értéket. Sok videós, azt mondja kisérletezz a beállításokkal, majd eltalálod a megfelelő értéket.
+Szerintem ez egy félmegoldás. Igaz, egyszerű, de nem precíz.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup1.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+Nézzük az elsőt. Ha állítasz be minimum magasságot, felhasználhatod kiinduló pontnak. A tartalom függvényében a min magasságból adódóan még rá lehet számolni X px értéket is.
+A margó mellett, a Z-indexet is bekell állítani, hogy biztosítsuk a fejléc mindig a legfelső elem legyen. A feladat butább verziója ennyiből állt.
+
+Most egy rugalmasabb, precízebb megoldást mutatok. Töröld ki a negatív margót, és helyette alkalmazzunk 3 sornyi jQuery-t. (Natív JS el is megírható, de a későbbi kódok is jQuery ben készülnek
+így egyszerűbb összefésülni őket). A fejléced fő konténerének add meg ezt a **CSS ID: header--tp**
+
+```js
+<script>
+jQuery(document).ready(function($) {	
+    var headerHeight = $('#header--tp').outerHeight(); 
+    $('#header--tp').css('margin-bottom', -headerHeight + 'px'); 
+});
+</script>
+```
+
+**Javaslom a kódot tárold az Elementor Custom Code-ban.**
+
+### Kizárások
+
+Most jön az, amiről a legtöbb videóban nem beszélnek. Mi van akkor, ha egyes oldalakon nem szeretnénk ezt a felépítést? Mert csak a Landing oldalak esetében van erre szükség.
+Az Elementor **Display Conditions** segítségével kizárásokat állíthatunk be. A probléma ott kezdődik, hogy vannak olyan elemek amikhez viszont nem tudjuk alkalmazni. különösen
+igaz ez, a WooCommerce végpontokra. Onnantól kezdve, hogy a fejléced alá tolod a tartalmat, minden oldaladra kihatással lesz. Ha nincsenek speciális igények, akkor az Elementor
+**Display Conditions** elégséges lesz számodra. De ha WooCommerce-ről van szó, akkor kikell egészítenünk.
+
+#### WooCommerce végpontok kizárása
+
+Most, duplikáld le a Fejlécedet (felejtsd el az új sablon létrehozást!), de töröld ki belőle a negatív margódat (amennyiben úgy készítetted). A fejlécnek pedig állíts be hátteret (opcionálisan) / 
+végezz el egyéb stilisztikai beállításokat amiket szeretnél. 
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup2.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+Mindkét fejléc esetében a haladó beállításnál álltísunk be egy egy eltérő ID-t. Az első fejlécünk legyen az, ami szinte minden oldalon meg kell jeleníteni
+azaz az átlátszós verzió. Ennek az alábbi ID állíts be: **header--tp**
+
+A második fejléc lesz az, amely a WooCommerce végpontok esetében kell, hogy látható legyen. Ennek a teljes Konténernek az ID: **header--wc**
+
+Ezeket az azonosítókat fogja a PHP / CSS kódunk triggerelni.
+
+Amennyiben van Child sablonod, nyisd meg a **functions.php**  fájlt. Ha nincs, akkor használhatod az alábbi plugint amibe tárolhatod a kódokat:
+
+<WPEmbed url="code-snippets" />
+
+
+Az alábbi kódot tehát helyezd el, akár a gyerek sablon functions.php ba, vagy ha más Code Snippets bővítményt használsz, akkor oda.
+
+```php
+function hide_show_elementor_sections() {
+    // Változók inicializálása
+    $hide = 'display: none;';
+    $show = 'display: flex;';
+    $header_tp_style = $show;
+    $header_wc_style = $hide;
+
+    // Specifikus oldalak
+    if (is_woocommerce() || is_cart() || is_checkout() || is_shop() || is_product() || is_product_category() || is_wc_endpoint_url() || is_account_page()) {
+        $header_tp_style = $hide;
+        $header_wc_style = $show;
+    }
+
+    // Magic
+    echo '<style>
+    #header--tp {' . $header_tp_style . '}
+    #header--wc {' . $header_wc_style . '}
+    </style>';
+}
+add_action('wp_head', 'hide_show_elementor_sections');
+
+```
+
+Ez a kód 4 változót vesz fel. Az első kettőben maga a css stílusokat tároljuk, a másik kettőben pedig a két fő konténer-t, amik a mi esetünknek a két fejlécnek felelnek meg.
+Az If elágazásban vizsgáljuk meg, hogy az adott oldal, Woocommerce specifikus-e, és ha igen, akkor az alapértelmezett fejléc konténer-t elrejtjük, és megjelenítjük a másikat.
+
+A wp_head -hez adjuk hozzá a függvényt, amely garantálja, hogy minden oldalbetöltődéskor lefut.
+
+Ezen technika hátránya, hogy innentől a "Display Conditions" lecseréltük, és a saját szabályainkal határozzuk meg a megjelenítést. Az előnye, hogy innentől kezdve
+nem függünk az Elementor megjelenítési beállításaitól. 
+
+Ha a 404 oldal-t is szeretnéd bevenni, akkor az If elágazást ki kell egészíteni így:
+```php
+if (is_woocommerce() || is_cart() || is_checkout() || is_shop() || is_product() || is_product_category() || is_wc_endpoint_url() || is_account_page() || is_404()) {
+
+```
+
+Ha a keresési találatok oldal-t is hozzá szeretnéd adni a kód így néz ki:
+
+```php
+ if (is_woocommerce() || is_cart() || is_checkout() || is_shop() || is_product() || is_product_category() || is_wc_endpoint_url() || is_account_page() || is_404() || is_search()) {
+
+```
+
+### Scroll & Sticky Header
+
+A következő feladat, hogy a fejlécünket (egyenlőre fókuszáljunk az áttetszőre), sitkcy, azaz "ragadóssá tegyük". Azt nem kell bemutatni, ezt hogyan lehet megtenni az 
+Elementorban, hiszen ez a funkció évek óta megtalálható. Miután ezt beállítod, és leteszteled, az látható, hogy a fejléc kissé "meztelen". Ez azért van , mert nincs háttér beállítva.
+És nem is állíthatunk be neki alapból, hiszen akkor az áttetsző funkciónk elvész.
+
+A jó hír, hogy az Elementor, a sticky hatására, egy extra class-t rak rá az adott elemre. Esetünkben a konténerre. Ami fontos, hogy csak akkor ha érvényesül a "sticky hatás".
+Itt a beállítható offset is jelentéssel bír, és fontos hogy ne hagyjuk 0 értéken. Ha az **Offset** értékét nem növeljük, akkor a háttérszín még azelőtt rákerülne, hogy görgetnénk, mivel
+a **.elementor-sticky--effects ** osztály egyből rákerül. Azonban ezt késleltethejük, ezáltal kikényszerítve a scrollozást.
+
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup3.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+Mivel korábban már definiáltunk egy azonosítót a transzaprens fejléc konténernek, használjuk fel ismét. Az alábbi kód segítségével 25 offset értékkel, görgetést kikényszerítve
+a felhasználótól, megváltoztatjuk a fejléc konténer háttérszínét fehérre.
+
+```css
+#header--tp.elementor-sticky--effects {
+    background-color: white;
+}
+
+#header--tp {
+    transition: background-color .35s ease;
+}
+```
+
+:::tip Fontos!
+Ne felejtsd el, hogy a kódban szereplő **"#header--tp"** az az azonosító, amit korábban beállítottunk a fejlécünknek. Ha te mást állítottál be, ki kell cserélned a sajátodra.
+
+:::
+
+A kód második felében definiáltunk egy átmenetet is (transition), hogy smooth hatást keltsünk, és a változás, azaz a szín ne azonnal kerüljön rá a háttérre. Bár a **Transition** esetében
+lehetne használni az **ALL** kifejezést is, érdemes definiálni, hogy pontosan mely szabályra kell érvényesíteni, ugyanis bár kevesen tudják,
+de teljesítménybeli problémákhoz is vezethet, különösen nagyobb oldalak esetében.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup4.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+A következő feladat, hogy a konténeren belüli elemek reagáljanak arra, hogy ha görget a felhasználó, csak úgy, mint maga a konténer háttérszíne. Ugyanis a fenti képen láhtató,
+hogy míg a fehér betűszín megfelelő volt, mindaddig, amíg a fejléc áttetsző volt, de a fehér háttérrel már nem lesz számunka megfelelő.
+
+Mint korábban megjegyeztem, az elementor egy extra Class-t biztosít azon elemeknél, ahol van beállítva Sticky opció. Így csak le kell követnünk a forráskód alapján a html struktúránkat.
+A Demo esetében az Elementor alapértelmezett **Wordpress Menu** widgetet használjunk (korábbi nevén nav menu).
+
+A CSS kód az alábbi módon néz ki:
+
+```css
+/* Pointer: Háttér */
+
+#header--tp.elementor-sticky--effects  .e--pointer-background .elementor-item:hover {
+    color: #fff;
+}
+
+/* Pointer: Háttér aktív állapot */
+
+#header--tp.elementor-sticky--effects  .elementor-item.elementor-item-active:before {
+    
+    background-color: #F8F3EF;
+}
+
+/* Aktív betűszín */
+#header--tp.elementor-sticky--effects  .elementor-item.elementor-item-active {
+    color: red !important;
+}
+```
+
+:::tip Important!
+Az elementor globális stílus beállításai, mint színek, vagy betűtípusok használatakor, ha felül kívánjuk írni a kód végére kell tennünk egy !important parancsot.
+
+:::
+
+Fontos megjegyezni, hogy a Demo esetében, a menü widgetben a  Pointer egy Háttér, ha eltérő beállításaid vannak, akkor a kód második felét vélhetőleg át kell írnod. 
+
+Mi a helyzet, ha a fejlécben van más elem is, például egy gomb? Tekintsük át egy gomb beállításait, a menü widgethez hasonlóan.
+
+Ha minden gombra érvényesíteni szeretnénk a fejlécben akkor dolgozhatunk globálisan:
+
+```css
+#header--tp.elementor-sticky--effects .elementor-button {
+    background-color: red;
+}
+```
+
+Ha specifikusan szeretnénk, akkor a gomb esetében is a haladó beállításokban adjunk egy saját ID, vagy Class-t, és szúrjuk be a **.elementor-button** elé:
+```css
+#header--tp.elementor-sticky--effects .mybutton  .elementor-button {
+    background-color: red;
+}
+```
+
+
+### Fejléc animációk
+
+Biztos láttál már olyan weboldalakt, ahol lefelé görgetéskor eltűnik, például felcsúszik, a fejléc, majd ha felfelé görgetünk, megjelenik (például lecsúszik).
+A feladat, hogy ezt most mi is elkészítsük.
+
+Első körben a korábban beállított transition-t ki kell bővítenünk:
+```css
+#header--tp {
+    transition: background-color 0.35s ease, top 0.3s ease-in-out;
+}
+```
+
+Majd jQuery segítségével fogjuk elkészíteni az animációt. Az Alább látható kód a görgetésre fog reagálni. A **lastScrollTop** változót arra használjjuk hogy meghatározzuk
+a görgetés irányát. Az alapértelmezett érték 0 hiszen amikor betölt az oldal nincs még scroll. a **$(window).scroll(function() {** egy görgetési eseményfigyelő, amely 
+a scroll-ra fog reagálni. A .scroll minden görgetést észlel.
+**var currentScrollTop = $(this).scrollTop();** Itt lekérjük az aktuális görgetési poziciót pixelben. **if (currentScrollTop > lastScrollTop && currentScrollTop > 50){** itt pedig
+azt ellenőrizzük hogy az oldalt lefelé görgetik-e (azaz az aktuális görgetési érték nagyobb-e, mint az utolsó), és hogy az oldalt legalább 50px-re legörgették-e. Ha mindkét feltétel teljesül, akkor lefut a kód ezen része:
+**$('#header--tp').css('top', '-100px');** ha nem akkor az else ágban lévő akkor ez: **  $('#header--tp').css('top', '0');**
+
+
+```js
+<script>
+jQuery(document).ready(function($) {	
+var lastScrollTop = 0;
+    $(window).scroll(function() {
+        var currentScrollTop = $(this).scrollTop();
+        if (currentScrollTop > lastScrollTop && currentScrollTop > 50){
+            // lefelé görgetés, és az oldal görgetése meghaladja a 50px-t
+            $('#header--tp').css('top', '-100px');
+        } else {
+            // felfelé görgetés
+            $('#header--tp').css('top', '0');
+        }
+        lastScrollTop = currentScrollTop;
+    });
+      });
+</script>
+```
+### Képcsere
+
+A példában képet (logót) nézünk meg, de ez lehet másik widget is. A feladat, hogy onnantól kezdve, hogy a header ténylegesen Sticky, változtassuk meg a logót. 
+Az, hogy ténylegesen Sticky ebben a kontexusban úgy értem, hogy onnantól kezdve, hogy a fejléc megkapta a **elementor-sticky--effects** class-t, és amíg rajta van.
+
+Ez megvalósítható javascript (mutation Observe segítségével), vagy CSS el. Nézzük meg mindkét megoldást.
+
+
+**CSS**
+Az első widget amely akkor kell hogy látszódjon amíg nem görgetünk, adj neki egy saját class-t: **nosticky**
+Majd duplikáld és a másodiknak add meg ezt a class nevet: **stickylogo**
+
+Most pedig alkalmazd az alábbi kódot:
+```css
+#header--tp.elementor-sticky--effects .nosticky {
+    display: none;
+}
+
+.stickylogo {
+    display: none;
+}
+#header--tp.elementor-sticky--effects .stickylogo  {
+    display: inline-block;
+}
+```
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup5.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+A kép csak minta, a felépítésre. 
+
+Mi a baj a Display-el? Sajnos a Display, egy olyan szabály, amire nem rakhatunk *transition-t,* mivel nincsen köztes állapota, tehát nem interpolálható. Egyesek ezt úgy próbálják
+megkerülni, hogy a visibility és opacity animálják, vagy kötik rá a transitiont. Ezzel csak az a gond, hogy az adott elem attól még ott van, tehát míg a display none ténylegesen elrejti (kiveszi a layout-ból),
+addig az opacity és visibility csak a láthatóságot szabályozza. A mi esetünkben ez azt eredményezné, hogy maga a layoutot szétnyújtaná. 
+
+Igértem egy JS példát is. Kommenteld, vagy töröld ki a CSS-t amit korábban bemásoltál, és csak ezt az egy sort hagyd meg:
+```css
+.stickylogo {
+    display: none;
+}
+```
+
+Másold be az alábbi JS kódot. (például az Elementor Custom Code-ba)
+```js
+<script>
+	window.onload = function() {
+    var target = document.querySelector('#header--tp'); // a figyelendő elem
+    var oldClass = 'nosticky'; // régi kép class-a
+    var newClass = 'stickylogo'; // új kép class-a
+
+    // beállítjuk a figyelőt
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                var classList = target.className.split(/\s+/);
+                // ha sticky
+                if (classList.includes('elementor-sticky--effects')) {
+                    // elrejtjük a régi képet és megjelenítjük az újat
+                    document.querySelector('.' + oldClass).style.display = 'none';
+                    document.querySelector('.' + newClass).style.display = 'inline-block';
+                } else {
+                    // ha nem sticky, visszaállítjük a régi képet és elrejtjük az újat
+                    document.querySelector('.' + oldClass).style.display = 'inline-block';
+                    document.querySelector('.' + newClass).style.display = 'none';
+                }
+            }
+        });
+    });
+
+    // Megkezdjük a megfigyelést
+    observer.observe(target, {
+        attributes: true // figyeljük az attribútumok változásait
+    });
+};
+</script>
+```
+
+Itt egy úgynevezett MutationObserver technikát alkalmazunk. Ideális, ugyanis a DOMban történő Attributum változását kell figyelni, ezáltal pedig reagálhatunk rá.
+Ez itt egy pure javascript. Ha szeretnénk csatlakoztatni a korábbi kódrészletünkhöz, akkor az az alábbi formában néz ki:
+
+```js
+<script>
+jQuery(document).ready(function($) {	
+var headerHeight = $('#header--tp').outerHeight(); 
+$('#header--tp').css('margin-bottom', -headerHeight + 'px'); 	
+var lastScrollTop = 0;
+    $(window).scroll(function() {
+        var currentScrollTop = $(this).scrollTop();
+        if (currentScrollTop > lastScrollTop && currentScrollTop > 50){
+            // lefelé görgetés, és az oldal görgetése meghaladja a 50px-t
+            $('#header--tp').css('top', '-100px');
+        } else {
+            // felfelé görgetés
+            $('#header--tp').css('top', '0');
+        }
+        lastScrollTop = currentScrollTop;
+    });
+
+var target = document.querySelector('#header--tp'); // a figyelendő elem
+    var oldClass = 'nosticky'; // régi kép class-a
+    var newClass = 'stickylogo'; // új kép class-a
+
+    // beállítjuk a figyelőt
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'class') {
+          var classList = target.className.split(/\s+/);
+          // ha sticky
+          if (classList.includes('elementor-sticky--effects')) {
+            // elrejtjük a régi képet és megjelenítjük az újat
+            document.querySelector('.' + oldClass).style.display = 'none';
+            document.querySelector('.' + newClass).style.display = 'inline-block';
+          } else {
+            // ha nem sticky, visszaállítjük a régi képet és elrejtjük az újat
+            document.querySelector('.' + oldClass).style.display = 'inline-block';
+            document.querySelector('.' + newClass).style.display = 'none';
+          }
+        }
+      });
+    });
+
+    // Megkezdjük a megfigyelést
+    observer.observe(target, {
+      attributes: true // figyeljük az attribútumok változásait
+    });
+});
+```
+
+Ez a kód tartalmazza a jQuery alapú header magasság ellenőrzését, és beállítását, a scrollozást, valamint a képcserét. Hogy mikor melyiket alkalmazd, az a 
+feladat függvénye. A Javascript bár erőforrás igényesebb *(nagyobb oldalak esetében a MutationObserver kifejezetten)*, cserébe nagyobb kontrollod van. 
+
+A CSS megoldás egyszerűbb és kevésbé erőforrás igényes, de korlátozottak a lehetőségek.
+
+:::tip Tudtad?
+Korábban létezett egy **Mutation Events** is a javascriptben amely hasonló célt szolgált, ez viszont kifejezetten sok erőforrást igényelt. A MutationObserver
+jobb teljesítményben és több funkcióval is rendelkezik.
+
+:::
+
+### Extra
+
+Mi van akkor, ha szeretnénk, hogy a logó nagyobb legyen, de amint a "Sticky", hatás elindul csökkentsük a méretét? Ezt is megoldhatjuk egyszerűen CSS segítségével.
+Először is, a korábban elkészített példában lévő második logót, átmenetileg kikapcsoltam (kód szinten is mivel most nincs rá szükségünk).
+Az első logó, ami most minden esetben ugyan az (sticky, és nem sticky esetében is), átneveztük a class-t: **logoshrink**
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup6.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+A kép widget stílus beállításaiból távolítsd el a beállított szélességi értékeket (ha volt megadva), és hagyd őket üresen. Css segítségével fogjuk megadni a szélességet
+hogy az áttetszőséget hozzá tudjuk igazítani.
+
+```css
+#header--tp.elementor-sticky--effects  .logoshrink img{
+    width: 90px;
+}
+
+.logoshrink img {
+    width: 135px;
+    transition: width .25s ease-in-out;
+}
+```
+
+Először beállítunk egy 90px szélességet. (ennyire szeretnénk csökkenteni), majd pedig beállítunk egy kezdő szélességi értéket, és egy transition értéket mellé.
+
+Van még egy kiegészítés amit hozzátehetnénk. Mi van akkor ha szeretnénk, hogy a fejléc is "összemenjen"? A konténer elrendezés beállításnál adj
+meg egy *min-height* értéket. (minimum magasság)
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/transparent--demo-setup7.png" alt="Elementor transparent header"></img>
+</BrowserWindow>
+
+Majd másold be az alábbi CSS kódot:
+
+```css
+#header--tp.elementor-sticky--effects {
+    background-color: white;
+    min-height: 80px;
+}
+
+#header--tp {
+    transition: background-color 0.35s ease, top 0.3s ease-in-out, min-height 0.25s ease-in-out;
+}
+```
+
+Az első részletben a *min-height: 80px;* lesz azaz érték amire "összemegy" miután a header Sticky lesz. A második rész csak a transition kiegészítésére szolgált
+hogy az animáció átmenetes legyen.
