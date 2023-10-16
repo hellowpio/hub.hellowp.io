@@ -1,0 +1,46 @@
+---
+title: Levelezés beállítása Apple macOS / iOS eszközökön
+description: Levelezés beállítása Apple macOS / iOS eszközökön
+keywords:
+  - hellopack
+  - elementor
+sidebar_label: Apple macOS / iOS
+sidebar_position: 2
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-mobile text-primary" /> Levelezés beállítása Apple macOS / iOS eszközökön
+
+Levelezés beállítása Apple macOS / iOS eszközökön
+
+## 1. módszer: Mobileconfig segítségével
+
+Az email, a névjegyek és a naptárak automatikusan beállíthatók Apple eszközökön egy profil telepítésével. A profil letöltéséhez először be kell jelentkezned a MailHub adminba.
+
+### 1.1. módszer: IMAP, SMTP és Cal/CardDAV
+
+Ez a módszer az IMAP, CardDAV és CalDAV beállításait konfigurálja.
+
+1. Töltsd le és nyisd meg a fájlt a következő helyről: https://mailhub.hellowp.cloud/mobileconfig.php.
+2. Add meg a feloldó kódot (iPhone) vagy a számítógép jelszavát (Mac).
+3. Ha arra kérnek, háromszor add meg az email jelszavadat.
+
+### 1.2. módszer: IMAP, SMTP (nincs DAV)
+
+Ez a módszer csak az IMAP és SMTP beállításait konfigurálja.
+
+1. Töltsd le és nyisd meg a fájlt a következő helyről: https://mailhub.hellowp.cloud/mobileconfig.php?only_email.
+2. Add meg a feloldó kódot (iPhone) vagy a számítógép jelszavát (Mac).
+3. Ha arra kérnek, add meg az email jelszavadat.
+
+## 2. módszer: Exchange ActiveSync emuláció
+
+Az iOS-en az Exchange ActiveSync is támogatott, alternatívájaként a fentebb leírt eljárásnak. Előnye, hogy támogatja a push email-t (azaz azonnal értesítést kapsz a beérkező üzenetekről), de vannak korlátai, például nem támogatja a címtárban lévő névjegyenkénti több mint három email címet. Ha úgy döntesz, hogy az Exchange-t használod, kövesd az alábbi lépéseket.
+
+1. Nyisd meg a Beállítások alkalmazást, koppints a Mail-re, majd az Accounts-ra, koppints az Add Account-ra, válaszd az Exchange lehetőséget.
+2. Add meg az email címedet és koppints a Next-re.
+3. Add meg a jelszavadat, majd koppints újra a Next-re.
+4. Végül koppints a Save gombra.
