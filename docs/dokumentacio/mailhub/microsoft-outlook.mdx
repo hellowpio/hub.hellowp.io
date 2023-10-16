@@ -1,0 +1,56 @@
+---
+title: Levelezés beállítása MS Outlook-on
+description: Levelezés beállítása MS Outlook-on
+keywords:
+  - hellopack
+  - elementor
+sidebar_label: Microsoft Outlook
+sidebar_position: 3
+---
+
+import BrowserWindow from "@site/src/components/BrowserWindow";
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-sharp fa-solid fa-envelopes-bulk text-primary" /> Levelezés  beállítása MS Outlook-on
+
+## Outlook 2016 vagy újabb Office 365-tel Windows-on
+
+Ez csak akkor alkalmazható, ha a szerver adminisztrátorod nem tiltotta le az EAS-t az Outlookban. Ha le van tiltva, kérlek, kövesd az Outlook 2007 útmutatóját.
+
+Az Outlook 2016-nak problémája van az autodiscoverrel. Csak az Office 365-ből telepített Outlook érintett. Ha más forrásból telepítetted az Outlookot, kérlek, kövesd az Outlook 2013 vagy újabb útmutatóját.
+
+Az EAS-hez a régi asszisztenst kell használnod, amit a C:\Program Files (x86)\Microsoft Office\root\Office16\OLCFG.EXE elindításával érhetsz el. Ha ez az alkalmazás megnyílik, lépj tovább az Outlook 2013 útmutatójának 4. lépésére.
+
+Ha nem nyílik meg, teljesen letilthatod az új fiók létrehozásának varázslóját és követheted az Outlook 2013 útmutatóját.
+
+## Outlook 2007 vagy 2010 Windows-on
+
+1. Töltsd le és telepítsd az Outlook CalDav Synchronizer-t.
+2. Indítsd el az Outlookot.
+3. Ha ez az első alkalom, hogy elindítottad az Outlookot, felkér arra, hogy állítsd be a fiókodat. Lépj tovább az 5. lépésre.
+4. Menj a Fájl menübe és kattints az Add Account-ra.
+5. Add meg a neved, email címed és a jelszavad. Kattints a Next-re.
+6. Kattints a Finish-re.
+7. Menj a CalDav Synchronizer szalagra és kattints a Synchronization Profiles-ra.
+8. Kattints a második felső gombra (Add multiple profiles), válaszd a Sogo-t, kattints az Ok-ra.
+9. Kattints a Get IMAP/POP3 account settings gombra.
+10. Kattints a Discover resources and assign to Outlook folders-ra.
+11. A felugró Select Resource ablakban válaszd a fő naptárad (általában Personal Calendar), kattints a ... gombra, rendeld hozzá a Calendar-hoz, és kattints az OK-ra. Menj a Címtárak és Feladatok fülekre és ismételd meg a folyamatot megfelelően. Ne rendelj hozzá több naptárat, címtárat vagy feladatlistát!
+12. Zárd be az összes ablakot az OK gombokkal.
+
+## Outlook 2013 vagy újabb Windows-on (Active Sync - nem ajánlott)
+
+Ez csak akkor alkalmazható, ha a szerver adminisztrátorod nem tiltotta le az EAS-t az Outlookban. Ha le van tiltva, kérlek, kövesd az Outlook 2007 útmutatóját.
+
+1. Indítsd el az Outlookot.
+2. Ha ez az első alkalom, hogy elindítottad az Outlookot, felkér arra, hogy állítsd be a fiókodat. Lépj tovább a 4. lépésre.
+3. Menj a Fájl menübe és kattints az Add Account-ra.
+4. Add meg a neved, email címed és a jelszavad. Kattints a Next-re.
+5. Amikor felkérnek rá, add meg újra a jelszavad, pipáld be a Remember my credentials-t és kattints az OK-ra.
+6. Kattints az Allow gombra.
+7. Kattints a Finish-re.
+
+## Outlook 2011 vagy újabb macOS-en
+
+A Mac verziójú Outlook nem szinkronizálja a naptárakat és a névjegyeket, ezért nem támogatott.
