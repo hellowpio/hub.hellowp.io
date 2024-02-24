@@ -1,0 +1,45 @@
+---
+title: Régi API kulcs cseréje újra
+description: Régi API kulcs cseréje az újra
+keywords:
+  - hellopack
+sidebar_label: Régi API kulcs cseréje újra
+sidebar_position: 10
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import CharacterCounter from "@site/src/components/APIneworold";
+
+
+# <FontAwesomeIcon icon="fa-duotone fa-code-compare text-primary" /> Régi API kulcs cseréje újra
+
+## Miért?
+
+2023 februárban tájékoztattuk felhasználóinkat arról, hogy megszüntetjük a globális API kulcsok használatát. Ennek oka az volt, hogy számos felhasználó jelezte aggodalmát azzal kapcsolatban, hogy kulcsaikat harmadik felek is használhatják. Megoldásként bevezettük az egyedi, oldalankénti API kulcsokat, amelyeket mindenki saját maga hozhat létre a HelloPack API-kulcskészítő oldalon keresztül.
+
+## Mi a különbség a régi és az új API kulcsok között?
+
+Könnyedén eldönthető. Minden kulcs új, amit az API-kulcskészítő oldalon keresztül hoztál létre. 
+Bizonytalan vagy? Itt ellenőrizheted, hogy melyik kulcsod régi, és melyik új:
+
+## Ellenőrizd le az API-kulcsodat
+
+<CharacterCounter />
+
+## Hogyan cseréld le a régi API kulcsodat?
+
+Amennyiben van élő HelloPack előfizetésed, akkor ezt a pár egyszerű lépést követve cserélheted le a régi API kulcsodat az újra:
+
+1. Lépj be a HelloWP.io console felületére: https://hellowp.io/hu/helloconsole/
+2. Kattints a HelloPack boxra vagy a HelloPack központ gombra. https://hellowp.io/hu/helloconsole/hellopack-kozpont/
+3. Kattints az API-kulcskészítő gombra: https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/
+4. Hozd létre az új API kulcsodat, és másold ki.
+5. Aktiváld az új API kulcsodat a WordPress admin felületén. [Tekintsd meg az Aktiválás útmutatót itt](aktivalas)
+
+
+## Még nincs HelloPack előfizetésed?
+
+Semmi probléma, könnyedén előfizethetsz a HelloPack-ra, és azonnal élvezheted az előnyeit. [Tekintsd meg a HelloPack részleteit](https://hellowp.io/hu/t/hellopack/)
+
+
