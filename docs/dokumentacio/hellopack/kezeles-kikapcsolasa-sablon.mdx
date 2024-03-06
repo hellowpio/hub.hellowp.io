@@ -1,0 +1,42 @@
+---
+title: Sablonok kezelésének kikapcsolása
+description: Sablonok kezelésének kikapcsolása
+keywords:
+  - hellopack
+sidebar_label: Sablonok kezelésének kikapcsolása
+
+sidebar_position: 6
+---
+
+import MemberCounter from "@site/src/components/MemberCounter";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-tags text-primary" /> HelloPack sablonok kezelésének kikapcsolása
+
+Szeretnéd beállítani, hogy a HelloPack ne kezeljen egy sablont a csomagkezelővel?
+
+A HelloPack kikapcsolja azoknak a sablonoknak a figyelését, amiket a `HP_DISABLE_THEMES` konstansban definiálunk.
+
+## Használata
+
+Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a
+
+```php title="wp-config.php"
+define( 'HP_DISABLE_THEMES', 'bricks, hello' );
+```
+
+sort a /_ That’s all, stop editing! Happy publishing. _/ sor fölé.
+
+Fel kell sorolnod azoknak a sablonoknak a **mappa neveit**, amit szeretnél kizárni. A fenti példa kizárja az Bricks és a Hello sablonok kezelését. Amennyiben több bővítményt szeretnél felvinni a listába, akkor vesszővel kell elválasztani őket. (A példában szereplő bricks és hello sablonokat nyugodtan kitörölheted és írd a helyére azokat, amelyeknek a kezelését ki szeretnéd kapcsolni.)
+
+**Hogyan szerkesztheted a wp-config.php-t?
+**
+
+1. FTP-n lépj be a szerverére
+2. Nyisd meg a wp-config.php fájlt
+3. Keresd meg a /_ That's all, stop editing! Happy publishing. _/ részt a fájl végén és másold be a kódot.
+4. Mentsd el a módosításokat
+
+:::note
+A sablonok kezelésének kikapcsolásához minimum HelloPack 2.0.24 -ös verzióra van szükség.
+:::
