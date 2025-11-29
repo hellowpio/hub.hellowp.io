@@ -1,41 +1,72 @@
-# hub.hellowp.io
+# HelloWP Hub
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+A [HelloWP.io](https://hellowp.io) hivatalos dokumentációs portálja és tudásbázisa.
 
-### Installation
+## Tartalom
 
+- **Dokumentáció** - HelloPack bővítménykezelő részletes útmutatói
+- **Tudásbázis** - 300+ WordPress bővítmény magyar nyelvű leírása
+- **Súgó** - Gyakori kérdések és hibaelhárítási útmutatók
+
+## Technológia
+
+- [Docusaurus 2](https://docusaurus.io/) - Modern statikus dokumentációs keretrendszer
+- [React](https://reactjs.org/) - UI komponensek
+- [Algolia](https://www.algolia.com/) - Keresés
+
+## Fejlesztés
+
+### Követelmények
+
+- Node.js >= 20
+- npm vagy yarn
+
+### Telepítés
+
+```bash
+npm install
 ```
-$ yarn
+
+### Lokális fejlesztés
+
+```bash
+npm start
 ```
 
-### Local Development
-
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+A fejlesztői szerver elindul a `http://localhost:3000` címen.
 
 ### Build
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+npm run build
 ```
 
-Not using SSH:
+A statikus fájlok a `build` mappába kerülnek.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+## Docker
+
+### Build
+
+```bash
+docker build -t hub-hellowp .
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+### Futtatás
+
+```bash
+docker run -d -p 8080:80 hub-hellowp
+```
+
+A site elérhető lesz: `http://localhost:8080`
+
+## Közreműködés
+
+1. Fork-old a repót
+2. Hozz létre egy feature branch-et (`git checkout -b feature/uj-funkcio`)
+3. Commit-old a változtatásokat (`git commit -m 'Add: új funkció'`)
+4. Push-old a branch-et (`git push origin feature/uj-funkcio`)
+5. Nyiss egy Pull Request-et
+
+## Licensz
+
+Copyright © [HelloWP.io](https://hellowp.io). Minden jog fenntartva.
