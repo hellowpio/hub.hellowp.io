@@ -1,6 +1,6 @@
 # HelloWP Hub
 
-A [HelloWP.io](https://hellowp.io) hivatalos dokumentációs portálja és tudásbázisa.
+A [HelloWP.io](https://hellowp.io) hivatalos dokumentációs portálja és tudásbázisa. 
 
 ## Tartalom
 
