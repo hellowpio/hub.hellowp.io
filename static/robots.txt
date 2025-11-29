@@ -1,0 +1,6 @@
+# Algolia-Crawler-Verif: 004C2CB4E3B5655F
+
+User-agent: *
+Allow: /
+
+Sitemap: https://hub.hellowp.io/sitemap.xml

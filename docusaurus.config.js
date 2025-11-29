@@ -81,12 +81,9 @@ const config = {
       },
 
       algolia: {
-        // The application ID provided by Algolia
-        appId: "PEGF6C8Q8Y",
-        // Public API key: it is safe to commit it
-        apiKey: "44dbebc8d658be083a2adf5913fa8119",
-        indexName: "hellolol",
-        // Optional: see doc section below
+        appId: "I11ZQJ89FL",
+        apiKey: "6507f02646a676db1462458b97a1cda4",
+        indexName: "HelloWP HUB",
         contextualSearch: false,
       },
 
