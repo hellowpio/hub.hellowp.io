@@ -1,6 +1,7 @@
 # =============================================================================
-# Dockerfile for hub.hellowp.io (Docusaurus 2.4.0)
-# Multi-stage build: Node.js build + Nginx static serving
+# Dockerfile for hub.hellowp.io
+# Multi-stage build: Node.js 20 + Nginx Alpine
+# Build: ./build.sh (requires FontAwesome Pro token)
 # =============================================================================
 
 # -----------------------------------------------------------------------------
