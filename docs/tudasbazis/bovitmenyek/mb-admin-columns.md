@@ -1,55 +1,122 @@
-# MB Admin Columns
+---
+title: "MB Admin Columns"
+description: "Meta Box prémium kiegészítő, amellyel az admin listanézetekben oszlopokban jelenítheted meg a Meta Box-szal felvett egyedi mezők értékeit, rendezhető/kereshető/szűrhető formában."
+sidebar_label: "MB Admin Columns"
+---
 
-Az MB Admin Columns egy Meta Box plugin kiegészítő, amely lehetővé teszi, hogy az adminisztrációs felületen egyéni mezőket jeleníts meg a bejegyzések, taxonómiák és felhasználók táblázataiban. Ezzel a bővítménnyel könnyedén beállíthatod az oszlopok pozícióját, címét, valamint kereshetővé és rendezhetővé teheted őket.
+## Mi ez és mit old meg?
 
-## Támogatott adatmezők
+Az MB Admin Columns egy prémium Meta Box kiegészítő, amellyel a WordPress admin listanézeteiben (bejegyzések, egyedi bejegyzéstípusok, taxonómiák, felhasználók) külön oszlopokban jelenítheted meg az egyedi mezők értékeit. Így már a táblázatos nézetben átlátod a tartalmaid kulcsadatait, és azonnal tudsz rendezni, keresni vagy szűrni anélkül, hogy megnyitnád a szerkesztőoldalt. Kódolás helyett egyszerű kapcsolókkal (vagy minimális kóddal) állíthatod be az oszlopok viselkedését.
 
-Az MB Admin Columns nemcsak a bejegyzés metaadatokat támogatja, hanem a taxonómiai és felhasználói metaadatokat is. Ezáltal a bővítmény lehetővé teszi, hogy további információkat jeleníts meg a taxonómiák és felhasználók listázásánál is.
+## Fő funkciók, érthetően
 
-### Egyéni mezők megjelenítése
-
-A bővítménnyel meghatározhatod, mely egyéni mezők jelenjenek meg az adminisztrációs felületen. Például, ha van egy 'Könyv' nevű egyedi bejegyzéstípusod, megjelenítheted a 'Könyv szerzője', 'Kiadó', 'Oldalak száma' és 'Kategória' mezőket.
-
-### Oszlopok testreszabása
-
-Az MB Admin Columns lehetőséget biztosít arra, hogy testreszabhasd az oszlopok címét, pozícióját és azok rendezhetőségét vagy kereshetőségét. Emellett egyedi HTML-t is hozzáadhatsz az oszlop tartalmának előtti és utáni részhez.
-
-## Taxonómiák szerinti szűrés
-
-A bővítmény segítségével szűrheted a bejegyzéseket egyéni taxonómiák szerint. Csak állítsd be a taxonómiát szűrhetőnek, és a plugin gondoskodik a többi részről.
-
-## Támogatott típusok és bővítmények
-
-### MB Custom Table integráció
-
-Az MB Admin Columns támogatja az egyedi táblák adatait is, amelyeket az MB Custom Table plugin hoz létre. Így az egyéni táblázatokban lévő adatokat is megjelenítheted, keresheted és rendezheted.
-
-## Jellemzők
-
-- Beállítható oszlopok pozíciója: támogatja az oszlopok átrendezését és meglévő oszlopok előtti/utáni elhelyezését.
-- Oszlopcímek testreszabása: módosíthatod az oszlopok címét.
-- Keresés és rendezés: támogatja az egyéni mezők adatainak keresését és rendezését.
-- Automatikusan illeszkedő stílusok: a WordPress UI-hoz igazított stílusok.
-- Könnyű integráció: optimális Meta Box felhasználók számára.
-- Támogatja a bejegyzés, taxonómia és felhasználói metaadatokat.
+- **Oszlopok pozicionálása**: pontosan megadhatod, hogy az új oszlop hova kerüljön (például „before title”, „after date”, vagy meglévő oszlop cseréje). Így a fontos információk ott jelennek meg, ahol a szemed keresi.
+- **Cím és kimenet testreszabása**: saját oszlopcímet adhatsz, és a mezőérték elé/után HTML-t fűzhetsz (pl. badge, ikon). A mező tartalmát akár kattintható szerkesztési linkké is alakíthatod.
+- **Rendezhetőség**: a listát a mezőértékek szerint rendezheted. Szöveghez alapértelmezett, számokhoz **numerikus rendezés** is bekapcsolható, hogy a 2 ne a 10 után jöjjön.
+- **Kereshetőség**: megadhatod, hogy a globális admin kereső nézze-e a megadott mezőt. Ez gyorsabb találatokat ad akkor is, ha a kulcsszó nem a címben szerepel.
+- **Taxonómia-szűrő**: taxonomy típusú mezőknél felül megjelenő legördülő szűrővel egyetlen kattintással szűrhetsz kategóriára, címkére, vagy bármely egyedi taxonómiára.
+- **Több adattípus támogatása**: kezeli a post meta, term meta, user meta mezőket, valamint a Meta Box egyedi adattábláiban (MB Custom Table) tárolt értékeket is.
+- **Teljesítmény és natív UI**: könnyű, a Meta Box ökoszisztémához illeszkedő megoldás, amely a WordPress admin felület stílusába simul.
 
 ## Gyakorlati példák
 
-### Könyvek nyilvántartása
+- **Kiadói szerkesztőség – „Könyv” CPT**: a listában külön oszlopokban látod a szerzőt, kiadót, oldalszámot és műfajt. Rendezel oldalszám szerint (numerikusan), a műfajra pedig felül legördülő szűrő jelenik meg.
+- **Ingatlanportál**: a „Lakások” listában megjeleníted az árat, alapterületet, várost és státuszt. Ár szerint rendezel, státuszra szűrsz, a város mező kereshető.
+- **HR rendszer**: a felhasználó-listában oszlopként mutatod az osztályt, munkakört és belépési dátumot. A belépési dátum alapján gyorsan sorba rendezed az új kollégákat.
 
-Egy könyvtári rendszerben könnyedén megjelenítheted a könyvek szerzőjét, kiadóját és kategóriáját az adminisztrációs felületen, így gyorsan áttekintheted a könyvek adatait.
+## Használat
 
-### Felhasználói információk kezelése
+### UI-val (kódmentesen)
+1. Nyisd meg: Meta Box > Custom Fields.
+2. Válassz egy mezőt, kapcsold be az **Admin column** opciót.
+3. Állítsd be az oszlop **pozícióját**, **címét**, **rendezhetőségét**, **kereshetőségét** és – taxonomy mezőknél – a **szűrhetőséget**.
+4. Ments, és nyisd meg az admin listát: az új oszlop azonnal megjelenik.
 
-Ha egyedi mezőket használsz a felhasználói profilokban, például 'Cím', 'Telefonszám' vagy 'Tagsági státusz', ezek az adatok könnyedén megjeleníthetők és kereshetők az adminisztrációs felületen.
+### Kóddal (rugalmas vezérlés)
+Az admin oszlopokat mezőszinten, az `admin_columns` paraméterrel állíthatod be.
 
-### Termékek kezelése
+Egyszerű bekapcsolás:
+```php
+[
+  'id'   => 'publisher',
+  'name' => 'Kiadó',
+  'type' => 'text',
+  'admin_columns' => true,
+]
+```
 
-Webáruház esetén megjelenítheted a termékekhez tartozó egyéni mezőket, mint például 'Gyártó', 'Raktárkészlet' vagy 'Szállítási idő', így egyszerűbbé válik az adatok kezelése és áttekintése.
+Pozíció és rendezés:
+```php
+[
+  'id'   => 'pages',
+  'name' => 'Oldalszám',
+  'type' => 'number',
+  'admin_columns' => [
+    'position'   => 'after title',
+    'title'      => 'Oldalak',
+    'sort'       => 'numeric',   // numerikus rendezés
+    'searchable' => false,
+  ],
+]
+```
 
-## Szószedet
+Taxonómia oszlop szűrővel:
+```php
+[
+  'id'        => 'genre',
+  'name'      => 'Műfaj',
+  'type'      => 'taxonomy',
+  'taxonomy'  => 'genre',
+  'admin_columns' => [
+    'position'   => 'before date',
+    'filterable' => true, // felső legördülő szűrő
+  ],
+]
+```
 
-- **Metaadat**: Kiegészítő információk egy bejegyzéshez, taxonómiához vagy felhasználóhoz kapcsolódóan.
-- **Taxonómia**: Kategóriák és címkék rendszere a WordPress-ben.
-- **HTML**: HyperText Markup Language, a weboldalak készítésére használt szabványos jelölőnyelv.
-- **UI**: User Interface (felhasználói felület), az a felület, amelyen keresztül a felhasználók interakcióba lépnek egy alkalmazással vagy rendszerrel.
+Linkké alakított érték és kimenet formázása:
+```php
+[
+  'id'   => 'author',
+  'name' => 'Szerző',
+  'type' => 'text',
+  'admin_columns' => [
+    'title'  => 'Szerző',
+    'link'   => true,                 // kattintható (szerkesztés)
+    'before' => '<span class="badge">',
+    'after'  => '</span>',
+  ],
+]
+```
+
+## Előfeltételek és kompatibilitás
+
+- Szükséges: **Meta Box**.
+- Vizuális beállításokhoz: **Meta Box Builder**.
+- Term meta és user meta oszlopokhoz: **MB Term Meta** és **MB User Meta**.
+- Egyedi adattáblás tároláshoz: **MB Custom Table** (opcionális, teljesítményhez ajánlott).
+
+## Korlátok és megjegyzések
+
+- A rendezés általában nem-klónozható, nem-többszörös mezőkkel működik megbízhatóan.
+- A `filterable` csak taxonomy mezőkre értelmezett.
+- Nagy adatmennyiségnél érdemes egyedi adattáblát és megfelelő indexelést használni a teljesítmény érdekében.
+- Inline (gyors) szerkesztés és CSV export nem része ennek a kiegészítőnek. Ezekhez használj Admin Columns integrációt.
+
+## Kinek ajánlott?
+
+- **Tartalomkezelők és szerkesztők**: gyors ellenőrzés, rendezés, szűrés a listanézetben.
+- **Ügynökségek és fejlesztők**: minimális kódolással professzionális admin táblákat adsz az ügyfeleknek.
+- **Adatintenzív projektek**: ahol sok egyedi mező és nagy adatmennyiség van (MB Custom Table támogatással).
+
+## Érték és előnyök
+
+- **Időmegtakarítás**: nem kell egyesével megnyitni a bejegyzéseket az adatok megtekintéséhez.
+- **Jobb átláthatóság**: a kritikus mezők „első látásra” látszanak.
+- **Kevesebb kód**: a WordPress oszlop- és lekérdezés-hookok kézi írása helyett mezőszintű opciókkal dolgozol.
+- **Skálázhatóság**: működik meta táblákkal és egyedi adattáblákkal is.
+
+## Licenc és ár
+
+- Fizetős, GPL kompatibilis licenc.
+- Korlátlan számú webhelyen használhatod, az előfizetés tartalmazza a frissítéseket és támogatást. Az ár jellemzően kedvező, egy éves díjért cserébe profi funkciókat kapsz.

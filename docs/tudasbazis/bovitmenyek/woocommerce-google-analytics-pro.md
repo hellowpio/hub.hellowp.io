@@ -1,60 +1,102 @@
-# WooCommerce Google Analytics Pro
+---
+title: "WooCommerce Google Analytics Pro"
+description: "Prémium WooCommerce bővítmény, amely mély GA4-integrációt és teljes körű e‑kereskedelmi eseménykövetést kínál külön kódolás vagy GTM nélkül."
+sidebar_label: "WooCommerce Google Analytics Pro"
+---
 
-## WooCommerce Google Analytics Pro funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-A WooCommerce Google Analytics Pro egy olyan bővítmény, amely lehetővé teszi a WooCommerce áruházak számára, hogy részletes eseménykövetést és fejlett eCommerce nyomkövetést valósítsanak meg a Google Analytics segítségével. Az alábbiakban bemutatjuk a bővítmény legfontosabb funkcióit és előnyeit, amelyek megkülönböztetik más hasonló megoldásoktól.
+A WooCommerce Google Analytics Pro egy prémium bővítmény, amely **kulcsrakész GA4-integrációt** ad a webáruházadhoz. Automatikusan küldi a **fejlett e‑kereskedelmi eseményeket** a Google Analytics felé, és kezeli az **alapoldal-követést** is, így nem kell külön Analytics plugint vagy GTM-et használnod. Különösen hasznos, ha gyakran fordul elő, hogy a fizetés után a vevő nem jut vissza a “köszönő” oldalra, mert ilyenkor is rögzíti a vásárlást.
 
-## Fejlett eseménykövetés
+## Hogyan működik röviden
 
-### Részletes követési adatok
-A bővítmény lehetőséget biztosít arra, hogy különböző eCommerce eseményeket kövessünk nyomon, mint például az "add to cart" (kosárba helyezés), "checkout started" (fizetés megkezdése), "coupon addition/removal" (kupon hozzáadása/eltávolítása) és "cart quantity changed" (kosár mennyiség változtatása). Ezek az események automatikusan továbbítódnak a Google Analytics-be, lehetővé téve a pontos és részletes adatgyűjtést.
+A bővítmény a **GA4 Measurement Protocolt** használja: a boltodból közvetlenül küldi az eseményeket a Google felé. Hitelesítve kiválasztod a GA4 property-t, a bővítmény beállítja a **Data Streamet** és az API-kapcsolatot, majd automatikusan rögzíti az összes fontos eseményt: kosár, checkout, vásárlás, kuponok, visszatérítések, felhasználói aktivitás, Subscriptions események és még sok más.
 
-### Felhasználói tevékenységek követése
-A WooCommerce Google Analytics Pro követi a felhasználói tevékenységeket is, mint például a bejelentkezés, kijelentkezés, termékértékelések és hozzászólások. Emellett figyeli az e-mail megnyitásokat is, ami különösen hasznos lehet az e-mail marketing hatékonyságának mérésére.
+## Fő funkciók részletesen
 
-## Fejlett eCommerce jelentések
+### GA4-integráció hitelesítéssel
+- A WooCommerce adminban bejelentkezve kiválaszthatod a **GA4 property-t**.
+- A bővítmény automatikusan létrehozza és összeköti a **Data Streamet** és az API-kapcsolatot, így nincs szükség külön “tag” telepítésre.
 
-### Vásárlói viselkedés elemzése
-A plugin támogatja a Shopping Behavior és Checkout Behavior elemzéseket is. Ezek a jelentések részletes betekintést nyújtanak a vásárlói életciklusba, beleértve a böngészési és vásárlási szokásokat. A Checkout Behavior elemzés pedig segít megérteni, hogy hol hagyják el a vásárlók a fizetési folyamatot.
+### Measurement Protocol a megbízható rögzítéshez
+- Közvetlen szerveroldali továbbítás a GA4 felé.
+- **A vásárlások akkor is bekerülnek**, ha a vevő nem tér vissza a köszönő oldalra (például offsite fizetéseknél).
 
-### Checkout opciók nyomon követése
-Az új funkciók közé tartozik a checkout opciók követése is, amely lehetővé teszi, hogy mélyebb betekintést nyerjünk a vásárlók fizetési választásaiba, például melyik fizetési módot választották.
+### Fejlett e‑kereskedelmi események
+- **Kosár-események**: hozzáadás, eltávolítás, mennyiség-módosítás.
+- **Kuponok**: hozzáadás és eltávolítás, így mérhető a promóciók hatása.
+- **Checkout**: indítás és lépések rögzítése, ami segít a szűk keresztmetszetek azonosításában.
+- **Vásárlás**: automatikus rögzítés köszönő oldal nélkül is.
+- **Admin rendelések**: a kézzel létrehozott, sikeres rendelések is konverzióként jelennek meg.
+- **Lemondás és teljes visszatérítés**: a bevételi hatás pontos méréséhez.
 
-## Testreszabhatóság
+### Vásárlói aktivitás
+- **Bejelentkezés**, kijelentkezés, **regisztráció**, jelszócsere.
+- Fiók- és rendelésmegtekintések, **termékértékelések/kommentek**. Ezek segítenek megérteni a felhasználói kötődést és az elköteleződést.
 
-### Eseménynevek személyre szabása
-Minden eseménynév testreszabható a plugin beállításaiban, így könnyen illeszthetők a már meglévő adatokhoz. Egyéni eseményeket is követhetünk egy snippet hozzáadásával a témához.
+### Alap site tracking
+- **Oldalmegtekintések** és munkamenetek küldése.
+- A Pro telepítése automatikusan letiltja az ingyenes GA plugint, hogy ne legyen duplikált követés.
 
-### Felhasználói azonosítók nyomon követése
-A bővítmény lehetőséget biztosít a User IDs követésére is, ami pontosabb felhasználói számokat eredményez. Ez különösen hasznos lehet, ha egyedi látogatókat szeretnénk azonosítani.
+### Testreszabás és adatvédelem
+- **Eseménynevek átnevezése** és egyenkénti kikapcsolása.
+- **User‑ID követés** a vevői út összevarrásához.
+- **IP‑anonimizálás** és **szerepkör‑kizárások** (például adminok, shop managerek), hogy tisztább adataid legyenek.
 
-## Együttműködés más eszközökkel
-
-### Zökkenőmentes integráció
-A WooCommerce Google Analytics Pro zökkenőmentesen működik együtt más Google szolgáltatásokkal, mint például a Google Ads és a Google Tag Manager. Ez lehetővé teszi a kampányok hatékonyságának nyomon követését és optimalizálását.
-
-### WooCommerce bővítményekkel való kompatibilitás
-A plugin kompatibilis más WooCommerce bővítményekkel is, mint például a WooCommerce Subscriptions és a Smart Coupons. Ez biztosítja, hogy minden esemény és tranzakció pontosan nyomon követhető legyen.
+### WooCommerce Subscriptions támogatás
+- **Lejárat**, felfüggesztés, újraaktiválás, lemondás, **megújítás** események és összegek – teljes előfizetés-analitika GA4-ben.
 
 ## Gyakorlati példák
 
-### Konverziók növelése
-Ha szeretnéd növelni az áruházad konverziós arányát, használhatod a Checkout Behavior jelentést, hogy azonosítsd, hol hagyják el a vásárlók a fizetési folyamatot. Ezen információk alapján optimalizálhatod az oldaladat.
+- Offsite fizetés (pl. banki átirányítás) után a vevő nem tér vissza a köszönő oldalra: a vásárlás akkor is **rögzül a GA4-ben**.
+- Ügyfélszolgálat telefonon vesz fel rendelést: az **admin-hozzáadott rendelés** konverzióként és bevételként megjelenik.
+- Kuponkampány fut: látod, hogy a kupon **növelte-e a konverziót és a kosárértéket**.
+- Checkout-on esik a forgalom: a **lépésenkénti események** alapján gyorsan azonosítod a kilépési pontot.
+- Belső csapat tesztel: az **admin és shop manager kizárásával** nem szennyezed a riportokat.
 
-### Kuponok hatékonyságának mérése
-A kupon alkalmazásának és eltávolításának követésével láthatod, hogy mely kuponok működnek a legjobban. Ez segíthet abban, hogy hatékonyabb promóciókat tervezz.
+## Előnyök és értékajánlat
 
-### E-mail kampányok elemzése
-Az e-mail megnyitások követésével mérheted az e-mail kampányok hatékonyságát. Ha például egy új terméket szeretnél bemutatni, figyelheted, hányan nyitják meg az erről szóló e-mailedet és hányan vásárolják meg ténylegesen a terméket.
+- **Kódolás és GTM nélkül** kapsz teljes e‑kereskedelmi mérést GA4-ben.
+- **Kevesebb mérési vakfolt**: vásárlásrögzítés köszönő oldal nélkül, admin rendelések és teljes visszatérítések kezelése.
+- **Azonnali riportálhatóság**: AOV, konverziós ráta, termék- és kategóriateljesítmény, kuponhatás, checkout-szűk keresztmetszetek.
+- **Skálázható és tiszta adat**: User‑ID, IP‑anonimizálás, szerepkör-kizárás.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Add to cart**: Kosárba helyezés
-- **Checkout started**: Fizetés megkezdése
-- **Coupon addition/removal**: Kupon hozzáadása/eltávolítása
-- **Cart quantity changed**: Kosár mennyiség változtatása
-- **User IDs**: Felhasználói azonosítók
-- **Shopping Behavior**: Vásárlói viselkedés
-- **Checkout Behavior**: Fizetési folyamat viselkedése
+- **Kereskedőknek**, akik gyorsan, megbízhatóan akarnak GA4-adatokat integrálni fejlesztés nélkül.
+- **Adatelemzőknek és marketingeseknek**, akik pontos konverzió- és bevételi riportokat szeretnének.
+- **Előfizetéses modellel dolgozó boltoknak**, ahol a Subscriptions események kritikusak.
+- **Csapatoknak**, ahol sok belső teszt és admin aktivitás torzíthatná a mérést.
 
-Ezzel a részletes bemutatással reméljük, hogy világos képet kaptál arról, hogy hogyan használhatod ki a WooCommerce Google Analytics Pro bővítmény funkcióit és előnyeit.
+## Kompatibilitás és követelmények
+
+- WordPress 5.2+, WooCommerce 3.6.0+, PHP 7.4+.
+- **HPOS támogatás** és **Cart/Checkout Blocks kompatibilitás**.
+- Működik a **WooCommerce Subscriptions** bővítménnyel.
+
+## Beállítás lépései
+
+1. Hozz létre egy **GA4 property-t**, egy **Data Streamet** és egy **Measurement Protocol API Secrett**. A Stream és a Secret neve legyen: “WooCommerce Google Analytics Pro”.
+2. A WooCommerce adminban: Settings > Integrations > Google Analytics Pro – hitelesítsd a Google-fiókod, válaszd ki a GA4 property-t, mentsd.
+3. Állítsd be az opciókat: **User‑ID**, **IP‑anonimizálás**, **szerepkör‑kizárás**, eseménynevek testreszabása.
+4. Tesztelj: tegyél kosárba, indíts checkoutot, zárj le egy tesztvásárlást, ellenőrizd az eseményeket a GA4-ben.
+
+```text
+Gyors ellenőrzőlista
+- GA4 property + Data Stream + API Secret (név: WooCommerce Google Analytics Pro)
+- Plugin hitelesítve, property kiválasztva
+- User‑ID, IP anonimizálás, role kizárások beállítva
+- Események átnevezése/kikapcsolása (ha szükséges)
+- Tesztrendelés és eseményellenőrzés
+```
+
+## Fontos megjegyzések és korlátozások
+
+- **Universal Analytics** már nem támogatott; a bővítmény GA4-re fókuszál.
+- A GA jelenlegi korlátozásai miatt **csak teljes visszatérítéseket** küld.
+- Ha egy “függő/on hold” rendelést másnap fizetnek ki, a konverzió **nem** kapcsolható az eredeti munkamenethez a GA napi session-logikája miatt.
+- A Pro telepítése **letiltja az ingyenes GA plugint**, hogy elkerülje a duplikált mérést.
+
+---
+
+Fejlesztő: **SkyVerge**. A bővítmény célja, hogy a teljes vásárlói útvonalat megbízhatóan, hiánytalanul rögzítse GA4-ben – külön fejlesztés, GTM és töredezett megoldások nélkül. Ha szeretnéd, használhatsz egy saját eseménymátrixot és ellenőrzőlistát a boltodra szabva a tiszta méréshez.

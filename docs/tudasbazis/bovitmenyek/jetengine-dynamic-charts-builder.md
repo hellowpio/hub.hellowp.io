@@ -1,58 +1,90 @@
-# JetEngine - Dynamic Charts Builder
+---
+title: "JetEngine - dynamic charts builder"
+description: "Dinamikus, lekérdezésekre épülő grafikonok létrehozása WordPressben, kódolás nélkül – JetEngine modul, Elementor/Gutenberg megjelenítéssel."
+sidebar_label: "JetEngine - dynamic charts builder"
+---
 
-A JetEngine - Dynamic Charts Builder egy olyan eszköz, amely lehetővé teszi a dinamikus grafikonok készítését WordPress weboldalakon. A bővítmény számos funkcióval és integrációval rendelkezik, amelyek segítenek a felhasználóknak adatokat vizualizálni és bemutatni különböző formátumokban. 
+## Mi ez és mit old meg?
 
-## Funkcionalitás és előnyök
+A JetEngine – dynamic charts builder a JetEngine egyik külön modulja, amellyel bármilyen, adatbázisból vagy külső forrásból érkező adatot gyorsan, kódolás nélkül alakíthatsz vizuális grafikonokká. Ahelyett, hogy kézzel írnál kódot egy JavaScript chart könyvtárhoz, a modul végigvezet a folyamaton: lekérdezés kiválasztása, oszlopok beállítása, típus és stílus megadása, majd az eredmény beszúrása Elementor widgetként vagy Gutenberg blokkban. Ideális dashboardokhoz, riportokhoz, e‑kereskedelmi statisztikákhoz és REST API-ból érkező adatok vizualizálásához.
 
-### Adattípusok széles választéka
-A JetEngine - Dynamic Charts Builder támogatja a különböző adattípusokat, mint például a Custom Post Types, Custom Content Types (CCT), WooCommerce termékek, felhasználói adatbázisok és REST API-k. Ez lehetővé teszi, hogy szinte bármilyen adatforrást használj a grafikonok készítéséhez.
+## Hogyan működik? (áttekintés)
 
-### Könnyű kezelhetőség
-Az intuitív felhasználói felület lehetővé teszi a grafikonok gyors és egyszerű létrehozását. Nincs szükség kódolási ismeretekre, így bárki könnyedén elkészítheti a kívánt diagramokat.
+- Engedélyezed a JetEngine moduljai között a **Dynamic Charts Buildert**. Ekkor a JetEngine egy külön bővítményt aktivál, és a Vezérlőpulton megjelenik a **Charts Builder** menüpont.
+- Az adatok forrása a **JetEngine Query Builder**: itt hozol létre lekérdezéseket (posztok, taxonómiák, felhasználók, WooCommerce, CCT, SQL, REST API stb.).
+- A Charts Builderben létrehozol egy új chartot, kiválasztod a Query-t, majd a **Fetch** gombbal betöltöd a lekérdezés oszlopait. Ezekből állítod össze a diagramot.
 
-### Testreszabható vizualizációk
-Számos különböző diagramtípus áll rendelkezésre, mint például vonaldiagramok, oszlopdiagramok, kördiagramok és sok más. Ezek mind testreszabhatóak, így a vizuális megjelenítés teljes mértékben az igényeidhez igazítható.
+### A szerkesztőfelület fő lapjai
 
-### Dinamikus adatok frissítése
-A dinamikus adatokkal dolgozó grafikonok automatikusan frissülnek az adatok változásakor. Ez különösen hasznos lehet olyan weboldalakon, ahol az adatok gyakran frissülnek, például e-kereskedelmi oldalak vagy híroldalak esetében.
+- **General Settings**: név, a használandó Query kiválasztása, oszlopok betöltése (Fetch).
+- **Chart Type**: a diagram típusa (példák: Bar/Column, Line, Pie/Donut, Histogram, GeoChart és továbbiak – 10+ típus).
+- **Columns**: itt adod meg, mely oszlopok kerülnek a grafikonra. Az első oszlop a **címkék (labels)**, a többi az **értékek**. Oszloponként állíthatsz:
+  - mezőválasztás a Query oszlopai közül,
+  - **Filter Callback** (kimenet szűrése),
+  - **Ensure number/string** (adattípus kényszerítése).
+- **Chart Config**: jelmagyarázat (legend) pozíciója, **stackelt** oszlopok engedélyezése, és egy haladó **JSON** mező a finomhangoláshoz.
+- **Chart Styles**: vászonméretek (szélesség és magasság pixelben).
 
-## Integrációk
+A létrehozott chartot az oldalakon a **Dynamic Chart** Elementor widgettel vagy a **Dynamic Chart** Gutenberg blokkal szúrod be. A termék a Bricks szerkesztővel is kompatibilis.
 
-### Elementor
-A JetEngine - Dynamic Charts Builder zökkenőmentesen működik együtt az Elementor oldalépítővel, amely lehetővé teszi a grafikonok egyszerű beillesztését és testreszabását az Elementor editorban.
+## Fő funkciók és mit csinálnak
 
-### Gutenberg
-A bővítmény kompatibilis a Gutenberg blokkszerkesztővel is, így könnyedén hozzáadhatsz dinamikus grafikonokat bármelyik oldalhoz vagy bejegyzéshez.
+- **Dinamikus grafikonok lekérdezésekből**: a Query Builderben definiált adatokat közvetlenül vizualizálhatod. A Fetch megmutatja, milyen oszlopok állnak rendelkezésre.
+- **Sokféle diagramtípus**: oszlop-, vonal-, torta-/fánkdiagram, hisztogram, térkép alapú **GeoChart** és további típusok, így az adathoz illő megjelenítést választhatod.
+- **Haladó testreszabás JSON-nal**: a Chart Config mező a Google Charts opcióit követi, így precízen állíthatod az animációt, színeket, tengelyeket, jelmagyarázatot.
+- **Integrációk és szűrhetőség**: a Query Builder **Query ID** mezőjével összekötheted a chartot JetSmartFilters-szel, így valós idejű szűrés/újrarajzolás valósítható meg. A Query Builder cache-eléssel segíti a teljesítményt.
+- **Szerkesztő-kompatibilitás**: ugyanazt a chartot több oldalon, sablonban újra felhasználhatod, nincs szükség shortcode-ok kézi karbantartására.
 
-### Bricks
-A Bricks oldalkészítővel is integrálható, amely további lehetőségeket biztosít a grafikonok megjelenítésére és testreszabására.
+Példa haladó konfigurációra:
+```
+{
+  "legend": { "position": "bottom" },
+  "animation": { "startup": true, "duration": 600, "easing": "out" },
+  "hAxis": { "slantedText": true },
+  "vAxis": { "minValue": 0 },
+  "isStacked": true,
+  "colors": ["#1a73e8", "#34a853", "#fbbc04"]
+}
+```
 
-## Konkrét helyzetek és gyakorlati példák
+## Gyakorlati példák
 
-### E-kereskedelmi weboldalak
-Az e-kereskedelmi oldalak számára a JetEngine - Dynamic Charts Builder különösen hasznos lehet az értékesítési adatok vizualizálására. Például készíthetsz vonaldiagramot az eladások napi alakulásáról vagy oszlopdiagramot a legnépszerűbb termékekről.
+- **Tartalom-statisztika**: oszlopdiagram a bejegyzésszámokról kategóriánként. Query: Posts csoportosítva kategória szerint, Columns: kategória név (label) + bejegyzésszám (value).
+- **Eladási trend**: vonaldiagram havi bevételről WooCommerce-ből. Query: rendelés dátum szerinti aggregálás, Columns: hónap (label) + összeg (value), Chart Config: animáció bekapcsolva.
+- **Űrlaperedmények**: fánkdiagram JetFormBuilder beküldések státuszairól. Query: CCT/Records, Columns: státusz (label) + darabszám (value).
+- **GeoChart**: SQL táblából országonkénti megtekintések térképen. Query: SQL SELECT ország, összegzés; Columns: ország (label) + nézettség (value).
+- **Külső API**: REST API-ból érkező filmértékelések tortadiagramon. Query: REST, Columns: kategória (label) + arány (value), Filter Callback-kel tisztítod az adatokat.
 
-### Oktatási intézmények
-Oktatási weboldalak esetében a bővítmény segíthet a hallgatói teljesítmény adatok vizualizálásában. Például használhatod az eszközt a vizsgaeredmények vagy a tantárgyi statisztikák bemutatására.
+## Telepítés és első lépések
 
-### Üzleti jelentések
-Üzleti weboldalakon a JetEngine - Dynamic Charts Builder segítségével készíthetsz üzleti jelentéseket, amelyek tartalmaznak különböző pénzügyi mutatókat, értékesítési adatokat vagy egyéb fontos információkat. 
+1. Engedélyezd a JetEngine moduljai között a **Dynamic Charts Buildert** (External Modules).
+2. Hozz létre egy **Queryt** a Query Builderben (forrás: posztok, CCT, WooCommerce, SQL, REST API stb.).
+3. A **Charts Builderben** készíts új chartot, válaszd ki a Queryt, nyomd meg a **Fetch** gombot, állítsd be a **Chart Type**-ot és a **Columns**-t (első: label, többi: érték).
+4. A **Chart Styles** fülön add meg a szélességet/magasságot, hogy működjön az előnézet.
+5. Szúrd be az oldalakra a **Dynamic Chart** widgettel/blokkal, és válaszd ki a létrehozott chartot.
 
-### Blogok és híroldalak
-Blogok és híroldalak esetében az olvasók számára érdekes statisztikák és adatok vizualizálásával növelheted az oldalon töltött időt és az elkötelezettséget.
+## Előnyök és értékajánlat
 
-## Tippek a hatékony használathoz
+- **Kódolás nélkül** hozol létre profi grafikonokat.
+- **Egységes felület** minden adatforráshoz (WP, WooCommerce, CCT, SQL, REST).
+- **Gyors bevezetés**: Query → Fetch → Típus → Megjelenítés.
+- **Rugalmas testreszabás** a Google Charts opcióival.
+- **Interaktív szűrés** JetSmartFilters-szel, cache-elés nagy adathalmazokra.
+- **Újrafelhasználhatóság**: egy chart több oldalon, külön karbantartás nélkül.
 
-- **Adatok forrásának kiválasztása:** Győződj meg róla, hogy a megfelelő adatforrást választod ki a grafikonok készítéséhez. Ez lehet saját adatbázis, API vagy akár külső adatforrás is.
-- **Testreszabhatóság:** Használd ki a bővítmény testreszabási lehetőségeit, hogy a grafikonok megfeleljenek a weboldal dizájnjának.
-- **Integrációk:** Ha más eszközöket is használsz, mint például Elementor vagy Gutenberg, érdemes kihasználni ezek integrációját a még egyszerűbb kezelhetőség érdekében.
+## Kinek ajánlott?
 
-## Szószedet
+- **Weboldal- és webshop-tulajdonosoknak**: azonnali, élő statisztikák kódolás nélkül.
+- **Marketing- és tartalomcsapatoknak**: riportok, dashboardok percek alatt.
+- **Fejlesztőknek és ügynökségeknek**: skálázható, karbantartható vizualizációk, szerkesztő-kompatibilis komponensekkel.
+- **Adat-orientált projekteknek**: REST/SQL integrációk vizuális összefoglalása.
 
-- **Custom Post Types:** Egyedi bejegyzéstípusok.
-- **Custom Content Types (CCT):** Egyedi tartalomtípusok.
-- **WooCommerce:** E-kereskedelmi bővítmény.
-- **REST API:** Representational State Transfer Application Programming Interface.
-- **Elementor:** Oldalszerkesztő bővítmény.
-- **Gutenberg:** Blokkszerkesztő WordPress-ben.
-- **Bricks:** Oldalkészítő eszköz.
+## Korlátozások és tippek
+
+- Az előnézethez a **Chart Styles** fülön kötelező szélességet megadni.
+- A **Re-fetch Data** előnézeti funkció WooCommerce esetén nem működik.
+- A **Columns** fülön ügyelj az adattípusokra (**Ensure number/string**), különösen pénznem és számok esetén.
+- A haladó opciók a **Google Charts** beállításait követik; animációt, jelmagyarázatot, tengelyeket itt finomhangolhatod.
+- Szűrhetőséghez használd a Query **Query ID**-ját és kösd össze JetSmartFilters-szel; nagy adatnál érdemes bekapcsolni a Query cache-t.
+
+Megjegyzés: a Charts Builder a JetEngine része; előfizetéssel érhető el, az árak változhatnak. A fejlesztő a Crocoblock.

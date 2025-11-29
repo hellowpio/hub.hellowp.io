@@ -1,54 +1,104 @@
-# WP All Export - User Export Add-On Pro
+---
+title: "WP All Export - User Export Add-On Pro"
+description: "Hivatalos WP All Export kiegészítő WordPress felhasználók rugalmas, ütemezhető exportálásához CSV/Excel/Google Sheets/XML formátumokba, teljes meta támogatással."
+sidebar_label: "WP All Export - User Export Add-On Pro"
+---
 
-A WP All Export - User Export Add-On Pro egy kiegészítő, amely lehetővé teszi a WordPress felhasználók adatainak egyszerű és hatékony exportálását különböző formátumokba, mint például CSV, Excel vagy XML. Az alábbiakban részletesen bemutatjuk a bővítmény funkcionalitását, előnyeit, kompatibilitását más eszközökkel, valamint gyakorlati alkalmazási példákat is adunk.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+A WP All Export – User Export Add‑On egy hivatalos kiegészítő, amivel a WordPress felhasználókat exportálhatod testreszabott táblázatokba és XML‑ekbe. 2024. május 15‑től a felhasználó‑export külön add‑on, vagyis új és meglévő user exportok futtatásához ezt külön kell telepítened. A bővítmény megoldja a WordPress alap export korlátait: nemcsak az alap user mezőket, hanem WooCommerce és más pluginek egyedi meta adatait is kényelmesen, saját oszlopkiosztással, szűréssel és ütemezéssel viheted ki.
 
-### Adatexportálás egyszerűsége
+## Hogyan működik röviden?
 
-A WP All Export - User Export Add-On Pro használata rendkívül egyszerű, hiszen a drag & drop felület segítségével pillanatok alatt kiválaszthatod, mely felhasználói adatokat szeretnéd exportálni. Az adatok kategorizálva vannak, így könnyen megtalálhatod a szükséges információkat.
+- Új export létrehozása: Users típus
+- Mezők kijelölése drag & drop módszerrel
+- Oszlopok átnevezése, sorrend, kombinált mezők
+- Szűrők beállítása (szerep, státusz, bármely meta)
+- Export futtatása → CSV/Excel/Google Sheets/XML
+- Opcionálisan ütemezés és automatizált továbbítás
+- Módosítás után visszaimport WP All Importtal (Bundle sablonnal)
 
-### Szűrési lehetőségek
+```text
+All Export → New Export → Users
+  → Drag & Drop mezők
+  → Filters (pl. role = customer, last_login > 30 nap)
+  → Run Export → Letöltés / Ütemezés
+  → (Opció) Bundle → WP All Import visszatöltés
+```
 
-Az exportálási folyamat során számos szűrési lehetőség áll rendelkezésre. Például szűrheted a felhasználókat regisztrációs dátumuk, szerepkörük, vagy egyedi mezők alapján. Ez lehetővé teszi, hogy csak azokat az adatokat exportáld, amelyek valóban relevánsak számodra.
+## Fő funkciók, érthetően
 
-### Automatikus ütemezés
+- Formátumok: **CSV, Excel, Google Sheets, XML**
+  - Google Sheets‑be közvetlenül küldheted a frissített adatokat.
+  - XML‑nél vizuálisan vagy kézzel építhetsz akár teljesen egyedi sémát.
 
-Lehetőséged van az exportálási folyamatok automatizálására is. Beállíthatsz heti vagy havi ütemezést, így az adatok rendszeresen frissülnek és exportálódnak anélkül, hogy manuálisan be kellene avatkoznod.
+- Teljes adatmező‑kör:
+  - **Alap WordPress user mezők** (név, e‑mail, regisztráció dátuma, szerep stb.).
+  - **WooCommerce vevőadatok** (számlázási/szállítási címek, rendeléshez kötődő meta).
+  - **Bármely plugin által hozzáadott user meta**, automatikus felismeréssel.
 
-### Kompatibilitás más eszközökkel
+- **Oszlop‑tervező**:
+  - Mezők átnevezése, sorrendezése, új oszlopok létrehozása.
+  - Mezők kombinálása (pl. Teljes név = keresztnév + vezetéknév).
+  - Fejlesztőként saját **PHP‑logikát** is beépíthetsz az értékek átalakításához.
 
-A WP All Export - User Export Add-On Pro zökkenőmentesen működik együtt számos más WordPress bővítménnyel és eszközzel:
+- **Szűrés és célzás**:
+  - Szerep, státusz, dátum, vagy bármely meta alapján.
+  - Összetett feltételek (és/vagy) a pontos célcsoport kiválasztásához.
 
-- **WooCommerce**: Külön kategória áll rendelkezésre a WooCommerce ügyféladatok exportálásához.
-- **Advanced Custom Fields (ACF)**: Az egyedi mezők adatainak exportálása is lehetséges.
-- **Meta Box és JetEngine**: Ezekkel a bővítményekkel készült egyedi adatmezők szintén exportálhatók.
-- **Zapier integráció**: Az adatok egyszerűen továbbíthatók más alkalmazásokba a Zapier segítségével.
+- **Ütemezés és automatizálás**:
+  - Exportok időzítése saját cron‑nal vagy szolgáltatói ütemezéssel.
+  - **Zapier integráció**: több mint ezer külső alkalmazás felé továbbíthatsz adatokat emberi beavatkozás nélkül.
+
+- **Migráció és visszaimportálás**:
+  - Export → Excelben szerkesztés → **WP All Import** segítségével visszatöltés.
+  - **Bundle** letöltés: az export mellé kapsz egy kész import sablont.
+
+- **Nagy adatmennyiség, stabilitás**:
+  - Háttérfeldolgozás és ütemezés a nagy userbázisok megbízható kezeléséhez.
+
+- **Biztonság**:
+  - **Hash‑elt jelszavak** exportálása és visszaimportja: migrációkor nem kell tömeges jelszó‑resetet kérned.
+
+- **Kompatibilitás**:
+  - **WooCommerce** meta mezők automatikus felismerése.
+  - **WPML** támogatás többnyelvű környezetben.
+  - **Zapier** csatlakozás CRM‑ekhez, hírlevélküldőkhöz, táblázatokhoz és sok más eszközhöz.
+
+Megjegyzés: az add‑on a WP All Export funkcióit bővíti; a licencelés és csomagok idővel változhatnak, ezért mindig az aktuális feltételek érvényesek.
 
 ## Gyakorlati példák
 
-### Ügyféladatok migrálása új weboldalra
+- CRM szinkron:
+  - Hetente exportálod a „customer” szerepű felhasználókat, a fontos mezőket (e‑mail, teljes név, ország, utolsó rendelés összege) saját oszlopokba rendezve, majd Zapieren át a CRM‑be küldöd.
 
-Ha egy új weboldalt hozol létre és szeretnéd átvinni az összes meglévő felhasználói adatot, a WP All Export - User Export Add-On Pro kiváló megoldás. Az exportált fájlokat egyszerűen importálhatod az új weboldalra a WP All Import segítségével.
+- Hírlevél szegmentálás:
+  - Szűrő: feliratkozott = igen, utolsó aktivitás < 90 nap. Az exportot Excelbe küldöd, és címkéket (pl. „VIP”, „Inaktív”) generálsz kombinált oszlopokkal.
 
-### Szegmentált marketing kampányok
+- WooCommerce riport:
+  - Országonkénti vevőlista és összes költés: billing_country + total_spent alapján kimutatás, Google Sheets‑be időzítve.
 
-Ha marketing kampányokat futtatsz és szegmentált adatokat szeretnél használni, például csak a VIP ügyfelek adatait, egyszerűen kiszűrheted ezeket az adatokat és exportálhatod őket egy külön fájlba. Így célzottabb kampányokat indíthatsz.
+- Teljes site migráció jelszavakkal:
+  - Minden user exportálása hash‑elt jelszavakkal, Bundle letöltés, majd az új oldalon WP All Importtal visszatöltöd – a felhasználók ugyanazzal a jelszóval tudnak belépni.
 
-### Rendszeres riportok készítése
+- Egyedi XML partnernek:
+  - A partner rendszere egyedi XML sémát kér. Az XML‑építőben pontosan olyan elemeket és hierarchiát hozol létre, amilyet ők várnak.
 
-Az automatikus ütemezési funkcióval rendszeres időközönként exportálhatod az adatokat, amelyeket aztán könnyen feldolgozhatsz Excelben vagy más analitikai eszközökben. Ez különösen hasznos lehet havi vagy heti jelentések készítéséhez.
+## Előnyök és értékajánlat
 
-## Szószedet
+- **Időmegtakarítás**: nincs több kézi adattisztítás, oszlop‑másolgatás.
+- **Rugalmasság**: bármilyen mezőt, bármilyen elrendezésben exportálhatsz.
+- **Automatizálás**: ütemezett export + Zapier = önjáró adatfolyamok.
+- **Kevesebb hiba**: vizuális oszlop‑tervező és újrafuttatható sablonok.
+- **Skálázhatóság**: nagy site‑okon is stabil feldolgozás.
+- **Fájdalommentes migráció**: jelszavak megőrzése, Bundle‑alapú visszatöltés.
 
-- **CSV**: Comma Separated Values, egy fájlformátum, amelyet széles körben használnak adatcsere céljából.
-- **Excel**: Microsoft Excel táblázatkezelő program fájlformátuma (XLS, XLSX).
-- **XML**: Extensible Markup Language, egy fájlformátum adatok strukturált tárolására és cseréjére.
-- **Drag & Drop**: Egy felhasználói felület funkció, amely lehetővé teszi elemek mozgatását és elhelyezését az egér segítségével.
-- **WooCommerce**: Egy nyílt forráskódú e-kereskedelmi bővítmény WordPresshez.
-- **Advanced Custom Fields (ACF)**: Egy bővítmény WordPresshez, amely lehetővé teszi egyedi mezők létrehozását és kezelését.
-- **Meta Box**: Egy bővítmény WordPresshez, amely lehetővé teszi egyedi mezők létrehozását és kezelését.
-- **JetEngine**: Egy bővítmény WordPresshez, amely dinamikus tartalomkezelést tesz lehetővé.
-- **Zapier**: Egy online automatizálási eszköz, amely összekapcsol különböző alkalmazásokat és szolgáltatásokat.
+## Kinek ajánlott?
 
-Reméljük, hogy ez a leírás segít jobban megérteni a WP All Export - User Export Add-On Pro funkcionalitását és előnyeit. Az eszköz számos helyzetben nyújt hatékony megoldást az adatkezelési feladatokra.
+- **Webshopoknak és e‑kereskedelmi csapatoknak**: WooCommerce vevőadatok riportjai, szegmentálás, kampányok előkészítése.
+- **Marketing/CRM szakembereknek**: folyamatos, tiszta adatáramlás hírlevélrendszerekbe és CRM‑ekbe.
+- **Ügynökségeknek és fejlesztőknek**: migrációk, staging→live szinkron, egyedi XML követelmények kiszolgálása.
+- **Nagyvállalati és többnyelvű oldalaknak**: ütemezett, megbízható exportok WPML és komplex meta környezetben.
+- **Rendszergazdáknak/adatgazdáknak**: audit, archiválás, rendszeres mentések strukturált formátumban.
+
+Ha felhasználóadatokat szeretnél profi módon kinyerni, alakítani és automatizáltan továbbítani, a User Export Add‑On pontosan erre való: egyszerre rugalmas, skálázható és visszaimportálással is kerek egészet alkot.

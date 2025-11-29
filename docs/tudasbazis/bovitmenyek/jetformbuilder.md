@@ -1,78 +1,93 @@
-# JetFormBuilder
+---
+title: "JetFormBuilder"
+description: "Blokkalapú, Gutenbergre épülő WordPress űrlapépítő, dinamikus adatokkal és automatizált műveletekkel."
+sidebar_label: "JetFormBuilder"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A JetFormBuilder egy dinamikus formakészítő eszköz, amely lehetővé teszi, hogy könnyedén készítsd el és kezeld az űrlapokat WordPress weboldaladon. Ez az eszköz különösen hasznos a felhasználók számára, mivel számos beépített funkcióval rendelkezik, amelyek egyszerűsítik és hatékonyabbá teszik az űrlapkészítést és -kezelést.
+A JetFormBuilder egy natív, blokkalapú űrlapépítő WordPresshez. A WordPress szerkesztőben (Block Editor) rakhatod össze az űrlapokat, majd ugyanott vagy más oldalépítőkben jelenítheted meg. Az a célja, hogy ugyanazon a felületen tudd megtervezni az űrlapot, összekötni a WordPress‑adatokkal (CPT, taxonómiák, meta), és beküldés után automatizált műveleteket futtatni – kód nélkül. Ezzel kiváltod a külön drag‑and‑drop buildert, a styler plugint és az űrlap‑automatizálási bővítményeket.
 
-### Főbb jellemzők
+## Hogyan működik röviden?
 
-#### Feltételes mezők
+- Az adminon belül blokkokból állítod össze az űrlapot (mezők, gombok, több lépés, feltételek).
+- Beállítod a beküldés utáni műveleteket (e‑mail, bejegyzés/felhasználó létrehozás, fizetés, webhook, átirányítás).
+- Megjelenítés a frontend‑en Gutenberg blokkal, Elementor widgettel, Bricks elemmel vagy shortcode‑dal:
+```
+[jet_fb id="123"]
+```
+- A beküldések menthetők és listázhatók az adminban.
 
-A JetFormBuilder lehetővé teszi, hogy bármely űrlapmezőt feltételes állapotba helyezz, így könnyedén megjelenítheted, elrejtheted, engedélyezheted, letilthatod, vagy kötelezővé teheted azokat.
+## Fő funkciók részletesen
 
-#### Placeholder szövegek
+### Mezők és logika
+- **24+ mezőtípus**: szöveg, e‑mail, szám, választók (select, checkbox, radio), dátum/idő, range, kapcsoló, WYSIWYG, média, térkép stb.
+- **Feltételes megjelenítés**: mezőket, szekciókat szabályokhoz kötve láthatóvá/eltüntethetővé teszel (pl. csak céges számlázásnál jelenjen meg az adószám).
+- **Számított mezők**: képletekkel automatikusan számolsz (árkalkuláció, pontszám, szállítás).
+- **Repeater csoportok**: tetszőleges számú ismétlődő adatblokk (pl. több résztvevő hozzáadása).
+- **AJAX beküldés és input maszkok**: gyorsabb UX, formázott bevitellel (telefon, irányítószám).
 
-Három különböző inputmaszk típust használhatsz, hogy jelezd, milyen tartalomnak kell szerepelnie egy adott mezőben. Ez segít a felhasználóknak könnyebben kitölteni az űrlapokat.
+### Többlépéses űrlapok és UX
+- **Multi‑step** űrlapok és **progress bar** a hosszú folyamatokhoz.
+- **Űrlapmentés** (Pro kiegészítő): automatikus piszkozat, későbbi folytatás.
+- **Időzítés és limit** (Pro): űrlap nyitása/zárása időablakban, összes vagy felhasználónkénti beküldésszám korlátozása.
 
-#### Lépésjelző
+### Adatkezelés és műveletek (Post‑submit Actions)
+- **E‑mail küldés**: admin és felhasználói értesítések, dinamikus tartalommal.
+- **Bejegyzés beszúrása/frissítése**: bármely post type, taxonómiák és meta kezelése – ideális frontendes tartalombeküldéshez.
+- **Felhasználó regisztráció/frissítés**: profilmezők, szerepkörök kezelése; Pro‑val akár e‑mail‑verifikációs és jelszó‑visszaállítási folyamatok.
+- **Átirányítás, opciók frissítése, webhook/hook**: összekötés külső rendszerekkel, automatizációkkal.
+- **Marketing integrációk**: tipikus e‑mail marketing és CRM szolgáltatók támogatása.
 
-Egyértelműen megmutatja, melyik lépésnél tart az űrlapkitöltés, és hol helyezkedik el a folyamatjelző sáv szerint. Ez segít a felhasználóknak átlátni a kitöltési folyamatot.
+### Fizetések és e‑kereskedelem
+- **Stripe és PayPal**: egyszeri és ismétlődő (recurring) fizetések.
+- **WooCommerce Checkout**: egyedi űrlapból indított kosár/checkout folyamat.
+- Pro bővítők finomhangoláshoz: előfizetések, visszatérő díjak, WooCommerce akciók.
 
-### Űrlap érvényesítés
+### Spamvédelem és biztonság
+- **Több captcha‑opció**: Google reCAPTCHA v3, hCaptcha, Cloudflare Turnstile, Friendly Captcha.
+- Globális szinten vagy űrlaponként kapcsolhatod, külön **captcha blokk** is elérhető.
 
-#### Kötelező mezők
+### AI űrlapgenerátor
+- **OpenAI‑alapú “Generate Form with AI”**: rövid leírás alapján felépíti a mezőket (pl. regisztráció, álláspályázat). A használat korlátozott mennyiségű kéréshez kötött.
 
-Könnyedén beállíthatod, hogy mely mezők legyenek kötelezőek, így biztosíthatod, hogy minden szükséges információt megkapj a felhasználóktól.
+### Integrációk és kompatibilitás
+- **JetEngine**: dinamikus mezők, CPT‑k és taxonómiák szoros integrációja.
+- **JetStyleManager**: vizuális stílusozás a blokkszerkesztőben.
+- **JetBooking/JetAppointment**: foglalási és időpontkezelési folyamatokhoz.
+- **Oldalépítők**: szerkesztés a Block Editorban, megjelenítés Gutenberg blokkal, Elementor widgettel, Bricks elemmel vagy shortcode‑dal.
+- **Külső automatizációk**: űrlapadatok továbbítása táblázatokba, CRM‑ekbe és más eszközökbe.
 
-#### Hibajelzések
+### Pro bővítmények – tipikus kiegészítések
+- **Fizetés**: Stripe Subscriptions, PayPal Recurring, WooCommerce Cart & Checkout Action.
+- **Adatbevitel/UX**: Drag & Drop File Upload, Signature, Advanced Color Picker, Hierarchical Select, Select Autocomplete, Address Autocomplete, PDF‑csatolmány, Formless Actions Endpoints.
+- **Folyamatvezérlés**: Save Form Progress, Schedule Forms, Limit Form Responses.
+- **Marketing/CRM**: MailerLite, MailPoet, ConvertKit, HubSpot, Moosend stb.
 
-Automatikusan generálódnak hibajelzések, ha a felhasználók nem megfelelően töltik ki az űrlapot. Ez segít elkerülni a hiányos vagy hibás adatokat.
+## Gyakorlati példák
 
-#### reCAPTCHA v3
+- **Frontendes tartalombeküldés**: űrlap mezői hozzárendelve egy CPT meta mezőihez → beküldés után új bejegyzés jön létre, kategóriákkal és képpel.
+- **Árajánlat‑kalkulátor fizetéssel**: termékválasztó + számított összeg → Stripe fizetés → e‑mail visszaigazolás és CRM lead.
+- **Regisztráció és profilfrissítés**: több lépéses űrlap, feltételes mezők, felhasználó létrehozása/aktualizálása, opcionális e‑mail‑megerősítés.
+- **WooCommerce indítás egyedi űrlapból**: variációk és mennyiségek kiválasztása → kosárfeltöltés → átirányítás a checkoutra.
+- **Eseményjelentkezés limitált férőhellyel**: limitált beküldés, várólista webhooks‑szal.
 
-Integrálhatod a reCAPTCHA v3 funkciót az űrlapokba, hogy megvédje őket a spam támadásoktól és automatizált kitöltésektől.
+## Előnyök és értékajánlat
 
-### Akciók űrlap beküldése után
+- **Natív élmény**: mindent a blokk‑szerkesztőben építesz, kevesebb plugin‑függőség.
+- **Kód nélküli automatizáció**: post/user műveletek, webhookok, marketing akciók beállításból.
+- **Erős dinamikus adatkezelés**: CPT, taxonómiák és meta rugalmas kezelése.
+- **E‑kereskedelmi rugalmasság**: egyszeri és ismétlődő fizetések, WooCommerce kapcsolódás.
+- **Jobb űrlap‑UX**: multi‑step, mentés, időzítés, limitálás.
+- **Többrétegű spamvédelem**: több captcha, finom elhelyezéssel.
+- **Gyors indulás**: AI űrlapgenerálás és kész minták.
 
-#### Frontend post beküldés
+## Kinek ajánlott?
 
-Ez a funkció lehetővé teszi, hogy új bejegyzést adj hozzá vagy frissíts egy korábban létrehozottat közvetlenül az űrlap beküldése után. 
+- **Ügynökségeknek és fejlesztőknek**: komplex ügyfélfolyamatok gyors, skálázható összeállítása.
+- **Webshop‑tulajdonosoknak**: egyedi rendelési/előfizetési űrlapok WooCommerce‑szel vagy anélkül.
+- **Tartalomgazdáknak és kiadóknak**: frontendes beküldés, szerkesztői workflow‑k.
+- **Oktatási és nonprofit szervezeteknek**: jelentkezés, pályázat, adomány űrlapok, visszatérő támogatásokkal.
+- **No‑code power usereknek**: feltételes logika, kalkulációk, automatizációk fejlesztő nélkül.
 
-## Együttműködés más eszközökkel
-
-A JetFormBuilder zökkenőmentesen működik együtt számos más eszközzel és bővítménnyel. Ezek közé tartoznak:
-
-- **JetEngine**: A dinamikus tartalom kezelésére szolgáló eszköz.
-- **JetElements**: Számos elem és widget hozzáadását teszi lehetővé.
-- **JetStyleManager**: Testreszabhatod az űrlapok stílusát.
-- **JetSmartFilters**: Szűrőket adhatsz hozzá az űrlapokhoz.
-- **JetBooking**: Foglalási rendszerekkel is kompatibilis.
-- **JetPopup**: Felugró ablakokat készíthetsz.
-- **JetMenu**: Testreszabható menüket hozhatsz létre.
-
-## Gyakorlati alkalmazások
-
-### Online jelentkezési űrlapok
-
-Egyetemek és oktatási intézmények használhatják a JetFormBuilder-t online jelentkezési űrlapok készítésére. A feltételes mezők segítségével különböző kérdéseket jeleníthetnek meg a jelentkezők számára attól függően, hogy milyen programra jelentkeznek.
-
-### Ügyfélszolgálati űrlapok
-
-Vállalkozások beállíthatják ügyfélszolgálati űrlapjaikat a JetFormBuilder segítségével. Az inputmaszkok és hibajelzések biztosítják, hogy az ügyfelek pontosan adják meg az adataikat.
-
-### Eseményregisztráció
-
-Szervezetek használhatják események regisztrációjához. A lépésjelző segítségével a résztvevők könnyen átlátják, hol tartanak a regisztrációs folyamatban.
-
-### Kapcsolatfelvételi űrlapok
-
-Weboldalak egyszerű kapcsolatfelvételi űrlapokat hozhatnak létre. A kötelező mezők és reCAPTCHA v3 integráció biztosítja, hogy csak valódi érdeklődők töltsék ki az űrlapot.
-
-## Szószedet
-
-- **Conditional fields (feltételes mezők)**: Olyan mezők, amelyek állapotát meghatározott feltételek alapján változtathatod.
-- **Placeholder texts (placeholder szövegek)**: Olyan szövegek, amelyek segítenek megmutatni, milyen adatokat kell megadni egy mezőben.
-- **Step indicator (lépésjelző)**: Vizualizációs elem, amely mutatja az űrlapkitöltés aktuális lépését.
-- **Form validation (űrlap érvényesítés)**: Az adatok ellenőrzése az űrlap beküldése előtt.
-- **Frontend post submission (frontend post beküldés)**: Új bejegyzések létrehozása vagy frissítése közvetlenül az űrlap beküldése után.
-- **reCAPTCHA v3**: Google által biztosított eszköz a spam elleni védelemhez.
+Ha natív, megbízható és bővíthető űrlaprendszert keresel WordPressre, amivel üzleti folyamatokat is össze tudsz kötni fizetésekkel és dinamikus adatokkal, a JetFormBuilder pontosan ezt adja meg – felesleges bonyolítás nélkül.

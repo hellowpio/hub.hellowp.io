@@ -1,73 +1,79 @@
-# Custom User Registration Fields for WooCommerce
+---
+title: "Custom User Registration Fields for WooCommerce"
+description: "Fizetős WooCommerce-kiegészítő az egyedi regisztrációs mezők, szerepkör-választó, jóváhagyás és értesítések kezelésére – B2C és B2B folyamatokhoz."
+sidebar_label: "Custom User Registration Fields for WooCommerce"
+---
 
-A Custom User Registration Fields for WooCommerce egy olyan bővítmény, amely lehetővé teszi, hogy egyedi mezőket adj hozzá a WooCommerce regisztrációs űrlaphoz. Ezzel extra információkat gyűjthetsz be a vásárlóktól. A bővítmény támogatja a legördülő menüket, többválasztásos lehetőségeket, jelölőnégyzeteket, fájlfeltöltéseket, dátumokat és további 12 mezőtípust.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők és képességek
+A Custom User Registration Fields for WooCommerce egy professzionális kiegészítő, amellyel korlátlan számú **egyedi mezőt** adhatsz a WooCommerce regisztrációs űrlapjához. Megoldja, hogy az alap, minimális WooCommerce-regisztráció helyett már az első belépés előtt begyűjtsd a számodra fontos adatokat (pl. cégadatok, adószám, preferenciák), és komplett **B2B regisztrációs folyamatokat** építs fel **szerepkör-választóval**, **manuális/automatikus jóváhagyással** és **e-mail értesítésekkel**. A mezők az adminban és a „Fiókom” oldalon is megjelennek, így az adatok végig követhetők. WooCommerce nélkül is képes a mezőket az alap WordPress-regisztráción megjeleníteni.
 
-### Többféle mezőtípus
-A bővítmény 17 különböző mezőtípust támogat:
-1. Text
-2. TextArea
-3. Email
-4. Selectbox
-5. Multi-selectbox
-6. Checkbox
-7. Multi-Checkbox
-8. Radio Button
-9. Number
-10. Password (Titkos bemenet)
-11. File Upload (Fájltípusok és méret korlátozása)
-12. Color Picker
-13. Date Picker (Naptár)
-14. Time Picker
-15. Google reCaptcha
-16. Heading Field
-17. Description (Csak üzenet megjelenítése)
+Fontos: ez a leírás az Addify által fejlesztett, Marketplace-en elérhető bővítményről szól. Nem azonos az ingyenes, hasonló nevű másik megoldással. Ha ezt keresed, figyeld, hogy a fejlesztő Addify, és szerepel-e a szerepkör-alapú jóváhagyás.
 
-### Felhasználói szerepkörök kiválasztása
-Lehetővé teszi, hogy a regisztrációs űrlapon legördülő menüben válasszanak a felhasználói szerepkörök közül, és automatikus vagy manuális jóváhagyást állíthatsz be az egyes szerepkörökre.
+## Fő funkciók, érthetően
 
-### Dependable mezők
-Készíthetsz függő mezőket, hogy az űrlap tiszta maradjon. Ezek a mezők csak akkor jelennek meg, ha a megfelelő előző mező értékei kiválasztásra kerülnek.
-
-### Adminisztrátori beállítások és értesítések
-Az adminisztrátorok értesítést kaphatnak a felhasználói mezők adatainak módosításáról, és lehetőség van az admin számára információs mezők létrehozására is, amelyek nem láthatók a felhasználók számára.
-
-### B2B regisztrációk támogatása
-A bővítmény teljes körű B2B regisztrációs megoldásként is használható, lehetőséget biztosítva vállalkozások és nagykereskedők regisztrálására különböző felhasználói szerepkörök segítségével.
-
-## Együttműködés más eszközökkel
-
-A bővítmény kompatibilis minden harmadik féltől származó felhasználói szerepkör bővítménnyel és az alapértelmezett WooCommerce funkciókkal is zökkenőmentesen működik együtt. Például:
-
-- **WooCommerce Subscriptions**: Lehetőséget ad arra, hogy előfizetési lehetőségeket is kínálj az egyedi regisztrációs mezők mellett.
-- **Checkout Field Editor**: Segítségével optimalizálhatod a pénztár folyamatot az egyedi mezők segítségével.
-- **WooCommerce Memberships**: Tagsági oldalak létrehozásakor használhatod az egyedi mezőket a részletesebb regisztráció érdekében.
+- Korlátlan egyedi mező
+  - Hozzáadhatsz tetszőleges számú mezőt, amelyekhez beállíthatod a **címkét**, **placeholdert**, **leírást**, **kötelező/elhagyható** státuszt, **olvasható (read-only)** módot, **fél- vagy teljes szélességet**, sőt **egyedi CSS**-t is. A mezők sorrendje rendezhető.
+- Szerepkör-választó és feltételes logika
+  - A regisztráción megjeleníthetsz **szerepkör-választót** (pl. „Nagyker”, „Kereskedő”). Te döntöd el, mely szerepkörök választhatók, és a mezőket **szerepkörökhöz rendelheted**, így mindenki csak a releváns kérdéseket látja. A **feltételes (dependable) mezők** segítségével tisztább, rövidebb űrlapot készíthetsz.
+- Jóváhagyási folyamat és értesítések
+  - Új felhasználók **manuális vagy automatikus jóváhagyása** szerepkörönként. A rendszer **e-maileket** küld a regisztrációról, függő státuszról, jóváhagyásról vagy elutasításról – adminnak és ügyfélnek egyaránt.
+- Alap számlázási (billing) mezők engedélyezése
+  - Opcionálisan bekapcsolhatod a klasszikus számlázási mezőket (név, cég, cím, telefon stb.) a regisztrációhoz. Ezek az adatok **automatikusan előtöltődnek** a pénztárban, így kevesebb a dupla adatbevitel.
+- Megjelenítés több nézetben
+  - A felhasználó a „**Fiókom**” oldalon láthatja (és beállításidtól függően szerkesztheti) az adatokat. Az admin a **Felhasználók** alatt mindent átlát. Opcionálisan a mezők megjelenhetnek a **rendelés részleteinél** és a **rendelési e-mailekben** is.
+- Mezőtípusok széles köre
+  - Többek között: **szöveg**, **szövegterület**, **e-mail**, **szám**, **jelszó**, **legördülő**, **többválasztós**, **jelölőnégyzet(ek)**, **rádió**, **fájlfeltöltés** (méret- és típuskorlátozással), **színválasztó**, **dátum-/időválasztó**, **Google reCAPTCHA**, valamint **címsor/fejléc** és **leírás** mezők.
+- Kompatibilitás szerepkör-kezelőkkel
+  - Együttműködik elterjedt **szerepkör-kezelő bővítményekkel**, így haladó jogosultsági modellbe is könnyen illeszthető.
+- Spamvédelem
+  - Beépített **reCAPTCHA** mezőtípus csökkenti a robotregisztrációkat.
 
 ## Gyakorlati példák
 
-### Üzleti regisztrációk
-Ha például nagykereskedők regisztrálnak az oldaladon, létrehozhatsz speciális mezőket, mint a cég neve vagy az adószám, amelyek csak akkor jelennek meg, ha a felhasználó "Company" szerepkört választja.
+- B2B nagyker regisztráció
+  - A felhasználó szerepkört választ („Nagyker”), erre feltárulnak a **cégjegyzékszám**, **adószám**, **számlázási cím** mezők. A lead „függő” állapotba kerül, az admin ellenőrzi, majd jóváhagyja. Jóváhagyás után e-mailt kap, és beléphet.
+- Szolgáltatás/klub
+  - A regisztráción kérhetsz **érdeklődési köröket**, **tagsági azonosítót**, **születési dátumot**. Ezek később a „Fiókom” oldalon áttekinthetők, frissíthetők.
+- Pénztárnál regisztráció
+  - Ha engedélyezed a pénztárnál történő fiók-létrehozást, ugyanazok a regisztrációs mezők megjelenhetnek ott is. Technikai okból bizonyos mezők (pl. **fájlfeltöltés**, **reCAPTCHA**) a pénztárnál nem jelennek meg. A **szerepkör-választó** és a hozzá kötött feltételes mezők elérhetők.
 
-### Szállítási információk gyűjtése
-Az ügyfelek regisztrációjakor bekérheted a szállítási információkat (pl. cím, város, irányítószám), amelyeket később automatikusan kitölthetsz a rendelés során.
+## Hogyan kezdjem? (telepítés és alapbeállítás)
 
-### Fájlok feltöltése
-Ha például dokumentumokat vagy engedélyeket kell beszerezni a felhasználóktól, akkor fájlfeltöltési mezőket adhatsz hozzá a regisztrációs űrlaphoz.
+1. Telepítés után keresd az admin menüben a **Registration Fields** menüpontot.
+2. Hozz létre új mezőt: válaszd ki a **típust**, add meg a **címkét**, állítsd be a **kötelező** státuszt, **szélességet**, esetleg **read-only** módot és egyedi **CSS**-t.
+3. Állíts be **szerepkör-választót**, és rendeld a mezőket konkrét szerepkörökhöz vagy feltételekhez.
+4. Engedélyezd az **alap számlázási mezőket**, ha szeretnéd ezeket előre megkérdezni.
+5. Konfiguráld a **jóváhagyási szabályt** (manuális/automatikus) szerepkörönként, és szerkeszd a **értesítő e-mailek** szövegét.
+6. Döntsd el, hol jelenjenek meg az adatok: **Fiókom**, **admin felhasználói adatlap**, opcionálisan **rendelés részletek** és **rendelési e-mailek**.
 
-## Szószedet
+Tipp: tartsd az űrlapot röviden – használj szerepkör- és feltételalapú megjelenítést, hogy mindenki csak a releváns mezőket lássa.
 
-- **Text**: Szöveg mező.
-- **TextArea**: Többsoros szövegmező.
-- **Email**: E-mail cím mező.
-- **Selectbox**: Legördülő menü.
-- **Multi-selectbox**: Többválasztásos legördülő menü.
-- **Checkbox**: Jelölőnégyzet.
-- **Radio Button**: Választógomb.
-- **File Upload**: Fájlfeltöltés.
-- **Color Picker**: Színválasztó.
-- **Date Picker**: Dátumválasztó naptár.
-- **Time Picker**: Időválasztó.
-- **Google reCaptcha**: Biztonsági ellenőrzés.
+## Ismert korlátozások
 
-Ezekkel a funkciókkal és beállítási lehetőségekkel a Custom User Registration Fields for WooCommerce bővítmény lehetőséget biztosít arra, hogy személyre szabott és részletesebb felhasználói regisztrációt valósíts meg webáruházadban.
+- A WooCommerce **alap regisztrációs mezői** mindig a lista elején jelennek meg; az egyedi mezők rendezhetők, de az alapmezők közé nem illeszthetők. A **szerepkör-választó** az alapmezők után jelenik meg.
+- A pénztárnál történő regisztráción **bizonyos mezők** (pl. fájlfeltöltés, reCAPTCHA) nem jelennek meg.
+- Nincs **shortcode**, és nem hozhatsz létre **több külön regisztrációs űrlapot**; a bővítmény a WooCommerce natív űrlapját bővíti.
+- **Jelszó-megerősítő** mező hozzáadása nem támogatott.
+
+## Kompatibilitás és követelmények
+
+A bővítmény WooCommerce-alapú webáruházakhoz készült, több nyelvet támogat, és együttműködik népszerű szerepkör-kezelő megoldásokkal. A WordPress és WooCommerce használata alapfeltétel.
+
+## Előnyök és értékajánlat
+
+- **Adatteljesség az első pillanattól**: kevesebb utólagos egyeztetés, gyorsabb onboarding.
+- **B2B validáció**: csak jóváhagyott ügyfelek férnek hozzá a fiókhoz és a rendeléshez.
+- **Kevesebb dupla adatbevitel**: a regisztráción bekért számlázási adatok **előre kitöltik** a pénztár mezőit.
+- **Jobb ügyfélkommunikáció**: automatikus, állapotalapú **e-mail értesítések**.
+- **Rugalmas űrlapok**: feltételes és szerepkör-függő megjelenítés, széles **mezőtípus-választék**.
+- **Spamcsökkentés**: reCAPTCHA integráció.
+
+## Kinek ajánlott?
+
+- **B2B/Nagyker webáruházaknak**: szerepkörök, cégadatok, dokumentumfeltöltés és manuális jóváhagyás.
+- **Szolgáltatóknak, kluboknak, tagsági oldalaknak**: profilmezők, érdeklődések, tagsági adatok kezelése.
+- **Ügynökségeknek és fejlesztőknek**: gyors megoldás a komplex regisztrációs igényekre, testre szabható megjelenéssel.
+- **Szabályozott iparágaknak**: ellenőrizhető, jól dokumentált ügyféladat-folyamat.
+
+Ezzel a bővítménnyel pontosan azt kérdezheted meg a regisztrációnál, amire üzletileg szükséged van, átlátható jóváhagyási folyamattal és egységes adatkezeléssel – mindezt a WooCommerce ökoszisztémájába illesztve.

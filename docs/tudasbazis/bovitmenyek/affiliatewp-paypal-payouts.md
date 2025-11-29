@@ -1,58 +1,88 @@
-# AffiliateWP - PayPal Payouts
+---
+title: "AffiliateWP - PayPal Payouts"
+description: "Affiliate jutalékok 1-kattintásos kifizetése a WordPress adminból, a PayPal Payouts (REST) API-val."
+sidebar_label: "AffiliateWP - PayPal Payouts"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A **AffiliateWP - PayPal Payouts** funkció lehetővé teszi, hogy egyetlen kattintással kifizethesd az affiliate partnereidnek járó jutalékokat közvetlenül a PayPal fiókodból. Ez jelentősen csökkenti a kifizetések feldolgozásával töltött időt, így több időd marad a vállalkozásod irányítására. Az affiliate partnerek is elégedettebbek lesznek, mivel gyorsabban hozzájutnak a megérdemelt pénzükhöz.
+Az AffiliateWP – PayPal Payouts az AffiliateWP hivatalos kiegészítője, amellyel közvetlenül a WordPress adminból, egyetlen kattintással fizetheted ki az affiliáltak jutalékait a **PayPal Payouts** (REST) API-n keresztül. Nem önálló plugin, az **AffiliateWP alapbővítmény** szükséges hozzá. A célja, hogy megszüntesse a manuális, CSV-alapú tömeges kifizetéseket és az alkalmazásváltást: nem kell exportálnod a jutalékokat, feltöltened a PayPalba és manuálisan jóváhagynod – mindent a WordPressen belül intézhetsz.
 
-### Zökkenőmentes integráció más eszközökkel
+A bővítményt az **AffiliateWP csapata** fejleszti az Awesome Motive háttérrel. Tipikusan olyan boltokban használják (pl. **WooCommerce**, **Easy Digital Downloads**), ahol az AffiliateWP már kezeli a jutalékokat, és a kifizetéseket gyorsan, hibamentesen kell intézni.
 
-A PayPal Payouts zökkenőmentesen működik együtt számos más eszközzel, mint például:
-- **WooCommerce**: Egyszerűen integrálható az egyik legnépszerűbb e-kereskedelmi platformmal.
-- **Easy Digital Downloads**: Kiválóan alkalmas digitális termékek értékesítésére.
-- **Elementor**: Könnyen beilleszthető az Elementor által létrehozott oldalakba.
-- **WPForms**: Képes kezelni a különböző űrlapokon keresztül érkező adatokat.
-- **MemberPress**: Tökéletes választás tagsági oldalakhoz.
+## Előfeltételek és követelmények
 
-### Konkrét helyzetekben való hasznosság
+- **PayPal Business fiók**, amelyen a **Payouts** funkció engedélyezve van (új/alacsony forgalmú fiókoknál külön jóváhagyás kellhet).
+- A kifizetések a **PayPal-egyenlegből** történnek, ezért legyen elég fedezeted.
+- Az affiliáltaknak az e-mail címükhöz **érvényes PayPal fiókkal** kell rendelkezniük. Ha nincs, PayPal-meghívót kapnak; ha nem fogadják el, a pénz visszakerül hozzád.
+- Az AffiliateWP alapbővítmény telepítve és licencelve legyen (a kiegészítő **minden licencszinthez elérhető**).
 
-A PayPal Payouts különösen hasznos lehet az alábbi helyzetekben:
-- **Nagy mennyiségű kifizetés kezelése**: Ha sok affiliate partnered van, a bulk kifizetések lehetősége jelentősen megkönnyíti a folyamatot.
-- **Nemzetközi kifizetések**: A PayPal széleskörű nemzetközi jelenléte miatt egyszerűvé válik a kifizetések lebonyolítása külföldi partnerek számára is.
-- **Gyors kifizetések**: Az azonnali kifizetések révén elkerülhetőek a hosszú várakozási idők, ami javítja az affiliate partnerek elégedettségét.
+## Gyors áttekintés: hogyan működik?
 
-## Legfontosabb jellemzők és képességek
+1) Hozz létre egy **PayPal REST appot** (Client ID és Secret).  
+2) Add meg a hitelesítő adatokat az AffiliateWP beállításaiban, és teszteld a kapcsolatot.  
+3) Fizess egyenként (Pay Now) vagy tömegesen, előnézeti lépés után.
 
-### Azonnali kifizetések
+```
+AffiliateWP → Settings → Payouts → PayPal
+Mode: Sandbox / Live
+Client ID: <másold be>
+Secret: <másold be>
+Test Connection: OK
+```
 
-Az azonnali kifizetések lehetősége az egyik legnagyobb előnye a PayPal Payouts funkciónak. Ezáltal a partnerek azonnal hozzáférhetnek a keresetükhöz, ami növeli az elégedettséget és a motivációt.
+## Fő funkciók részletesen
 
-### API hozzáférés
+### 1. 1‑kattintásos kifizetés
+A **Referrals** listában minden jóváhagyott jutaléktételnél megjelenik a **Pay Now** művelet. Rákattintasz, a rendszer azonnal elküldi a kifizetést a címzett PayPaljára, és a tétel státusza **“Paid”** lesz. Akkor hasznos, ha kisebb összegeket, egyedi tételeket szeretnél azonnal kifizetni.
 
-A PayPal Payouts használatához API hozzáférés szükséges a PayPal fiókodban. Ez biztosítja, hogy a kifizetések biztonságosak és megbízhatóak legyenek.
+### 2. Tömeges kifizetés szűrőkkel
+A **Pay Affiliates** képernyőn megadhatsz **dátumtartományt** és **minimum kifizetési összeget**, majd **Preview**-val előnézetet látsz: kik, mennyit kapnak. A **Submit** után a rendszer egy tranzakcióban beküldi a Payouts kérést, és az érintett referralok automatikusan **“Paid”** státuszra váltanak. Ideális havi vagy kétheti zárásokhoz.
 
-### Bulk kifizetések
+### 3. PayPal API integráció (Live/Sandbox)
+A beállításoknál a **Client ID** és **Secret** megadásával, **Live** vagy **Sandbox** módban kapcsolódhatsz. A beépített **kapcsolatteszt** segít még az első kifizetés előtt kiszűrni a hibákat. Sandbox módban kockázat nélkül gyakorolhatod a folyamatot.
 
-A bulk kifizetések funkcióval egyszerre több partnernek is ki tudod fizetni a jutalékokat, ami jelentősen csökkenti a kifizetések feldolgozásával töltött időt.
+### 4. MassPay kompatibilitás (legacy)
+Ha a PayPal fiókodban még elérhető a **MassPay**, használhatod, de az új fiókoknál a **Payouts (REST)** az ajánlott és támogatott irány.
+
+### 5. Hibakeresés és naplózás
+Bekapcsolható **debug log**, amely részletesen rögzíti a PayPal API válaszokat. Tipikus hibakódok:
+- **403** – nincs Payouts engedély vagy hibás hitelesítő adatok.
+- **422** – nincs elég fedezet, vagy a címzett pénzneme nem támogatott.
+- **429** – terheltségi limit; várj, majd próbáld újra.
+
+### 6. Jogosultság és licenc
+A kiegészítő az AffiliateWP részeként működik, és **minden licencszint** használhatja. Admin jogosultsággal a teljes kifizetési folyamat hozzáférhető.
 
 ## Gyakorlati példák
 
-### E-kereskedelmi oldalak
+- **Havi zárás WooCommerce boltban**: Beállítod a dátumtartományt az előző hónapra, minimum összeget 20 USD-re, rányomsz a Preview-ra, ellenőrzöd a listát, majd Submit. Pár másodperc és több tucat affiliate kifizetése megtörtént, CSV nélkül.
+- **Azonnali egyedi kifizetés**: Egy kiemelt partner extra jutalékát szeretnéd azonnal elutalni. A Referrals listában a tétel mellett megnyomod a Pay Now gombot – a státusz Paid, a partner pedig perceken belül megkapja az összeget.
+- **Sandbox próba**: Új program indulásakor Sandbox módra váltasz, teszt affliáltakkal és teszt egyenleggel lefuttatod a teljes folyamatot, így élesítéskor már minden gördülékeny.
 
-Egy nagy forgalmú e-kereskedelmi oldal esetében, ahol számos affiliate partner dolgozik, a PayPal Payouts segítségével gyorsan és egyszerűen elvégezhetőek a havi jutalékkifizetések.
+## Hibakezelés – gyors megoldások
 
-### Digitális termékek értékesítése
+- **403**: ellenőrizd, hogy a Payouts funkció engedélyezett-e a PayPal Business fiókodban, és helyes-e a Client ID/Secret.
+- **422**: töltsd fel az egyenleget, vagy ellenőrizd, hogy a kifizetés pénzneme elfogadott-e a címzett fiókjában.
+- **429**: várj néhány percet és próbáld újra; nagy tömeges kifizetéseknél célszerű batch-ekben küldeni.
+- Ha egy címzettnek nincs PayPal fiókja az e-mailjéhez, a meghívó átfutásáig függőben lesz a pénz, majd visszajut hozzád, ha nem fogadják el.
 
-Digitális termékeket értékesítő vállalkozások számára ideális, mivel az Easy Digital Downloads integrációval zökkenőmentesen kezelhetők a kifizetések.
+## Payouts Service vs. PayPal Payouts
 
-### Tagsági oldalak
+- **PayPal Payouts**: azonnali kifizetés a te PayPal-egyenlegedről az affiliáltak PayPaljára; Payouts engedély szükséges, gyors és közvetlen.
+- **AffiliateWP Payouts Service**: bankkártyát vagy bankszámlát terhel, banki átutalással fizet az affiliáltaknak, és egyes országokban adózási adminisztrációt is segíthet. Átfutása jellemzően hosszabb, költségei eltérőek.
 
-Tagsági oldalak esetén, ahol rendszeres előfizetési díjakból származik a bevétel, a MemberPress és PayPal Payouts kombinációja lehetővé teszi a tagok könnyű és gyors kifizetését.
+## Előnyök és értékajánlat
 
-## Szószedet
+- **Időmegtakarítás**: percek alatt lezárható egy teljes havi kifizetés.
+- **Kevesebb hiba**: nincs CSV export–import, kevesebb manuális lépés.
+- **Jobb partnerélmény**: gyors kifizetés = motiváltabb affiliáltak.
+- **Központosítás**: minden a WordPress adminban történik, egy felületen.
 
-- **Affiliate**: Partner, aki jutalékért cserébe népszerűsíti a termékeidet vagy szolgáltatásaidat.
-- **API hozzáférés**: Programozói interfész, amely lehetővé teszi, hogy különböző szoftverek kommunikáljanak egymással.
-- **Bulk kifizetések**: Egyszerre több partnernek történő kifizetés.
-- **Elementor**: Népszerű WordPress oldalépítő bővítmény.
-- **Easy Digital Downloads**: Digitális termékek értékesítésére szolgáló WordPress bővítmény.
-- **MemberPress**: Tagsági oldalak kezelésére szolgáló WordPress bővítmény.
+## Kinek ajánlott?
+
+- **Webshop-tulajdonosoknak** (WooCommerce, EDD), akik már használják az AffiliateWP-t.
+- **Olyan programoknak**, ahol rendszeres, sokszereplős kifizetések futnak, és fontos a gyors, hibamentes folyamat.
+- **Azoknak**, akik rendelkeznek PayPal Business fiókkal és Payouts engedéllyel, és szeretnék a kifizetéseket automatizálni, adminisztráció nélkül.
+
+Összességében az AffiliateWP – PayPal Payouts a leggyorsabb, legkényelmesebb módja, hogy az affiliáltjaidat a WordPressen belül, biztonságosan és átláthatóan fizesd ki – egyenként vagy tömegesen, a PayPal REST integráció erejével.

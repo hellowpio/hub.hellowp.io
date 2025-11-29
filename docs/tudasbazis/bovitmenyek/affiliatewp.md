@@ -1,77 +1,111 @@
-# AffiliateWP
+---
+title: "AffiliateWP"
+description: "Prémium, self‑hosted affiliate program-kezelő WordPresshez, megbízható első fél cookie‑alapú követéssel és automatizált kifizetésekkel."
+sidebar_label: "AffiliateWP"
+---
 
-## Az AffiliateWP bemutatása
+## Mi ez és milyen problémát old meg?
 
-Az AffiliateWP egy fejlett és könnyen használható affiliate program bővítmény, amely kifejezetten a WordPress oldalak számára készült. Az AffiliateWP segítségével hatékonyan nyomon követheted az affiliate linkeket, kezelheted az affiliáltakat, és növelheted a bevételeidet. Ebben a leírásban részletesen bemutatjuk a bővítmény funkcióit, előnyeit, valamint gyakorlati példákat is adunk az alkalmazására.
+Az AffiliateWP egy prémium WordPress bővítmény, amellyel saját, házon belüli affiliate (partner) programot indíthatsz és működtethetsz. Nem kell külső hálózatokra támaszkodnod és jutalékot fizetned közvetítőknek: a követés és az adatok teljes mértékben nálad maradnak. A rendszer első fél cookie‑kat használ, így megbízhatóbb a mérés (kevésbé érzékeny hirdetésblokkolókra), és könnyebb megfelelni a magánszféra‑követelményeknek.
 
-## Funkcionalitás és előnyök
+Röviden: ha e‑kereskedelmi eladásokat, előfizetéseket vagy leadeket szeretnél partnercsatornán keresztül növelni, az AffiliateWP mindent ad a pontos követéshez, a rugalmas jutalékszabályokhoz, a modern affiliate felülethez és az automatizált kifizetésekhez.
 
-### Könnyű beállítás
+## Fő funkciók, érthetően
 
-Az AffiliateWP egyetlen kattintással integrálható számos népszerű e-kereskedelmi és form plugin-nal, mint például WooCommerce, Easy Digital Downloads, MemberPress, Gravity Forms és WPForms. Ez lehetővé teszi, hogy gyorsan és egyszerűen indítsd el az affiliate programodat anélkül, hogy kódolási ismeretekre lenne szükséged.
+### Integrációk egy kattintással
+- **WooCommerce**, **Easy Digital Downloads**, tagsági és LMS rendszerek (pl. MemberPress, Paid Memberships Pro, LearnDash, LifterLMS), illetve űrlapmegoldások (Gravity Forms, WPForms) natív kapcsolattal működnek.
+- Mit jelent ez a gyakorlatban? Bekapcsolod az integrációt, és azonnal rögzíthető minden releváns esemény (vásárlás, előfizetés‑megújítás, lead beküldése) affiliate jutalékként.
 
-### Fejlett affiliate nyomkövetés
+### Követés és attribúció, valós forgalomra tervezve
+- **Ajánlói linkek** és egyedi kampányparaméterek a klasszikus használathoz.
+- **Affiliate kuponkövetés**: elég a kuponkód, link nélkül is jóváíródik a jutalék.
+- **Direct Link Tracking**: jóváhagyott domainről paraméter nélküli linkek is azonosítják az affiliate‑et.
+- **Affiliate landing page‑ek**: dedikált céloldal paraméterek nélkül.
+- **QR‑kódos megosztás** és **External Referral Links** cross‑domain promócióhoz.
+- Megjegyzés: a Direct Link Tracking bizonyos böngészőkben (pl. iOS Safari) precíz beállítást igényelhet; figyelj a referrer beállításokra és a rel="noreferrer" attribútumokra.
 
-Az AffiliateWP segítségével megbízhatóan nyomon követheted az ajánlói linkeket, affiliate kuponkódokat, egyedi landoló oldalakat, cross-domain promóciókat és közvetlen linkeket. Mivel a bővítmény önállóan fut a WordPress oldaladon, elkerüli a legtöbb reklámblokkolót és megfelel az adatvédelmi előírásoknak, mivel nem tárol harmadik féltől származó cookie-kat.
+### Rugalmas jutalékmodellek
+- **Globális**, **termékszintű** és **affiliate‑specifikus** ráták.
+- **Ismétlődő (recurring) jutalékok** előfizetések megújításaira.
+- **Lifetime commissions**: az ügyfél és az affiliate tartós összerendelése cookie nélkül is.
+- **Multi‑tier** struktúrák és **sávos** jutalékok bonyolult programokhoz.
 
-### Affiliate menedzsment
+### Affiliate felület és kreatívok
+- Alap **Affiliate Area** vagy a modern, témafüggetlen **Affiliate Portal** gyors, reszponzív UI‑val.
+- **Kreatívkezelés** (bannerek, szöveges linkek, QR‑kód kreatívok), egyedi slugok és kuponok kiosztása.
+- Az affiliált a saját felületén látogatásokat, konverziókat, jutalékokat és akár rendelések részleteit is áttekinti.
 
-Az AffiliateWP megkönnyíti az affiliate menedzsmentet. Testreszabhatod az affiliate regisztrációt, onboarding folyamatot, jóváhagyási eljárást és kifizetéseket. Az egyszerűen használható irányítópult segítségével kezelheted az affiliáltakat, ellenőrizheted teljesítményüket és kifizetheted őket egyetlen kattintással PayPal vagy Stripe segítségével.
+### Kifizetések, automatizálva
+- **Stripe Payouts**: affiliate‑onboarding Stripe Expressen, adminból 1‑kattintásos egyedi vagy tömeges kifizetés.
+- **PayPal Payouts**: azonnali, adminból indítható kifizetések.
+- **Payouts Service** (több mint 50 ország), **Store Credit**, vagy **manuális** CSV export banki/PayPal feltöltéshez.
+- Átlátható **Payouts** képernyő státuszokkal mind admin, mind affiliált oldalon.
 
-### Részletes affiliate jelentések
+### Csalásmegelőzés és megfelelőség
+- **Fraud Prevention**: önreferrálás‑szabályok, domain‑feketelista, elvárt konverziós sávok és kilógó minták riasztása.
+- Self‑hosted, **első fél cookie**‑alapú nyomkövetés a privacy és pontosság érdekében.
 
-A részletes jelentések segítségével láthatod, mi működik és mi nem az affiliate programodban. Ez lehetővé teszi, hogy optimalizáld a programodat és növeld az eladásaidat.
+### Riportok, import/export, migráció
+- Részletes **riportok** és **CSV export** (affiliates, referrals, visits, payouts).
+- **Importálás** CSV‑ből és **migrációs** eszközök más pluginokról történő átálláshoz.
 
-### Egyedi affiliate irányítópult
+### Fejlesztői és automatizációs opciók
+- **REST API v1** (read‑only) és **REST API Extended** (CRUD a fő erőforrásokon).
+- **Zapier** integráció triggerekhez/akciókhoz, plusz kiterjedt hookok és sablonok.
 
-Az egyedi márkázott irányítópult segítségével minden szükséges információt megadhatsz az affiliáltak számára. Az irányítópult teljes mértékben testreszabható, így illeszkedik a márkádhoz és motiválja az affiliáltakat.
+### AI‑alapú jelentkezés‑elbírálás
+- Opcionális **AI review** modul, amely egységes szempontok szerint előszűri az új affiliate jelentkezéseket, indoklással.
 
-### Okos jutalék szabályok
+## Gyakorlati példák
 
-Az AffiliateWP lehetővé teszi, hogy olyan jutalékstruktúrát állíts be, amely megfelel az üzleti modellnek. Tartalmaz egyszeri, ismétlődő, többszintű, élettartamra szóló és személyre szabott jutalékokat is.
+- WooCommerce áruház: influenszerek kuponkódot kapnak. A vevő a kuponnal vásárol, a jutalék automatikusan jár, még akkor is, ha a vásárló nem kattintott át affiliate linkről.
+- Előfizetéses kurzus: első vásárlás és minden megújítás után ismétlődő jutalék. Lifetime commissions bekapcsolva, így az ügyfél a jövőben is ugyanahhoz az affiliate‑hez kötődik.
+- Lead‑generálás űrlappal: Gravity Forms beküldésre referral jön létre, ami jóváíródik, ha a lead kvalifikált státuszba lép.
 
-### Korlátlan kreatívok
+## Gyors indulás
 
-Hozz létre egyedi ajánlói linkeket, affiliate bannereket, affiliate kuponokat, egyedi affiliate landoló oldalakat és QR kódokat. Ezekkel az eszközökkel még hatékonyabbá teheted az affiliate marketing kampányaidat.
+1. Telepítés és licenc aktiválása.
+2. Beállítások → Integrations: kapcsold be a használt bővítményeket (pl. WooCommerce, űrlapok).
+3. Állítsd be a jutalékokat (globális, termék, affiliate; szükség esetén Recurring/Lifetime/Multi‑tier).
+4. Válaszd ki az affiliate felületet (Affiliate Area vagy Portal), add hozzá kreatívokat és kuponokat.
+5. Válaszd ki és teszteld a kifizetési módot (Stripe/PayPal/Payouts Service/manuális).
+6. Futtass teszt vásárlásokat; ellenőrizd az attribúciót (különösen direct link/cross‑domain esetén).
+7. Élesítés után ütemezd a riportokat, és finomhangold a csalásmegelőzést.
 
-### Növekedési eszközök
+Példaszerű admin‑útvonalak:
+```
+AffiliateWP → Settings → Integrations
+AffiliateWP → Referrals → Payouts
+AffiliateWP → Tools → Export / Import
+```
 
-Az AffiliateWP számos növekedési eszközt kínál, például e-mail marketing integrációt, affiliate leaderboard versenyeket és még sok mást. Ezekkel az eszközökkel maximalizálhatod az affiliate programod hatékonyságát.
+## Rendszerkövetelmények és kompatibilitás
 
-### Okos csalás felismerés
+- Minimum: **WordPress 5.2+**, **PHP 7.4+**.
+- **WooCommerce HPOS** támogatott a referral‑követéshez.
+- Fontos: az AffiliateWP‑t azon a **domainen** futtasd, ahol a konverzió történik. Külön domain(ek)hez használj cross‑domain megoldást (pl. External Referral Links).
+- Bizonyos régi integrációk kivezetve; alternatívák elérhetők.
 
-Az okos csalás felismerési technológia segít elkerülni a bevételkiesést azáltal, hogy felismeri és megakadályozza az affiliate csalásokat.
+## Előnyök és értékajánlat
 
-### Nemzetközi támogatás
+- **Költségcsökkentés**: nincs hálózati közvetítői díj, saját szabályok szerint fizetsz.
+- **Pontosság és privacy**: első fél cookie‑k, kupon‑ és paraméter nélküli követési opciók.
+- **Időmegtakarítás**: 1‑kattintásos integrációk, adminból indítható tömeges kifizetések.
+- **Rugalmasság**: fejlett jutaléklogika, több kifizetési mód, API‑k és automatizáció.
+- **Partnerélmény**: modern Portal, átlátható státuszok és kreatívok – motiváltabb affiliáltak.
 
-Az AffiliateWP több mint 30 nyelven elérhető, így világszerte használható. Könnyedén indíthatsz affiliate programot a saját nyelveden.
+## Kinek ajánlott?
 
-## Gyakorlati alkalmazások
+- **Webshopoknak** (fizikai vagy digitális termékek): skálázható partnerértékesítés kuponnal, linkkel vagy direct linkkel.
+- **Előfizetéses/tagsági oldalaknak**: ismétlődő jutalékok és lifetime hozzárendelés.
+- **Online kurzus‑szolgáltatóknak**: kurzus‑ és csomagszintű ráták, LMS integrációk.
+- **Lead‑alapú szolgáltatóknak**: űrlapbeküldés‑alapú jutalék, minősítési folyamatokkal.
+- **Fejlesztői‑fókuszú csapatoknak**: REST API, Zapier és hookok révén könnyen illeszthető a meglévő stackhez.
 
-### E-commerce webáruházak
+## Licencelés, megfontolások
 
-Az e-commerce webáruházak számára az AffiliateWP kiváló eszköz lehet a forgalom és az eladások növelésére. Például a WooCommerce integrációval könnyedén nyomon követheted az ajánlói linkekből származó vásárlásokat és kezelheted az affiliáltakat.
+- Fizetős bővítmény, több csomagszinttel és pénzvisszafizetési garanciával.
+- Csak **WordPressen** működik (WordPress.com esetén magasabb csomag szükséges).
+- A **Direct Link Tracking** beállításérzékeny lehet; élesítés előtt mindig végezz böngésző‑specifikus teszteket.
 
-### Digitális termékek értékesítése
-
-Ha digitális termékeket értékesítesz (pl. e-könyvek, szoftverek), az AffiliateWP segíthet növelni a termékeid láthatóságát és eladásait. Az Easy Digital Downloads integrációval egyszerűen kezelheted az affiliáltakat és nyomon követheted a vásárlásokat.
-
-### Tagsági oldalak
-
-A tagsági oldalak számára is hasznos lehet az AffiliateWP. A MemberPress integrációval könnyen nyomon követheted az új tagok regisztrációit és kezelheted a jutalékokat.
-
-### Online kurzusok
-
-Ha online kurzusokat kínálsz (pl. LearnDash vagy LifterLMS használatával), az AffiliateWP segíthet több hallgatót vonzani. Az affiliáltak népszerűsíthetik a kurzusaidat és jutalékot kaphatnak minden új regisztráció után.
-
-## Szószedet
-
-- **Affiliate**: Partner vagy társult fél, aki népszerűsíti a termékeidet vagy szolgáltatásaidat cserébe jutalékért.
-- **Tracking**: Nyomkövetés; annak a folyamata, hogy nyomon követjük az ajánlói linkekből származó forgalmat és vásárlásokat.
-- **Commission**: Jutalék; az összeg, amelyet az affiliált kap egy sikeres ajánlás után.
-- **Onboarding**: Az új affiliáltak bevezetése és regisztrációja.
-- **Dashboard**: Irányítópult; egy felhasználói felület, ahol az affiliáltak nyomon követhetik teljesítményüket.
-- **Fraud Detection**: Csalás felismerés; technológia, amely segít megakadályozni a csalásokat.
-- **Lead**: Potenciális ügyfél vagy érdeklődő.
-
-Ez volt tehát az AffiliateWP részletes bemutatása. Használd ezt a bővítményt hatékonyan affiliate programodhoz, hogy növeld bevételeidet és sikeresebbé tedd vállalkozásodat!
+Ezekkel a képességekkel az AffiliateWP egy komplett, self‑hosted affiliate motor: mindent megkapsz a program gyors elindításához, pontos méréséhez és hatékony üzemeltetéséhez.

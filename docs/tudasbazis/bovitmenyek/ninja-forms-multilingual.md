@@ -1,61 +1,99 @@
-# Ninja Forms Multilingual
+---
+title: "Ninja Forms Multilingual"
+description: "Hivatalos WPML kiegészítő a Ninja Forms űrlapok teljes körű többnyelvű fordításához és egységes kezeléséhez."
+sidebar_label: "Ninja Forms Multilingual"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A Ninja Forms Multilingual egy olyan eszköz, amely lehetővé teszi, hogy többnyelvű űrlapokat hozz létre és kezelj a WordPress weboldaladon. Ennek a funkciónak köszönhetően a látogatók az általuk preferált nyelven tölthetik ki az űrlapokat, ami növeli a felhasználói élményt és elérhetőséget. A bővítmény zökkenőmentesen működik együtt a WPML (WordPress Multilingual Plugin) bővítménnyel, amely az egyik legnépszerűbb többnyelvűsítő eszköz.
+A **Ninja Forms Multilingual** (NFML) a WPML hivatalos összekötő kiegészítője, amely teljes többnyelvűségi támogatást ad a **Ninja Forms** űrlapokhoz. Nélküle a Ninja Forms űrlapok nem jelennek meg a WPML fordítási felületein, így minden nyelvre külön űrlap-karbantartásra kényszerülnél. Az NFML-lel az űrlapok minden, a felhasználó által látott eleme fordítható, az egész folyamat beépül a WPML-féle fordítási munkafolyamatba, és a frontenden automatikusan a megfelelő nyelvű űrlap töltődik be.
 
-## Főbb jellemzők
+Fejlesztő: az NFML-t a WPML-t készítő OnTheGoSystems fejleszti; a Ninja Forms a Saturday Drive terméke.
 
-### Többnyelvű űrlapkezelés
+## Rendszerkövetelmények és beszerzés
 
-A Ninja Forms Multilingual lehetőséget ad arra, hogy bármilyen űrlapot lefordíts több nyelvre. Ez különösen hasznos lehet olyan weboldalak esetében, amelyek nemzetközi közönséget céloznak meg. Az űrlap minden egyes mezője és üzenete lefordítható, így biztosítható, hogy a látogatók anyanyelvükön kapjanak visszajelzést.
+Szükséged lesz:
+- **Ninja Forms**
+- **WPML** és **WPML String Translation**
+- **Ninja Forms Multilingual** kiegészítő
 
-### WPML integráció
+Az NFML a WPML csomag részeként érhető el; nem a nyilvános bővítménytárból tölthető. A Ninja Forms teljes WPML-kompatibilitásához ez a kiegészítő szükséges.
 
-A Ninja Forms Multilingual tökéletesen integrálható a WPML bővítménnyel. Ez azt jelenti, hogy az űrlapok fordítási folyamata egyszerű és gyors. A WPML automatikusan felismeri a Ninja Forms mezőit és üzeneteit, és segít azok fordításában. Ezzel időt takaríthatsz meg, és biztosíthatod a magas minőségű fordításokat.
+## Hogyan működik a gyakorlatban?
 
-### Automatikus nyelvválasztás
+1. Hozz létre vagy válassz ki egy Ninja Forms űrlapot, majd publikáld.
+2. Lépj a WPML **Translation Dashboard** felületére, szűrj a **Ninja Forms** tartalomtípusra.
+3. Jelöld ki az űrlap(oka)t, és küldd fordításra: kézzel, automatikus gépi fordítással vagy professzionális szolgáltatással.
+4. A fordítófelületen megkapod a mezőcímkéket, helyőrzőket, súgószövegeket, hiba- és sikerüzeneteket fordítható szegmensekben.
+5. Beágyazod a forrás űrlapot az oldaladra (blokkal vagy rövidkóddal). A fordított oldalak automatikusan a megfelelő nyelvű űrlapot jelenítik meg – külön extra beállítás nélkül.
 
-A bővítmény lehetőséget biztosít arra, hogy az űrlapok automatikusan az aktuális oldalon beállított nyelven jelenjenek meg. Ezzel elkerülhető a felhasználók számára a nyelvválasztási nehézségek, és zökkenőmentes élményt nyújt.
+Példa beágyazásra:
 
-### Testreszabhatóság
+```
+[ninja_form id="3"]
+```
 
-A Ninja Forms Multilingual lehetőséget ad az űrlapok egyedi testreszabására minden nyelven. A különböző nyelveken különböző üzeneteket és stílusokat adhatsz meg, így biztosítva, hogy az űrlapok minden felhasználó számára érthetők és vonzóak legyenek.
+Nem kell nyelvenként külön rövidkódot használnod.
 
-## Előnyök
+## Fő funkciók, részletesen
 
-### Javított felhasználói élmény
+- **Teljes űrlapelem-fordítás**: Fordíthatod a mezők címkéit, helyőrzőit, súgószövegeit, a gombfeliratokat, a több-lépéses űrlapok lépéscímeit, valamint a hiba- és sikerüzeneteket. Így minden felhasználói érintkezési pont konzisztens lesz minden nyelven.
 
-Azáltal, hogy az űrlapokat több nyelven is elérhetővé teszed, javíthatod a felhasználói élményt és növelheted az elköteleződést. A látogatók nagyobb valószínűséggel töltik ki az űrlapokat, ha azok az anyanyelvükön vannak.
+- **Mély integráció a WPML folyamataiba**: Az űrlapok a Translation Dashboardon kezelhetők. Választhatsz kézi fordítást, automatikus gépi fordítást (gyors kiindulás finomhangolással) vagy professzionális fordítószolgáltatást – mindezt egységes munkafolyamatban.
 
-### Nemzetközi elérhetőség
+- **Automatikus nyelvi megjelenítés**: A forrással beágyazott űrlap automatikusan a látogató által megnyitott nyelvi változat szerint jelenik meg. Nincs szükség feltételes rövidkódokra vagy nyelvfüggő űrlaplogikára.
 
-A többnyelvű űrlapok lehetővé teszik, hogy könnyedén elérd a nemzetközi közönséget. Ez különösen fontos lehet e-kereskedelmi oldalak, multinacionális cégek vagy globális nonprofit szervezetek számára.
+- **Egy forrás űrlap, több nyelv**: Nem kell nyelvenként külön űrlapot karbantartanod. A módosításokat a forrás űrlapon végzed, a WPML jelzi a fordítások frissítési szükségletét.
 
-### Egyszerű kezelés
+- **Duplikálás, ha nem kell önálló fordítás**: Ha egy nyelven nem akarsz külön szövegezést fenntartani, a Translation Management felületen a **Duplicate** opcióval tükrözheted a forrás űrlapot.
 
-A WPML integrációnak köszönhetően az űrlapok fordítása egyszerű és gyors folyamat. Nem szükséges külön szoftvereket vagy bonyolult beállításokat használni, minden egy helyen kezelhető.
+- **Ügynökségi használatra optimalizált**: Több űrlapot csoportosan küldhetsz fordításra, nyomon követheted az állapotot, és egységesítheted a folyamatot soknyelvű projekteknél.
 
-## Gyakorlati példák
+## Konkrét, gyakorlati példák
 
-### E-kereskedelmi weboldalak
+- **Kétnyelvű kapcsolatfelvétel**: Egyetlen forrás űrlapból készítesz magyar és angol fordítást. A magyar oldalon magyar mezőcímkék és üzenetek jelennek meg, az angolon angolul – automatikusan.
 
-Egy nemzetközi e-kereskedelmi weboldalnak szüksége van arra, hogy az ügyfélszolgálati űrlapjai több nyelven is elérhetők legyenek. A Ninja Forms Multilingual segítségével könnyedén létrehozhatsz olyan űrlapokat, amelyeket bármelyik látogató kitölthet az anyanyelvén.
+- **Többlépéses ajánlatkérő**: A lépéscímek, gombok (Következő, Vissza), validációs hibák, valamint a beküldés utáni köszönőüzenet mind fordíthatók. A felhasználó végig az anyanyelvén halad.
 
-### Multinacionális vállalatok
+- **Regisztráció jogi elfogadásokkal**: A checkboxok melletti jogi szövegek és a hibaüzenetek (pl. kötelező elfogadás) nyelvenként lokalizáltak, így megfelelhetsz a helyi elvárásoknak.
 
-Egy multinacionális vállalat karrieroldala több nyelven is elérhető lehet. Az álláspályázati űrlapok és visszajelzési űrlapok lefordítása segít abban, hogy a potenciális munkavállalók egyszerűen és gyorsan jelentkezhessenek.
+## Előnyök és értékajánlat
 
-### Globális nonprofit szervezetek
+- **Idő- és költségmegtakarítás**: Egy űrlapot fordítasz, nem több külön verziót tartasz kézben.
+- **Kevesebb hiba, nagyobb következetesség**: Központi fordítási szegmensek, ellenőrzött munkafolyamat.
+- **Jobb felhasználói élmény**: Zökkenőmentes nyelvváltás, minden felirat a megfelelő nyelven.
+- **Rugalmasság**: Kézi, gépi vagy profi fordítás – válaszd, ami a projektedhez illik.
+- **Skálázhatóság**: Több űrlap és nyelv kezelése egységes módszerrel.
 
-Egy globális nonprofit szervezet adománygyűjtő oldala több nyelven is elérhető lehet. Az adományozási űrlapok lefordítása növeli az adományozási hajlandóságot és javítja a szervezet elérhetőségét.
+## Célközönség
 
-## Szószedet
+- **Többnyelvű weboldalak tulajdonosai**, akik Ninja Formst használnak és WPML-lel fordítanak.
+- **Ügynökségek és fejlesztők**, akik sok űrlapot és nyelvet tartanak karban, és folyamatot akarnak egységesíteni.
+- **Tartalom- és lokalizációs csapatok**, akik fordítási minőséget és státusz-követést igényelnek.
+- **E-kereskedelmi/SaaS projektek**, ahol kritikus a pontos, lokalizált űrlapélmény.
 
-- **WPML**: WordPress Multilingual Plugin, amely lehetővé teszi a WordPress oldalak többnyelvűsítését.
-- **Integráció**: Különböző szoftverek vagy bővítmények összekapcsolása és együttműködése.
-- **Testreszabhatóság**: A funkciók és elemek egyedi igények szerinti módosítása.
-- **Elköteleződés**: A felhasználók aktív részvétele és érdeklődése egy weboldalon.
-- **Nemzetközi közönség**: Olyan látogatók csoportja, akik különböző országokból és kultúrákból származnak.
+## Gyors kezdés, lépésről lépésre
 
-Ezeket a pontokat figyelembe véve hatékonyan használhatod a Ninja Forms Multilingual bővítményt a weboldalad többnyelvűsítéséhez.
+1. Telepítsd és aktiváld a WPML-t, a String Translationt, a Ninja Formst és az NFML-t.
+2. Hozz létre/nyisd meg az űrlapot, majd publikáld.
+3. Nyisd meg a WPML fordítási irányítópultját, szűrj a Ninja Forms tartalomtípusra.
+4. Jelöld ki az űrlapokat, és küldd fordításra a kívánt módszerrel.
+5. Illeszd be az űrlapot az oldaladba blokkal vagy rövidkóddal.
+6. Válts nyelvet az oldalon, és ellenőrizd, hogy a megfelelő fordítás jelenik meg.
+
+## Hibaelhárítás és ismert korlátozások
+
+- **Merge tag-ek az e-mailekben**: Bizonyos beállításoknál előfordulhat, hogy másodlagos nyelven nem a várt fordítás jelenik meg. Teszteld a beküldést minden nyelven.
+- **PDF export és checkboxok**: A PDF export kiegészítővel egyes űrlapoknál hiba jelentkezhet. Ha ilyen kiegészítőt használsz, ellenőrizd a generált PDF-et minden nyelven.
+- **Űrlapok nem láthatók a fordítási listában**: Győződj meg róla, hogy az űrlap publikált és az NFML aktív; használd a Ninja Forms szűrőt.
+- **Változtatás után hiányos fordítás**: A forrás űrlap módosítása után indítsd újra a fordítás frissítését; a rendszer jelzi a módosult szegmenseket.
+- **Nem kell külön fordítás?** Használd a **Duplicate** opciót a nyelvek tükrözéséhez.
+
+## Tippek és bevált gyakorlatok
+
+- Írj **rövid, egyértelmű** mezőcímkéket és üzeneteket – így gyorsabb és pontosabb a fordítás.
+- Állíts be konzisztens **alapértelmezett nyelvet**, és ezt tartsd a forrás űrlap nyelvének.
+- **Teszteld** a felhasználói utat minden nyelven: mezővalidáció, hiba/sikerüzenetek, e-mail értesítések.
+- Sok űrlap esetén indíts **automatikus gépi fordítással**, majd finomhangolj kézzel a kritikus szövegeken.
+
+Ezzel az NFML-lel pontosan azt kapod, amire egy többnyelvű űrlapkezeléshez szükség van: átlátható fordítási folyamatot, egységes karbantartást és hibamentes felhasználói élményt.

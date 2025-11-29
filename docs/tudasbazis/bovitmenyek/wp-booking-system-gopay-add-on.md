@@ -1,59 +1,66 @@
-# WP Booking System - GoPay Add-on
+---
+title: "WP Booking System - GoPay Add-on"
+description: "Natív GoPay fizetési átjáró a WP Booking System foglalási űrlaphoz, kártyás és banki átutalásos online fizetés CEE piacokra, WooCommerce nélkül."
+sidebar_label: "WP Booking System - GoPay Add-on"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - GoPay Add-on segítségével lehetőséged nyílik arra, hogy az online foglalásokat egyszerűen és biztonságosan kezeld, különösen a Közép- és Kelet-Európai piacokon. Az add-on integrálja a GoPay fizetési átjárót a WP Booking System-mel, így könnyedén elfogadhatsz hitelkártyás és banki átutalásos fizetéseket.
+A WP Booking System – GoPay Add-on egy prémium kiegészítő, amellyel közvetlenül a foglalási űrlapodon fogadhatsz online fizetést a **GoPay** átjárón keresztül. Akkor hasznos, ha szállást, eszközt, termet vagy programot adsz bérbe, a célpiacod CEE országok (pl. CZ, SK, HU, PL, RO, BG, HR), és helyi kártyás/banki fizetést szeretnél – **WooCommerce** réteg bevezetése nélkül.
 
-### Fizetési lehetőségek
+## Hogyan működik a gyakorlatban?
 
-A GoPay fizetési átjáró számos fizetési módszert támogat, beleértve a hitelkártyás és banki átutalásos fizetéseket is. Ezáltal a vállalkozások különböző országokban, mint például Csehország, Szlovákia, Magyarország, Lengyelország, Románia, Bulgária és Horvátország, képesek lesznek többféle fizetési lehetőséget kínálni ügyfeleiknek.
+- A vendég a **WP Booking System** űrlapján kiválasztja a dátumokat és opciókat, az árképzés automatikusan számol.
+- A **Payment Method** mezőben a GoPay-t választja, ezután a tranzakció a GoPay felületén zajlik.
+- A fizetés eredménye visszakerül a foglaláshoz: **státusz**, **tranzakcióazonosító**, választott **átjáró**.
+- Ha **előleget** kérsz, a második (vég)fizetés is mehet ugyanazon kapun, külön fizetési oldallal és linkkel.
 
-### Könnyű integráció
+## Fő funkciók részletesen
 
-Az add-on zökkenőmentesen működik együtt a WP Booking System-mel, ami lehetővé teszi, hogy az online foglalások kezelése során a fizetések automatikusan bekerüljenek a rendszerbe. Ezáltal a vállalkozásoknak kevesebb adminisztratív feladata lesz, és több időt tudnak szánni a vállalkozásuk népszerűsítésére.
+- **Natív GoPay integráció**: A fizetési folyamat a foglalási űrlap része marad, nem kell külön webáruház. A tranzakció átirányítással a GoPay oldalán történik, a visszajelzés automatikusan mentésre kerül.
+- **Kártyás és banki átutalásos fizetések**: A GoPay által támogatott módozatok elérhetők; a pontos lista országonként eltérhet, ezért mindig ellenőrizd a GoPay hivatalos felületén.
+- **Testreszabható megjelenés**: Beállíthatod az **Aktív/Inaktív** állapotot, a vevő felé látható **Display Name**-et, a rövid **Description**‑t, és az **Invoice Item Name**‑et, ami a GoPay tételeknél jelenik meg.
+- **Árképzés és fizetési mezők**: Dátumonkénti árak, opcionális felárak (űrlap‑ármezők), kuponmező (kupon kiegészítővel), valamint **Payment Method** és **Total** mezők a pontos összeg mentéséhez.
+- **Előleg / részfizetés**: Kérhetsz százalékos vagy fix **deposit**‑ot, majd a végösszeget ugyanazzal a kapuval rendezheted. A második fizetéshez beállítható egy külön **Secondary Payment Page**.
+- **Fizetési adatok a foglalásban**: Foglalásonként láthatod a fizetési státuszt, a használt átjárót, a **Transaction ID**‑t, és innen kezdeményezhetsz **visszatérítést** is.
 
-## Más eszközökkel való együttműködés
+## Telepítés és alapbeállítás (lépésről lépésre)
 
-A WP Booking System - GoPay Add-on kiválóan integrálható más WordPress bővítményekkel is. Néhány példa:
+1. **Előfeltétel**: aktív WP Booking System prémium licenc, **Business** vagy **Developer** (a Personal csak offline fizetést tud).
+2. **Add‑on telepítése**: WP Admin → WP Booking System → Add‑ons → GoPay → Install.
+3. **GoPay kereskedői fiók**: regisztrálj a GoPay-nél; jóváhagyás után kapsz **sandbox** kulcsokat. Legalább egy sikeres teszttranzakció szükséges, ezután kérheted az éles (**production**) API adataidat.
+4. **Konfiguráció**: WP Admin → WP Booking System → Payments → Payment Gateways → GoPay. Kapcsold **Active**‑ra, add meg a **Display Name**, **Description**, **Invoice Item Name** mezőket és az **API kulcsokat** (sandbox/production).
+5. **Űrlap mezők**: a foglalási űrlaphoz add hozzá a **Payment Method** és **Total** mezőket, hogy az árak és a fizetési döntés naplózódjanak.
+6. **Második fizetési oldal (opcionális)**: ha előleget használsz és ugyanazzal a kapuval szeretnéd a végfizetést, állíts be egy **Secondary Payment Page**‑et, és illeszd be a shortcode‑ot:
+   ```
+   [wpbs-payment-form]
+   ```
 
-### WooCommerce
+## Gyakorlati példák
 
-Ha a WooCommerce bővítményt használod az online boltodhoz, akkor a WP Booking System - GoPay Add-on lehetővé teszi, hogy a foglalásokért és szolgáltatásokért történő fizetések egyszerűen integrálódjanak a meglévő WooCommerce fizetési rendszerbe.
+- **Apartman Budapesten**: A vendég kiválasztja a dátumokat, a rendszer kiszámolja az árat, 30% előleget kérsz. A vendég GoPay‑jel fizet kártyával, a foglalás státusza azonnal frissül. Érkezés előtt automatikus e‑mailben megkapja a végfizetési linket ugyanarra a kapura.
+- **Csónakbérlés Dalmáciában**: Óradíjak és opcionális felszerelések felárai az űrlapon. A helyi banki átutalás és kártya is választható GoPay-en, WooCommerce nélkül.
+- **Workshop Kolozsváron**: Early bird kuponok, fix összegű előleg, majd a fennmaradó díj a Secondary Payment Page‑en, tranzakcióazonosítóval követve.
 
-### Elementor
+## Előnyök és értékajánlat
 
-Az Elementor vizuális szerkesztővel könnyedén testreszabhatod a foglalási űrlapokat és fizetési folyamatokat. Az add-on segítségével egyszerűen beillesztheted a GoPay fizetési lehetőségeket az Elementorral készült oldalakra.
+- **WooCommerce‑mentes online fizetés**: kevesebb bonyodalom, kisebb karbantartási költség.
+- **CEE‑re optimalizált**: helyi kártya- és banki csatornák egy átjárón belül.
+- **Egységes admin**: foglalás + fizetés egy helyen; státuszok, tranzakciók, visszatérítések átláthatóan.
+- **Rugalmas árazás és előleg**: a valós működésedhez igazított deposit és végfizetés.
+- **Biztonságos bevezetés**: kötelező sandbox teszt, így csökkentett kockázattal élesíthetsz.
 
-### WPML
+## Kinek ajánlott?
 
-A többnyelvű weboldalak számára a WPML bővítmény segítségével a WP Booking System - GoPay Add-on többnyelvű támogatást nyújt, így az ügyfelek saját nyelvükön végezhetik el a foglalásokat és fizetéseket.
+- **Szállásadóknak**: apartmanok, vendégházak, kempingek, nyaralók.
+- **Bérbeadóknak**: sporteszköz, csónak, autó, terem, rendezvényhelyszín.
+- **Szolgáltatóknak**: időpont‑alapú programok, túrák, kurzusok, workshopok.
+- Ha a célpiacod főként **CZ, SK, HU, PL, RO, BG, HR**, és fontos a helyi kártya/banki fizetés, valamint nem akarsz külön webáruház‑motort felhúzni.
 
-## Konkrét helyzetek és gyakorlati példák
+## Megjegyzések és korlátok
 
-### Apartmanok és szállodák
+- A GoPay Add‑on csak **Business/Developer** licencekben érhető el; az add‑onok a licenc részei, külön nem vásárolhatók.
+- A GoPay által támogatott fizetési módozatok országonként változhatnak – mindig ellenőrizd a hivatalos felületen.
+- A második (vég)fizetés használatához szükséges a **Secondary Payment Page** megfelelő beállítása és a shortcode beillesztése.
 
-Egy apartman vagy szálloda tulajdonosaként az add-on segítségével egyszerűen kezelheted a foglalásokat és a fizetéseket. Az ügyfelek online foglalhatnak szobákat és azonnal fizethetnek hitelkártyával vagy banki átutalással.
-
-### Autókölcsönzők
-
-Az autókölcsönző vállalkozások számára az add-on lehetőséget biztosít arra, hogy az ügyfelek online foglalják le az autókat és előre kifizessék a kölcsönzési díjat. Ez csökkenti az adminisztratív terheket és gyorsítja a folyamatot.
-
-### Konferenciaszervezők
-
-Konferenciaszervezők számára az add-on segítségével az érdeklődők online jelentkezhetnek az eseményekre és előre kifizethetik a részvételi díjat. Ez megkönnyíti a regisztrációk kezelését és biztosítja a fizetések gyors beérkezését.
-
-## Tipp a hatékony használathoz
-
-### Testreszabott értesítések beállítása
-
-Állíts be automatikus értesítéseket, hogy az ügyfelek e-mailben kapjanak visszaigazolást a foglalásukról és a sikeres fizetésről. Ez növeli az ügyfelek elégedettségét és csökkenti a félreértéseket.
-
-## Szószedet
-
-- **GoPay**: Közép- és Kelet-Európában népszerű fizetési átjáró.
-- **WP Booking System**: WordPress bővítmény, amely lehetővé teszi az online foglalások kezelését.
-- **WooCommerce**: Népszerű e-kereskedelmi bővítmény WordPresshez.
-- **Elementor**: Vizuális oldalépítő bővítmény WordPresshez.
-- **WPML**: Többnyelvű támogatást nyújtó bővítmény WordPresshez.
-
-A fentiek alapján könnyen belátható, hogy a WP Booking System - GoPay Add-on egy sokoldalú eszköz, amely különösen hasznos lehet azoknak a vállalkozásoknak, amelyek online foglalásokat kezelnek Közép- és Kelet-Európában.
+Ha szeretnéd, készítek egy részletes telepítési/checklist sablont admin menüpontokkal és képernyőképek helyőrzőivel, hogy gyorsan be tudd vezetni a rendszert.

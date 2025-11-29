@@ -1,61 +1,98 @@
-# TranslatePress - Business
+---
+title: "TranslatePress - Business"
+description: "Vizuális, frontendes WordPress-fordítás üzemi szintű kiegészítőkkel, AI-fordítással és SEO-val, 3 webhelyre."
+sidebar_label: "TranslatePress - Business"
+---
 
-## Funkcionalitás és Előnyök
+## Mi ez és milyen problémát old meg?
 
-A TranslatePress - Business egy átfogó eszköz, amely lehetővé teszi weboldalad többnyelvűvé tételét, anélkül hogy bonyolult kódolási ismeretekre lenne szükséged. Az intuitív vizuális fordítási felület és a különböző kiegészítők révén könnyen kezelhető és hatékony megoldást kínál.
+A TranslatePress – Business egy többnyelvűsítő bővítmény WordPresshez, amellyel a teljes oldal tartalmát a frontenden, élő előnézetben fordíthatod. Nem kell külön sztringvadászatra menni, admin és frontend között ugrálni, vagy oldalakat duplikálni: rákattintasz az elemre, lefordítod, mented. A Business licenc a prémium csomag közepe: 3 webhelyen használhatod, kapsz beépített AI-fordítási keretet, és minden jelenlegi (és jövőbeli) Pro kiegészítőhöz hozzáférést.
 
-### Főbb Jellemzők
+## Hogyan működik röviden?
 
-#### 1. **Automatikus Fordítás**
-A TranslatePress - Business lehetővé teszi akár 200,000 szó automatikus fordítását a Google Translate vagy DeepL szolgáltatásokkal. Ez különösen hasznos nagyobb tartalommal rendelkező weboldalak esetén.
+- Kiválasztod az alapnyelvet és a másodlagos nyelveket.
+- Megnyitod a vizuális fordítószerkesztőt, és kattintással fordítasz szövegeket, menüpontokat, űrlapokat, widgeteket, képaláírásokat.
+- Beállíthatod az automatikus fordítást (beépített AI, Google vagy DeepL), majd kézzel finomíthatod az eredményt.
+- A fordítások a saját adatbázisodban tárolódnak, így tied a kontroll és a tulajdon.
+- Kompatibilis a legtöbb témával, oldalkészítővel és a WooCommerce-szel.
+- A Pro add-onokkal teljes körű többnyelvű SEO-t, nyelvfelismerést, menüszabályokat és fordítói jogosultságokat kapsz.
 
-#### 2. **Rugalmas Nyelvváltó**
-A nyelvváltó widget segítségével a látogatók könnyedén válthatnak a különböző nyelvek között. A widget megjelenése testreszabható, hogy illeszkedjen a weboldalad dizájnjához.
+## Fő funkciók, érthetően
 
-#### 3. **SEO Pack Kiegészítő**
-Ez a kiegészítő biztosítja, hogy a lefordított oldalak is keresőbarátak legyenek. A meta címek, leírások és URL-ek is fordíthatók, így javítva a keresőoptimalizálást.
+- **Vizuális, frontendes szerkesztő**  
+  Minden fordítható a helyén: bejegyzések, blokkok, rövidkódok kimenete, űrlapok, widgetek, WooCommerce-szövegek. Élő előnézetben látod a változásokat.
 
-#### 4. **Több Nyelv Támogatása**
-Lehetőséget ad több nyelv hozzáadására, így szélesebb közönséget érhetsz el.
+- **Automatikus fordítás több forrásból**  
+  A Business csomag beépített AI-szókészlettel indul, így az első verziót gyorsan elkészítheted. Alternatívaként használhatod a Google Translate vagy a DeepL API-t. A gépi fordítás egyszer fut, az eredmény a saját adatbázisodban marad, utána bármikor javíthatod.
 
-#### 5. **Fordító Fiókok**
-Lehetővé teszi külön fordítói fiókok létrehozását, így több ember is dolgozhat a fordításokon anélkül, hogy adminisztrátori hozzáférést kellene biztosítanod nekik.
+- **Nyelvváltó és URL-kezelés**  
+  Testreszabható nyelvváltót tehetsz menübe, widgetként vagy blokként. Az URL-ek nyelvspecifikusan kezelhetők, hreflang és HTML lang címkék rendben, az alapnyelv alkönyvtárba helyezése is választható.
 
-#### 6. **Felhasználói Szerepkör Alapú Böngészés**
-Ez a funkció lehetővé teszi, hogy különböző tartalmakat jeleníts meg a látogatók számára az általuk kiválasztott nyelv alapján.
+- **Dinamikus és gettext karakterláncok**  
+  Nem csak tartalmak, hanem témák és bővítmények által betöltött szövegek is fordíthatók (például WooCommerce e-mailek, űrlapüzenetek). Kép alt címkék is nyelvfüggőek lehetnek.
 
-#### 7. **Nyelv Alapú Navigáció**
-A weboldalad navigációs menüit is könnyedén testreszabhatod nyelv alapján, így még átláthatóbbá téve az oldalt.
+- **SEO Pack (Pro)**  
+  Fordíthatod a slugokat, címeket, meta leírásokat, Open Graph és Twitter kártyákat. A bővítmény többnyelvű XML-webhelytérképet ad a népszerű SEO megoldásokkal együttműködve, így a keresőmotorok helyesen indexelik a nyelvi verziókat.
 
-#### 8. **Automatikus Nyelvfelismerés**
-Ez a funkció azonosítja a látogató böngészőjének alapértelmezett nyelvét, és automatikusan ahhoz igazítja a weboldal tartalmát.
+- **Translator Accounts (Pro)**  
+  Külön “Translator” szerepkörrel adhatsz fordítói hozzáférést admin jog nélkül, akár nyelvenként korlátozva.
 
-## Együttműködés Más Eszközökkel
+- **Browse as User Role (Pro)**  
+  Úgy fordíthatsz, mintha meghatározott szerepkörű felhasználó lennél. Hasznos tagsági vagy B2B tartalmaknál, ahol a látott szöveg szerepkörtől függ.
 
-### WordPress Témák és Bővítmények
-A TranslatePress zökkenőmentesen integrálható számos népszerű WordPress témával és bővítménnyel, mint például a WooCommerce, Elementor, vagy Yoast SEO. Ez lehetővé teszi, hogy bármilyen típusú weboldalt könnyedén többnyelvűvé alakíts.
+- **Navigation Based on Language (Pro)**  
+  Menüpontokat nyelvenként mutathatsz vagy rejthetsz el, így elkerülheted, hogy nem fordított tartalomra jusson a látogató.
 
-### Tippek a Hatékony Használathoz
-- **API Kulcsok Használata:** Ha Google Translate vagy DeepL szolgáltatásokat szeretnél használni, szükséged lesz API kulcsokra. Ezeket külön kell beszerezned.
-- **Automatikus Fordítás Finomítása:** Az automatikus fordítások gyakran igényelnek kisebb korrekciókat. Használj fordítói fiókokat ezek finomhangolására.
-- **SEO Beállítások Ellenőrzése:** Győződj meg róla, hogy minden lefordított oldal rendelkezik megfelelő meta címekkel és leírásokkal.
+- **Automatic User Language Detection (Pro)**  
+  Első látogatáskor böngésző vagy IP alapján nyelvet javasol és átirányít, majd cookie-ban megjegyzi a választást.
 
-## Gyakorlati Példák
+- **DeepL Automatic Translation (Pro)**  
+  DeepL API integráció költségkontroll-lépésekkel, ha minőségi gépi fordítást szeretnél.
 
-### Webshop
-Egy nemzetközi webshop esetén kritikus fontosságú, hogy a termékleírások és kategóriák minden látogató számára elérhetőek legyenek saját nyelvükön. A TranslatePress segítségével könnyedén fordíthatod le ezeket az elemeket, javítva ezzel a vásárlói élményt és növelve az eladásokat.
+- **Multiple Languages (Pro)**  
+  Korlátlan számú nyelvvel dolgozhatsz, rengeteg előre definiált nyelv közül választva, vagy saját nyelvkódot is felvehetsz.
 
-### Blog
-Egy többnyelvű blog lehetőséget biztosít arra, hogy szélesebb közönséget érj el. A TranslatePress segítségével minden bejegyzést automatikusan lefordíthatsz, majd finomhangolhatod azokat a vizuális szerkesztőben.
+- **Tárolás és teljesítmény**  
+  Minden fordítás a te adatbázisodban van. Nincs külső szolgáltatóhoz kötve, így gyors és átlátható.
 
-### Üzleti Weboldal
-Az üzleti weboldalak esetén fontos, hogy az információk minden látogató számára elérhetőek legyenek. A TranslatePress segítségével az egész weboldalt több nyelven is elérhetővé teheted, beleértve az ajánlatokat, szolgáltatásokat és kapcsolatfelvételi űrlapokat.
+- **Business licenc kerete**  
+  3 webhelyen használható, beépített AI-fordítási kerettel és az összes Pro add-on hozzáféréssel, éves frissítésekkel és támogatással.
 
-## Szószedet
+## Gyakorlati példák
 
-- **API Kulcs**: Egyedi azonosító, amely lehetővé teszi külső szolgáltatások használatát.
-- **SEO**: Keresőoptimalizálás; technikák és stratégiák összessége, amely javítja egy weboldal keresőmotorokban való láthatóságát.
-- **Widget**: Kisméretű alkalmazás vagy programrészlet, amely adott funkciókat biztosít egy weboldalon.
-- **Böngészés Felhasználói Szerepkör Alapján**: Funkció, amely lehetővé teszi, hogy különböző tartalmakat jeleníts meg a látogatók számára az általuk kiválasztott nyelv alapján.
+- **WooCommerce áruház**  
+  Termékleírásokat, variációkat, kosár- és pénztárszövegeket fordítasz. A SEO Packkel a termék-slugokat is nyelvfüggőre állítod, a nyelvfelismerés pedig a látogatót az anyanyelvére viszi.
 
-Ez a dokumentum bemutatja a TranslatePress - Business bővítmény főbb funkcióit és előnyeit, valamint tippeket és gyakorlati példákat kínál annak hatékony használatához.
+- **Vállalati webhely és blog**  
+  Cikkeket, CTA-kat és űrlapvisszajelzéseket a helyükön fordítasz. A nyelvfüggő menüvel csak a kész aloldalak látszanak minden nyelven.
+
+- **Tagsági oldal**  
+  A Browse as User Role segítségével úgy látod és fordítod a védett tartalmakat, mint a tagok – így nem marad ki rejtett szöveg.
+
+## Előnyök és értékajánlat
+
+- **Gyors indulás**: gépi fordítás + azonnali kézi finomítás.
+- **Minőség feletti kontroll**: minden a saját adatbázisodban, bármikor javítható.
+- **SEO-növekedés több nyelven**: fordítható slugok, metaadatok, sitemap.
+- **Jobb UX**: automatikus nyelvfelismerés és nyelvfüggő navigáció.
+- **Biztonságos együttműködés**: fordítók admin jog nélkül, nyelvenkénti jogosultságok.
+- **Költséghatékony**: egy licenccel három webhely, Pro add-onokkal együtt.
+
+## Kinek ajánlott?
+
+- **Ügynökségeknek**: több ügyfél, több nyelv, egységes eszközkészlet.
+- **Webáruház-tulajdonosoknak**: konverziót és SEO-t támogató többnyelvű checkout.
+- **B2B/SaaS oldalaknak**: szerepkör-alapú, védett tartalmak pontos lokalizálása.
+- **Tartalomgyártó csapatoknak**: vizuális munkafolyamat, fordítói szerepek, gyors publikálás.
+
+## Gyors indítás
+
+1. Telepítsd az alapbővítményt, majd aktiváld a Business licencet és a szükséges Pro add-onokat (SEO Pack, Language Detection, stb.).
+2. Állítsd be az alapnyelvet és add hozzá a másodlagos nyelveket.
+3. Kapcsold be az automatikus fordítást (beépített AI, Google vagy DeepL), és futtasd le az első fordítási kört.
+4. Aktiváld a SEO Packot, fordítsd a slugokat, címeket és meta leírásokat; generáld a többnyelvű webhelytérképet.
+5. Engedélyezd az automatikus nyelvfelismerést, állítsd be az átirányítás logikáját és a cookie-időtartamot.
+6. Helyezd el a nyelvváltót a menüben vagy blokk formájában.
+7. Nyisd meg a vizuális szerkesztőt, és kattintással finomítsd a kritikus szövegeket (főoldal, pénztár, CTA-k).
+
+Ezzel kész is: egy gyors, vizuálisan szerkeszthető, SEO-barát, többnyelvű WordPress-webhelyet kapsz, amely üzemi környezetben is stabilan működik.

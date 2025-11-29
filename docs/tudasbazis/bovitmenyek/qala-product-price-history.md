@@ -1,44 +1,82 @@
-# Qala Product Price History for WooCommerce
+---
+title: "Qala Product Price History"
+description: "WooCommerce-kiegészítő az árak automatikus naplózásához és a 30 napos legalacsonyabb ár megjelenítéséhez az Omnibus-megfelelésért."
+sidebar_label: "Qala Product Price History"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-A Qala Product Price History bővítmény segít a WooCommerce áruházaknak megfelelni az Omnibus irányelv előírásainak, amely az EU tagállamai számára ír elő átláthatósági követelményeket a termékárak kapcsán. Ez a bővítmény nyomon követi és megjeleníti a termékek árainak változásait, biztosítva ezzel a vásárlók számára a szükséges információkat.
+A Qala Product Price History egy WooCommerce-bővítmény, amely automatikusan naplózza a termék- és variációs árak változásait, majd a termékoldalon megjeleníti a **legutóbbi 30 nap legalacsonyabb árát** és egy **30 napos ártörténet-grafikont**. Célja, hogy segítsen megfelelni az **EU Omnibus irányelv** ártranszparenciára vonatkozó előírásainak, és egyúttal tiszta, érthető árkommunikációt biztosítson a vásárlóidnak.
 
-## Főbb jellemzők
+Röviden: leveszi a válladról az árkövetés kézi adminisztrációját, miközben a kötelező információkat automatikusan, konzisztensen és átláthatóan jeleníti meg.
 
-### Árdiagram megjelenítése
+## Fő funkciók, érthetően
 
-A bővítmény egyik legfontosabb funkciója, hogy grafikonon ábrázolja az elmúlt 30 nap árainak változásait. Ez az adatvizualizáció segít a vásárlóknak nyomon követni az ármozgásokat és tájékozott döntést hozni.
+### Automatikus árváltozás-naplózás
+- A bővítmény figyeli az árakat, és minden változást időbélyeggel eltárol.
+- Kezeli a **variációkat** is, tehát minden változatnak külön ártörténete lehet.
+- A napló alapján valós időben számítja ki a **30 napos minimumárat**, amit az Omnibus előír akciók kommunikálásakor.
 
-### Legalacsonyabb ár megjelenítése
+### Frontend kijelzés: 30 napos minimum és grafikon
+- A termékoldalon, alapértelmezés szerint a **Kosárba** gomb alatt megjelenik egy szöveges blokk a **legutóbbi 30 nap legalacsonyabb árával**.
+- Egy külön **“Price History”** szekcióban elérhető a **30 napos árgrafikon**, amely vizuálisan mutatja az árváltozásokat. Variációs terméknél a kijelzés a kiválasztott variációhoz igazodik.
 
-A termékoldalon a kosárba helyezés gomb alatt látható az adott termék legalacsonyabb ára az elmúlt 30 napban. Ez a funkció különösen hasznos a vásárlóknak, akik így könnyen ellenőrizhetik, hogy valóban kedvezményes árat kapnak-e.
+### Admin eszközök: kézi regisztrálás és hibakezelés
+- Találsz egy **„árváltozások regisztrálása”** gombot: ezzel bármikor manuálisan elindíthatod az adatfelvételt (például első beállításkor, hogy legyen kiindulási állapot).
+- Ha egy téves adminisztráció miatt hibás ár került a naplóba, azt az admin felületen **elrejtheted**, így a frontenden nem zavarja vagy félrevezeti a vásárlót.
 
-### Manuális árregisztrálás
+### Egyszerű beállítások
+- Kapcsolóval **be-/kikapcsolhatod** a 30 napos minimumár szöveg és az árgrafikon megjelenítését.
+- Mindez termékoldal szinten működik, a WooCommerce vizuális hierarchiájába illesztve.
 
-A beállításokban lehetőség van manuálisan regisztrálni az árváltozásokat egy gomb megnyomásával. Ez különösen akkor hasznos, ha valamilyen okból kifolyólag az automatikus regisztráció nem működik megfelelően.
+## Gyakorlati példák
 
-## Kompatibilitás más eszközökkel
+- Akció kommunikációja: beállítasz egy akciós árat. A termékoldalon automatikusan megjelenik: **„Az elmúlt 30 nap legalacsonyabb ára: …”**. Ezzel teljesíted a jogszabályi elvárást, és elkerülöd a félreértéseket.
+- Variációs termék: cipő több méretben/árban. A vásárló kiválasztja a méretet, és a grafikon + 30 napos minimum **az adott variációra** vonatkozó adatokat mutatja.
+- Admin hiba javítása: véletlenül rossz árat állítottál be pár percre. Az esemény bekerült a naplóba, de az adminban **elrejted**. A grafikon és a minimumár kijelzés tiszta marad.
+- Első bekapcsolás: telepítés után lefuttatod a **manuális regisztrálást**, hogy minden aktuális ár rögzülhessen kiinduló értékként.
 
-A Qala Product Price History zökkenőmentesen működik együtt több más WooCommerce bővítménnyel és eszközzel, mint például:
-- **Product Add-Ons**: Kiegészítő opciók (pl. ajándékcsomagolás) biztosítása.
-- **Shipment Tracking**: Szállítási információk hozzáadása a rendelésekhez.
+## Telepítés és első beállítás
 
-Ezekkel az eszközökkel kombinálva a Qala Product Price History még teljesebb képet adhat a vásárlóknak és fokozhatja az áruház funkcionalitását.
+1. Töltsd le a bővítmény ZIP fájlját, majd a WordPress Vezérlőpultban: Bővítmények > Új hozzáadása > Bővítmény feltöltése.
+2. Telepítés után **Aktiváld**.
+3. Menj a WooCommerce beállításaihoz, keresd meg a bővítmény saját paneljét:
+   - Kapcsold be a **30 napos minimumár szöveg** megjelenítését.
+   - Kapcsold be az **ártörténet-grafikont** (ha szeretnéd a vizuális nézetet).
+   - Futtasd a **manuális árregisztrálást** az induló állapot rögzítéséhez.
 
-## Gyakorlati alkalmazások
+Tipp: az első akció előtt ellenőrizd egy minta terméken, hogy a kijelzés a várakozásaid szerint működik.
 
-### Példák
+## Frontend megjelenés és működés
 
-1. **Akciók és kedvezmények nyomon követése**: Ha egy áruház rendszeresen tart akciókat, a vásárlók könnyen ellenőrizhetik, hogy valóban kedvezményes árat kapnak-e a termékekért.
-2. **Árképzési stratégiák elemzése**: Az áruház tulajdonosai is használhatják a bővítményt saját árképzési stratégiáik elemzésére, mivel láthatják, hogyan változnak az árak idővel és milyen hatással vannak ezek a változások az eladásokra.
-3. **Vásárlói bizalom növelése**: Azáltal, hogy az áruház átláthatóvá teszi az árváltozásokat, növelhető a vásárlói bizalom, hiszen a vásárlók biztosak lehetnek abban, hogy valóban a legjobb ajánlatot kapják.
+- A **30 napos minimumár** szöveg alapból a Kosárba gomb alatt jelenik meg. Felhasználói szempontból egyértelmű, hogy milyen árszinthez hasonlít az akció.
+- A **Price History** szekcióban található grafikon áttekintést ad az elmúlt 30 nap folyamatairól. A vásárló láthatja, mikor és mennyit változott az ár.
+- Variációs termék esetén a kijelzés a kiválasztott variációhoz igazodik, így pontos információt kap minden opcióról.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Omnibus irányelv**: Az EU által bevezetett jogszabályok összessége, amely az e-kereskedelmi fogyasztók védelmét szolgálja.
-- **WooCommerce**: Nyílt forráskódú e-kereskedelmi bővítmény WordPress-hez.
-- **Manuális árregisztrálás**: Az árak kézi rögzítése egy gomb megnyomásával a beállításokban.
-- **Legalacsonyabb ár**: Az adott termék legkedvezőbb ára az elmúlt 30 napban.
+- **Jogszabályi megfelelés**: segít teljesíteni az Omnibus szerinti 30 napos minimumár feltüntetését.
+- **Időmegtakarítás**: az **automatikus naplózás** kiváltja a kézi árkövetést, csökkenti az admin terhet.
+- **Hibaminimalizálás**: hibás bejegyzések **elrejthetők**, a frontend pedig tiszta, konzisztens marad.
+- **Vevői bizalom**: az átlátható grafikon és a minimumár kommunikáció **növeli a hitelességet** és javíthatja a konverziót.
 
-Ezekkel az információkkal és funkciókkal a Qala Product Price History hatékony eszköz lehet bármely WooCommerce áruház számára, amely megfelelni kíván az Omnibus irányelv előírásainak és növelni kívánja vásárlói bizalmát.
+## Kinek ajánlott?
+
+- **EU-s piacokra értékesítő WooCommerce webáruházaknak**, ahol az Omnibus-megfelelés elvárás.
+- **Marketing csapatoknak**, akik akciókat kezelnek és szeretnék a kommunikációt jogilag rendezett, mégis vásárlóbarát módon megjeleníteni.
+- **Ügynökségeknek és fejlesztőknek**, akik megbízóiknak gyors, megbízható Omnibus-megoldást keresnek.
+
+## Kompatibilitás, licenc és megfontolások
+
+- A bővítmény WooCommerce-hez készült, és a szokásos webáruházi folyamatokkal kompatibilis. Mindig ellenőrizd a rendszerkövetelményeket és támogatott verziókat a beszerzési oldalon.
+- Prémium licenc formában érhető el, az előfizetés tartalmaz frissítéseket és ügyféltámogatást. Árképzés és feltételek a beszerzési oldalon érhetők el.
+- A megoldás kifejezetten a **„legutóbbi 30 nap”** logikára épít. Ha ettől eltérő időtávra lenne szükséged, vizsgáld meg az elérhető beállításokat, illetve jelezd igényedet a fejlesztői csatornákon.
+
+## Bevált gyakorlatok
+
+- Telepítés után azonnal futtasd a **manuális regisztrálást**, hogy legyen hiteles kiinduló állapot.
+- Akciók indítása előtt ellenőrizd, hogy a **30 napos minimumár** és az **ártörténet-grafikon** látszik-e.
+- Ha hibás ár került a naplóba, az adminban **rejtsd el** a bejegyzést, hogy a vásárlói nézet következetes maradjon.
+- Variációk esetén teszteld több opcióval is a kijelzést, hogy minden variációra valós adat jelenjen meg.
+
+Ezzel a bővítménnyel a WooCommerce áraid átláthatók, ellenőrizhetők és jogszabályilag rendezettek lesznek – minimális plusz munkával, automatizáltan.

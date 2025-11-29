@@ -1,74 +1,93 @@
-# QuadMenu PRO
+---
+title: "QuadMenu PRO"
+description: "Fejlett, reszponzív megamenü‑építő WordPresshez, amely a natív menürendszert bővítve hoz létre többhasábos, e‑kereskedelem‑kész navigációt, kódolás nélkül."
+sidebar_label: "QuadMenu PRO"
+---
 
-A QuadMenu PRO egy sokoldalú és könnyen használható megoldás, amely számos funkcióval rendelkezik. Ezek a funkciók lehetővé teszik, hogy professzionális menürendszert hozz létre WordPress alapú weboldaladon. 
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A QuadMenu PRO egy **megamenü‑építő** WordPresshez, amely a natív Menük felületét turbózza fel. Ha a hagyományos menü már szűkös – nem férnek el a kategóriák, képek, widgetek, mini‑kosár vagy bejelentkezés – ezzel a bővítménnyel mindezt egyetlen, **reszponzív, mobil‑első** navigációban oldhatod meg, kódolás nélkül. A PRO kiadás extra elemeket (Tabs, Carousel, Login/Register, Social) és mélyebb testreszabást ad, így vállalati portálokhoz és webshopokhoz egyaránt ideális.
 
-### Mega Menük
-A QuadMenu PRO segítségével egyszerűen készíthetsz mega menüket. Ezek a nagy méretű menük lehetőséget adnak arra, hogy kategóriákat, almenüket, képeket és egyéb tartalmakat jeleníts meg strukturáltan.
+## Fő funkciók, érthetően
 
-### Tab Menük
-A tab menük használatával több tartalmat is elhelyezhetsz egy menüben, anélkül hogy az átláthatóságot veszélyeztetnéd. Ideális megoldás például termékkategóriák megjelenítésére.
+### Menüépítő és elrendezések
+- **Drag‑and‑drop szerkesztő**: közvetlenül a WordPress Menük képernyőjén dolgozol. Menüpontok, **oszlopok**, **képek**, **widgetek** és egyéni blokkok egyaránt felvehetők.
+- **Megamenü több oszloppal**: vizuálisan csoportosíthatod a tartalmat (pl. kategóriák, kiemelt cikkek, promó doboz).
+- **Vertikális, horizontális és off‑canvas** menük: asztali és mobil nézetben is átgondolt, könnyen kezelhető navigáció.
+- **Ragadós (sticky) fejléc**: a menü görgetés közben is látható marad.
+- **Eszköz‑alapú láthatóság és töréspontok**: megadhatod, mely elemek látszanak mobilon, tableten vagy asztali gépen, saját **breakpointokkal**.
 
-### Carousel Menük
-A carousel menük segítségével interaktív és dinamikus menüket hozhatsz létre, amelyeken a felhasználók görgethetnek, így több információt is elérhetnek egy helyen.
+### PRO elemek a menüben
+- **Tabs (fülek)**: több tartalmi blokk egy menüpont alatt, váltható fülekkel (pl. „Újdonságok”, „Akciók”, „Népszerű”).
+- **Carousel**: képek, termékek vagy bejegyzések görgethető sávban a menüben.
+- **Login/Register**: bejelentkezés és regisztráció közvetlenül a menüből, külön **vendég** és **belépett** állapottal.
+- **Social menü**: közösségi ikonok és hivatkozások egységes stílusban.
 
-### Login Form
-Beépített bejelentkezési űrlapokat helyezhetsz el a menüben, így a felhasználók közvetlenül a navigációs menüből is bejelentkezhetnek.
+### E‑kereskedelmi integráció
+- **Mini‑kosár és kosár‑lenyíló**: valós idejű kosárállapot a menüben.
+- **Termékek és kategóriák** megjelenítése: listák, rácsok vagy akár Carousel.
+- **„Kosárba” gomb a menüben (AJAX)**: gyors vásárlás navigáció megszakítása nélkül.
 
-### Social Networks
-Integrálhatod a közösségi média ikonokat a menübe, így egyszerűen elérhetővé teheted a közösségi oldalaidat a látogatók számára.
+### Testreszabás és teljesítmény
+- **Élő testreszabás** a Customizerben: színek, tipográfia (pl. Google Fonts), háttér, szegélyek, méretek valós időben.
+- **Ikonok, jelvények (badges), alcímek**: vizuális kiemelés „Új”, „Akció”, „Beta” címkékkel.
+- **Könnyű és gyors**: karcsú kód, **feltételes betöltés** és **kép‑lazyload**, hogy a megamenü ne lassítsa az oldalt.
 
-## Együttműködés más eszközökkel
+### Integrációk és kompatibilitás
+- Népszerű **témákkal** és **oldalkészítőkkel** (pl. Avada, Astra, Divi, Storefront, GeneratePress, Elementor, Beaver Builder, WPBakery) együttműködik.
+- **Fordítási bővítményekkel** kompatibilis többnyelvű oldalakhoz.
+- **Divi‑specifikus** beállítások: a PRO illeszkedik a Divi stíluspaneljéhez, külön híd nélkül.
 
-A QuadMenu PRO zökkenőmentesen működik együtt számos népszerű WordPress témával és bővítménnyel. Néhány közülük:
+### Fejlesztői eszközök
+- **Hookok és szűrők** a HTML/CSS finomhangolásához.
+- **LESS/Sass‑barát** stílus‑munkafolyamat.
+- **Script/stílus ki‑/bekapcsolás**, alapértelmezett és zárolható opciók.
+- **Multisite** és **gyermek‑téma** támogatás ügynökségi környezethez.
 
-- **Astra**: Ez a könnyű és gyors téma tökéletesen kompatibilis a QuadMenu PRO-val.
-- **Divi**: A Divi téma használói is élvezhetik a QuadMenu PRO előnyeit.
-- **Extra**: Az Extra magazin téma szintén jól működik a QuadMenu PRO-val.
-- **Avada**: Ez a rendkívül népszerű téma is támogatja a QuadMenu PRO-t.
-- **OceanWP**: Az OceanWP témával is kompatibilis.
-- **StoreFront**: A WooCommerce alapú StoreFront téma használata esetén is integrálható.
-- **GeneratePress**: A GeneratePress témával is kiválóan együttműködik.
+## Hogyan működik a gyakorlatban?
 
-## Gyakorlati alkalmazások
+- Vállalati portál: a „Szolgáltatások” menüpont alatt **3 oszlopos megamenü**, bal oldalon kategória‑lista, középen illusztrált dobozok, jobb oldalon „Ajánlott tartalmak” Carousel.
+- Tartalomportál: a „Témák” alatt **Tabs**: „Friss”, „Népszerű”, „Szerkesztő ajánlata” – mindegyikben külön listanézet.
+- Webshop: a „Bolt” menüpontban **kategória‑fa + kiemelt termékek**, jobb felső sarokban **mini‑kosár** élő összeggel, és „Kosárba” gombok AJAX‑szal.
+- Tagzóna: a fejlécben **Login/Register**, belépés után a menü automatikusan „Fiókom”, „Rendeléseim”, „Kijelentkezés” opciókat mutat.
 
-### E-kereskedelmi oldalak
-Az e-kereskedelmi oldalak számára különösen hasznos lehet a QuadMenu PRO. Például egy online áruházban mega menü segítségével könnyedén rendszerezhetők a különböző termékkategóriák, ami javítja a felhasználói élményt és növeli az eladásokat.
+## Telepítés és munkafolyamat
 
-### Blogok és magazinok
-Blogok és magazinok esetében a tab menük segítségével tematikus cikkeket helyezhetsz el egyetlen menüben. Ezáltal az olvasók könnyebben megtalálják az őket érdeklő tartalmakat.
+1) Telepítsd és aktiváld a bővítményt.  
+2) A QuadMenu beállításainál kapcsold be a kívánt **menühelyeket**.  
+3) Menj a **Megjelenés > Menük** oldalra: megjelenik a „QuadMenu Items” panel az extra elemekkel.  
+4) Hozz létre megamenüket: adj hozzá **oszlopokat**, képeket, widgeteket, PRO elemeket (Tabs, Carousel, Login, Cart).  
+5) Finomhangolás a **Customizerben**: színek, tipográfia, töréspontok, ikonok.
 
-### Vállalati weboldalak
-Vállalati weboldalak számára hasznos lehet a beépített login form funkció, amely lehetővé teszi a munkatársak és partnerek számára a gyors hozzáférést az intranethez vagy más zárt rendszerekhez.
+```
+Gyorstalpaló ellenőrzőlista
+- Menühely aktiválva a QuadMenu beállításokban
+- Megfelelő elrendezés (horizontális/vertikális/off‑canvas) kiválasztva
+- Eszköz‑alapú láthatóság beállítva (mobil vs. desktop)
+- WooCommerce mini‑kosár és „Kosárba” gomb engedélyezve (ha webshop)
+- PRO elemek: Tabs/Carousel/Login/Social a megfelelő menüpontok alatt
+- Customizerben tipográfia és színek egységesítve
+```
 
-### Oktatási platformok
-Oktatási platformokon a carousel menü segítségével interaktív módon mutathatók be a különböző tanfolyamok és képzések.
+## Előnyök és értékajánlat
 
-## Legfontosabb jellemzők
+- **Időmegtakarítás**: mindent a natív Menük felületen kezelhetsz, a komplex megamenü is néhány kattintás.
+- **Jobb UX és konverzió**: a menü nem csak navigáció, hanem **értékesítési felület** (mini‑kosár, termékek, promó dobozok).
+- **Mobil‑első**: off‑canvas, egyedi töréspontok, eszköz‑függő megjelenítés.
+- **Teljesítmény**: karcsú, feltételesen töltődik – nem húzza le a Core Web Vitals mutatókat.
+- **Skálázhatóság**: fejlesztői hookok, multisite és gyermek‑téma támogatás ügynökségi projektekhez.
 
-### Drag & Drop admin panel
-Egyszerűen használható drag & drop admin felület, amely lehetővé teszi, hogy gyorsan és könnyedén konfiguráld a menüt.
+## Kinek ajánlott?
 
-### Reszponzív design
-A QuadMenu PRO mobilbarát kialakítással rendelkezik, amely minden eszközön jól mutat.
+- **Webshop tulajdonosoknak**: akik a menüből is szeretnének eladni (mini‑kosár, terméklisták, akciók).
+- **Vállalati és nagy tartalommal dolgozó oldalaknak**: ahol a megamenü növeli az **áttekinthetőséget**.
+- **Ügynökségeknek és fejlesztőknek**: gyors bevezetés több témába, kevés egyedi kóddal, stabil hook‑készlettel.
+- **Tartalomkészítőknek**: vizuális kiemelések, ikonok, jelvények, füles nézetek a jobb felfedezhetőségért.
 
-### Testreszabhatóság
-Számos testreszabási lehetőség áll rendelkezésre, beleértve a színek, betűtípusok és elrendezések módosítását.
+## Licenc és támogatás, röviden
 
-### Developer options
-Fejlesztők számára számos opció és filter áll rendelkezésre, amelyekkel mélyebb szinten is testreszabható a menü viselkedése és kinézete.
+A PRO éves licencmodellel érhető el (egyedi, többoldalas és korlátlan csomagokkal), támogatással és frissítésekkel, valamint elérhetők **lifetime** opciók és **pénzvisszafizetési garancia**. A pontos csomagok és aktuális árak a hivatalos árlistán találhatók.
 
-## Szószedet
+## Összegzés
 
-- **Mega Menü**: Nagy méretű menü, amely több kategóriát és tartalmat jelenít meg egy helyen.
-- **Tab Menü**: Olyan menü, ahol több tartalom elérhető egyetlen kattintással.
-- **Carousel Menü**: Dinamikus, görgethető menü.
-- **Login Form**: Bejelentkezési űrlap.
-- **Social Networks**: Közösségi média ikonok integrálása.
-- **Drag & Drop**: Húzd és ejtsd funkció az admin panelen.
-- **Reszponzív Design**: Mobilbarát kialakítás.
-- **Testreszabhatóság**: Színek, betűtípusok és elrendezések módosítása.
-- **Developer Options**: Fejlesztők számára elérhető opciók és filterek.
-
-A QuadMenu PRO sokoldalúsága és testreszabhatósága révén ideális választás lehet bármilyen típusú weboldal számára.
+A QuadMenu PRO egy **fejlesztőbarát, nagy teljesítményű megamenü megoldás**, amellyel a WordPress natív menürendszerét kibővítve **átlátható, mobil‑első, e‑kereskedelem‑kész** navigációt építhetsz. Ha több tartalmat szeretnél logikusan megjeleníteni, és közben gyors, modern felhasználói élményt adni, ez a bővítmény pontosan erre való.

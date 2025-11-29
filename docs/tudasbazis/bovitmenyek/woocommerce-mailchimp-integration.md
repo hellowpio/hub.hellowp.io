@@ -1,57 +1,96 @@
-# WooCommerce MailChimp Integration
+---
+title: "WooCommerce MailChimp Integration"
+description: "Korábban hivatalos WooCommerce-kiegészítő a Mailchimp-feliratkozások és rendelési adatok összekapcsolására; ma már visszavont, utódja a Mailchimp for WooCommerce."
+sidebar_label: "WooCommerce MailChimp Integration"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Személyre szabott üzenetek küldése
+A **WooCommerce MailChimp Integration** egy korábbi, hivatalos kiegészítő volt, amely a WooCommerce pénztárfolyamatába építette a **Mailchimp-feliratkozást**, és a **rendelési/kosáradatokat** elküldte a Mailchimpbe. Így nem kellett kézzel exportálnod a vásárlói adatokat: a rendszer automatikusan szinkronizált, hogy hírleveleket, szegmentált kampányokat és értékesítési automatizációkat indíthass.
 
-A WooCommerce MailChimp Integration segítségével könnyedén összekötheted a WooCommerce áruházadat a MailChimp marketing és automatizációs eszközeivel. Ez lehetővé teszi, hogy személyre szabott e-maileket küldj, amelyek növelhetik a visszatérő vásárlások számát és erősíthetik az ügyfélkapcsolatokat.
+Fontos: a bővítményt visszavonták. Új projektekhez a **Mailchimp for WooCommerce** az ajánlott, amely mélyebb és folyamatos szinkront biztosít.
 
-### E-mail építő és automatikus üzenetküldés
+## Hogyan működik röviden?
 
-Az intuitív drag-and-drop szerkesztővel könnyedén létrehozhatsz e-maileket, melyeket aztán különböző vásárlói csoportoknak célozhatsz. Az automatikus üzenetküldés funkcióval időzített kampányokat indíthatsz, például kosárelhagyási emlékeztetőket küldhetsz.
+- A boltodat **Mailchimp API-kulccsal** csatlakoztatod, kiválasztasz egy **listát/közönséget**.
+- A pénztárnál megjelenik egy **feliratkozási jelölőnégyzet**; ha a vevő bejelöli (és ha engedélyezed a **Double Opt-In**-t), bekerül a Mailchimp közönségedbe.
+- A rendeléshez kapcsolódó **vevő- és kosáradatok** (név, cím, e‑mail, tételek) automatikusan továbbításra kerülnek a Mailchimp felé.
+- A bővítmény egy sütivel jelzi, ha a rendelés **Mailchimp-kampányból érkező kattintás** eredménye volt; ezzel pontosabb a kampányok mérése.
 
-### Termékajánlások és dinamikus tartalom
+Példa folyamati vázlat:
+```
+Checkout -> ügyfél bepipálja: "Feliratkozom"
+  -> (opcionális) Double Opt-In e-mail
+Order created/paid
+  -> eCommerce360 payload: customer + items + totals + kampány-cookie
+  -> Mailchimp: kontakt frissítés + vásárlási adatok szinkron
+```
 
-A vásárlói viselkedés és vásárlási adatok alapján személyre szabott termékajánlásokat tehetsz, melyek növelhetik az eladásokat. A dinamikus tartalom lehetővé teszi, hogy minden ügyfél számára releváns tartalmat jeleníts meg.
+## Fő funkciók részletesen
 
-## Együttműködő eszközök
+- **Mailchimp összekapcsolás API-kulccsal és lista választás**
+  - Egy API-kulcs megadásával hitelesíted a kapcsolatot, majd kiválasztod, melyik **közönség/lista** fogadja a feliratkozókat és vásárlói adatokat. Ez az alapja a biztonságos, automatizált adathídnak.
 
-### CRM és központi adatbázis
+- **Checkout feliratkozási élmény testreszabása**
+  - A pénztár oldalon megjelenő jelölőnégyzet szövegét **szabadon megfogalmazhatod** (pl. jogszabályi megfeleléshez), és eldöntheted, alapból be legyen-e jelölve. Engedélyezheted a **Double Opt-In** folyamatot, ami megerősítő e-mailt küld, és így megfelelhetsz szigorúbb adatvédelmi elvárásoknak.
 
-A MailChimp CRM eszközei segítségével központi helyen kezelheted az ügyféladatokat, szegmentálhatod őket, és célzott kampányokat indíthatsz. A központi adatbázisban könnyedén áttekintheted az ügyfeleid szokásait, preferenciáit és demográfiai adatait.
+- **Rendelési és kosáradatok továbbítása**
+  - A bővítmény elküldi a **vásárló adatait és a megvett termékeket**, hogy Mailchimpben célzott szegmenseket és automatizációkat építhess (például visszatérő ajánlatokat egy adott termék vásárlóinak).
 
-### Analitika és teljesítménykövetés
+- **eCommerce360 támogatás**
+  - A Mailchimp eCommerce360 adatsémáját használva a megvásárolt termékekhez köthető **szegmentálás** és **kampányok** válnak elérhetővé (pl. „mindenki, aki X kategóriából vásárolt”).
 
-A MailChimp analitika platformja lehetővé teszi, hogy valós időben nyomon kövesd a kampányaid teljesítményét. Az eredmények alapján gyors döntéseket hozhatsz, és optimalizálhatod a marketing stratégiádat.
+- **Kampányattribúció sütivel**
+  - A bővítmény sütiben tárolja, ha a látogató **Mailchimp hírlevélből érkezett**, és a rendeléshez kapcsolja ezt az információt. Így látod, mely kampányok hoznak tényleges bevételt.
+
+- **Hibakeresési napló (debug log)**
+  - Engedélyezhető naplózás, hogy az esetleges integrációs problémákat **gyorsan beazonosíthasd**.
 
 ## Gyakorlati példák
 
-### Kosárelhagyási emlékeztetők
+- **Feliratkozás a pénztárnál + utókövetés**
+  - A vevő kipipálja a jelölőnégyzetet. A rendelés után automatikus sorozat indul: köszönő e-mail, használati tippek, majd kiegészítő termékajánlatok.
 
-Ha egy vásárló otthagyja a kosarát, a MailChimp automatikusan emlékeztetőt küldhet neki, hogy fejezze be a vásárlást. Ezzel jelentősen csökkentheted az elhagyott kosarak számát.
+- **Termékalapú szegmentálás**
+  - Mindenki, aki „Futócipő” terméket vásárolt, egy „Futás” érdeklődési csoportba kerül. Ezt célzod edzéstervekkel, majd szezonnyitó akcióval.
 
-### Személyre szabott termékajánlások
+- **Kampány-ROI mérése**
+  - Hírlevelet küldesz kuponnal. A bővítmény jelzi, ha a rendelés a hírlevélből érkezett kattintás eredménye volt. A bevétel pontosan a kampányhoz kötődik.
 
-Az előző vásárlások és böngészési előzmények alapján releváns termékeket ajánlhatsz az ügyfeleknek. Például, ha valaki gyakran vásárol sportfelszereléseket, akkor olyan új termékeket ajánlhatsz neki, amelyek érdekelhetik.
+## Előnyök és értékajánlat
 
-### Szegmentált kampányok
+- **Időmegtakarítás**: nincs manuális export–import; minden automatikusan megy.
+- **Kevesebb hiba**: konzisztens adatátadás, egységes forrás Mailchimp felé.
+- **Jobb célzás**: valós vásárlási adatokkal épülő szegmensek és automatizmusok.
+- **Megfelelés támogatása**: látható feliratkozási jelölőnégyzet és Double Opt-In opció.
+- **Mérhető bevétel**: kampányattribúció sütivel, így látszik a hírlevelek hatása.
 
-A MailChimp CRM eszközeivel szegmentálhatod az ügyfélbázisodat különböző csoportokra, például életkor, nem vagy vásárlási szokások alapján. Így célzott kampányokat indíthatsz, amelyek nagyobb valószínűséggel érik el a kívánt hatást.
+## Korlátok és megkötések
 
-## Egyedi jellemzők
+- **Nincs visszamenőleges szinkron**: korábbi rendelések utólagos betöltését nem tudta.
+- **Automatizációk Mailchimp-oldalon**: a legtöbb marketingautomatizálást nem a WordPressben, hanem a Mailchimp felületén kellett beállítanod.
 
-### Generatív AI tartalomkészítés
+## Kinek ajánlott?
 
-A MailChimp generatív AI eszközeivel gyorsabban készíthetsz személyre szabott tartalmat. A kreatív asszisztens segít különböző változatokat tesztelni, hogy megtaláld a legjobban működőt.
+- **Kis- és közepes webáruházaknak**, akik hírlevélből szeretnének eladást generálni.
+- **Marketingeseknek**, akik vásárlási adatokra épített szegmentálást és automatizációkat használnának.
+- **Olyan csapatoknak**, akiknek fontos a jogszerű feliratkoztatás és az átlátható attribúció.
 
-### Tartalom optimalizálás
+Ha már működő boltban ez a bővítmény fut, a fenti működési elveket követi. Új bevezetéshez azonban érdemes az utódot választanod.
 
-Az email-tartalom optimalizálása érdekében a MailChimp összehasonlítja a kampányaidat az iparági legjobb gyakorlatokkal, és javaslatokat ad a javításra. Így még hatékonyabbá teheted az üzeneteidet.
+## Ajánlott utód: Mailchimp for WooCommerce
 
-## Szószedet
+Az utód bővítmény ingyenes, és a Mailchimp fejleszti. Fő előnyei:
+- **Mélyebb és folyamatos szinkron**: rendelések, termékek, vevők, tagek és érdeklődési körök.
+- **Korszerű automatizációk**: elhagyott kosár, vásárlás utáni sorozatok, dinamikus termékajánlók.
+- **Viselkedésalapú célzás** és szélesebb adatmezők a pontosabb szegmentáláshoz.
 
-- **Kosárelhagyási emlékeztető**: Olyan email vagy SMS üzenet, amelyet egy vásárlónak küldenek, aki nem fejezte be a vásárlási folyamatot.
-- **CRM (Customer Relationship Management)**: Ügyfélkapcsolat-kezelő rendszer, amely segít az ügyfelek adatainak kezelésében és elemzésében.
-- **Generatív AI**: Olyan mesterséges intelligencia technológia, amely képes új tartalmakat létrehozni meglévő adatok alapján.
-- **Tartalom optimalizálás**: Az a folyamat, amely során a tartalmakat úgy módosítják, hogy azok jobban megfeleljenek az adott célcsoport igényeinek.
-- **Szegmentálás**: Az ügyféladatok csoportosítása meghatározott kritériumok alapján a célzott marketing érdekében.
+Általános folyamat: a WordPressből telepíted, összekapcsolod a Mailchimp-fiókoddal, kiválasztod a közönséget, majd a szinkron automatikusan fut és alapot ad a modern kampányokhoz.
+
+## Megjegyzés a hasonló nevű bővítményekről
+
+Létezik olyan alternatíva, amely hasonló célt szolgál (pénztári feliratkoztatás, Double Opt‑In, érdeklődési csoportok/tagek), de **nem azonos** a korábbi WooCommerce MailChimp Integration kiegészítővel. Ha egyszerűbb feliratkozási folyamatra van szükséged, ezt is mérlegelheted; komplex e‑kereskedelmi szinkronhoz viszont az ajánlott utód ad teljesebb megoldást.
+
+## Összegzés
+
+A WooCommerce MailChimp Integration célja az volt, hogy a pénztárnál történő **feliratkoztatást** és a **rendelési adatok** Mailchimpbe juttatását egyszerűvé tegye, ezzel a **termékvásárlás-alapú szegmentálást** és a **mérhető kampányokat** támogassa. Ma már visszavont bővítmény; új projektekhez a **Mailchimp for WooCommerce** biztosít mélyebb szinkront, modernebb automatizációkat és hosszú távú támogatást. Ha pontos, mérhető, vásárlási adatokra épített e‑mail marketinget szeretnél, az utód a legjobb kiindulópont.

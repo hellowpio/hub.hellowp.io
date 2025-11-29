@@ -1,59 +1,81 @@
-# Fluent Forms Signature Addon
+---
+title: "Fluent Forms Signature Addon"
+description: "Hivatalos Fluent Forms kiegészítő, amellyel rajzolt, kézi aláírást gyűjthetsz űrlapokon – mobilon és asztali eszközökön egyaránt."
+sidebar_label: "Fluent Forms Signature Addon"
+---
 
-A Fluent Forms Signature Addon egy praktikus bővítmény, amely lehetővé teszi a felhasználók számára, hogy aláírásokat gyűjtsenek különböző eszközök segítségével. Ez a bővítmény különösen hasznos azoknak, akik digitális aláírásokat szeretnének beépíteni űrlapjaikba, anélkül hogy bonyolult harmadik féltől származó eszközöket kellene használniuk.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők és képességek
+A Fluent Forms Signature Addon egy hivatalos kiegészítő, amely **aláírás mezőt** ad a Fluent Forms űrlapszerkesztőjéhez. A látogatók **egérrel, érintőtollal vagy ujjal** írnak alá közvetlenül az oldalon, a mező pedig **HTML5 Canvas** alapú, így nem igényel böngészőbővítményt. A cél: megszüntetni a nyomtatás–aláírás–szkennelés kört, és az aláírást az űrlapbeküldés részeként, azonnal rögzíteni.
 
-### Könnyű használat
+## Fő funkciók, érthetően
 
-Az online aláírások engedélyezése olyan egyszerű, mint egy normál mező hozzáadása az űrlaphoz a Fluent Forms segítségével. Egyszerűen húzd be az aláírás mezőt az űrlapodra, és már készen is vagy!
+- **Signature mező (drag and drop)**: Az űrlapszerkesztőben az Advanced Fields között találod. Húzd az űrlapra, állítsd be, és kész – nincs külön szolgáltatás vagy bonyolult integráció.
+- **Eszközfüggetlen aláírás**: Érintőkijelzőkön természetes, ujjjal írható; asztali gépen egérrel vagy trackpaddel rajzolható. A HTML5 Canvas gondoskodik az azonnali, sima vonalakról és a böngészőfüggetlen működésről.
+- **Testreszabás**: Beállíthatod a **toll színét és vastagságát**, a „pad” **háttérszínét**, **magasságát**, a **keretszínt**, valamint **súgóüzenetet** és **egyedi CSS osztályokat** is, hogy a mező illeszkedjen az arculatodhoz.
+- **Feltételes logika**: A Signature mezőt megjelenítheted vagy elrejtheted **más mezők értékei alapján**. Például csak akkor jelenjen meg, ha az ügyfél elfogadta a feltételeket, vagy ha „Szerződést kérek” opciót választott.
+- **Tárolás és értesítések**: Az aláírás **képként mentődik** az űrlap-bejegyzéshez. Az admin értesítő e-mailekben is szerepeltetheted, szükség esetén pedig PDF-be is beilleszthető (külön PDF-bővítménnyel).
+- **Könnyű beüzemelés**: Telepítés után a Signature azonnal elérhető az Advanced Fields között; nincs extra konfigurációs kör, csak add hozzá és használd.
 
-### Érintőkijelzős eszközök támogatása
+## Telepítés és beállítás (lépésről lépésre)
 
-Ez a bővítmény tökéletesen működik minden érintőkijelzővel rendelkező eszközzel. Legyen szó aláírási padokról, iPad-ekről, iPhone-okról, androidos telefonokról vagy akár érintőkijelzős számítógépekről, a lehetőségek szinte végtelenek.
+1. Telepítsd és aktiváld a Fluent Forms bővítményt.
+2. Szerezd be és aktiváld a Signature Addont (külön licenc).
+3. Nyisd meg az űrlapszerkesztőt, és az Advanced Fields közül húzd be a **Signature** mezőt.
+4. Állítsd be a címkét, a kötelezőséget és a súgóüzenetet.
+5. A Megjelenés fülön finomhangold a **pad magasságát**, a **toll/keret/ háttér** színeket.
+6. Ha szükséges, kapcsold be a **feltételes logikát**.
+7. Teszteld mobilon és asztali böngészőben is, majd publikáld az űrlapot.
 
-### Böngészőfüggetlen működés
+Példa finomhangolás CSS-sel:
 
-A Signature Addon HTML5 Canvas-ra épül, így teljes mértékben böngészőalapú, és nem igényel harmadik féltől származó bővítményt. Az egyetlen követelmény, hogy a JavaScript támogatás engedélyezve legyen a böngészőben.
+```css
+/* Fluent Forms Signature pad magasságának növelése */
+.ff-el-signature .signature-pad {
+  height: 220px !important;
+}
+```
 
-### Nincs szükség böngészőbővítményekre
+## Gyakorlati példák
 
-A Signature Addon nem igényel semmilyen speciális szerver szoftvert. Mindössze WordPress 4.5 vagy újabb verzióra van szükséged, valamint a Fluent Forms ingyenes verziójára, ha még nem vásároltad meg a pro verziót.
+- **Hozzájárulások és nyilatkozatok**: Adatkezelési nyilatkozat elfogadása aláírással megerősítve.
+- **Részvételi/felelősségvállalási nyilatkozatok**: Esemény- vagy tréningregisztrációkor a résztvevő aláírja a feltételeket.
+- **Megrendelések jóváhagyása**: Ajánlatok, munkalapok vagy belső jóváhagyási űrlapok hitelesítése.
+- **Szülői beleegyezés**: Táborok, sportegyesületek, klubtagságok igénylése aláírással.
+- **Petíciók**: Online aláírásgyűjtés vizuális, rajzolt aláírással.
 
-### Testreszabási lehetőségek
+Így működik a gyakorlatban: a látogató kitölti az űrlapot, a Signature mezőben aláír, majd elküldi. Az aláírás képként elmentődik a beküldéshez; te az admin felületen és (beállítás szerint) e-mailben is látod.
 
-A testreszabási funkciók segítségével meghatározhatod az aláírás mező szélességét, a toll vastagságát, a háttér színét, az utasításokat stb. Nincs semmi nehéz ebben, még akkor sem, ha először használod ezt a funkciót.
+## Előnyök és értékajánlat
 
-## Zökkenőmentes integrációk
+- **Papírmentes folyamat**: Nincs nyomtatás, postázás, szkennelés – minden digitális.
+- **Idő- és költségmegtakarítás**: Gyorsabb jóváhagyások, kevesebb adminisztráció.
+- **Mobilbarát élmény**: Érintőkijelzőn természetes az aláírás, nincs felhasználói akadály.
+- **Egységes adatkezelés**: Az aláírás a beküldés része; könnyen archiválható és visszakereshető.
+- **Rugalmas illeszkedés**: Feltételes logika, testreszabás, PDF-generálás – ugyanazon űrlapfolyamatban.
 
-### FluentCRM
+## Célközönség
 
-A FluentCRM segítségével összekapcsolhatod az aláírásokat gyűjtő űrlapokat az ügyfélkapcsolat-kezelési rendszereiddel. Így könnyen nyomon követheted és kezelheted ügyfeleid adatait.
+- **Ügynökségek és webhelytulajdonosok**, akik űrlapokba szeretnének aláírást beépíteni.
+- **Eseményszervezők, oktatási intézmények**, ahol gyakoriak a nyilatkozatok.
+- **Szolgáltatók és belső csapatok**, akik megrendeléseket, munkalapokat vagy jóváhagyásokat kezelnek.
+- **Civil szervezetek**, petíciók vagy tagsági kérelmek aláírásához.
 
-### Ninja Tables
+## Fontos: rajzolt aláírás vs. joghatású e‑aláírás
 
-A Ninja Tables integrációval könnyedén rendszerezheted és megjelenítheted az aláírt adatokat táblázatos formában. Ez különösen hasznos lehet jelentések készítésekor vagy adatbázisok karbantartásakor.
+A Signature Addon **rajzolt képet** tárol, nem tanúsítványalapú, kriptográfiai e‑aláírást. Ha **jogilag kötelező erejű, tanúsított e‑aláírásra** van szükséged (pl. szerződéskötésnél), használj kifejezetten erre tervezett megoldást, például Fluent Forms integrációt biztosító e‑aláírási bővítményt. A „rajzolt” aláírás sok üzleti folyamatban elég lehet, de jogi megfelelésnél mindig ellenőrizd a követelményeket.
 
-### PayMattic
+## Jó gyakorlatok és tippek
 
-Ha fizetési űrlapokat használsz, a PayMattic segítségével egyszerűen hozzáadhatod az aláírás mezőt, így a fizetési folyamat során is gyűjtheted az aláírásokat.
+- **Adatvédelem**: Az aláírás képfájl. Ha e-mailben is küldöd, kezeld biztonságosan (hozzáférés, jogosultságok, megőrzési idő).
+- **PDF visszaigazolás**: Használj PDF-generátort, hogy a beküldésből automatikus dokumentum készüljön, benne az aláírással.
+- **Használhatóság**: Növeld a pad magasságát mobilon; adj egyértelmű súgót („Írd alá az ujjaddal”).
+- **Feltételes megjelenítés**: Csak akkor kérj aláírást, amikor valóban szükséges – egyszerűbb űrlap, jobb konverzió.
 
-## Gyakorlati példák az alkalmazására
+## Követelmények és licencelés
 
-1. **Szerződések és megállapodások**: Online szerződések vagy szolgáltatási megállapodások esetén az ügyfelek könnyedén aláírhatják a dokumentumokat anélkül, hogy papír alapú munkafolyamatokra lenne szükség.
-   
-2. **Visszajelzési formok**: Ha egy esemény után visszajelzéseket gyűjtesz, az aláírás mező biztosítja, hogy a résztvevők hitelesített visszajelzéseket adjanak.
-   
-3. **Szülői beleegyezés**: Iskolák vagy rendezvényszervezők számára hasznos lehet szülői beleegyezési nyilatkozatok gyűjtésére gyermekek részvételekor.
-   
-4. **Adatvédelmi nyilatkozatok**: Weboldalak adatvédelmi nyilatkozataihoz is hozzáadhatsz aláírás mezőt, hogy a felhasználók megerősítsék a szabályzat elfogadását.
+- **Fluent Forms szükséges** a használathoz; a Signature Addon **külön licenccel** érhető el.
+- WordPress kompatibilitás: modern WordPress-verziókkal működik; régebbi rendszeren is használható a megadott minimum felett.
+- Elérhető **éves** és **lifetime** csomagok. A konkrét csomagok és árak idővel változhatnak – a hivatalos termékinformációk az irányadók.
 
-## Szószedet
-
-- **HTML5 Canvas**: Modern webes technológia, amely lehetővé teszi grafikai elemek rajzolását közvetlenül a böngészőben.
-- **JavaScript**: Szkriptnyelv, amely dinamikus interakciókat tesz lehetővé weboldalakon.
-- **FluentCRM**: Ügyfélkapcsolat-kezelési rendszer WordPresshez.
-- **Ninja Tables**: WordPress bővítmény táblázatok kezelésére és megjelenítésére.
-- **PayMattic**: Fizetési rendszereket támogató WordPress bővítmény.
-
-Ezekkel az információkkal remélhetőleg jobban megérted a Fluent Forms Signature Addon funkcionalitását és előnyeit, valamint azt is, hogyan tudod hatékonyan használni különböző helyzetekben.
+Összességében a Fluent Forms Signature Addon egy gyorsan bevezethető, testreszabható megoldás, amellyel az űrlapjaidba integrált, rajzolt aláírást gyűjthetsz – biztonságosan, mobilbarát módon és a megszokott Fluent Forms munkafolyamataid részeként. Ha joghatású e‑aláírás kell, válassz dedikált e‑aláírási integrációt.

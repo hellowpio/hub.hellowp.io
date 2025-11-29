@@ -1,47 +1,94 @@
-# WP Booking System - Inventory
+---
+title: "WP Booking System - Inventory"
+description: "Prémium kiegészítő napi kapacitáskezeléshez: több foglalás/nap egy naptárban, automatikus készletcsökkentéssel és dátumzárással."
+sidebar_label: "WP Booking System - Inventory"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Inventory bővítmény célja, hogy lehetővé tegye több foglalás elfogadását egy adott napra, és automatikusan elérhetetlenné tegye azokat a napokat, amikor a maximális foglalási szám elérte a felső határt. Ezzel a bővítménnyel egyszerűen és hatékonyan kezelheted az eszközeid vagy szolgáltatásaid foglalásait.
+A WP Booking System – Inventory egy prémium kiegészítő, amely napi szintű készletkezelést ad a naptáraidhoz. Akkor hasznos, ha több azonos egységet adsz bérbe (pl. 4 szoba, 10 kerékpár) és nem akarsz külön naptárat vezetni mindegyikhez. Beállítod a napi maximumot (pl. 4), és a rendszer enged addig foglalni, majd automatikusan letiltja a dátumot, amikor a készlet elfogy. Segít elkerülni a túlfoglalást és egyszerűsíti a naptárkezelést.
 
-### Többszörös foglalások elfogadása naponta
+Fontos korlátozás: az Inventory nem kompatibilis iCalendar szinkronnal. Ha iCal feedeket használsz (pl. csatornaszinkron), ezt a kiegészítőt nem szabad bekapcsolni.
 
-Az Inventory bővítmény segítségével több foglalást is elfogadhatsz egy napra, majd a rendszer automatikusan elérhetetlenné teszi azokat a napokat, amikor a maximális foglalási számot elérted. Ez különösen hasznos lehet például szálláshelyek, autókölcsönzők vagy más hasonló szolgáltatások esetében, ahol több azonos típusú eszköz vagy szolgáltatás áll rendelkezésre.
+## Hogyan működik?
 
-### Több elem foglalása egyszerre
+- A naptárszerkesztőben minden naphoz megadhatsz **készletértéket**. Beállíthatsz egy **alapértelmezett** értéket is, ami minden dátumra érvényes.
+- Amikor beérkezik egy foglalás, a kiválasztott nap(ok) készlete **automatikusan csökken** a foglalt darabszámmal.
+- Ha a készlet eléri a nullát, a dátum **automatikusan foglaltra vált**, így több foglalás nem lehetséges.
+- Az űrlapon megjelenik egy új **Inventory** mező, ahol a vendég darabszámot választhat (pl. hány egységet szeretne). Ez az aktuális dátumok maximális készletéből számolódik.
+- Ugyanazon űrlapon több Inventory mezőt is használhatsz, és ezek akár **másik naptár készletéből** is „táplálkozhatnak”. Ilyenkor a rendszer a kapcsolt naptárban is létrehoz egy „Automatikusan létrehozott” foglalást a készlet konzisztenciája érdekében.
+- Az extrák (pl. kerékpár) árazását a kiválasztott darabszámmal **szorozhatod**, így a végösszeg automatikusan igazodik.
 
-Az ügyfelek több elemet is lefoglalhatnak egyszerre, ami megkönnyíti számukra a foglalási folyamatot. Például, ha négy azonos felszereltségű szobával rendelkezel egy villában, nem szükséges minden egyes szobára külön naptárt létrehozni. Csak egy naptárat hozol létre, és beállítod a maximális napi foglalások számát négyre.
+Kötelező beállítás: a beágyazott foglaló űrlapnál kapcsold be az **Automatically Block Dates** opciót, különben a dátumzárás nem fog működni.
 
-## Együttműködés más eszközökkel
+## Fő funkciók részletesen
 
-A WP Booking System - Inventory zökkenőmentesen működik együtt több más eszközzel és bővítménnyel, hogy maximalizálja a hatékonyságot és az integrációs lehetőségeket.
+### Napi készletmező a naptárban
+- Adj meg egy alapértelmezett készletet (pl. 4), amit igény szerint dátumszinten felülírhatsz (pl. ünnepnapokon 6).
+- Módosításaid azonnal érvényesek az űrlapokra és a rendelkezésre állásra.
 
-### Integráció más naptárakkal
+### Automatikus készletcsökkentés és dátumzárás
+- Minden új foglalás csökkenti a készletet. Ha egy rendelésben több darabot választanak, annyival csökken.
+- Nulla készletnél a dátum automatikusan foglaltra vált – nincs több manuális adminisztráció.
 
-Az Inventory bővítmény lehetővé teszi egy korlátozott készletű termék foglalását egy másik naptárból származó készlet segítségével is. Ez hasznos lehet akkor, ha különböző helyszíneken ugyanazon típusú eszközöket vagy szolgáltatásokat kínálsz.
+### Több slot foglalása egy rendelésben
+- Az **Inventory** űrlapmező egy lenyíló, amely 1-től a kiválasztott napok minimális elérhető készletéig kínál választási lehetőséget.
+- Beállíthatsz **Maximum Limitet**, hogy egy vevő legfeljebb hány egységet vihessen egy rendelésben.
 
-### Beállítások és tippek
+### Külső készletforrás (Inventory Source)
+- Egy űrlapon több Inventory mező is lehet, és megadhatod, hogy melyik melyik naptár készletét használja.
+- A rendszer a kapcsolt naptárban automatikusan létrehoz egy párfoglalást, így az extrák készlete is pontosan fogy.
 
-- **Maximális foglalási szám beállítása**: A bővítmény beállításainál könnyen meghatározhatod a maximális napi foglalási számot.
-- **Készletkezelés**: Ügyelj arra, hogy mindig naprakész legyen a készletkezelésed, így elkerülheted a túlfoglalásokat.
+### Ár képzése darabszám alapján
+- Adj hozzá termék/ár mezőt, és kapcsold be a **Multiplication** opciót: a végösszeg a kiválasztott darabszám szerint szorzódik.
 
 ## Gyakorlati példák
 
-### Szálláshelyek
+- Panzió 4 azonos szobával: állítsd be a naptár alapértelmezett készletét 4-re. Ha 4 foglalás érkezik ugyanarra a napra, a rendszer lezárja a dátumot. Nem kell 4 külön naptár.
+- Villa + kerékpárok extra: a villa fő naptár mellé hozz létre egy „Biciklik” naptárt 10-es készlettel. Az űrlapon adj hozzá egy Inventory mezőt, amely a „Biciklik” naptár készletét használja. Ha a vendég 3 biciklit kér, a villa foglalás mellett automatikus bejegyzés jön létre a bicikli-naptárban is, a rendszer pedig 3-mal csökkenti a készletet és az árat is ennek megfelelően számolja.
+- Eszközbérlés/járműpark: jetski kölcsönzésnél napi 8 egység készlet. Engedélyezd, hogy egy rendelésben legfeljebb 2 egységet vihessenek. A rendszer a kiválasztott napokhoz mérten ajánl darabszámot.
 
-Egy villa négy azonos felszereltségű szobával rendelkezik. Ahelyett, hogy minden szobára külön naptárt hoznál létre, egyetlen naptárt használsz, és beállítod a maximális napi foglalások számát négyre.
+## Telepítés és alapbeállítás
 
-### Autókölcsönzők
+1. WP adminban nyisd meg az Add-ons menüt, telepítsd és aktiváld az Inventory kiegészítőt.
+2. A naptárszerkesztőben állíts be alapértelmezett készletet, majd szükség esetén módosíts egyes dátumokat.
+3. Az űrlapszerkesztőben add hozzá az **Inventory** mezőt:
+   - Forrás: aktuális naptár vagy másik naptár
+   - Maximum Limit: opcionális plafon rendelésenként
+4. Adj hozzá ár mezőt, és kapcsold be a **Multiplication** opciót, ha az ár darabszám-arányos.
+5. A beágyazás/beállítások között kapcsold be az **Automatically Block Dates** opciót.
 
-Tegyük fel, hogy tíz azonos típusú autót bérelsz ki. Egyetlen naptárban kezelheted az összes autó foglalását, és beállíthatod a maximális napi foglalások számát tízre.
+Példa beállítás vázlat:
+```
+Inventory (Rooms):
+  Source: Current calendar
+  Max per order: 2
+Pricing (Nightly rate):
+  Multiplication: enabled
+```
 
-### Hajókölcsönzők
+## Előnyök és értékajánlat
 
-Egy hajókölcsönző cég négy jet ski-t kínál bérlésre. Egyetlen naptárban kezelheted az összes jet ski foglalását, és beállíthatod a maximális napi foglalások számát négyre.
+- Túlfoglalás megelőzése több azonos egység esetén.
+- Kevesebb naptár, kevesebb adminisztráció, tisztább folyamatok.
+- Gyorsabb foglalás: a vendég egy rendelésben több darabot kérhet.
+- Extrák készlete és ára automatikusan követi a fő foglalást.
+- Minden licenchez elérhető prémium funkció, külön vásárlás nélkül.
 
-## Szószedet
+## Célközönség
 
-- **Inventory**: Készlet; olyan elemek összessége, amelyeket ki lehet bérelni vagy le lehet foglalni.
-- **Foglalás**: Az ügyfél által lefoglalt időpont egy adott szolgáltatás vagy eszköz használatára.
-- **Naptár**: Az időpontok kezelése és megjelenítése egy adott szolgáltatás vagy eszköz foglalásaira.
-- **Maximális foglalási szám**: Az a legnagyobb számú foglalás, amelyet egy adott napra engedélyezel.
+- Több azonos egységet kiadó szállásadók (panziók, apartmanházak).
+- Eszköz- és járműkölcsönzők (kerékpár, jetski, csónak).
+- Program- és élményszolgáltatók limitált kapacitással.
+- Olyan webhelyek, ahol a napi kapacitáskezelt foglalás kritikus.
+
+Nem ajánlott, ha iCal szinkront használsz csatornák között. Ilyenkor külön naptárstratégiát vagy külső csatornakezelőt érdemes fontolni.
+
+## Korlátok és jó gyakorlatok
+
+- iCal inkompatibilitás: az Inventory nem működik bejövő/kimennő iCal feedekkel.
+- Az **Automatically Block Dates** bekapcsolása kötelező.
+- Többnapos foglalásoknál a rendszer a kiválasztott időszak legkisebb elérhető készlete alapján engedi a darabszámot.
+- Teszteld a beállításokat próbarendeléssel, különösen külső készletforrás használatakor.
+
+Megjegyzés: a bővítményt a WP Booking System fejlesztőcsapata készíti; a termék aktív karbantartás és dokumentáció mellett érhető el.

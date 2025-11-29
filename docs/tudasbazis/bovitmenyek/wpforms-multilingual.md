@@ -1,47 +1,79 @@
-# WPForms Multilingual
+---
+title: "WPForms Multilingual"
+description: "WPML hivatalos kiegészítője, amellyel a WPForms űrlapokat teljes körűen, automatizált vagy manuális folyamattal több nyelven kezelheted."
+sidebar_label: "WPForms Multilingual"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-A WPForms Multilingual bővítmény lehetővé teszi a WPForms űrlapok többnyelvű kezelését és fordítását. Ez különösen hasznos olyan weboldalak számára, amelyek többnyelvű közönséget céloznak meg, hiszen lehetővé teszi, hogy az űrlapok minden nyelven elérhetőek legyenek, amelyet a weboldal támogat.
+A **WPForms Multilingual (WPFML)** a WPML hivatalos kiegészítője, amely a **WPForms** űrlapjaidat a WPML fordítási rendszerébe illeszti. Így egyetlen űrlapot használhatsz több nyelven, és a látogatók mindig a **webhely aktuális nyelvén** látják a mezőket, visszaigazolásokat és az **értesítő e-maileket** is. Nem kell külön űrlapokat építened minden nyelvre; a fordítás egy központi, ellenőrzött folyamatban kezelhető.
 
-## Főbb jellemzők
+## Rendszerkövetelmények
 
-### Többnyelvű űrlapok egyszerű kezelése
-A WPForms Multilingual segítségével könnyedén kezelheted és fordíthatod az összes WPForms űrlapot. A bővítmény lehetőséget biztosít arra, hogy egyetlen helyről irányítsd az összes űrlap fordítását, ezzel megkönnyítve a többnyelvű tartalom kezelését.
+- **WPForms** (vagy WPForms Lite)
+- **WPML** alapbővítmény
+- **WPML String Translation**
+- **WPForms Multilingual** kiegészítő
 
-### Zökkenőmentes integráció a WPML-lel
-A bővítmény szorosan integrálódik a WPML (WordPress Multilingual Plugin) bővítménnyel, amely az egyik legnépszerűbb eszköz a WordPress többnyelvű kezeléséhez. Az integrációnak köszönhetően a WPForms űrlapok fordítása ugyanolyan egyszerűvé válik, mint a bejegyzések és oldalak fordítása.
+A bővítményt a WPML-t fejlesztő csapat gondozza, és a WPML előfizetés részeként érhető el.
 
-### Teljes kompatibilitás más bővítményekkel
-A WPForms Multilingual zökkenőmentesen működik együtt más népszerű bővítményekkel, például a WooCommerce-szel, Elementorral és másokkal. Ez különösen hasznos lehet olyan weboldalak esetében, amelyek komplex funkciókat használnak, és ahol fontos a többnyelvűség fenntartása.
+## Fő funkciók részletesen
 
-## Specifikus előnyök és felhasználási módok
+- **Teljes űrlapfordítás**: Fordítható az űrlap címe, minden mező, címke, leírás, **alcímkék** (például a Név mező részei), **helyőrzők (placeholders)**, továbbá a **Content mezők** és **HTML blokkok**. Ez biztosítja, hogy a frontenden sehol ne maradjon „félrebeszélő” nyelvi elem.
+- **Értesítések és visszaigazolások**: A beállított visszaigazolási üzenetek és admin/felhasználói értesítések nyelvenként fordíthatók. A WPFML a WPForms „smart tagjeinek” (pl. űrlapnév) nyelvi megjelenítését is kezeli, így az e-mailek és köszönőoldalak minden részletükben követik a választott nyelvet.
+- **Fordítási módszerek**: Használhatod az **automatikus fordítást** (Advanced Translation Editor), **saját kézi fordítást**, vagy **professzionális fordítókat**. Mindez a WPML **Fordítási vezérlőpultjából** indítható, ahol a WPForms űrlapok külön szekcióban jelennek meg.
+- **String Translation és automatikus regisztráció**: Ha valamelyik űrlapszöveg (pl. alcímke vagy gombfelirat) nem bukkan fel a fordítandó elemek között, elég **meglátogatni a formot a frontenden**, így a karakterláncok regisztrálódnak, majd a **String Translation** felületen lefordíthatók.
+- **Add-on integráció**:
+  - **URL-átirányítások** megerősítésekben: nyelvenként állítható céloldalak.
+  - **Entry Preview** címkék: az előnézeti lépés minden eleme fordítható.
+  - **Form Locker** üzenetek: zárolási és hozzáférési üzenetek lokalizálhatók.
+  - **Custom CAPTCHA** kérdés–válasz párok: többnyelvű biztonsági kérdések.
+  - **Save and Resume** gombok és üzenetek: a félbehagyott űrlapok kommunikációja nyelvenként testre szabható.
+  - **User Registration** e-mailek: regisztrációs és megerősítő levelek a felhasználó nyelvén mennek ki.
+  - **Felmérések és szavazások**: a válaszok nyelvenkénti kezelése és összevonása támogatott, így egységes riportot kapsz.
+- **Megbízható megjelenítés és kompatibilitás**: Javított **feltételes mező**-logika többnyelvű környezetben, **PHP 8** kompatibilitás, importált űrlapok automatikus regisztrációja és stabilabb **űrlapmentési folyamat**.
 
-### Könnyen kezelhető felület
-A WPForms Multilingual felhasználói felülete rendkívül intuitív, így még azok is könnyedén boldogulnak vele, akik nem jártasak a technikai részletekben. Az egyszerű kezelhetőség gyorsabb munkavégzést és hatékonyabb üzemeltetést tesz lehetővé.
+## Hogyan működik a gyakorlatban?
 
-### Fordításkezelés egy helyen
-A bővítmény lehetőséget biztosít arra, hogy az összes űrlap fordítását egyetlen helyről végezd el. Ez nemcsak időt takarít meg, hanem minimalizálja az esetleges hibák számát is, mivel minden fordítás központilag történik.
+1. Telepítsd és aktiváld a WPML-t, a String Translationt, a WPFormsot és a WPForms Multilingualt.
+2. Lépj a **WPML → Fordítási vezérlőpultba**, és a WPForms szekcióban jelöld ki a fordítandó űrlapokat.
+3. Válaszd ki a fordítási módot (automatikus, kézi vagy fordítóhoz delegált), majd küldd fordításra.
+4. A frontenden nyelvváltáskor automatikusan a megfelelő **nyelvi űrlapverzió** jelenik meg.
+5. Ha valami szöveg nem látszik fordíthatónak, nyisd meg az űrlapot a **frontenden** (regisztráció), majd fordítsd le a String Translationben.
 
-### Automatikus szinkronizálás
-A WPForms Multilingual automatikusan szinkronizálja az űrlapokat és azok fordításait, így biztosítva, hogy minden nyelvi változat naprakész legyen. Ez különösen fontos, ha gyakran frissíted az űrlapokat vagy új mezőket adsz hozzájuk.
+```text
+Gyors checklist
+- WPForms + WPML + String Translation + WPFML aktív?
+- Nyelvek és nyelvváltó beállítva?
+- Űrlap kijelölve a Fordítási vezérlőpultban?
+- Nem látható szöveg? Nyisd meg a formot a frontenden → String Translation.
+- Értesítések és visszaigazolások mind fordítva?
+```
 
-## Gyakorlati példák
+## Konkrét, gyakorlati példák
 
-### Többnyelvű ügyfélszolgálati űrlap
-Ha vállalkozásod több országban is jelen van, fontos, hogy az ügyfélszolgálati űrlapokat minden ügyfél saját nyelvén kitölthesse. A WPForms Multilingual segítségével könnyedén létrehozhatod ugyanazt az űrlapot több nyelven is, biztosítva ezzel a zökkenőmentes kommunikációt.
+- **Támogatási űrlap több régióra**: Ugyanaz a struktúra, de a címkék, súgószövegek és az automatikus válasz e-mail minden nyelven natív. Az ügyfélszolgálat egységesen kapja a beérkezőket, miközben az ügyfél saját nyelvén kommunikál.
+- **Regisztrációs folyamat**: A User Registration kiegészítő megerősítő levelei és hibajelzései a felhasználó által választott nyelven mennek ki, kevesebb félreértéssel és elhagyással.
+- **Felmérés/űrlap A/B országokban**: A kitöltési arányokat és válaszokat nyelvtől függetlenül egyben tudod elemezni, miközben a kérdések teljesen lokalizáltak.
 
-### Nemzetközi rendezvények regisztrációja
-Ha nemzetközi eseményeket szervezel, például konferenciákat vagy workshopokat, a résztvevők különböző nyelveken szeretnék kitölteni a regisztrációs űrlapokat. A WPForms Multilingual lehetővé teszi számodra, hogy több nyelven is elérhetővé tedd a regisztrációs űrlapokat.
+## Előnyök és értékajánlat
 
-### Többnyelvű hírlevél feliratkozási űrlap
-Ha különböző nyelvterületeken működő ügyfeleket szeretnél megszólítani hírleveleiddel, érdemes többnyelvű feliratkozási űrlapot létrehozni. A WPForms Multilingual segítségével minden látogató saját nyelvén iratkozhat fel hírleveledre.
+- **Idő- és költségmegtakarítás**: Nem kell külön űrlapokat duplikálnod és karbantartanod; egy űrlap – több fordítás.
+- **Következetes UX**: A látogató és az admin is a megfelelő nyelvű tartalmat kapja (mezők, üzenetek, e-mailek).
+- **Kevesebb hiba, jobb skálázhatóság**: Új nyelv felvétele a meglévő munkafolyamatban történik, anélkül, hogy szétesne a logika.
+- **Professzionális fordítási folyamat**: Automatizált fordítás, kézi finomhangolás, fordítócsapatok – mind egy helyen.
 
-## Szószedet
+## Célközönség
 
-- **WPML**: WordPress Multilingual Plugin, amely lehetővé teszi a WordPress weboldalak többnyelvű kezelését.
-- **WooCommerce**: Egy népszerű e-kereskedelmi bővítmény WordPress-hez.
-- **Elementor**: Egy drag-and-drop vizuális oldalkészítő bővítmény WordPress-hez.
-- **Automatikus szinkronizálás**: A funkció, amely biztosítja, hogy minden nyelvi változat naprakész legyen az eredeti tartalom frissítése után.
+- **Nemzetközi vállalkozások és e-kereskedelmi oldalak**: Többpiacos kapcsolatfelvétel és ügyintézés egységesen.
+- **Oktatási és közintézmények**: Jelentkezési, pályázati, visszajelző űrlapok több nyelven.
+- **Ügynökségek és site builderek**: Standardizálható, átadható és skálázható űrlapfordítási folyamat.
+- **Ügyfélszolgálati csapatok**: Érthetőbb beérkezők, nyelvfüggő automatizmusok és riportok.
 
-A WPForms Multilingual tehát egy rendkívül hasznos eszköz azok számára, akik többnyelvű weboldalt üzemeltetnek és szeretnék egyszerűen kezelni az űrlapok fordítását. A könnyen kezelhető felület és az automatikus szinkronizálás csak néhány a számos előnye közül.
+## Megbízhatóság és kompatibilitás
+
+A WPFML-t a WPML csapata folyamatosan teszteli a WPForms aktuális funkcióival és kiegészítőivel. A legutóbbi frissítések hoztak támogatást az új generációs fordítószerkesztőhöz, javították a feltételes mezők működését, bővítették az addon-integrációkat, és stabilabbá tették az űrlapmentést modern PHP környezetekben.
+
+---
+
+Röviden: ha többnyelvű webhelyen használsz WPFormsot, a **WPForms Multilingual** az a kapocs, amely az űrlapjaid minden elemét professzionális fordítási folyamatba rendezi, és garantálja, hogy a látogatók és a belső folyamatok is a megfelelő nyelven működjenek.

@@ -1,50 +1,82 @@
-# WP Booking System - Multiple Currencies
+---
+title: "WP Booking System - Multiple Currencies"
+description: "Prémium kiegészítő a WP Booking Systemhez, amely több pénznemet kezel a foglalási űrlapon, és a fizetést a kiválasztott devizában indítja, automatikus vagy kézi árfolyammal."
+sidebar_label: "WP Booking System - Multiple Currencies"
+---
 
-A WP Booking System - Multiple Currencies bővítmény lehetővé teszi a felhasználók számára, hogy különböző pénznemekben végezzék el a fizetéseket. Ez különösen hasznos azoknak a vállalkozásoknak, amelyek nemzetközi ügyfélkörrel rendelkeznek, és szeretnék megkönnyíteni az ügyfelek számára a fizetési folyamatot.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők
+A WP Booking System – Multiple Currencies egy prémium kiegészítő, amellyel a foglalási űrlapodon több pénznemet kezelhetsz. A látogató a díjtáblázat fölötti pénznemválasztóval kiválaszthatja a saját valutáját, te pedig a foglalást és a fizetést is ebben a devizában kezeled. Ezzel megszűnik az árfolyam-átváltás miatti bizonytalanság: az árak és a végösszeg átláthatóan, a vendég által választott pénznemben jelennek meg és kerülnek terhelésre.
 
-### Pénznemválasztó
+## Fő funkciók, röviden elmagyarázva
 
-A bővítmény lehetővé teszi egy pénznemválasztó hozzáadását az árlisták fölé, így az ügyfelek kiválaszthatják a számukra megfelelő pénznemet. A kiválasztott pénznemben történik a fizetés is. Ezáltal az ügyfelek kényelmesebben és gyorsabban intézhetik a foglalásokat.
+- **Pénznemválasztó a foglalási űrlapon**: A pricing táblázat feletti váltóval a felhasználó azonnal devizát válthat. Minden ár, díj és a végösszeg azonnal frissül.
+- **Fizetés a kiválasztott pénznemben**: Nem csak megjelenítésről van szó; a fizetési tranzakció a választott devizában indul (a kapu támogatásától függően), így elkerülhetők a rejtett konverziós díjak.
+- **Tetszőleges számú pénznem**: Vedd fel az általad támogatni kívánt valutákat; beállíthatod az alapértelmezett devizát és a váltható opciókat.
+- **Árfolyam-kezelés két módban**:
+  - **Automatikus frissítés**: Napi árfolyamok a Fixer API-ról (API-kulcs szükséges), minimális karbantartással.
+  - **Kézi árfolyam**: Rögzített, általad meghatározott konverziók, ha garantált, „kerek” árakat szeretnél.
+- **Admin felület integráció**: Önálló beállítási oldal a WP Booking Systemben: Settings → Payment Options → Multiple Currencies.
+- **Licenc**: A kiegészítő a Business és magasabb csomagokban érhető el.
 
-### Árfolyamok kezelése
+## Hogyan működik a gyakorlatban?
 
-Az adminisztrátorok kétféleképpen kezelhetik az árfolyamokat:
-1. **Kézi beállítás**: Az adminisztrátorok manuálisan adhatják meg az alapértelmezett pénznem és a többi pénznem közötti árfolyamokat.
-2. **Automatikus frissítés**: Egy ingyenes online szolgáltatás segítségével naponta automatikusan frissíthetők az árfolyamok.
+A kiegészítőt aktiválás után az adminban engedélyezed, felveszed a támogatott pénznemeket, majd kiválasztod az árfolyam-módot (automatikus vagy kézi). Ezt követően a foglalási űrlapodon megjelenik a pénznemválasztó. Amikor a látogató pénznemet vált, a rendszer az aktuális (vagy általad megadott) árfolyammal konvertálja az árakat, a fizetési kapu pedig a kiválasztott devizában indítja a terhelést.
 
-## Integráció más eszközökkel
+## Telepítés és alapbeállítás
 
-### Fizetési szolgáltatók
+1. Telepítsd és aktiváld a WP Booking System alap plugint és a Multiple Currencies kiegészítőt.
+2. Lépj a Settings → Payment Options → Multiple Currencies menübe.
+3. Engedélyezd a többpénznemes funkciót.
+4. Add hozzá a támogatandó pénznemeket.
+5. Válaszd ki az árfolyam-módot: automatikus (Fixer API-kulccsal) vagy kézi.
 
-A WP Booking System - Multiple Currencies több népszerű fizetési szolgáltatóval is zökkenőmentesen működik együtt, így az ügyfelek számos fizetési mód közül választhatnak:
+Példa konfiguráció:
 
-- **PayPal**: Az ügyfelek PayPal-fiókjukkal vagy bankkártyával fizethetnek.
-- **Stripe**: Lehetővé teszi a bankkártyás fizetéseket.
-- **Square**: Szintén bankkártyás fizetéseket támogat.
-- **Authorize.Net**: Hitelkártyás fizetési lehetőség.
-- **Mollie**: Számos fizetési módot támogat, beleértve a hitelkártyát, banki átutalást és iDEAL-t is.
+```
+Settings → Payment Options → Multiple Currencies
 
-## Gyakorlati példák
+Enabled: Yes
+Currencies: EUR, USD, GBP
+Rates: Automatic (Fixer API key megadva)
+```
 
-### Szálláshely-szolgáltatók
+## Konkrét használati esetek
 
-Egy nemzetközi szállodalánc számára rendkívül fontos, hogy vendégei saját pénznemükben tudjanak fizetni. A WP Booking System - Multiple Currencies bővítménnyel a vendégek könnyedén kiválaszthatják saját pénznemüket, ami növeli a foglalások számát és javítja az ügyfélélményt.
+- **Szállás több célpiaccal (EUR, GBP, USD)**: A vendég a saját valutáját választja. A foglalási díjak és az adók azonnal konvertálódnak, a fizetés például Stripe-on vagy PayPalon a választott devizában történik.
+- **Eszköz- vagy járműbérlés turisztikai régióban**: Napi automatikus árfolyam-frissítéssel mindig naprakész árakat mutatsz és terhelsz, csökken a manuális karbantartás.
+- **Fix, marketingbarát árak**: Ha nem akarsz napi árfolyam-ingadozást, kézi rögzített árfolyamot állítasz be (például 1 EUR = 1.1 USD), így a megjelenített és terhelt összegek stabilak maradnak.
 
-### Autókölcsönző cégek
+## Előnyök és értékajánlat
 
-Autókölcsönző cégek esetében gyakran előfordul, hogy az ügyfelek különböző országokból érkeznek. A több pénznemet támogató rendszer megkönnyíti számukra a foglalási és fizetési folyamatot, mivel nem kell konvertálniuk saját pénzüket.
+- **Kevesebb súrlódás**: A vendég saját pénznemben látja és fizeti az árakat – nagyobb bizalom, jobb konverzió.
+- **Átlátható végösszeg**: Nincsenek meglepő banki konverziós díjak a checkout után.
+- **Automatizált működés**: Az automatikus árfolyam-frissítés csökkenti a kézi frissítésekből adódó hibákat és időráfordítást.
+- **Nemzetközi értékesítés**: Könnyebben nyitsz új piacok felé, növelheted a foglalások számát.
+- **Rugalmasság**: Korlátlan pénznem, kézi vagy automatikus árfolyam, több fizetési kapu támogatása.
 
-### Utazási irodák
+## Kinek ajánlott?
 
-Utazási irodák számára különösen fontos, hogy az ügyfelek különböző pénznemekben tudjanak fizetni. Ezzel a bővítménnyel az utazási irodák szélesebb körben tudják kiszolgálni ügyfeleiket, és növelhetik forgalmukat.
+- **Szállásadók, vendégházak, apartmanok** több országból érkező vendégekkel.
+- **Jármű-, kerékpár-, sporteszköz- és hajóbérlés** szolgáltatók nemzetközi közönséggel.
+- **Túra- és élményszervezők**, ahol az ügyfelek különböző devizákban fizetnének.
+- **Ügynökségek és több márkát kezelő rendszerek**, amelyek egy telepítésben több piacot szolgálnak ki.
 
-## Szószedet
+Ha csak belföldi vendégeid vannak és egyetlen devizában számlázol, valószínűleg nincs szükséged erre a kiegészítőre.
 
-- **Pénznemválasztó**: Egy felület, amely lehetővé teszi az ügyfelek számára a kívánt pénznem kiválasztását.
-- **Árfolyam**: A különböző pénznemek közötti átváltási arány.
-- **Automatikus frissítés**: Egy funkció, amely naponta frissíti az árfolyamokat egy online szolgáltatás segítségével.
-- **Fizetési szolgáltatók**: Olyan cégek, amelyek online fizetési megoldásokat kínálnak, például PayPal vagy Stripe.
+## Kompatibilitás és korlátozások
 
-Ez a tartalom segít jobban megérteni, hogyan működik a WP Booking System - Multiple Currencies bővítmény, és milyen előnyökkel jár a használata különböző üzleti helyzetekben.
+- **Támogatott fizetési kapuk**: A kiegészítő együttműködik a WP Booking System fizetési integrációival (például Stripe, PayPal, Square, Mollie). A ténylegesen használható devizák a kapu saját pénznem-támogatásától függenek – ezt mindig ellenőrizd a szolgáltatódnál.
+- **Nem kompatibilis**:
+  - Authorize.Net kiegészítő: csak USD-ben fogad fizetést.
+  - WooCommerce Checkout kiegészítő: a WooCommerce globálisan egyetlen pénznemet kezel.
+  
+Tipp: teszteld a teljes folyamatot sandbox módban minden beállított devizával, és ellenőrizd a kapud támogatási listáját.
+
+## Háttér és licenc
+
+- **Alap plugin**: WP Booking System (nap-alapú foglalási naptár, űrlapépítővel, fizetési kapukkal, adókkal, kedvezményekkel, iCal szinkronnal).
+- **Licencelés**: A Multiple Currencies a Business és Developer csomagok része.
+- **Fejlesztői háttér**: A WP Booking System-t eredetileg Roland Murg készítette; a terméket a Veribo IT Solutions SRL fejleszti és tartja karban.
+
+Ezzel a kiegészítővel professzionális, többpénznemű foglalási élményt adhatsz a látogatóidnak, miközben egyszerűen kézben tartod az árfolyamokat és a fizetéseket – pontosan abban a devizában, amelyre az üzletednek és az ügyfeleidnek szüksége van.

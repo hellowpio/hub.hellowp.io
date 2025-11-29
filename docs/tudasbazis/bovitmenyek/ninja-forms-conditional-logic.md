@@ -1,68 +1,109 @@
-# Ninja Forms - Conditional Logic
+---
+title: "Ninja Forms - Conditional Logic"
+description: "Prémium kiegészítő a Ninja Forms-hoz, amellyel feltételek alapján dinamikusan jeleníthetsz meg mezőket, futtathatsz műveleteket és személyre szabhatod az űrlapélményt."
+sidebar_label: "Ninja Forms - Conditional Logic"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A Ninja Forms - Conditional Logic kiegészítő lehetővé teszi, hogy a weboldaladon található űrlapok dinamikusan reagáljanak a felhasználói választásokra. Ez azt jelenti, hogy az űrlap mezői megjelenhetnek, eltűnhetnek, módosulhatnak vagy különböző műveletek hajthatók végre attól függően, hogy a felhasználó milyen adatokat adott meg. Ez a funkcionalitás rendkívül hasznos lehet, ha szeretnéd az űrlapjaidat még felhasználóbarátabbá és célzottabbá tenni.
+A Conditional Logic a Ninja Forms űrlapkészítő prémium kiegészítője. Segítségével szabályokat állíthatsz be, amelyek a felhasználó válaszai alapján megjelenítenek vagy elrejtenek mezőket, módosítanak listaopciókat, számításokat, illetve csak bizonyos esetekben futtatnak űrlapműveleteket (például e‑maileket vagy átirányítást). Így az űrlap rövidebbnek, relevánsabbnak érződik, a beküldések pontosabbak lesznek, és kevesebb utómunka hárul rád.
 
-## Mezők megjelenítése és elrejtése
+A lényeg: kód nélkül testre szabott, rugalmas űrlapfolyamatot hozhatsz létre, amely a kitöltőre reagál.
 
-### Felhasználói választások alapján
+## Fő funkciók, érthetően
 
-A Conditional Logic segítségével bármely mezőt megjelenítheted vagy elrejtheted a felhasználói választások alapján. Például, ha a felhasználó az "Egyéb" opciót választja egy legördülő listából, egy szövegmező automatikusan megjelenhet, ahol részletezheti az egyéb választását.
+- **Mezők megjelenítése/elrejtése**  
+  Bármely mezőt láthatóvá vagy láthatatlanná tehetsz a válaszok alapján. Például ha valaki „Egyéb” opciót választ, megjelenítesz egy szövegmezőt, ahol részletezhet.
 
-### Bonyolultabb feltételek
+- **Mezőértékek és számítások dinamikus módosítása**  
+  Feltételekhez kötheted a számított mezőket, árakat, kedvezményeket vagy pontszámokat. Például kuponkód esetén automatikus árengedményt számíthatsz.
 
-Több mezőt vagy mezők csoportját is megjelenítheted vagy elrejtheted komplexebb feltételek alapján. Például csak akkor jeleníthetsz meg bizonyos mezőket, ha a felhasználó által megadott költségvetés egy bizonyos összeg felett van.
+- **Listaopciók szintű logika**  
+  Legördülők, rádiógombok és jelölőnégyzetek egyes opcióit külön-külön elrejtheted vagy megjelenítheted, hogy a kitöltő csak releváns választ lásson.
 
-## Mezőértékek módosítása és számítások
+- **Feltételes e‑mail és workflow**  
+  Értesítések és más űrlapműveletek (pl. átirányítás, feliratkoztatás) csak adott válaszok esetén fussanak. Így a beküldések automatikusan a megfelelő címzetthez kerülnek.
 
-### Ár és kedvezmények
+- **Sikerüzenetek és átirányítások**  
+  Más üzenetet vagy másik céloldalt jeleníthetsz meg különböző válaszoknál (például szolgáltatási kategória szerint).
 
-A Conditional Logic használatával könnyen beállíthatod, hogy bizonyos mezők értékei változzanak a felhasználói bemenetek alapján. Például kedvezményt ajánlhatsz, ha a felhasználó egy kuponkódot ad meg, vagy módosíthatod egy tétel árát, ha a vásárló több mint egy bizonyos mennyiséget rendel.
+- **Feliratkozás listákra**  
+  Válaszok alapján külön marketinglistákba irányíthatod a kitöltőt.
 
-### Kvízek és tesztek
+- **Dátum alapú feltételek**  
+  Dátumok között hasonlíthatsz: „előtte”, „előtte vagy azon a napon”, „pontosan”, „azon a napon vagy utána”, „utána”. Idő szerinti összehasonlítás jelenleg nem támogatott.
 
-Kvízeket is készíthetsz, ahol a különböző válaszok alapján más és más opciók jelennek meg. A felhasználói pontszám alapján különböző kérdések jelenhetnek meg, így személyre szabott élményt nyújtva.
+- **Kötelező mezők feltételesen**  
+  Csak akkor tedd kötelezővé a mezőt, amikor tényleg szükséges (például vállalati adatok csak céges érdeklődőknél).
 
-## Listák módosítása
+- **Összehasonlító operátorok**  
+  Egyenlő, nem egyenlő, nagyobb/kisebb típusú feltételek, valamint több feltétel kombinálása AND/OR logikával.
 
-### Dinamikus listák
+- **Integrációk**  
+  Tökéletesen együttműködik más Ninja Forms kiegészítőkkel (például többlépéses űrlapok, haladó dátumválasztó, fizetések, e‑mail értesítések).
 
-Bármely listamező (legördülő lista, rádiógombok stb.) elemeit megjelenítheted vagy elrejtheted a felhasználói választások alapján. Ez lehetővé teszi, hogy csak a releváns opciókat mutasd meg a felhasználónak, csökkentve az információ túlterhelést és javítva az űrlap kitöltési élményt.
+## Hogyan működik? (Gyors beállítás)
 
-## Feltételes e-mailek küldése
+1. Nyisd meg az űrlapot az építőben.
+2. Válaszd ki a szabályozandó mezőt vagy űrlapműveletet.
+3. Az **Advanced > Conditional Logic** panelen kapcsold be a feltételeket.
+4. Állítsd be:
+   - a kiváltó mezőt (melyik válaszra figyeljen),
+   - az összehasonlítást (például „egyenlő”, „nagyobb mint”),
+   - a célt (mező megjelenítése/elrejtése, opciók módosítása, művelet futtatása).
+5. Szükség esetén adj hozzá több szabályt, AND/OR logikával.
+6. Előnézetben teszteld a viselkedést különböző válaszokkal.
 
-### Címzettek változtatása
+Példa pszeudó-szabályokra:
 
-Nem minden e-mail értesítésnek kell ugyanarra a személyre vagy osztályra mennie. A Conditional Logic segítségével beállíthatod, hogy az űrlap adatai alapján különböző címzettekhez küldjenek e-maileket. Például egy panasz esetén más e-mail címre mehet az értesítés, mint egy általános érdeklődés esetén.
-
-## Egyedi sikerüzenetek megjelenítése
-
-### Személyre szabott üzenetek
-
-Bármelyik Ninja Formhoz egyedi sikerüzenetet adhatsz hozzá, amelyek különböző feltételek alapján jelennek meg. Például különböző sikerüzeneteket mutathatsz meg azoknak a felhasználóknak, akik egy bizonyos pontszámot értek el egy kvízben.
-
-## Eltérő céloldalakra irányítás
-
-### Feltételes átirányítás
-
-A felhasználói válaszok alapján átirányíthatod őket különböző oldalakra a weboldaladon. Például egy termék érdeklődési űrlapon keresztül különböző termékoldalakra irányíthatod őket az érdeklődési körük alapján.
+```
+Ha [Típus] = "Céges" → Mutasd [Adószám]
+Ha [Kupon] = "SAVE10" → [Végösszeg] = [Végösszeg] * 0.9
+Ha [Téma] tartalmazza "Ajánlat" → Futtasd [Értékesítés e-mail értesítés]
+```
 
 ## Gyakorlati példák
 
-1. **Ajánlatkérés űrlap**: Csak azoknak mutass további mezőket, akik nagyobb költségvetést adnak meg.
-2. **Kvízek**: A felhasználók válaszai alapján különböző kérdések és eredmények jelennek meg.
-3. **Hírlevél feliratkozás**: Különböző hírlevél listákra iratkozhatnak fel a felhasználók az érdeklődési köreik alapján.
-4. **Fizetési lehetőségek**: Különböző fizetési módokat jeleníthetsz meg a vásárlók választásai alapján.
-5. **Ügyfélszolgálati űrlapok**: Különböző osztályokhoz irányíthatod az e-maileket a beérkezett információk alapján.
+- **Rövidebb, személyre szabott űrlapok**  
+  Csak a releváns kérdések jelennek meg. Ha „Magánszemély” a válasz, elrejted a cégadatokat; „Céges” esetén megjeleníted és kötelezővé teszed.
 
-## Szószedet
+- **Osztály szerinti útvonalazás**  
+  „Téma” választás alapján más-más e-mail értesítés fusson: értékesítés, ügyfélszolgálat vagy marketing.
 
-- **Conditional Logic**: Feltételes logika
-- **Field**: Mező
-- **Dropdown**: Legördülő lista
-- **Radio list**: Rádiógombok
-- **Email notification**: E-mail értesítés
-- **Success message**: Sikerüzenet
-- **Redirect**: Átirányítás
-- **Subscription list**: Feliratkozási lista
+- **Dinamikus árképzés**  
+  Kuponkód vagy mennyiség alapján kedvezmény. Például 10+ darabnál mennyiségi kedvezmény.
+
+- **Többlépéses elágaztatás**  
+  Komplett lépéseket hagysz ki, ha nincs relevancia (például haladó beállítások csak szakmai érdeklődőknek).
+
+- **„Gated” beküldés**  
+  A „Beküldés” gomb csak akkor jelenjen meg, ha a felhasználó elfogadta a feltételeket és megadta a szükséges adatokat.
+
+- **Időzített megjelenítés**  
+  Jelentkezési űrlap csak egy időszakban aktív: ha a dátum a határidő után van, mutass „Lezárult” üzenetet és rejtsd el a beküldést.
+
+## Előnyök és értékajánlat
+
+- **Nagyobb befejezési arány**: a kitöltő csak azt látja, ami rá vonatkozik.  
+- **Kevesebb manuális munka**: automatikus értesítések, átirányítások, listafelhozások.  
+- **Jobb adatminőség**: feltételes kötelezőség, irreleváns mezők elrejtése.  
+- **Kód nélküli megoldás**: mindent az űrlapépítőben állíthatsz.  
+- **Skálázhatóság**: összetett üzleti logikák is felépíthetők karbantartható szabályokkal.
+
+## Kinek ajánlott?
+
+- **Marketing és értékesítés**: lead‑űrlapok, kuponok, szegmentált listák, célzott értesítések.  
+- **Ügyfélszolgálat**: kategória szerinti jegyirányítás, releváns mezők megjelenítése.  
+- **HR és oktatás**: jelentkezési űrlapok, válaszok alapján eltérő kérdéscsoportok.  
+- **E‑kereskedelem és szolgáltatások**: ajánlatkérés, dinamikus kalkulációk, fizetés előtti ellenőrzések.  
+- **Rendezvényszervezés**: dátumhoz kötött regisztráció, opciók a résztvevő típusától függően.
+
+## Korlátok és megjegyzések
+
+- **Dátum/Idő**: a feltételek dátumra vonatkozó összehasonlítást támogatnak; idő szerinti összehasonlítás nem elérhető.  
+- **Szabályok összetettsége**: nagyobb űrlapoknál tervezz előre, nevezd el egyértelműen a mezőket, és tesztelj alaposan.  
+- **Minőség és karbantartás**: a kiegészítő aktívan fejlesztett; a frissítések rendszerint a feltételértékelés pontosítására és a biztonság erősítésére is fókuszálnak.
+
+## Összefoglalás
+
+A Conditional Logic a Ninja Forms egyik legerősebb eleme: rugalmas, feltételekhez kötött viselkedéssel személyre szabott űrlapélményt ad. Mezőket, opciókat, számításokat és teljes műveleteket vezérelhetsz a felhasználó válaszai alapján. Ezzel rövidítheted az űrlapokat, növelheted a konverziót, javíthatod az adatminőséget és automatizálhatod a folyamatokat — mindezt kódolás nélkül.

@@ -1,58 +1,92 @@
-# WP Grid Builder - Multilingual
+---
+title: "WP Grid Builder - Multilingual"
+description: "Hivatalos kiegészítő a WP Grid Builderhez, amely mély integrációt ad a Polylang és WPML többnyelvű bővítményekhez, hogy ugyanaz a grid, facet és kártya minden nyelven helyesen működjön."
+sidebar_label: "WP Grid Builder - Multilingual"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Grid Builder - Multilingual bővítmény kifejezetten arra lett tervezve, hogy a WP Grid Builder-t zökkenőmentesen integrálja a Polylang és WPML bővítményekkel. Ezáltal lehetővé válik a többnyelvű oldalak egyszerű és hatékony kezelése.
+A WP Grid Builder – Multilingual a WP Grid Builder hivatalos többnyelvű kiegészítője. Az a célja, hogy ugyanazt a **rácsot (grid)**, **szűrőt (facet)** és **kártyát (card)** tudd használni minden nyelven, anélkül hogy ezeket nyelvenként duplikálnod kellene. Ezzel megszűnik a “mindenből több példány” karbantartási rémálma: egyetlen konfigurációt kezelsz, mégis minden nyelven pontos, releváns találatokat és helyes feliratokat kapsz.
 
-### Automatikus nyelvi lekérdezések
+## Hogyan működik?
 
-A bővítmény automatikusan felismeri az aktuális nyelvet, és ennek megfelelően jeleníti meg a grid-eket és facettákat. Ez azt jelenti, hogy nem szükséges különböző grid-eket és facettákat létrehozni minden egyes nyelvhez. Egyetlen grid vagy facet elegendő, amely minden nyelven helyesen jelenik meg.
+- **Automatikus nyelvfelismerés**: a grid és a facettek mindig az aktuális oldalnyelvhez tartozó tartalmat kérdezik és jelenítik meg. Nem kell külön nyelvi paraméterekkel trükköznöd: az add-on átveszi a Polylang vagy WPML kontextusát.
+- **Egységes szövegfordítás**: a WP Grid Builder által generált feliratok, címkék és üzenetek automatikusan megjelennek a Polylang vagy WPML string-fordítási felületén. Így a UI-szövegeket egy helyen fordítod, nem szétszórva.
+- **Nyelvspecifikus indexelés**: a facettek úgy működnek helyesen, ha az érintett bejegyzések, termékek, taxonómiák és egyedi mezők ténylegesen léteznek minden nyelven. Az add-on ehhez igazítja a lekérdezéseket és a relevanciát, hogy a szűrés nyelvenként konzisztens legyen.
+- **Fejlesztői API**: szűrők segítségével regisztrálhatsz és fordíthatsz egyedi szövegeket (pl. grid-, card- vagy facet-konfigurációból származó címkéket), vagy dinamikusan módosíthatod a megjelenő fordításokat.
+- **Kiegészítő kompatibilitások**: célzott támogatás Polylanghoz és WPML-hez, plusz kompatibilitási javítások Elementorhoz.
 
-### Sztringek fordítása
+## Fő funkciók részletesen
 
-A WP Grid Builder által generált sztringek közvetlenül fordíthatók a Polylang és WPML felületein. Ez magában foglalja a grid-ek, kártyák és facetták beállításaihoz kapcsolódó összes sztringet is. Így az összes tartalom könnyen kezelhető és fordítható egy helyről.
+- **Egy konfiguráció, több nyelv**: ugyanazt a gridet és facet-készletet használhatod minden nyelven. Az add-on a háttérben a megfelelő nyelvi tartalmakra “fordítja” a lekérdezéseket, így nincs szükség duplikált objektumokra.
+- **String-kezelés központilag**: a “Load more”, “No results”, gombfeliratok, facet-címkék, üzenetek – minden felirat egyetlen fordítási felületen kezelhető. Ha a projektedben egyedi labelt adsz meg, az is regisztrálható és fordítható.
+- **Helyes taxonómia- és meta-fordítás**: a lekérdezések a megfelelő lokalizált taxonómiákra, metaértékekre és – integrációtól függően – ACF választási értékekre is tekintettel vannak, hogy a szűrés nyelvszinten konzisztens legyen.
+- **Elementor-kompatibilitás**: ha Elementorban helyezed el a gridet és a facetteket, a nyelvi logika akkor is következetes marad.
 
-## Együttműködés más eszközökkel
+## Gyakorlati példák
 
-### Polylang és WPML támogatás
+- **Többnyelvű webáruház**: készítesz egy termékrácsot és néhány facettet (kategória, ár, attribútumok). A látogató nyelvén jelennek meg a termékek és a szűrők; a “Load more” vagy a kosár gomb feliratait egy helyen fordítod.
+- **Blog és híroldal**: egyetlen archív grid különböző nyelvű bejegyzésekhez. A kategória- és címkeszűrés csak az adott nyelv tartalmaira szűkít, így a találatok mindig relevánsak.
+- **Portfólió/könyvtár**: projektek vagy listázások több nyelven, egységes kártyadizájnnal. A címkék és státuszok fordításai központilag kezelhetők.
+- **ACF-alapú egyedi tartalmak**: ha választós (select) mezőket vagy repeater-mezőket használsz, a facettek és kártyák a lokalizált értékekkel dolgoznak.
 
-A WP Grid Builder - Multilingual teljes mértékben kompatibilis a Polylang és WPML bővítményekkel. Ez azt jelenti, hogy ezekkel az eszközökkel együttműködve zökkenőmentesen kezelheted weboldalad többnyelvű tartalmait.
+## Telepítés és beállítás
 
-### Elementor integráció
+1. Telepítsd és aktiváld a WP Grid Builder core bővítményt.
+2. Telepítsd és aktiváld a Polylangot vagy a WPML-t.
+3. Telepítsd és aktiváld a Multilingual kiegészítőt.
+4. Hozd létre a tartalmakat minden nyelven (posztok, termékek, taxonómiák, egyedi mezők), hogy a facettek indexelése pontos legyen.
+5. A string-fordítási felületen (Polylang vagy WPML) fordítsd le a WP Grid Builder feliratait és az esetleges egyedi címkéidet.
 
-A bővítmény kompatibilis az Elementor vizuális szerkesztővel is, amely lehetővé teszi a felhasználók számára, hogy vizuálisan szerkesszék grid-jeiket és facettáikat anélkül, hogy aggódniuk kellene a nyelvi beállítások miatt.
+Tipp: a core bővítmény rendszerkövetelményei az irányadók (WordPress és PHP verziók tekintetében).
 
-## Konkrét helyzetek és gyakorlati példák
+## Fejlesztői példák (hookok)
 
-### E-kereskedelmi weboldalak
+Regisztrálj egyedi feliratokat, hogy megjelenjenek a string-fordításnál:
 
-Egy többnyelvű e-kereskedelmi weboldal esetén, ahol különböző nyelveken szeretnéd megjeleníteni termékeidet, a WP Grid Builder - Multilingual lehetőséget biztosít arra, hogy egyetlen grid-et használj minden nyelven. Ez csökkenti a karbantartási időt és egyszerűsíti a folyamatokat.
+```php
+add_filter( 'wp_grid_builder_i18n/facet/register_strings', function( $strings, $facet_id ) {
+  // Egyedi felirat hozzáadása a facethez
+  $strings['featured_only_label'] = 'Kiemeltek';
+  return $strings;
+}, 10, 2 );
+```
 
-### Portfólió weboldalak
+Dinamikusan fordíts egy sztringet:
 
-Művészek és kreatív szakemberek számára hasznos lehet, akik portfóliójukat több nyelven szeretnék bemutatni. A WP Grid Builder - Multilingual lehetővé teszi, hogy egyetlen grid-el kezeljék az összes nyelvet, így biztosítva a konzisztens megjelenést minden látogató számára.
+```php
+add_filter( 'wp_grid_builder_i18n/translate_string', function( $translated, $string, $context, $domain ) {
+  if ( $context === 'facet' && $string === 'Kiemeltek' ) {
+    // Példa: alternatív fordítás adott környezetben
+    return $translated ?: 'Kiemelt tartalom';
+  }
+  return $translated;
+}, 10, 4 );
+```
 
-### Blogok és magazinok
+Hasonló hookok érhetők el gridhez és cardhoz is (register_strings variánsok).
 
-Többnyelvű blogok vagy online magazinok esetében szintén előnyös lehet ez a bővítmény. Az olvasók azonnal hozzáférhetnek a számukra releváns tartalmakhoz az általuk választott nyelven, anélkül, hogy különböző oldalakat kellene látogatniuk.
+## Előnyök és értékajánlat
 
-## Tippek a hatékony használathoz
+- **Kevesebb duplikáció**: egy grid, egy facettkészlet, egy kártya – több nyelven.
+- **Központi fordítás**: minden UI-felirat egy helyen, kontrolláltan kezelhető.
+- **Konzisztens szűrés**: nyelvspecifikus indexelés és relevancia a pontos találatokért.
+- **Kisebb karbantartási teher**: frissítések és változtatások csak egyszer készülnek el.
+- **Fejlesztőbarát**: hookokkal és szűrőkkel finoman hangolható.
 
-### Nyelvi beállítások ellenőrzése
+## Kinek ajánlott?
 
-Ügyelj arra, hogy minden bejegyzés és kifejezés létezzen minden nyelven. Csak így biztosítható, hogy a facetták helyesen indexeljék az összes nyelvet.
+- **WooCommerce áruházaknak**, amelyek több nyelven listáznak és szűrnek termékeket.
+- **Tartalomgazda blogoknak/hírportáloknak**, ahol fontos a releváns, nyelvspecifikus archívum.
+- **Ügynökségeknek és fejlesztőknek**, akik szabványosítható, könnyen karbantartható többnyelvű grid/facet megoldást keresnek.
+- **Portfóliók és könyvtár jellegű oldalak** készítőinek, ahol a facettált szűrés kulcsfunkció.
 
-### Sztringek regisztrálása
+## Korlátok és bevált gyakorlatok
 
-Fejlesztők számára hasznos lehetőség, hogy új sztringeket regisztráljanak a grid-ekhez, kártyákhoz vagy facettákhoz. Ezt a `wp_grid_builder_i18n/register_strings` filter segítségével tehetik meg.
+- **Valós többnyelvű tartalom szükséges**: a facettek indexeléséhez a bejegyzések, taxonómiák és egyedi mezők külön nyelvi példányainak létezniük kell. Puszta karakterlánc-fordítás nem elég.
+- **Egyedi feliratok regisztrálása**: ha a grid/facet/card beállításokban egyedi címkéket használsz, regisztráld őket a megfelelő hookokon, hogy fordíthatók legyenek.
+- **Tesztelj nyelvenként**: nézd át a szűrési logikát, a “nincs találat” állapotokat és a lapozást minden érintett nyelven.
 
-## Szószedet
+## Összegzés
 
-- **Grid**: Hálózatba rendezett tartalom elrendezés.
-- **Facet**: Keresési szűrő vagy szűrési lehetőség.
-- **Polylang**: Többnyelvű WordPress bővítmény.
-- **WPML**: WordPress Multilingual Plugin, többnyelvű bővítmény.
-- **Elementor**: Vizuális oldalépítő WordPress számára.
-- **Sztring**: Szöveges adat egy programban vagy weboldalon.
-  
-A fentiek alapján látható, hogy a WP Grid Builder - Multilingual bővítmény jelentős mértékben megkönnyíti a többnyelvű weboldalak kezelését és karbantartását, különösen akkor, ha Polylang vagy WPML bővítményt használsz.
+A WP Grid Builder – Multilingual a többnyelvű grid- és facettált szűrési projektekhez készült hivatalos megoldás. Egyetlen konfigurációval szolgál ki minden nyelvet, egységesíti a feliratok fordítását, és gondoskodik a nyelvspecifikus, releváns találatokról. Ha többnyelvű tartalmat kezelsz, ez a kiegészítő jelentősen csökkenti a karbantartási költséget, miközben fokozza a felhasználói élményt.

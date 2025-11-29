@@ -1,49 +1,100 @@
-# JetFormBuilder Hierarchical Select
+---
+title: "JetFormBuilder Hierarchical Select"
+description: "Kaszkád legördülők JetFormBuilder űrlapokhoz, hierarchikus taxonómiákból töltve; ideális frontend bejegyzésbeküldéshez és -szerkesztéshez."
+sidebar_label: "JetFormBuilder Hierarchical Select"
+---
 
-A JetFormBuilder Hierarchical Select egy olyan funkció, amely lehetővé teszi az űrlapmezők hierarchikus kapcsolatainak létrehozását és kezelését. Ez a megoldás különösen hasznos, amikor a felhasználók számára logikus, egymásra épülő választási lehetőségeket szeretnél biztosítani. Nézzük meg részletesen, hogyan működik és milyen előnyei vannak.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók és képességek
+A Hierarchical Select a JetFormBuilder PRO kiegészítője, ami egy új űrlapmezőt ad: egymásba ágyazott, kaszkád legördülőket. A mező egy hierarchikus taxonómiából tölti be a választási lehetőségeket, szülő–gyermek logikában. Ezzel egyszerűen megoldhatod a többszintű kategóriaválasztást (például Autó > Márka > Modell), anélkül, hogy külön Select-mezőket és egyedi JavaScriptet kellene építened. Az eredmény konzisztens adatbevitel, kevesebb hiba és gyorsabb űrlapkészítés.
 
-### Hierarchikus kiválasztás
-A hierarchikus kiválasztás lehetővé teszi, hogy az egyik mező kiválasztott értékei alapján a következő mező értékei dinamikusan változzanak. Például, ha az első mezőben egy országot választasz, akkor a következő mezőben csak az adott ország államai jelennek meg.
+Fejlesztő és kiadó: JetFormBuilder (Crocoblock ökoszisztéma), üzemeltető: Jetimpex Inc. A működéshez a JetFormBuilder ingyenes alapbővítménye szükséges.
 
-### Könnyen kezelhető felület
-A JetFormBuilder felhasználói felülete intuitív, így könnyedén beállíthatod a hierarchikus kapcsolatokat az űrlapmezők között. Nincsen szükség kódolási ismeretekre, minden beállítást vizuális eszközökkel végezhetsz el.
+## Hogyan működik röviden?
 
-### Zökkenőmentes integráció más eszközökkel
-A JetFormBuilder Hierarchical Select több Crocoblock bővítménnyel is zökkenőmentesen működik együtt, mint például:
-- **JetEngine**: A dinamikus tartalomkezeléshez
-- **JetSmartFilters**: Az adatok szűréséhez
-- **JetSearch**: Az adatkereséshez
+- Kiválasztasz egy hierarchikus taxonómiát forrásként.
+- A felhasználó először a felső szintet választja ki; a gyermek szintek dinamikusan ehhez igazodnak.
+- A kiválasztott term(ek) a Post Submit Actions segítségével (Insert/Update Post) menthetők a bejegyzéshez; ajánlott a Term ID használata.
+- Szerkesztéskor Preset tölti elő a kapcsolt termeket, és automatikusan kirajzolja az adott taxonómiaágat.
 
-## Specifikus előnyök és felhasználási módok
+## Fő funkciók részletesen
 
-### Felhasználói élmény javítása
-A hierarchikus kiválasztás segítségével a felhasználók számára egyszerűbb és gyorsabb lesz az űrlapok kitöltése. Ez különösen hasznos lehet olyan esetekben, ahol több lépésben kell adatokat megadniuk.
+- Kaszkád Select-mezők: A gyermek listák mindig az aktuális szülő kiválasztásához igazodnak. Így kizárt, hogy nem létező vagy rossz szintkombinációt válasszanak.
+- Forrás taxonómia: Csak hierarchikus taxonómiák támogatottak (például Kategóriák vagy egyedi, hierarchical=true); nem hierarchikus tagek nem használhatók.
+- Mentett érték forrása: Beállíthatod, hogy az űrlap milyen értéket mentsen (Term ID, Name, Slug vagy Meta). Általános esetben a Term ID a legstabilabb.
+- Gyermek-szintek megjelenítése: Három stratégia közül választhatsz:
+  - mindig látható,
+  - csak szülőválasztás után látható,
+  - látható, de kezdetben tiltott.
+  Ezzel a felhasználói élményt és a hibák megelőzését finomhangolhatod.
+- Szintenkénti konfigurálás: Az „Edit Levels” felületen bármennyi szintet felvehetsz, és mindegyikhez nevet, címkét, placeholdert és leírást adhatsz.
+- Új termek létrehozása: Engedélyezhető, hogy a felhasználó új gyermeket hozzon létre, ha a kiválasztott szülőnek épp nincs gyereke. Gyorsabb tartalombővítést tesz lehetővé. (Ha bekapcsolod a számított értéket term metából, a kézi bevitel nem érhető el.)
+- Preset szerkesztéshez: Meglévő bejegyzésnél automatikusan kitölti a kiválasztott taxonómiaágat. Ha több ághoz tartozik a bejegyzés, a frontend csak egy ágat jelenít meg.
+- Calculated Field integráció: A term meta értéke átadható számított mezőnek (például kedvezmény, súly, szállítási díj logika).
+- Post Submit Actions: A kiválasztott termek mentése az Insert/Update Post művelettel történik; szintenként is megadható, mi kerüljön mentésre.
+- Fejlesztői hookok: PHP szűrők a működés finomhangolásához:
+  - jet-form-builder/hr-select/taxonomies-list
+  - jet-form-builder/hr-select/query-terms-params
+  - jet-form-builder/hr-select/prepare-terms
+- Megjelenítés: Bármely témával működik; az űrlapok a blokkeditor mellett Elementorban és Bricksben is beilleszthetők.
 
-### Pontosabb adatgyűjtés
-Az egymásra épülő mezők csökkentik a hibalehetőségeket, mivel a felhasználók csak az aktuálisan releváns opciókat láthatják és választhatják ki. Ez növeli az adatok pontosságát és megbízhatóságát.
+## Telepítés és beállítás
 
-### Időmegtakarítás
-Mivel a felhasználóknak kevesebb választási lehetőség között kell böngészniük, az űrlapkitöltés gyorsabbá válik. Ez különösen fontos lehet olyan weboldalak esetében, ahol nagy mennyiségű adatot kell begyűjteni.
+1. Telepítsd és aktiváld a JetFormBuilder alap bővítményt, majd a PRO csomagból a Hierarchical Select kiegészítőt.
+2. Nyisd meg az űrlapodat, és adj hozzá egy „Hierarchical Select” blokkot.
+3. Alap beállítások:
+   - Taxonomy Type: válassz egy hierarchikus taxonómiát.
+   - Term value from: állítsd be (javasolt: Term ID).
+   - Access to child levels: válaszd ki a megjelenítési stratégiát.
+   - Edit Levels: vedd fel a szükséges szinteket, add meg a címkéket és placeholdereket.
+4. A Post Submit Actions résznél állítsd be az Insert/Update Post műveletet, és jelöld ki, mely termeket mentsen.
+5. Opcionális: Szerkesztő űrlapokhoz állíts be Presetet (Post Term).
+
+Példa konfiguráció:
+
+```
+Mező neve: vehicle_category
+Taxonomy Type: vehicle_category (hierarchical=true)
+Term value from: Term ID
+Access to child levels: Csak szülő választása után látható
+Levels:
+  - Név: type, Label: Járműtípus, Placeholder: Válassz típust...
+  - Név: brand, Label: Márka, Placeholder: Válassz márkát...
+  - Név: model, Label: Modell, Placeholder: Válassz modellt...
+```
 
 ## Gyakorlati példák
 
-### E-kereskedelmi alkalmazások
-Az e-kereskedelmi weboldalakon a hierarchikus kiválasztás segítségével a felhasználók könnyedén szűrhetik a termékeket kategóriák és alkategóriák alapján. Például: Elektronika > Mobiltelefonok > Okostelefonok.
+- Autóhirdetés: Közlekedési eszköz > Márka > Modell; a felhasználó csak a releváns modelleket látja a választott márkához.
+- Webshop: Férfi > Kollekció > Farmer; gyors, hibamentes kategorizálás termékszerkesztéskor.
+- Álláspályázat: Cég típusa > Pozíció > Munkakör; HR-űrlapokban strukturált választás.
 
-### Utazási oldalak
-Utazási oldalak esetén hasznos lehet az utazási célpontok hierarchikus kiválasztása: Kontinens > Ország > Város. Így a felhasználók gyorsan megtalálhatják a számukra releváns utazási ajánlatokat.
+## Előnyök és értékajánlat
 
-### Ingatlanportálok
-Ingatlanportálokon a felhasználók könnyedén szűrhetik az ingatlanokat régiók és városok alapján. Például: Megye > Város > Kerület.
+- Idő- és költségmegtakarítás: nincs szükség egyedi JS-re és több, egymásra épített mező kézi összekötésére.
+- Adat-konzisztencia: a gyermek opciók mindig a kiválasztott szülőhöz igazodnak.
+- Jobb szerkesztési élmény: Preset automatikusan előkészíti a mezőket meglévő bejegyzéseknél.
+- Üzleti logika: term meta bevonható számításokba, intelligensebb űrlapokhoz.
+- Rugalmas bővíthetőség: hookokkal testre szabható, mit és hogyan töltsön be.
 
-## Szószedet
+## Korlátok és fontos megjegyzések
 
-- **Hierarchikus kiválasztás**: Egymásra épülő választási lehetőségek kezelése.
-- **JetEngine**: Dinamikus tartalomkezelésre szolgáló bővítmény.
-- **JetSmartFilters**: Adatok szűrésére használható bővítmény.
-- **JetSearch**: Adatkeresésre szolgáló bővítmény.
-- **Crocoblock**: A JetFormBuilder fejlesztője és több más bővítmény gyártója.
+- Csak hierarchikus taxonómiákkal működik; tagek nem használhatók forrásként.
+- A mező „Name” (Form field name) kötelező; nélküle nem fog menteni.
+- Preset esetén több ág kapcsolata közül a frontend csak egy ágat jelenít meg.
+- Ha a számított értéket term metából kéred, a kézi új term bevitel nem elérhető.
 
-Ezekkel a funkciókkal és képességekkel a JetFormBuilder Hierarchical Select kiváló eszköz lehet számodra az űrlapok hatékonyabbá tételéhez és a felhasználói élmény javításához.
+## Kinek ajánlott?
+
+- Piacterek, apróhirdetések, katalógusok üzemeltetőinek, akiknek strukturált kategóriaválasztásra van szükségük.
+- Webshopoknak, ahol több szinten kell pontosítani a kategóriát.
+- Tartalomszerkesztő csapatoknak, akik frontendről is bővítik a tartalmat.
+- Ügynökségeknek és fejlesztőknek, akik gyorsan akarnak stabil, bővíthető megoldást szállítani hookokkal.
+
+## Árazás és licenc
+
+A Hierarchical Select a JetFormBuilder PRO csomag része. A PRO csomag belépő szintű előfizetéstől elérhető, és tartalmazza a PRO kiegészítőket. Az árak idővel változhatnak.
+
+## Összegzés
+
+Ha több szintű, hibamentes kategóriaválasztásra van szükséged JetFormBuilder űrlapokban, a Hierarchical Select a legegyszerűbb és legstabilabb, WordPress-native megoldás: gyorsan beállítható, jól skálázható, és fejlett üzleti logikával is kiegészíthető.

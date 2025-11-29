@@ -1,60 +1,107 @@
-# LearnDash Course Grid Add-On
+---
+title: "LearnDash LMS - Course Grid"
+description: "Hivatalos LearnDash kiegészítő, amellyel a kurzusokat (és leckéket/témákat/kvízeket) látványos, szűrhető rácsos kártyanézetben jelenítheted meg blokkal vagy rövidkóddal."
+sidebar_label: "LearnDash LMS - Course Grid"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A LearnDash Course Grid add-on lehetővé teszi, hogy a kurzusaidat rácsos formátumban jelenítsd meg a weboldaladon. Ez a bővítmény számos további megjelenítési lehetőséget kínál, amelyek az alapértelmezett LearnDash megoldásokban nem érhetők el. Az újabb, 2.0-s verzió főként Gutenberg (Blocks) alapú opciókat kínál, új bőröket, beépített szűrő képességeket és számos testreszabási lehetőséget biztosít, amelyeket kombinálhatsz a kívánt megjelenés eléréséhez.
+A LearnDash Course Grid egy hivatalos kiegészítő, amellyel a kurzusaidat kártya-alapú rácsban, mozaikban vagy listában mutathatod be. Ha sok kurzusod van, a hagyományos, lineáris lista gyorsan áttekinthetetlenné válik. A Course Grid ezt váltja le egy modern, kereshető és szűrhető katalógusra, amely javítja a felfedezhetőséget, az átkattintási arányt és végső soron a beiratkozásokat.
 
-### Megjelenítési lehetőségek
+## Fő funkciók, érthetően
 
-A Course Grid add-on segítségével nem csak kurzusokat, de leckéket, témákat és kvízeket is megjeleníthetsz rácsos formában.
+### Nézetek és sablonok
+- **Skin-ek**: Grid, Masonry, List – különböző elrendezések a tartalomhoz és a rendelkezésre álló helyhez igazítva.
+- **Card sablonok**: előre kész kártyadizájnok (például grid-1, grid-2, list-1, list-2), amelyek a kép, cím, leírás, gomb és meta megjelenítését szabályozzák.
+- **Sablonozhatóság**: saját skin/card készíthető a témában, így teljes kontrollod van a markup, a stílus és a viselkedés felett.
 
-**Főbb jellemzők:**
-- **Oszlopok:** Kurzusok oszlopokba rendezése.
-- **Szűrés kategória vagy címke szerint:** Csak a megadott kategóriákba vagy címkékbe tartozó kurzusok megjelenítése.
-- **Beiratkozott kurzusok megjelenítése:** Csak azok a kurzusok jelennek meg, amelyekre a felhasználó beiratkozott.
-- **Kurzus képének megjelenítése/elrejtése:** Dönthetsz arról, hogy megjelenjen-e a kurzus képe.
-- **Videó előnézet:** Videó előnézet hozzáadása a kurzushoz.
-- **Rövid leírás:** Rövid leírás megjelenítése a kurzusról.
-- **CTA gomb:** Call-to-action gomb hozzáadása, amelynek szövege testreszabható.
-- **Ár szalag:** Az ár megjelenítése szalag formában.
-- **Haladás jelző sáv:** A kurzus előrehaladásának megjelenítése.
+### Blokk és rövidkódok
+- **Gutenberg blokk**: a „LearnDash Course Grid” blokkban vizuálisan állíthatod a skin-t, card-ot, oszlopszámot, elemeket és szűrőket.
+- **Rövidkódok**: használhatod a klasszikus szerkesztőben és oldalépítőkben is.
+  - Kurzuslista: `[ld_course_list]` (klasszikus) és `[learndash_course_grid]` (modern, skin/card alapú)
+  - Leckék/témák/kvízek: `[ld_lesson_list]`, `[ld_topic_list]`, `[ld_quiz_list]`
 
-### Testreszabási lehetőségek
+### Rács és kártyaelemek
+- **Oszlopok és minimum oszlopszélesség**: reszponzív elrendezés finomhangolása.
+- **Kapcsolható elemek**: kép, cím, rövid leírás, akciógomb, ár/szalag („ribbon”), metaadatok.
+- **Haladásjelző**: a beiratkozott vagy lezárt kurzusoknál mutatja a tanuló előrehaladását.
+- **Videóelőnézet**: figyelemfelkeltő médiasáv a kártyán.
 
-A bővítmény számos testreszabási lehetőséget kínál, például:
-- **Bőrök kiválasztása:** Grid, Masonry, List és további bőrök.
-- **Oszlopok száma:** Az oszlopok számának testreszabása.
-- **Minimális oszlopszélesség:** Az oszlopok minimális szélességének beállítása.
+### Szűrés, keresés, rendezés
+- **Kereső és kategória-választó**: segíti a tanulókat megtalálni a megfelelő kurzust.
+- **Taxonómia-szűrés**: LearnDash saját és WordPress kategóriák/címkék alapján.
+- **Beiratkozási státusz szerinti szűrés**: csak beiratkozott, csak nem beiratkozott vagy minden kurzus.
+- **Rendezés**: dátum, cím, népszerűség stb., növekvő/csökkenő sorrendben.
 
-### Kompatibilitás más eszközökkel
+### Lapozás és teljesítmény
+- **Beépített lapozás**: klasszikus lapozó, „Load more” gomb vagy végtelen görgetés – gyorsabb, gördülékenyebb böngészés.
+- **Több rács egy oldalon**: egymástól független beállításokkal is működik.
 
-A LearnDash Course Grid add-on zökkenőmentesen működik együtt több népszerű WordPress bővítménnyel:
-- **Elementor:** Könnyű integráció az Elementor oldalkészítővel.
-- **WooCommerce:** Lehetővé teszi a kurzusok értékesítését WooCommerce segítségével.
-- **Gravity Forms:** Integráció Gravity Forms űrlapokkal.
-- **MemberPress és Paid Memberships Pro:** Tagsági rendszerek kezelése.
-- **Zapier:** Automatizálási feladatok végrehajtása.
+### Támogatott tartalomtípusok
+- Kurzusok mellett leckéket, témákat és kvízeket is listázhatsz rácsban. (A haladás/árszalag/beiratkozás-szűrő a kurzusokra vonatkozik.)
 
-## Gyakorlati példák
+## Gyors indulás
 
-### E-learning platformok
+### Telepítés
+- WordPress adminban a LearnDash kiegészítők közül telepítsd és aktiváld a Course Gridet, vagy töltsd fel a bővítmény ZIP fájlját. Aktív LearnDash szükséges.
 
-Ha egy e-learning platformot üzemeltetsz, a Course Grid add-on lehetővé teszi, hogy vonzó módon jelenítsd meg a kurzusaidat. Például, ha különböző kategóriákba sorolt kurzusokat kínálsz (pl. programozás, dizájn, marketing), akkor a felhasználók könnyen szűrhetnek és kereshetnek ezek között.
+### Használat blokkal
+1. Adj az oldalhoz egy „LearnDash Course Grid” blokkot.
+2. Válaszd ki a **Skin**-t (pl. Grid vagy Masonry) és a **Card** sablont.
+3. Állítsd az **oszlopszámot** vagy a **minimális oszlopszélességet**.
+4. Kapcsold ki/be a kártyaelemeket (kép, szalag, gomb stb.).
+5. Konfiguráld a **szűrést és rendezést**, igény szerint a beiratkozási szűrőkkel.
 
-### Vállalati képzési portálok
+### Rövidkód példák (kurzusok)
+```
+[ld_course_list col="4"]
+```
+```
+[ld_course_list mycourses="true" progress_bar="true" orderby="date" order="ASC"]
+```
+```
+[ld_course_list mycourses="not-enrolled" show_content="false"]
+```
+```
+[ld_course_list num="2" col="2" course_categoryselector="true"]
+```
+Modern, skin/card alapú:
+```
+[learndash_course_grid skin="grid" card="grid-2" columns="3" min_column_width="280"]
+```
 
-A vállalatok használhatják a Course Grid add-on-t belső képzési portáljaikhoz. Az alkalmazottak könnyen navigálhatnak a különböző tréningek között, láthatják az elérhető kurzusokat és nyomon követhetik saját előrehaladásukat.
+### Rövidkód példák (leckék/témák/kvízek)
+```
+[ld_lesson_list col="3"]
+[ld_topic_list col="3"]
+[ld_quiz_list col="3"]
+```
 
-### Oktatási intézmények
+## Gyakorlati használati esetek
 
-Az iskolák és egyetemek számára is hasznos lehet ez a bővítmény, hiszen a hallgatók könnyen megtalálhatják és áttekinthetik az elérhető tantárgyakat és modulokat. A videó előnézetek különösen hasznosak lehetnek az új hallgatók számára, akik még nem ismerik az adott kurzust.
+- **Course Library oldal**: több tucat kurzust mutatsz be Grid skinben, kategória-választóval és keresővel. A felhasználók gyorsan szűrnek témákra, majd rákattintanak a kártyákra.
+- **Saját kurzusaim nézet**: profil oldalon csak a beiratkozott kurzusokat listázod haladásjelzővel, így mindenki látja, hol tart.
+- **Promóciós kirakat**: a nem beiratkozott kurzusokat képes, rövid leírásos kártyákkal, ár-szalaggal jeleníted meg, hogy növeld a konverziót.
 
-## Szószedet
+## Haladó testreszabás
 
-- **CTA (Call-to-action):** Felhívás cselekvésre, például egy gomb, amely arra ösztönzi a felhasználót, hogy lépjen tovább.
-- **Grid:** Rácsos elrendezés.
-- **Masonry:** Kőműves elrendezés, ahol az elemek nem egyenletes magasságúak.
-- **Skin:** Bőr vagy téma, amely meghatározza az elemek megjelenését.
-- **Shortcode:** Rövid kód, amelyet beilleszthetsz egy oldalba vagy bejegyzésbe speciális funkciók hozzáadásához.
+- **Sablonozás a témában**: hozz létre egy „learndash/course-grid/” mappát a témád alatt, és készíts egyedi skin/card sablonokat (layout.php), opcionális style.css és script.js fájlokkal.
+- **Lapozási sablonok**: választhatsz klasszikus lapozás, „Load more” vagy végtelen görgetés között; ezek sablonként testre szabhatók.
+- **Fejlesztői tipp**: rövidkódokat beágyazhatsz sablonfájlokba is a do_shortcode hívással.
 
-Ez a tartalom részletes áttekintést nyújt a LearnDash Course Grid add-on funkcionalitásáról és előnyeiről, kiemelve annak specifikus felhasználási módjait és testreszabási lehetőségeit.
+## Előnyök és értékajánlat
+
+- **Jobb áttekinthetőség**: a hosszú listát vizuális katalógussá alakítja.
+- **Magasabb konverzió**: kártya‑szintű gomb, ár/szalag, videóelőnézet és haladás jelzés.
+- **Rugalmas beállítások**: blokkban kattintgatva, vagy rövidkóddal paraméterezve.
+- **Fejleszthetőség**: egyedi skin/card és lapozás a márka megjelenéséhez illesztve.
+- **Gyors oldalélmény**: „Load more” és végtelen görgetés a zökkenőmentes böngészéshez.
+
+## Kinek ajánlott?
+
+- **E‑learning oldaltulajdonosoknak**, akik sok kurzust kezelnek és szeretnék javítani a felfedezhetőséget.
+- **Képzési csapatoknak és akadémiáknak**, akik célzott listákat (beiratkozott/nem beiratkozott, kategória, címke) akarnak.
+- **Ügynökségeknek és fejlesztőknek**, akik egyedire szabott katalógus‑élményt szeretnének márkahű dizájnnal.
+- **Marketplace‑eknek**, ahol a vizuális katalógus és a gyors szűrés kulcs a konverzióhoz.
+
+A lényeg: a Course Grid-del a kurzusaidat profi, rugalmas és felhasználóbarát katalógusban mutathatod meg, amely pontosan ahhoz a tanulói élményhez igazítható, amit nyújtani szeretnél.

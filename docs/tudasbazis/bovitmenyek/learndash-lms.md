@@ -1,70 +1,65 @@
-# LearnDash LMS
+---
+title: "LearnDash LMS"
+description: "Prémium WordPress LMS bővítmény online kurzusok, kvízek, tanúsítványok és értékesítés kezeléséhez – teljes kontroll a saját oldaladon."
+sidebar_label: "LearnDash LMS"
+---
 
-## LearnDash LMS funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-LearnDash LMS egy átfogó oktatási menedzsment rendszer, amelyet kifejezetten WordPress-alapú weboldalakhoz terveztek. Ez a platform számos funkciót kínál, amelyek segítenek az online tanfolyamok létrehozásában, kezelésében és értékesítésében. Az alábbiakban részletesen bemutatjuk a LearnDash LMS legfontosabb jellemzőit, előnyeit és a gyakorlati felhasználási módokat.
+A LearnDash LMS egy prémium WordPress-bővítmény, amellyel teljes online tanulási rendszert építhetsz a saját webhelyeden. Segít strukturált kurzusokat létrehozni, a tanulók haladását mérni, vizsgáztatni, tanúsítványokat kiállítani és közvetlenül értékesíteni. Ha eddig külön eszközöket használtál kurzusépítésre, fizetésekre, jelentésekre és csoportkezelésre, a LearnDash mindezt egy, WordPressbe illeszkedő rendszerben adja meg.
 
-### Kurzusok létrehozása és kezelése
+## Hogyan működik röviden?
 
-LearnDash LMS lehetővé teszi, hogy könnyedén hozz létre és kezelj online kurzusokat. A "Drag and Drop" kurzusépítővel intuitív módon állíthatod össze a tananyagokat. A platform támogatja a moduláris felépítést, így leckéket, témákat és kvízeket adhatsz hozzá a kurzusokhoz.
+A tartalom **többszintű**: **kurzus → lecke → témakör → kvíz**. A kurzusokhoz hozzáférési szabályokat állíthatsz (egyszeri vásárlás, előfizetés, nyitott/zárt hozzáférés), időzítheted a leckéket (**drip**), és előfeltételeket határozhatsz meg. Fizetéshez használhatsz beépített **Stripe/PayPal** kapcsolatot vagy **WooCommerce** integrációt. A tanulók előrehaladását és eredményeit a beépített riportok és a ProPanel felülete mutatja.
 
-#### Főbb funkciók:
-- **Kurzusépítő**: Könnyen használható "Drag and Drop" felület.
-- **Leckék és témák**: Moduláris struktúra a tartalom szervezéséhez.
-- **Kvízek**: Testreszabható kvízek különböző kérdéstípusokkal.
+## Fő funkciók, érthetően
 
-### Tanulói élmény javítása
-
-LearnDash LMS számos eszközt kínál a tanulói élmény fokozására. Az interaktív elemek, mint a kvízek, fórumok és csoportok, elősegítik a tanulók elköteleződését és motivációját.
-
-#### Főbb funkciók:
-- **Csoportkezelés**: Lehetővé teszi a tanulói csoportok kezelését és nyomon követését.
-- **Fókuszmód**: Segít a tanulóknak koncentrálni a tananyagra.
-- **Gamifikáció**: Jutalmak, pontok és oklevelek biztosítása.
-
-### E-commerce integráció
-
-LearnDash LMS integrálható számos e-kereskedelmi megoldással, így könnyedén értékesítheted a tanfolyamokat. A WooCommerce integráció például lehetővé teszi különböző fizetési módok használatát, beleértve az egyszeri fizetést, előfizetéseket és kuponokat is.
-
-#### Főbb funkciók:
-- **WooCommerce integráció**: Széles körű fizetési lehetőségek.
-- **Előfizetések**: Ismétlődő bevételek generálása előfizetésekkel.
-- **Kuponok**: Promóciók és kedvezmények biztosítása.
-
-### Haladó analitika
-
-A ProPanel add-on lehetővé teszi a részletes analitika és jelentések készítését. Nyomon követheted a tanulók előrehaladását, aktivitását és eredményeit valós időben.
-
-#### Főbb funkciók:
-- **Valós idejű analitika**: Tanulói aktivitás nyomon követése.
-- **Rugalmas szűrés**: Jelentések készítése kurzus, felhasználó, csoport vagy dátum alapján.
-- **Vizualizáció**: Grafikonok és táblázatok készítése az adatok megjelenítésére.
-
-### Integráció más eszközökkel
-
-LearnDash LMS zökkenőmentesen működik együtt több népszerű eszközzel és platformmal, ami még sokoldalúbbá teszi használatát.
-
-#### Főbb integrációk:
-- **The Events Calendar**: Integrálás az eseménynaptár megoldásokkal.
-- **BuddyBoss**: Hatékony eszközök egy továbbfejlesztett tanulási élményhez.
-- **Weglot**: Tartalom fordítása több nyelvre.
-- **MemberDash**: Tagkezelés és zárt tartalmak kezelése.
+- **Vizuális kurzusépítő**: Drag & drop felületen állítod össze a tananyagot. Gyorsan átrendezheted a leckék és témakörök sorrendjét, így könnyen skálázol és refaktorálsz tananyagot.
+- **Haladó kvízek**: Egy- és többválaszos, esszé, lyukkig töltés, rendezés és felmérés típusok. Beállíthatsz pontozást, kategóriákat, véletlen kérdéssorrendet és egyedi visszajelzéseket.
+- **Feladatok (Assignments)**: A tanulók fájlokat töltenek fel leckékhez; te jóváhagyhatod, pontozhatod, megjegyzéseket fűzhetsz hozzájuk.
+- **Fókusz mód**: Letisztult, zavaró elemek nélküli tanulói felület, beépített navigációval és előrehaladásjelzővel – javítja a befejezési arányt.
+- **Drip, előfeltételek, pontok, lejárat**: Ütemezd a leckék megnyitását, adj kötelező előfeltételeket, motiválj pontokkal, és korlátozd a hozzáférés időtartamát.
+- **Tanúsítványok**: Testreszabható sablonok dinamikus adatokkal (tanuló neve, kurzus, teljesítés dátuma stb.). A tanuló bármikor letöltheti újra.
+- **Csoportok és csoportvezetők**: Tanulókat csoportokba szervezhetsz, delegálhatod a felügyeletet csoportvezetőknek, akik saját riportokat és kommunikációs eszközöket kapnak.
+- **ProPanel és jelentések**: Áttekintő irányítópult bevételről, aktivitásról, teljesítésről és kvízstatisztikákról. Front-end blokkokkal is megjeleníthető modulok.
+- **Értékesítés és fizetés**: Beépített Stripe (Stripe Connect) és PayPal, illetve WooCommerce integráció csomagokkal, előfizetésekkel, automatikus hozzáférés-kezeléssel lemondás/refund esetén.
+- **AI eszközök**: Vázlat- és kvízgenerálás, videóalapú kurzus-összeállító és kísérleti virtuális oktató, hogy gyorsabban állj rajthoz.
+- **Ökoszisztéma és integrációk**: Zapier automatizálás, közösségi és CRM/membership integrációk, csoportregisztráció és vállalati licencelés. SCORM/xAPI külső bővítménnyel megoldható.
+- **Kapcsolódó termékek**: Teljesen hosztolt környezet (Cloud), külön tagsági bővítmény (MemberDash) és saját márkás mobilapp iOS/Androidra offline tanulással és push értesítésekkel.
 
 ## Gyakorlati példák
 
-### Oktatási intézmények számára
-Egy egyetem vagy főiskola használhatja a LearnDash LMS-t online kurzusok létrehozására, ahol a hallgatók önállóan vagy csoportosan dolgozhatnak. A csoportkezelési funkció különösen hasznos lehet a különböző szakok vagy évfolyamok kezelésére.
+- **Egyéni kurzuseladás**: Felépítesz egy kurzust 6 leckével és két kvízzel. Stripe-ot kapcsolsz, egyszeri díjat állítasz be, a leckéket 3 napos ütemezéssel nyitod. A tanuló látja a fókusz módot, fizetés után azonnal indul a drip.
+- **Vállalati képzés (cohort)**: Létrehozol egy csoportot a vállalati ügyfélnek, csoportvezetői jogosultsággal. A résztvevők kóddal vagy tömegesen iratkoznak be, a kezdet és vég dátum adott, a csoportvezető valós időben látja a haladást.
+- **Vizsgáztatás és tanúsítás**: Modulzáró kvízeket random kérdéspoolból állítasz, esszével kiegészítve. Minimum pontszám teljesítése után automatikusan generálódik a névre szóló tanúsítvány.
+- **Kompliance/CEU**: Kötelező előfeltételek és időzítés, tanúsítványok. Hitelesítéshez és kreditkövetéshez kapcsolsz egy kiegészítőt.
+- **B2B csomagértékesítés**: WooCommerce-ben csomagterméket hozol létre több kurzussal. Refund esetén a hozzáférés automatikusan visszavonódik.
 
-### Vállalati képzésekhez
-Egy nagyvállalat LearnDash LMS-t használhat a belső képzési programok lebonyolítására. A haladó analitika segítségével nyomon követhetik az alkalmazottak fejlődését és teljesítményét.
+## Előnyök és értékajánlat
 
-### Szabadúszók és kisvállalkozások számára
-Egy szabadúszó oktató vagy kisvállalkozás online kurzusokat értékesíthet a WooCommerce integrációval. Az előfizetések és kuponok használatával növelhetik bevételeiket és hűséges ügyfélkört építhetnek ki.
+- **Teljes tulajdon és brand-kontroll**: A kurzus a te WordPress oldaladon fut, dizájnodhoz és folyamataidhoz igazítva.
+- **Skálázható tananyag-struktúra**: A drag & drop építővel gyors a szerkesztés és az átrendezés.
+- **Rugalmas monetizáció**: Egyszeri díj, csomag, előfizetés, B2B csoportok – mind kezelhető.
+- **Hatékony értékelés**: Haladó kvíztípusok, feladatok, automata és manuális javítás vegyesen.
+- **Kézzelfogható visszajelzés**: ProPanel riportok, csoportvezetői nézetek.
+- **Időnyerés AI-val**: Percenkénti vázlat- és kvízötletek, gyors rajt új kurzusoknál.
+- **Nincs platformjutalék**: Az éves licencen felül csak a fizetési szolgáltató díja terhel.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Kurzusépítő**: Olyan eszköz, amely lehetővé teszi az online tanfolyamok összeállítását.
-- **Gamifikáció**: Játékos elemek bevezetése a tanulási folyamatba a motiváció növelése érdekében.
-- **Analitika**: Adatok gyűjtése és elemzése a teljesítmény nyomon követésére.
-- **Integráció**: Különböző szoftverek összekapcsolása a funkcionalitás bővítése érdekében.
-- **Előfizetés**: Ismétlődő fizetési modell, amely rendszeres bevételt biztosít.
+- **Vállalkozóknak és oktatóknak**, akik saját márkás kurzusokat akarnak eladni, jutalék nélküli modellel.
+- **Képzőszervezeteknek és egyetemeknek**, ahol többszintű tananyag, értékelés és tanúsítvány kulcsfontosságú.
+- **Vállalati L&D csapatoknak**, akik csoportalapú képzést, riportolást és nagy tételes beiratkozást keresnek.
+- **Fejlesztői csapatoknak**, akik WordPress-es CPT-ket, hookokat, REST API-t és integrációs rugalmasságot igényelnek.
+
+## Rendszerkövetelmények és kompatibilitás
+
+Friss WordPress és PHP környezet ajánlott, modern témákkal és page builderekkel kompatibilis. A fizetési funkciókhoz Stripe vagy PayPal fiók, WooCommerce integrációhoz WooCommerce telepítés szükséges.
+
+## Fejlesztőknek
+
+A LearnDash WordPress-alapú entitásokat (CPT-k) használ, széles **hook/filters** készlettel és **REST API** végpontokkal. A megjelenítés témától és page buildertől függetlenül testreszabható, így könnyű egyedi folyamatokat és integrációkat építeni.
+
+## Dióhéjban: neked való?
+
+Igen, ha egy rugalmas, saját tulajdonú **LMS-t** szeretnél, amelyben a kurzusépítés, értékesítés, értékelés, tanúsítás és riportolás egy helyen, professzionális szinten működik – és amely könnyen bővíthető csoportos, vállalati és mobilos felhasználásra is.

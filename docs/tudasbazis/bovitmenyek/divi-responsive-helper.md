@@ -1,74 +1,95 @@
-# Divi Responsive Helper
+---
+title: "Divi Responsive Helper"
+description: "Reszponzív finomhangoló eszköztár a Divihez: több mint 50 célzott beállítás töréspontokhoz, tipográfiához, rácselrendezéshez és menükhöz – kódolás nélkül."
+sidebar_label: "Divi Responsive Helper"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez, és milyen problémát old meg?
 
-A Divi Responsive Helper egy átfogó eszközkészlet, amely segít optimalizálni a weboldalad megjelenését és működését minden eszközön. Több mint 50 egyedi funkciót és beállítást kínál, amelyek lehetővé teszik a Divi weboldalak testreszabását és finomhangolását a legjobb felhasználói élmény érdekében.
+A **Divi Responsive Helper** egy Divihez készült bővítmény, amely egy átfogó, reszponzív eszköztárat ad a kezedbe. Több mint 50 beállítással egészíti ki a Divit, hogy pontosan irányítsd:
+- a **töréspontokat** (breakpoints),
+- a **globális tipográfiát**,
+- a **rácselrendezést és oszlopsorrendet**,
+- a **menük** viselkedését,
+- és a **szerkesztési élményt**.
 
-### Oszlopok számának kiválasztása
+A cél: gyors, kódmentes finomhangolás mobilra, tabletre és asztali nézetre, konzisztensen az egész webhelyen. A plugin zökkenőmentesen illeszkedik a Divi Theme Options felületéhez és magukhoz a modulokhoz. A jelenlegi Divi-építési folyamataidba azonnal beépíthető, és a Divi újabb főverzióival is kompatibilis.
 
-Ha két oszlopot szeretnél egymás mellett megjeleníteni mobilon, ez az eszköz lehetővé teszi ezt. A beállítások segítségével kiválaszthatod, hogy hány oszlop jelenjen meg egymás mellett asztali és mobil eszközökön.
+## Hogyan működik?
 
-### Oszlopok rendezési sorrendjének beállítása
+Telepítés után a WordPress Vezérlőpultban a **Divi > Theme Options** alatt megjelenik a „Divi Responsive Helper” fül. Itt kapcsolod be a fő funkciócsoportokat (például Preview/Editor, Custom Breakpoints, Typography, Column Stacking, Menu, Misc).  
+Ha egy funkciót aktiválsz, a vonatkozó **Divi modulokban** új, eszközönkénti vezérlők jelennek meg. A globális beállítások alapértékként érvényesek, de bármelyik modulban **felülírhatod** őket.
 
-Manuálisan kiválaszthatod az oszlopok sorrendjét asztali és mobil eszközökön, így elkerülheted a bonyolult kódolást és a felesleges fejfájást.
+## Fő funkciók részletesen
 
-### Blog oszlopainak száma
+### Előnézeti méretek és szerkesztési élmény
+- Adj meg **egyedi előnézeti méretet** (gombok és tetszőleges pixelérték) a Visual Builderben, és lásd a **viewport** aktuális szélességét/magasságát a szerkesztés közben.
+- Kapcsold be, hogy a Design fül **reszponzív fülei automatikusan nyíljanak** meg, így sorban állíthatod a Desktop/Tablet/Phone értékeket.
+- Szükség esetén a Divi alap „Responsive Views” nézeteit **ki is kapcsolhatod**, és használhatod a sajátokat.
 
-A Divi Blog modul alapértelmezett oszlopszámát módosíthatod asztali, tablet és mobil eszközökön, így optimalizálhatod a blogbejegyzések megjelenítését.
+### Breakpointok és media query-k
+- A Divi alap töréspontjai **globálisan átállíthatók** (például tablet határ iPadhez igazítva), és **másodlagos töréspontokat** is hozzáadhatsz precízebb kontrollhoz.
+- Kapsz **Custom CSS Media Queries** mezőket tipikus eszköztartományokra. Ide elég a CSS-t beillesztened, a bővítmény a megfelelő @media feltételekbe csomagolja.
 
-### Galéria képoszlopainak száma
+```css
+/* Tablet finomhangolás – a plugin a megfelelő media query-be teszi */
+.et_pb_post { margin-bottom: 3rem; }
 
-A Divi Galéria modulban alapértelmezés szerint négy kép jelenik meg asztali, három tablet és egy mobil eszközökön. Ezzel az eszközzel megadhatod a kívánt képoszlopok számát.
+/* Kisebb telefonok – kisebb alap betűméret */
+body { font-size: 15px; }
+```
 
-### Portfólió projektek oszlopai
+### Globális tipográfia
+- Állíts be **globális betűméreteket** H1–H6 és bekezdés szinten, **eszközönként**. Ezek lesznek az alapértékek, amelyeket modulonként bármikor módosíthatsz.
+- Kezeld központilag a **sorközt (line-height)** szintén H1–H6 és bekezdés szinten, eszközönként.
+- Kapcsold be a **Widow Fixer** funkciót, amely automatikusan kezeli az „árva szavakat” címekben és bekezdésekben, választható küszöbértékekkel. Oldalakat vagy elemeket ki is zárhatsz belőle.
 
-A Divi Portfólió modul alapértelmezett négy oszlopszámát módosíthatod asztali, két tablet és egy mobil eszközökön, így jobban testreszabhatod a portfólió megjelenését.
+### Oszlopok és rácselrendezés
+- Szabályozd a **sorok oszlopainak sorrendjét** mobilon (stacking order), illetve hogy **hány oszlop maradjon egymás mellett** adott eszközön (stacking number). Működik speciális szekciókban is, és kezeli az eltérő **gutter** értékeket.
+- Adj meg a **Blog modulhoz** oszlopszámot eszközönként (ami alapból hiányzik a Diviből).
+- A **Galéria/Portfólió/Woo termék** moduloknál állítsd be, **hány elem jelenjen meg** és hány oszlopban, külön Desktop/Tablet/Phone nézetre.
 
-### WooCommerce termékoszlopok
+### Menü és navigáció
+- A WordPress **Menük** felületén eszközönként **megjelenítheted vagy elrejtheted** az egyes menüpontokat. A Divi **Menu moduljában** akár **másik menüt** is választhatsz mobilra.
+- Fejlettebb **mobilmenü**: összeomló almenük, ikon- és háttérszínek, külön mobil menü breakpoint, görgethető menümagasság, és „egyik nyílik–másik zár” viselkedés.
+- A **“Vissza a tetejére”** gomb láthatóságát eszközönként állíthatod.
 
-A Divi Shop modulban alapértelmezett négy oszlopszámát módosíthatod asztali, két tablet és mobil eszközökön is, ami különösen hasznos, ha sok terméked van.
+### Egyéb hasznos UX megoldások
+- **Vízszintes görgetés** megakadályozása mobilon.
+- **Pinch‑zoom engedélyezése** (alapból a Divi tiltja).
+- **Eltérő logó** használata tablet/mobil nézetben az alapértelmezett fejlécben.
+- **Android Chrome címsor** színezése.
+- Modul-specifikus reszponzív viselkedések, pl. **Tabs** (függőleges/horizontális elrendezés eszközönként), **Blurb** (ikon/kép áthelyezése mobilon felülre).
 
-## Együttműködés más eszközökkel
+## Gyakorlati példák és rövid workflow
 
-A Divi Responsive Helper zökkenőmentesen működik együtt más Divi modulokkal és bővítményekkel, mint például a Divi Builder, Extra Theme és WooCommerce. Ezáltal bármelyik weboldal könnyen optimalizálható válik minden eszközre.
+- Üzleti oldalon a **Woo termékrács**: állíts 2 oszlopot tableten és 1-et telefonon, és korlátozd az **elemszámot**, hogy gyorsabban fusson és szellősebb legyen.
+- **Blog**: adj 3 oszlopot desktopon, 2-t tableten, 1-et mobilon; közben a Global Typography-val biztosíts egységes címméretet.
+- **Navigáció**: rejts el hosszú menüpontokat mobilon, és válassz egy **rövidebb, dedikált mobilmenüt**.
+- **Back to top**: kapcsold be csak telefonon a hosszú oldalakhoz.
 
-## Konkrét helyzetekben való hasznosság
+Példa beállítási menet:
+1. Theme Options > Divi Responsive Helper > **Typography**: állítsd be a H1–H6 és bekezdés méretét/sorközét Desktop/Tablet/Phone nézetre.
+2. **Custom Breakpoints**: igazítsd a Desktop/Tablet és Tablet/Phone váltást a cél-eszközeidhez (pl. tablet 1024 px körül).
+3. Modulok (Blog/Galéria/Portfólió/Woo): a **funkció bekapcsolása után** megjelennek az eszközönkénti oszlopszám/elemszám opciók.
+4. **Column Stacking**: állítsd be az oszlopok sorrendjét és számát mobilon, hogy a fontos tartalom kerüljön feljebb.
 
-### Példák:
+Megjegyzés: az **Automatikus reszponzív fülnyitás** funkciót csak célzott munkához kapcsold be, mert a nyitva maradó fülek óvatlan szerkesztésnél eltéréseket okozhatnak.
 
-- **Webáruházak**: Az oszlopszámok testreszabása segít optimalizálni a termékek megjelenítését különböző eszközökön.
-- **Blogok**: A blogbejegyzések oszlopszámának módosítása javítja az olvashatóságot és a felhasználói élményt.
-- **Portfólió oldalak**: A portfólió projektek rendezési sorrendjének beállítása növeli a vizuális élményt és a navigációs könnyedséget.
-- **Mobil menü optimalizálása**: A mobil menü beállításai lehetővé teszik a menüpontok egyszerű kezelhetőségét kis kijelzőkön.
+## Előnyök és értékajánlat
 
-## Gyakorlati tippek
+- **Időmegtakarítás**: kevesebb egyedi CSS, gyorsabb beállítások, kevesebb körözés a Builderben.
+- **Konzisztencia**: központi tipográfia és töréspontok, projektszintű egységesség.
+- **Jobb UX mobilon**: finoman szabályozott rács, menü és interakciók.
+- **Kevesebb hiba**: a vizuális előnézet és a pontos viewport-kijelzés csökkenti a vaktesztelést.
+- **Rugalmas kontroll**: minden globális érték modulonként felülírható.
 
-- **Testreszabott gutter width**: Ha egyedi gutter width-et szeretnél alkalmazni, először engedélyezd ezt a beállítást a Theme Options menüben.
-- **Widow words kezelése**: Használd az automatikus widow words megoldást, hogy elkerüld az egyedül álló szavakat a szövegek végén.
-- **Globális szövegméretek beállítása**: Állítsd be az alapértelmezett szövegméreteket különböző eszközökre, hogy egységes megjelenést biztosíts minden modulon.
+## Kinek ajánlott?
 
-## Legfontosabb jellemzők
+- **Divi építőknek és ügynökségeknek**, akik skálázható, konzisztens reszponzív megoldást keresnek.
+- **Webshopoknak**, ahol a Woo termékrács és kategóriaoldalak mobiloptimalizálása kritikus.
+- **Tartalom‑intenzív oldalaknak** (blogok, magazinok), ahol fontos az egységes tipográfia és az elemek számának eszközönkénti szabályozása.
+- **Kezdőknek**, akik szeretnének CSS nélkül precíz reszponzív irányítást.
+- **Haladó felhasználóknak**, akik gyorsítani akarják a munkát és tisztábban kezelni a Divi korlátait.
 
-### Eszköz előnézet
-
-Az egyedi előnézeti méretek lehetővé teszik, hogy valós időben láthasd, hogyan fog kinézni az oldalad különböző eszközökön.
-
-### Hamburger menü megjelenítése asztali nézetben
-
-Ez a funkció lehetővé teszi, hogy asztali nézetben is használhass hamburger menüt, ami különösen hasznos lehet bizonyos dizájnok esetében.
-
-### Teljes mértékben testreszabható CSS média lekérdezések
-
-Mostantól saját média lekérdezéseket hozhatsz létre, ami nagyban megkönnyíti a speciális dizájn igények kielégítését.
-
-### Animációk letiltása mobil eszközökön
-
-Ez a funkció segít javítani az oldal teljesítményét és felhasználói élményét azzal, hogy letiltja az animációkat mobil eszközökön.
-
-## Szószedet
-
-- **Gutter width**: Az oszlopok közötti távolság.
-- **Hamburger menü**: Mobil eszközökön gyakran használt menü ikon.
-- **Media queries**: Média lekérdezések, amelyek segítségével különböző CSS szabályokat alkalmazhatsz különböző eszközméretekhez.
-- **Responsive**: Reagáló dizájn, amely alkalmazkodik a különböző kijelzőméretekhez.
-- **Widow words**: Egyedül álló szavak a szövegek végén.
+Összességében a Divi Responsive Helper egy olyan, Divibe belesimuló „reszponzív vezérlőpult”, amellyel gyorsabban, biztonságosabban és következetesebben alakíthatod a webhelyedet minden képernyőméreten – kódolás nélkül, mégis profi kontrollal.

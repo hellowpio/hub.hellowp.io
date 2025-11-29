@@ -1,60 +1,85 @@
-# LearnDash LMS - Paid Memberships Pro
+---
+title: "LearnDash LMS - Paid Memberships Pro"
+description: "Hivatalos, ingyenes integráció, amellyel a LearnDash kurzusokat tagsági szintekhez rendelheted a Paid Memberships Pro segítségével; automatikus beíratás, előfizetések és hozzáférés-kezelés."
+sidebar_label: "LearnDash LMS - Paid Memberships Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A LearnDash LMS és a Paid Memberships Pro integráció lehetővé teszi, hogy tanfolyamaidat tagságokhoz rendeld a Paid Memberships Pro rendszerében. Ezáltal könnyedén kezelheted a tanulói hozzáférést, a tagsági szinteket és az előfizetéseket. A Paid Memberships Pro alaprendszere ingyenes, de prémium verzióval több mint 60 kiegészítőt is elérhetsz, amelyek további funkciókat kínálnak.
+A LearnDash LMS – Paid Memberships Pro bővítmény a LearnDash hivatalos, ingyenes integrációja. Összekapcsolja a LearnDash kurzusait a Paid Memberships Pro (PMPro) tagsági szintjeivel, így egyetlen tagsággal több kurzust adhatsz el. Megoldja a tipikus gondokat: nem kell manuálisan beíratni a vevőket, nem csúszik szét a hozzáférés lejáratkor, és tiszta, egységes pénztárfolyamatot ad a kurzusvásárláshoz.
 
-### Tagsági szintek létrehozása és kezelése
+## Hogyan működik röviden?
 
-A Paid Memberships Pro segítségével különböző tagsági szinteket hozhatsz létre, amelyekhez különböző tanfolyamokat rendelhetsz. Például egy alapszintű tagság hozzáférést adhat egy kezdő tanfolyamhoz, míg egy haladóbb tagság több tanfolyamhoz is hozzáférést biztosíthat.
+- A PMPro-ban létrehozol tagsági szinteket (pl. Havi All-Access).
+- A szintekhez kurzusokat rendelsz.
+- Amikor valaki megveszi a tagságot, a rendszer automatikusan beiratja a hozzárendelt LearnDash kurzusokra.
+- Ha a tagság lejár vagy megszűnik, a kurzus-hozzáférés is automatikusan frissül.
 
-### Kedvezménykódok és kuponok
+## Fő funkciók részletesen
 
-A rendszer lehetőséget nyújt kedvezménykódok és kuponok használatára, amelyekkel promóciókat szervezhetsz a tanfolyamokra. Ez különösen hasznos lehet, ha új tagokat szeretnél vonzani vagy meglévő tagjaid számára kívánsz kedvezményeket biztosítani.
+- **Kurzus-hozzárendelés tagsági szintekhez**  
+  Egy vagy több LearnDash kurzust kapcsolhatsz egy PMPro szinthez. Vásárlás után azonnali, automatikus beiratás történik a megfelelő kurzusokba. Ugyanez fordítva is szerkeszthető: a kurzus oldalán kiválaszthatod, mely tagság szükséges az eléréshez. A két nézet mindig szinkronban marad.
 
-### Több tanfolyam egyetlen tagságban
+- **Előfizetés és lejárat kezelése**  
+  A PMPro kezeli az ismétlődő díjakat, a lejáratokat és a próbákat. A bővítmény ezt lefordítja kurzus-hozzáféréssé: aktív tagság = aktív kurzuselérés, lejárt tagság = hozzáférés visszavonása. Nem kell kézzel enroll/unenroll-olni.
 
-Egyetlen tagsághoz több tanfolyamot is hozzárendelhetsz, így egyszerűbbé teheted a tanulók számára a különböző tananyagok elérését. Ez az opció különösen hasznos lehet, ha tematikus csomagokat szeretnél kínálni.
+- **Próbaverziók és kuponok**  
+  Ingyenes próbaidőt, kedvezménykódokat és több fizetési átjárót használhatsz a PMPro-val. A LearnDash hozzáférések ehhez automatikusan igazodnak (pl. próba alatt elérhető, majd a próba végén a szokásos előfizetés szerint).
 
-### Előfizetéses rendszer
+- **Egységes pénztár és vásárlói út**  
+  A kurzusoldali „Take this Course” gombot átirányíthatod a PMPro szinteket bemutató oldalra/pénztárra. Így a diák mindig ugyanabba a checkout-folyamatba kerül, kevesebb a zavar és a kosárelhagyás.
 
-A tagságokat előfizetéses rendszerben is értékesítheted, így folyamatos bevételi forrást biztosíthatsz magadnak. Az előfizetők automatikusan hozzáférést kapnak a kiválasztott tanfolyamokhoz az előfizetésük aktív időtartama alatt.
+- **Retroaktív beíratás**  
+  Ha már vannak aktív tagjaid, egy adminisztrációs folyamat futtatásával utólag is beírathatod őket a frissen hozzárendelt kurzusokba. Ez biztosítja, hogy a tagság–kurzus megfeleltetés visszamenőleg is konzisztens legyen.
 
-## Együttműködés más eszközökkel
+## Telepítés és alapbeállítás
 
-### Fizetési átjárók
+1. **Előfeltételek**: aktív LearnDash, telepített és aktivált PMPro.
+2. **Telepítés**: WordPress admin > LearnDash LMS > Add-Ons > „Paid Memberships Pro for LearnDash” > Install > Activate.
+3. **Kurzus-hozzárendelés**:  
+   - PMPro: Memberships > Settings > Levels > válaszd a LearnDash szekcióban a kurzusokat, vagy  
+   - LearnDash: a kurzus szerkesztésekor jelöld be a „Require Membership” opcióknál a szükséges szint(ek)et.
+4. **Kurzus hozzáférési mód**: állítsd „Closed”-ra, és add meg a PMPro „Levels” oldal URL-jét gombcélként, például:
+   ```
+   Course > Settings
+   Access Mode: Closed
+   Button URL: /tagsag-szintek/
+   ```
+5. **Retroaktív beíratás (opcionális)**: futtasd az adminfelületen, ha korábbi tagoknak is kiosztanád az új kurzuseléréseket.
 
-A Paid Memberships Pro több népszerű fizetési átjárót támogat, mint például PayPal, Stripe, Authorize.net és még sok más. Ezek az integrációk biztosítják a zökkenőmentes fizetési folyamatot a felhasználók számára.
+## Gyakorlati példák
 
-### WooCommerce integráció
+- **„Minden kurzus” tagság**: havi vagy éves all-access, amely az összes jelenlegi (és akár jövőbeli) kurzushoz hozzáférést ad. Ideális akadémia jellegű kínálathoz.
+- **Tematikus csomagok**: például „Frontend fejlesztő” tagság, amely HTML, CSS, JavaScript és React kurzusokat fog össze. Egy vásárlás, több kurzus.
+- **Belépő próba**: 7 nap ingyenes próba, utána havi előfizetés. A próba alatt a diák már tanulhat; a próba végén automatikusan folytatódik a hozzáférés, ha aktív marad az előfizetés.
 
-A WooCommerce integrációval a tanfolyamokat közvetlenül a webáruházadon keresztül is értékesítheted. Ez lehetőséget ad arra, hogy kombinált ajánlatokat készíts, például egy termék és egy tanfolyam csomagban történő értékesítésére.
+## Előnyök és értékajánlat
 
-### Zapier integráció
+- **Időmegtakarítás**: nincs kézi be- és kijelentkeztetés; a rendszer mindent automatikusan kezel.
+- **Rugalmas üzleti modellek**: egyszeri díj, előfizetés, próba, kuponok – mind működik ugyanazon integráción keresztül.
+- **Skálázható értékesítés**: csomagold a kurzusaidat tagságokba, növeld a kosárértéket és csökkentsd a bonyolultságot.
+- **Egységes vásárlói élmény**: egyértelmű út a kurzusoldaltól a pénztárig, kevesebb lemorzsolódás.
+- **Hivatalos, ingyenes kiegészítő**: natív LearnDash-integráció, támogatott működés a LearnDash ökoszisztémában.
 
-A Zapier segítségével automatizálhatod a különböző folyamatokat, például e-mail értesítések küldését vagy adatátvitelt más rendszerek között. Ez nagyban megkönnyíti a tagsági rendszer menedzsmentjét és a felhasználói élményt.
+## Kinek ajánlott?
 
-## Gyakorlati alkalmazások
+- **Online akadémiáknak**: sok kurzus, folyamatos bővülés, all-access vagy tematikus csomagmodellek.
+- **Képző cégeknek és tréningprogramoknak**: ismétlődő bevétel és tagságalapú jogosultságkezelés.
+- **EdTech startupoknak**: gyors indulás komplett pénztár- és előfizetéskezeléssel.
+- **Olyan oktatóknak**, akik kupont, próbát és több fizetési kaput szeretnének egyben kezelni.
 
-### Oktatási intézmények
+## Fontos megjegyzések és korlátozások
 
-Oktatási intézmények számára ideális megoldás lehet a LearnDash LMS - Paid Memberships Pro integráció, mivel lehetővé teszi a különböző kurzusok és oktatási anyagok egyszerű kezelését és hozzáférhetőségét.
+- **PMPro szükséges**: az integráció a PMPro alapbővítménnyel működik.
+- **Checkout-exkluzivitás**: ugyanazon kurzus-hozzáférést ne kezeld párhuzamosan más checkout megoldással.
+- **Többes tagság**: a PMPro alapértelmezetten nem engedi, hogy egy felhasználónak egyszerre több szintje legyen; ehhez külön megoldások szükségesek.
+- **Tranzakciós naplózás**: előfordulhat, hogy egy tranzakcióhoz két naplóbejegyzés látszik az adminban; ez normális, a felhasználó nem kerül dupla terhelésre.
 
-### Online edzők és coachok
+## Alternatívák és kapcsolódó integrációk
 
-Online edzők és coachok számára kiváló eszköz, hiszen könnyedén létrehozhatnak különböző szintű tagságokat, amelyekhez különböző edzésprogramokat rendelhetnek.
+- **PMPro Courses add-on**: PMPro-központú rendszerekben alternatíva lehet, de a visszamenőleges beíratás kezelése eltérhet.
+- **Más tagsági integrációk**: elérhető hasonló, ingyenes LearnDash integráció más tagsági bővítményekhez is.
 
-### Vállalati képzések
+## Döntési összefoglaló
 
-Vállalatok számára is hasznos lehet, akik belső képzéseket kívánnak biztosítani alkalmazottaik számára. A különböző tagsági szintek segítségével könnyedén kezelhetik az alkalmazottak hozzáférését a képzési anyagokhoz.
-
-## Szószedet
-
-- **LearnDash LMS**: Tanuláskezelő rendszer.
-- **Paid Memberships Pro**: Tagságkezelő bővítmény.
-- **Tagsági szintek**: Különböző hozzáférési szintek a tananyagokhoz.
-- **Kedvezménykódok**: Promóciós kódok.
-- **Előfizetés**: Rendszeres időközönkénti fizetés egy szolgáltatásért.
-- **Fizetési átjárók**: Online fizetési rendszerek.
-- **WooCommerce**: Webáruház bővítmény.
-- **Zapier**: Automatizálási eszköz.
+Akkor válaszd ezt a bővítményt, ha LearnDash-t használsz, és tagságalapú értékesítést, kurzuscsomagokat, előfizetést, próbát és kuponokat szeretnél egyszerűen, automatikus hozzáférés-kezeléssel. Ha a teljes ökoszisztémád PMPro-központú, mérlegelheted a PMPro saját kurzusintegrációját is, de figyelj a beíratások visszamenőleges kezelésére.

@@ -1,70 +1,79 @@
-# Gravity Forms Multilingual
+---
+title: "Gravity Forms Multilingual"
+description: "Hivatalos WPML-integráció a Gravity Forms űrlapok többnyelvű kezeléséhez: egy forrásűrlap, fordítások az ATE-ben, helyes megjelenítés nyelvváltáskor."
+sidebar_label: "Gravity Forms Multilingual"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A Gravity Forms Multilingual egy speciális bővítmény, amely lehetővé teszi, hogy a Gravity Forms űrlapokat több nyelven is elérhetővé tegyük. Ez a funkció különösen hasznos azoknak a weboldalaknak, amelyek nemzetközi közönséget céloznak meg, és több nyelvi változatot kínálnak tartalmaikból.
+A **Gravity Forms Multilingual (GFML)** a **WPML** hivatalos integrációs bővítménye, amellyel a **Gravity Forms** űrlapjaid többnyelvűen, egységesen kezelhetők. Ahelyett, hogy minden nyelvre külön űrlappéldányt készítenél és tartanál karban, egyetlen „forrásűrlapot” hozol létre, a fordításokat pedig a **WPML Fordítási műszerfalán** és az **Advanced Translation Editorban (ATE)** végzed. Az oldal nyelvének váltásakor a látogatók automatikusan a megfelelő fordítású űrlapot, megerősítéseket és értesítéseket látják/kapják.
 
-### Többnyelvű űrlapok kezelése
+## Fő funkciók, érthetően
 
-A Gravity Forms Multilingual bővítmény lehetővé teszi az űrlapok egyszerű és hatékony fordítását. Az összes mező, címke és üzenet lefordítható különböző nyelvekre, így a látogatók saját nyelvükön érhetik el az űrlapokat. 
+- **Űrlapelemek fordítása egy helyen**: Fordíthatod az űrlap címét, mezőcímkéket és al-címkéket, választási lehetőségeket (rádió/checkbox/lista/lenyíló), valamint a **megerősítéseket** és **értesítéseket**. A fordítási egységek az ATE-ben ember-olvasható címkékkel, logikusan csoportosítva jelennek meg.
+- **Speciális kiegészítők támogatása**: A **Survey Add-On** és a **Conversational Forms** elemei is fordíthatók, beleértve a speciális UI-címkéket. Többoldalas űrlapnál az „utolsó oldal gomb” képe is regisztrálható fordításra.
+- **Kötelező mezők jelölői**: A „required” jelölések szövegei is lokalizálhatók, így az űrlap minden részlete a megfelelő nyelven jelenik meg.
+- **Használhatósági finomítások**: A hibaüzenetek a fordított mezőcímkékre hivatkoznak; a jelölőnégyzetek fordított értékei helyesen jelennek meg az admin bejegyzéslistában és exportokban; az értesítések nyelvfüggő logikája és a feltételes termékek/beállítások kezelése többnyelvű környezetben stabil.
+- **WPML-ökoszisztémába illesztés**: A teljes folyamat a WPML fordítási munkafolyamatába illeszkedik, kézi, automatikus vagy professzionális fordítással.
 
-### Zökkenőmentes integráció más eszközökkel
+## Hogyan működik a gyakorlatban?
 
-A Gravity Forms Multilingual zökkenőmentesen működik együtt a WPML (WordPress Multilingual Plugin) bővítménnyel. Ez azt jelenti, hogy az űrlapok fordítása közvetlenül a WPML fordítószerkesztőjéből végezhető el, így nem szükséges különálló eszközök használata. 
+1. **Egy forrásűrlap**: A Gravity Formsban elkészíted az űrlapot a végleges logikával (mezők, feltételek, értékek).
+2. **Fordítás indítása**: A WPML **Translation Dashboard** felületén kijelölöd az űrlapot, és elküldöd fordításra. Az ATE-ben kapsz minden űrlapelemet fordítható egységként.
+3. **Megjelenítés**: Az oldaladon ugyanazt az űrlapot ágyazod be. Nyelvváltáskor a GFML a megfelelő fordításokat tölti be, beleértve a **megerősítéseket** és az e-mail **értesítéseket** is.
 
-Továbbá, a bővítmény kompatibilis számos más népszerű WordPress bővítménnyel, mint például az Elementor és a WooCommerce, ami megkönnyíti az űrlapok integrálását komplexebb weboldalakba is.
+Beágyazási példa (ugyanazt használod minden nyelven):
+```
+[gravityform id="1" title="false" description="false" ajax="true"]
+```
 
-## Használati módok
+### Konkrét példák
 
-### Webáruházak
+- **Kapcsolati űrlap több nyelven**: Egy forrásűrlap, fordított címkék és hibák; a német oldalon német mezők és visszaigazoló üzenet jelenik meg.
+- **Ajánlatkérés feltételes logikával**: A választási lehetőségek **value** mezőit változatlanul hagyod (pl. product_basic, product_pro), csak a feliratokat fordítod. A logika minden nyelven ugyanúgy működik.
+- **Kérdőív (Survey)**: Egy kérdéssor, több nyelv; a skálák és opciók fordíthatók, az adminban és exportban a beérkező adatok következetesek.
 
-Egy webáruház esetében a Gravity Forms Multilingual lehetővé teszi többnyelvű rendelési űrlapok létrehozását. Az ügyfelek így saját nyelvükön adhatják le rendeléseiket, ami növeli a felhasználói élményt és csökkenti a vásárlási folyamat során fellépő félreértések esélyét.
+## Telepítés és alap workflow
 
-### Nemzetközi vállalatok
+- Telepítsd és aktiváld: **WPML**, **WPML String Translation**, **Gravity Forms**, **Gravity Forms Multilingual**.
+- WPML → **Translation Dashboard**: válaszd ki az űrlapot, küldd fordításra.
+- WPML → **Translations**: nyisd meg az **ATE**-t, rögzítsd a fordításokat, majd zárd le.
+- Fontos: az űrlapot tartalmazó oldal/bejegyzés fordítását is frissítsd, hogy a nyelvváltó a megfelelő űrlapot mutassa.
 
-Nemzetközi vállalatok számára a többnyelvű kapcsolatfelvételi űrlapok létrehozása elengedhetetlen. A Gravity Forms Multilingual segítségével könnyedén kezelhetők a különböző nyelveken érkező megkeresések, így biztosítva a hatékony kommunikációt az ügyfelekkel.
+## Előnyök és értékajánlat
 
-### Oktatási intézmények
+- **Kevesebb karbantartás**: nincs több külön űrlap nyelvenként; egy helyen frissítesz.
+- **Kisebb hibakockázat**: azonos logika, azonos **value** értékek; stabil feltételes működés.
+- **Gyors fordítási kör**: az ATE-ben célzottan csak az űrlapelemeket fordítod.
+- **Professzionális lokalizáció**: megerősítések és értesítések is a megfelelő nyelven mennek ki.
 
-Oktatási intézmények számára, amelyek többnyelvű kurzusokat kínálnak, a Gravity Forms Multilingual használatával egyszerűen létrehozhatók többnyelvű jelentkezési űrlapok. Ez megkönnyíti a hallgatók számára a jelentkezést és csökkenti az adminisztrációs terheket.
+## Kinek ajánlott?
 
-## Tippek a hatékony használathoz
+- **Tartalomkezelőknek és ügynökségeknek**, akik többnyelvű oldalakon egységes űrlapélményt szeretnének.
+- **E-kereskedelmi és B2B oldalaknak**, ahol feltételes űrlapok, termékválasztók és komplex értesítések futnak több nyelven.
+- **Kutatóknak/HR-nek/marketingnek**, akik kérdőíveket vagy jelentkezési űrlapokat kezelnek több piacra.
 
-1. **Fordításkezelés**: A WPML fordítószerkesztő használata segít abban, hogy az űrlapok minden eleme pontosan legyen lefordítva.
-2. **Tesztelés**: Minden nyelvi változatot alaposan tesztelj le, hogy megbizonyosodj arról, hogy az űrlap minden része megfelelően működik.
-3. **Automatikus üzenetek**: Állítsd be az automatikus válaszokat és értesítéseket is több nyelven, hogy a felhasználók mindig saját nyelvükön kapjanak visszajelzést.
+## Tippek és bevált módszerek
 
-## Legfontosabb jellemzők és képességek
+- **Tartsd stabilan a choice „value” mezőket** (nyelvfüggetlen azonosítók), és csak a feliratokat fordítsd. Így a feltételes logika minden nyelven megbízható marad.
+- **Előbb fordítsd az űrlapot, aztán az oldalt**: a helyes megjelenéshez mindkettőnek késznek kell lennie.
+- **Entries nyelve**: ha fontos a beküldés nyelve, adj az űrlaphoz rejtett mezőt, és rögzítsd automatikusan a nyelvkódot.
 
-### Többnyelvű kompatibilitás
+Példa a beküldés nyelvének mentésére (rejtett mező ID-ját állítsd be):
+```php
+add_action('gform_pre_submission', function () {
+  if (defined('ICL_LANGUAGE_CODE')) {
+    $_POST['input_5'] = ICL_LANGUAGE_CODE; // pl. 'en', 'de', 'hu'
+  }
+});
+```
 
-A Gravity Forms Multilingual egyik legnagyobb előnye, hogy teljes mértékben kompatibilis a WPML bővítménnyel. Ez lehetővé teszi a felhasználók számára, hogy könnyedén kezeljék az űrlapok fordítását anélkül, hogy külön eszközöket kellene használniuk.
+## Ismert korlátok és hibakeresés
 
-### Fordítási kezelőfelület
+- **Bejegyzések (entries) nem „fordulnak”**: a beküldött tartalmat a bővítmény nem fordítja le; szűréshez használd a rögzített nyelvkódot.
+- **HTML és speciális mezők**: egyes egyedi HTML-szegmensek és speciális mezőtípusok külön odafigyelést igényelhetnek; ha egy címke nem jelenik meg fordítva, ellenőrizd, hogy regisztrált fordítható egységként.
+- **Kiegészítők és stílusok**: ha egy add-on elem vagy képes opció nem fordul, frissítsd a bővítményeket és nézd át, hogy az adott elem szerepel-e fordíthatóként.
 
-A bővítmény egy intuitív kezelőfelületet biztosít, amely megkönnyíti az űrlapok fordításának kezelését. Az összes űrlapelem egyszerre érhető el, ami gyorsabbá és egyszerűbbé teszi a fordítási folyamatot.
+---
 
-### Teljes körű kompatibilitás
-
-A Gravity Forms Multilingual szinte minden népszerű WordPress bővítménnyel kompatibilis, így nem kell aggódnod az integráció miatt. Legyen szó akár egy egyszerű blogról vagy egy komplex e-kereskedelmi oldalról, ez a bővítmény megbízhatóan működik.
-
-## Gyakorlati példák
-
-### Jelentkezési űrlap több nyelven
-
-Egy nemzetközi konferencia weboldalán szükség lehet többnyelvű jelentkezési űrlapokra. A Gravity Forms Multilingual segítségével az összes jelentkezési adatot összegyűjtheted különböző nyelveken anélkül, hogy különböző űrlapokat kellene létrehoznod.
-
-### Ügyfélszolgálati űrlapok
-
-Ha egy globális ügyfélszolgálatot működtetsz, fontos, hogy az ügyfélszolgálati űrlapokat több nyelven is elérhetővé tedd. Ezzel biztosíthatod, hogy minden ügyfél a saját nyelvén kérhet segítséget vagy tehet panaszt.
-
-### Hírlevél feliratkozás
-
-Többnyelvű hírlevél feliratkozási űrlapok létrehozása szintén egyszerű a Gravity Forms Multilingual segítségével. Így minden látogatód könnyedén feliratkozhat a hírleveledre anélkül, hogy nyelvi akadályokba ütközne.
-
-## Szószedet
-
-- **Gravity Forms**: Egy népszerű WordPress bővítmény, amely lehetővé teszi különféle típusú űrlapok létrehozását.
-- **WPML (WordPress Multilingual Plugin)**: Egy bővítmény, amely lehetővé teszi a WordPress weboldalak többnyelvűsítését.
-- **Elementor**: Egy vizuális oldalszerkesztő bővítmény WordPresshez.
-- **WooCommerce**: Egy népszerű e-kereskedelmi bővítmény WordPresshez.
+Röviden: a Gravity Forms Multilingual abban segít, hogy egyetlen forrásűrlapból, a WPML fordítási folyamatában készíts professzionális, többnyelvű űrlapélményt – stabil feltételes logikával, lokalizált megerősítésekkel és értesítésekkel. Ha több piacot szolgálsz ki, ez a legegyszerűbb és legbiztosabb út a következetes űrlapkezeléshez.

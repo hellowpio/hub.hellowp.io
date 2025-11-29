@@ -1,59 +1,104 @@
-# AutomateWoo - Refer A Friend add-on
+---
+title: "AutomateWoo - Refer A Friend Add-on"
+description: "Hivatalos WooCommerce kiegészítő a csalásvédett, automatizált ajánlóprogramhoz kupon- vagy linkmegosztással és automatikus bolt­egyenleg-jóváírással."
+sidebar_label: "AutomateWoo - Refer A Friend Add-on"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és mit old meg?
 
-### Egyszerű ajánlói program kezelése
+Az AutomateWoo – Refer A Friend egy prémium kiegészítő az AutomateWoo-hoz, amellyel **teljesen automatizált ajánlóprogramot** építhetsz a webáruházadban. Meglévő vásárlóid egyedi kuponnal vagy hivatkozással ajánlanak téged a barátaiknak; a barát kedvezményt kap, az ajánló pedig **bolt­egyenleg** formájában jutalmat. A bővítmény egyszerre kezeli a rögzítést, állapotokat, csalásvédelmet és a jutalmazást – így nem kell manuálisan nyomon követned a referálásokat.
 
-Az AutomateWoo - Refer A Friend add-on lehetővé teszi, hogy könnyedén létrehozz és kezelj egy ajánlói programot a WooCommerce áruházadban. Az admin felületen keresztül egyszerűen beállíthatod, hogy az ajánlások automatikusan vagy manuálisan kerüljenek jóváhagyásra. Az automatikus jóváhagyás választása esetén minden nem csalásgyanús ajánlás automatikusan jóváhagyásra kerül, amint a hozzá kapcsolódó rendelés teljesített státuszba kerül.
+Előfeltétel: a WooCommerce és az AutomateWoo aktív telepítése.
 
-### Intuitív ajánlási folyamat
+## Hogyan működik röviden?
 
-Az ajánlási folyamat rendkívül egyszerű és rugalmas az ajánlók számára. Az ajánlók e-mailben, Facebookon, Twitteren és WhatsAppon keresztül is megoszthatják az egyedi kuponkódjukat. Az ajánló barátjának csak annyi a dolga, hogy felhasználja a kupont a kedvezmény megszerzéséhez.
+1. Kiválasztod a **kampánytípust**: kuponos vagy linkalapú.
+2. Létrehozol egy **megosztó oldalt** (shortcode-dal), és bekapcsolod a **poszt‑vásárlási widgetet**.
+3. A vásárló megkapja az egyedi kuponját/linkjét, és megosztja e‑mailben vagy közösségi csatornákon.
+4. A barát vásárol; a rendszer létrehozza a **referral rekordot**.
+5. A rendelés teljesítésekor automatikusan vagy manuálisan **jóváhagyod**; az ajánló **bolt­egyenleget** kap.
+6. Az AutomateWoo **workflow-k** értesítéseket küldenek (ügyfél, admin), és minden mérhető a **riportokban**.
 
-### Utóvásárlási widgetek
+## Fő funkciók, közérthetően
 
-Az ajánlási megosztást ösztönözheted utóvásárlási widgetekkel, amelyek megjelennek a rendelés visszaigazolási oldalán, valamint az automatikusan létrehozott követő e-mailekben. Ezáltal növelheted a megosztások számát és az ajánlások hatékonyságát.
+### Kampánytípusok
+- **Kuponalapú kampány**: minden ajánlónak egyedi kuponja van. A megosztott kupon beváltása esetén a barát azonnali kedvezményt kap, az ajánló pedig jutalmat. Pontosan mérhető, kód-alapon követhető.
+- **Linkalapú kampány**: az ajánló egy egyedi hivatkozást oszt meg. A kattintás és vásárlás alapján jön létre a referral, kupon nélkül. Letisztult, súrlódásmentes megosztás.
 
-### Csalásmegelőzés
+Megjegyzés: egyszerre csak az egyik típust használhatod (nem kombinálhatók).
 
-Az AutomateWoo - Refer A Friend add-on számos csalásmegelőző funkcióval rendelkezik. Az alábbi szabályok segítenek kiszűrni a potenciális csalásokat:
-- **IP-cím egyezés:** Ha az ajánló és az ajánlott személy IP-címe megegyezik, az ajánlást potenciális csalásként jelöli.
-- **Sütik egyezése:** Ha az ajánló böngészőjében elhelyezett süti megegyezik egy korábbi sütivel, az ajánló nem tudja felhasználni a kupont.
-- **E-mail cím egyezése:** Az ajánló e-mail címe összehasonlításra kerül a korábbi rendelések e-mail címeivel. Ha van egyezés, a kupon nem használható fel.
+### Megosztás és Share Widget
+- Beépített megosztás e‑mailen, Facebookon, X/Twitteren és WhatsAppon.
+- **Poszt‑vásárlási Share Widget** a köszönőoldalon és a rendelés‑e‑mailekben – ott kér meg megosztásra, ahol a legfogékonyabb a vásárló.
+- Dedikált **megosztó oldal** shortcode-dal; dinamikus tartalom miatt ezen az oldalon a gyorsítótárat kapcsold ki.
 
-### Jelentések
+### Csalásmegelőzés, állapotok
+- Beépített védelmek: **IP-azonosság ellenőrzés**, **sütiegyezés** és **számlázási e‑mail** ütközésvizsgálat a self‑referral és visszaélések ellen.
+- Referral életciklusok: **Pending**, **Approved**, **Potential Fraud**, **Rejected**. A gyanús esetek nem kapnak automatikus jóváhagyást.
 
-A bővítmény részletes jelentéseket biztosít az ajánlói program sikerességéről, beleértve az ajánlások által generált rendelések számát. Ezekkel a jelentésekkel könnyedén nyomon követheted a program hatékonyságát és szükség esetén módosításokat végezhetsz.
+### Jutalmazás és admin
+- Automatikus **bolt­egyenleg-jóváírás** a jóváhagyáskor.
+- Átlátható adminlista, részletes **riportok** a teljesítményről.
+- Ügyféloldalon külön **Saját fiók** fül: az ajánló látja az állapotokat és az egyenlegét, kevesebb supportot igényel.
 
-### Ajánlók fiók lapfüle
-
-Az ajánlók megtekinthetik a sikeres ajánlásaikat a saját fiókjukban. Ez a funkció átláthatóságot biztosít számukra és további ösztönzést adhat az újabb ajánlások létrehozására.
-
-### Munkafolyamatok integrációja
-
-Az AutomateWoo munkafolyamatokkal való integráció lehetőséget biztosít új triggerekkel és változókkal történő automatizálásra. Így beállíthatod az ajánlói programhoz kapcsolódó automatikus értesítéseket, legyen szó adminisztrátorok vagy ajánlók értesítéséről.
-
-## Együttműködés más eszközökkel
-
-Az AutomateWoo - Refer A Friend add-on zökkenőmentesen működik együtt számos más WooCommerce bővítménnyel és eszközzel, mint például:
-- **WooCommerce Subscriptions:** Előfizetési alapú termékek esetén is használható.
-- **WooCommerce Points and Rewards:** Pontgyűjtési programokkal kombinálva még vonzóbbá teheted az ajánlói rendszert.
-- **WooCommerce Email Customizer:** Egyedi e-mail sablonok létrehozása az ajánlói értesítésekhez.
+### AutomateWoo-integráció
+- Új **triggerek** (például új referral létrejötte vagy státuszváltozás), változók és e‑mail komponensek.
+- Teljesen testreszabott **workflow-k**: értesítések, figyelmeztetések, emlékeztetők – mind automatizálva.
 
 ## Gyakorlati példák
 
-1. **Kupon alapú kampányok:** Indíts egy kampányt, ahol az ajánlók egyedi kuponkódot kapnak, amit megoszthatnak barátaikkal. A barátok kedvezményt kapnak a vásárláskor, az ajánló pedig kreditet kap minden sikeres vásárlás után.
-  
-2. **Link alapú kampányok:** Ha nem szeretnél kuponokat használni, indíts link alapú kampányokat, ahol az ajánlók egyedi linket oszthatnak meg barátaikkal.
+- Direkt fogyasztói bolt: kuponos kampányt indítasz. A barát 10% kedvezményt kap, az ajánló 2 000 Ft bolt­egyenleget. Amikor a rendelés teljesült, a jóváírás automatikusan megtörténik, az ajánló e‑mailt kap, a riportban látod az új ügyfélszerzést.
+- Előfizetéses áruház: linkalapú kampányt futtatsz. Ha a barát előfizet, az ajánló egyenleget kap, a Potential Fraud státuszról automatikus admin értesítés megy. A megosztó widget a köszönőoldalon azonnal ösztönöz további ajánlásokra.
 
-3. **Utóvásárlási ösztönzés:** Helyezz el utóvásárlási widgeteket a rendelés visszaigazolási oldalán és kövesd nyomon, hogy melyik vásárló mennyi új vásárlót hozott be.
+## Telepítés és alapbeállítás
 
-4. **Szezonális kampányok:** Készíts különleges ajánlói kampányokat ünnepek környékén, hogy növeld a forgalmat és a márkád ismertségét.
+1. Telepítsd és aktiváld a WooCommerce-t és az AutomateWoo-t, majd a Refer A Friend kiegészítőt.
+2. Hozz létre egy “Megosztás” oldalt, és illeszd be:
+   ```
+   [automatewoo_referrals_page]
+   ```
+3. Menj a WordPress adminban: AutomateWoo > Settings > Refer A Friend. Válaszd ki a **share típust** (kupon vagy link), állítsd be a **jutalmakat** és az e‑mail opciókat.
+4. Tedd láthatóvá a widgetet:
+   ```
+   [automatewoo_referrals_share_widget]
+   ```
+   és a fiókfület:
+   ```
+   [automatewoo_referrals_account_tab]
+   ```
+5. Építs workflow-kat a triggerekre (pl. “New Referral Created”, “Referral Status Changed”) értesítésekhez és automatikus jóváhagyáshoz.
 
-## Szószedet
-- **AutomateWoo:** Marketing automatizációs bővítmény WooCommerce áruházakhoz.
-- **Refer A Friend add-on:** Kiegészítő modul az AutomateWoo számára, ami lehetővé teszi az ajánlói programok kezelését.
-- **Kuponkód:** Egyedi kód, amely kedvezményt biztosít a vásárlóknak.
-- **IP-cím:** Az internetre csatlakozó eszköz egyedi azonosítója.
-- **Süti (cookie):** Kisméretű adatfájl, amelyet a weboldalak tárolnak a látogatók böngészőjében.
-- **Munkafolyamat (workflow):** Automatizált folyamatok összessége, amelyeket előre meghatározott szabályok alapján hajtanak végre.
+Megjegyzés: a shortcode-okat tartalmazó oldalak dinamikusak – a cache-t itt kapcsold ki.
+
+## Fejlesztői tippek
+
+- Csalásdetektálás ideiglenes kikapcsolása teszthez:
+  ```php
+  add_filter( 'automatewoo/referral/is_potential_fraud', '__return_false' );
+  ```
+- Sablonok felülírása: a frontend és HTML e‑mail sablonok a bővítmény templates mappájában találhatók, témában felülírhatók.
+
+## Előnyök és értékajánlat
+
+- **Alacsonyabb megszerzési költség**: a szájreklám minőségi forgalmat hoz.
+- **Kevesebb manuális munka**: automatikus követés, státuszkezelés, jutalmazás.
+- **Kevesebb visszaélés**: több rétegű csalásvédelem.
+- **Átláthatóság**: ügyfél‑ és adminnézet, részletes riportok.
+- **Rugalmas automatizáció**: személyre szabott workflow-k bármely lépésnél.
+
+## Kinek ajánlott?
+
+- **D2C márkáknak** és webshopoknak, akik gyorsan bevezethető ajánlóprogramot keresnek.
+- **Előfizetéses boltoknak**, ahol a megújuló bevétel mellé hűségerősítő ösztönző kell.
+- **Kis- és középvállalkozásoknak**, akik marketingbüdzsé helyett a közösségükre támaszkodnának.
+- **Marketingcsapatoknak**, akik adatvezérelt, automatizált referral csatornát szeretnének.
+
+## Korlátok és kompatibilitás
+
+- Egyszerre **nem** futtatható kupon- és linkmegosztás; választanod kell.
+- Gyakori igények: admin általi manuális referral létrehozás, referral kódok átnevezése, „másolás vágólapra” gomb a widgetben – ezek egy része tervezett fejlesztés.
+- Kompatibilis a modern WooCommerce funkciókkal, beleértve a **HPOS**-t és a **Cart/Checkout Blocks**-ot.
+
+## Licenc és beszerzés
+
+Hivatalos WooCommerce kiegészítő, 1 éves licenc keretében támogatással és frissítésekkel, 30 napos pénzvisszafizetési garanciával. Az ár tipikusan éves díjas konstrukció.

@@ -1,63 +1,94 @@
-# WP Booking System - Advanced Booking Restrictions Add-on
+---
+title: "WP Booking System - Advanced Booking Restrictions Add-on"
+description: "Foglalási korlátozások űrlap‑szinten: minimum/maximum éjszaka, changeover napok, előfoglalási ablak, turnaround idő és szezonális szabályok."
+sidebar_label: "WP Booking System - Advanced Booking Restrictions Add-on"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Advanced Booking Restrictions Add-on számos olyan funkcióval rendelkezik, amelyek lehetővé teszik a foglalások szigorúbb és pontosabb szabályozását. Ezek a funkciók segítenek a felhasználóknak, hogy jobban kontrollálhassák ingatlanjaik bérbeadását, optimalizálva ezzel a kihasználtságot és bevételeket.
+A Booking Restrictions (más néven Advanced Booking Restrictions) a WP Booking System hivatalos kiegészítője. Segítségével részletes szabályokat állíthatsz be a foglalásokra: minimum/maximum tartózkodási idő, kötelező érkezési/távozási napok, előfoglalási ablak (lead time), valamint két foglalás közti kötelező üres napok (turnaround). Napi alapú foglalásoknál ideális, ha például heti váltónapokat, főszezonos minimumokat vagy operatív felkészülési időt szeretnél kikényszeríteni.
 
-### Minimum és maximum tartózkodási idő beállítása
+## Hogyan működik?
 
-A bővítmény lehetőséget ad arra, hogy minimum és maximum tartózkodási időt határozz meg. Ez azt jelenti, hogy meghatározhatod, hogy egy vendégnek legalább hány napot kell eltöltenie, vagy maximum hány napig maradhat. Például, ha azt szeretnéd, hogy a vendégek legalább 3 napot töltsenek nálad, ezt könnyedén beállíthatod.
+- A korlátozások **űrlaphoz kötöttek**: amit egy űrlapon beállítasz, minden olyan naptárra érvényes, amelyet az adott űrlappal ágyazol be.
+- Két szintű szabályozás van:
+  - **General Rule**: alapértelmezett szabály az összes dátumra.
+  - **Custom Period Rules**: tetszőleges időszakokra vonatkozó szabályok, amelyek felülírják a general szabályt. Ütközéskor **Prioritás** alapján dől el, melyik érvényes.
+- A szabályok a **validáció** során érvényesülnek (nem zárják fizikailag a dátumokat). Ha érvénytelen kombinációt választ a vendég, a naptár alatt hibaüzenetet kap. Automatikus záráshoz használd a beágyazáskor az „Automatically Block Dates” opciót.
+- Az add‑on aktiválásával a rövidkód‑attribútumok (pl. `minimum_days`, `maximum_days`, `booking_start_day`, `booking_end_day`) **hatástalanok** – mindent az add‑on kezel.
+- A WP Booking System napi alapú; **időréses/órás foglalást** nem kezel.
 
-### Kezdő és záró napok meghatározása
+## Fő funkciók, érthetően
 
-Egy másik hasznos funkció, hogy meghatározhatod, mely napokon kezdődhet vagy zárulhat a foglalás. Például beállíthatod, hogy a foglalások csak hétfőn vagy pénteken kezdődhetnek és végződhetnek. Ez különösen hasznos lehet hétvégi házak esetében, ahol a vendégek általában hétvégi kiruccanásokra érkeznek.
+### Tartózkodási idő (Stay Length)
+- **Minimum/maximum éjszaka**: megadhatod, hogy legalább/legfeljebb hány éjszakára lehet foglalni (pl. min. 3, max. 14).
+- **Fixed number of days**: csak meghatározott tartamok engedélyezése (pl. pontosan 7 vagy 10 éjszaka). Így „fix turnusokat” hozhatsz létre.
+- **Minimum stay by start day**: a kezdőnap szerint eltérő minimumot állíthatsz be (pl. hétfői érkezés min. 5 éj, pénteki érkezés min. 3 éj).
 
-### Előfoglalási időszak szabályozása
+### Kötelező érkezési/távozási napok (Enforce specific days)
+- Meghatározhatod, hogy a vendég mely napokon **érkezhet** és/vagy **távozhat** (pl. csak hétfő és péntek). Klasszikus changeover szabály főszezonra.
 
-A bővítmény segítségével meghatározhatod, hogy mennyi idővel előre foglalhatnak a vendégek. Beállíthatsz minimum és maximum előfoglalási időszakokat is, így elkerülheted a túl korai vagy túl késői foglalásokat. Ez segít abban, hogy jobban tervezhesd az elérhetőségeket és a karbantartási időszakokat.
+### Előfoglalási ablak (Advance reservation)
+- **Minimum** nap, amennyivel a mai naphoz képest korábban le kell foglalni (pl. legalább 7 nappal előre).
+- **Maximum** nap, ameddig előre engeded a foglalást (pl. legfeljebb 365 napra előre).
 
-### Szezonális és éves beállítások
+### Turnaround idő (Buffer napok)
+- Két foglalás között **kötelező üres napok** száma (pl. 1–2 nap takarításra, karbantartásra). Megakadályozza a közvetlen back‑to‑back foglalásokat.
 
-Az összes fent említett beállítást alkalmazhatod egy adott dátumtartományra, szezonra vagy akár egész évre. Például megadhatod, hogy a nyári szezonban (június 1-től augusztus 31-ig) csak hétfőn vagy pénteken kezdődhetnek a foglalások, míg télen (december 1-től január 31-ig) csak vasárnap kezdődhetnek és legalább 2 naposak legyenek.
+### Hibajelzések testreszabása
+- A megjelenő hibaüzenetek szövegei a beállításoknál, a **Strings & Translations → Form Strings** alatt módosíthatók/fordíthatók.
 
-## Együttműködés más eszközökkel
-
-### Integráció más fizetési rendszerekkel
-
-A WP Booking System - Advanced Booking Restrictions Add-on több fizetési rendszerrel is zökkenőmentesen működik együtt, mint például:
-
-- **PayPal**: Könnyen integrálható PayPal-fizetési lehetőségekkel.
-- **Stripe**: Bankkártyás fizetések kezelése Stripe-on keresztül.
-- **Square**: További bankkártyás fizetési opciók.
-- **Authorize.Net**: Biztonságos hitelkártyás fizetések.
-- **Mollie**: Többféle fizetési mód támogatása, beleértve az iDEAL-t és banki átutalást.
-
-### Szinkronizáció más naptárakkal
-
-A bővítmény kompatibilis különböző naptári rendszerekkel is, így biztosítva az egyszerű szinkronizációt és áttekinthetőséget. Ez segít elkerülni az átfedéseket és biztosítja a pontos foglalási adatokat minden platformon.
+### Fejlesztői bővíthetőség
+- Ha a beépített szabályok nem elégségesek, egyedi validációt írhatsz hookokkal (pl. `wpbs_date_validation`, `wpbs_field_validation`).
 
 ## Gyakorlati példák
 
-### Példa 1: Nyári szezon szabályozása
+- **Főszezon, heti váltás**: június 1.–augusztus 31. között érkezés csak hétfőn vagy pénteken, minimum 5 éj. Holtszezonban rugalmasabb: min. 2 éj, szabad érkezés/távozás.
+- **Előkészülési idő**: legalább 7 nappal előre engedsz foglalni, hogy legyen időd takarításra, kulcsátadás szervezésére.
+- **Árképzési kontroll**: legfeljebb 365 napra engeded a foglalást, hogy az árakat biztonságosan kezeld.
+- **Turnusos bérlés**: csak 7 vagy 14 éjszakás tartamok engedélyezettek (Fixed number of days).
+- **Különböző minimumok érkezési nappal**: hétfői érkezésnél min. 5 éj, péntekinél min. 3 éj.
 
-Egy Balaton-parti nyaraló esetében beállíthatod, hogy június 1-től augusztus 31-ig a minimum tartózkodási idő 5 nap legyen, és a foglalások csak hétfőn vagy pénteken kezdődhetnek. Így optimalizálhatod az ingatlan kihasználtságát és minimalizálhatod az üresjáratokat.
+Példa „recept” egy űrlapra:
+```
+General Rule:
+  Min nights: 3
+  Advance reservation: 7..365 days
+  Turnaround: 1 day
 
-### Példa 2: Téli szezon szabályozása
+Custom Period (06-01..08-31) Priority: 10
+  Enforce arrival: Mon, Fri
+  Min nights: 5
 
-Egy hegyi üdülőhelyen december 1-től január 31-ig beállíthatod, hogy a minimum tartózkodási idő 3 nap legyen, és a foglalások csak vasárnap kezdődhetnek. Ez különösen hasznos lehet az ünnepi időszakban, amikor a vendégek hosszabb tartózkodást terveznek.
+Custom Period (12-15..01-10) Priority: 9
+  Enforce arrival: Sun
+  Min stay by start day:
+    Sun: 2
+    Fri: 3
+```
 
-### Példa 3: Előfoglalási szabályozás
+## Telepítés és beállítás
 
-Egy városi apartman esetében beállíthatod, hogy a vendégek legkorábban 30 nappal előre foglalhatnak, de legkésőbb 7 nappal az érkezés előtt. Így biztosíthatod, hogy mindig legyen elérhető kapacitás az utolsó pillanatban érkező vendégek számára is.
+1. A bővítmény a prémium licenc része; az add‑onok külön nem vásárolhatók.
+2. Telepítés a WordPress adminban: WP Booking System → Add‑ons → Booking Restrictions aktiválása.
+3. WP Booking System → Forms → válaszd ki az űrlapod → **Booking Restrictions** fül.
+   - Állítsd be a **General Rule**‑t (pl. min. éj, előfoglalási maximum).
+   - Adj hozzá **Custom Period Rules** szabályokat időszakokra/szezonokra, szükség esetén **Prioritást** rendelve.
+4. Teszteld a beágyazott naptárat; ha érvénytelen választás történik, hibaüzenet jelenik meg.
+5. A hibaüzenetek szövegét a **Strings & Translations → Form Strings** alatt alakíthatod.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Minimum tartózkodási idő**: A legrövidebb időtartam, amelyre egy vendég foglalhat.
-- **Maximum tartózkodási idő**: A leghosszabb időtartam, amelyre egy vendég foglalhat.
-- **Előfoglalási időszak**: Az az időtartam, amelyen belül előre lehet foglalni.
-- **Szezonális beállítások**: Különböző időszakokra vonatkozó szabályok beállítása.
-- **PayPal**: Online fizetési rendszer.
-- **Stripe**: Online fizetési szolgáltató bankkártyás fizetésekhez.
-- **Square**: Online fizetési szolgáltató bankkártyás fizetésekhez.
-- **Authorize.Net**: Online fizetési szolgáltató hitelkártyás fizetésekhez.
-- **Mollie**: Online fizetési szolgáltató különböző fizetési módokhoz.
+- **Kevesebb hibás foglalás**: a rendszer automatikusan elutasítja a szabályoknak nem megfelelő választásokat.
+- **Operatív védelem**: lead time és turnaround biztosítja a takarítási/karbantartási ablakot.
+- **Szezonalitás kezelése**: külön szabályok főszezonra, holtszezonra, ünnepi időszakokra.
+- **Idő- és költségmegtakarítás**: kevesebb manuális egyeztetés, kevesebb lemondás/átfoglalás.
+- **Rugalmas, mégis kontrollált foglalási folyamat**: pontosan azt engeded, amit tényleg tudsz teljesíteni.
+
+## Kinek ajánlott?
+
+- **Nyaraló- és szálláskiadóknak**: heti váltónapok, minimum éjszaka, szezonális szabályok.
+- **Eszköz- és járműbérléseknek**: fix tartamok, buffer napok karbantartásra.
+- **Bármely napi alapú foglalási szolgáltatónak**: ahol fontos a minimum/maximum tartam és az előfoglalási kontroll.
+
+Ha napra pontos foglalásokat kezelsz, és szeretnéd a vendégeket automatikusan a működésedhez igazított szabályok szerint terelni, ez az add‑on pont neked való.

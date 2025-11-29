@@ -1,55 +1,104 @@
-# WooCommerce URL Coupons
+---
+title: "WooCommerce URL Coupons"
+description: "Kuponok automatikus alkalmazása egyedi URL-ről, termékek kosárba helyezése és átirányítás WooCommerce-ben."
+sidebar_label: "WooCommerce URL Coupons"
+---
 
-A WooCommerce URL Coupons lehetővé teszi, hogy egyedi URL-eket társíts a kuponokhoz, melyek automatikusan alkalmazzák a kedvezményeket és opcionálisan termékeket adnak a kosárhoz. Ez a funkció számos előnyt kínál a felhasználóknak, valamint zökkenőmentesen együttműködik más eszközökkel is.
+## Mi ez és milyen problémát old meg?
 
-## Legfontosabb jellemzők és képességek
+A WooCommerce URL Coupons egy hivatalos kiegészítő, amellyel bármely kuponhoz egyedi URL-t rendelhetsz. Amikor a vásárló megnyitja a linket, a kupon automatikusan érvényesül, opcionálisan megadott termékek is a kosárba kerülnek, majd átirányíthatod a látogatót a kosárra, pénztárra vagy bármely oldalra. Ezzel megszünteted a kuponbeváltási súrlódást: nem kell kódot gépelni, nincs hibázás, és csökken a „kuponvadászat” miatti lemorzsolódás.
 
-### Egyedi URL-ek beállítása
-Az URL Coupons lehetőséget ad arra, hogy egyedi URL-eket állíts be a kuponokhoz. Amikor valaki meglátogatja ezt az URL-t, a kupon automatikusan alkalmazásra kerül.
+## Fő funkciók és működés
 
-### Termékek hozzáadása a kosárhoz
-Lehetőség van arra, hogy a kupon URL meglátogatásakor bizonyos termékek automatikusan bekerüljenek a kosárba. Ez különösen hasznos lehet promóciók vagy kampányok során.
+- **Egyedi kedvezménylinkek**: Minden kuponhoz beállíthatsz egyedi slugot vagy meglévő oldalt „aktiválóként”. A link megnyitásakor a kupon automatikusan alkalmazódik.
+- **Termékek automatikus kosárba helyezése**: Megadhatod, hogy a kupon URL megnyitásakor 1-1 db meghatározott termék automatikusan bekerüljön a kosárba. Csak megvásárolható termék és érvényes variáns adható hozzá.
+- **Átirányítás (Redirect)**: A kupon alkalmazása után tetszőleges oldalra irányíthatsz, például a kosárra vagy pénztárra, így rövidítheted a vásárlói útvonalat és azonnali visszajelzést adhatsz.
+- **Kuponmezők elrejtése**: Elrejtheted a kuponkód mezőt a Kosár és/vagy Pénztár oldalon. Így a kuponok kizárólag linkről érvényesíthetők, ami csökkenti a vásárlók elvándorlását.
+- **Személyre szabható URL-viselkedés**:
+  - A slug nem **kis-/nagybetű érzékeny**.
+  - **Trailing slash szabály**: perjel nélkül a slug prefixként működik; perjellel pontos egyezést vár.
+  - **Alap (plain) permalinkeknél** kérdőjellel induló kifejezést kell használni.
+- **„Defer apply”**: Ha a kupon feltételei (pl. minimális kosárérték) még nem teljesülnek, a bővítmény „megjegyzi” a kupont, és később automatikusan alkalmazza, amikor a feltételek teljesülnek.
+- **Admin kényelmi nézet**: A kuponlistában külön **URL Slug** oszlop segít az áttekintésben és karbantartásban.
+- **Import/export**: Összedolgozik a kupon/CSV importáló eszközökkel és export során is megőrzi az URL-releváns beállításokat.
+- **Kompatibilitás**: Támogatja a **Cart & Checkout Blocks** élményt és kompatibilis a **HPOS** rendelések tárolásával.
 
-### Vásárlók átirányítása
-Beállíthatod, hogy a vásárlók hova legyenek átirányítva az URL meglátogatása után, például közvetlenül a kosár vagy a pénztár oldalára. Ez segít csökkenteni az akadályokat és gyorsabbá tenni a vásárlási folyamatot.
+### URL-viselkedés példák
 
-### Kupon mezők elrejtése
-Az URL Coupons segítségével elrejtheted a hagyományos kupon mezőket a kosárban és a pénztárban. Így elkerülheted, hogy a vásárlók elhagyják az oldalt kuponok után kutatva, és növelheted a konverziókat.
+- Trailing slash nélkül (prefix):
+```
+/coupon/koszonom
+```
+ill. bármely, ezzel kezdődő slug elfogadható.
 
-### Személyre szabott URL-ek
-Az egyedi URL-ek mellett lehetőséged van személyre szabott URL-ek létrehozására is, például `mystore.com/coupon/thanks-john`. Ez különleges élményt nyújt a vásárlóknak és növeli az elköteleződést.
+- Pontos egyezéssel (trailing slash-sel):
+```
+/coupon/koszonom/
+```
 
-### Konverziók mérése
-A kupon URL-ek segítségével mérheted a PPC (pay-per-click) kampányok sikerességét, és javíthatod a marketing hatékonyságát.
-
-## Együttműködés más eszközökkel
-
-### WooCommerce One Page Checkout
-Az URL Coupons jól működik együtt a WooCommerce One Page Checkout bővítménnyel, amely lehetővé teszi az egyoldalas kupon alkalmazást és vásárlási élményt.
-
-### Smart Coupons kiterjesztés
-Támogatja a Smart Coupons kiterjesztés CSV kupon exportjait, így könnyedén kezelheted és exportálhatod a kuponjaidat.
+- Alap permalink esetén:
+```
+?freeshipping
+```
 
 ## Gyakorlati példák
 
-### Print reklámok
-Az URL Coupons használatával nyomon követheted a print reklámok hatékonyságát. Egyedi URL-eket helyezhetsz el hirdetéseidben, amelyek automatikusan alkalmazzák a kedvezményeket.
+1. **Hírlevél-kedvezmény egy kattintással**  
+   A levélben a „Vásárolok most” gomb egy olyan URL-re mutat, amely aktiválja a 10% kedvezményt, beteszi a promóterméket a kosárba és a pénztárra visz. Nincs kódgépelés, nincs felesleges lépés.
 
-### Hűséges vásárlók jutalmazása
-Automatikusan alkalmazhatsz kedvezményeket azoknak a vásárlóknak, akik meglátogatják egy adott blogbejegyzésedet vagy landoló oldaladat.
+2. **QR-kód nyomtatott katalógusban**  
+   A QR megnyitásakor a látogató azonnal megkapja az ingyenes szállítást, és a legnépszerűbb csomag a kosarába kerül. A folyamat mérhető és gyors.
 
-### QR kódok használata
-Egyedi URL-eket QR kódokká alakíthatsz, amelyeket könnyen elhelyezhetsz névjegykártyákon vagy prospektusokban, ezzel ösztönözve az ügyfeleket a vásárlásra.
+3. **„Easter egg” jutalom**  
+   Blogposzt olvasásakor automatikusan aktiválódik egy hűségkedvezmény. Nincs kuponkód, csak jó élmény a visszatérő vásárlóknak.
 
-### Személyre szabott kuponok
-Küldhetsz személyre szabott kupon URL-eket az ügyfeleidnek, például `mysite.com/thanks-jen`, ezzel növelve az ügyfélélményt és az elköteleződést.
+4. **Csak URL-kupon stratégia**  
+   Elrejted a kuponmezőket, így a kedvezmények csak ellenőrzött linkről érhetők el. Minimalizálod a kuponkeresés okozta lemorzsolódást.
 
-## Szószedet
+5. **Villámgyors checkout útvonal**  
+   Link megnyitása → termék(ek) a kosárban → kupon alkalmazva → azonnali átirányítás a pénztárra. Ideális időérzékeny kampányokhoz.
 
-- **URL**: Uniform Resource Locator, azaz egységes erőforrás-azonosító.
-- **Kupon**: Kedvezményre jogosító kód vagy link.
-- **Konverzió**: Azon látogatók aránya, akik valamilyen kívánt műveletet hajtanak végre az oldalon (pl. vásárlás).
-- **PPC (pay-per-click)**: Olyan online hirdetési modell, ahol a hirdető minden egyes kattintásért fizet.
-- **QR kód**: Gyors válasz kód, egy kétdimenziós vonalkód, amely információkat tartalmazhat (pl. URL-ek).
+## Beállítás és konfiguráció
 
-Az WooCommerce URL Coupons rugalmasságot és hatékonyságot kínál a kedvezmények kezelésében, javítva ezzel a marketing kampányok sikerességét és a vásárlói élményt.
+1. **Kupon létrehozása**: Marketing > Coupons alatt hozd létre vagy szerkeszd a kupont.
+2. **Discount links fül**:
+   - Kapcsold be az **Apply via URL** opciót.
+   - Válaszd ki, hogy egyedi slugot használsz, vagy meglévő oldal megnyitására aktiválódjon a kupon.
+   - Add meg az esetleges **Products to add** listát.
+   - Állítsd be az **átirányítást** (pl. Kosár, Pénztár).
+   - Engedélyezd a **Defer apply** funkciót, ha szükséges.
+3. **Általános beállítások** (WooCommerce > Settings > General):
+   - **Coupon URL Prefix**: állíts be egy egységes előtagot (pl. „/coupon/”), majd zárd ki ezt az útvonalat a cache-ből.
+   - **Hide coupon code field**: döntsd el, hol rejted el a kuponmezőt (Kosár/Pénztár).
+
+Megjegyzések:
+- Változatos termékhez konkrét variánst válassz, különben nem kerül a kosárba.
+- Olyan céloldalra irányíts, ahol a WooCommerce üzenetek megjelennek (pl. Shop, Kosár, Pénztár), hogy a „Kupon alkalmazva” visszajelzést lásd.
+
+## Legjobb gyakorlatok és hibakeresés
+
+- **Cache-probléma gyanú**: Ha a kupon néha működik, néha nem, jelölj ki egységes **URL prefixet**, és zárd ki a gyorsítótárból ezeket az útvonalakat.
+- **Permalink mód**: Alap permalink esetén a slug elé tegyél kérdőjelet.
+- **Üzenetek láthatósága**: Olyan oldalra irányíts, ahol a rendszer üzenetei látszanak, különben a vásárló nem kap visszajelzést a kupon alkalmazásáról.
+
+## Előnyök és értékajánlat
+
+- **Kevesebb súrlódás, jobb konverzió**: Nincs kódgépelés, minden egy kattintás.
+- **Gyors vásárlói út**: Termékhozzáadás + kupon + átirányítás automatán.
+- **Mérhetőség és szegmentálás**: Egyedi URL-ekkel csatornánként, kampányonként különíthetsz el kedvezményeket.
+- **Kevesebb kuponvadászat**: A mezők elrejtésével fókuszált marad a checkout.
+- **Skálázható működés**: Admin oszlopok, import/export és Blocks/HPOS kompatibilitás megkönnyíti az üzemeltetést.
+
+## Célközönség
+
+- **Webáruház-tulajdonosok és marketingesek**, akik kampányalapú kedvezményeket futtatnak és mérhető, akadálymentes beváltást szeretnének.
+- **Ügynökségek**, akik ügyfeleiknek gyorsan implementálható, mégis robusztus promóciós megoldást keresnek.
+- **Promóció-intenzív boltok**, ahol gyakoriak a hírlevelek, PPC kampányok, közösségi megosztások vagy nyomtatott hirdetések.
+- **Technikailag összetett stackkel dolgozók** (cache/proxy/CDN), akiknek kritikus a megbízható kupon-beváltás.
+
+## Rendszerkövetelmények és kompatibilitás
+
+- WordPress, WooCommerce és PHP naprakész környezet szükséges.
+- Kompatibilis a **Cart & Checkout Blocks** élménnyel és a **HPOS** rendeléstárolással.
+
+Ha szeretnéd, készíthetek egy részletes, képernyőképes „playbookot” konkrét kampánypéldákkal és URL-stratégiával – csak írd meg, melyik use case a fókusz.

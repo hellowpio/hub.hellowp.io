@@ -1,56 +1,98 @@
-# MainWP Cache Control Extension
+---
+title: "MainWP Cache Control Extension"
+description: "MainWP kiegészítő, amely frissítések után automatikusan üríti és központilag kezeli a cache-t a csatlakoztatott WordPress-gyerekoldalakon."
+sidebar_label: "MainWP Cache Control Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A MainWP Cache Control Extension egy átfogó megoldás a WordPress oldalak gyorsítótár-kezelésére. Segítségével könnyedén kezelheted és ellenőrizheted a gyorsítótárat több webhelyen egyszerre, így biztosítva a maximális teljesítményt és a zökkenőmentes felhasználói élményt.
+A MainWP Cache Control egy profi kiegészítő, amellyel a MainWP Dashboardból automatikusan és kézzel is törölheted a gyorsítótárat a csatlakoztatott gyerekoldalakon. A célja egyszerű: frissítések után azonnal eltüntetni a “stale” cache-t, hogy a látogatóid mindig a legfrissebb verziót lássák – legyen szó CSS/JS fájlokról, sablonokról vagy bővítményekről. Emellett központi helyről, tömegesen intézheted a cache-kezelést, akár több tucat vagy száz webhelyen.
 
-### Több oldal kezelése egy helyen
+## Hogyan működik?
 
-A bővítmény lehetővé teszi számodra, hogy egyetlen központi irányítópulton keresztül kezeld az összes WordPress webhelyed gyorsítótárát. Ez jelentősen csökkenti az adminisztratív terheket, és időt takarít meg.
+- Amikor a MainWP-ről frissíted a WordPress core-t, témákat vagy bővítményeket, a bővítmény automatikusan purge-öt indít a gyerekoldalon használt cache-megoldás felé.
+- A Cache Control felismeri a telepített cache plugineket, és (ha beállítod) a Cloudflare CDN cache-ét is képes egyszerre üríteni.
+- A purge után – ahol támogatott – preload fut, így csökkented a “hideg cache” miatti első betöltési lassulást.
+- A Manage Sites táblában látod, mikor történt utoljára purge, és milyen cache-megoldást detektált a rendszer.
 
-### Automatikus gyorsítótár ürítés
+## Fő funkciók
 
-Az automatikus gyorsítótár ürítés funkció segítségével beállíthatod, hogy a gyorsítótár bizonyos időközönként automatikusan ürüljön. Ez különösen hasznos lehet frissítések vagy új tartalom közzététele esetén, mivel biztosítja, hogy a látogatók mindig a legfrissebb verziót lássák.
+- Automatikus purge frissítések után:  
+  Ha a Dashboardról frissítesz, a bővítmény automatikusan üríti a gyerekoldalak cache-ét. Ezzel elkerülöd a frissítés utáni megjelenési hibákat és inkompatibilitásokat.
 
-### Egyedi beállítások
+- Kézi, tömeges törlés:  
+  A Manage Sites oldalon kijelölöd a site-okat, és a Purge Cache bulk művelettel egy kattintással ürítesz. Ideális, ha tartalom- vagy beállítás-változások után azonnali cache-tisztítást akarsz mindenhol.
 
-A bővítmény lehetőséget nyújt arra is, hogy egyedi gyorsítótár-kezelési szabályokat hozz létre minden egyes webhelyhez. Például beállíthatod, hogy bizonyos oldalak vagy bejegyzések soha ne kerüljenek gyorsítótárba, vagy hogy csak bizonyos típusú tartalmak esetében történjen gyorsítótárazás.
+- Gyors elérés gombokkal:  
+  Az Overview és az egyes Child Site nézetekben Clear Cache gombot kapsz a leggyakoribb művelethez, így nem kell menüket bejárnod.
 
-## Zökkenőmentes integráció
+- Cloudflare integráció:  
+  E-mail és API kulcs megadásával a Cloudflare cache is törölhető, sőt a bővítmény a Cloudflare-t és a helyi cache plugint egyszerre kezeli. Ez megoldja a „fél-ürített” cache helyzeteket rétegelt (CDN + plugin) környezetekben.
 
-A MainWP Cache Control Extension kiválóan működik együtt más népszerű WordPress eszközökkel és bővítményekkel. Az alábbiakban néhány példa:
+- Állapot és naplók:  
+  A Last Purged oszlopban látod az utolsó ürítés idejét. A log táblázat segít visszakövetni, mi történt; a Save State funkcióval rögzítheted és áttekintheted a végrehajtások eredményeit.
 
-### WooCommerce
+- Preload purge után:  
+  Támogatott plugineknél a törlés után preload indul, így a legfontosabb oldalak már felmelegített cache-ből szolgálnak ki.
 
-A bővítmény különösen hasznos lehet WooCommerce áruházak esetében, ahol a dinamikus tartalom (például termékek, kosár tartalma) folyamatosan frissül. Az automatikus gyorsítótár ürítés biztosítja, hogy a vásárlók mindig a legfrissebb adatokat lássák.
+## Támogatott cache-megoldások (példák)
 
-### Elementor
-
-Ha Elementor-t használsz a webhelyed építéséhez, a MainWP Cache Control Extension segíthet abban, hogy az újonnan létrehozott vagy módosított oldalak azonnal frissüljenek a látogatók számára.
-
-### SEO bővítmények
-
-A SEO bővítményekkel való integráció révén biztosíthatod, hogy az új tartalom vagy frissítések azonnal elérhetők legyenek a keresőmotorok számára, így javítva az indexelési sebességet és a keresési rangsorolást.
+- CDN: Cloudflare
+- Népszerű pluginek és megoldások: Breeze, LiteSpeed Cache, SiteGround Optimizer, Swift Performance, WP Fastest Cache, W3 Total Cache, WP Rocket, Hummingbird, Cache Enabler, NitroPack, Autoptimize, Nginx Helper, WP-Optimize, Comet Cache, FlyingPress, WP Super Cache, valamint host-specifikus megoldások (pl. Rocket.net, Pressable, RunCloud).
 
 ## Gyakorlati példák
 
-### Frissítések kezelése
+- Ügynökségi frissítéscsomag:  
+  Heti frissítéseket futtatsz 60 webhelyen. A frissítés után a purge automatikusan végbemegy, így nincs kézi belépés site-onként, és csökkennek a „szétesett design” jellegű panaszok.
 
-Amikor új bejegyzést vagy oldalt publikálsz, a gyorsítótár automatikusan ürül, így a látogatók mindig a legfrissebb tartalmat látják. Ez különösen fontos híroldalak vagy blogok esetében.
+- Új CSS deploy több site-on:  
+  Stagingről élesítés után kijelölöd az érintett site-okat, Purge Cache tömegesen, és minden látogató azonnal az új stílusokat látja.
 
-### Promóciók és akciók
+- Rétegelt cache tisztítása:  
+  Egy webshopnál Cloudflare + helyi cache fut. A bővítmény mindkettőt együtt üríti, így nem marad vissza elavult tartalom egyik rétegben sem.
 
-Webáruházak esetében, amikor új promóciót vagy akciót indítasz, biztosítani szeretnéd, hogy a vásárlók azonnal értesüljenek róla. Az automatikus gyorsítótár ürítés ebben segít.
+## Beállítás és használat
 
-### Weboldal optimalizálás
+### Előfeltételek
+- MainWP Dashboard és aktív Pro előfizetés.
+- A gyerekoldalak sikeresen csatlakoztatva a Dashboardhoz.
+- Cloudflare használatakor e-mail és API kulcs.
 
-Rendszeres karbantartás és optimalizálás során a gyorsítótár kezelése kulcsfontosságú. A MainWP Cache Control Extension segítségével egyszerűen ürítheted a gyorsítótárat, és ellenőrizheted a változtatások hatását.
+### Lépések
+```
+1) Dashboard: Extensions > Cache Control – engedélyezd, mentsd a beállításokat, futtasd a szinkront.
+2) Site-specifikus felülírás: Child Site > Cache Control – egyedi beállítások, Cloudflare adatok megadása, mentés + szinkron.
+3) Kézi törlés:
+   - Manage Sites: jelöld ki a site-okat > Bulk Actions: Purge Cache
+   - vagy Overview / Child Site oldalon: Clear Cache gomb.
+```
 
-## Szószedet
+## Hibakeresés
 
-- **Gyorsítótár**: Olyan ideiglenes tároló, amely gyorsabb hozzáférést biztosít gyakran használt adatokhoz.
-- **WooCommerce**: Egy népszerű e-kereskedelmi bővítmény WordPresshez.
-- **Elementor**: Egy vizuális oldalkészítő bővítmény WordPresshez.
-- **SEO**: Search Engine Optimization (keresőoptimalizálás), amely célja a weboldalak keresési rangsorának javítása.
+- Nem látod a purge hatását?  
+  Ellenőrizd, hogy a gyerekoldalon támogatott cache plugin fut-e, és megfelelő jogosultsággal elérhető-e.
 
-A MainWP Cache Control Extension tehát egy sokoldalú eszköz, amely számos előnyt kínál a webhelyek teljesítményének optimalizálásához és karbantartásához.
+- Cloudflare nem ürül?  
+  Vizsgáld meg, hogy az e-mail és API kulcs helyes-e, nincs-e IP vagy tűzfal korlátozás.
+
+- „Last Purged” nem frissül vagy vegyes eredmény látható a logban:  
+  Szinkronizáld a site-okat, frissítsd a MainWP Dashboard/Child és az extension verzióit, majd nézd át a log táblát. Ha a probléma ismételhető, érdemes support jegyet nyitni és mellékelni a log kivonatát.
+
+## Kompatibilitás és kiegészítők
+
+Ha kifejezetten a WP Rocket részletes, távoli konfigurálására van szükséged (nem csak purge/preload), a Rockethez külön dedikált MainWP kiegészítő használható. Ez nem váltja ki a Cache Controlt, de kiterjeszti a lehetőségeidet Rocket-specifikus beállításokra.
+
+## Kinek ajánlott és miért?
+
+- Webfejlesztő ügynökségeknek: időt és munkaórát spórolsz, csökken a frissítés utáni hibák száma.
+- Karbantartást végző szolgáltatóknak: központi, konzisztens cache-kezelés sok site-on.
+- Nagy portfóliót kezelő site tulajdonosoknak: egyszerű, átlátható műveletek, naplózhatóság, állapotkövetés.
+
+## Miért éri meg?
+
+- Kevesebb manuális munka: központosított purge egy kattintással.
+- Kevesebb hibajegy: frissítések után azonnal érvényesülnek a változások.
+- Jobb teljesítmény: preload csökkenti a hideg cache miatti lassulásokat.
+- Biztonságosabb üzem: naplók és állapotjelzések segítik a gyors ellenőrzést és hibaelhárítást.
+
+Összességében a MainWP Cache Control a többoldalas WordPress környezetekben nélkülözhetetlen eszköz a megbízható, automatizált és skálázható cache-kezeléshez.

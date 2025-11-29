@@ -1,62 +1,113 @@
-# JetCompareWishlist For Elementor
+---
+title: "JetCompareWishlist For Elementor"
+description: "WooCommerce‑hez készült Elementor kiegészítő összehasonlító táblával és kívánságlistával, teljesen testre szabható widgetekkel."
+sidebar_label: "JetCompareWishlist For Elementor"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A JetCompareWishlist egy praktikus eszköz, amely lehetővé teszi az online boltok számára, hogy összehasonlítási és kívánságlista funkciókat adjanak hozzá a weboldalukhoz. Ez a bővítmény különösen hasznos azok számára, akik Elementorral építik a weboldalukat, mivel zökkenőmentesen integrálható vele, és számos testreszabási lehetőséget kínál.
+A JetCompareWishlist egy Elementorhoz készült WooCommerce‑bővítmény, amellyel teljes értékű termék‑összehasonlítást és kívánságlistát valósíthatsz meg. Segít csökkenteni a döntési fáradtságot, egy helyre rendezi a fontos adatokat, és visszahozza a látogatókat a kosárhoz – így növeli a konverziót és rövidíti a vásárlási utat.
 
-### Kiemelt jellemzők
+## Fő funkciók és működés
 
-#### Termékek összehasonlítása
+### 6 Elementor‑widget – mit csinálnak?
 
-A JetCompareWishlist lehetőséget ad arra, hogy a felhasználók különböző termékeket összehasonlítsanak egymással. Beállíthatod, hogy mely paraméterek alapján történjen az összehasonlítás, legyen szó árakról, jellemzőkről vagy más specifikus adatokról.
+- **Compare**: interaktív összehasonlító táblázat, amelyben a kiválasztott termékek adatai sorokra rendezve jelennek meg.
+- **Compare Button**: gomb/ikon a termékkártyán vagy termékoldalon, amellyel a látogató hozzáad/eltávolít a Compare listáról.
+- **Compare Count Button**: számlálóval kombinált gomb; mutatja, hány tétel van a Compare listán, és rávisz az összehasonlító oldalra.
+- **Wishlist**: rácsos nézetben listázza a kedvenceket; képek, árak, műveleti gombok és üzenetek testre szabhatók.
+- **Wishlist Button**: hozzáadás/eltávolítás a kívánságlistára, állapotonként eltérő ikon/felirat beállítással.
+- **Wishlist Count Button**: számláló gomb a kívánságlistához, jellemzően fejlécben/láblécben.
 
-#### Kívánságlisták megjelenítése
+### Compare táblázat – hogyan épül fel?
 
-A bővítménnyel könnyedén létrehozhatsz jól szervezett kívánságlistákat, amelyek segítenek a vásárlóknak nyomon követni azokat a termékeket, amelyeket később szeretnének megvásárolni. Az Elementor segítségével testreszabhatod a kívánságlisták struktúráját és kinézetét is.
+- **Megjelenítendő adatok**: egyenként kiválaszthatod, hogy cím, bélyegkép, ár, SKU, raktárkészlet, termékattribútumok stb. szerepeljenek, és át is nevezheted a címkéket.
+- **Vezérlők**:  
+  - Táblázat törlése (lista nullázása)  
+  - **Különbségek kiemelése** (vizuálisan jelöli az eltéréseket)  
+  - **Csak különbségek megjelenítése** (elrejti az azonos sorokat)  
+  Mindegyikhez ikon/felirat/stílus állítható.
+- **Reszponzív görgetés**: külön szabályozhatod, hogy mobilon, tableten, asztali nézetben vízszintesen görgethető legyen‑e a táblázat.
 
-#### Gombok hozzáadása
+### Wishlist oldal és gombok
 
-Az összehasonlító és kívánságlista gombokkal a látogatók egyszerűen hozzáadhatják a termékeket a listáikhoz. Ez növeli a felhasználói élményt és elősegíti az oldalon eltöltött idő növelését.
+A kívánságlista rácsszerkezetben jelenik meg, állítható oszlopszámmal. Testre szabhatod az üres lista üzenetét, a kártyák elemeit (cím, kép, ár, gombok) és a stílusokat. A gombok kétállapotúak: **Normál** és **Hozzáadva**, mindkettőhöz külön ikon és felirat tartozhat; ugyanazzal a gombbal eltávolítás is megoldható.
 
-#### Számlálók megjelenítése
+### Számláló gombok a fejlécben
 
-A JetCompareWishlist lehetőséget biztosít arra is, hogy megjelenítsd, hányszor adtak hozzá egy terméket az összehasonlító vagy kívánságlistához. Ez az információ hasznos lehet a többi vásárló számára is, akik így látják, mely termékek a legnépszerűbbek.
+A Count Button widgetek azonnali vizuális visszajelzést adnak az aktuális elemszámról, és egy kattintással elérhetővé teszik az összehasonlító/kívánságlista oldalt. Ideálisak a fejlécbe vagy off‑canvas menübe.
 
-## Együttműködés más eszközökkel
+### Automatikus integráció WooCommerce sablonokba
 
-### JetPlugins
+Nem kell minden sablont kézzel szerkesztened: külön kapcsolóval a bővítmény **automatikusan beszúrja** az összehasonlítás/kívánságlista gombokat a natív WooCommerce sablonokba is, akkor is, ha nem JetWooBuilder sablont használsz.
 
-A JetCompareWishlist zökkenőmentesen működik együtt több más JetPlugin bővítménnyel, mint például:
+### Tárolás és perzisztencia
 
-- **JetEngine:** Dinamikus tartalomkezeléshez.
-- **JetElements:** További widgetek és elemek hozzáadásához.
-- **JetStyleManager:** A stílusok testreszabásához.
-- **JetSearch:** Fejlett keresési funkciókhoz.
-- **JetSmartFilters:** Szűrők hozzáadásához.
-- **JetWooBuilder:** WooCommerce weboldalak építéséhez.
+- **Store Type**: választhatsz **Session** vagy **Cookies** tárolást. Vendégforgalomhoz jellemzően a Cookies ajánlott.  
+- **Save for logged users**: bejelentkezett felhasználóknál a listák tartósan menthetők, így később is visszatölthetők.
 
-### WooCommerce
+### Oldalak kijelölése
 
-A bővítmény tökéletesen integrálható WooCommerce alapú weboldalakkal is, így könnyedén használható bármilyen e-kereskedelmi projektben.
+A beállításokban megadhatod a **Compare Page** és **Wishlist Page** oldalakat. Ezekre Elementorral elhelyezed a megfelelő widgetet (Compare vagy Wishlist), és kész is a funkcionális oldal.
 
 ## Gyakorlati példák
 
-### Elektronikai webáruház
+- **Elektronika**: a látogató három notebookot hasonlít össze. A táblázatban csak a különbségeket kéri, így azonnal látja az eltéréseket CPU, RAM, tárhely és csatlakozók szerint.  
+- **Divat**: kedvenc ruhákat gyűjt kívánságlistára, majd hírlevélből visszatérve egy kattintással nyitja meg és teszi kosárba a kiválasztott darabokat.  
+- **Bútor**: kanapémodelleket hasonlít össze méret, kárpit és szín szerint; a különbségek kiemelése felgyorsítja a döntést.  
+- **Fejléc számláló**: minden oldalról látszik, hány tétel van a listákon; egy kattintással megnyitható a lista.
 
-Egy elektronikai webáruházban a JetCompareWishlist segítségével a vásárlók egyszerűen összehasonlíthatják a különböző mobiltelefonokat vagy laptopokat specifikációk alapján. A kívánságlista funkcióval pedig nyomon követhetik azokat a termékeket, amelyeket később szeretnének megvásárolni.
+## Előnyök és értékajánlat
 
-### Ruházati bolt
+- **Gyorsabb döntés**: a különbségek kiemelése csökkenti a kognitív terhelést.  
+- **Nagyobb konverzió**: a kívánságlista ösztönzi a visszatérést és a kosárba helyezést.  
+- **Kevesebb fejlesztési idő**: kész Elementor‑widgetekkel kódolás nélkül építesz komplett UX‑et.  
+- **Rugalmas testreszabás**: adatmezők, ikonok, feliratok, stílusok finomhangolása.  
+- **Vendég‑ és tagkezelés**: működik vendégeknek cookie‑alapon, a tagoknak pedig tartós mentéssel.
 
-Egy ruházati boltban a vásárlók összehasonlíthatják a különböző ruhadarabokat méret, anyag és ár alapján. A kívánságlisták segítségével pedig könnyedén megtervezhetik a jövőbeni vásárlásaikat.
+## Célközönség
 
-### Bútorbolt
+- **WooCommerce áruház‑tulajdonosok**, akik javítanák a termékválasztási élményt.  
+- **Marketingesek**, akik visszahozó és remarketing pontokat keresnek (kívánságlista).  
+- **Fejlesztők/ügynökségek**, akik gyorsan, vizuálisan testreszabható megoldást akarnak Elementorban.  
+- **Marketplace üzemeltetők**, ahol sok hasonló termék között kell választani.
 
-Egy bútorbolt esetében a vásárlók összehasonlíthatják a különböző bútorokat méret, anyag és ár szerint. A kívánságlistákban pedig összegyűjthetik azokat a bútorokat, amelyeket később szeretnének megvásárolni vagy összehasonlítani.
+## Beüzemelés röviden
 
-## Szószedet
+1. Nyisd meg: Crocoblock › JetPlugins Settings › JetCompareWishlist.  
+2. Kapcsold be a Compare és/vagy Wishlist funkciót.  
+3. Állítsd be a Store Type‑ot (Cookies javasolt vendégekhez) és a Save for logged users opciót.  
+4. Válaszd ki a Compare Page és Wishlist Page oldalakat.  
+5. Tedd be a megfelelő Elementor‑widgeteket a termékkártyákra és a dedikált oldalakra.  
+6. Ha akarod, kapcsold be az automatikus gomb‑injektálást WooCommerce sablonokhoz.
 
-- **Elementor:** Egy népszerű WordPress oldalszerkesztő bővítmény.
-- **WooCommerce:** Egy nyílt forráskódú e-kereskedelmi bővítmény WordPresshez.
-- **Widget:** Egy kisebb alkalmazás vagy komponens, amely egy adott funkciót lát el egy weboldalon belül.
-- **Kívánságlista:** Olyan funkció, amely lehetővé teszi a felhasználók számára, hogy elmentsenek termékeket későbbi megtekintés vagy vásárlás céljából.
-- **Összehasonlító lista:** Olyan funkció, amely lehetővé teszi a felhasználók számára, hogy több terméket összehasonlítsanak egymással különböző paraméterek alapján.
+Példa konfiguráció:
+```
+JetCompareWishlist beállítások
+- Enable Compare: On
+- Enable Wishlist: On
+- Store Type: Cookies
+- Save for logged users: On
+- Compare Page: Összehasonlítás
+- Wishlist Page: Kívánságlista
+- Add default Compare Button: On
+- Add default Wishlist Button: On
+```
+
+## Rendszerkövetelmények és kompatibilitás
+
+- **Elementor szükséges**; a funkciók **WooCommerce** termékadatokra és attribútumokra épülnek.  
+- A gombok/listaelemek **alap WooCommerce sablonokba** is beszúrhatók a megfelelő kapcsolókkal.
+
+## Jó gyakorlatok és hibakeresés
+
+- Vendégforgalomhoz válaszd a **Cookies** tárolást; session gond esetén ellenőrizd a cache‑t és a session kezelést.  
+- Előbb kapcsold be a funkciókat, csak utána hozd létre a Compare/Wishlist oldalakat és tedd rá a widgeteket.  
+- Mobilon használd a **görgethető táblázatot** hosszú specifikációkhoz.  
+- Biztonsági észrevételeket a fejlesztő hivatalos felelős bejelentési csatornáján jelezd.
+
+## Árazás és licenc
+
+A bővítmény éves előfizetésként érhető el, amely frissítést és támogatást tartalmaz az előfizetési időszakra. A csomagok és feltételek részletei a hivatalos csatornákon érhetők el.
+
+Szeretnél egy kész “Rendszerterv + Telepítési checklist” mintát, vagy inkább az ajánlott WooCommerce attribútum‑mezők kiválasztásában kérsz útmutatót?

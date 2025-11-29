@@ -1,56 +1,76 @@
-# LearnDash LMS - ThriveCart Integration
+---
+title: "LearnDash LMS - ThriveCart Integration"
+description: "Hivatalos LearnDash kiegészítő, amellyel a kurzusaidat a ThriveCart pénztárával értékesítheted – automatikus beiratással, csomagokkal és promóciókkal."
+sidebar_label: "LearnDash LMS - ThriveCart Integration"
+---
 
-A LearnDash LMS és ThriveCart integráció egy kiváló lehetőséget kínál a tanfolyamok értékesítésére. A ThriveCart egy prémium e-kereskedelmi megoldás, amely számos fizetési opciót, fejlett analitikát, elhagyott kosarak visszaszerzését, A/B tesztelést, upselleket és sok más funkciót kínál.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+A LearnDash LMS – ThriveCart Integration egy ingyenes, hivatalos bővítmény, amellyel a LearnDash kurzusaid értékesítését a ThriveCart konverzióközpontú pénztárára bízhatod. Ahelyett, hogy a beépített fizetést használnád, a kurzusoldal gombja a ThriveCart pénztárára visz, sikeres fizetés után pedig a felhasználó automatikusan fiókot kap és beiratkozik a megfelelő kurzusokra. Így gyors, profi vásárlói élményt kapsz WooCommerce nélkül, fejlett promóciós és analitikai lehetőségekkel.
 
-### Fejlett fizetési opciók
-A ThriveCart lehetőséget biztosít egyidejű, előfizetéses és próbaverziós fizetések kezelésére. Ezek az opciók rugalmasságot biztosítanak a felhasználóknak, és könnyebbé teszik a tanfolyamok értékesítését különböző árképzési modellekben.
+## Hogyan működik röviden
 
-### Analitika és konverziókövetés
-A ThriveCart fejlett analitikai eszközöket kínál, amelyek segítenek nyomon követni a vásárlói viselkedést és optimalizálni a konverziókat. Ezáltal könnyen azonosíthatod, hogy melyik marketing stratégia működik a legjobban, és hol van szükség javításra.
+- **Térképezés:** a WordPress‑ben létrehozol egy ThriveCart Product bejegyzést, beírod a ThriveCart Product ID-t és hozzárendeled a kurzus(oka)t.
+- **Átirányítás:** a kurzus hozzáférési módját “Closed”-ra állítod, a gomb URL‑jéhez a ThriveCart pénztár linkjét adod. A “Take this Course” gomb a pénztárra visz.
+- **Eseménykezelés:** a ThriveCart a megadott Webhook URL‑re küld értesítéseket (vétel, visszatérítés, lemondás). A bővítmény a Secret Word alapján hitelesít, majd automatikusan beirat vagy eltávolít a kurzus(ok)ból.
 
-### Kosárelhagyási visszaszerzés
-Az elhagyott kosarak visszaszerzése funkcióval növelheted a bevételeidet azzal, hogy emlékeztető e-maileket küldesz azoknak, akik nem fejezték be a vásárlást.
+```
+Product ID példák:
+- Alaptermék: 12345
+- Order bump: bump-1
+- Upsell: upsell-1
+```
 
-### Upsell és bump ajánlatok
-A ThriveCart lehetőséget biztosít az upsell és bump ajánlatok hozzáadására a checkout folyamat során. Ezáltal további bevételi lehetőségeket nyithatsz meg anélkül, hogy bonyolult fejlesztéseket kellene végrehajtani.
+## Fő funkciók részletesen
 
-### Automatikus kurzus regisztráció
-Amint a felhasználó megvásárolja a tanfolyamot a ThriveCart-on keresztül, automatikusan létrejön a felhasználói fiókja a LearnDash-ben, és azonnal beiratkozik a megfelelő kurzusra.
-
-### Visszatérítés és előfizetés lemondás kezelése
-A ThriveCart integráció automatikusan kezeli a visszatérítéseket és előfizetések lemondását. Amint egy visszatérítést kezdeményezel vagy egy előfizetés megszűnik, az adott felhasználó hozzáférése az érintett tanfolyamhoz automatikusan megszűnik.
-
-## Együttműködés más eszközökkel
-
-### Zapier integráció
-A Zapier segítségével számos más eszközzel integrálhatod a LearnDash-t és ThriveCart-ot. Automatikus folyamatokat hozhatsz létre, például e-mail marketing kampányokat indíthatsz, vagy CRM rendszerekbe integrálhatod az adatokat.
-
-### WooCommerce integráció
-Ha komplexebb e-kereskedelmi megoldásokra van szükséged, a WooCommerce integrációval kombinálhatod a ThriveCart-ot. Így egyszerre használhatod ki mindkét platform előnyeit.
-
-### Paid Memberships Pro
-A ThriveCart integrálható a Paid Memberships Pro-val is, amely lehetővé teszi tagsági rendszerek kialakítását és kezelését. Ez különösen hasznos lehet, ha rendszeres előfizetéses tanfolyamokat szeretnél kínálni.
+- **Automatikus fiók- és beiratkozáskezelés:** ha a vásárló még nem létezik a WordPress‑eden, a bővítmény létrehozza a fiókját, és azonnal beiratja a megadott kurzusokra. Nincs kézi adminisztráció.
+- **Kurzushozzárendelés termékhez (bundles):** egy ThriveCart termékhez több LearnDash kurzust is társíthatsz. Így kompletten értékesíthetsz “csomagokat”.
+- **Rugalmas fizetési modellek:** egyszeri díj, előfizetés, próbaidő – mindaz, amit a ThriveCart kínál, a LearnDash hozzáférésekkel együtt működik.
+- **Promóciók: kuponok, order bumpok, upsellek:** nagyobb kosárértékhez és jobb konverzióhoz. Fontos: minden bump/upsell variációhoz külön ThriveCart Product bejegyzést hozz létre a LearnDash‑ben, speciális Product ID jelöléssel (pl. “bump-1”, “upsell-1”).
+- **Hozzáférés visszavonása:** visszatérítés vagy előfizetés lemondása esetén a rendszer automatikusan kiveszi a felhasználót a kurzusról.
+- **Biztonságos kommunikáció:** a Webhook és a Secret Word együtt garantálja, hogy csak valós, hiteles tranzakciók alapján történjen be- és kiiratás.
 
 ## Gyakorlati példák
 
-### Online tanfolyam értékesítés
-Egy nyelvtanfolyamot szeretnél értékesíteni? A ThriveCart segítségével különböző fizetési opciókat kínálhatsz (egyidejű, előfizetéses), és automatikusan beiratkoztathatod a felhasználókat a LearnDash tanfolyamaidra.
+- **Egyetlen kurzus értékesítése:** a “Photoshop Alapok” kurzus gombja a ThriveCart pénztárra visz. Fizetés után a vásárló fiókot kap és azonnal hozzáfér a kurzushoz.
+- **Kurzuscsomag:** egy termék alá társítod a “HTML Kezdő” és “CSS Kezdő” kurzusokat. Vételkor mindkettőhöz hozzáférést kap.
+- **Előfizetés próbaidővel:** 7 napos próba, majd havi díj. Lemondáskor a rendszer automatikusan kiveszi a tanulót a kurzusokból.
+- **Order bump upsell-lel:** a fő kurzus mellé bumpként felajánlasz egy mini‑kurzust, a fizetés után pedig egy teljes mesterkurzus upsellt. Mindegyikhez külön LearnDash ThriveCart Product bejegyzést készítesz, megfelelő Product ID‑vel.
 
-### E-learning platform
-Egy komplex e-learning platformot üzemeltetsz több száz tanfolyammal? A ThriveCart és LearnDash integrációval könnyen kezelheted a vásárlásokat, a felhasználói fiókokat és a kurzusbeiratkozásokat.
+## Telepítés és alapbeállítás – röviden
 
-### Marketing kampányok
-Szeretnél célzott marketing kampányokat indítani? A Zapier segítségével összekapcsolhatod a ThriveCart-ot e-mail marketing eszközökkel (pl. Mailchimp), így automatikusan üdvözlő e-maileket küldhetsz az új vásárlóknak.
+1. **Bővítmény telepítése:** LearnDash LMS > Add‑Ons > ThriveCart for LearnDash > Install, majd Activate; vagy kézi feltöltés a ZIP‑ből.
+2. **ThriveCart termék létrehozása:** hozd létre a terméket és jegyezd fel a pénztár URL‑t és a Product ID‑t.
+3. **LearnDash ThriveCart Product felvétele:** LearnDash LMS > ThriveCart > Add New; add meg a címet, a Product ID‑t és válaszd ki a kapcsolt kurzusokat.
+4. **Webhook beállítás:** a LearnDash ThriveCart beállításoknál másold a Webhook URL‑t és add hozzá a ThriveCart felületén.
+5. **Secret Word beállítás:** a ThriveCart felületén keresd meg a Secret Word értéket, és illeszd be a LearnDash ThriveCart beállításoknál.
+6. **Kurzus gomb beállítása:** a kurzusnál állítsd az Access Mode‑ot “Closed”-ra, a Button URL‑hez pedig add meg a ThriveCart pénztár URL‑jét.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **ThriveCart**: Prémium e-kereskedelmi megoldás.
-- **LearnDash**: WordPress alapú LMS (Learning Management System).
-- **Webhook**: HTTP hívások által közvetített valós idejű adatfrissítés.
-- **Upsell**: Kiegészítő termék ajánlat magasabb áron.
-- **Bump ajánlat**: Kiegészítő termék ajánlat alacsonyabb áron.
-- **Zapier**: Automatizációs eszköz különböző webalkalmazások integrálására.
-- **WooCommerce**: WordPress alapú e-kereskedelmi bővítmény.
-- **Paid Memberships Pro**: Tagsági rendszerek kialakítását lehetővé tevő bővítmény.
+- **Magasabb konverzió:** modern pénztár, A/B tesztek és kosárelhagyás visszaszerzés beépítve.
+- **Kevesebb kézi munka:** fiók- és jogosultságkezelés automatikusan, hibamentesen.
+- **Rugalmas ajánlatok:** csomagok, kuponok, bumpok, upsellek – nagyobb bevétel ugyanannyi forgalomból.
+- **WooCommerce nélkül:** gyorsabb bevezetés, kevesebb összetevő, egyszerűbb karbantartás.
+
+## Kinek ajánlott?
+
+- **Ajánlott neked, ha:**
+  - 1–néhány kurzust árulsz és letisztult pénztárt szeretnél.
+  - Fontos a konverzió, az analitika és az A/B tesztelés.
+  - Csomagokkal, bumpokkal, upsellekkel növelnéd a kosárértéket.
+- **Nem ideális, ha:**
+  - Nagyon sok külön terméket/kurzust kezelsz egy helyen.
+  - Extrém részletekig testreszabnád a beléptetési folyamatot.
+  - Szűk a költségkeret (a ThriveCart külön, fizetős szolgáltatás).
+
+## Hibakeresési tippek
+
+- **Bump/upsell nem irat be?** Hozz létre külön ThriveCart Product bejegyzést a LearnDash‑ben, és használd a “bump-…” / “upsell-…” Product ID‑t.
+- **Dupla naplóbejegyzés tranzakciónként?** Előfordulhat, ez várható működés és nem jelent dupla terhelést.
+- **Nincs beiratás fizetés után?** Ellenőrizd a Webhook URL‑t és a Secret Word‑öt mindkét oldalon, valamint hogy a kurzus “Closed” és a Button URL a helyes pénztár link.
+- **Előfizetés lemondásakor marad a hozzáférés?** Nézd meg, hogy a lemondási esemény ténylegesen megérkezik‑e a Webhookra és a Product ID helyesen van‑e társítva.
+
+## Licencelés és ár
+
+A kiegészítő a LearnDash részéről ingyenes. A ThriveCart használata külön, fizetős; általában nincs próbaverzió.

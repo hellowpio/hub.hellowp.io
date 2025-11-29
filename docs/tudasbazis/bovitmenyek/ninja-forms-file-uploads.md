@@ -1,63 +1,104 @@
-# Ninja Forms - File Uploads
+---
+title: "Ninja Forms - File Uploads"
+description: "Hivatalos Ninja Forms kiegészítő fájlfeltöltéshez: típus-, méret- és darabszám-korlátokkal, médiatárba vagy felhőbe mentéssel."
+sidebar_label: "Ninja Forms - File Uploads"
+---
 
-## Funkcionalitás
+## Mi ez és milyen problémát old meg?
 
-A Ninja Forms - File Uploads lehetővé teszi, hogy bármely WordPress formához fájlfeltöltési mezőt adj hozzá. Ezzel a funkcióval könnyedén kezelheted a felhasználók által feltöltött fájlokat, legyen szó dokumentumokról, képekről, videókról vagy bármilyen más fájltípusról. Az alábbiakban részletesen bemutatjuk a bővítmény főbb jellemzőit és képességeit.
+A File Uploads a Ninja Forms hivatalos kiegészítője, amellyel bármely űrlapodra egyszerűen tehetsz **fájlfeltöltési mezőt**. Segít szabályozni, hogy a látogatók milyen fájlokat, mekkora méretben és hány darabot küldhetnek, és hogy a fájlok **hová kerüljenek**: a WordPress Médiakönyvtárába, a szerveredre vagy közvetlenül **Google Drive / Dropbox / Amazon S3** tárhelyre. Ezzel leválasztod a mellékleteket az e-mailről, kikerülöd a csatolási korlátokat, és **rendezett, visszakereshető** tárhelyet kapsz.
 
-### Fájlméret és típus korlátozások
+## Fő funkciók és működés
 
-A Ninja Forms - File Uploads segítségével pontosan beállíthatod, hogy milyen típusú és méretű fájlokat fogadsz el. Ez lehetővé teszi, hogy szabályozd a feltöltött fájlok minőségét és méretét, ezzel megelőzve a túl nagy fájlok okozta problémákat.
+### Fájlfeltöltési mező hozzáadása
+- Az űrlapszerkesztőben egy kattintással, drag‑and‑droppal elérhető a **File Upload** mező.
+- Támogatja a **többfájlos** feltöltést; a felhasználó törölhet, újrapróbálhat.
 
-### Fájlnév átnevezés
+### Feltöltési korlátok
+- Állítsd be az **engedélyezett kiterjesztéseket** (MIME-típus fehérlista alapján).
+- Add meg a **minimális és maximális fájlméretet**, valamint a **darabszám-limitet** mezőnként.
+- Testreszabható hibaüzenetekkel segítheted a beküldőt.
 
-A bővítmény lehetőséget biztosít arra is, hogy a feltöltött fájlok neveit automatikusan átnevezd. Használhatod a felhasználó által megadott adatokat, mint például a keresztnév, vezetéknév vagy cég neve, hogy egyértelműbbé tedd a fájlokat.
+### Mentési célhelyek
+- **Szerver/Médiakönyvtár**: a fájlok menthetők a szerverre és opcionálisan a WordPress Médiakönyvtárba (attachment azonosító/URL merge taggel elérhető).
+- **Külső felhő**: a kiegészítő globális External Settings részében csatlakozol Drive/Dropbox/S3 szolgáltatókhoz, majd az űrlapon egy **External File Upload** akcióban kiválasztod a célhelyet. Választható **háttérfeltöltés**, hogy a nagy fájlok feltöltése megbízhatóbban fusson.
 
-### Feltöltési könyvtárak
+### Átnevezés és mappastruktúra
+- Szabályalapú **átnevezés** és **mappa-minták**: merge tagekkel a fájlok neve és elérési útja az űrlapadatokból épülhet fel (pl. név, dátum, űrlap azonosító).
 
-A feltöltött fájlokat különböző könyvtárakba rendezheted. Meghatározhatsz egyedi fájlútvonalakat és könyvtárakat, így könnyebben kezelheted és rendszerezheted a fájlokat.
+Példa minta:
+```
+applications/{date:Y}/{date:m}/{field:nev}-{submission:id}.{ext}
+```
 
-### Integrációk
+### E-mail integráció
+- A feltöltött fájlokat **csatolhatod** értesítő e-mailekhez, vagy **letöltési linket** szúrhatsz be merge taggel.
 
-A Ninja Forms - File Uploads zökkenőmentesen működik együtt több népszerű felhőszolgáltatással, mint például a Google Drive, Dropbox és Amazon S3. Így a fájlok közvetlenül ezekre a szolgáltatásokra kerülhetnek feltöltésre anélkül, hogy először a szervereden keresztül kellene menniük.
+### Admin eszközök
+- **Browser Uploads** nézet: listázás és törlés, űrlapra és dátumra szűrve.
+- Globális **Upload Settings**: alapértelmezett mappa, maximális méret, hibaüzenetek.
 
-### E-mail csatolmányok
+### Nyilvános URL és háttérfeltöltés
+- Felhő-céloknál elérhető a **Use Public URL** opció, amellyel közvetlen, nyilvános linket adsz a fájlhoz.
+- Az **External File Upload** akcióban kapcsolható **background upload** a megbízhatóbb átadásért.
 
-A feltöltött fájlokat automatikusan csatolhatod az értesítő e-mailekhez. Ez különösen hasznos lehet akkor, ha azonnal szeretnéd megkapni a feltöltött fájlokat egy új űrlapbeküldés után.
+### Biztonság és megfelelőség
+- Alapértelmezett **MIME-fehérlista**, amit bővíthetsz.
+- S3 esetén az alapértelmezett hozzáférés privát; ACL szűrővel szabályozható.
+- A bővítmény kezeli a fájlnevek biztonságos escapingjét.
 
-## Beállítási tippek
+## Fontos technikai tudnivalók
 
-### Maximális fájlméret beállítása
+- A feltöltés mindig a **webszervereden** megy keresztül, ezért a PHP‑limitek (upload_max_filesize, post_max_size, max_execution_time, memory_limit) érvényesek. Nagy fájloknál ezeket emeld, és mérd fel a környezetedet.
+- Bizonyos haladó opciókhoz engedélyezd a **Developer Mode**-ot a Ninja Formsban.
+- Integrációk:
+  - Drive/Dropbox: egyszeri csatlakozás az External Settings-ben; adható egyedi mappaút.
+  - Amazon S3: IAM kulcsokkal vagy wp-config konstansokkal, pontos bucket névvel; ACL szűrhető.
 
-Ha azt szeretnéd, hogy a felhasználók ne tölthessenek fel túl nagy fájlokat, akkor érdemes beállítani egy maximális fájlméretet. Ezt egyszerűen megteheted az adott fájlfeltöltési mező beállításainál.
+S3 kulcsok megadása wp-config.php-ben:
+```
+define('NF_FU_AMAZON_S3_ACCESS_KEY', 'AKIA...');
+define('NF_FU_AMAZON_S3_SECRET_KEY', '********');
+```
 
-### Egyedi könyvtárak használata
-
-Ha több különböző típusú fájlt fogadsz, érdemes egyedi könyvtárakat létrehozni az egyes fájltípusok számára. Így könnyebben megtalálhatod és rendszerezheted a fájlokat később.
+MIME‑típusok bővítése:
+```
+add_filter('ninja_forms_upload_mime_types_whitelist', function($mimes){
+  $mimes['zip'] = 'application/zip';
+  $mimes['csv'] = 'text/csv';
+  return $mimes;
+});
+```
 
 ## Gyakorlati példák
 
-### Álláspályázatok
+- **Álláspályázat**: csak PDF/DOCX, max. 10 MB, legfeljebb 3 fájl. A fájlok Drive-ra mennek „/HR/Applications/” mappába, HR értesítés e-mailben letöltési linkkel.
+- **Ügyfélszolgálat**: képernyőképek (PNG/JPG) és logok (ZIP), szerverre mentve, automatikus ticket-azonosítós átnevezéssel, e-mail csatolással a gyors hibajavításhoz.
+- **Tartalom-beküldés**: fotók médiatárba kerülnek, a szerkesztőség a bejegyzésben rögtön felhasználhatja az attachment ID alapján.
+- **Ajánlatkérés / megrendelés**: tervfájlok S3-ra, privát hozzáféréssel; a sales csapat csak linket kap, így nem terheli az e-mailt.
 
-Ha álláspályázatokat fogadsz az oldaladon, akkor a Ninja Forms - File Uploads segítségével egyszerűen fogadhatod az önéletrajzokat és motivációs leveleket. A fájlokat automatikusan átnevezheted a pályázó nevével, így könnyebben kezelheted őket.
+## Előnyök és értékajánlat
 
-### Fotópályázatok
+- **Nincs többé e-mail limit**: nagy mellékletek gond nélkül érkeznek.
+- **Rendezett tárhely**: szabályos átnevezés és mappa-struktúra miatt minden gyorsan visszakereshető.
+- **Skálázható**: felhő-célokkal nem a webszerver tárhelyét terheled.
+- **Gyorsabb folyamatok**: automatikus csatolás/linkek az e-mailekben, kevesebb kézi munka.
+- **Biztonság**: fehérlistázott típusok, privát S3, kontrollált elérés.
 
-Egy fotópályázat esetén a bővítmény lehetőséget biztosít arra, hogy korlátozd a feltölthető képek méretét és típusát. A feltöltött képeket automatikusan egy külön könyvtárba rendezheted, így egyszerűbbé válik azok kezelése.
+## Kinek ajánlott?
 
-### Dokumentumok bekérése
+- **HR és toborzás**: önéletrajzok, portfóliók gyűjtése szabályozottan.
+- **Ügyfélszolgálat és IT**: hibajegyek mellékleteinek kezelése.
+- **Szerkesztőségek és ügynökségek**: tartalom-beküldés médiatár-integrációval.
+- **E-kereskedelem / B2B értékesítés**: specifikációk, tervfájlok fogadása.
+- **Oktatás és HR folyamatok**: beadandók, igazolások bekérése.
 
-Ha ügyfeleidtől dokumentumokat kell bekérned (pl. szerződések, számlák), a Ninja Forms - File Uploads segítségével könnyedén létrehozhatsz egy űrlapot, ahol az ügyfelek feltölthetik ezeket a fájlokat. A dokumentumok azonnal a megadott könyvtárba kerülnek, így könnyen hozzáférhetsz hozzájuk.
+## Bevezetési javaslatok
 
-## Szószedet
+1. Tervezd meg a **fájlpolitikát** (típus, méret, darabszám) és állítsd be mezőnként.
+2. Döntsd el a **célhelyet** (Médiakönyvtár vs. felhő), konfiguráld az External Settings-et, majd add hozzá az **External File Upload** akciót.
+3. Nagy fájloknál igazítsd a **PHP-limiteket**, és szükség esetén kapcsold be a **háttérfeltöltést**.
+4. Definiálj **átnevezési és mappa-mintákat** a rendezett tároláshoz.
+5. Teszteld a folyamatot valós, nagyobb fájlokkal, és ellenőrizd az e-mail értesítések mellékleteit/linkjeit.
 
-- **Ninja Forms**: Egy népszerű WordPress űrlapkezelő bővítmény.
-- **File Uploads**: Fájlok feltöltésére szolgáló bővítmény.
-- **Google Drive**: Felhőalapú tárolási szolgáltatás.
-- **Dropbox**: Felhőalapú tárolási szolgáltatás.
-- **Amazon S3**: Amazon Simple Storage Service, felhőalapú tárolási szolgáltatás.
-- **Űrlap**: Weboldalon található adatbekérő mezők gyűjteménye.
-- **Értesítő e-mailek**: Automatikus e-mailek, amelyeket egy űrlap beküldése után küld ki a rendszer.
-- **Fájltípus**: A fájl kiterjesztése és formátuma (pl. .jpg, .pdf).
-- **Fájlméret**: A fájl nagysága byte-okban mérve.
-
-Ezzel a leírással részletes betekintést nyerhetsz a Ninja Forms - File Uploads funkcionalitásába és előnyeibe. Az említett tippek és gyakorlati példák segítenek abban, hogy hatékonyan használd ezt az eszközt mindennapi munkád során.
+A File Uploads-szal pontosan szabályozod, mit, mennyit és hová tölthetnek fel a felhasználóid – miközben az adatáramlásod gyorsabb, biztonságosabb és átláthatóbb lesz.

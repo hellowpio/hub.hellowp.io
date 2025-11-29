@@ -1,61 +1,87 @@
-# Certificate Builder Add-On
+---
+title: "LearnDash LMS - Certificate Builder"
+description: "Hivatalos, ingyenes LearnDash kiegészítő a Gutenberg szerkesztőben készíthető, dinamikus PDF tanúsítványokhoz élő előnézettel."
+sidebar_label: "LearnDash LMS - Certificate Builder"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-A LearnDash LMS Certificate Builder add-on segítségével könnyedén készíthetsz és tervezhetsz tanúsítványokat a beépített Gutenberg Builder segítségével. Ez az eszköz kifejezetten hasznos mindazok számára, akik egy WYSIWYG szerkesztővel szeretnének tanúsítványokat létrehozni. Az alábbiakban részletesen bemutatjuk a funkcióit és előnyeit.
+A **LearnDash LMS – Certificate Builder** egy hivatalos, ingyenes add‑on, amellyel a tanúsítványaidat a **Gutenberg** (blokkszerkesztő) felületén, vizuálisan tervezheted meg. A klasszikus, HTML/CSS‑t és rövidkódokat igénylő módszer helyett kapod a **drag‑and‑drop** élményt, valós adatokkal működő **PDF‑előnézettel**. Így gyorsabban, kiszámíthatóbban és kódolás nélkül készíthetsz profi, személyre szabott okleveleket.
 
-## Főbb jellemzők és képességek
+## Hogyan működik röviden?
 
-### Tanúsítványok létrehozása
+- Telepítés után a LearnDash menüben új **Certificates** tartalomtípusod lesz.
+- Új tanúsítvány létrehozásakor a Builder kéri egy **háttérkép** megadását (kötelező).
+- A háttérre helyezhetsz **szöveg** blokkokat és **dinamikus LearnDash blokkokat** (kurzus/kvíz/csoport/ felhasználói adatok).
+- A beépített **Preview** gombbal valós adatokkal látod a **PDF‑nézetet**, és finomíthatod az elrendezést.
+- A kész tanúsítványt hozzárendeled egy kurzushoz, kvízhez vagy csoporthoz; a felhasználó **PDF‑ben letöltheti**.
 
-A Certificate Builder segítségével a tanúsítványokat a Gutenberg szerkesztő blokkjainak használatával készítheted el. Ez azt jelenti, hogy bármilyen típusú Gutenberg blokkot használhatsz, beleértve a dinamikus tartalmakat is, mint például a LearnDash Courseinfo, Quizinfo, Usermeta és Groupinfo blokkokat.
+## Fő funkciók részletesen
 
-### Háttérkép hozzáadása
-
-A tanúsítvány tervezésének első lépése egy háttérkép feltöltése. Ez az alapja annak, hogy a különböző blokkokat és szövegeket elhelyezd a tanúsítványon. Fontos, hogy a háttérkép helyileg legyen tárolva a szerveren, különben hibaüzenetet kaphatsz.
-
-### Dinamikus tartalmak
-
-A LearnDash négy különböző blokkot biztosít a tanúsítványokhoz:
-- **LearnDash Course Info**: kurzus-specifikus adatok (pl. kurzus befejezésének dátuma, kurzus címe)
-- **LearnDash Quiz Info**: kvíz-specifikus adatok (pl. kvíz címe, kvíz pontszám)
-- **LearnDash User Meta**: felhasználó-specifikus adatok (pl. felhasználó keresztneve, vezetékneve)
-- **LearnDash Groups Info**: csoport-specifikus adatok (pl. csoport címe, csoport befejezésének dátuma)
-
-### Egyedi betűtípusok
-
-Lehetőséged van egyedi betűtípusokat használni a tanúsítványokon. A betűtípusokat a Certificate Builder-en belül, a jobb oldali sávban található **Block Settings** részen választhatod ki. Továbbá, új betűtípusokat is feltölthetsz, ha a szükséges licencekkel és engedélyekkel rendelkezel.
-
-### Előnézet
-
-A Certificate Builder lehetőséget biztosít arra is, hogy valós időben megtekintsd a tanúsítványokat. Az előnézet funkcióval PDF formátumban ellenőrizheted a tanúsítvány kinézetét. Ez különösen hasznos, ha pontosan látni szeretnéd, hogyan fog kinézni a tanúsítvány a tényleges adatokkal.
-
-## Integrációk
-
-A Certificate Builder számos más eszközzel és bővítménnyel zökkenőmentesen működik együtt. Néhány példa:
-- **WooCommerce Integration**: lehetőség van a tanúsítványok értékesítésére.
-- **MemberPress Integration**: előfizetés alapú tanfolyamok esetén.
-- **Gravity Forms Integration**: űrlapok adatainak beépítése a tanúsítványokba.
-- **Zapier Integration**: automatizált munkafolyamatok kialakításához.
+- **Blokk‑alapú tervezés (Gutenberg):** Minden elem egy blokk (cím, bekezdés, dinamikus adat). Pontosan oda húzhatod és formázhatod, ahol szükséges – a háttérképedre illesztve.
+- **Háttérkép‑alapú elrendezés:** A design a választott oklevél‑sablonodra épül. A háttérkép kötelező, és érdemes helyben hosztolt képet használni a stabil előnézethez.
+- **Dinamikus LearnDash blokkok:**  
+  - **Course Info:** kurzus címe, teljesítés dátuma stb.  
+  - **Quiz Info:** kvízpontszám, százalék, vizsga neve, dátum.  
+  - **User Meta:** hallgató neve, e‑mail, egyedi profilmezők.  
+  - **Groups Info:** csoportnév és releváns adatok.  
+  Fontos: mindig a tanúsítvány **társítási kontextusához** illő blokkot használd (kurzushoz Course Info, kvízhez Quiz Info), különben a mezők üresek maradnak.
+- **Egyedi betűtípusok:** Tölts fel saját **fontokat**, és válaszd ki a címsorokhoz, bekezdésekhez és dinamikus blokkokhoz – így a tanúsítvány igazodik a márkádhoz.
+- **Élő PDF‑előnézet:** A Preview gomb valós felhasználói/kurszus/kvíz adatokkal, **PDF nézetben** mutatja az eredményt. Drasztikusan csökkenti a próbálgatások számát.
+- **RTL támogatás:** Egy kapcsolóval **jobbról balra** író nyelvekhez igazíthatod az elrendezést.
+- **PDF kimenet beállításai:** Választható **A4 vagy US Letter**, illetve **álló vagy fekvő** tájolás, hogy a nyomtatás pontos legyen.
+- **Visszafelé kompatibilis:** A régi, „klasszikus” tanúsítványaid változatlanul működnek; a Builder egy külön opció, nem kényszer.
 
 ## Gyakorlati példák
 
-### Online kurzus befejezése
+- **Kurzus befejezési oklevél:**  
+  Helyezz el egy nagy címet (pl. „Tanúsítvány”), alatta a **User Meta** blokkot a hallgató nevével, majd **Course Info** a kurzuscímmel és „Teljesítve:” dátummal. A Preview‑ban ellenőrzöd, hogy a név és a cím pontosan a keretbe essen.
 
-Egy online nyelvtanfolyam végén a hallgatók automatikusan megkapják az elvégzett kurzusról szóló tanúsítványt. A tanúsítvány tartalmazza a hallgató nevét, a kurzus címét és a befejezés dátumát.
+- **Kvíz teljesítési tanúsítvány:**  
+  A háttérre tedd a kurzus logóját (kép a sablonban), majd **Quiz Info** blokkokat a **pontszám** és **százalék** megjelenítésére. Hasznos vizsgáknál, ahol minimum pontszámhoz kötöd az oklevelet.
 
-### Kvízek sikeres teljesítése
+- **Csoportos elismerő okirat:**  
+  Használd a **Groups Info** blokkot a csoport nevéhez, és **User Meta**‑t a résztvevő nevéhez – vállalati tréningeknél ideális.
 
-Egy e-learning platformon belül a hallgatók egy adott kvíz sikeres teljesítése után automatikusan kapnak egy tanúsítványt, amely tartalmazza az elért pontszámot és a kvíz dátumát.
+Példa rövidkódok (dinamikus mezők) blokk‑szövegben is használhatók:
+```
+[usermeta field="display_name"]
+[courseinfo show="course_title"]
+[quizinfo show="percentage"]
+[groupinfo show="group_title"]
+```
 
-### Csoportos oktatás
+## Előnyök és értékajánlat
 
-Egy céges tréning során az alkalmazottak egy csoportban végeznek el több különböző kurzust. A csoport minden tagja automatikusan megkapja a csoportos tanúsítványt a tréning végén.
+- **Kódmentes munka:** Nincs szükség HTML/CSS‑re; vizuálisan tervezel.
+- **Időmegtakarítás:** Az **élő PDF‑előnézet** miatt kevesebb kör a finomhangolás.
+- **Márkahű design:** **Egyedi fontok**, precíz pozícionálás a háttérképhez igazítva.
+- **Kevesebb hibalehetőség:** A kontextushoz kötött dinamikus blokkok megbízhatóan töltődnek ki.
+- **Zökkenőmentes átállás:** A régi tanúsítványok megmaradnak, párhuzamosan használhatod őket.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Add-On**: Kiegészítő bővítmény
-- **Gutenberg Builder**: WordPress beépített vizuális szerkesztője
-- **WYSIWYG**: What You See Is What You Get (amit látsz, azt kapod)
-- **User Meta**: Felhasználói metaadatok
-- **Integration**: Integráció, összekapcsolás más rendszerekkel
+- **Online akadémiáknak és tréningcégeknek:** Sok kurzus/kvíz tanúsítványát egyszerűen karbantarthatod.
+- **Felsőoktatási és vállalati L&D csapatoknak:** Szigorú arculati elvárások mellett is gyors a kiadás.
+- **Szabadúszó webfejlesztőknek:** Gyors átadás ügyfeleknek, kódolás nélkül is vállalható minőség.
+
+## Telepítés és alaplépések
+
+1. Nyisd meg: **LearnDash LMS > Add‑Ons**, keresd a **Certificate Builder** add‑ont, majd Install > Activate.  
+   (Alternatíva: kézi feltöltés .zip fájlból.)
+2. Új tanúsítvány: **LearnDash LMS > Certificates > Add New**, majd válaszd a **Use Certificate Builder** gombot.
+3. Adj meg **háttérképet** (kötelező), helyezz el **szöveg** és **LearnDash** blokkokat.
+4. Használd a **Preview** gombot valós adatokhoz.
+5. Állítsd be a **PDF méretet és tájolást**, mentsd el.
+6. Kapcsold a tanúsítványt a megfelelő **kurzushoz/kvízhez/csoporthoz**.
+
+## Tippek és hibakeresés
+
+- **Háttérkép legyen helyben hosztolva**, különösen médiatár‑offload használatakor.
+- **Képoptimalizálók** esetén zárd ki a tanúsítvány háttérképeit az átméretezésből/átalakításból.
+- **Kontekstus‑helyes blokkokat** használj (kurzus ↔ Course Info, kvíz ↔ Quiz Info, csoport ↔ Groups Info).
+- **Tesztelj mintafelhasználóval** és próbakurzussal a gyors előnézet érdekében.
+
+--- 
+
+A Certificate Builderrel pontosan azt látod a képernyőn, amit a hallgató **PDF‑ben** megkap – gyorsan, kód nélkül, márkahűen. Ha célod a profi, megbízható oklevélkibocsátás, ez az a kiegészítő, amire szükséged van.

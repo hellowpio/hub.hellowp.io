@@ -1,68 +1,101 @@
-# SEOPress PRO
+---
+title: "SEOPress PRO"
+description: "Prémium kiegészítő a SEOPress Free-hez: mindent‑egyben on‑site SEO, AI‑val, sémákkal, átirányításokkal, auditokkal és WooCommerce/lokális SEO-val."
+sidebar_label: "SEOPress PRO"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-SEOPress PRO egy átfogó SEO megoldás, amely számos eszközt és funkciót kínál a weboldalad keresőoptimalizálásához. Lássuk, miért érdemes használni ezt a bővítményt.
+A SEOPress PRO a SEOPress ingyenes bővítmény prémium kiegészítője. Egyetlen integrált eszközben ad meg mindent, amire a technikai és tartalmi SEO‑hoz szükséged van: **strukturált adatok**, **XML/HTML webhelytérképek**, **átirányítások és 404‑monitoring**, **oldalaudit**, **lokális és WooCommerce SEO**, valamint **AI‑alapú meta- és képleírás‑generálás**. Célja, hogy gyorsan javítsd az indexelhetőséget, elérd a gazdag találatokat, csökkentsd a hibákat és skálázhatóan tartsd karban a metaadatokat – fejlesztői és nem technikai környezetben is.
 
-### OpenAI integráció
+> Követelmény: a PRO egy add‑on, tehát előbb telepítsd és aktiváld a SEOPress Free‑t, majd a PRO‑t. Éves licencelés, 1/5/korlátlan webhelyes csomagokkal.
 
-SEOPress PRO integrálva van az OpenAI technológiával, amely lehetővé teszi az automatikus SEO címek, meta leírások és képek alternatív szövegeinek generálását. Ez különösen hasznos lehet, ha nagy mennyiségű tartalmat kell optimalizálnod gyorsan és hatékonyan.
+## Fő funkciók, érthetően
 
-### Google Search Console és Bing Instant Indexing
+### AI integráció
+- **Meta title/description**: a bejegyzés tartalma alapján javaslatokat generál, amelyeket egy kattintással átvehetsz vagy finomíthatsz.
+- **Kép alt szövegek**: automatikus vagy tömeges alt generálás médiatárra és bejegyzésekre.
+- **Automatizálás**: WP‑CLI és tömegműveletek segítenek a skálázásban.
 
-A bővítmény lehetőséget biztosít a Google Search Console adatainak integrálására, így közvetlenül a WordPress admin felületén követheted a webhelyed teljesítményét. Emellett a Bing Instant Indexing segítségével azonnal indexelheted az új tartalmakat.
+### Strukturált adatok (Schema.org)
+- **Beépített típusok**: Article, FAQ, How‑to, Product, Local Business, Recipe, Event stb.
+- **Kiosztás feltételekkel**: sablonokat adhatsz post‑type, taxonómia vagy egyéni feltétel szerint (AND/OR), így a séma mindig a megfelelő oldalakra kerül.
+- **Kézi finomhangolás**: oldalanként is szerkesztheted a mezőket.
 
-### Kulcsszó rangsor követés
+### Webhelytérképek
+- **News/Video XML**, **képtérkép** és **HTML sitemap**: gyorsabb feltérképezés, jobb média‑indexelés. A videó‑térkép a YouTube‑videókat is felveheti.
+- **Finomkizárás**: szabályozhatod, mi kerüljön a sitemapokba.
 
-A SEOPress PRO segítségével nyomon követheted a kulcsszavaid rangsorát a keresőmotorokban. Ez lehetővé teszi, hogy hatékonyabban optimalizáld a tartalmadat és lásd, hogyan teljesítenek a kulcsszavaid idővel.
+### Átirányításkezelő és 404 monitor
+- **Korlátlan 301/302/307/410/451**: egyszerű és reguláris kifejezéses szabályokkal.
+- **Automatikus javaslat slug‑váltáskor**: csökkenti a törött linkeket.
+- **Import/export**: CSV és .htaccess kompatibilitás migrációkhoz.
+- **404 naplózás és riasztás**: gyors hibaelhárítás.
 
-### Struktúrált adatok és Schema támogatás
+### „Broken link checker”
+- **Tartalmi linkek felderítése**: listázza a hibás hivatkozásokat, hogy azonnal javíthasd vagy átirányíthasd.
 
-A bővítmény beépített Schema támogatással rendelkezik, amely segít a keresőmotoroknak jobban megérteni a weboldalad tartalmát. Ez növelheti a láthatóságodat a keresési eredményekben és javíthatja a CTR-t (kattintási arányt).
+### Oldalaudit
+- **Technikai ellenőrzések**: indexelhetőség, meta, struktúra, sebesség‑jelzések és best practice‑ek.
+- **Search Console adatok**: kattintások, megjelenítések, CTR és pozíciók láthatók a WordPress‑listanézetben.
 
-### Helyi SEO és WooCommerce integráció
+### Lokális SEO
+- **Local Business séma és NAP**: cégadatok egységes megjelenítése, blokk a tartalomba illesztéshez.
 
-SEOPress PRO lehetőséget biztosít a helyi SEO optimalizálására is, így könnyen javíthatod a helyi keresési eredményeidet. Emellett kiválóan működik együtt a WooCommerce bővítménnyel, így az e-kereskedelmi oldalak számára is ideális választás.
+### WooCommerce SEO
+- **Product schema**: automatikus/egyedi kitöltés árakkal, készlettel, azonosítókkal.
+- **GA4 Enhanced Ecommerce** és kritikus oldalak noindex kezelése.
 
-### Redirekciók és 404 hiba kezelés
+### Navigáció és jelzések
+- **Breadcrumbs**: akadálymentes, schema‑jelölt morzsamenü blokkal.
+- **SEO riasztások**: noindex a kezdőlapon? hibás robots.txt vagy sitemap? A rendszer jelez és értesít.
 
-A bővítmény segítségével könnyen beállíthatod az átirányításokat és kezelheted a 404-es hibákat, ami javíthatja a felhasználói élményt és minimalizálhatja az elveszett látogatók számát.
+### White label és fejlesztői eszközök
+- **Teljes újramárkázhatóság** ügynökségeknek.
+- **+300 hook, REST API, WP‑CLI**, CSV import/export és univerzális SEO metabox – ideális egyedi folyamatokhoz.
 
-### Fehér címke lehetőség
+## Gyakorlati példák
 
-Ha ügynökségként vagy fejlesztőként dolgozol, a SEOPress PRO lehetőséget biztosít a fehér címkézésre. Így saját márkádat tüntetheted fel a bővítményen belül, ami professzionálisabb megjelenést biztosít az ügyfeleid felé.
+- **Helyi szolgáltató**: beállítod a Local Business sémát, felveszed a NAP adatokat és beágyazod a blokkot a Kapcsolat oldalra. A sitemap gondoskodik a gyors feltérképezésről, a riasztások figyelnek az indexelésre.
+- **Recept‑blog**: a Recipe séma sablont feltétellel hozzárendeled a „Recept” típushoz; a Video/Image sitemapok javítják a médiaszereplést; a FAQ blokk növelheti a rich result esélyét.
+- **Webáruház**: automatikus Product schema minden termékre, GA4 Enhanced Ecommerce bekapcsolva; a kosár és checkout noindex, hogy tiszta legyen az index.
+- **Tartalom‑migráció**: CSV‑vel betöltöd a régi átirányításokat, a 404‑monitor azonnal jelzi a hiányzó URL‑eket, amiket gyorsan 301‑re teszel.
+- **Meta‑egységesítés**: AI‑val tömegesen generálsz meta címeket/leírásokat és alt szövegeket, majd kézzel finomhangolsz, ahol kell.
 
-## Együttműködési lehetőségek más eszközökkel
+Regex átirányítás példa:
+```
+Forrásminta: ^/blog/(.*)
+Cél: /uj-blog/$1
+Típus: 301
+RegEx: be
+```
 
-SEOPress PRO zökkenőmentesen működik együtt számos más eszközzel és bővítménnyel, mint például:
+## Előnyök és értékajánlat
 
-- **Elementor**: A népszerű oldalépítő bővítménnyel való integráció lehetővé teszi, hogy egyszerűen optimalizáld az egyedi oldalakat is.
-- **WooCommerce**: Az e-kereskedelmi bővítménnyel való együttműködés révén optimalizálhatod termékoldalaidat.
-- **Polylang és WPML**: Többnyelvű weboldalakhoz ideális választás.
-- **Google Analytics és Matomo**: Könnyen nyomon követheted weboldalad látogatottsági adatait.
+- **Időmegtakarítás**: AI‑val és tömegműveletekkel percek alatt egységesítheted a metaadatokat és altokat.
+- **Kevesebb hiba**: 404‑monitor, törött link ellenőrző és riasztások segítenek a gyors reakcióban.
+- **Jobb láthatóság**: sémák és bővített sitemapok növelik a rich result és a gyors indexelés esélyét.
+- **Skálázhatóság**: CSV, WP‑CLI és REST API révén nagy tartalomkészleteknél is kezelhető marad a SEO.
+- **Ügynökségi működés**: white label és több webhelyes licencek, egységes folyamatokhoz.
 
-## Gyakorlati példák az alkalmazásra
+## Kinek ajánlott?
 
-### Blog optimalizálása
+- **KKV‑knak és helyi vállalkozásoknak**: egyszerű lokális séma, NAP, riasztások.
+- **Webáruházaknak**: Product schema, GA4 Enhanced Ecommerce, kritikus oldalak indexelésének kontrollja.
+- **Tartalomkészítőknek és kiadóknak**: News/Video sitemap, FAQ/How‑to blokkok, Search Console metrikák a szerkesztői döntésekhez.
+- **Ügynökségeknek és fejlesztőknek**: white label, CSV/WP‑CLI/REST API, többoldalas licencek és testreszabhatóság.
 
-Egy blog tulajdonosaként fontos, hogy minden bejegyzésed optimálisan jelenjen meg a keresőmotorokban. A SEOPress PRO segítségével automatikusan generálhatsz SEO címeket és meta leírásokat, valamint könnyen nyomon követheted a kulcsszavaid teljesítményét.
+## Free vs PRO röviden
 
-### Helyi vállalkozások
+- **Free**: alap SEO beállítások, social meta, XML/HTML/IMAGE sitemap, alap átirányítás bejegyzés‑szinten, analitika és indexelési API‑k.
+- **PRO**: News/Video sitemap, teljes átirányítás‑ és 404‑kezelés, törött link ellenőrző, AI‑generálás, fejlett sémák feltételekkel, lokális és WooCommerce SEO, auditok, riasztások, breadcrumbs, white label, CSV/WP‑CLI/REST.
 
-Ha helyi vállalkozást vezetsz, a SEOPress PRO segítségével könnyen optimalizálhatod weboldaladat helyi keresésekre. A struktúrált adatok támogatása révén megjelenítheted vállalkozásod nyitvatartási idejét, címét és egyéb fontos információkat a keresési eredményekben.
+## Telepítés és követelmények
 
-### E-kereskedelmi oldalak
+1. Telepítsd és aktiváld a SEOPress Free bővítményt.
+2. Telepítsd a SEOPress PRO kiegészítőt, majd aktiváld a licencet.
+3. Futtasd az alapbeállítás‑varázslót: sitemapok, indexelési szabályok, sémasablonok.
+4. Kapcsold be az AI‑t és a 404/átirányítás modult, majd indíts egy auditot.
+5. WooCommerce/Lokális projektnél kapcsold be a dedikált modulokat és töltsd ki a mezőket.
 
-Egy WooCommerce alapú webshop tulajdonosaként a SEOPress PRO segítségével optimalizálhatod termékoldalaidat és követheted azok teljesítményét. Az átirányítások kezelése révén pedig minimalizálhatod az elveszett vásárlók számát.
-
-## Szószedet
-
-- **SEO**: Search Engine Optimization, keresőoptimalizálás.
-- **CTR**: Click-Through Rate, kattintási arány.
-- **Schema**: Struktúrált adatok, amelyek segítenek a keresőmotoroknak jobban megérteni a weboldal tartalmát.
-- **WooCommerce**: Egy népszerű e-kereskedelmi bővítmény WordPresshez.
-- **Elementor**: Egy vizuális oldalépítő bővítmény WordPresshez.
-- **Google Analytics**: Egy ingyenes webanalitikai szolgáltatás, amely részletes statisztikákat nyújt a weboldal látogatóiról.
-- **Matomo**: Egy nyílt forráskódú webanalitikai platform.
-
-Reméljük, ez a részletes bemutató segít eligazodni a SEOPress PRO által kínált funkciók és előnyök között!
+Ezzel kész is: a SEOPress PRO egységes felületen adja a napi SEO‑munkához szükséges eszközöket – gyorsan, skálázhatóan, biztonságosan.

@@ -1,55 +1,96 @@
-# AffiliateWP - Direct Link Tracking
+---
+title: "AffiliateWP - Direct Link Tracking"
+description: "Pro kiegészítő az AffiliateWP-hez, amely domain‑alapú hozzárendeléssel teszi lehetővé a paraméter nélküli, közvetlen affiliate linkelést."
+sidebar_label: "AffiliateWP - Direct Link Tracking"
+---
 
-## Mi az a Direct Link Tracking?
+## Mi ez és milyen problémát old meg?
 
-A Direct Link Tracking lehetővé teszi az affiliate partnerek számára, hogy közvetlenül linkeljenek az oldaladra anélkül, hogy affiliate linket kellene használniuk. Ez egy jelentős ösztönző az affiliate partnerek számára, és segíthet növelni a bevételeidet.
+Az AffiliateWP – Direct Link Tracking egy **Pro kiegészítő**, amellyel az affiliate partnereid a **saját webhelyükről közvetlenül** linkelhetnek a te webshopodra/szolgáltatásodra **referral paraméterek nélkül**. A hozzárendelés a **hivatkozó domain** (HTTP referrer) alapján történik, így az affiliate linkek természetesek és „tiszta” URL-ek maradnak. Ez megoldja azt a gyakori problémát, hogy a látogatók levágják a referral paramétert, vagy bizalmatlanok a „ref” jelöléssel szemben — mégis megkapja az affiliate a jutalékot.
 
-### Előnyök
+## Hogyan működik röviden?
 
-#### Több eladás lehetősége
-Az oldalad látogatói nem fogják tudni, hogy affiliate linkre kattintanak. Ez növeli annak esélyét, hogy kattintsanak és vásároljanak.
+1. Az affiliate a saját domainjét (és opcionálisan alútvonalát) felveszi az **Affiliate Area** felületén.
+2. Te, mint admin, ezt **ellenőrzöd és jóváhagyod**.
+3. Ha egy látogató az affiliate oldaláról érkezik, a rendszer a **HTTP referrer** alapján azonosítja a domaint, és **sütiben** eltárolja az affiliate azonosítót.
+4. A vásárlások vagy leadek onnantól úgy kerülnek jóváírásra, mint a hagyományos affiliate linkeknél.
+5. Opcionálisan használhatod az **„Utolsó referáló jóváírása”** logikát, ha a programodban ez az elv.
 
-#### Boldogabb és motiváltabb affiliate partnerek
-Mivel nincs affiliate link, az affiliate partnerek nagyobb eséllyel keresnek jutalékot, és keményebben dolgoznak érte.
+## Fő funkciók részletesen
 
-#### SEO javítása
-Az oldaladra mutató linkek nem tartalmaznak affiliate paramétereket, így SEO-barátabbak lesznek.
+### Adminisztráció és szabályozás
+- **Központi Direct Links nézet**: egy helyen látod és kezeled az összes beküldött domaint, státuszokkal (függőben, aktív, inaktív, elutasított).
+- **Jóváhagyási folyamat**: csak az általad jóváhagyott domainek működnek. Ez védi a programot a visszaélésektől.
+- **Engedélyezés és korlátok**: globálisan vagy egyedi affiliate szinten engedélyezheted, és meghatározhatod, hány domain használható.
+- **Domain feketelista**: megadhatsz tiltott domaineket, amelyek forgalmát a rendszer figyelmen kívül hagyja.
+- **Email értesítések**: automatikus üzenetek az adminnak új/módosított domainről, az affiliate-nek jóváhagyásról vagy elutasításról.
+- **Domain + útvonal támogatás**: nem csak teljes domain, hanem **konkrét alútvonal** is engedélyezhető (például egy blog vagy profil aloldal szintű célzás).
 
-## Hogyan működik a Direct Link Tracking?
+Mit jelent ez a gyakorlatban? Például korlátozhatod, hogy egy partner legfeljebb 2 domaint használjon, vagy csak a blogja „/ajanlo” aloldaláról érkező forgalmat fogadod el.
 
-Amikor a Direct Link Tracking add-on aktiválva van, az affiliate partnerek beírhatják a saját domainjüket az Affiliate Area-ban az oldaladon. Miután a domaint jóváhagyták az oldal adminisztrátorai, az affiliate partnerek közvetlenül linkelhetnek az oldaladra a saját oldalukról, anélkül, hogy referral linket használnának.
+### Affiliate felület és kényelem
+- **Dedikált Direct Links fül** az Affiliate Area-ban a domainek hozzáadására, szerkesztésére, törlésére.
+- **Rövidkód** a frontend menedzsmenthez, ha nem az alap Affiliate Area-t használod:
 
-Amikor egy látogató rákattint az affiliate partner oldalán található linkre és megérkezik az oldaladra, a domain-t a rendszer adatbázisában keresik. Ha a domain egy affiliate partnerhez tartozik, az affiliate partner ID-ja a böngésző sütijeiben kerül tárolásra, akárcsak egy normál affiliate link esetében. Ha a vásárló ezt követően vásárol vagy konvertál, akkor jutalék keletkezik az affiliate partner számára.
+```
+[affiliate_direct_links]
+```
 
-## Főbb jellemzők
+Az affiliate így stabil, egyszerű élményt kap: nem kell paraméterezett linkeket szerkesztenie, elég a saját tartalmában a normál URL-re hivatkoznia.
 
-1. **Külön "Direct Links" képernyő**: A WordPress adminisztrációs felületén egy "Direct Links" területet ad hozzá, ahol könnyen áttekintheted és kezelheted az összes direct link tracking domain-t.
-2. **Domain jóváhagyás**: Az affiliate partnerek csak akkor kereshetnek jutalékot és linkelhetnek közvetlenül az oldaladra, ha jóváhagytad a domain-jüket.
-3. **Globális vagy per-affiliate engedélyezés**: A Direct Link Tracking funkciót globálisan vagy egyes affiliate partnerek szintjén is engedélyezheted.
-4. **Maximális domain szám beállítása**: Beállíthatod, hogy hány domain-t adhat meg egy affiliate partner globálisan vagy egyéni szinten.
-5. **Domain státusz változtatása**: Jóváhagyhatod, elutasíthatod, törölheted vagy inaktívvá teheted a direct linkeket a központi "Direct Links" adminisztrációs felületen.
-6. **Affiliate partnerek domain-jeinek egyszerű kezelése**: Hozzáadhatsz, frissíthetsz, jóváhagyhatsz, elutasíthatsz vagy törölhetsz direct linkeket a WordPress admin felületéről.
-7. **Email értesítések**: Email értesítést küldhetsz az oldal adminisztrátorának, amikor új domain-t nyújtanak be jóváhagyásra, valamint értesítést küldhetsz az affiliate partnernek, amikor a domain-jét jóváhagyták vagy elutasították.
-8. **Domain blacklist**: Domain-eket adhatsz hozzá a feketelistához, hogy megakadályozd azok hozzáadását és látogatások tárolását, ha már használatban vannak.
+### Integrációk és kompatibilitás
+- Működik az összes AffiliateWP által támogatott **e‑commerce, tagsági és űrlap integrációval**. Vagyis ugyanúgy keletkezik és könyvelődik a jutalék, csak a hozzárendelés módja lesz „referrer‑alapú”.
+
+### Biztonság és ellenőrzés
+- A jóváhagyás célja, hogy a partner **csak a saját tulajdonú vagy kezelt** domaint használhassa.
+- A tényleges tulajdonjog ellenőrzése (whois, DNS, meta token, manuális validálás) **az admin felelőssége**.
+- A bővítmény **alapértelmezetten kizárja** a saját kereskedői domaint, hogy ne keletkezzen téves hozzárendelés.
 
 ## Gyakorlati példák
 
-### Bloggereknél
-Egy blogger közvetlenül linkelhet egy termékre anélkül, hogy a látogatók látnák, hogy ez egy affiliate link. Így nagyobb valószínűséggel kattintanak és vásárolnak.
+- **Tartalomkészítő blog**: cikkből a termékoldalra linkel, paraméter nélkül. Az olvasó „tiszta” hivatkozást lát, a rendszer mégis az affiliate-nek írja jóvá a konverziót.
+- **Kupon/ajánló oldal**: a kuponlistából közvetlenül visz a boltba. Ha a felhasználó meg is osztja a linket, a paraméter hiánya miatt nem „tűnik el” a hozzárendelés.
+- **Platform aloldal**: nagy platformon működő profil/blog konkrét alútvonaláról engedélyezed a forgalmat, így finoman célzol és kizárod a rendszeridegen forgalmat.
 
-### Influencereknél
-Egy influencer közvetlenül linkelheti követőit egy adott termékhez vagy szolgáltatáshoz anélkül, hogy a követők tudnák, hogy ez egy affiliate link. Ez növelheti a konverzió esélyét.
+## Beállítás röviden
 
-### Tartalomkészítőknél
-Egy tartalomkészítő közvetlenül hivatkozhat az általa ajánlott termékekre vagy szolgáltatásokra anélkül, hogy az olvasók látnák, hogy ezek affiliate linkek.
+1. Telepítsd és licenceld az **AffiliateWP** alap bővítményt.
+2. Telepítsd és aktiváld a **Direct Link Tracking** kiegészítőt.
+3. Kapcsold be a funkciót a beállításokban (globálisan vagy affiliate-enként), állíts be **domain-korlátot** és szükség esetén **feketelistát**.
+4. Kérd be az affiliate domaineket, **ellenőrizd**, majd **hagyd jóvá**.
+5. Kapcsold be az **értesítéseket** az automatikus admin/affiliate e-mailekhez.
 
-## Szószedet
+## Hibaelhárítás és ismert korlátok
 
-- **Affiliate**: Partner, aki jutalékért cserébe hirdeti mások termékeit vagy szolgáltatásait.
-- **SEO**: Search Engine Optimization (Keresőmotor optimalizálás), ami növeli egy weboldal láthatóságát a keresőmotorok találatai között.
-- **Domain**: Egy weboldal címe az interneten.
-- **ID**: Azonosító.
-- **Referral Link**: Olyan link, amely tartalmazza az affiliate partner azonosítóját, hogy nyomon követhessék a hivatkozásokat és jutalékot biztosítsanak.
-- **Cookies**: Kis adatfájlok, amelyeket a böngészők tárolnak információk rögzítésére és nyomon követésére.
+- **Referrer szükséges**: csak akkor történik hozzárendelés, ha a böngésző elküldi a hivatkozó domaint. Könyvjelzőből, kézzel beírt URL-ről érkezve nincs hozzárendelés.
+- **HTTPS/HTTP keverés**: biztonságos forrásról nem mindig megy át referrer nem biztonságos célra. Javaslat: a kereskedői oldal legyen **HTTPS**.
+- **Böngészőszintű korlátozások**: egyes böngészők szigorúbban kezelik a referrert. Részben segíthet az affiliate oldalon:
 
-A Direct Link Tracking segítségével hatékonyabbá teheted affiliate marketing programodat és növelheted bevételeidet anélkül, hogy bonyolult beállításokra lenne szükséged.
+```
+<meta name="referrer" content="always">
+```
+
+- **rel="noreferrer"**: ha a link tartalmazza, a referrer nem jut át. Kérd meg az affiliate-et, hogy ezt **távolítsa el**, és figyeljen a „új lapon megnyitás” beállítások automatikus attribútumaira.
+- **Saját domain kizárása**: a kereskedő saját forgalma alapból nem számít affiliate-nek.
+
+## Előnyök és értékajánlat
+
+- **Természetes linkek, nagyobb bizalom**: nincs gyanús paraméter, nőhet az átkattintási arány és a konverzió.
+- **SEO-barát megoldás**: tiszta URL-ek, kevesebb manipulációs jel.
+- **Egyszerű affiliate‑élmény**: kevesebb hibalehetőség, nincs szükség link‑paraméterezésre.
+- **Kevesebb admin teher**: központi kezelés, jóváhagyás, feketelista és e‑mail értesítések.
+- **Finom kontroll**: domain- és alútvonal-szintű engedélyezés, per‑affiliate korlátok.
+
+## Kinek ajánlott?
+
+- **Webshopok és SaaS szolgáltatók**: akik affiliate programot futtatnak, és javítanák a konverziós rátát.
+- **Tartalomgyártók, bloggerek, influencerek**: akik természetes hivatkozásokat szeretnének a saját oldalukról.
+- **Kupon- és deal oldalak**: ahol a paraméteres linkeket gyakran módosítják vagy levágják a felhasználók.
+- **SEO‑fókuszú csapatok**: akik tiszta linkstruktúrát és egyszerű hozzárendelést keresnek.
+
+## Tippek a sikeres bevezetéshez
+
+- Állíts be egyértelmű **jóváhagyási szabályokat** a domain beküldéshez (ellenőrzési lépések, elfogadható alútvonalak).
+- Kommunikáld az affiliate-eknek: kerüljék a **rel="noreferrer"** használatát, és törekedjenek **HTTPS** forrásra.
+- Tesztelj különböző böngészőkben és eszközökön, ellenőrizd a sütik létrejöttét és a hozzárendelést.
+- Használd az **„Utolsó referáló”** logikát, ha gyakori az egymást követő ajánlások versengése.

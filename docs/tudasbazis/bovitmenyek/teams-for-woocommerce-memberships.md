@@ -1,59 +1,101 @@
-# Teams for WooCommerce Memberships
+---
+title: "Teams for WooCommerce Memberships"
+description: "WooCommerce-kiegészítő, amellyel egyéni tagságok helyett csapatoknak/csoportoknak adhatsz hozzáférést, központosított számlázással és helykezeléssel."
+sidebar_label: "Teams for WooCommerce Memberships"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A Teams for WooCommerce Memberships bővítmény lehetővé teszi, hogy a WooCommerce Memberships által létrehozott tagságokat ne csak egyéni felhasználók számára, hanem csapatok, cégek, csoportok vagy családok számára is értékesítsd. Ez különösen hasznos lehet vállalati képzési fiókok, családi tagságok, csapatok weboldal hozzáférése és egyéb hasonló esetekben. Az alábbiakban részletesen bemutatjuk a bővítmény legfontosabb jellemzőit és előnyeit.
+A Teams for WooCommerce Memberships egy bővítmény, amellyel a tagsági hozzáféréseket nem egyéneknek, hanem **csapatoknak/csoportoknak** adhatod el. Egy „tulajdonos” intézi a vásárlást és a számlázást, majd **helyeket (seat)** oszt ki a tagoknak, akik megkapják ugyanazokat az előnyöket, mint az egyéni tagok. Ezzel megoldod a B2B értékesítés egyik legnagyobb gondját: nem kell minden munkatársnak külön vásárolnia és számlát kezelnie.
 
-### Tagság értékesítése csapatoknak
+Követelmény: szükséged van a WooCommerce Memberships bővítményre. Előfizetéses csapatokhoz a WooCommerce Subscriptions használata ajánlott.
 
-A Teams for WooCommerce Memberships lehetőséget ad arra, hogy meglévő termékeidet kiterjeszd csapat tagságokra. Ezeket értékesítheted **egyéni tag** vagy **csapat alapú** árazással is. Beállíthatsz egy minimális és maximális létszámot a csapat számára, így rugalmasan kezelheted a különböző igényeket.
+## Hogyan működik röviden?
 
-#### Példák:
-- **Egyéni tag árazás**: 15$ tagonként
-- **Csapat alapú árazás**: 1000$ 500 főre
+1. Létrehozol egy terméket, és bekapcsolod a **Team Membership** funkciót.  
+2. Beállítod az árazást (főnként vagy csomagonként), valamint a min./max. helyszámot.  
+3. A vevő megadja a csapat nevét, kifizeti a rendelést, majd a **Saját fiók > Teams** felületen meghívja a tagokat (linkkel vagy e-maillel).  
+4. A csapat tagsági hozzáférése a rendeléshez (vagy előfizetéshez) kötötten működik; a számlázás központosított marad.
 
-### Csoport fiókok kezelése
+## Fő funkciók részletesen
 
-A csapat fiókok vásárlása ugyanolyan zökkenőmentes, mint bármely más termék a webáruházadban. A csapat tulajdonosa hozzáadhat új tagokat az ügyfélfiókján keresztül egy nyilvános "csatlakozási" link megosztásával vagy e-mail meghívók küldésével.
+- **Csapat-/csoporttagság értékesítése**  
+  Bármely egyszeri vagy előfizetéses termékből készíthetsz csapatterméket. A vásárló csapatnevet ad meg, és akár dönthet arról is, hogy ő maga foglal-e helyet a keretből.
 
-#### Menedzsment eszközök:
-- **Tulajdonosi jogosultságok**: Csak a tulajdonos kezelheti a vásárlást és a számlázást.
-- **Tagok meghívása**: Nyilvános link vagy e-mail meghívók használata.
-- **Menedszeri jogosultságok**: A tulajdonos delegálhat menedzseri jogosultságokat más tagoknak, így ők is meghívhatnak új tagokat.
+- **Rugalmas árazás és helylimit**  
+  Választhatsz **per-member** (főnkénti) vagy **per-team** (csomag) árazást. Meghatározhatsz **minimális és maximális helyszámot**, így kontrollálhatod a licencelési kereteket. A tulajdonos később is **bővítheti a helyeket**; előfizetés esetén a rendszer arányosítja a díjat a ciklus hátralévő részére.
 
-### Adminisztrációs eszközök
+- **Szerepkörök és jogosultságok**  
+  - **Tulajdonos**: vásárlás, számlázás, teljes csapatkezelés.  
+  - **Menedzser**: tagok kezelése (engedélyezhető).  
+  - **Tag**: a tagsági előnyök felhasználója.  
+  Beállíthatod, hogy a tulajdonosnak kötelező-e helyet foglalnia, illetve a menedzserek adhassanak-e hozzá új menedzsereket.
 
-Az adminisztrátorok is könnyedén kezelhetik a csapatokat az adminisztrációs felületről. Lehetőség van csapatok listájának megtekintésére, adott csapat részletes adatainak elérésére, valamint csapattagok hozzáadására vagy eltávolítására.
+- **Tagfelvétel és meghívás**  
+  - **Nyilvános csatlakozási link**: gyors és kényelmes; bármikor újragenerálható.  
+  - **E-mail meghívás**: biztonságosabb, egyenkénti hozzáadás.  
+  Ezzel a csapat önállóan kezeli a tagságait, tehermentesítve az adminisztrációdat.
 
-#### Adminisztrációs funkciók:
-- **Csapat adatok megtekintése**: Részletes információk adott csapatról.
-- **Tagok kezelése**: Új tagok hozzáadása vagy meglévők eltávolítása.
-- **Maximális létszám beállítása**: A csapat maximális létszámának módosítása.
+- **Ülés-/helykezelés és hozzáférés**  
+  A helyek számát a tulajdonos később növelheti. Előfizetéses csapatnál a hozzáadott helyek költsége **prórációval** számolódik. Lemondás vagy visszatérítés esetén a **teljes csapat hozzáférése** változik ennek megfelelően.
 
-## Zökkenőmentes integrációk
+- **Admin eszközök**  
+  A háttérben listázhatod és szerkesztheted a csapatokat (név, helylimit, tagok), **manuálisan hozhatsz létre csapatot**, és tagokat adhatsz/vehetsz el. Elérhető **export** (azonosító, slug, név, szerep). CSV-importtal a csapatmezők jelenleg nem frissíthetők.
 
-A Teams for WooCommerce Memberships kiválóan működik együtt más eszközökkel is, mint például a WooCommerce Subscriptions. Ezzel lehetőség nyílik a csapat tagságokat előfizetések formájában is értékesíteni, akár egyéni tag, akár csapat alapú árazással.
+- **Előfizetések integráció**  
+  A csapat teljes hozzáférése követi az előfizetés állapotát (aktív, szüneteltetett, lemondott). Előfizetés-váltáskor új csapat jöhet létre; a tagokat ilyenkor újra meg kell hívni.
 
-### Integráció a WooCommerce Subscriptions-szal
-
-A bővítmény teljes mértékben kompatibilis a WooCommerce Subscriptions-szal, így az előfizetési modell alapján is értékesítheted a csapat tagságokat. Ha a csapat tulajdonosa leállítja vagy lemondja az előfizetést, minden csapattag hozzáférése megszűnik.
+- **Testreszabás és e-mailek**  
+  Átnevezheted a „team” kifejezést (pl. „klub”, „család”), szabályozhatod az eltávolítási jogokat és a menedzseri hatásköröket, valamint beállíthatod a „hamarosan lejár” értesítések időzítését.
 
 ## Gyakorlati példák
 
-### Vállalati képzés
-Egy cég vásárolhat egy csomagot, amely hozzáférést biztosít az összes alkalmazott számára egy online képzési platformhoz. A HR osztály felelős a tagság kezeléséért és az új tagok hozzáadásáért.
+- **B2B e-learning**: Egy cég 50 fős hozzáférést vásárol. A HR a menedzser, ő hívja meg az alkalmazottakat. Ha év közben bővül a csapat, további helyeket vesz, az előfizetés díja arányosan nő.
+- **Digitális magazin családi csomag**: Egy előfizetés, 5 hely. A családfő a tulajdonos, e-mailben hívja meg a családtagokat.
+- **Szakmai klub vállalati tagság**: Egy tagság keretében a cég marketing és sales csapata kap kedvezményeket és zárt anyagokat; a menedzser kezeli a belépőket.
+- **Oktatási intézmény**: Egy tanár megvásárol egy kurzus-csapatot az osztálynak; a diákokat linkkel csatlakoztatja.
 
-### Családi fitnesz tagság
-Egy fitnessz klub kínálhat családi tagságot, ahol a családtagok egyetlen előfizetés keretében közösen használhatják a klub szolgáltatásait.
+## Beállítás lépésről lépésre (rövid)
 
-### Csapatsportok
-Egy sportklub különböző sportcsapatait kezelheti egyetlen csomagon belül, így a tagsági díjak egy helyen kerülnek számlázásra és könnyen nyomon követhetők.
+1. Hozz létre egy új terméket, és kapcsold be a **Team Membership** opciót.  
+2. Válassz **per-member** vagy **per-team** árazást; add meg a min./max. helyszámot.  
+3. Rendeld a terméket a megfelelő **Memberships tervhez**.  
+4. Döntsd el, hogy a tulajdonos **foglal-e helyet**.  
+5. Mentsd a terméket, majd teszteld a vásárlási folyamatot és a **Saját fiók > Teams** kezelőfelületet.
 
-## Szószedet
+Példakonfiguráció:
+```
+Árazás: per-member
+Minimum hely: 5
+Maximum hely: 200
+Tulajdonos foglal helyet: Igen
+„Team” elnevezése: „Csapat”
+Menedzser jogosultság: tagok kezelése engedélyezve
+```
 
-- **Csapat alapú árazás**: Árazási modell, ahol az ár egy egész csapatra vonatkozik.
-- **Egyéni tag árazás**: Árazási modell, ahol az ár egy-egy tagra vonatkozik.
-- **WooCommerce Memberships**: WordPress bővítmény, amely lehetővé teszi a tartalom és termékek tagsági alapon történő értékesítését.
-- **WooCommerce Subscriptions**: WordPress bővítmény, amely lehetővé teszi az előfizetések kezelését és számlázását.
+## Előnyök és értékajánlat
 
-A Teams for WooCommerce Memberships lehetőséget nyújt arra, hogy egyszerűen és hatékonyan értékesíts csoportos tagságokat, ezzel új bevételi forrásokat teremtve webáruházad számára.
+- **Központosított számlázás**: egy vásárlás, több felhasználó hozzáférése.  
+- **Kevesebb admin**: a tagkezelést a tulajdonosra/menedzserre bízod.  
+- **Skálázhatóság**: rugalmas helyszám és árazás, próráció előfizetésnél.  
+- **Konzisztens jogosultságok**: a csapattagok ugyanazokat az előnyöket kapják, mint az egyéni tagok.  
+- **Testreszabhatóság**: elnevezések, szerepkörök, e-mailek finomhangolása.
+
+## Célközönség
+
+- **E-learning és tudásbázisok**: csapat- vagy vállalati licenceléshez.  
+- **Digitális magazinok és klubok**: családi/csoportos előfizetésekhez.  
+- **B2B szolgáltatók**: ahol fontos a központosított számlázás és a helykeretek.  
+- **Oktatók, intézmények**: osztályok, évfolyamok egyszerű kezelése.  
+- **Fejlesztők/üzemeltetők**: akik hookokkal, egyedi jogosultságokkal integrálnának.
+
+## Korlátozások és jó gyakorlatok
+
+- **Ne** alakíts át meglévő egyéni tagsági terméket csapattermékké; hozz létre **újat**.  
+- Egy csapat **egy** tagsági tervhez ad hozzáférést; a hozzáférési idő a terv beállításaival azonos.  
+- Előfizetés-váltáskor **új csapat** jön létre; a tagokat újra kell hívni.  
+- CSV-importtal jelenleg a csapatmezők **nem** frissíthetők.  
+- A nyilvános csatlakozási link kevésbé biztonságos; szükség esetén **forgasd újra**.  
+- A bővítményt a SkyVerge fejleszti; használatához WooCommerce Memberships szükséges.
+
+Ezzel a bővítménnyel célzottan és hatékonyan tudsz csapatoknak értékesíteni, miközben csökken az adminisztráció, nő a skálázhatóság, és átlátható marad a hozzáféréskezelés. Ha csoportos hozzáféréseket adnál el, ez az eszköz a leggyorsabb út a professzionális megvalósításhoz.

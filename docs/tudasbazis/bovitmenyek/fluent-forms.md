@@ -1,136 +1,87 @@
-# Fluent Forms
+---
+title: "Fluent Forms"
+description: "Modern, gyors WordPress űrlapkészítő: drag-and-drop, feltételes logika, fizetések, riportok és 60+ integráció – kódolás nélkül."
+sidebar_label: "Fluent Forms"
+---
 
-A Fluent Forms egy sokoldalú és könnyen használható bővítmény, amely számos funkcióval rendelkezik, hogy segítsen hatékony űrlapokat létrehozni és kezelni.
+## Mi ez és milyen problémát old meg?
 
-## Űrlapkészítés
+A Fluent Forms egy könnyű, mégis vállalati szintű WordPress űrlapkészítő. Drag-and-drop felületen, kódolás nélkül állíthatsz össze mindent a legegyszerűbb kapcsolatfelvételi űrlaptól a fizetési, kérdőív-, kvíz- vagy kalkulátor-űrlapokig. Kiemelten gyors: egy alap űrlap tipikusan kevesebb mint ~30 KB CSS/JS-t tölt be, így nem lassítja az oldalad.
 
-### Drag & Drop űrlapkészítő
-Az űrlapok létrehozása egyszerű a drag & drop űrlapkészítővel. Csak húzd a szükséges mezőket a helyükre, és már készen is vagy.
+Mit old meg? Lerövidíti a fejlesztési időt, csökkenti a karbantartási terhet, javítja a konverziót (conversational és több-lépéses űrlapok), biztosítja az adatminőséget (validációk, spamvédelem), és közvetlenül csatlakozik a marketing/üzleti rendszereidhez.
 
-### Előre definiált mezők
-Több mint 50 előre meghatározott mező áll rendelkezésre, amelyek különféle célokat szolgálnak.
+## Hogyan működik röviden
 
-### Előre készített sablonok
-Válassz egy sablont, és építsd meg az űrlapodat pillanatok alatt. Több tucat sablon várja, hogy használatba vedd őket.
+- Hozz létre űrlapot a vizuális szerkesztőben vagy az AI Form Builderrel.
+- Állíts be feltételes logikát, érvényesítéseket, értesítéseket/megerősítéseket.
+- Kapcsold be a fizetést (Stripe a free kiadásban is), és válassz gateway-t.
+- Embedeld Gutenberg blokkal, rövidkóddal vagy page builderrel.
+- Kövesd a beküldéseket, exportálj és készíts riportokat; csatlakoztasd integrációkhoz.
 
-### Numerikus számítás
-Számítsd ki a mezőkbe beírt számokat numerikus számítások segítségével.
+```
+// Rövidkód beágyazás
+[fluentform id="123"]
+```
 
-### Fájl- és kép feltöltés
-Engedd meg a felhasználóknak, hogy fájlokat és képeket töltsenek fel az űrlapodon keresztül. Különösen hasznos összetettebb helyzetekben.
+```php
+<?php echo do_shortcode('[fluentform id="123"]'); ?>
+```
 
-### Többlépcsős űrlapok
-Oszd fel a hosszú űrlapokat több oldalra. Így a felhasználók kényelmesebben tölthetik ki azokat, és a konverziós arány is magasabb lesz.
+## Fő funkciók, érthetően
 
-## Haladó Funkciók
+- **Drag‑and‑drop és sablonok**: Mezőket húzással rendezel, előre gyártott sablonokkal pillanatok alatt indíthatsz új űrlapot.
+- **Feltételes logika**: Mezők, értesítések és megerősítések megjelenítése/elrejtése szabályok alapján. AND/OR csoportokkal összetett „ha–akkor” folyamatokat építhetsz (pl. eltérő útvonal fizetési mód szerint).
+- **Conversational Forms**: Kérdésenkénti, beszélgetésszerű élmény, ami csökkenti a lemorzsolódást. Megosztható közvetlen linkkel vagy beágyazva.
+- **AI Form Builder**: Leírod, mire kell az űrlap, és a rendszer felépíti a mezőket, logikát és validációkat – alapfunkcióként elérhető.
+- **Fizetések**: A free kiadásban is kapsz Stripe mezőket (1,9% platformdíj). A Pro több fizetési szolgáltatót ad (pl. PayPal, Square, Razorpay, Paddle) és platformdíj nélkül dolgozik. Támogatott egyszeri/ismétlődő díjak.
+- **Haladó mezők és modulok (Pro)**: Fájl- és képfeltöltés, több-lépéses űrlapok, telefonszám maszkolás, ismétlődő csoportok, láncolt/dinamikus listák, számítási mezők (kalkulátorok), kvíz/survey pontozással, készlet (inventory) és globális készlet, admin jóváhagyás, dupla opt‑in, geolokáció, SMS, egyedi validációk.
+- **Biztonság és megfelelőség**: Honeypot, reCAPTCHA v2/v3, hCaptcha, Cloudflare Turnstile, Akismet; dedikált GDPR‑hozzájárulás mező.
+- **Adatkezelés és riportok**: Vizuális grafikonok, export CSV/Excel/ODS/JSON formátumba, import, részleges mentések (partial entries), szerkesztési előzmények.
+- **WordPress‑integrációk**: Felhasználó-regisztráció és -frissítés, bejegyzés/CPT létrehozás beküldésből, Gutenberg blokk, kompatibilitás népszerű page builderekkel.
+- **Migráció és üzemeltetés**: Egy kattintásos migrátor vezető form pluginekről, WP‑CLI parancsok tömegműveletekre.
+- **60+ integráció**: CRM-ek, email marketing, táblázatok, automatizáció és együttműködési eszközök (pl. FluentCRM, Mailchimp, HubSpot, Google Sheets, Slack, Notion, Trello, Discord, WPML), valamint webhookok és fejlesztői API-k.
 
-### Beszélgetős űrlapok
-Indíts beszélgetést a látogatókkal interaktív webes űrlapokon keresztül, és emeld ki a dizájnod.
+## Gyakorlati példák
 
-### Felhasználó által generált tartalom
-Lehetőséget biztosít adatbeküldésre és automatikus bejegyzések vagy oldalak generálására.
+- **Eseményregisztráció jegyértékesítéssel**: Több-lépéses űrlap, készletkorlát (helyek száma), Stripe/PayPal fizetés, automatikus visszaigazolás és részvételi e-mail, adatküldés táblázatba.
+- **Lead‑generálás és hírlevél**: Feltételes mezők és routing alapján külön listákba, címkékbe kerülnek a leadek; dupla opt‑in és GDPR mező gondoskodik a megfelelőségről.
+- **Kvíz és felmérés**: Kérdések pontozása, azonnali eredmény, vizuális riport az adminban.
+- **Kalkulátor**: Hitel- vagy árkalkulátor számítási mezőkkel; a végösszeg mehet fizetési mezőbe.
+- **Álláspályázat/portál**: Önéletrajz feltöltés, admin jóváhagyás, automatikus bejegyzés/CPT létrehozás, opcionális felhasználó-regisztráció.
 
-### Feltételes logika
-Rejtsd el vagy jelenítsd meg az űrlap részeit a felhasználói bemenetek alapján.
+## Ingyenes vs. Pro röviden
 
-### Fizetési lehetőségek
-Integrálj Stripe, PayPal, kuponokat és dinamikus számításokat az űrlapba a fizetésekhez.
+- **Ingyenes**: Alap mezők, drag‑and‑drop, mezőszintű feltételes logika, sablonok, Stripe fizetés 1,9% platformdíjjal, analitika és export, ütemezés/korlátozás, role manager, AI Form Builder.
+- **Pro**: 55+ haladó mező és modul, kvíz/survey, készletkezelés, admin jóváhagyás, feltételes megerősítések és útvonalak, felhasználó‑regisztráció, bejegyzés/CPT, geolokáció, SMS, 60+ integráció, több fizetési szolgáltató platformdíj nélkül.
 
-### Cím automatikus kitöltése
-Egyszerűsítsd le az űrlap kitöltését a felhasználók számára az automatikus helymeghatározással.
+## Előnyök és értékajánlat
 
-### Spam védelem
-Engedélyezd a reCAPTCHA-t az emberi ellenőrzéshez, hogy megakadályozd a spamet.
+- **Sebesség**: Minimalista asset‑terhelés, jobb betöltési idők és Core Web Vitals.
+- **No‑code produktivitás**: Percek alatt összeraksz összetett folyamatokat is.
+- **Magasabb konverzió**: Conversational, több-lépéses és feltételes útvonalak.
+- **Kevesebb kézi munka**: Mély integrációk és webhookok automatizálnak.
+- **Tiszta, biztonságos adatok**: Többrétegű spamvédelem és GDPR eszközkészlet.
+- **Skálázhatóság**: Ugyanazzal a bővítménnyel lefedsz űrlapokat, fizetést, UGC-t és riportot.
 
-### Kvíz és felmérés
-Hozz létre különféle kvízeket, használj fejlett pontozást, és növeld a lead generálási céljaidat.
+## Kinek ajánlott?
 
-## Űrlap Testreszabás
+- **Marketingesek és growth csapatok**: Gyors tesztelés, A/B logikák, integrációk.
+- **Ügynökségek**: Sablonok, migrátor és CLI a hatékony üzemeltetéshez.
+- **E‑kereskedők és szolgáltatók**: Fizetés, készletkorlát, foglalási jellegű űrlapok.
+- **Nonprofit/oktatás**: Adománygyűjtés, pályázati űrlapok, felmérések.
+- **Közösségi/portál projektek**: UGC, felhasználó‑regisztráció, szerkesztői jóváhagyás.
+- **Fejlesztők/adminok**: Hookok, API-k, CLI, stabil ökoszisztéma.
 
-### Globális stílus
-Állítsd be a márkád stílusát egyedi megjelenéssel. Stílusold az űrlapjaidat vagy importálj más űrlapokból.
+## Gyors kezdés
 
-### Több oszlopos elrendezés
-Használj két- vagy háromoszlopos elrendezést a megszokott egyoszlopos helyett.
+1. Telepítsd és aktiváld a bővítményt a hivatalos könyvtárból.
+2. Hozz létre új űrlapot sablonból vagy az AI Form Builderrel.
+3. Add hozzá a mezőket, állíts be validációkat és feltételes logikát.
+4. Konfiguráld az értesítéseket (email/SMS) és a megerősítési üzenetet.
+5. Ha kell fizetés, kapcsold be a gateway-t és add meg a kulcsokat.
+6. Kösd össze integrációkkal (CRM, táblázat, automatizáció).
+7. Ágyazd be az űrlapot blokkal vagy rövidkóddal.
+8. Tesztelj valós adatokkal, kapcsold be a spamvédelmet, publikáld.
+9. Kövesd a riportokat, exportálj, és finomhangolj a konverzióért.
 
-### Egyéni CSS és JS
-Nagyobb szabadságra vágysz? Használj egyéni CSS-t és JS-t, hogy még tovább testreszabhasd az űrlapjaidat.
-
-### Landing page létrehozása
-Alakítsd át az űrlapjaidat gyönyörű landing oldalakká anélkül, hogy shortcode-okat kellene használnod.
-
-## Adatkezelés és Integrációk
-
-### Több mint 45 harmadik fél integráció
-Kapcsold össze a Fluent Forms-t a kedvenc eszközeiddel az adatkezeléshez és hatékony adatvezérelt döntések meghozatalához.
-
-### Űrlap exportálás és importálás
-Exportálj és importálj űrlapokat egyetlen kattintással. Könnyed migráció adatvesztés nélkül.
-
-### Bejegyzések exportálása
-Exportáld az űrlapbejegyzéseket különféle formátumokba további elemzés céljából.
-
-## További Funkciók
-
-### Egyszeri kattintásos migráció
-Migrálj más űrlap pluginokról zökkenőmentesen anélkül, hogy adatvesztéstől kellene tartanod.
-
-### CLI támogatás
-Kezeld az űrlapjaidat parancssori interfész (CLI) segítségével. Könnyen irányíthatod az űrlapokat.
-
-### GDPR kompatibilitás
-A Fluent Forms tartalmazza a GDPR-megfelelőséghez szükséges mezőket, hogy biztonságban tartsd az ügyfeleid adatait.
-
-### Akció horgok fejlesztőknek
-Az akció horgok lehetővé teszik a fejlett űrlap funkciók hozzáadását, amelyek natívan nem érhetők el.
-
-### Mentés és folytatás
-A felhasználók elmenthetik az űrlapot, majd később folytathatják a kitöltést ugyanazzal a linkkel.
-
-### PDF & Aláírás kiegészítő
-Automatikusan generálj PDF fájlokat az űrlapon beküldött adatok alapján.
-
-### Űrlap ütemezése
-Időzítsd, mikor jelenjen meg az űrlap, és korlátozd, amikor nem szeretnéd, hogy beküldjék.
-
-### Kettős opt-in megerősítés
-Küldj kettős opt-in emailt, és legyen lehetőséged automatikusan törölni a bejegyzéseket bizonyos napok elteltével.
-
-### Üres beküldés megakadályozása
-Engedélyezd ezt a funkciót, hogy ne lehessen üres űrlapot beküldeni, ha nincs kötelező mező.
-
-### Email értesítés
-Kapj azonnali email értesítést, amikor valaki beküld egy űrlapot. Használhatsz CC-t, BCC-t és feltételes logikát is, ha szükséges.
-
-### Feltételes visszaigazolások
-Ha a leadjeid nem felelnek meg bizonyos logikáknak vagy nem hajtanak végre bizonyos műveleteket, küldj egyedi üzeneteket.
-
-### Űrlap kereső az oldalon
-Könnyen megtalálhatod, mely oldalak használják az űrlapjaidat közvetlenül az űrlap irányítópultról.
-
-### Vizuális adatjelentések
-A beküldött bejegyzések alapján a Fluent Forms diagramokat készít, hogy jobban megértsd az adatokat.
-
-### Email összegzések
-Tudj meg többet arról, hogyan teljesítenek az űrlapjaid. Kapj heti összegzést az email címedre.
-
-### Kuponkódok
-Adj lehetőséget a leadeknek kuponkódok használatára. Több kupont is kínálhatsz a Fluent Forms segítségével.
-
-## Gyakorlati Példák
-
-- **E-commerce fizetési integráció**: Használd Stripe vagy PayPal fizetési lehetőségeket termékeid értékesítéséhez.
-- **Ügyfél elégedettségi felmérések**: Hozz létre kvízeket és felméréseket ügyfélvélemények gyűjtésére.
-- **Többlépcsős regisztráció**: Oszd több lépésre a regisztrációs folyamatot a jobb felhasználói élmény érdekében.
-- **Automatikus blogbejegyzések**: Engedd meg a felhasználóknak, hogy tartalmakat küldjenek be, amelyek automatikusan blogbejegyzésekké alakulnak.
-- **Fájlbeküldési rendszerek**: Használd a fájl- és kép feltöltési funkciókat állásjelentkezésekhez vagy versenyekhez.
-  
-## Szószedet
-
-- **Drag & Drop**: Húzd és ejtsd módszerrel történő szerkesztés.
-- **Conditional Logic**: Feltételes logika.
-- **CSV Export**: Adatok exportálása CSV formátumban.
-- **GDPR Compliance**: Az Európai Unió adatvédelmi rendeletének való megfelelés.
-- **CLI**: Parancssori interfész.
-- **PDF Generator**: PDF fájlok automatikus generálása.
-- **Double Opt-in**: Kettős beleegyezési folyamat.
+A Fluent Forms-t a WPManageNinja csapata fejleszti. Egyetlen bővítménnyel kapsz no‑code űrlapkészítést, nagy teljesítményt, fizetést, riportot és integrációkat – mindezt úgy, hogy közben könnyen skálázható marad a folyamatod.

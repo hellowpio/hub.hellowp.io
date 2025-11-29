@@ -1,49 +1,109 @@
-# Meta Box Geolocation
+---
+title: "Meta Box Geolocation"
+description: "Prémium Meta Box kiegészítő, amely Google Maps vagy OpenStreetMap alapján automatikusan kitölti a cím- és koordinátamezőket WordPress űrlapokon."
+sidebar_label: "Meta Box Geolocation"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A Meta Box Geolocation egy olyan bővítmény, amely automatikusan és azonnal kitölti a helyadatokat a Google Maps vagy Open Street Maps Geolocation API segítségével. Ez lehetővé teszi, hogy az olyan mezők, mint az irányítószám, állam, ország és egyéb helyadatok automatikusan kitöltődjenek, amikor a felhasználó beír egy címet.
+A Meta Box Geolocation egy fejlesztőbarát kiegészítő a Meta Box keretrendszerhez. Segítségével a felhasználó elég, ha a címmezőbe gépelni kezd, és az automatikus kiegészítés alapján a bővítmény kitölti a kapcsolódó mezőket (város, megye/állam, irányítószám, ország, szélesség/hosszúság stb.). Így elkerülöd a kézi, időigényes címbevitel hibáit, és egységes, standardizált helyadatokat kapsz minden bejegyzésnél.
 
-### Integráció más eszközökkel
+Tipikus felhasználás: ingatlanhirdetések, események, több telephelyes vállalkozások adatlapjai, „store locator” megoldások – mindenhol, ahol cím és koordináták kellenek.
 
-A Meta Box Geolocation zökkenőmentesen működik együtt a következő eszközökkel:
-- **Google Maps API**: A világ egyik legnagyobb és legpontosabb térkép adatbázisa.
-- **Open Street Maps API**: Nyílt forráskódú és közösségi alapú térkép adatbázis.
+## Hogyan működik?
 
-### Specifikus előnyök
+- A bővítmény a címmezőbe írt adatot elküldi a Google Maps vagy az OpenStreetMap geokódolójának.
+- A szolgáltatás visszaadja a cím összetevőit (pl. locality, postal_code, country), illetve a szélesség/hosszúság koordinátákat.
+- A plugin a találatokat a megfelelő mezőidbe írja. Nem csak azonos nevű mezőket kezel: rugalmas kötéseket is beállíthatsz (lásd lent).
+- Ha használsz térképmezőt (Google „map” vagy OSM „osm”), kétirányú szinkron jön létre:
+  - cím vagy lat/lng módosítása mozgatja a jelölőt,
+  - jelölő mozgatása frissíti a koordinátákat.
+  - Fontos: a cím szövege nem íródik vissza a jelölő mozgatásából.
+- Több címcsoportot is kezel (pl. központ és fióktelep): az address_field paraméterrel minden mezőt a megfelelő címmezőhöz köthetsz.
+- Google esetén szűrheted az eredményeket országra és típusokra (pl. csak címek), így pontosabb találatokat kapsz. OSM-nél nincs kulcs vagy extra konfiguráció.
 
-- **Automatikus kitöltés**: Nincs többé szükség arra, hogy manuálisan töltsd ki a helyadatokat, minden automatikusan kitöltődik.
-- **Időtakarékos**: Az automatikus kitöltés gyorsabbá és egyszerűbbé teszi az adatbevitelt.
-- **Pontosság**: A Google Maps és az Open Street Maps adatbázisainak köszönhetően az adatok pontosak és naprakészek.
-- **Kötési sablon**: Lehetőség van összetett adatok egy mezőbe való mentésére, például állam és ország kombinálása egy mezőbe.
-- **Egyszerű használat**: Könnyen integrálható és használható a Meta Box bővítménnyel.
+## Fő funkciók részletesen
 
-### Hatékony használati tippek
+- Autocomplete és automatikus kitöltés: ahogy gépelsz a címmezőben, valós időben kapsz találatokat; a kiválasztás után a komponensek bekerülnek a megfelelő mezőkbe.
+- Kétirányú kötés a térképhez: a koordináták és a jelölő mindig szinkronban maradnak, így az adminban és a frontenden is kényelmes a pozicionálás.
+- Rugalmas „binding”: bármely mezőt bármely címkomponenshez köthetsz, akár összefűzéssel is (pl. „házszám + utca”). Rendelkezésre állnak „rövid” variánsok is (pl. államkód).
+- Több címcsoport: egy űrlapon több független címmezőt is kezelhetsz, és pontosan meghatározhatod, mely mezők melyik címhez tartozzanak.
+- Két szolgáltató: Google (API-kulcs szükséges) vagy OpenStreetMap (kulcs nélkül). Saját adatbázist nem kell fenntartanod.
 
-- **Mezők regisztrálása**: Csak regisztrálnod kell a kívánt mezőket (cím, irányítószám, ország stb.) normál mezőkként a Meta Box-ban.
-- **API kulcsok kezelése**: Győződj meg róla, hogy a megfelelő API kulcsokat használod a Google Maps vagy Open Street Maps esetében.
+## Gyakorlati példák
 
-## Gyakorlati alkalmazások
+- Ingatlan lista: az ügynök csak beírja a címet, a rendszer automatikusan tölti a várost, irányítószámot, országot és a lat/lng-t. A térképjelölőt finomíthatod, a koordináták frissülnek.
+- Eseménybeküldés frontenden: a felhasználó címre keres, kiválasztja a találatot, az űrlap minden címmezőt helyesen kitölt. Az MB Frontend Submission-nel a folyamat kódolás nélkül kihelyezhető.
+- Store locator több telephellyel: „Központ” és „Fióktelep” címmezőpár, külön térképekkel. Az address_field gondoskodik róla, hogy minden mező a megfelelő címhez tartozzon.
 
-### Webshopok
+## Bevezetés és konfiguráció
 
-A Meta Box Geolocation kiválóan használható webshopokban, ahol pontos szállítási címekre van szükség. Az automatikus kitöltés segít abban, hogy elkerüljük a hibás címadatokat, így gyorsabb és pontosabb szállítást biztosítva.
+1) Válaszd ki a szolgáltatót:
+- Google: engedélyezd a szükséges API-kat és szerezz API-kulcsot.
+- OSM: nincs kulcs, azonnal használható.
 
-### Éttermek és kávézók
+2) Add hozzá a geolokációt a Meta Box csoporthoz:
+- OSM-hez elég a geo kapcsoló.
+- Google-höz add meg az API-kulcsot.
 
-Az éttermek és kávézók számára is hasznos lehet, hogy gyorsan és pontosan rögzíthessék a telephelyeik címadatait. Ez különösen hasznos lehet, ha több telephelyet kezelnek, és minden adatot pontosan szeretnének rögzíteni.
+3) A címmező azonosítója kezdődjön „address”-szel az automatikus javaslatokhoz.
 
-### Szolgáltatói oldalak
+4) A kapcsolódó mezők azonosítója legyen címkomponens (pl. locality, postal_code), vagy használd a binding paramétert.
 
-Az olyan szolgáltatói oldalak esetében, mint például ingatlanügynökök vagy szervizszolgáltatók, a Meta Box Geolocation segít abban, hogy a szolgáltatási területek pontosan legyenek rögzítve és megjelenítve.
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+  $meta_boxes[] = [
+    'title' => 'Helyadatok',
+    // OSM:
+    // 'geo' => true,
+    // Google:
+    'geo'  => [ 'api_key' => 'YOUR_GOOGLE_API_KEY' ],
+    'fields' => [
+      [ 'id' => 'address_main', 'type' => 'text', 'name' => 'Cím (központ)' ],
+      [ 'id' => 'locality',     'type' => 'text', 'name' => 'Város',        'address_field' => 'address_main' ],
+      [ 'id' => 'postal_code',  'type' => 'text', 'name' => 'Irányítószám', 'address_field' => 'address_main' ],
+      [ 'id' => 'country',      'type' => 'text', 'name' => 'Ország',       'address_field' => 'address_main' ],
+      [ 'id' => 'lat',          'type' => 'text', 'name' => 'Szélesség',    'address_field' => 'address_main' ],
+      [ 'id' => 'lng',          'type' => 'text', 'name' => 'Hosszúság',    'address_field' => 'address_main' ],
+      // Binding példa: teljes utca mező összeállítása
+      [ 'id' => 'street_full',  'type' => 'text', 'name' => 'Utca + házszám', 'binding' => 'street_number + " " + route', 'address_field' => 'address_main' ],
+      // Térképmező (Google: map, OSM: osm)
+      [ 'id' => 'map', 'type' => 'map', 'address_field' => 'address_main', 'lat_field' => 'lat', 'lng_field' => 'lng' ],
 
-## Szószedet
+      // Második címcsoport (fióktelep):
+      [ 'id' => 'address_branch', 'type' => 'text', 'name' => 'Cím (fióktelep)' ],
+      [ 'id' => 'locality_branch','type' => 'text', 'name' => 'Város', 'address_field' => 'address_branch' ],
+    ],
+  ];
+  return $meta_boxes;
+} );
+```
 
-- **API**: Application Programming Interface - Alkalmazásprogramozási felület.
-- **Geolocation**: Helymeghatározás, amely meghatározza egy eszköz földrajzi helyzetét.
-- **Meta Box**: Egy bővítmény WordPresshez, amely lehetővé teszi egyedi mezők létrehozását és kezelését.
-- **Kötési sablon**: Egy mechanizmus, amely lehetővé teszi több adat egy mezőbe való kombinálását.
-- **Google Maps API**: Egy szolgáltatás, amely térképeket és helyadatokat nyújt a Google-tól.
-- **Open Street Maps API**: Egy közösségi alapú térkép szolgáltatás, amely nyílt forráskódú.
+Tippek:
+- Több cím esetén minden kapcsolódó mezőn add meg az address_field-et.
+- A jelölő mozgatása frissíti a koordinátákat; a cím szövegét nem írja felül.
 
-A Meta Box Geolocation segítségével jelentős időt takaríthatsz meg az adatbevitel során, miközben biztosítod a helyadatok pontosságát és megbízhatóságát.
+## Előnyök és értékajánlat
+
+- Időmegtakarítás: megszűnik a kézi címkomponens-bevitel.
+- Kevesebb hiba: konzisztens, szabványosított adatok (rövid/hosszú államnév, pontos irányítószám).
+- Egyszerű integráció: nincs szükség egyedi Google/OSM kódolásra; elég a Meta Box meződefiníció.
+- Rugalmasság: tetszőleges mezőkötés, több címcsoport, térkép-szinkron.
+- Költségkontroll: ha nem szeretnél Google-kulcsot és számlázást, használd az OSM-et.
+
+## Kinek ajánlott?
+
+- Ingatlanportálok és hirdetési oldalak, ahol pontos helyadat kell listázáshoz és térképes kereséshez.
+- Eseményoldalak és rendezvénynaptárak, ahol a szervezők vagy felhasználók címeket adnak meg.
+- Vállalkozások és ügynökségek több telephellyel (üzletek, irodák), „store locator” funkcióhoz.
+- Katalógusok, címtárak, turisztikai oldalak, ahol a standardizált címadat elengedhetetlen.
+- WordPress fejlesztők, akik gyorsan szeretnének megbízható geokódolást beépíteni admin és frontend űrlapokba.
+
+## Korlátozások és megjegyzések
+
+- A bővítmény a Meta Box mezőivel működik; más űrlapbővítők saját mezőit nem tölti ki automatikusan.
+- Google használatához megfelelően beállított API-kulcs kell; OSM-hez nem.
+- Az autocomplete a címmező azonosítójának „address” előtagjához kötött.
+- A cím szövegmező nem frissül vissza a térképen végzett manuális mozgatásból.
+- Frontendhez használható a Meta Box frontend űrlapkészítő megoldása.
+- Prémium kiegészítő, nyílt forrású (GPL v2+). A bővítményt a Meta Box csapat (eLightUp) fejleszti.

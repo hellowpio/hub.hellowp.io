@@ -1,57 +1,84 @@
-# WP Grid Builder - Bricks
+---
+title: "WP Grid Builder - Bricks"
+description: "Hivatalos kiegészítő, amely a WP Grid Builder facetes szűrését és rugalmas rácsait natívan beépíti a Bricks szerkesztőbe – kód és shortcode nélkül."
+sidebar_label: "WP Grid Builder - Bricks"
+---
 
-A WP Grid Builder - Bricks egy kiegészítő, amely integrálja a WP Grid Builder-t a Bricks szerkesztővel. Ez a kiegészítő két új elemet ad hozzá a Bricks szerkesztőhöz, amelyek lehetővé teszik a rácsok és facetek könnyű hozzáadását az editorban. Ezek az elemek az editorban is megjelennek, ami jobb felhasználói élményt nyújt a shortcode-ok használatához képest.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A WP Grid Builder – Bricks egy hivatalos kiegészítő, amely összekapcsolja a WP Grid Buildert a Bricks vizuális oldalépítővel. Két új Bricks‑elem (Grid és Facet) jelenik meg, így közvetlenül a vásznon tudsz facetes szűrést és fejlett rácsokat építeni. Nem kell shortcode‑okkal vagy egyedi kóddal bajlódnod: az összerendelés kattintással történik, a találatok pedig azonnal, oldalújratöltés nélkül frissülnek.
 
-### Új elemek hozzáadása
-A kiegészítő két új elemet ad hozzá a Bricks szerkesztőhöz:
-- Grid elem: lehetővé teszi rácsok hozzáadását.
-- Facet elem: lehetővé teszi szűrők hozzáadását.
+A kiegészítő különösen akkor hasznos, ha sok elemet (bejegyzéseket, termékeket, portfóliót) szeretnél gyorsan és pontosan szűrhetővé tenni Bricks alatt.
 
-### Szűrési lehetőségek
-A facetek lehetővé teszik több elem szűrését a Bricks szerkesztőből. Ez a kiegészítő javítja a szűrési teljesítményt is, mivel csak a szűrendő elemeket tölti be és rendereli, nem az egész oldalt.
+## Hogyan működik röviden?
 
-### Támogatott elemek
-A kiegészítő támogatja az alábbi elemek szűrését:
-- Bejegyzések
-- Termékek
-- Konténerek, blokkok és div elemek
+- A Bricksben megjelenik két új elem: **Grid** és **Facet**.
+- A **Grid** elem képes WP Grid Builder rácsok és archív eredmények megjelenítésére.
+- A **Facet** elem kiválaszt egy szűrendő célt (Grid, Posts, Products, vagy akár Container/Block/Div), és AJAX‑szal frissíti annak tartalmát – csak a szükséges komponensek renderelődnek újra, nem az egész oldal.
+- Ha a szűrendő elem nem ugyanazon a vásznon van (például popupban), a cél elem azonosítója is megadható.
 
-### Használat
+Példa elem‑azonosító:
+```
+#brxe-abc123
+```
 
-Miután aktiváltad a kiegészítőt, két új elem lesz elérhető a Bricks szerkesztőben. A szűrni kívánt elemeket egyszerűen hozzáadhatod egy Facet elem beillesztésével, majd kiválasztod a szűrendő elemet a “Select a grid or element to filter” legördülő listából. Ha egy olyan elemet kell szűrnöd, ami nincs jelen az oldalon (pl. egy popup sablonból), akkor meg kell adnod az elem ID-ját, amely a “#brxe-” előtaggal kezdődik.
+## Fő funkciók, érthetően
 
-## Előnyök
+- **Két natív Bricks‑elem (Grid, Facet)**: A Grid a megjelenítést adja (Masonry/Metro/Justified, reszponzív beállítások, lazy‑loading), a Facet pedig a szűrést (taxonómiák, mezők, tartományok, kereső).
+- **Facetes szűrés Bricks elemekre**: Nem csak rácsokra, hanem a Bricks saját elemeire is alkalmazhatod (Posts, Products, Container/Block/Div). Archív sablonok eredményei is megjeleníthetők Gridben.
+- **Teljesítményorientált működés**: A WP Grid Builder index‑táblát és egyedi AJAX végpontokat használ a gyors szűréshez. Így nagy adatállomány mellett is azonnali a reakció, minimális szerver‑ és hálózati terheléssel.
+- **Széles facet‑típus választék**: Kategória/címke választók, ár‑ és dátumtartomány, értékelés, készlet, egyedi mezők (ACF/Meta Box/PODS kompatibilitás), keresőmező, pagináció és “Load more”.
+- **URL és előzmény szinkron**: A választott szűrési állapot megosztható és visszaállítható (hasznos kampányokhoz, ügyfélszolgálathoz).
+- **WooCommerce‑re optimalizálva**: Ár, készlet, akció, értékelés szerinti szűrés; termékkatalógusok gyors, stabil facetezése.
+- **Szerkesztőben élő előnézet**: Amit beállítasz, azt azonnal látod. Nincs shortcode, nincs találgatás.
 
-### Gyorsabb szűrési teljesítmény
-A kiegészítő gyorsabb szűrést tesz lehetővé, mivel csak a szűrendő elemeket tölti be és rendereli, nem az egész oldalt. Ez különösen hasznos lehet nagyméretű adatbázisok esetén.
+## Gyors beállítás lépésről lépésre
 
-### Egyszerű integráció
-Az elemek közvetlenül elérhetők a Bricks szerkesztőben, így nincs szükség shortcode-ok használatára, ami egyszerűbbé és gyorsabbá teszi a munkafolyamatot.
-
-### Széleskörű kompatibilitás
-A WP Grid Builder - Bricks zökkenőmentesen együttműködik más népszerű bővítményekkel is, mint például:
-- WooCommerce: lehetővé teszi termékek gyors és hatékony szűrését.
-- ACF (Advanced Custom Fields): lehetővé teszi egyedi mezők használatát a szűrőkben.
+1. Telepítsd és aktiváld a WP Grid Buildert és a Brickshez készült kiegészítőt.
+2. Nyisd meg az oldalt Bricksben, ahová a listát és a szűrőket szeretnéd.
+3. Helyezd el a **Grid** elemet (vagy használd a Bricks Posts/Products elemet).
+4. Helyezd el a **Facet** elemet.
+5. A Facet elemben a “Select a grid or element to filter” legördülőben válaszd ki a szűrendő elemet. Ha a cél popupban van, add meg az elem ID‑ját, például:
+   ```
+   #brxe-abc123
+   ```
+6. Szükség esetén futtasd a WP Grid Builder indexelését (különösen új mezők/facetek után).
+7. Teszteld a szűrési kombinációkat és a paginációt/“Load more” működését.
 
 ## Gyakorlati példák
 
-### Webshop termékek szűrése
-Ha egy webshopot üzemeltetsz, a WP Grid Builder - Bricks lehetővé teszi, hogy a látogatók gyorsan és egyszerűen megtalálják az általuk keresett termékeket különböző szűrők segítségével (pl. ár, kategória, márka).
+- **Blog/portfólió**: Kategória + címke + szerző + dátumtartomány. A felhasználó kiválasztja a témát és az időszakot, a lista azonnal frissül.
+- **Termékkatalógus**: Ár csúszka + készlet + értékelés + attribútumok (méret, szín). A készlet és az ár azonnal szűkíti a találatokat, nincs oldalfrissítés.
+- **Csapat/adatbázis**: Telephely + készségek + osztály. Gyors belső kereséshez és HR‑szűréshez ideális.
+- **Események**: Dátumtartomány + helyszín + kategória. Naptárnézet helyett facetes listával pontos találatokat adsz.
 
-### Blogbejegyzések szűrése
-Egy blogoldalon a látogatók könnyen szűrhetik a bejegyzéseket kategória, címke vagy dátum alapján, így gyorsan megtalálhatják a számukra releváns tartalmakat.
+## Bevált gyakorlatok és korlátozások
 
-### Portfólió projektek megjelenítése
-Egy portfólió oldalon a látogatók egyszerűen szűrhetik a projekteket típus, dátum vagy ügyfél alapján, így könnyen áttekinthetik az eddigi munkáidat.
+- **Ne használd** a Bricks “Infinite scroll” opcióját ezeknél a listáknál; helyette alkalmazz **paginációs facete**t vagy **Load more**‑t.
+- A Bricks “Cache query loop” opcióját **kapcsold ki**, különben váratlan lekérdezési viselkedést kaphatsz.
+- A **facet és a szűrendő elem legyen ugyanazon az oldalon**. Popupnál adj meg elemazonosítót.
+- **Ne keverd** más szűrési rendszerekkel (például a Bricks saját filtereivel), mert ütközésekhez vezethet.
+- **Query Loop karusszelben/sliderben nem támogatott** – a facetes frissítés nem fog megbízhatóan működni.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Grid**: Rács elrendezés.
-- **Facet**: Szűrő elem.
-- **Bricks**: WordPress oldalépítő bővítmény.
-- **WooCommerce**: WordPress e-commerce bővítmény.
-- **ACF (Advanced Custom Fields)**: Egyedi mezők kezelésére szolgáló bővítmény.
+- **Kódmentes facetezés** Bricks alatt: percek alatt összekattintható.
+- **Villámgyors** szűrés nagy adatbázison is az index‑tábla és az egyedi AJAX miatt.
+- **Konzisztens szerkesztői élmény**: élő előnézet, nincs shortcode.
+- **E‑kereskedelemre kész**: ár/készlet/értékelés és egyedi attribútumok szűrése.
+- **Megosztható találati állapot**: URL‑szinkronnal könnyebb támogatást és kampánykommunikációt adni.
 
-Ez az útmutató részletesen bemutatta a WP Grid Builder - Bricks funkcionalitását és előnyeit. Reméljük, hogy ez segít jobban kihasználni a bővítmény nyújtotta lehetőségeket.
+## Kinek ajánlott?
+
+- **Bricks felhasználóknak**, akik facetes, AJAX‑os szűrést és rugalmas rácsot akarnak kódolás nélkül.
+- **Webügynökségeknek**, akik skálázható, újrahasznosítható listákat építenek ügyfeleknek.
+- **Webshopoknak**, ahol az ár, készlet és értékelés szerinti szűrés kulcs a konverzióhoz.
+- **Nagy tartalomkatalógussal** dolgozóknak (blog, híroldal, könyvtár, directory), ahol a sebesség és a pontosság kritikus.
+
+## Gyors hibaelhárítás
+
+- Nincsenek találatok? Ellenőrizd az indexelést és a facet‑beállításokat.
+- Nem frissül a lista? Kapcsold ki a Query Loop cache‑t, és ellenőrizd a cél elem kiválasztását/ID‑ját.
+- Nem működik a végtelen görgetés? Használj paginációs facete‑t vagy “Load more”‑t.
+
+Ezzel a kiegészítővel a Bricks alatt végre tényleg natív, gyors és tartósan karbantartható facetes listákat építhetsz – kompromisszumok és kódolás nélkül.

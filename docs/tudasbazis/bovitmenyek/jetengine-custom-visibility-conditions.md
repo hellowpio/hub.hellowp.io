@@ -1,54 +1,91 @@
-# JetEngine - Custom visibility conditions
+---
+title: "JetEngine - Custom visibility conditions"
+description: "Ingyenes JetEngine kiegészítő, amely két új láthatósági feltételt ad a Dynamic Visibility modulhoz: bejegyzés-státusz és szerzőség alapján vezérelt megjelenítés."
+sidebar_label: "JetEngine - Custom visibility conditions"
+---
 
-A JetEngine bővítmény Custom visibility conditions funkcionalitása lehetővé teszi, hogy egyedi feltételek alapján jelenítsünk meg vagy rejtsünk el tartalmakat a weboldalon. Ez a funkció rendkívül hasznos lehet különböző felhasználói szerepkörök, bejelentkezési állapotok, eszköztípusok és sok más feltétel alapján történő tartalomkezeléshez.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők
+A Custom visibility conditions egy ingyenes JetEngine add‑on, amellyel a **Dynamic Visibility** modul két új feltétellel bővül: **Post Status is** és **Is post by current user**. Ezekkel kódolás nélkül szabályozhatod, hogy a Single Page sablonon mely elemek (szekciók, oszlopok, widgetek) látszódjanak a bejegyzés aktuális státusza vagy a bejelentkezett felhasználó szerzősége alapján. Amit korábban egyedi PHP‑val oldottál meg, itt néhány beállítással elérhető.
 
-### Feltételek beállítása
+## Fő funkciók
 
-A Custom visibility conditions segítségével különböző feltételeket állíthatsz be, amelyek alapján meghatározod, hogy egy adott tartalom mikor és kinek jelenjen meg. Például:
-- **Felhasználói szerepkörök**: Meghatározhatod, hogy egy adott tartalom csak adminisztrátoroknak, szerzőknek vagy előfizetőknek legyen látható.
-- **Bejelentkezési állapot**: Külön tartalmat jeleníthetsz meg bejelentkezett és nem bejelentkezett felhasználók számára.
-- **Eszköztípusok**: Mobil vagy asztali eszközök alapján is szűrheted a megjelenített tartalmat.
-- **Dátum és idő**: Időalapú feltételeket is megadhatsz, például csak egy adott időszakban legyen látható egy tartalom.
+### Post Status is
+Ezzel a feltétellel az adott bejegyzés **státusza** alapján jeleníthetsz meg vagy rejthetsz el elemeket. Hasznos, ha külön üzenetet vagy gombot szeretnél mutatni például vázlat (draft), jóváhagyásra vár (pending) vagy közzétett (publish) állapotban. Több státuszt is megadhatsz, így összetett szabályokat építhetsz.
 
-### Más eszközökkel való kompatibilitás
+Mit csinál pontosan?
+- Ellenőrzi a Single Page sablonban betöltött bejegyzés státuszát.
+- Ha a státusz egyezik a megadott(akkal), a beállított láthatósági akció (Show/Hide) érvényesül.
 
-A JetEngine zökkenőmentesen működik együtt más népszerű WordPress bővítményekkel, mint például:
-- **Elementor**: Könnyedén integrálható az Elementor vizuális szerkesztőjével, így drag-and-drop módszerrel állíthatod be a láthatósági feltételeket.
-- **WooCommerce**: Termékek és ajánlatok láthatóságát is szabályozhatod különböző vásárlói csoportok számára.
-- **JetSmartFilters**: Speciális szűrőfeltételeket is beállíthatsz, amelyek segítségével még inkább személyre szabhatod a megjelenített tartalmakat.
+### Is post by current user
+Ezzel a feltétellel azt szabályozod, hogy egy elem **csak a bejegyzés szerzője** számára legyen látható. Ideális szerzői visszajelzésekhez, “Szerkesztés” gombhoz vagy olyan CTA‑khoz, amelyeket kizárólag a poszt készítője láthat.
 
-## Konkrét helyzetek és gyakorlati példák
+Mit csinál pontosan?
+- Összeveti a betöltött bejegyzés szerzőjét a bejelentkezett felhasználóval.
+- Ha megegyezik, a beállított láthatóság érvényesül.
 
-### Felhasználói szerepkörök alapú megjelenítés
+Megjegyzés: a két extra feltétel dokumentáltan a **Single Page** sablonon működik.
 
-Ha például van egy prémium tartalmad, amit csak előfizetőknek szeretnél megmutatni, beállíthatod, hogy csak azok a felhasználók lássák, akik rendelkeznek a megfelelő szerepkörrel. Így biztosíthatod, hogy az exkluzív tartalom valóban csak azokhoz jusson el, akik fizettek érte.
+## Gyakorlati példák
 
-### Bejelentkezési állapot szerinti szűrés
+- Szerkesztőségi workflow: jeleníts meg egy “Vár jóváhagyásra” bannert, amikor a bejegyzés **pending** vagy **draft**. Amint **publish** lesz, a banner automatikusan eltűnik.
+- Szerzői eszközök: mutass “Köszönjük a beküldést” üzenetet és “Szerkesztés” gombot **csak a szerzőnek**. Más felhasználók ezt nem látják.
+- Összetett szabály: időzített szerzői üzenet, ami kizárólag a poszt szerzőjének jelenik meg az első 48 órában (a Dynamic Visibility idő/dátum feltételeivel kombinálva).
 
-Egy webshopban lehetőség van arra, hogy a bejelentkezett felhasználók számára speciális ajánlatokat jeleníts meg, míg a nem bejelentkezett látogatók csak az alapvető információkat lássák. Ez ösztönözheti a felhasználókat a regisztrációra és a bejelentkezésre.
+## Telepítés és aktiválás
 
-### Eszköztípus szerinti szűrés
+Két módon telepítheted:
+1. A WordPress Vezérlőpultban menj a **JetEngine > External Modules** menübe, és kapcsold be a **Custom visibility conditions** modult.
+2. Töltsd le a kiegészítőt, telepítsd bővítményként, majd a JetEngine irányítópultján aktiváld a kapcsolóját.
 
-Mobil felhasználóknak speciális, mobilbarát tartalmat jeleníthetsz meg, míg az asztali felhasználók számára részletesebb információkat nyújthatsz. Ezzel javíthatod a felhasználói élményt és optimalizálhatod a tartalmakat az adott eszközök igényei szerint.
+Használat:
+- **Elementor**: az elem Advanced > **Dynamic Visibility** részében kapcsold be a funkciót, állítsd be a Visibility actiont (**Show** vagy **Hide**), majd válaszd ki és konfiguráld a fenti két feltétel egyikét.
+- A Dynamic Visibility modul általánosan működik **Gutenberg** és **Bricks** szerkesztőkben is; haladó esetekhez shortcode‑ok is elérhetők.
 
-### Időalapú feltételek
+## Konfigurációs minták
 
-Például promóciós kampányok esetén beállíthatod, hogy az akciós ajánlat csak egy adott időszakban legyen látható. Így automatikusan eltűnik a promóció lejárta után, anélkül, hogy manuálisan kellene beavatkozni.
+Post Status is – többszörös státusz:
+```
+Condition: Post Status is
+Values: draft, pending, future
+Action: Show
+```
+Ezzel például egy figyelmeztetés látszik minden nem publikált poszton.
 
-## Tippek a hatékony használathoz
+Is post by current user – szerzői gomb:
+```
+Condition: Is post by current user
+Action: Show
+Element: “Szerkesztés” gomb
+```
+A gomb csak annak a felhasználónak jelenik meg, aki a poszt szerzője.
 
-- **Tesztelj különböző feltételeket**: Mielőtt élesben alkalmaznád a feltételeket, mindig teszteld le azokat egy tesztkörnyezetben.
-- **Kombinált feltételek**: Használj kombinált feltételeket (például szerepkör és eszköztípus), hogy még precízebben szabályozhasd a tartalom láthatóságát.
-- **Dokumentáció és közösség**: Használd ki a JetEngine részletes dokumentációját és a felhasználói közösség segítségét a bonyolultabb beállításokhoz.
+Kombinált szabály (AND logika a felületen több feltétellel):
+- Post Status is: draft, pending
+- Is post by current user: true
+- Action: Show
+Eredmény: a banner csak a szerzőnek látszik, amíg a poszt nincs közzétéve.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Elementor**: Vizuális oldalépítő bővítmény WordPresshez.
-- **WooCommerce**: E-kereskedelmi bővítmény WordPresshez.
-- **JetSmartFilters**: Szűrőkezelő bővítmény dinamikus tartalmakhoz.
-- **Felhasználói szerepkör**: A WordPress rendszerben egy adott felhasználói csoport jogosultságai és hozzáférései.
-- **Bejelentkezési állapot**: A felhasználó jelenlegi státusza (bejelentkezett vagy nem bejelentkezett).
+- **Kód nélküli feltételes megjelenítés**: nincs szükség egyedi sablonlogikára, PHP‑ra.
+- **Pontos célzás**: csak annak mutatsz elemeket, akinek releváns (pl. szerző).
+- **Gyorsabb munkafolyamat**: státuszfüggő üzenetek és vezérlők egy helyen, vizuálisan állíthatók.
+- **Kombinálhatóság**: illeszkedik a Dynamic Visibility széles feltételrendszerébe (szerepkör, bejelentkezés, dátum/idő, query, stb.), így komplex szabályláncokat építhetsz.
 
-A JetEngine - Custom visibility conditions funkcionalitása sokoldalú eszközt kínál a tartalmak dinamikus megjelenítésére és rejtésére, így hozzájárulhat a weboldalak felhasználói élményének javításához és személyre szabásához.
+## Célközönség
+
+- **Tartalomkezelők és szerkesztők**: jóváhagyási és moderációs folyamatok vizuális támogatása.
+- **UGC platformok üzemeltetői**: szerzői visszajelzések, privát szerzői eszközök megjelenítése.
+- **Fejlesztők és site builderek**: gyors prototípus és tiszta megvalósítás kódolás nélkül, bármely támogatott szerkesztőben.
+
+## Kompatibilitás, korlátok és jó gyakorlatok
+
+- **Követelmények**: szükséges a JetEngine és a Dynamic Visibility modul; az add‑on önmagában nem használható.
+- **Sablon‑környezet**: a két extra feltétel a **Single Page** sablonon érvényes.
+- **Frontenden vezérel**: megjelenítést szabályoz, de **nem helyettesít** jogosultság‑kezelést. A feltöltés/szerkesztés engedélyeit továbbra is WordPress képességekkel, JetEngine Profile Builderrel vagy más hozzáférés‑kezeléssel kezeld.
+- **Gyorsítótárazás**: erős cache vagy statikus generálás befolyásolhatja a feltételek kiértékelését. Teszteld bejelentkezett és vendég nézetben is.
+
+## Összefoglalás
+
+A JetEngine – Custom visibility conditions célzott, ingyenes kiegészítő, amellyel státusz‑ és szerzőalapú láthatósági szabályokat állíthatsz be a Single Page sablonon. Egyszerűsíti a szerkesztőségi folyamatokat, javítja a szerzői élményt, és zökkenőmentesen kombinálható a Dynamic Visibility további feltételeivel – mindezt kódolás nélkül, a vizuális szerkesztőkben.

@@ -1,49 +1,101 @@
-# WP Booking System - Reporting Add-on
+---
+title: "WP Booking System - Reporting Add-on"
+description: "A WP Booking System analitikai modulja: grafikonos műszerfal foglalásokhoz és bevételekhez, naptár- és időintervallum szerinti bontással."
+sidebar_label: "WP Booking System - Reporting Add-on"
+---
 
-A WP Booking System - Reporting Add-on egy kiegészítő, amely lehetővé teszi a foglalások átfogó statisztikáinak és jelentéseinek megtekintését. Ez az eszköz rendkívül hasznos lehet minden olyan vállalkozás számára, amely rendszeresen használ online foglalási rendszert, hiszen részletes betekintést nyújt a foglalások alakulásába, a bevételek növekedésébe és a foglalások számába. 
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+A Reports (közkeletűen: Reporting) Add-on a WP Booking System prémium bővítmény hivatalos kiegészítője, amely egy **jelentéskészítő és statisztikai műszerfalat** ad a WordPress adminfelülethez. Segítségével egy helyen látod a **foglalások számát**, a **bevételeket**, a **foglalással terhelt éjszakákat** és további kulcsmutatókat. Nem kell többé manuálisan Excelben összevadásznod az adatokat: a trendek és szezonális változások gyorsan, vizuálisan érthetők, így időben hozhatsz döntéseket árazásról, minimum tartózkodásról vagy promóciókról.
 
-### Jelentések és statisztikák
-A Reporting Add-on különböző jelentéseket és statisztikákat készít a foglalásaidról. Ezek a jelentések tartalmazzák a foglalások számát, a bevételeket, az eltöltött éjszakák számát és még sok mást. Mindezeket grafikonok formájában jeleníti meg, amelyek naptár és időintervallum szerint vannak szervezve.
+## Követelmények és telepítés
 
-### Felhasználóbarát felület
-A bővítmény egyszerűen használható felülettel rendelkezik, amelyen könnyedén áttekintheted a különböző adatokat. A grafikonok és táblázatok segítenek gyorsan megérteni a foglalási trendeket és az üzleti teljesítményt.
+- Előfeltétel: aktív **WP Booking System prémium licenc** (az add-onok a licenc részei).
+- Telepítés az adminból:
 
-### Testreszabható időintervallumok
-A jelentések időintervallumai testreszabhatók, így pontosan azokat az adatokat láthatod, amelyekre szükséged van. Választhatsz napi, heti, havi vagy éves bontást, ami különösen hasznos lehet a szezonális változások elemzéséhez.
+```
+WP Admin → WP Booking System → Add-ons → Reports → Install/Activate
+WP Admin → WP Booking System → Reports
+```
 
-### Többnaptár támogatás
-A bővítmény több naptárat is kezel, így különböző szálláshelyek vagy szolgáltatások foglalásait is nyomon követheted egy helyen. Ez különösen hasznos lehet nagyobb vállalkozások számára, amelyek többféle szolgáltatást kínálnak.
+A Reports Add-on a WP Booking System minden licencszintjében elérhető.
 
-## Előnyök
+## Hogyan működik?
 
-### Átfogó adatelemzés
-Az adatelemzés révén jobban megértheted a vendégeid szokásait és igényeit. Az adatok alapján könnyebben hozhatsz meg fontos üzleti döntéseket, például az árképzés vagy a marketing stratégia terén.
+A jelentések a WP Booking Systemben rögzített **foglalási adatokból** épülnek fel (függetlenül attól, hogy online vagy offline rögzítetted a fizetést). A műszerfalon naptár(ak)at és időintervallumot választasz, a rendszer pedig **grafikonokon** és **összesített kártyákon** mutatja:
 
-### Hatékonyabb időgazdálkodás
-A jelentések és statisztikák segítségével kevesebb időt kell az adminisztrációval töltened, így több időd marad az üzlet fejlesztésére és a vendégekkel való kapcsolattartásra.
+- foglalások darabszáma,
+- bevétel,
+- foglalt éjszakák száma,
+- valamint egyéb aggregált mutatók.
 
-### Könnyű integráció
-A WP Booking System - Reporting Add-on zökkenőmentesen integrálható más eszközökkel, mint például a Google Analytics és más analitikai eszközök. Ez lehetővé teszi, hogy még részletesebb betekintést nyerj az adataidba és összevond azokat más forrásokkal.
+A nézetek időbontása rugalmas (például nap, hét, hónap, év), így a rövid távú kilengések és a hosszabb távú szezonális trendek is láthatók. A felület a WP Booking System adminon belül jelenik meg, ezért gyorsan elérhető a Foglalások kezelése mellől.
+
+## Fő funkciók, részletesen
+
+- **Vizuális műszerfal**  
+  Interaktív grafikonok és KPI-kártyák teszik érthetővé a teljesítményt. Egy pillantással látod, mely időszakok voltak erősek vagy gyengék.
+
+- **Szűrés naptár szerint**  
+  Naptáranként (például ingatlanonként, járművenként vagy eszközönként) szűrhetsz, így pontosan kiderül, melyik egység hozza a legtöbb foglalást és bevételt.
+
+- **Időintervallum szerinti csoportosítás**  
+  Választható időbontásban (pl. nap/hét/hónap/év) vizsgálhatod az adatokat. Így azonnal észreveszed a szezonalitást vagy egy akció hatását.
+
+- **Összehasonlítás és trendek**  
+  Az egységek egymás melletti teljesítménye látható, így adat alapon priorizálhatsz: melyik egységre érdemes kampányt futtatni, hol kell árazást finomítani.
+
+- **Jogosultság-alapú hozzáférés**  
+  A naptárhoz rendelt felhasználók (pl. recepciósok, delegált kezelők) a saját portfóliójukhoz tartozó jelentéseket látják – nem az egész rendszert.
+
+- **Licencbe foglalt kiegészítő**  
+  Nincs külön megvásárlási igény: a Reports az összes licencben benne van.
 
 ## Gyakorlati példák
 
-### Szálláshelyek menedzselése
-Egy panzió tulajdonosa könnyedén nyomon követheti a foglalási adatokat és az eltöltött éjszakák számát. Ez alapján optimalizálhatja az árakat és akciókat indíthat a kevésbé népszerű időszakokra.
+1. Apartmanház három lakással  
+   - Szűrd a műszerfalat naptáranként, és hasonlítsd össze a lakások havi bevételét és foglalásszámát.  
+   - Ha az egyik lakásban alacsonyabb a kihasználtság, módosítsd a minimum tartózkodást vagy indíts célzott promóciót.
 
-### Események szervezése
-Egy rendezvényszervező cég számára a bővítmény segítségével könnyen nyomon követhetőek a különböző eseményekre vonatkozó foglalások és bevételek. Az adatok elemzése révén javíthatják az események tervezését és marketingjét.
+2. Eszközkölcsönző szezonális kereslettel  
+   - Nézd meg heti bontásban a foglalások számát a főszezon előtt és alatt.  
+   - A csúcsidőszakban igazíts árat, a holtszezonban csomagajánlatot készíthetsz.
 
-### Szolgáltatások értékesítése
-Egy wellness központ tulajdonosa egyszerűen áttekintheti a különböző szolgáltatások (masszázsok, kezelések stb.) foglalásait. Az adatok alapján jobban megértheti, mely szolgáltatások népszerűek és melyek igényelnek több promóciót.
+3. Gyors beszámoló a tulajdonosnak  
+   - Válassz havi nézetet, jegyezd ki a bevételt és foglalt éjszakákat.  
+   - Ha táblázatos, foglalásszintű export kell, használd a Booking Manager CSV-exportját, és elemezd Excelben vagy BI-eszközben.
 
-## Szószedet
+## Előnyök és érték
 
-- **Foglalás**: A vendég által előre lefoglalt időpont vagy szolgáltatás.
-- **Bevétel**: Az üzleti tevékenységből származó jövedelem.
-- **Időintervallum**: A jelentésekben elemzett időszak (napi, heti, havi stb.).
-- **Naptár**: Az egyes szálláshelyek vagy szolgáltatások foglalási naplója.
-- **Google Analytics**: Egy webanalitikai szolgáltatás, amely részletes statisztikákat nyújt a weboldal látogatóiról.
+- **Időmegtakarítás:** a kulcsmutatók egy helyen vannak, nincs manuális adatgyűjtés.  
+- **Jobb döntések:** a trendek és összehasonlítások alapján célzottan módosíthatsz árat, szabályokat, kampányokat.  
+- **Csapatmunka-barát:** a jogosultságok miatt mindenki csak a releváns adatokat látja.  
+- **Zökkenőmentes:** a WordPress-adminból elérhető, nem kell külső rendszerre váltanod.  
+- **Költséghatékony:** a licenc része, nincs extra díj.
 
-A WP Booking System - Reporting Add-on egy hatékony eszköz a foglalási rendszerek hatékonyabb menedzseléséhez és elemzéséhez. Ha megfelelően használod, jelentős előnyöket biztosíthat az üzleti teljesítmény javításában.
+## Kinek ajánlott?
+
+- **Ingatlan- és apartmankezelőknek:** több egység teljesítményének összehasonlítása és optimalizálása.  
+- **Kempingeknek, panzióknak, vendégházaknak:** szezonális trendek átlátása és kapacitásmenedzsment.  
+- **Jármű- és eszközkölcsönzőknek:** kihasználtság és bevétel követése egységenként.  
+- **Ügynökségeknek, üzemeltetőknek:** gyors, megbízható beszámolók menedzsmentnek vagy partnereknek.  
+- **Recepciósoknak, delegált kezelőknek:** saját naptárak adataihoz célzott hozzáférés.
+
+## Tippek a hatékony használathoz
+
+- Válassz konzisztens időintervallumokat (pl. mindig előző hónap vs. aktuális hónap), hogy a trendeket tisztán lásd.  
+- Kombináld az eredményeket árazási és minimum tartózkodás szabályokkal, és mérd vissza a hatást.  
+- Ha részletes foglalásszintű elemzés kell, exportálj a Booking Managerrel, és elemezz külső eszközben.
+
+## Korlátok és kiegészítések
+
+- A Reports felület **elsősorban vizuális és összesítő** nézetet ad. Ha táblázatos, foglalásszintű export szükséges, használd a Booking Manager CSV-exportját.  
+- A jelentések a WP Booking Systemben rögzített adatokból készülnek, ezért ügyelj arra, hogy minden foglalás és összeg pontosan legyen rögzítve.
+
+## Névklarifikáció
+
+A kiegészítő hivatalos neve **Reports Add-on**. A „Reporting Add-on” elnevezés a mindennapi beszédben használt megfogalmazás ugyanarra a bővítményre.
+
+## Fejlesztő
+
+A bővítményt a **Veribo IT Solutions SRL** csapata fejleszti. A WP Booking System ökoszisztémája 2010-es évek közepétől aktívan fejlődik, és számos kapcsolódó add-ont kínál (például Booking Manager, Customers, Invoices, fizetési szolgáltatók).

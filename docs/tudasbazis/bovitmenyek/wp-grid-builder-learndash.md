@@ -1,51 +1,92 @@
-# WP Grid Builder - LearnDash
+---
+title: "WP Grid Builder - LearnDash"
+description: "A WP Grid Builder hivatalos LearnDash kiegészítője, amely dedikált kártyablokkokkal, facettált szűréssel és vizuális kártyaépítéssel segít profi kurzuskatalógusokat készíteni kódolás nélkül."
+sidebar_label: "WP Grid Builder - LearnDash"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Grid Builder - LearnDash integráció kiválóan alkalmas arra, hogy a LearnDash tanfolyamokat vizuálisan vonzó és könnyen navigálható formában jelenítsd meg. A bővítmény számos új blokkot ad hozzá a WP Grid Builder kártya készítőjéhez, amelyekkel a tanfolyamok különböző aspektusait jelenítheted meg. Ezek az új blokkok lehetővé teszik, hogy a tanfolyam előrehaladását, a lépések számát, vagy akár az árakat is könnyedén hozzáadhassuk a kártyákhoz.
+A **WP Grid Builder – LearnDash** egy hivatalos kiegészítő, amely a WP Grid Builder kártya- és rácsmotorját kapcsolja össze a **LearnDash** tananyagokkal. Célja, hogy a kurzusaidat, leckéidet és témáidat egységes, testreszabható **kártyadizájnban** jelenítsd meg, miközben a tanulók számára releváns **dinamikus adatokat** (ár, előrehaladás, státusz, ütemezés) kódolás nélkül, vizuálisan építed be. Megszünteti a „kódkényszert”, és skálázható, gyors **facettált szűrést** ad a kurzuslistákhoz.
 
-### Főbb jellemzők
+## Fő funkciók részletesen
 
-- **Tanfolyam előrehaladási sáv blokk**: Ezzel a blokkal megjelenítheted, hogy a felhasználók milyen mértékben haladtak előre a tanfolyam során.
-- **Tanfolyam előrehaladás százalék blokk**: Százalékos formában mutatja meg a tanfolyam előrehaladását.
-- **Tanfolyam lépések számláló blokk**: Megjeleníti a tanfolyamban található lépések számát.
-- **Tanfolyam leckék száma blokk**: Kijelzi a tanfolyamhoz tartozó leckék számát.
-- **Felhasználói aktivitás blokk**: Mutatja, hogy a felhasználók milyen aktivitást mutattak a tanfolyamon.
-- **Tanfolyam ár blokk**: Megjeleníti a tanfolyam árát.
-- **Tanfolyam, lecke és téma státusz blokk**: Kijelzi, hogy egy adott tanfolyam, lecke vagy téma milyen státuszban van.
-- **Lecke kiadási ütemezés blokk**: Segít nyomon követni, mikor kerülnek kiadásra az egyes leckék.
+### LearnDash-specifikus kártyablokkok
+A kiegészítő új blokkokat ad a WPGB **Card Builder** felületéhez, amelyek közvetlenül a LearnDash adataiból dolgoznak:
+- **Előrehaladás sáv és %**: bejelentkezett felhasználóknál személyre szabott progresszt mutat, így a tanuló azonnal látja, hol tart.
+- **Leckék/lépések száma**: megjeleníti, mennyi tartalom vár a kurzusban.
+- **Felhasználói aktivitás**: jelzi, hogy a tanuló elkezdte-e vagy befejezte-e a kurzust.
+- **Ár**: a kurzus aktuális árát és opcióit kártyaszinten jelenítheted meg.
+- **Tartalomtípus státusz**: vizuális jelzés, hogy a kártya kurzus, lecke vagy téma.
+- **Ütemezés (Lesson release schedule)**: feltünteti, mikor válik elérhetővé egy lecke vagy modul.
 
-## Kompatibilitás más eszközökkel
+Ezek a blokkok a kártyán bárhol elhelyezhetők, kombinálhatók, és a WPGB stílus- és feltételkezelésével (pl. csak bejelentkezett felhasználóknak) finoman szabályozhatók.
 
-A WP Grid Builder - LearnDash bővítmény zökkenőmentesen együttműködik más eszközökkel és bővítményekkel is. Például teljes támogatást nyújt a LearnDash Course Grid add-on számára, így továbbra is használhatod az ezzel létrehozott tartalmakat. Ez magában foglalja:
+### Course Grid mezők integrációja
+Sok LearnDash-telepítés használja a „Course Grid” funkció extra mezőit. Az addon képes ezeket is kártyára tenni:
+- **Rövid leírás (short description)**
+- **Egyedi gombszöveg** (pl. „Beiratkozom”)
+- **Price ribbon** (árszalag a kártya sarkában)
+- **Videós előnézet** (YouTube/Vimeo/Wistia teaser)
 
-- **Tanfolyam szalag blokk**
-- **Tanfolyam, lecke és téma rövid leírás blokk**
-- **Egyedi gombszöveg blokk**
-- **YouTube, Vimeo és Wistia támogatás**
+Így egy helyen, egységesen kezeled a metaadatokat, nem kell két külön megoldás logikáját összefésülnöd.
 
-## Használati tippek
+### Rácsok, facetták és teljesítmény
+A LearnDash-adatok a WPGB teljes ökoszisztémájával működnek:
+- **Facettált szűrők**: taxonómiák, egyedi mezők, rendezés, ár, szint, címkék, dátum, értékelés.
+- **Gyors Ajax szűrés és indexelés**: nagy kurzusállomány esetén is reszponzív, oldal-újratöltés nélküli UX.
+- **Rugalmas rácsok**: Masonry, Justified, Metro, karusszelek; egyedi kártyasablonok.
+- **Gutenberg blokkok és shortcode-ok**: ahol kényelmes, ott illeszted be.
 
-Miután aktiváltad a bővítményt, új blokkok jelennek meg a kártya készítőben a "Blocks" fül alatt. Ezeket a blokkokat egyszerűen beillesztheted a kártyáidba és testreszabhatod őket, hogy lenyűgöző rácsokat hozz létre a tanfolyamaidhoz.
+### Kettős Course Grid-helyzet támogatása
+Előfordulhat, hogy a Course Grid funkció külön bővítményként települ, más környezetben pedig a LearnDash magjához tartozik. Az addon mindkét helyzetet támogatja, ezért projektindításkor elég ellenőrizned, nálad melyik érvényes.
+
+## Hogyan állítsd be? (rövid útmutató)
+
+1. **Telepítés**: aktiváld a WP Grid Buildert, a LearnDash LMS-t és a LearnDash kiegészítőt.
+2. **Kártyaépítés**: a WPGB Card Builderben keresd a **LearnDash blokkokat**, húzd a kártyára (pl. progress bar, ár, rövid leírás), állítsd be a stílust és láthatósági feltételeket.
+3. **Rács létrehozása**: készíts egy **Gridet** a LearnDash „Course” tartalomtípushoz, és rendeld hozzá a kártyát.
+4. **Facettek**: adj szűrőket (kategória, szint, ár, címke, rendezés), és kösd a gridhez.
+5. **Beillesztés oldalra**: használd a WPGB blokkokat, vagy illeszd be shortcode-dal:
+
+```
+[wpgb_filters id="courses-filters"]
+[wpgb_grid id="courses-grid"]
+```
+
+Cseréld az azonosítókat a sajátjaidra. A gyors működéshez futtasd le a WPGB indexelőt a telepítés után.
 
 ## Gyakorlati példák
 
-### Tanfolyamok vizualizálása
+- **Nyilvános kurzuskatalógus**: rácsban listázod a kurzusokat, kártyán az ár, rövid leírás, price ribbon és teaser videó. A felhasználó kategóriára, szintre, árra, értékelésre szűr.
+- **„My Courses” nézet**: bejelentkezett tanulóknak személyre szabott kártyák, **előrehaladás sávval**, státusszal („folyamatban”, „befejezve”) és a következő elérhető lecke időpontjával.
+- **Tantárgy-/modulkatalógus**: leckéket és témákat listázol, ahol a látogató tartalomtípusra, témakörre vagy nehézségi szintre szűr.
+- **Értékesítési aloldal**: kiemelt kurzusok karusszelben, **egyedi CTA gombszöveggel** és **price ribbonnel** a konverzió növelésére.
 
-Képzeld el, hogy több különböző tanfolyamot kínálsz egy online oktatási platformon. A WP Grid Builder - LearnDash segítségével létrehozhatsz egy vizuálisan vonzó rácsot, amelyen minden tanfolyam jól áttekinthetően szerepel. A felhasználók könnyedén láthatják, hogy mennyi ideig tartanak a tanfolyamok, milyen áron érhetők el, és mennyit haladtak előre az egyes kurzusokon.
+## Előnyök és értékajánlat
 
-### Felhasználói aktivitás nyomon követése
+- **No-code felépítés**: a LearnDash adatok kártyára tétele és feltételes megjelenítése kód nélkül.
+- **Egységes dizájn**: a Course Grid metaadatok zökkenőmentesen illeszkednek a WPGB kártyasablonjaiba.
+- **Skálázható teljesítmény**: gyors indexelés és Ajax szűrés nagy katalógusoknál is.
+- **Személyre szabott élmény**: felhasználónként eltérő előrehaladás és státusz jelenik meg.
+- **Kevesebb fejlesztési idő**: vizuális szerkesztés, újrahasználható kártyák és rácsok.
 
-Egy másik hasznos funkció az aktivitás nyomon követése. A felhasználók megtekinthetik saját előrehaladásukat és aktivitásukat az egyes tanfolyamokon belül. Ez motivációként szolgálhat számukra, hogy folytassák és befejezzék a kurzusokat.
+## Kinek ajánlott?
 
-### Leckék ütemezése
+- **E-learning csapatoknak**: akik professzionális, kereshető „All Courses” oldalt szeretnének.
+- **Ügynökségeknek**: standardizálható, újrahasznosítható komponensek több LearnDash-projekthez.
+- **Oktatóknak és kisebb vállalkozásoknak**: egyszerűen összeállítható katalógus, konverziót támogató kártyákkal.
+- **Technikai vezetőknek**: átlátható adatforrások, jól definiált kompatibilitási keretek és stabil működés.
 
-A lecke kiadási ütemezés blokk segítségével előre meghatározhatod, mikor kerülnek kiadásra az egyes leckék. Ez különösen hasznos lehet azok számára, akik rendszeres időközönként új tartalmat szeretnének megosztani a tanulókkal.
+## Követelmények és kompatibilitás
 
-## Szószedet
+- **Függőségek**: szükséged van a WP Grid Builder alapbővítményre és a LearnDash LMS-re.  
+- **Course Grid mezők**: a kapcsolódó extra mezők akkor érhetők el, ha a környezetedben a Course Grid funkció aktív (külön bővítményként vagy a LearnDash részeként).  
+- **Beillesztés**: Gutenberg blokkokkal vagy shortcode-okkal működik; a facetták a WPGB általános szűrőivel kompatibilisek.  
+- **Licencelés**: a LearnDash addon a WP Grid Builder előfizetéshez tartozó kiegészítő.
 
-- **Blokk**: Olyan elem, amelyet beilleszthetünk a kártyákba és testreszabhatunk.
-- **LearnDash Course Grid add-on**: Egy bővítmény, amely lehetővé teszi a LearnDash tanfolyamok rács formátumban történő megjelenítését.
-- **Kártya készítő (Card Builder)**: Eszköz a WP Grid Builder bővítményben, amellyel vizuális kártyákat hozhatunk létre.
+## Tippek a sikeres bevezetéshez
 
-Ezekkel a funkciókkal és tippekkel hatékonyabbá teheted az online oktatási platformodat, és jobb élményt nyújthatsz a felhasználók számára.
+- **Feltételes megjelenítés**: csak bejelentkezetteknek mutasd az előrehaladást; vendégeknek ár és összefoglaló.
+- **Indexelő futtatása**: nagy kurzusállománynál rendszeresen frissítsd az indexet a gyors szűrésért.
+- **Kártyasablonok**: készíts külön kártyát nyilvános katalógushoz és „My Courses” nézethez.
+- **Tesztkörnyezet**: ellenőrizd, nálad a Course Grid funkció külön bővítményként vagy a mag részeként érhető el; az addon mindkettőt kezeli.

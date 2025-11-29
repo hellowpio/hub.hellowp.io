@@ -1,128 +1,106 @@
-# WP Booking System
+---
+title: "WP Booking System"
+description: "Könnyű, napi alapú foglalási naptár és űrlapkezelő WordPresshez, online fizetéssel, értesítésekkel és iCalendar szinkronnal."
+sidebar_label: "WP Booking System"
+---
 
-A WP Booking System egy sokoldalú és könnyen kezelhető foglalási rendszer, amely segít az online foglalások kezelésében különféle üzleti területeken. Nézzük meg részletesen, milyen funkciókkal és előnyökkel rendelkezik, valamint milyen konkrét helyzetekben lehet hasznos a felhasználók számára.
+## Bevezetés
 
-## Funkcionalitás és előnyök
+A WP Booking System egy **napi alapú foglalási naptár és űrlapkezelő** bővítmény WordPresshez. Olyan helyzeteket old meg, amikor napokra szeretnél foglalásokat fogadni (nem órákra), miközben egy helyen kezeled az elérhetőséget, az árazást, a fizetéseket, az értesítéseket és a több platformmal történő szinkront. Fejlesztő: Roland Murg / Veribo IT Solutions.
 
-### Online foglalások egyszerű kezelése
+## Mire való és hogyan működik?
 
-A WP Booking System lehetővé teszi a napi foglalások elfogadását bármilyen üzleti területen. A rendszer könnyen testreszabható, és gyorsan beállítható, így azonnal használható.
+- Létrehozol egy vagy több **foglalási naptárat** (pl. szoba, apartman, eszköz).
+- A látogatók kiválasztják a **szabad napokat**, kitöltik a **foglalási űrlapot**, a rendszer pedig **kiszámítja az árat**.
+- Beállíthatsz **online vagy offline fizetést**, automatikus **e-mail/SMS értesítést**, és a foglalás **megérkezik az admin felületre**.
+- iCalendar (ICS) **kétirányú szinkron** gondoskodik róla, hogy az Airbnb, Booking.com és más csatornák elérhetőségei összehangban legyenek.
 
-#### Szálláshelyek
+Fontos: a plugin **napokra foglal**, nem időréses (óra-perc) időpontfoglalásra készült.
 
-- Nyaralók
-- Hotelek
-- Apartmanok
-- Rendezvényhelyszínek
-- Villák
-- Vendégházak
+## Fő funkciók
 
-#### Járműkölcsönzés
+### Foglalási naptárak
+- **Több naptár** és áttekintő nézet: külön egységek (szobák, járművek) kezelése, össznézetben kereshető elérhetőséggel.
+- **Változásnapok** (check-in/out) jelölése, **egyedi színek/jelmagyarázat**, **több hónap** egyszerre.
+- **Tömeges dátumszerkesztés**, **múltbeli napok elrejtése**, **CSV-export** a riportokhoz.
+- **Felhasználó-hozzárendelés** és jogosultságok csapatmunkához.
 
-- Autók
-- Jet-ski
-- Motorok
-- Robogók
-- Hajók
-- Bármilyen jármű
+### Űrlapok és űrlapépítő
+- Teljesen **testreszabható mezők** (szöveg, legördülő, jelölőnégyzet, rádió).
+- **Árazási mezők**, **feltételes logika**, rugalmas **elrendezés oszlopokkal**.
+- **reCAPTCHA**, dinamikus alapértelmezések, **köszönőüzenet/átirányítás**, követőkódok (pl. Analytics/Tag Manager).
 
-#### Eszközök és egyebek
+### Árazás és fizetés
+- **Szezonális és nap/éjszaka alapú árképzés**, **extra szolgáltatások**, **adók** külön kezelése.
+- **Kuponok és kedvezmények**, **előleg (részfizetés)**, **kaució**, **visszatérítések**.
+- **Online fizetés** (pl. Stripe, PayPal, Square, WooCommerce gatewayek, Mollie, GoPay, Authorize.Net, Redsys) és **offline** (átutalás, érkezéskor).
 
-- Javítóműhelyek és szerszámok
-- Rendezvények és szórakoztató eszközök
-- Sporteszközök, hegymászó felszerelések stb.
+### Szinkron és integrációk
+- **iCalendar import/export**: kétirányú szinkron olyan csatornákkal, mint Airbnb, Booking.com, Google Calendar, Outlook, Vrbo, Expedia és más ICS-kompatibilis rendszerek.
+- **Oldalkészítők**: Gutenberg-blokk, rövidkód, kompatibilitás az elterjedt page builderekkel (Elementor, Divi, Beaver Builder, WPBakery).
 
-### Több platformmal való szinkronizálás
+### Közzététel és beágyazás
+- Gutenberg-blokk vagy widget használata, illetve rövidkód beillesztése. Példa:
+```
+[wpbs id="1" form_id="1" language="hu"]
+```
 
-A WP Booking System zökkenőmentesen együttműködik minden olyan weboldallal, amely támogatja az iCalendar feedeket, így a foglalások minden platformon naprakészek lesznek.
-
-- AirBnb
-- Booking.com
-- Google Calendar
-- Outlook
-- Tripadvisor
-- HomeAway
-- Expedia
-- Vrbo
-- Agoda
-
-### Könnyen használható és testreszabható
-
-A WP Booking System barátságos felhasználói felülettel rendelkezik, és egyszerűen telepíthető. Az intuitív rendszer lehetővé teszi a gyors beállítást, így több időt tölthetsz az üzleted fejlesztésével.
-
-### Form builder
-
-Az iparágadtól függően extra információkra lehet szükséged az ügyfeleidtől. A form builder lehetővé teszi az összes mező részletes testreszabását.
-
-### Online fizetések, adók, kedvezmények és előlegek
-
-Bármit is keresel, a WP Booking System biztosítja:
-
-- Online és offline fizetések lehetősége (PayPal, Stripe, Square, készpénz vagy hitelkártya)
-- Adók külön megjelenítése
-- Kedvezményes kódok és kuponok használata
-- Előlegfizetések kezelése
-
-### E-mail értesítések és emlékeztetők
-
-Automatizálhatod és testreszabhatod az e-maileket vagy szöveges üzeneteket, amelyeket a foglaláskor küldesz. Köszönetet mondhatsz az ügyfeleknek, emlékeztetheted őket a közelgő foglalásukra, vagy összefoglalót küldhetsz a foglalásukról.
-
-### Foglalások kezelése a Dashboardon
-
-A Dashboard segítségével manuálisan adhatsz hozzá új foglalásokat vagy szerkesztheted a meglévőket. Kereshetsz a foglalások között, rendezheted őket különböző beállítások szerint, vagy szűrheted őket igény szerint.
-
-## Egyéb fontos jellemzők
-
-### Több naptár
-
-Létrehozhatsz több naptárat, és kombinálhatod őket egyetlen áttekinthető felületre. Az egyes naptárakat külön oldalakhoz is csatolhatod.
-
-### Teljesen fordítható
-
-A rendszer 29 nyelven elérhető és könnyen fordítható a backendből fordító plugin nélkül.
-
-### Kereső widget
-
-Ha több terméket adsz bérbe, hozzárendelhetsz egy-egy naptárat mindegyikhez, így a weboldal látogatói megnézhetik, melyek érhetők el adott dátumokon.
-
-### Foglalási korlátozások
-
-Beállíthatsz minimum vagy maximum napokat, amelyekre az ügyfél foglalhat, valamint megadhatod, hogy mely napokon kezdődhet vagy végződhet a foglalás.
-
-### Többféle valuta
-
-Lehetővé teszi az ügyfelek számára, hogy az országod valutájában fizessenek, vagy nemzetközi fizetéseket is elfogadhatsz különböző valutákban.
-
-### Készletkezelés
-
-Többszöri foglalást is engedélyezhetsz naponta, és automatikusan elérhetetlenné teheted a dátumokat, amikor elérik a maximális foglalási számot.
-
-### Testreszabható legendák
-
-Szerkesztheted a naptár színeit és szövegét, hogy illeszkedjenek a weboldaladhoz és márkádhoz. A naptárak külön-külön testreszabhatók.
-
-### Tömeges dátum szerkesztő
-
-Választhatsz egy dátumtartományt, alkalmazhatod a kívánt frissítéseket egyetlen gombnyomással. Ez a funkció sok időt takarít meg a naptár szerkesztése során.
-
-### Felhasználói menedzsment
-
-Szabályozhatod, ki fér hozzá a naptáraidhoz úgy, hogy hozzárendeled őket WordPress felhasználókhoz. Általános hozzáférést adhatsz felhasználótípus szerint vagy konkrét felhasználókat rendelhetsz egy adott naptárhoz.
+### Értesítések és admin
+- **Testreszabható e-mail- és SMS-értesítések** (triggerek, emlékeztetők).
+- **Foglaláskezelő nézet**, manuális foglalásfelvétel/szerkesztés, **ügyféladatok** kezelése.
+- Bővítményekkel: **riportok**, **számlák**, **szerződések**, **több pénznem**, **korlátozások** stb.
 
 ## Gyakorlati példák
 
-1. **Nyaraló bérbeadása**: Egy nyaralótulajdonos egyszerűen kezelheti az összes foglalását egy helyen, értesítéseket küldhet az érkező vendégeknek és fogadhat online fizetéseket.
-2. **Autókölcsönző cég**: Egy autókölcsönző vállalkozás nyomon követheti az autók elérhetőségét, elfogadhat előlegeket és kezelheti az ügyfelek foglalásait.
-3. **Javítóműhely**: Egy javítóműhely időpontfoglalásokat kezelhet az ügyfelek számára javítási szolgáltatásokra.
-4. **Rendezvényhelyszín**: Egy rendezvényhelyszín tulajdonosa különböző eseményekre fogadhat foglalásokat és kezelheti a helyszínek elérhetőségét.
-5. **Sportfelszerelés kölcsönző**: Egy sportfelszerelés kölcsönző vállalkozás biztosíthatja ügyfeleinek az online foglalási lehetőséget és nyomon követheti a készletek elérhetőségét.
+- Apartmanház: minden lakáshoz külön naptár. A vendég kiválasztja az érkezés–távozás napokat, a rendszer szezon szerint áraz, előleget kér, és e-mailt küld a visszaigazolásról. A naptár iCalon keresztül szinkronizál az Airbnb-vel.
+- Csónakkölcsönző: napidíjak hétvégére megemelve, kaucióval és extra felszerelésekkel (pl. mentőmellény csomag). Kuponkódok elő- és utószezonban.
+- Rendezvényeszköz-bérlés: több tétel készlete, kereső widget az elérhető készletre, adminban manuális foglalásfelvétel telefonos érdeklődőknek.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Backend**: A weboldal adminisztrációs felülete.
-- **Frontend**: A weboldal látogatói által látható felület.
-- **iCalendar feed**: Egy szabványosított fájlformátum, amely lehetővé teszi a naptári adatok megosztását különböző rendszerek között.
-- **Widget**: Kis alkalmazások vagy elemek, amelyek egy weboldalon helyezkednek el.
-- **Dashboard**: Az adminisztrációs felület áttekintő része.
-- **Form builder**: Űrlapkészítő eszköz.
-- **Legend**: Jelmagyarázat.
+- **Dupla foglalások ellen**: iCal szinkron több csatornával.
+- **Kevesebb admin**: online űrlapok, automatikus értesítések, tömeges naptárkezelés.
+- **Rugalmas árazás**: szezonok, kedvezmények, előleg, kaució, extrák.
+- **Professzionális fizetés**: bankkártya, pénztárcabarát offline opciók, visszatérítés kezelése.
+- **Skálázhatóság**: több naptár, több felhasználó, áttekintő nézet és riportok.
+
+## Kinek ajánlott?
+
+- **Szállásadóknak**: apartmanok, panziók, vendégházak, szobák.
+- **Jármű- és hajóbérlésnek**: autó, motor, csónak, lakóautó.
+- **Sport- és rendezvényeszköz-bérlésnek**: kerékpár, sífelszerelés, dekoráció, hangtechnika.
+- **Napi ütemezésű szolgáltatóknak**: akik napokra adnak ki bármit, és nem órákra.
+
+## Ingyenes vs. Prémium
+
+- **Ingyenes**: alap naptár és űrlap, foglalásfogadás és -kezelés, többnyelvűség, Gutenberg-blokk és rövidkód.
+- **Prémium**: korlátlan naptár/űrlap, több hónapos nézet, split-day kiválasztás, foglalási korlátozások, iCal szinkron, értesítések, felhasználókezelés, online fizetések és bővítmények (pl. kedvezmények, számlák, szerződések, több pénznem, riportok).
+
+Csomagok röviden:
+- **Personal**: 1 webhely, minden prémium funkció, offline fizetések, alap add-onok.
+- **Business**: 5 webhely, online fizetési gatewayek, kiterjesztett add-on csomag.
+- **Developer**: korlátlan webhely, összes prémium funkció és add-on, pénzvisszafizetési garancia.
+
+## Telepítés és első lépések
+
+1. Telepítés és aktiválás a WordPress adminban.
+2. Hozz létre egy **naptárat** (egység/erőforrás).
+3. Állítsd be az **árakat**, szezonokat és korlátozásokat.
+4. Készíts egy **űrlapot**, és kapcsold a naptárhoz.
+5. Engedélyezd a kívánt **fizetési módokat**.
+6. Kapcsold be az **iCal szinkront** a csatornákkal.
+7. Illeszd be az oldalon **Gutenberg-blokkal** vagy a fenti **rövidkóddal**.
+8. Tesztelj egy próba foglalással és értesítéssel.
+
+## Korlátozások és megjegyzések
+
+- **Napi alapú**: nem időréses foglalásokra készült.
+- **iCal szinkron**: az automatikus frissítés gyakoriságát a külső csatornák és az ICS működése befolyásolja.
+
+## Oldalkészítők és kompatibilitás
+
+A bővítmény **Gutenberg-blokkal**, **widgettel** és **rövidkóddal** működik, továbbá kompatibilis a népszerű **page builderekkel** (pl. Elementor, Divi, Beaver Builder, WPBakery). Többnyelvű környezetben is bevethető.
+
+---
+
+Összefoglalva: ha napokra szeretnél foglalást fogadni WordPressen, a WP Booking System könnyű, átlátható és skálázható megoldás, amely lefedi az elérhetőség-kezeléstől a fizetésen át az értesítésekig és a csatornaszinkronig az egész folyamatot.

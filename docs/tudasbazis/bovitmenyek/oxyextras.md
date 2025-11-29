@@ -1,100 +1,95 @@
-# OxyExtras
+---
+title: "OxyExtras"
+description: "Moduláris komponenskönyvtár a Classic Oxygen Builderhez: haladó navigáció, tartalom- és e‑kereskedelmi UI‑elemek, no‑code interakciók, teljesítmény‑tudatos működéssel."
+sidebar_label: "OxyExtras"
+---
 
-OxyExtras egy prémium bővítmény az Oxygen számára, amely 40 rugalmas komponenst kínál, hogy vizuálisan építhesd meg projektjeidet és felgyorsíthasd a munkafolyamatot.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+Az OxyExtras egy prémium, könnyű komponenskönyvtár a Classic Oxygen Builderhez. Több mint negyven, egymással jól együttműködő vizuális elemet ad az Oxygen szerkesztőjéhez, hogy kevesebb egyedi kódot kelljen írnod. Azokat a „hiányzó” haladó UI‑elemeket kapod meg (mega menü, off‑canvas, lightbox, mini kosár stb.), amelyekhez korábban CSS/JS kellett. Az erőforrások csak akkor töltődnek, ha egy komponenst ténylegesen használsz, így a webhely nem hízik feleslegesen.
 
-### Animated Counters
-Animált számlálók, amelyek a viewportba lépve animálódnak, egyedi animációs időtartamokkal.
+Fontos: az OxyExtras a Classic Oxygen ökoszisztémára készült, az új, különálló Oxygen v6 buildert nem célozza.
 
-### Alert Boxes
-Többcélú figyelmeztető dobozok üzenetek megjelenítésére, melyek lehetnek rögzítve a viewporthoz vagy a tartalomba ágyazva.
+## Hogyan működik röviden?
 
-### Off Canvas
-Oldalról beúszó, off-canvas keret. Állítsd be a kattintási triggert, az átmeneti sebességet és add meg a benne lévő elemeket.
+- Teljesen az Oxygen megszokott felületébe illeszkedik: ott találsz új elemeket, beállításokat, stílusvezérlőket.
+- Moduláris és feltételes betöltésű: csak a használt komponensekhez tartozó stílus/JS kerül az oldalra.
+- Dinamikus adatokkal, repeaterben is működik, így valódi, adatvezérelt felületeket építhetsz.
+- Preseteket menthetsz és exportálhatsz, így mintákat vihetsz projekteid között.
+- Előfeltétel: Classic Oxygen egy aktív WordPress oldalon.
+- Licenc: egyszeri díjas, korlátlan webhelyes használat, élethosszig tartó frissítésekkel és támogatással.
 
-### Reading Progress Bar
-Olvasási előrehaladás mérő, amely az olvasott cikk elemét követi. Stílusozható és pozicionálható.
+## Fő funkciók, érthetően
 
-### Author Boxes
-Szerzői dobozok létrehozása profilképpel, életrajzzal és dinamikus linkekkel a szerző archív oldalára és külső weboldalára.
+### Navigáció és menük
+- **Mega Menu**: teljesen vizuálisan építhető, egyedi oszlopszélességek, fejlett animációk, mobil burger trigger. Ideális nagy információ‑architektúrához.
+- **Slide/Horizontal Slide Menu**: csúszó menük desktopon és mobilon, részletes nyitási‑zárási viselkedéssel.
+- **Burger Trigger, Header Search**: gyors mobil navigáció és azonnali kereső az Oxygen fejléceiben.
 
-### Adjacent Posts
-Dinamikus linkek létrehozása a korábbi és következő bejegyzésekhez vizuálisan. Tartalmazhat képeket, címeket, ikonokat és címkéket.
+### Tartalom és interakció
+- **Lightbox**: képek, videók, iFrame tartalmak, akár AJAX‑betöltéssel. Repeaterből dinamikusan is meghajtható, így galériák, videólisták egy kattintásra nyílnak, és csak ekkor töltődnek.
+- **Dynamic Tabs, Pro Accordion**: összetett tartalmak tagolása, billentyűzetes navigációval.
+- **Table of Contents, Read More/Less**: hosszú oldalak tördelése, automatikus tartalomjegyzék címsorokból.
+- **Copy to Clipboard, Toggle Switch, Lottie Animation**: mikro‑interakciók kód nélkül.
+- **Pro Media Player**: késleltetett betöltésű videó/audió, jobb teljesítménnyel és testreszabással.
 
-### Back to Top
-Vissza a tetejére gomb ikonokkal, szöveggel vagy egyedi képpel. Állítsd be a görgetési sebességet és pozíciót.
+### E‑kereskedelem (WooCommerce)
+- **Mini Cart + Cart Counter**: valós idejű, AJAX‑os mini kosár. Több elrendezés (dropdown, off‑canvas), részletes tipográfia és elem‑szintű styling. Jól kombinálható egyéb elemekkel (pl. Off Canvas, Modal).
 
-### Header Search
-Bővíthető keresőformák hozzáadása fejlécbe teljes képernyős keresési támogatással.
+### Blog és cikkfunkciók
+- **Reading Progress Bar, Reading Time**: vizuális visszajelzés az olvasónak.
+- **Adjacent Posts, Post Modified Date**: jobb bejárhatóság és frissesség jelzése.
+- **Social Share + Print**: külső JS nélkül működő megosztások, nyomtatás gomb opcióval.
 
-### Fluent Form
-Fluent Forms és Fluent Forms Pro stílusozása vizuálisan, hogy jobban illeszkedjen a designhoz.
-
-### Social Share
-No-JS közösségi megosztási linkek Facebookra, Twitterre, LinkedInre, Emailre, Pinterestre, WhatsAppra és Telegramra. Minden vizuálisan stílusozható.
-
-### Read More / Less
-Összecsukható és kibővíthető tartalom blokk "Read more" és "Close" linkekkel.
-
-### Lottie Animations
-Lottie animációk hozzáadása felhasználói interakciós vezérlőkkel görgetéshez, kurzor pozícióhoz, kattintáshoz vagy hurokban lejátszáshoz.
-
-### Animated Burger Trigger
-Animált hamburger menü gombok hozzáadása Modalok, Off-Canvas vagy Slide menük triggereléséhez.
-
-### Post Modified Date
-Abszolút és relatív idő opciók a bejegyzések módosítási dátumának megjelenítéséhez.
-
-### Preloader
-Preloaderek vizuális építése az Oxygenben a nem stílusos tartalmak (FOUC) rejtéséhez vagy az oldalelemek betöltésének megjelenítéséhez.
-
-### Mini Cart & Counter
-Különböző típusú AJAX WooCommerce kosarak hozzáadása Oxygen projektekhez.
-
-### Carousel Builder
-Carouselek vizuális építése Repeaterrel, Easy Posts-szal vagy egyéni elemekkel.
-
-### Content Switcher
-Látogatók számára lehetőség két variáció között váltani bármely elemből. Ideális árváltáshoz.
-
-### Pro Media Player
-Lazy loading videók és audiók hozzáadása Oxygen sablonokhoz testreszabható UI-val.
-
-### Circular Progress
-SVG kör progress barok létrehozása, amelyek animálnak, ahogy a felhasználó görgeti az oldalt.
-
-### Mega Menus
-Hozzáférhető mega menük hozzáadása bármilyen elemekkel, beleértve a WP menüelemeket is.
-
-### Lightboxes
-Dinamikus tartalmak megjelenítése más bejegyzésekből/oldalakból AJAX segítségével, iFrame-ek és kép/videó lightboxok hozzáadása meglévő tartalomhoz.
-
-## Előnyök
-
-### Könnyű használat és gyorsabb munkafolyamat
-Az új komponensek kezelik a funkcionalitást, így te egyenesen a tervezési részhez ugorhatsz.
-
-### Bloatmentes működés
-Minden komponens feltételesen csak ott töltődik be, ahol szükséges, így nincs felesleges terhelés.
-
-### Ismert stílusvezérlők
-Minden stílusvezérlő és beállítás megegyezik az Oxygen UI-jával az egyszerűbb munkafolyamat érdekében.
-
-### Import/Export Presets
-Beállítások és stíluskonfigurációk mentése és exportálása több projektben való használatra.
+### Workflow és segéd‑elemek
+- **Off Canvas**: hozzáférhető panelek fókuszcsapdával és ARIA‑beállításokkal.
+- **Carousel Builder**: repeaterrel vagy terméklistával működő csúszka.
+- **Infinite Scroller**: végtelen görgetés listákhoz.
+- **Hotspots & Popovers, Preloader, Interactive Cursor, Copyright Year**
+- **Fluent Forms styler, Gutenberg újrahasznosítható blokkok**: egységes vizuális megjelenítés kód nélkül.
 
 ## Gyakorlati példák
 
-- **Webshopok:** A Mini Cart & Counter használatával AJAX kosarakat adhatsz hozzá a webáruházadhoz.
-- **Blogok:** Adj hozzá dinamikus szerzői dobozokat az Author Boxes segítségével.
-- **Üzleti oldalak:** Létrehozhatsz professzionális megjelenésű olvasási előrehaladás mérőt a Reading Progress Bar segítségével.
-- **Portfólió oldalak:** Lottie animációkkal teheted interaktívabbá portfóliódat.
-- **Eseményoldalak:** Az Off Canvas segítségével könnyedén kezelheted a navigációt vagy további információk megjelenítését.
+- **Mega menü nagy tartalomhoz**: Állíts be egy többoszlopos megamenüt a fejlécedben; oszloponként külön komponenseket helyezhetsz el (kép, lista, CTA), mobilon pedig burger menüre válthatsz.
+- **Lightbox dinamikus galériához**: Repeaterrel listázd a bejegyzések képeit vagy videóit, és minden kártyán a Lightbox trigger jelenjen meg. A tartalom csak kattintáskor töltődik, javítva a sebességet.
+- **WooCommerce minikosár élmény**: A kosár ikon mellett valós idejű számláló, a kattintásra off‑canvas kosár nyílik, kuponmezővel, tételek törlésével, csekkolás gombbal.
+- **Blog UX**: A cikk tetején olvasási idő, oldalsávban automatikus tartalomjegyzék, a bevezető alatt „Tovább olvasom” tördelés, alul megosztás és nyomtatás.
 
-## Szószedet
+Példa lépések egy kombinált minikosárhoz:
 
-- **AJAX:** Asynchronous JavaScript and XML – egy technológia, amely lehetővé teszi dinamikus tartalom betöltését anélkül, hogy az oldal újratöltődne.
-- **FOUC:** Flash Of Unstyled Content – egy rövid időszak, amikor egy weboldal betöltésekor az oldal nem stílusos formában jelenik meg.
-- **Lottie animáció:** JSON alapú animációk, amelyeket After Effects-ben készítenek és weben használhatók.
-- **SVG:** Scalable Vector Graphics – vektorgrafikai formátum webes grafikákhoz.
+```
+1) Helyezz el egy Cart Counter elemet a fejléchez.
+2) Adj hozzá egy Mini Cart elemet, az elrendezést állítsd Off Canvas-ra.
+3) Kösd össze a Counter-t a Mini Cart triggerével (azonosító alapján).
+4) Finomhangold a fókuszcsapdát és az ESC bezárást az A11y beállításoknál.
+5) Styling: tipográfia, gombok, árak – mind komponensszinten állítható.
+```
+
+## Előnyök és értékajánlat
+
+- **Kevesebb kód, gyorsabb kivitelezés**: gyakori JS/CSS feladatokra kész komponensek.
+- **Teljesítmény‑tudatos**: feltételes asset‑betöltés, lazy‑load média.
+- **Hozzáférhető alapok**: fókuszkezelés, ARIA‑attribútumok, billentyűzetes navigáció több elemben.
+- **Konzisztens szerkesztés**: minden az Oxygen UI‑jában, presetek menthetők/exportálhatók.
+- **Költséghatékony**: egyszeri díj, korlátlan webhely, folyamatos frissítések és támogatás.
+
+## Célközönség
+
+- **Oxygen‑használó ügynökségek és fejlesztők**: gyors, skálázható komponens‑alapú építés kevesebb egyedi kóddal.
+- **WooCommerce‑üzemeltetők**: jobb kosárélmény és konverziós eszközök kódolás nélkül.
+- **Tartalom‑gazdag oldalak**: blogok, magazinok, tudásbázisok, ahol a navigáció és a cikk‑UX kritikus.
+- **No‑code site builderek**: vizuális megoldások haladó interakciókra.
+
+## Biztonság és karbantartás
+
+A bővítmény folyamatosan karbantartott, biztonsági és kompatibilitási javítások rendszeresen érkeznek. Mindig frissíts a legújabb stabil kiadásra, különösen ha biztonsági frissítés jelenik meg.
+
+## Megkülönböztetés és kompatibilitás
+
+- **Nem design set és nem UI‑tuning**: funkcionális komponensek gyűjteménye, amelyek kibővítik az Oxygen alapjait.
+- **Classic Oxygen fókusz**: az új, különálló Oxygen v6 builderhez nem ajánlott.
+- **OxyExtras vs. Oxy Toolbox**: míg az Oxy Toolbox inkább eszközkészlet (class‑kezelés, feltételek, UI‑finomítások), az OxyExtras vizuális, kész komponenseket ad. Van némi átfedés, de a cél más.
+
+## Összegzés
+
+Az OxyExtras akkor kell neked, ha Classic Oxygen alatt haladó menüket, off‑canvas paneleket, lightboxokat, minikosarat, interaktív tartalmi blokkokat és blog‑UX elemeket szeretnél felépíteni kód helyett vizuális komponensekkel. Moduláris, gyors és hozzáférhető megoldás, amellyel időt, pénzt és energiát spórolsz, miközben a fejlesztői workflow is átláthatóbbá válik.

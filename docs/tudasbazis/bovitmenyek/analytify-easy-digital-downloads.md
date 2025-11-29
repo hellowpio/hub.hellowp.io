@@ -1,57 +1,95 @@
-# Analytify Easy Digital Downloads
+---
+title: "Analytify Easy Digital Downloads"
+description: "GA4-alapú e‑kereskedelmi mérés és riportok Easy Digital Downloads áruházakhoz az Analytify Pro integrált moduljaként, közvetlenül a WordPress adminban."
+sidebar_label: "Analytify Easy Digital Downloads"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az Analytify Easy Digital Downloads bővítmény lehetővé teszi számodra, hogy részletes adatokat gyűjts és elemezz az online boltod teljesítményéről, mindezt közvetlenül a WordPress adminisztrációs felületén. A következő funkciók teszik igazán hasznossá ezt a bővítményt:
+Az Analytify Easy Digital Downloads modul az Analytify Pro része, és azt tudja, amire a digitális termékboltoknak szüksége van: automatikusan beköti az EDD vásárlói interakcióit a GA4-be, majd a legfontosabb e‑kereskedelmi mutatókat közvetlenül a WordPress adminban mutatja. Nem kell kézzel kódolnod, nem kell GTM‑mel bajlódnod; a termékmegtekintéstől a vásárlásig minden esemény követése és riportolása megoldott.
 
-### Kuponok és visszatérítések követése
+A modul megszünteti a szétszórt riportolást: ugyanabban a felületen látod a tölcsért, a termékteljesítményt, a kuponokat és a visszatérítéseket, ahol a boltodat kezeled. A háttérben GA4‑re épít, így a teljes vásárlói út a GA4‑ben is elemezhető.
 
-Ez a funkció segít megérteni, hogyan használják a kuponokat a vásárlók, és milyen konverziókat eredményeznek. Megtudhatod, hány tranzakció történt kuponok felhasználásával, valamint a visszatérítések számát és összegét is nyomon követheted. Ez az információ segíthet döntéseket hozni az árképzési és promóciós stratégiák finomításában.
+## Hogyan működik röviden?
 
-### Ország szerinti követés
+A modul az EDD által kiváltott interakciókat GA4‑eseményekké alakítja (például view_item, add_to_cart, begin_checkout, purchase), és elküldi a GA4‑be. Ugyanezek a számok megjelennek az Analytify EDD irányítópultján is a WordPressen belül. A mérés valós időben ellenőrizhető, és historikusan is elemezhető. A fókusz teljesen GA4; korábbi UA/V3 függőségek nélkül.
 
-A bővítmény lehetővé teszi, hogy részletes ország szerinti adatokat jeleníts meg anélkül, hogy külön be kellene lépned a Google Analytics rendszerébe. Ezáltal könnyebben célzott marketing kampányokat indíthatsz azokon a területeken, ahol nagyobb forgalmat tapasztalsz, és fejlesztheted azokat a régiókat, ahol alacsonyabbak az eladások.
+## Előfeltételek és telepítés
 
-### Pénztárak és vásárlások követése
+- WordPress és aktív Easy Digital Downloads bővítmény
+- Analytify Pro, összekötve a GA4 tulajdonoddal
+- Az EDD modul aktiválása az Analytify Pro Add‑ons nézetében
 
-Az Analytify Easy Digital Downloads testreszabott jelentéseket nyújt, amelyek segítségével követheted a kosárba helyezések számát, a kosárelhagyás mértékét, valamint azt, hogy honnan érkeznek a vásárlóid. Láthatod, mennyi pénzt termelsz különböző forrásokból, mindezt egyetlen pillantással áttekinthetően.
+Lépések áttekintése:
 
-### Termékek teljesítménye
+```
+WordPress > Analytify > Settings > Authentication > Kapcsolódás GA4-hez
+WordPress > Analytify > Add-ons > Easy Digital Downloads > Activate
+WordPress > Analytify > Dashboards > EDD
+```
 
-Ez a funkció részletesen bemutatja, mely termékek teljesítenek jól és melyek kevésbé. Megtudhatod egy-egy termék bevételét, a kosárba helyezés és vásárlás arányát, valamint az egyedi vásárlások számát. Ez az információ segít optimalizálni a termékkínálatot.
+Aktiválás után az eseménykövetés automatikusan elindul; nincs szükség további kódolásra. Ha örökölt, külön telepített add‑onnal találkozol, a modulfunkciók ugyanúgy elérhetők az EDD dashboardon.
 
-### Vásárlási viselkedési csatorna
+## Fő funkciók részletesen
 
-Az enhanced ecommerce Google Analytics követésének integrálásával a bővítmény nemcsak adatokat rögzít, hanem vissza is hozza azokat a WordPress felületére. Ha szeretnéd, az adatokat a Google Analytics rendszerében is megtekintheted, ahol részletesebb elemzéseket készíthetsz.
+- Automatikus GA4 e‑kereskedelmi események
+  - A modul rögzíti a kulcslépéseket: termékmegtekintés, kosárba tétel, pénztár indítása, vásárlás. Ez biztosítja, hogy a teljes tölcsér mérhető legyen, és a GA4 Monetization és vásárlói út riportjaiban is megjelenjen.
 
-## Együttműködés más eszközökkel
+- Vásárlói viselkedés és tölcsérelemzés
+  - Megmutatja, hol esnek ki a felhasználók: termékoldalról nem tesznek kosárba, kosárból nem indul pénztár, vagy a pénztárban hagyják el. Ezek a pontok célzott optimalizációt tesznek lehetővé.
 
-Az Analytify Easy Digital Downloads zökkenőmentesen együttműködik más népszerű eszközökkel és bővítményekkel, mint például:
-- **Google Analytics**: Az adatok közvetlen integrációja és visszahozatala a WordPress dashboardra.
-- **WooCommerce**: Bár az EDD-re optimalizált, a WooCommerce-hez is kínál hasonló analitikai funkciókat.
-- **Forms Tracking**: A weboldaladon található űrlapok teljesítményének nyomon követése.
-- **Authors Tracking**: A különböző szerzők által generált tartalom teljesítményének nyomon követése.
+- Termékteljesítmény mélységben
+  - Látod termékenként a bevételt, az értékesített darabszámot, a cart‑to‑detail arányt és a részleteket. Így könnyen azonosítod a “vitrinbe való” termékeket és a gyengén konvertálókat.
+
+- Pénztár és vásárlás elemzése
+  - Kosárelhagyás arány, pénztárban történő lemorzsolódás, valamint rendelés szintű forrás/közeg (source/medium) attribúció. Ez utóbbi kulcs a kampányok és csatornák ROI‑jának pontos értékeléséhez.
+
+- Kupon- és visszatérítés‑riportok
+  - Kuponhasználat, kuponhoz kötött bevétel és konverziók, visszatérítések száma és összege. Egy helyen látod a promóciók hatását és észreveszed az esetleges visszaéléseket.
+
+- Földrajzi bontások
+  - Top országok és városok szerinti eladások a WordPress‑irányítópulton. Hasznos lokalizált ajánlatokhoz és terjeszkedési döntésekhez.
+
+- Új statisztikák a dashboardon
+  - Konverziós arány, valamint első vásárlók/új ügyfelek mutatók az EDD irányítópultban. Könnyebb külön kezelni az új és visszatérő vevők viselkedését.
+
+## Hol látod a számokat?
+
+- WordPress admin: Analytify > Dashboards > EDD. Itt összefoglaló KPI‑k, tölcsér, termékteljesítmény, kuponok, visszatérítések és földrajzi bontások jelennek meg.
+- GA4 felület: valós idejű eseményellenőrzés, monetizációs riportok és a vásárlói út elemzése a részletes attribúcióhoz.
 
 ## Gyakorlati példák
 
-### Digitális termékek értékesítése
+- Napi boltmonitorozás
+  - Reggel ránézel az EDD dashboardra: bevétel, tranzakciók, AOV és konverziós arány. Ha a konverziód esik, a tölcsérből azonnal látod, melyik lépés romlott.
 
-Ha e-könyveket, zenéket vagy szoftvereket értékesítesz, az Analytify Easy Digital Downloads lehetővé teszi számodra, hogy részletesen nyomon kövesd az eladásokat, valamint az egyes termékek teljesítményét. Például láthatod, mely e-könyvek generálnak több bevételt, és melyek azok, amelyek népszerűbbek egy adott országban.
+- Terméklap optimalizálás
+  - Egy népszerű letöltés cart‑to‑detail aránya gyenge. A/B tesztelsz CTA‑t és leírást; a változás utáni emelkedést a termékteljesítmény panelen rögtön visszaigazolja a rendszer.
 
-### Promóciós kampányok elemzése
+- Kuponstratégia finomhangolása
+  - Új kuponkampányt indítasz. A kupon riportban követed a bevételt és a konverziót, majd ellenőrzöd, nőtt‑e a visszatérítések aránya. Ha igen, szigorítasz a feltételeken.
 
-Ha rendszeresen használsz kuponokat és akciókat, ez a bővítmény segíthet megérteni, mely promóciók működnek legjobban. Például kiderítheted, hogy egy adott kuponkód mennyi plusz bevételt hozott, és mennyi volt a visszatérítés.
+- Csatorna‑ROI mérése
+  - A rendeléseknél látszik a forrás/közeg. Ha a fizetett hirdetés alacsony AOV‑val hoz vevőket, költségvetést csoportosítasz át egy jobb teljesítményű csatornára.
 
-### Regionális marketing stratégia fejlesztése
+## Előnyök és értékajánlat
 
-A bővítmény ország szerinti követésével megismerheted, hol vannak erősebb és gyengébb piacaid. Például ha azt látod, hogy Németországban kiemelkedően jól teljesítesz, de Spanyolországban kevésbé, célzott marketing kampányokat indíthatsz Spanyolországban.
+- Időmegtakarítás: nincs egyedi fejlesztés vagy GTM‑konfigurálás, a mérés “plug and play”.
+- Egységes rálátás: a legfontosabb EDD mutatók közvetlenül a WordPressben, mégis GA4‑kompatibilis alapon.
+- Jobb döntések: tölcsér‑ és termékszintű insightok, rendelés szintű attribúcióval.
+- Kevesebb hibalehetőség: előre beállított GA4 események, konzisztens implementációval.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Enhanced Ecommerce**: Fejlett elektronikus kereskedelmi funkciók és elemzések.
-- **Google Analytics**: Ingyenes webanalitikai szolgáltatás.
-- **WordPress Dashboard**: A WordPress adminisztrációs felülete.
-- **Kupon**: Kedvezményt biztosító kód vagy utalvány.
-- **Visszatérítés**: Vevő által visszaküldött áru után járó pénz visszafizetés.
+- Digitális termékeket áruló EDD bolttulajdonosoknak, akik gyorsan, kódolás nélkül akarnak pontos GA4 mérést.
+- Marketingeseknek és ügynökségeknek, akik csatorna‑ és kampányteljesítményt, ROI‑t és tölcsérkiesést elemeznek.
+- Nem technikai WordPress adminoknak, akik egy helyen, érthetően szeretnék látni a kulcsszámokat.
+- Termék‑ és növekedési csapatoknak, akik termékszintű optimalizációt és új vásárlói szerzést mérnek.
 
-Ezekkel az információkkal hatékonyabban használhatod az Analytify Easy Digital Downloads bővítményt, és optimalizálhatod az online boltod teljesítményét.
+## Tippek és hibaelhárítás
+
+- Aktiválás után ellenőrizd az eseményeket a GA4 valós idejű nézetében.
+- Ügyelj, hogy ne fusson párhuzamos, duplikáló GA4‑tracking más pluginból vagy tag managerből.
+- Ha nem látsz adatot: kapcsold ki a böngésző‑adblockot, ürítsd a cache‑t, és győződj meg róla, hogy az Analytify hitelesítése sikeres és a megfelelő GA4 tulajdonhoz kapcsolódik.
+
+Összességében az Analytify Easy Digital Downloads modul a GA4‑es e‑kereskedelmi mérés bevezetését és napi használatát egyszerűsíti le: automatizált eseménykövetés, átlátható tölcsér, részletes termékteljesítmény, kuponok és visszatérítések – mindez a WordPressen belül, GA4‑re építve. Ha EDD‑t használsz, ez a legrövidebb út a megbízható, döntésképes analitikához.

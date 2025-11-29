@@ -1,54 +1,95 @@
-# CartFlows Pro
+---
+title: "CartFlows Pro"
+description: "WooCommerce-hez készült checkout‑ és funnel builder, amellyel konverzió‑fókuszú pénztárat és teljes értékesítési tölcséreket készíthetsz, egykattintásos ajánlatokkal, A/B teszttel és analitikával."
+sidebar_label: "CartFlows Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-CartFlows Pro egy olyan bővítmény, amely kifejezetten arra lett tervezve, hogy maximalizálja az online áruházak bevételét és optimalizálja a vásárlási folyamatot. Több olyan fejlett funkciót kínál, amelyek lehetővé teszik a felhasználók számára, hogy könnyedén építsenek és kezeljenek értékesítési tölcséreket, növeljék az átlagos rendelési értéket és automatizálják az értékesítési folyamatokat.
+A CartFlows Pro egy **WooCommerce‑re épülő checkout és funnel builder**, amellyel teljes értékesítési tölcséreket (landing → checkout → upsell → downsell → thank you) és modern, gyors pénztár‑élményt hozhatsz létre a WordPressen belül. A célja, hogy:
+- megszüntesse az alap WooCommerce pénztár korlátait,
+- növelje a konverziót és az **átlagos kosárértéket (AOV)**,
+- mérhető, adatvezérelt optimalizálást tegyen lehetővé.
 
-### Checkout Features
+A Pro kiadás olyan haladó eszközöket ad, mint az **egykattintásos upsell/downsell**, **dinamikus ajánlatok**, **A/B tesztelés** és **részletes analitika**.
 
-CartFlows Pro számos modern és testreszabható checkout stílust kínál, beleértve az egyoszlopos, kétlépcsős és több lépcsős checkout lehetőségeket. A Visual Checkout Field Editor segítségével könnyedén módosíthatod a checkout mezőket, hozzáadhatsz egyedi mezőket, valamint integrálhatod a Google Address Autocomplete és a valós idejű email érvényesítést is. Az automatikus kosár elhagyás funkcióval pedig csökkentheted az elhagyott kosarak számát.
+## Hogyan működik röviden?
 
-### Order Bump Features
+- **Követelmények:** WordPress + WooCommerce. A Pro a Free bővítményre épül, együtt adják a teljes funkcionalitást.
+- **Elrendezés:** a CartFlows átveheti a bolt globális pénztárát (**Store Checkout**), vagy dedikált, kampány‑alapú tölcséreket hozhatsz létre.
+- **Oldalkészítők:** működik a blokkszerkesztővel és a népszerű page builderekkel (pl. Elementor, Divi, Bricks, Beaver). Saját blokkok/widgetek és shortcode‑ok érhetők el.
 
-Az Order Bump funkciók közé tartozik a dinamikus Order Bumps és az Order Bump Grids, amelyek segítségével könnyedén hozzáadhatsz kiegészítő ajánlatokat a checkout folyamat során. A modern Order Bump stílusok és a testreszabható Order Bump helyek lehetővé teszik, hogy vizuálisan vonzó ajánlatokat jeleníts meg a vásárlóknak.
+## Fő funkciók, részletesen
 
-### One-Click Upsells / Downsells
+### Store Checkout – egységes, konverzió‑fókuszú pénztár
+- **Globális csere:** a WooCommerce alap pénztárát lecserélheted, miközben a meglévő URL megmarad. Így a teljes bolt ugyanazt az optimalizált checkoutot használja.
+- **Instant layout:** minimalista, gyors, oldalépítő nélkül is bevethető checkout/thank you elrendezések.
+- **Field Control:** a checkout mezőit teljesen testre szabhatod (sorrend, címkék, oszlopok, kötelezőség, elrejtés), sőt egyes szekciókat össze is csukhatod. A mezők **URL‑paraméterrel előtölthetők** kampányokhoz.
 
-A dinamikus One-Click Upsells és Downsells funkciók segítségével egyszerűen növelheted az átlagos rendelési értéket. A Smart Funnel Routing és a dinamikus upsell sablonok segítségével személyre szabott ajánlatokat tehetsz a vásárlóknak a tranzakció lezárása után.
+### Teljes funnel‑építés
+- **Beépített lépések:** Landing, Opt‑in (ingyenes virtuális termékkel lead gyűjtés), Checkout, **Upsell/Downsell (Pro)**, Thank You.
+- A lépések sorrendje, tartalma és designja szabadon alakítható, vizuális nézeten áttekinthető.
 
-### Advanced Funnel Features
+### Bevételnövelő ajánlatok (AOV)
+- **Order Bump:** a checkout oldalon megjelenő, egy kattintással kosárba tehető kiegészítő ajánlat. Többet is beállíthatsz, feltételes megjelenítéssel.
+- **Pre‑Checkout Offer:** a megrendelés gomb után felugró ajánlat, amely a legtöbb fizetési kapuval működik.
+- **Egykattintásos Upsell/Downsell (Pro):** a vásárlás után azonnal felkínált további termékek külön űrlap nélkül. A támogatás a használt fizetési kaputól függ.
 
-A/B Split Testing funkcióval tesztelheted a különböző tölcsér változatokat, hogy megtaláld a legjobban konvertáló verziót. Az Analytics segítségével részletes adatokat nyerhetsz az értékesítési tölcsérekről, míg a konverzió-optimalizált tölcsér sablonokkal gyorsan elindíthatod az értékesítést.
+### Dinamikus ajánlatok és szabálymotor
+- **Rule Engine:** személyre szabott ajánlatok kosártartalom, kategóriák, címkék, rendelésérték, számlázási/szállítási hely, vagy akár a checkouton megadott **egyedi mezők** alapján.
+- **Vizualizáció:** a flow „canvas” nézeten követhető, így gyorsan átlátod az útvonalakat és feltételeket.
 
-### Automation Features
+Példa szabályra:
+```
+IF cart_contains(category = "Kiegészítők") AND order_total > 20000
+THEN show Order Bump "Prémium tok" ON checkout
+```
 
-CartFlows Pro automatikus funkciói közé tartozik a SureTriggers Pro Plan hozzáférés, amely lehetővé teszi több száz alkalmazás összekapcsolását. A Drag and Drop Automation Builder segítségével könnyedén hozhatsz létre automatizációkat, mint például SMS küldése Twilio-n keresztül vagy automatikus e-mail követések. Emellett olyan okos funkciók is rendelkezésre állnak, mint a Smart Delay Actions és a Smart Conditions.
+### A/B tesztelés és beépített analitika
+- **Split testing:** tesztelj oldal‑ és ajánlat‑változatokat lépésenként.
+- **Insights:** valós idejű metrikák (forgalom, konverzió, bevétel, AOV, lépésenkénti teljesítmény), könnyű JS‑alapú követéssel.
 
-## Integrációk
+### Követőkódok és hirdetési pixelek
+- Natív integrációk a legfontosabb analitikai és hirdetési platformokkal. Eseménykövetés a checkout, upsell és opt‑in lépéseken.
 
-CartFlows Pro zökkenőmentesen működik együtt számos népszerű eszközzel és bővítménnyel. Támogatja a WooCommerce-t, és kompatibilis számos fizetési átjáróval, mint például PayPal, Stripe és WooCommerce Payments. Az automatikus funkciók révén integrálható különböző form builder-ekkel, mint például a Gravity Forms vagy a WPForms.
+### Fizetési kapuk és előfizetések
+- A CartFlows a WooCommerce‑kompatibilis kapukkal működik. Az **egykattintásos upsell** csak bizonyos kapuknál érhető el, és lehet speciális beállítási igény.
+- **Előfizetésekhez** a hivatalos WooCommerce Subscriptions bővítmény szükséges.
 
-## Gyakorlati alkalmazások
+### További hasznos képességek
+- Blokkok és widgetek a fő oldalkészítőkhöz, shortcode beágyazás.
+- Kosárelhagyás visszaszerzés külön bővítménnyel integrálható.
+- Javasolt: a checkout/thank you oldalakat zárd ki a cache‑ből.
 
-### Példa 1: E-kereskedelmi webáruház
+## Gyakorlati példák
 
-Egy e-kereskedelmi webáruház tulajdonosa használhatja a CartFlows Pro-t arra, hogy optimalizálja a checkout folyamatot, hozzáadjon egyedi mezőket és automatikusan követni tudja az elhagyott kosarakat. Az Order Bump és One-Click Upsell funkciókkal növelheti az átlagos rendelési értéket.
+- **Fizikai termék bolt:** a fő termék mellé a checkouton Order Bumpként „1 év extra garancia”; a gomb után Pre‑Checkout Offer ajándék csomagolás; sikeres fizetés után **egykattintásos upsell** egy kedvezményes kiegészítő csomag.
+- **Online kurzus:** Landing → Opt‑in lead mágnes → Checkout a kurzusra → Upsell személyes konzultáció → Thank You. Előfizetéses tagterület esetén a Subscriptions bővítménnyel együtt működik.
+- **Eseményjegy:** a számlázási mezők egyszerűsítése, mezők előtöltése kampányból; földrajzi szabály alapján külön upsell a VIP belépőre.
 
-### Példa 2: Online tanfolyamok értékesítése
+## Előnyök és értékajánlat
 
-Egy online oktató cég használhatja a CartFlows Pro-t arra, hogy különböző upsell ajánlatokat tegyen a vásárlóknak a tanfolyamok megvásárlása után. A split testing segítségével tesztelheti, melyik upsell ajánlat működik a legjobban.
+- **Magasabb konverzió:** gyors, letisztult pénztár, kevesebb súrlódás, teljes mezőkontroll.
+- **Nagyobb AOV:** Order Bump, Pre‑Checkout és egykattintásos upsell/downsell, célzott szabályokkal.
+- **Adatvezérelt döntések:** beépített A/B teszt és Insights, pixel‑integrációkkal.
+- **Idő‑ és költséghatékonyság:** mindezt a WordPressen belül, külső SaaS nélkül, a megszokott oldalkészítőiddel.
+- **Rugalmasság:** globális Store Checkout vagy kampány‑specifikus funnel, dinamikus logikákkal.
 
-### Példa 3: Szolgáltatás alapú vállalkozás
+## Kinek ajánlott?
 
-Egy szolgáltatás alapú vállalkozás automatizálhatja az ügyfélkezelési folyamatokat a CartFlows Pro segítségével. Az automatizált e-mailek és SMS-ek révén emlékeztetőket küldhet az ügyfeleknek a következő találkozóra vagy fizetésre.
+- **WooCommerce webáruházaknak**, akik növelnék a konverziót és az AOV‑ot.
+- **Digitális termék/kurzus tulajoknak** és **tagsági rendszereknek**, akik többlépéses, célzott tölcsért szeretnének.
+- **Marketingeseknek és ügynökségeknek**, akik skálázható, mérhető kampányokat futtatnak WordPressen.
+- **Eseményszervezőknek**, akik egyszerűsítenék a jegyvásárlást és releváns upselleket adnának.
 
-## Szószedet
+## Gyors bevezetési lépések
 
-- **Checkout**: Fizetési folyamat
-- **Order Bump**: Kiegészítő ajánlat
-- **Upsell**: Felülértékesítés
-- **Downsell**: Alulértékesítés
-- **Funnel**: Értékesítési tölcsér
-- **Split Testing**: Osztott tesztelés
-- **Automation**: Automatizáció
-- **SureTriggers**: Automatizációs platform
+1. Telepítsd és aktiváld a CartFlows Free + Pro bővítményt.
+2. Kapcsold be a **Store Checkoutot**, vagy hozz létre dedikált funnelt.
+3. Állítsd be a **Field Controlt** (csak a szükséges mezők, logikus sorrend).
+4. Adj hozzá **Order Bumpot**, **Pre‑Checkout** ajánlatot, majd **Upsell/Downsell** lépéseket.
+5. Konfiguráld a **dinamikus szabályokat** (kosár, kategória, érték, földrajz, egyedi mezők).
+6. Kösd be a **pixeleket/analitikát**, majd indíts **A/B teszteket**.
+7. Figyeld az **Insights** mutatókat, és iterálj a nyertes változatokkal.
+
+Ezzel a folyamattal gyorsan felépíthetsz egy mérhető, bevétel‑orientált WooCommerce tölcsért, amely a pénztárat és az ajánlatokat egyszerre optimalizálja.

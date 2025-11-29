@@ -1,61 +1,95 @@
-# Analytify Pro
+---
+title: "Analytify Pro"
+description: "Google Analytics 4 integráció és riportfelület WordPresshez: valós idejű, e‑kereskedelmi, kampány- és űrlapkövetéssel, közvetlenül a WP-adminban."
+sidebar_label: "Analytify Pro"
+---
 
-Az Analytify Pro számos funkcióval rendelkezik, amelyek megkönnyítik a Google Analytics adatok kezelését és megértését közvetlenül a WordPress admin felületén. Az alábbiakban bemutatom részletesen a főbb funkciókat, előnyöket és felhasználási helyzeteket.
+## Mi ez és milyen problémát old meg?
 
-## Főbb funkciók és előnyök
+Az Analytify Pro egy WordPress‑bővítmény, amellyel a **Google Analytics 4 (GA4)** adataidat közvetlenül a WordPress vezérlőpultban látod – kódolás nélkül. Ahelyett, hogy külön felületre váltanál és a GA4 bonyolult nézeteiben keresgélnél, az Analytify azonnal érthető **irányítópultokat** és **oldalszintű statisztikákat** ad a WP‑adminban és akár a bejegyzésszerkesztőben is. A Pro kiadás mindezt kiegészíti **valós idejű** nézettel, **e‑kereskedelmi tölcsérekkel**, **UTM kampánykezeléssel**, **űrlap- és eseménykövetéssel**, valamint **CSV/PDF exporttal**.
 
-### Könnyen érthető statisztikák
-Az Analytify Pro egyszerűsíti a Google Analytics adatokat, így még a nem technikai felhasználók is könnyen megérthetik azokat. A bővítmény lehetővé teszi, hogy a szerkesztők és tartalomkezelők lássák a bejegyzéseikhez kapcsolódó forgalmi adatokat.
+Lényegében: gyors, kontextusváltás nélküli insight-ok, automatikus követéssel és üzemkész riportokkal – különösen tartalomkészítőknek, marketingeseknek és webshopoknak.
 
-### Oldalszintű analitika
-Minden egyes bejegyzéshez és oldalhoz külön metrikák tartoznak, amelyek rendszerezve vannak az adott bejegyzés/oldal alatt. Ez segít abban, hogy könnyen átlátható legyen, mely tartalmak teljesítenek jól.
+## Fő funkciók – érthetően
 
-### Egyedi post típusok támogatása
-A bővítmény támogatja az egyedi post típusokat, mint például portfóliók, galériák, vélemények és más egyedi tartalomtípusok. Ezekről részletes statisztikákat biztosít.
+- **GA4 integráció pár kattintással**
+  - Bejelentkezés a Google‑fiókoddal, **Property** kiválasztása, és máris gyűlnek az adatok. A bővítmény GA4‑kompatibilis követőkódot (gtag.js) illeszt be, szükség esetén átállási útmutatóval a GA4‑re váltáshoz.
 
-### Közösségi média statisztikák
-Az Analytify Pro részletes adatokat szolgáltat arról, hogy a webhelyed milyen forgalmat kap a különböző közösségi média platformokról, mint például Facebook, Twitter stb.
+- **Irányítópultok és oldalszintű nézetek**
+  - Egy helyen látod a **közönség**, **forgalomszerzés**, **top oldalak**, **földrajz**, **hivatkozók** adatait. Bejegyzés‑ és oldalszerkesztőben külön panel mutatja a nézeteket, felhasználókat, visszafordulási rátát, átlagos időt – pont ott, ahol a tartalmat szerkeszted.
 
-### Valós idejű statisztikák
-Egy dedikált valós idejű statisztikai irányítópult segítségével nyomon követheted az aktuális látogatóidat. A szép grafikonok és táblázatok segítenek azonosítani az élő látogatókat.
+- **Valós idejű statisztika**
+  - Külön **Real‑Time** dashboard jelzi az éppen aktív látogatók számát, forrását és top oldalakat – hasznos kampányindításkor vagy tartalommegosztás után.
 
-### Frontend jelentések
-Ha vannak olyan felhasználóid, akiknek szeretnéd megmutatni a saját listázásaik statisztikáit, az Analytify Pro erre is lehetőséget biztosít. Az adatokat 24 óránként gyorsítótárba helyezi a rendszer.
+- **Kampányok és UTM‑ek**
+  - Beépített **UTM‑link generátor**, egységes **kampányriportok**. Nem kell külső eszközzel linkeket gyártanod és máshol mérned; minden egy felületen.
 
-### Rövidkódok
-Integrálhatod a statisztikákat az egyedi sablonjaidba rövidkódok segítségével, így egyszerűen használhatod őket a saját template-jeidben.
+- **E‑kereskedelem (WooCommerce, EDD)**
+  - GA4 **Enhanced eCommerce** riportok: bevétel, konverziós ráta, kosár‑ és pénztárlépések, első vásárlók, termékteljesítmény. WooCommerce esetén elérhetők **több pénznemű** riportok is.
 
-### Fejlett e-kereskedelmi követés
-Ha van egy online boltod WooCommerce vagy Easy Digital Downloads alapokon, az Analytify Pro megmutatja, hányan kattintottak az "Add to Cart" gombra, milyen szakaszban hagyják el a kosarat a látogatók, honnan érkeznek, és mennyi bevételt termelsz mely forrásokból. Mindezt egy pillanat alatt átláthatod.
+- **Keresési teljesítmény és hirdetések**
+  - **Search Console** nézet az organikus lekérdezésekhez és oldalteljesítményhez. Külön modul a **Google Ads konverziókövetéshez**, hogy a hirdetési eredményeket is a WP‑ben lásd.
 
-### Automatikus email jelentések
-Az Analytify Pro lehetőséget kínál automatikus email jelentések küldésére minden bejegyzéshez és oldalhoz tartozó metrikákkal. Ez nagyban megkönnyíti az adatok nyomon követését és megosztását.
+- **Űrlapok, események és “Key events”**
+  - Automatikus **űrlapbeküldés‑követés**, kattintások és **videóesemények** mérése. A “Key events” segít a legfontosabb interakciókat kiemelni a döntéstámogatáshoz.
 
-### UTM kampányok kezelése
-Az UTM kampányok kezelése egyszerűbbé válik az Analytify Pro segítségével. A WooCommerce bolttulajdonosok számára személyre szabott Google Analytics jelentéseket kínál, így láthatod, hányan kattintottak az "Add to Cart" gombra, milyen szakaszban hagyják el a kosarat a látogatók, honnan érkeznek, és mennyi bevételt termelsz mely forrásokból.
+- **Egyedi dimenziók**
+  - Mérd a teljesítményt **szerző**, **kategória**, **címke** vagy **poszttípus** szerint. Tartalomstratégiához és szerzői riportáláshoz ideális.
 
-## Mely eszközökkel működik együtt zökkenőmentesen?
+- **Frontend riportok és rövidkódok**
+  - Riportok megjelenítése a nyilvános oldalon rövidkódokkal vagy Gutenberg blokkal – például partneri/ügyféloldalakon.
 
-Az Analytify Pro több eszközzel is zökkenőmentesen együttműködik:
-- **Google Analytics**: Az adatok feldolgozásának és megjelenítésének alapját képezi.
-- **WooCommerce**: Fejlett e-kereskedelmi követést biztosít.
-- **Easy Digital Downloads**: Szintén támogatott e-kereskedelmi platform.
-- **Contact Form 7**: Az űrlapok követésére szolgáló integráció.
-- **Ninja Forms**: Szintén űrlapkövetési lehetőség.
+- **AMP támogatás**
+  - GA4 követés **AMP oldalakon**, a bővítmény kezeli az AMP→normál oldal átmenetet, elkerülve a „dupla munkamenet” problémát.
 
-## Konkrét helyzetek és gyakorlati példák
+- **Export és megosztás**
+  - **CSV** és **PDF** export a vezérlőpult‑riportokhoz; automatikus **e‑mail jelentések** ügyfeleknek vagy csapatnak.
 
-- **Bloggerek**: Egy blogger nyomon követheti, mely bejegyzései generálnak nagyobb forgalmat, és mely közösségi média platformok hoznak több látogatót.
-- **Webshop tulajdonosok**: Egy webshop tulajdonosa láthatja, mely termékeket adják hozzá leggyakrabban a kosárhoz, hol hagyják el a vásárlók a folyamatot, és mely kampányok a leghatékonyabbak.
-- **Tartalomkezelők**: Egy tartalomkezelő könnyen megértheti, mely oldalak teljesítenek jól és melyek nem, így optimalizálhatja a tartalmat.
-- **Marketing szakemberek**: Kampányok hatékonyságát mérhetik UTM követéssel és valós idejű statisztikákkal.
+- **Teljesítmény és adatvédelem**
+  - **Lokálisan hosztolt GA4 könyvtár** naponta változó fájlnévvel a hirdetésblokkolók megkerüléséhez. Kompatibilis népszerű **cookie‑kezelő** bővítményekkel.
 
-## Szószedet
+- **Moduláris Pro felépítés**
+  - A Pro funkciók külön **modulokként** kapcsolhatók be/ki (kampányok, e‑kereskedelem, űrlapok, e‑mailek stb.), így csak azt tartod aktívan, amire tényleg szükséged van.
 
-- **Google Analytics**: Egy webes analitikai szolgáltatás, amely részletes statisztikákat biztosít egy webhely forgalmáról.
-- **WooCommerce**: Egy nyílt forráskódú e-kereskedelmi plugin WordPresshez.
-- **Easy Digital Downloads**: Egy WordPress plugin digitális termékek értékesítésére.
-- **UTM**: Urchin Tracking Module - kampánykövetési paraméterek URL-ekhez.
-- **Shortcodes**: Rövidkódok, amelyeket WordPress-ben használnak funkciók egyszerű integrálására.
+## Gyakorlati példák
 
-Az Analytify Pro tehát egy sokoldalú eszköz, amely számos előnyt nyújt különböző felhasználóknak. A fent említett példák és funkciók segítségével könnyedén nyomon követheted és optimalizálhatod webhelyed teljesítményét.
+- **Tartalomfrissítés adat alapon**: Megnyitsz egy régi blogposztot, látod a 30 napos oldalletöltést, átlagos időt és forgalmi forrásokat. Ha nő a visszafordulási arány, frissíted a leadet és a belső linkeket.
+- **Kampányindítás**: Létrehozod az UTM‑linket, megosztod hírlevélben, majd a Real‑Time nézetben figyeled az azonnali forgalmat és konverziót.
+- **Webshop tölcsérelemzés**: A kosár→pénztár→vásárlás lépésekben esést látsz. A pénztári súrlódást csökkented (mezők egyszerűsítése), és a következő héten ellenőrzöd a konverziós ráta javulását.
+- **Ügyfélriportálás**: Havonta automatikus e‑mail riport megy PDF‑ben; az ügyfél a legfontosabb mutatókat kapja, te pedig időt spórolsz.
+
+Példa UTM linkre:
+```
+https://sajatoldalad.hu/termek?utm_source=newsletter&utm_medium=email&utm_campaign=tavaszi_akcio
+```
+
+## Előnyök és értékajánlat
+
+- **Kevesebb kontextusváltás**: Minden analitika a WP‑ben.
+- **Gyors bevezetés**: Kódolás nélkül, előre beállított riportokkal.
+- **Mélység e‑kereskedelemhez**: Tölcsérek, bevétel, termékszint – GA4 szerint.
+- **Megosztás egy kattintással**: CSV/PDF, automatizált e‑mailek.
+- **Pontosabb mérés**: Lokális GA4 script, adblokkoló‑barát megoldás.
+- **Adatvédelmi kompatibilitás**: Cookie‑kezelő integrációk.
+
+## Kinek ajánlott?
+
+- **Oldaltulajdonosoknak**: Ha a legfontosabb számokat a WP‑ben akarod látni.
+- **Tartalom‑ és szerzői csapatoknak**: Poszt‑/oldalszintű insightok a jobb szerkesztési döntésekhez.
+- **Webshopoknak (WooCommerce/EDD)**: Teljes tölcsér és bevételi riportok kódolás nélkül.
+- **Marketingeseknek**: UTM‑ek, kampányriportok, Real‑Time és Ads konverziók egy felületen.
+- **Ügynökségeknek**: Ügyfél‑barát dashboardok és automatizált riportálás.
+
+## Hogyan működik? Gyors indulás
+
+1. Telepítsd és aktiváld a bővítményt a WordPressben.
+2. Jelentkezz be a Google‑fiókoddal, válaszd ki a GA4 Property‑t és az adatkészletet.
+3. A Pro modulok közül kapcsold be, amire szükséged van (pl. WooCommerce, Kampányok, Űrlapok).
+4. Opcionálisan engedélyezd a **lokális GA4 scriptet** a teljesítmény és mérési pontosság javításához.
+5. WooCommerce‑hez ellenőrizd az alap e‑kereskedelmi eseményeket (megtekintés, kosár, pénztár, vásárlás).
+6. Használd a vezérlőpult‑riportokat, a bejegyzésszerkesztő panelt, és igény szerint tegyél ki frontend riportot rövidkóddal vagy blokkal.
+7. Állíts be **e‑mail jelentéseket** és használd a **CSV/PDF exportot** a megosztáshoz.
+
+---
+
+Az Analytify Pro lényegében a GA4 erejét hozza be a WordPressbe, közérthető, cselekvésorientált riportokkal. Ha gyors, pontos és kontextusban lévő analitikára van szükséged – különösen tartalom vagy e‑kereskedelem esetén –, ez a bővítmény hatékony, időtakarékos megoldás.

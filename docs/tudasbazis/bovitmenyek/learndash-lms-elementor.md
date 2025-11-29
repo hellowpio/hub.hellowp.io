@@ -1,53 +1,98 @@
-# LearnDash Elementor Addon
+---
+title: "LearnDash LMS - Elementor"
+description: "Hivatalos kiegészítő, amely mély integrációt ad a LearnDash LMS és az Elementor között, hogy vizuálisan szerkeszthető, egységes sablonokat készíthess kurzus-, lecke-, téma- és kvíz-oldalakhoz."
+sidebar_label: "LearnDash LMS - Elementor"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-A LearnDash Elementor Addon lehetővé teszi, hogy az Elementor szerkesztő funkcióit használva alakítsd ki a kurzusaidat pontosan úgy, ahogyan szeretnéd. Az alábbiakban részletesen bemutatjuk az addon funkcióit, előnyeit és a használatának gyakorlati példáit.
+A LearnDash LMS – Elementor egy hivatalos kiegészítő, amely összeköti a LearnDash tanuláskezelő rendszert az Elementor oldalépítővel. Segítségével az LMS-tartalmat ugyanazzal a vizuális eszköztárral és dizájnrendszerrel formázhatod, mint a webhely többi részét. Megszünteti a vizuális széttagoltságot (amikor az LMS-oldalak „kilógnak” a témából), és lehetővé teszi, hogy a kurzus-, lecke-, téma- és kvíz-oldalakat globális, újrahasznosítható sablonokkal kezeld.
 
-## Funkciók
+## Hogyan működik röviden?
 
-### Tananyag megjelenítése
-Az addon segítségével könnyedén beilleszthetők a következő LearnDash elemek a weboldaladba:
-- **Post Title**: A kurzus címe.
-- **Course Infobar**: Információs sáv, amely bemutatja a felhasználó előrehaladását.
-- **Course Certificate**: A kurzus befejezése után megszerzett oklevél megjelenítése.
-- **Post Content**: A kurzus tartalma.
-- **Course Content**: A tananyag részletes tartalma, beleértve a leckéket, témákat és kvízeket.
+- LearnDash-specifikus Elementor widgeteket ad a szerkesztőhöz, amelyeket drag-and-drop módon illeszthetsz be.
+- Az Elementor Pro Theme Builderével készítesz globális Single sablonokat (Course/Lesson/Topic/Quiz), majd feltételes megjelenítési szabályokkal hozzárendeled a megfelelő bejegyzéstípusokhoz.
+- Opcionálisan kikapcsolhatod az automatikus widget-beszúrást, ha teljes kontrollt akarsz az elrendezés felett.
+- Az Instruktor szerepkör Frontend Course Creator funkciójával az oktatók a frontenden is használhatják az Elementor szerkesztőt.
 
-### Testreszabhatóság
-A LearnDash Elementor Addon lehetővé teszi, hogy minden egyes kurzus, lecke, téma és kvíz egyedi megjelenést kapjon az Elementor használatával. Ez különösen hasznos akkor, ha különböző vizuális stílusokat szeretnél alkalmazni különböző kurzusokon belül.
+Követelmények: aktív LearnDash-licenc, LearnDash LMS, LearnDash Elementor Addon, Elementor és Elementor Pro.
 
-### Widgetek automatikus beillesztésének letiltása
-Az **Auto Widget Insertion** letiltásával teljes kontrollt kapsz afelett, hogy mely widgetek jelenjenek meg és hol. Ez lehetőséget biztosít az oldalak finomhangolására és a felesleges elemek eltávolítására.
+## Fő funkciók részletesen
 
-## Előnyök
+### LearnDash-specifikus Elementor widgetek
+- **Post Title**: A tananyag címének megjelenítése a saját tipográfiáddal.
+- **Course Infobar**: Előrehaladás, beiratkozási státusz, kurzusinformációk – jól látható „állapotsáv”.
+- **Course Certificate**: A tanúsítvány blokkjának kiemelt, vizuálisan egységes megjelenítése.
+- **Post Content**: A bejegyzés (kurzus/leckék/témák/kvízek) fő tartalma – a szerkesztett szöveg és média.
+- **Course Content**: A kurzus tartalomjegyzéke (leckék, témák, kvízek) rendezett, márkázott formában.
 
-### Felhasználói élmény javítása
-A LearnDash és Elementor kombinációja lehetővé teszi, hogy a tananyagok vizuálisan vonzóak és könnyen navigálhatók legyenek. A drag-and-drop szerkesztő segítségével gyorsan és egyszerűen hozhatsz létre professzionális megjelenésű oktatási tartalmakat.
+Ezekből a widgetekből úgy állítod össze a sablont, mintha „legóznál”: tetszőleges sorrend, saját stílusok, reszponzív beállítások.
 
-### Integráció más eszközökkel
-Az addon zökkenőmentesen működik együtt számos más bővítménnyel és eszközzel, mint például:
-- **WooCommerce**: Kurzusok értékesítése.
-- **MemberPress**: Tagsági rendszer kezelés.
-- **Zapier**: Automatizált munkafolyamatok létrehozása.
-- **Gravity Forms**: Egyedi űrlapok készítése.
-- **bbPress**: Fórum funkciók integrálása.
+### Globális sablonok és Display Conditions
+Az Elementor Theme Builderben létrehozott Single sablonokat **Display Conditions** segítségével hozzárendelheted:
+- minden kurzushoz (Single Course),
+- minden leckéhez (Single Lesson),
+- minden témához (Single Topic),
+- minden kvízhez (Single Quiz),
+vagy akár konkrét elemekhez, kategóriákhoz, címkékhez. Így egy változtatás azonnal érvényes lesz az összes érintett oldalon.
+
+### Disable Widget Auto Insertion
+Bekapcsolva az add-on nem illeszti be automatikusan az LMS-widgeteket. Ezt akkor használd, ha:
+- teljes kontrollt szeretnél az elem-elhelyezés felett,
+- el akarod kerülni, hogy ugyanaz a tartalom kétszer jelenjen meg (duplikáció).
+
+### Frontend szerkesztés (Instruktor kompatibilitás)
+Az oktatók a frontenden a „Edit with Elementor” gombbal nyithatják a vizuális szerkesztőt. Így nem kell backend hozzáférést adnod, mégis gyors, biztonságos munkafolyamatot biztosítasz.
+
+### Egységes vizuális élmény
+Az LMS-tartalmak ugyanazt a tipográfiát, színpalettát és komponens-stílust kapják, mint a webhely többi része – kódolás nélkül, kizárólag vizuális beállításokkal.
 
 ## Gyakorlati példák
 
-### Online kurzus készítése
-Egy nyelviskola létrehozhat online nyelvtanfolyamokat, ahol a diákok különböző leckéken és kvízeken keresztül haladhatnak előre. A tananyag vizuálisan vonzó elrendezésével növelhető a diákok elköteleződése és motivációja.
+- **Egységes kurzusoldal sablon**: Készíts egy Single Course sablont, és rendeld az összes kurzushoz. A javasolt widget-sorrend:
+```
+Post Title
+Course Infobar
+Course Certificate
+Post Content
+Course Content
+```
 
-### Vállalati képzési portál
-Egy vállalat belső képzési portált hozhat létre az alkalmazottak számára, ahol különböző tréningek, tanfolyamok és minősítések érhetők el. Az Elementor segítségével a portál megjelenése teljes mértékben testreszabható a vállalat arculatához igazodva.
+- **Egyedi megjelenés prémium kurzusoknak**: Hozz létre második sablont, amely csak egy adott kategóriára vonatkozik (pl. „Masterclass”). Így a prémium kurzusok külön dizájnt kapnak, anélkül hogy a többieket érintenéd.
 
-### E-learning platform
-Egy oktató platform készíthet különböző témájú tanfolyamokat (például programozás, marketing, design), ahol a tanulók saját tempójukban haladhatnak előre. Az Elementor lehetőséget biztosít arra, hogy minden egyes tanfolyam egyedi megjelenést kapjon.
+- **Kvízoldalak fókuszált elrendezése**: A Single Quiz sablonban minimalista fejrész, jól látható kezdés/folytatás gombok és egy diszkrét infobar javíthatja a vizsgázói élményt.
 
-## Szószedet
-- **LearnDash LMS**: Tanulásmenedzsment rendszer WordPresshez.
-- **Elementor**: Drag-and-drop vizuális szerkesztő WordPresshez.
-- **Widget**: Olyan komponens, amely egy weboldal különböző részein megjeleníthető tartalmat vagy funkciót biztosít.
-- **Infobar**: Információs sáv, amely általában a felhasználó előrehaladását mutatja egy kurzusban.
-- **Template**: Elrendezés vagy sablon, amely meghatározza az oldalak megjelenését és struktúráját.
-- **Zapier**: Automatizációs eszköz, amely különböző alkalmazások összekapcsolására szolgál.
+- **Instruktorok vizuális szerkesztése**: Az oktató a frontenden módosítja a lecke bevezetőjét és képeit, miközben a tananyagstruktúra és a vizuális keret érintetlen marad.
+
+## Telepítés és első lépések
+
+1. **Előkészítés**: Telepítsd/aktiváld a LearnDash LMS-t, az Elementort és az Elementor Prot.
+2. **Add-on telepítés**: A WordPress adminban nyisd meg: LearnDash LMS > Addons, telepítsd és aktiváld a „LearnDash Elementor Addon”-t.
+3. **Elementor beállítás**: Ha globális sablonokat használsz, hagyd kikapcsolva az Elementor > Settings > General alatt a Courses, Lessons, Topics, Quizzes közvetlen szerkesztési jelölőit.
+4. **Sablon létrehozása**: Templates > Theme Builder > Add New > Single, majd válaszd ki a „Course/Lesson/Topic/Quiz” típust.
+5. **Widgetek elhelyezése**: Húzd be a LearnDash widgeteket a kívánt sorrendben. Szükség esetén kapcsold be a „Disable Widget Auto Insertion” opciót.
+6. **Publikálás**: Publish > Display Conditions alatt rendeld a sablont a célzott bejegyzéstípus(ok)hoz.
+7. **Tesztelés**: Nézd meg bejelentkezett és kijelentkezett nézetben is (diák/oktató szerepkörrel).
+
+## Előnyök és értékajánlat
+
+- **Márkahű megjelenés**: Az LMS-oldalak nem lógnak ki a webhely dizájnjából.
+- **Gyors sablonkezelés**: Egy módosítás, azonnali hatás a teljes tananyag-struktúrára.
+- **Kevesebb fejlesztés**: Nincs szükség kódra vagy sablonfájlok szerkesztésére.
+- **Biztonságos munkafolyamat**: Instruktorok frontenden dolgozhatnak, backend hozzáférés nélkül.
+- **Kevesebb hiba**: A duplikált/hiányzó elemek elkerülhetők az automatikus beszúrás szabályozásával.
+
+## Kinek ajánlott?
+
+- **Edtech vállalkozásoknak és akadémiáknak**: Márkaazonos, skálázható tananyag-felületek.
+- **Ügynökségeknek/fejlesztőknek**: Gyors kivitelezés, kevesebb egyedi kód.
+- **Egyéni oktatóknak**: Vizuális szerkesztés, professzionális megjelenés kódolás nélkül.
+- **Szerkesztői csapatoknak**: Frontend munkafolyamat, szigorú szerepkör-kezeléssel.
+
+## Megfontolások és korlátok
+
+- **Elementor Pro szükséges** a Theme Builder funkciókhoz.
+- **Globális sablonok használata ajánlott**: Ha túl sok egyedi sablont készítesz, később több helyen kell módosítanod.
+- **Auto insertion kezelése**: Ha duplikációt látsz, kapcsold be a „Disable Widget Auto Insertion”-t, és rendezd kézzel a widgeteket.
+
+Ezzel a kiegészítővel az LMS-tartalom úgy fog kinézni és működni, ahogy te szeretnéd: egységesen, átláthatóan és hatékonyan menedzselhetően.

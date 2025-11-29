@@ -1,167 +1,139 @@
-# Gravity Forms
+---
+title: "Gravity Forms"
+description: "Prémium WordPress űrlap‑ és adatrekord‑kezelő, amellyel kódolás nélkül építhetsz összetett űrlapokat, fogadhatsz fizetéseket és automatizálhatod a folyamataidat."
+sidebar_label: "Gravity Forms"
+---
 
-## Form Builder
+## Mi ez és milyen problémát old meg?
 
-### Drag-and-drop builder
-A Gravity Forms intuitív drag-and-drop szerkesztőjével gyorsan és könnyedén tervezheted és építheted meg űrlapjaidat.
+A Gravity Forms egy prémium, GPL licencű WordPress bővítmény összetett online űrlapokhoz. Segítségével kódolás nélkül tudsz adatot gyűjteni, fizetéseket fogadni, felhasználókat regisztrálni, tartalmat beküldetni, és az adatokat azonnal továbbítani a rendszered felé. Célja, hogy az űrlap‑alapú üzleti folyamataid gyorsan, megbízhatóan és átláthatóan működjenek.
 
-### Accessible and compliant
-A Gravity Forms segítségével WCAG 2.0 AA szabványnak megfelelő űrlapokat hozhatsz létre, így minden felhasználót elérhetsz.
+## Hogyan működik dióhéjban?
 
-### Form import
-Új űrlapokat készíthetsz egy pillanat alatt, vagy biztonsági mentéseket készíthetsz az egyszerű importálási és exportálási funkciók használatával.
+- Az adminban drag‑and‑drop űrlapépítővel létrehozod az űrlapot.
+- Blokkal vagy shortcoddal beágyazod egy oldalra.
+- A beküldések az **Entries** felületen jelennek meg, szűrhetően és exportálhatóan.
+- **Értesítésekkel** e‑mailt küldesz magadnak/ügyfélnek; **visszaigazolással** üzenetet vagy átirányítást adsz.
+- **Add‑onokkal** fizetéseket, integrációkat, felméréseket és automatizációt kapcsolsz.
 
-### Multi-column layouts
-Kiválaszthatod a szükséges oszlopok számát, testreszabhatod azok szélességét, és mezőket húzhatsz a szerkesztőben új oszlopok hozzáadásához.
+## Fő funkciók részletesen
 
-### Save & continue
-Növeld a befejezési arányt azáltal, hogy a felhasználók elmenthetik az űrlapjukat, és később folytathatják a kitöltést.
+### Űrlapszerkesztő és megjelenés
+- **Vizuális építő** többoszlopos elrendezéssel, **többoldalas** űrlapokkal és előnézettel.
+- **Reszponzív**, **WCAG 2.1 AA** szemléletű kimenet.
+- **Mentés és folytatás**: a felhasználó félbehagyhatja, később befejezheti.
 
-### Paginated forms
-Tedd könnyebben átláthatóvá a hosszabb űrlapokat azzal, hogy több oldalra bontod őket, így kevesebb görgetésre van szükség.
+### Mezők, logika, számítások
+- Gazdag mezőkészlet (szöveg, választó, dátum, fájlfeltöltés, fizetési mezők).
+- **Feltételes logika**: mezők/szakaszok/oldalak megjelenítése a válaszok alapján.
+- **Számítások**: összeg, szállítás, adó, egyedi képletek.
 
-### Responsive forms
-A teljesen reszponzív űrlapok bármilyen eszközhöz vagy felbontáshoz alkalmazkodnak.
+### Adatkezelés az adminban
+- **Entries**: listázás, szűrés, tömegműveletek, megjegyzések, státuszok.
+- **Export CSV‑be**, riportkészítéshez.
+- **Partial Entries**: elhagyott űrlapok részleges mentése a konverzió javítására.
+- **Személyes adatok** exportálása/törlése és **megőrzési házirend** a megfeleléshez.
 
-### Conditional logic
-A feltételes logika segítségével megjelenítheted vagy elrejtheted a mezőket, szakaszokat és oldalakat a felhasználói választások alapján.
+### Értesítések és visszaigazolások
+- **E‑mail értesítések** dinamikus mezőbeillesztéssel, csatolmányokkal, feltételes küldéssel.
+- **Visszaigazolás**: köszönő üzenet, egyedi oldal megjelenítése vagy átirányítás.
 
-### Language support
-Az űrlapok nyelvi beállításait a WordPress általános beállításaiból örökli a Gravity Forms.
+### Spamszűrés és biztonság
+- **Honeypot**, beépített CAPTCHA integrációk (pl. reCAPTCHA, Turnstile), **Akismet**.
+- Opcionális **Moderation** kiegészítő: toxicitásszűrés és tiltólisták.
+- Fájlfeltöltésnél jogosultság‑ és típuskorlátozás, biztonsági ajánlások.
 
-### Custom form CSS
-Könnyedén alkalmazhatsz egyedi CSS-t az űrlapokra a zökkenőmentes élmény érdekében.
+### Fizetések és e‑kereskedelem
+- **Stripe** és **PayPal** add‑onok: egyszeri díj, **előfizetés**, engedélyezés‑foglalás, későbbi terhelés.
+- **Kuponok**, több pénznem, lokalizáció, kifizetési naplózás.
 
-### 30+ form fields
-A Gravity Forms több mint 30 különböző mezőt kínál, amelyekkel könnyedén készíthetsz egyedi űrlapokat.
+### Tartalom‑ és felhasználókezelés
+- **Advanced Post Creation**: frontenden beküldött tartalomból bejegyzések/CPT‑k létrehozása, taxonómiák és médiák kezelése.
+- **User Registration**: felhasználók regisztrációja, aktiválása, szerepkörök, közösségi integrációk.
 
-### Merge tags
-Dinamikusan töltheted ki az e-mail értesítésekben, postai tartalmakban vagy a regisztrált felhasználók profiladataiban szereplő mezők értékeit.
+### Integrációk és ökoszisztéma
+- Hivatalos add‑onok e‑mail marketinghez, CRM‑ekhez, analitikához.
+- **Webhooks**, **Zapier**, és kiterjedt külső ökoszisztéma fejlett automatizációkhoz.
 
-## Data Collection
-
-### Email logic
-Konfigurálhatod az összetett e-mail útvonalakat az űrlapértesítésekhez és visszaigazolásokhoz a felhasználói választások és feltételes logika alapján.
-
-### Field validation
-Tartsd tisztán az adatokat mezőellenőrzési beállítások használatával, így elkerülheted a hibás beküldéseket.
-
-### API & webhooks
-Használd a nyílt REST API-t és egyszerű webhooks-okat egyedi integrációk vagy munkafolyamatok létrehozásához.
-
-### Partial entries
-Gyűjts adatokat olyan felhasználóktól is, akik elkezdtek egy űrlapot kitölteni, de nem fejezték be. Használd ezt az adatot az űrlap konverziójának javítására.
-
-### Data routing
-Az űrlapadataidat könnyedén továbbíthatod különböző helyekre (CRM, Zapier, e-mail stb.) az általad meghatározott kritériumok alapján.
-
-### Import & export
-Csomagold össze az űrlapodat és vidd magaddal, akár közvetlenül egy másik oldalra exportálva, akár CSV-be mentve az adatokat.
-
-### File uploads
-Adj hozzá fájl feltöltési mezőket az űrlapjaidhoz, így a felhasználók közvetlenül a szerveredre küldhetnek fájlokat.
-
-### Dynamic field values
-Segítsd a felhasználókat az űrlapok automatikus kitöltésében dinamikus mezők használatával. A javaslatok felhasználói választásokból, lekérdezési karakterláncokból vagy mezőtípusokból származhatnak.
-
-### Calculations
-Használj számításokat a mezőkön belül, lehetővé téve, hogy egy mező értékét matematikai képlet alapján dinamikusan kiszámítsd.
-
-### Quizzes and polls
-Automatikus pontozású kvízeket készíthetsz és szavazási opciókat adhatsz hozzá, hogy visszajelzést gyűjthess saját csapatod számára is.
-
-### Surveys
-Könnyedén gyűjtheted és elemezheted a célcsoportodat érintő adatokat a felhasználókkal való interakció révén.
-
-### Digital signatures
-Lehetővé teheted a felhasználók számára, hogy elektronikus aláírással lássák el az űrlapokat érintő eszközök (érintőképernyő, érintőpad vagy egér) használatával.
-
-## Ecommerce
-
-### Discount codes
-Készíts és kezeld az egyedi kódokat, amelyek automatikusan kiszámítják a kedvezményeket a felhasználók számára.
-
-### Automated payments
-Kezeld az előfizetéseket és ismétlődő fizetéseket automatizált munkafolyamatokkal a preferált fizetési processzorod használatával.
-
-### Payment processor integration
-A Gravity Forms integrálható Stripe-pal, Square-rel, Mollie-val és más fizetési processzorokkal, így biztonságosan kezelheted a tranzakciókat közvetlenül a WordPress űrlapjaidról.
-
-### PCI compliant
-Az űrlapok megfelelnek a PCI szabványoknak, ami segít biztosítani az adatbiztonságot.
-
-## Security
-
-### GDPR compliant
-A Gravity Forms eszközöket kínál a személyes adatok kezelésére és a felhasználói beleegyezés érvényesítésére harmadik fél integrációkhoz.
-
-### Google reCAPTCHA v2 & v3
-Védd meg magad a spam és bot támadások ellen a Google reCAPTCHA v2 és v3 támogatásával.
-
-### Anti-spam
-Állítsd meg a botokat antispam honeypotok vagy az Akismet integráció használatával, hogy megvédhesd adataidat.
-
-### Security audits
-A Gravity Forms csapata rendszeresen auditálja a teljes plugin kódját negyedévente, biztosítva ezzel a biztonságot.
-
-## Developer Friendly
-
-### Hundreds of actions & filters
-Több mint 500 rendelkezésre álló hook segítségével választhatod meg saját formázott sorsodat.
-
-### Well-documented code
-A jó kód sarokköve az érthető dokumentáció. Könnyen értelmezhető változó- és függvénynevekkel látjuk el kódunkat, rövid megjegyzésekkel kontextust adva hozzájuk.
-
-### Extensive API
-A GF API osztály lehetővé teszi adatok egyszerű tolását és húzását. Használd azt űrlapok, bejegyzések és más adatok kezelésére.
-
-### BYOA (Build Your Own Add-On)
-Az Add-On Framework-ekkel könnyedén építhetsz egyedi műveleteket, amelyek automatikusan futnak az űrlap benyújtásakor.
-
-## Certified Dev Features
-
-### Display entries on the front end
-A Gravity Forms összegyűjtött adatait a **GravityView** segítségével jelenítheted meg az oldal front-endjén.
-
-### Convert to PDFs
-Automatikusan generálhatsz, küldhetsz e-mailben, digitális aláírásokkal láthatod el és tölthetsz le PDF-eket **Fillable PDFs by ForGravity** vagy **Gravity PDF** használatával.
-
-### Conditional pricing
-Hozz létre rugalmas feltételes árképzést Gravity Form termékmezők számára **Conditional Pricing Perk by Gravity Wiz** segítségével.
-
-### Generate charts
-Hozz létre diagramokat és számításokat az űrlap bejegyzésekből Gravity Forms és **GFChart** segítségével.
-
-### Nested forms
-Hozz létre egymásba ágyazott űrlapokat komplexebb űrlapok jobb kezelhetősége érdekében **Nested Forms by Gravity Wiz** segítségével.
-
-### Image enhancements
-Adj hozzá képeket rádiógomb vagy jelölőnégyzet mezők választási lehetőségeihez **Image Choices by JetSloth** használatával, vagy növeld a felhasználók által generált tartalom minőségét **Image Hopper** segítségével.
-
-### Automate entry exports
-Feltételes logika segítségével erőteljes munkafolyamatokat hozhatsz létre az űrlapbejegyzések automatizálására **Entry Automation by ForGravity** segítségével.
-
-### Preview submissions
-Adj hozzá egyszerű benyújtási előnézetet, amely lehetővé teszi a felhasználók számára benyújtásuk megerősítését **Preview Submission Perk by Gravity Wiz** használatával.
+### Speciális űrlaptípus: Conversational Forms
+- Teljesképernyős, kérdésenkénti, beszélgetéses élmény, amely növeli a kitöltési arányt – akár fizetési mezőkkel is.
 
 ## Gyakorlati példák
 
-- **Kapcsolati űrlapok**: Gyorsan létrehozhatsz kapcsolatfelvételi űrlapokat weboldalad látogatóinak.
-- **Regisztrációs formok**: Eseményekhez vagy hírlevelekhez való regisztráció egyszerűen kezelhető.
-- **E-commerce**: Termékmegrendelések és fizetések feldolgozása közvetlenül az oldalon.
-- **Kérdőívek és felmérések**: Felhasználói vélemények gyűjtése különböző témákban.
-- **Kvízek és vizsgák**: Oktatási célokra kvízek és tesztek készítése automatikus pontozással.
-- **Adománygyűjtés**: Nonprofit szervezetek számára adománygyűjtési kampányok lebonyolítása.
+1. Ajánlatkérés → CRM
+   - Mezők: név, e‑mail, szolgáltatás, fájlfeltöltés.
+   - Feltételes mezők a szolgáltatás alapján.
+   - Értesítés az értékesítőnek; visszaigazolás az ügyfélnek.
+   - Webhook a CRM felé; Partial Entries az elhagyások mentésére.
 
-## Szószedet
+2. Előfizetés Stripe‑pal
+   - Termék + előfizetés mező, kuponkód.
+   - Kötelező jelölő az ÁSZF‑hez.
+   - Sikeres fizetés után átirányítás a köszönő oldalra; kudarc esetén hibaüzenet.
 
-- **WCAG**: Web Content Accessibility Guidelines – webtartalom akadálymentesítési irányelvek.
-- **CSV**: Comma-Separated Values – vesszővel elválasztott értékek.
-- **REST API**: Representational State Transfer Application Programming Interface – állapot-reprezentáló alkalmazásprogramozási interfész.
-- **PCI**: Payment Card Industry – fizetési kártya ipar.
-- **GDPR**: General Data Protection Regulation – általános adatvédelmi rendelet.
-- **reCAPTCHA**: CAPTCHA rendszer, amelyet a Google fejlesztett ki.
-- **Akismet**: Spam elleni védekezési szolgáltatás blogok számára.
-- **Add-On Frameworks**: Kiegészítő keretrendszer.
-- **GFChart**: Diagramkészítő eszköz Gravity Forms számára.
-- **GravityView**: Eszköz az űrlap bejegyzések megjelenítéséhez.
+3. Frontend cikkbeküldés
+   - Cím, kivonat, tartalom, kiemelt kép, kategória.
+   - Advanced Post Creation feed: a mezők térképezése, „várólista” státusz.
+   - Moderation kiegészítő a nemkívánatos tartalom szűrésére.
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás**: komplex űrlapok kódolás nélkül, percek alatt.
+- **Kevesebb lemorzsolódás**: többoldalas űrlap, Mentés és folytatás, Conversational UX.
+- **Bevétel‑növelés**: fizetések, előfizetések, kuponok, naplózás.
+- **Adatáramlás**: azonnali integrációk CRM‑be, táblázatba, automatizációkba.
+- **Megfelelés és kontroll**: adatmegőrzés, export/erase, biztonsági és spamszűrési opciók.
+
+## Kinek ajánlott?
+
+- **Ügynökségeknek**: skálázható űrlapstack ügyfeleknek, széles add‑on választék.
+- **KKV‑knak és e‑kereskedőknek**: ajánlatkérés, rendelés, előfizetés egy rendszerben.
+- **Nonprofitoknak és oktatásnak**: adomány, jelentkezés, pályázat, felmérés.
+- **Közösségi/tagsági oldalaknak**: regisztráció, aktiválás, jogosultságok.
+- **Fejlesztőknek/devopsnak**: REST API, WP‑CLI, webhookok, testreszabható workflow.
+
+## Fejlesztőknek és üzemeltetőknek
+
+- **REST API v2**: formák, beküldések lekérése/létrehozása, validálás, fájlfeltöltés.
+- **WP‑CLI**: űrlapok, mezők, értesítések, entries kezelése parancssorból.
+- **Add‑On Framework**: saját integrációk, hookok és filterek.
+
+Példák:
+
+```bash
+# Beküldések exportja CLI-ből
+wp gf entry export --form-id=12 --search="status:is:active" --filename=export.csv
+```
+
+```bash
+# Új űrlap létrehozása CLI-ből
+wp gf form create "Kapcsolat" --description="Kapcsolati űrlap"
+```
+
+```bash
+# Egyszerű beküldés REST API-n (példa)
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -u consumer_key:consumer_secret \
+  -d '{"input_1":"Teszt Név","input_2":"teszt@example.com"}' \
+  https://sajat-oldalad.tld/wp-json/gf/v2/forms/5/submissions
+```
+
+## Biztonság és megfelelés
+
+- **Spamszűrés**: honeypot, CAPTCHA, Akismet, Moderation.
+- **Fájlok**: típus‑ és méretkorlát, jogosultságkezelés.
+- **Adatvédelem**: személyes adatok export/erase, megőrzési szabályok, IP‑tárolás tiltása.
+- Üzemeltetési javaslat: mindig az adminon belüli frissítési csatornát használd, és maradj naprakész; korábbi ellátási lánc‑incidensek elkerülésére ez a legbiztonságosabb.
+
+## Licencelés röviden
+
+Éves előfizetés több csomagban:
+- **Basic**: alap űrlapkészítés és népszerű marketing add‑onok.
+- **Pro**: fizetések és automatizációk.
+- **Elite**: minden hivatalos add‑on, korlátlan telepítés, prioritásos támogatás, multisite.
+Nonprofit kedvezmény elérhető.
+
+--- 
+
+Összefoglalva: a Gravity Forms egy érett, kiterjeszthető űrlapplatform, amellyel a legtöbb űrlapos üzleti igényed — lead gyűjtés, fizetés, felmérés, tagság, tartalombeküldés, workflow — egyetlen, WordPress‑natív megoldásban lefedhető. Ha gyorsan, biztonságosan és integráltan akarsz dolgozni, ez a bővítmény neked szól.

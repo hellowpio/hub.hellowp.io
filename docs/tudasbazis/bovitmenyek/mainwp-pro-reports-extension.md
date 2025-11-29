@@ -1,49 +1,104 @@
-# MainWP Pro Reports Extension
+---
+title: "MainWP Pro Reports Extension"
+description: "Teljesen testreszabható, márkázott ügyfélriportok készítése és automatizált kiküldése a MainWP Dashboardból."
+sidebar_label: "MainWP Pro Reports Extension"
+---
 
-## A MainWP Pro Reports Extension funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-A MainWP Pro Reports Extension egy olyan bővítmény, amely lehetővé teszi, hogy személyre szabott és professzionális jelentéseket készíts ügyfeleid számára. Ez a bővítmény nemcsak megkönnyíti a munkádat, hanem segít abban is, hogy átlátható és bizalmi kapcsolatot alakíts ki ügyfeleiddel.
+A MainWP Pro Reports egy olyan kiegészítő, amellyel ügynökségként vagy karbantartóként átlátható, márkázott ügyfélriportokat készíthetsz. Láthatóvá teszi mindazt, amin dolgozol: frissítések, biztonság, uptime, analitika, e-kereskedelem, teljesítmény és még sok más. A cél, hogy az ügyfeled pontosan értse, milyen értéket kap, és ne kelljen órákat töltened manuális összesítésekkel.
 
-## Jelentések Testreszabása
+## Hogyan működik?
 
-### Személyre szabott sablonok
-A Pro Reports Extension számos beépített sablonnal rendelkezik, amelyeket PHP, HTML és CSS segítségével könnyedén testre szabhatsz. Így biztosíthatod, hogy a jelentések megfeleljenek az ügyfeleid igényeinek és a saját stílusodnak.
+- A riportok a MainWP Dashboardból készülnek és onnan küldhetők.
+- Minden kezelt webhelyen futnia kell a MainWP Child és a naplózást végző MainWP Child Reports bővítményeknek (ez gyűjti a frissítések, bejegyzések, felhasználók stb. eseményeit).
+- A bővítmény sablonokkal, tokenekkel és integrációkkal dolgozik. A tokenek dinamikusan töltik fel a riport szakaszait az adott időszak adataival.
+- A jelentések PDF-ben vagy akár kizárólag HTML e-mailként is kiküldhetők, ütemezve vagy azonnal.
+- A generált PDF-ek a Dashboard szerveren tárolódnak, így visszakereshetők és archiválhatók.
 
-### Adatok kiválasztása
-Teljes kontrollt kapsz a jelentések tartalma felett. Döntheted el, hogy részletes elemzést vagy csak egy rövid összefoglalót kívánsz-e küldeni. Az adatok kiválasztásával biztosíthatod, hogy csak a legfontosabb információk kerüljenek bele a jelentésbe.
+Például:
+```
+Riport sablonok: /wp-content/uploads/mainwp/report-templates/
+Generált PDF-ek: /wp-content/uploads/mainwp_pro_reports/
+```
 
-### Egyedi branding
-Adj hozzá saját logót és márkaszíneket a jelentésekhez. Ezzel nemcsak professzionális kinézetet kölcsönözhetsz a dokumentumoknak, hanem biztosíthatod a márka egységes megjelenését is minden ügyfélkommunikációban.
+A riportadatok REST API-n lekérhetők (külső rendszerekbe is beépíthetők), de a PDF generálása nem API-funkció. Gondoskodj róla, hogy a WordPress REST API elérhető legyen.
 
-## E-mail Beállítások
+## Fő funkciók, érthetően
 
-### Testreszabott e-mail küldés
-Az e-mail beállítások segítségével szabályozhatod, hogyan kerülnek kiküldésre a jelentések. Integrálhatsz különböző tokeneket az e-mail tartalmába, hogy személyre szabottabbá tedd az üzeneteket, és ösztönözd az ügyfeleket a csatolt PDF letöltésére.
+### Teljesen testreszabható sablonok
+PHP/HTML/CSS alapú sablonokkal a teljes kinézetet és tartalmi sorrendet a saját márkádra szabhatod. A sablonokat a feltöltések mappájába másolva frissítésbiztosan karbantarthatod. Külön mezők állnak rendelkezésre fejléc, bevezető és záró szöveghez.
 
-## REST API Integráció
+### Tokenek és integrált adatok
+Százával érhetők el tokenek a kliens- és időszak-információtól a frissítéseken, biztonsági eseményeken és uptime statisztikákon át az analitikáig, teljesítmény- és e-kereskedelmi adatokig. Készíthetsz saját tokeneket is. A tokenek a PDF-ben és az e-mail törzsében is használhatók.
 
-### Adathozzáférés REST API-n keresztül
-A bővítmény lehetővé teszi a REST API használatát, amely segítségével részletes adatokat érhetsz el. Ez különösen hasznos lehet olyan helyzetekben, amikor mélyebb betekintést szeretnél nyerni az üzleti folyamatokba, vagy automatikus rendszereket szeretnél integrálni.
+Példa:
+```
+Címzett: [client.email]
+Időszak: [date.range]
+PDF fájlnév: [site.name]-riport-[date.range].pdf
+```
 
-## Más Eszközökkel Való Együttműködés
+### Ütemezett és egyszeri küldés
+- Egyszeri: tetszőleges dátumtartományra.
+- Ismétlődő: napi/heti/havi ütemezéssel, megadott küldési nappal.
+A munkafolyamatban van előnézet, piszkozat mentés és azonnali küldés. Az ütemezés WordPress CRON alapon fut.
 
-### MainWP Child Reports plugin
-A MainWP Pro Reports Extension zökkenőmentesen működik együtt a MainWP Child Reports plugin-nal. Ez szükséges ahhoz, hogy az összes gyermekoldalon gyűjtött adatot felhasználhasd a jelentések készítéséhez.
+### Testreszabott e-mail kézbesítés
+Több címzett és BCC mező, tokenek a tárgyban és tartalomban, testreszabott fájlnév. Dönthetsz úgy is, hogy csak HTML e-mailt küldesz PDF nélkül.
 
-### További MainWP kiegészítők
-A Pro Reports Extension képes más MainWP kiegészítőkből származó adatokat is megjeleníteni. Például az Advanced Uptime Monitor Extension adatait integrálhatod a jelentésekbe, hogy az ügyfelek láthassák a weboldalaik üzemidő statisztikáit.
+### Márkázás és többnyelvűség
+Logó, színek, betűtípusok és sablonszövegek mind testreszabhatók. A táblázatfejlécek és címsorok fordíthatók, így többnyelvű riportokat is küldhetsz.
 
-## Gyakorlati Példák
+### REST API és fejlesztői eszközök
+A riportadatok REST API-n lekérhetők saját pipeline-okhoz (PDF generálás nélkül). Filterek és hookok segítenek egyedi tokenek és kimenetek kialakításában, haladó sablonlogikával.
 
-- **Ügynökségi riportok készítése:** Használd a Pro Reports Extension-t, hogy rendszeres időközönként részletes jelentéseket küldj az ügyfeleidnek a weboldalaik állapotáról, karbantartási munkálatokról és egyéb fontos eseményekről.
-- **Személyre szabott elemzések:** Készíts speciális jelentéseket egy-egy kampány vagy projekt eredményeiről, amelyek tartalmazzák a látogatói statisztikákat, konverziós arányokat és egyéb releváns adatokat.
-- **Automatikus riportküldés:** Állítsd be az e-mail beállításokat úgy, hogy automatikusan küldje el az elkészített jelentéseket az ügyfeleknek meghatározott időközönként.
+## Milyen adatokat tudsz bevonni?
 
-## Szószedet
+- WordPress események: mag-, bővítmény- és sablonfrissítések, telepítések/eltávolítások, bejegyzések, oldalak, felhasználók, kommentek (Child Reports napló).
+- Biztonság: például Sucuri, Wordfence, Solid Security, Jetpack Protect/Scan.
+- Uptime: válaszidők, leállások, rendelkezésre állás, grafikonok.
+- Analitika és keresés: Google Analytics, Matomo, Fathom, Search Console.
+- Teljesítmény: Lighthouse pontszámok és auditok.
+- Domain/SSL: lejárati dátumok, állapot.
+- E-kereskedelem: WooCommerce rendelésérték, top termékek, készlet.
+- Feladatok: például Atarim feladatstatisztikák.
 
-- **MainWP Child Reports plugin:** Egy kiegészítő, amelyet minden gyermekoldalon telepíteni kell ahhoz, hogy adatokat gyűjtsön és jelentéseket készítsen.
-- **REST API:** Egy interfész, amely lehetővé teszi, hogy más szoftverekkel kommunikálj és adatokat ossz meg.
-- **Token:** Helyettesítő változó, amelyet használhatsz az e-mail és jelentés tartalmának testreszabására.
-- **PHP, HTML, CSS:** Programozási nyelvek, amelyek segítségével testreszabhatod a jelentés sablonokat.
+Megjegyzés: az egyes szekciókhoz a megfelelő MainWP kiegészítők és/vagy külső szolgáltatások szükségesek.
 
-A MainWP Pro Reports Extension tehát egy rendkívül rugalmas eszköz, amely jelentősen megkönnyíti az ügyfelek számára készített jelentések elkészítését és küldését. A személyre szabható sablonoknak, az integrált adathozzáférésnek és az automatizált funkcióknak köszönhetően gyorsan és hatékonyan prezentálhatod munkádat ügyfeleid számára.
+## Gyakorlati példák
+
+- Havi ügyfélriport ügynökségnek: automatizált összefoglaló frissítésekről, biztonságról, uptime-ról és analitikáról, PDF melléklettel, saját márkával.
+- WooCommerce bolt tulajdonosának: hónap végi értékesítési összeg, top termékek, készletfigyelmeztetések, kiegészítve teljesítmény- és biztonsági képpel.
+- SLA riport menedzselt szolgáltatásnál: uptime százalékok és incidensek, válaszidő trendek, Lighthouse pontszámváltozás.
+- Projektlezáró beszámoló: adott dátumtartományra az összes fontos változás és elvégzett feladat, PDF archiválással.
+
+## Előnyök és értékajánlat
+
+- Látható érték: az ügyfél pontosan látja, min dolgozol.
+- Időmegtakarítás: sablonok + ütemezés → minimális manuális munka.
+- Egységesítés: szétszórt adatok egy dokumentumban.
+- Márkázás: profi, konzisztens megjelenés több nyelven is.
+- Visszakereshetőség: a PDF-ek központilag tárolódnak a Dashboardon.
+
+## Kinek ajánlott?
+
+- Webes ügynökségeknek és menedzselt WordPress szolgáltatóknak, akik rendszeresen riportolnak.
+- Szabadúszóknak, akiknek fontos a látható, bizonyíték-alapú ügyfélkommunikáció.
+- DevOps/IT csapatoknak, akik SLA-t vagy rendelkezésre állási vállalást igazolnak.
+- Olyan csapatoknak, akik belső BI/riport pipeline-t építenek és REST API-n keresztül adatot gyűjtenének.
+
+## Telepítés és első lépések
+
+1. Telepítsd a kiegészítőt a MainWP Dashboardra.
+2. Minden kezelt webhelyen legyen aktív a MainWP Child és a MainWP Child Reports.
+3. Szinkronizálj, majd válassz egy riport sablont (vagy készíts sajátot).
+4. Állítsd be az időszakot vagy az ütemezést (napi/heti/havi).
+5. Válaszd ki a szekciókat, add meg a címzetteket, tárgyat és a PDF fájlnevet tokenekkel.
+6. Nézd meg az előnézetet, ments piszkozatot, majd küldd a riportot (PDF-fel vagy csak HTML e-mailként).
+
+Fontos megjegyzések:
+- A Child Reports új telepítés után csak a további aktivitást naplózza; kell némi idő, mire elég adat gyűlik.
+- Bizonyos szekciókhoz további MainWP kiegészítők és külső integrációk szükségesek.
+- Az ütemezés WordPress CRON-on fut; gondoskodj róla, hogy a CRON megbízhatóan működjön.
+- A REST API-ból a riportadatok lekérhetők, de a PDF generálása nem elérhető API-n.

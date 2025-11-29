@@ -1,66 +1,88 @@
-# Oxygen Elements for WooCommerce
+---
+title: "Oxygen Elements for WooCommerce"
+description: "Az Oxygen vizuális oldalépítő hivatalos WooCommerce-kiegészítője, amellyel a teljes webáruházad sablonokkal és Woo-elemekkel, kódolás nélkül építheted fel."
+sidebar_label: "Oxygen Elements for WooCommerce"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az Oxygen Elements for WooCommerce egy olyan eszköz, amely lehetővé teszi, hogy teljes mértékben személyre szabhasd a WooCommerce áruházad megjelenését és működését. Ez az eszköz rendkívül hasznos lehet mindazok számára, akik szeretnék, hogy webáruházuk egyedi és professzionális megjelenést kapjon, anélkül, hogy kompromisszumot kellene kötniük a funkcionalitásban.
+Az Oxygen Elements for WooCommerce az Oxygen oldalépítő WooCommerce-integrációja. Arra való, hogy a WooCommerce boltod minden oldalát – termékoldal, shop archív, kosár, pénztár, fiók – vizuálisan, sablonokkal és kifejezetten WooCommerce-hez készült elemekkel építsd meg. Nem kell PHP-sablonokat felülírnod: ugyanabban a vizuális szerkesztőben dolgozol, ahol a többi oldalt is kialakítod.
 
-### Globális stílusok testreszabása
+A legnagyobb gondot – a témához kötött, nehezen módosítható WooCommerce-sablonokat és a Shop oldal direkt szerkeszthetőségének hiányát – sablonalapú, kódmentes megoldással kerüli meg.
 
-Az Oxygen Elements for WooCommerce lehetővé teszi, hogy globális szinten állítsd be az áruházad stílusát, így az összes elem harmonizál egymással. A következő elemeket módosíthatod:
+## Fő funkciók, érthetően
 
-- Értesítések
-- Gombok
-- Linkek
-- Űrlapmezők
-- Szövegek
-- Widgetek
+### Sablonok az egész boltra
+- **Shop archív sablon**: A terméklistázó oldalakat (shop, kategóriák, címkék) sablonnal kezeled. Te határozod meg a rácsot, a kártyák felépítését, a lapozást és a szűrőblokkot.
+- **Termékoldal sablon**: A **Product Builder** egy keretelem, amelyhez „Product …” részegységeket adhatsz: **Title**, **Images**, **Price**, **Description**, **Meta/Info**, **Cart Button**, **Upsells** stb. Mindet külön stíluslapokkal formázod.
+- **Rendszeroldalak**: Dedikált elemek a **Kosár**, **Pénztár** és **Saját fiók** oldalakhoz. Az űrlapmezők, gombok, értesítések és lépések megjelenését részletesen testre szabhatod.
 
-### Termékoldalak szerkesztése
+### Globális WooCommerce-stílusok
+Egy helyen állíthatod be a bolt teljes arculatát: **gombok**, **linkek**, **űrlapok**, **szövegek**, **badge-ek** (pl. „Sale”), **értesítések** és **widgetek** stílusai. Így a teljes webshop konzisztens, márkahű megjelenést kap.
 
-Az eszköz segítségével gyorsan és egyszerűen szerkesztheted a termékoldalakat. Az egyes termékoldalak elemeit tetszés szerint rendezheted és testreszabhatod, beleértve az árat, címet, képeket és leírásokat.
+### Terméklisták és dinamikus lekérdezések
+- **Products List elem**: Vizuálisan állíthatod be a listázás feltételeit: mennyi termék, milyen rendezés, mely kategóriák, csak akciós, legjobban fogyó, legjobbra értékelt, akár konkrét SKU/ID alapján. Van oldalszámozás és részletes UI-stílus.
+- **Haladó loop/Query builder**: Ha komplex feltételekre van szükséged, dinamikus lekérdezéseket és egyedi listázó komponenseket készíthetsz, lapozással, „load more”-ral vagy végtelen görgetéssel.
 
-### Kosár oldal testreszabása
+### WooCommerce-specifikus elemek
+A termékoldalhoz és listákhoz tucatnyi specializált elem jár:
+- **Product Title**, **Product Images** (galéria, zoom ikon, „Sale” badge kezelése), **Product Price**, **Product Description**, **Product Meta/Info** (kategóriák, címkék, SKU), **Product Cart Button** (változatok, raktárkészlet, mennyiség), **Product Upsells/Related**.
+Minden elem külön stílusfülekkel rendelkezik, így pixelpontos kontrollt kapsz.
 
-A Shopping Cart elem segítségével mélyebb szinten szabhatod testre a kosár oldalt. Ezáltal egyedi vásárlási élményt nyújthatsz a látogatóidnak.
-
-### Fizetési oldal módosítása
-
-A Checkout elem lehetőséget ad arra, hogy a fizetési folyamat utolsó lépését is saját igényeidhez igazítsd. Így biztosíthatod, hogy a vásárlási élmény minden lépése egyedi és professzionális legyen.
-
-### Fiók oldal testreszabása
-
-Az Oxygen My Account elem segítségével a felhasználói fiók kezelése is könnyen testreszabhatóvá válik. Ezzel a funkcióval vonzóbbá teheted az ügyfélfiókok kezelőfelületét.
-
-## Együttműködés más eszközökkel
-
-Az Oxygen Elements for WooCommerce zökkenőmentesen működik együtt több más eszközzel és bővítménnyel, beleértve:
-
-- Elementor
-- Advanced Custom Fields (ACF)
-- Yoast SEO
-- WPML (WordPress Multilingual Plugin)
-
-Ezáltal még több lehetőséget biztosít a webáruházad testreszabására és optimalizálására.
+### Sablon-override Oxygen alatt
+Téma nélkül is felülírhatsz WooCommerce-sablonokat az Oxygen által biztosított útvonalon:
+```
+wp-content/oxywoocotemplates/woocommerce/
+```
+Haladó esetre tartogasd; a legtöbb dizájn felépíthető kizárólag az Oxygen elemeivel.
 
 ## Gyakorlati példák
 
-### Egyedi termékoldal létrehozása
+1. Egyedi Shop rács „Sale” badge-del  
+   - Készíts archív sablont a termékekhez, helyezz el Products List elemet, állíts be 3 oszlopos rácsot, kártyánként képet, címet, árat, kosár gombot. A „Sale” badge-et a Product Images elemben formázd, és adj hozzá kategóriaszűrő blokkot.
 
-Képzeld el, hogy van egy boltod, amely különleges kézműves termékeket árul. Az Oxygen segítségével minden egyes termékoldalt egyedivé tehetsz, kiemelve a termékek különlegességeit és részleteit. Használhatod a moduláris elemeket, hogy a termékinformációkat egyedi módon rendezd el.
+2. Termékoldal variánsokkal és upsellel  
+   - Product Builder + Title, Images, Price, Cart Button, Description, Upsells elemek. A Cart Button automatikusan kezeli a variációkat és a készletet; az Upsells blokkban a kapcsolt termékeket saját kártyadizájnnal jeleníted meg.
 
-### Speciális akciós oldal kialakítása
+3. „Csak akciós” és „legjobban fogyó” szekciók a kezdőlapon  
+   - Két Products List elem eltérő lekérdezéssel: egyik „csak akciós”, másik „best sellers”. Mindkettő saját rács- és kártyastílussal, összhangban a márkaarculattal.
 
-Ha szezonális akciókat vagy különleges ajánlatokat szeretnél népszerűsíteni, az Oxygen lehetőséget ad arra, hogy különleges akciós oldalakat hozz létre. Az elemekkel egyszerűen kiemelheted a kedvezményeket és promóciókat, így növelheted az értékesítést.
+4. Pénztár folyamat letisztítása  
+   - Checkout elem elhelyezése, űrlapmezők és gombok egységes stílusának beállítása, értesítések testreszabása, hogy a vásárló könnyebben végigmenjen a folyamaton.
 
-### Szolgáltatás alapú webáruház
+## Telepítés és előfeltételek (röviden)
 
-Amennyiben szolgáltatásokat kínálsz, nem pedig fizikai termékeket, az Oxygen segítségével könnyen testreszabhatod a szolgáltatások bemutatását és az ügyfélkapcsolati oldalt. Így professzionális és jól szervezett megjelenést biztosíthatsz.
+1. Telepítsd és aktiváld az Oxygent.  
+2. Aktiváld a WooCommerce-t.  
+3. Engedélyezd az Oxygen Elements for WooCommerce kiegészítőt.  
+4. Hozz létre sablont a Shop/archív oldalra: Archive → Product típusra célozva, majd adj hozzá Products List elemet.  
+5. Hozz létre termékoldal sablont: Singular → Products, majd Product Builder + szükséges „Product …” elemek.  
+6. A kosár/pénztár/fiók oldalakra helyezd el a dedikált elemeket, és stílusozd őket.
 
-## Szószedet
+Megjegyzés: a Shop oldal nem szerkeszthető közvetlenül; sablont kell hozzárendelned a termékarchívumhoz.
 
-- **Elementor**: Népszerű WordPress oldalépítő bővítmény.
-- **Advanced Custom Fields (ACF)**: Bővítmény, amely lehetővé teszi egyedi mezők hozzáadását WordPress oldalakhoz.
-- **Yoast SEO**: SEO optimalizáló bővítmény.
-- **WPML**: Többnyelvű WordPress oldalak készítésére szolgáló bővítmény.
+## Teljesítmény és rendszerkövetelmények
 
-Az Oxygen Elements for WooCommerce lehetőséget ad arra, hogy teljes mértékben irányítsd webáruházad megjelenését és működését. Használd ki az eszköz által nyújtott rugalmasságot és funkcionalitást, hogy egyedivé tedd az online áruházadat!
+A vizuális WooCommerce-építés memóriaigényesebb lehet. Javasolt a magasabb szerver- és WordPress-memória limit, hogy a szerkesztő és a lekérdezések zökkenőmentesen fussanak.
+
+## Előnyök és értékajánlat
+
+- **Kódmentes sablonozás**: Nem kell PHP-sablonokkal bajlódnod.  
+- **Gyors építés**: Vizuális szerkesztés, előre elkészített Woo-elemekkel.  
+- **Konzisztens dizájn**: Globális stílusokkal az egész bolt egységes.  
+- **Rugalmas listázás**: Akciós, top seller, attribútumalapú vagy egyedi lekérdezések pár kattintással.  
+- **Kevesebb karbantartás**: Kevesebb egyedi kód, könnyebb továbbfejlesztés.
+
+## Kinek ajánlott?
+
+- **Webfejlesztőknek és ügynökségeknek**: Gyors prototípus és skálázható sablonrendszer, ügyfélbarát szerkesztés.  
+- **Webshop-tulajdonosoknak**: Márkahű, konverzióbarát felépítés programozás nélkül.  
+- **Designereknek**: Pixelpontos kontroll a WooCommerce minden elemén.
+
+## Kapcsolódó megjegyzés az Oxygen verziókról
+
+Az Oxygen Classic e kiegészítőt használja a WooCommerce-integrációhoz. Az újabb Oxygen főverziók külön, dedikált WooCommerce-bővítményt kínálnak. Ha váltasz, ellenőrizd, melyik integráció illik a telepítésedhez.
+
+## Összegzés
+
+Az Oxygen Elements for WooCommerce abban segít, hogy a WooCommerce boltodat teljes egészében vizuálisan, sablonokkal és Woo-elemekkel építsd fel. Pontosan meghatározhatod, hogyan nézzen ki a shop, a termékoldal, a kosár és a pénztár, miközben globális stílusokkal egységes arculatot adsz a teljes webáruháznak. Ha gyorsan, kódolás nélkül szeretnél professzionális WooCommerce-megoldást, ez a kiegészítő célzott és megbízható eszközt ad a kezedbe.

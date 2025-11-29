@@ -1,46 +1,114 @@
-# WooCommerce Order Status Manager
+---
+title: "WooCommerce Order Status Manager"
+description: "Egyedi rendelési státuszok létrehozása és kezelése WooCommerce-ben, műveletgombokkal, e-mailekkel és riporttámogatással."
+sidebar_label: "WooCommerce Order Status Manager"
+---
 
-A WooCommerce Order Status Manager segítségével teljes mértékben testreszabhatod és integrálhatod a rendelés státuszait a WooCommerce rendeléskezelési folyamatodba. Lehetővé teszi új státuszok létrehozását, meglévő státuszok szerkesztését és törlését, valamint új rendelési e-mailek indítását státuszváltások alapján.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők és képességek
+A WooCommerce Order Status Manager egy hivatalos kiegészítő, amellyel teljesen **egyedi rendelési státuszokat** hozhatsz létre és illeszthetsz a boltod valós munkafolyamatához. Ha a gyári státuszok (pending/processing/completed) nem fedik le a folyamataidat (pl. Gyártás alatt, Minőség-ellenőrzés, Csomagolás), ezzel a bővítménnyel pontosan azt a lépéssort építheted fel, amit a csapat ténylegesen követ, és erről a vevőket is egyértelműen tájékoztathatod.
 
-### Új rendelési státuszok létrehozása
-Az új rendelési státuszok hozzáadásával ikonokat és akciógombokat is rendelhetsz a státuszokhoz. Ezek a státuszok megjelennek a rendelési listában, és integrálhatók az **order actions** vagy **bulk actions** funkciókba, így zökkenőmentessé téve a teljesítési folyamatot.
+## Fő funkciók és működés
 
-### Alapértelmezett státuszok szerkesztése
-Lehetőséged van az alapértelmezett WooCommerce rendelési státuszok szerkesztésére, hogy beállíthasd az úgynevezett „következő státuszt”. Például hozzáadhatsz egy egyedi státuszt a „feldolgozás” rendeléshez, amely megjeleníti a saját egyedi státusz akciógombodat minden feldolgozás alatt álló rendelés esetén.
+### Egyedi státuszok
 
-### Új rendelési e-mailek hozzáadása
-Új rendelési e-maileket adhatsz hozzá, amelyeket a rendelési státuszváltások alapján indíthatsz el. Ezek az e-mailek szerkeszthetők és engedélyezhetők a WooCommerce e-mail listájában, vagy akár az e-mail sablonokat is felülírhatod a témában, hogy nagyobb kontrollt kapj a tartalom felett.
+- Hozz létre, szerkessz, törölj státuszokat: **név, slug, leírás, szín, ikon (Dashicons)** és műveletgomb ikon megadásával.
+- Az admin felületen drag & drop módszerrel **átrendezheted** a státuszokat, hogy logikusan kövessék egymást.
 
-### Státuszinformációk megjelenítése a vásárlóknak
-A vásárlók gyakran frusztráltak lehetnek, ha nem tudják, hol tart a rendelésük. Lehetőséged van leírást beállítani minden státuszhoz (beleértve az alapértelmezett státuszokat is), amelyet a vásárlók megtekinthetnek, ha az egérmutatót a rendelési státusz fölé viszik.
+Mit jelent ez a gyakorlatban? A státuszaid vizuálisan és elnevezésben is illeszkednek a saját folyamataidhoz, így a csapat egy pillantással érti, hol tart egy rendelés.
 
-### Teljes rendelési státuszmendzsment
-Ahelyett, hogy egyszeri státuszokat adnál hozzá, amelyek nem integrálódnak az e-mailekhez vagy a teljesítési folyamathoz, most teljes mértékben beágyazhatod az egyedi státuszokat a rendeléskezelési sémádba. Használhatsz egyedi ikonokat, akciógombokat és új e-maileket, hogy az üzleted igényeihez igazítsd a rendeléseket és automatizáld a rendeléskezelést.
+### Következő státuszok és tömeges műveletek
 
-## Együttműködés más eszközökkel
+- Állíts be **„Next Statuses”** listát minden státuszhoz. A rendeléslistában ezekből egykattintásos műveletgombok jelennek meg, így gyorsan léptetheted a rendeléseket.
+- Engedélyezd a **Bulk Actions** használatát, hogy egyszerre sok rendelést tudd áttenni az új állapotba.
 
-A WooCommerce Order Status Manager zökkenőmentesen együttműködik számos más WooCommerce bővítménnyel és eszközzel. Íme néhány példa:
+Ezzel jelentősen csökken az adminisztrációs idő és a hibalehetőség: a csapatod mindig a megfelelő következő lépésre tud ugrani.
 
-- **WooCommerce Subscriptions**: Ha előfizetéses termékeket értékesítesz, az egyedi rendelési státuszok segítségével könnyedén kezelheted az előfizetések különböző fázisait.
-- **WooCommerce Bookings**: Hasznos lehet az egyedi státuszokkal való együttműködés, hogy jelezd a foglalások különböző állapotait (pl. visszaigazolt, folyamatban lévő, befejezett).
-- **WooCommerce Points and Rewards**: Az egyedi státuszokkal nyomon követheted és jutalmazhatod a vásárlói tevékenységeket különböző fázisokban.
+### Fizetési viselkedés
+
+Minden egyedi státuszhoz kiválaszthatod a viselkedést:
+- **Fizetve**: úgy működik, mint a processing/completed; a vevő hozzáférhet letöltésekhez, és bizonyos megjegyzések láthatóvá válhatnak.
+- **Fizetést igényel**: a vevő fiókjában **Pay/Cancel** linkek jelennek meg.
+- **Egyik sem**: hasonló az on-hold/refunded jelleghez.
+
+Ez azért hasznos, mert finoman szabályozhatod, mikor kérsz még fizetést, mikor engedsz hozzáférést, és mikor csak belső lépés történik.
+
+### Ügyfélkommunikáció: leírások és e-mailek
+
+- A státuszok **leírása** megjelenhet a vevő felületén (View Order, Recent Orders) tooltipként, így a vásárló is érti, mit jelent az adott egyedi állapot.
+- Állíts be **egyedi e-maileket**: lehetnek admin vagy vevő típusúak, és rugalmasan **triggerezhetők** (bármely → adott státusz, adott → bármely, vagy konkrét → konkrét).
+
+A célzott értesítések átláthatóvá teszik a folyamatot, csökkentik a support-terhelést.
+
+### Riportok és import
+
+- Kapcsold be az **Include in Reports** opciót, hogy az adott státuszú rendelések bekerüljenek az értékesítési kimutatásokba.
+- Már meglévő (kóddal vagy más bővítménnyel létrehozott) egyedi státuszokat **importálhatsz**, és egységesen kezelheted őket itt.
+
+### Core státuszok és törlés biztonságosan
+
+- A gyári WooCommerce státuszok elnevezése szerkeszthető, és rendelhetsz hozzájuk **Next Statuses**-t, de törölni és a slugjukat módosítani nem lehet (kompatibilitási okok).
+- Ha egy egyedi státuszt törölsz, a bővítmény felajánlja a **rendelések biztonságos áthelyezését** másik státuszba vagy „On hold”-ra, és **jegyzetet** fűz minden érintett rendeléshez.
+
+### Fordítás
+
+- Fordítható többnyelvű bővítményekkel, vagy dedikált **szűrőkkel** a státusznév és -leírás módosítására.
 
 ## Gyakorlati példák
 
-### Gyártás és összeszerelés
-Ha egyedi termékeket készítesz, mint például bútorokat vagy kézműves tárgyakat, akkor az olyan státuszok, mint „Gyártás alatt” vagy „Összeszerelés alatt” segíthetnek jelezni a vásárlóknak, hogy hol tart a rendelésük.
+- Gyártás: Pending → Fizetve (előleg) → **Gyártás alatt** → **Minőség-ellenőrzés** → **Csomagolás** → Completed. A „Next Status” gombokkal a raktár/pick-pack csapat egy kattintással léptet.
+- Előfizetés/előrendelés: **Requires payment** státuszban a vevő látja a Pay/Cancel linkeket, amíg nem teljesíti a fizetést.
+- Visszaküldés: **Visszaküldés ellenőrzés alatt** státuszhoz ügyféltájékoztató e-mail és tooltip tartozik; a riportokba nem kerül be (csak belső folyamat).
 
-### Rendelések kézi ellenőrzése
-Az olyan vállalkozások számára, amelyek kézi ellenőrzést végeznek minden rendelésen (pl. minőségellenőrzés), hasznos lehet egy „Ellenőrzés alatt” státuszt bevezetni, amely jelzi, hogy a rendelés éppen ellenőrzés alatt áll.
+## Telepítés és beállítás lépései
 
-### Testreszabott termékek
-Azok számára, akik testreszabott termékeket értékesítenek, mint például gravírozott ékszerek vagy egyedi nyomtatott pólók, hasznos lehet egy „Testreszabás alatt” státuszt használni, hogy jelezzék a vásárlóknak a folyamat előrehaladását.
+1. Telepítsd a bővítményt ZIP-ből, majd aktiváld.
+2. Lépj a WooCommerce beállításoknál az **Order Statuses** menübe.
+3. Hozz létre új státuszt: név, slug, leírás, szín, ikon, **Next Statuses**, jelölés a **Bulk Actions** és **Include in Reports** opciókhoz, valamint állítsd be a **Paid/Requires payment/Egyik sem** viselkedést.
+4. A gyári státuszoknál add meg a **Next Statuses** listát, hogy a rendeléslistában megjelenjenek a műveletgombok.
+5. Készíts **egyedi e-maileket**, és rendeld őket a kívánt státuszváltásokhoz; a sablonokat a témában felülírhatod.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Order actions**: Rendelési műveletek
-- **Bulk actions**: Tömeges műveletek
-- **Next statuses**: Következő státuszok
-- **Core statuses**: Alapértelmezett státuszok
+- Idő- és hibacsökkentés: a **Next Status** gombok és a **bulk** frissítés felgyorsítja a munkát.
+- Kevesebb ügyfélszolgálat: a vevők mindig tudják, mi történik, köszönhetően a leírásoknak és célzott e-maileknek.
+- Pénzügyi pontosság: a riportokba vonhatod a számodra fontos, de még nem „complete” státuszokat.
+- Rugalmas fizetéskezelés: elő- és utófizetési lépések külön státuszokkal kezelhetők.
+
+## Kinek ajánlott?
+
+- Gyártó, kézműves, nyomdai, egyedi konfigurációs rendelésekkel dolgozó boltoknak.
+- Olyan csapatoknak, ahol több kézi átadási pont van (raktár, minőségellenőrzés, csomagolás, logisztika).
+- Support-igényes termékeknél, ahol a vevői kommunikáció kulcsfontosságú.
+
+## Fontos korlátok és kompatibilitás
+
+- Az egyedi státuszok **nem automatizáltak**: kézi alkalmazásra készültek. Ha automatizmus kell, külső szabályrendszerrel oldd meg.
+- A „Fizetett” jellegű státuszoknál a rendelés szerkeszthetősége WooCommerce-szinten korlátozott (szűrővel felülbírálható).
+- Egyes e-mail vagy státuszkezelő bővítményekkel ütközhet; hiba esetén végezz izolált tesztet.
+- HPOS: ellenőrizd a saját telepítésedben a kompatibilitást (WooCommerce > Settings > Advanced > Features), mielőtt élesben bekapcsolod.
+
+## Fejlesztői tippek
+
+- E-mail sablon felülírási útvonalak:
+```
+yourtheme/woocommerce/emails/{type}-order-status-email-{$slug}.php
+```
+- Egyedi placeholder hozzáadása e-mailhez:
+```php
+add_filter( 'wc_order_status_manager_order_status_email_placeholders', function( $placeholders, $email, $order ) {
+    $placeholders['{production_eta}'] = '3–5 nap';
+    return $placeholders;
+}, 10, 3 );
+```
+- Státusznév programozott fordítása/módosítása:
+```php
+add_filter( 'wc_order_status_manager_order_status_name', function( $name, $status ) {
+    if ( 'wc-in-quality-check' === $status ) {
+        $name = 'Minőség-ellenőrzés';
+    }
+    return $name;
+}, 10, 2 );
+```
+
+Ezzel a bővítménnyel a WooCommerce rendeléskezelésed végre a saját, valós folyamataidat fogja tükrözni – átláthatóan, gyorsan és profi vevői kommunikációval.

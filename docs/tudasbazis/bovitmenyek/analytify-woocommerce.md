@@ -1,78 +1,89 @@
-# Analytify WooCommerce
+---
+title: "Analytify WooCommerce"
+description: "GA4 e‑commerce mérés WooCommerce‑hez – automatikus eseménykövetés és WooCommerce‑specifikus riportok közvetlenül a WordPress adminban."
+sidebar_label: "Analytify WooCommerce"
+---
 
-## Funkciók és képességek
+## Mi ez és milyen problémát old meg?
 
-### Termék kattintások, megjelenések és részletes oldalak követése
+Az Analytify WooCommerce (Analytify Pro WooCommerce modul) egy olyan bővítmény, amely a WooCommerce webáruházadban automatikusan beállítja a **GA4 Enhanced Ecommerce** mérést, és az eredményeket érthető, **WooCommerce‑specifikus riportokban** mutatja meg a WordPress adminban. Nem kell kódolnod, nem kell külön **GTM**‑konfigurációval bajlódnod: a kulcs e‑kereskedelmi események (pl. **view_item**, **add_to_cart**, **begin_checkout**, **purchase**) maguktól működnek.
 
-Az Analytify WooCommerce lehetővé teszi, hogy nyomon kövesd a termékeid kattintásait, megjelenéseit és részletes oldalmegtekintéseit. Ez segít jobban megérteni, hogyan lépnek interakcióba a felhasználók a termékeiddel, és javítani a termékek láthatóságát és bevonását.
+A bővítmény megszünteti a “széttöredezett riportolást”: nem kell az Analytics felületét folyamatosan nyitogatnod, a legfontosabb kereskedelmi mutatókat közvetlenül ott látod, ahol dolgozol – a WordPressben.
 
-- Kattintások, megjelenések és részletes oldalmegtekintések követése
-- Felhasználói viselkedés elemzése a termékekkel kapcsolatban
-- Termékek láthatóságának és bevonásának optimalizálása
+## Hogyan működik?
 
-### Kuponok és visszatérítések követése
+- Az Analytify a WooCommerce sablonok és folyamatok mentén automatikusan rögzíti a **GA4 ajánlott e‑commerce eseményeket**. A termék- és tranzakciós adatok (pl. név, kategória, ár, **currency**, adó, szállítás, kuponok) megfelelő paraméterekkel kerülnek továbbításra.
+- A küldött eseményeket azonnal ellenőrizheted a GA4 **Realtime** és **Monetization** riportjaiban.
+- A WordPress adminban dedikált **WooCommerce irányítópultot** kapsz: bevétel, tranzakciók, **AOV**, konverziós arány, tölcsérelemzés és termékteljesítmény mutatók.
+- A WooCommerce funkció ma az Analytify Pro moduljaként érhető el; a modul az Add‑ons felületen aktiválható. Az összes Pro képesség (pl. e‑mail riportok, export) együtt használható vele.
+- Beépített **ad‑blocker kompatibilitás**: a GA4 könyvtár szükség esetén helyben, naponta változó fájlnévvel szolgálható ki, csökkentve a blokkolás kockázatát.
+- **Multi‑currency**: a WooCommerce dashboard a tranzakciók tényleges pénznemét mutatja, így a bevételi kép nem torzul.
 
-Az Analytify segítségével nyomon követheted a kuponok és visszatérítések használatát is. Ez lehetővé teszi, hogy lásd, mely kuponokat és visszatérítéseket használják a legtöbbet, és megértsd, milyen hatással vannak a kedvezmények az üzletedre. Emellett segít felismerni a csalárd tevékenységeket is.
+## Fő funkciók, érthetően
 
-- Kuponok és visszatérítések követése
-- Kedvezmények használatának nyomon követése
-- Csalárd tevékenységek felismerése és megelőzése
+- **Automatikus GA4 e‑kereskedelmi események**  
+  A tipikus lépések (termékmegtekintés, kosárhoz adás, fizetés megkezdése, vásárlás) kód és GTM nélkül mérődnek. A termék- és rendelésadatok a GA4 ajánlásai szerint kerülnek továbbításra.
 
-### Ország szerinti követés
+- **WooCommerce irányítópult a WP‑ben**  
+  Egy helyen látod a bevételt, tranzakciókat, **átlagos rendelési értéket (AOV)**, konverziós rátát, első vásárlók számát, valamint a vásárlói tölcsért (Shopping Behaviour Funnel).
 
-Az Analytify lehetőséget ad arra is, hogy ország szerint kövesd nyomon a WooCommerce áruházad látogatóit. Ez az adat segíthet az egyes országok számára optimalizálni a kampányokat és promóciókat, valamint az áruházat az egyes országok igényeihez igazítani.
+- **Termékteljesítmény‑riportok**  
+  Minden terméknél követheted az olyan arányokat, mint a **cart‑to‑detail** (kosárba helyezés a részletmegtekintésekhez viszonyítva) és a **buy‑to‑detail** (vásárlás aránya). Ezek feltárják, hogy hol veszítesz konverziót.
 
-- Látogatók nyomon követése ország szerint
-- Teljesítmény elemzése különböző országokban
-- Kampányok és promóciók optimalizálása különböző országok számára
-- Áruház optimalizálása az egyes országok igényei szerint
+- **Kupon‑ és refund‑analitika**  
+  Látod a kedvezmények bevételre gyakorolt hatását, és kiszúrhatod a visszaélés‑gyanús mintázatokat (pl. szokatlanul magas kuponhasználat néhány rendelésben).
 
-### Fizetések és vásárlások követése
+- **Országonkénti teljesítmény**  
+  Áttekintheted, hogy mely országokból érkeznek a vásárlók és hol a legerősebb a konverzió.
 
-Az Analytify egyszerűvé teszi a WooCommerce áruházadon keresztül történő fizetések és vásárlások nyomon követését. Az intuitív irányítópult segítségével gyorsan elemezheted a vásárlók fizetési és vásárlási viselkedését.
+- **Multi‑currency támogatás**  
+  A riportokban a rendelés tényleges devizája jelenik meg, így a nemzetközi boltoknál is konzisztens a bevételi kép.
 
-- Fizetési folyamatok nyomon követése
-- Vásárlói viselkedés elemzése
-- Javításra szoruló területek azonosítása
-- Promóciók és kampányok hatékonyságának mérése
+- **Export és megosztás**  
+  A dashboardok **CSV** és **PDF** formátumban exportálhatók; ütemezett **e‑mail jelentésekkel** rendszeresen megoszthatod az eredményeket az érintettekkel.
 
-### Termékek teljesítménye
+- **Frontend shortcode‑ok**  
+  Választott statisztikákat publikusan is megjeleníthetsz, ha erre üzleti igény van (pl. rendelés‑számláló, top termékek).
 
-Az Analytify áttekintést nyújt a termékeid teljesítményéről, lehetővé téve, hogy gyorsan azonosítsd, melyek a legjobban teljesítő termékek, és hol hagyják el a vásárlók az áruházadat. Látod minden termék teljesítményét, beleértve a bevételt, kosárba helyezési arányt, egyedi vásárlásokat és vásárlási arányt.
-
-- Termékek teljesítményének nyomon követése
-- Vásárlói viselkedés elemzése
-- Trendek és problémák gyors azonosítása
-- Áruház optimalizálása a jobb teljesítmény érdekében
-
-### Vásárlási viselkedési tölcsér
-
-Az Analytify lehetővé teszi, hogy nyomon kövesd a vásárlói viselkedést az egész fizetési folyamat során egy vásárlási viselkedési tölcsér segítségével. Ez az erőteljes vizualizáció segít azonosítani a potenciális problémákat és pontosan meghatározni, hol hagyják el az áruházadat a vásárlók.
-
-- Vásárlói viselkedés nyomon követése a fizetési folyamat során
-- Vásárlási viselkedési tölcsérek vizualizálása
-- Potenciális problémák gyors azonosítása
-- Áruház optimalizálása a jobb vásárlói élmény érdekében
+- **Ad‑blocker védelem**  
+  A helyi, változó fájlnevű GA4 betöltés csökkenti a blokkolásból adódó adatvesztést.
 
 ## Gyakorlati példák
 
-### Kampányok optimalizálása
+- Új termék bevezetése: figyeled a **view_item → add_to_cart → purchase** arányokat. Ha alacsony a cart‑to‑detail, javítasz a termékoldalon (képek, USP‑k, ár). A hatást a Realtime‑ban és a WooCommerce dashboardon is látod.
+- Checkout lemorzsolódás: a tölcsér mutatja, hogy a felhasználók melyik lépésnél esnek ki (pl. szállítási adatok vs. fizetési oldal). Ennek alapján optimalizálod a folyamatot vagy a fizetési módokat.
+- Kupon‑visszaélés: egy ügyfél túl sok nagy kedvezményt használ? A kupon‑ és refund‑riportokban gyorsan kiszúrod és szabályt módosítasz.
+- Ügynökségi riportolás: hetente automatikus **PDF** összefoglaló megy az ügyfélhez, kézi táblázat‑export nélkül.
+- Nemzetközi bolt: a bevételek a megfelelő **pénznemben** jelennek meg, így nem keverednek a régiók eredményei.
 
-A különböző országokból érkező látogatók követésével optimalizálhatod kampányaidat és promócióidat az adott országok számára. Például, ha látod, hogy egy bizonyos országban nagyobb forgalmat generálnak egyes termékek, akkor célzott kampányokat indíthatsz ezekben az országokban.
+## Előnyök és értékajánlat
 
-### Termékek láthatóságának javítása
+- **Időmegtakarítás**: nincs kódolás, nincs GTM‑projekt – plug‑and‑play GA4 e‑commerce mérés.
+- **Pontosság és átláthatóság**: a GA4‑re épülő adatmodell WooCommerce‑re szabott riportokban jelenik meg.
+- **Jobb döntések, gyorsabban**: tölcsér, termékteljesítmény, kupon/refund hatás – minden kulcsmetrika egy helyen.
+- **Könnyű megosztás**: exportok és ütemezett e‑mailek a csapatnak vagy az ügyfélnek.
+- **Kevesebb adatvesztés**: ad‑blocker kompatibilitás és multi‑currency támogatás.
 
-A termék kattintások és megjelenések nyomon követésével azonosíthatod, mely termékek nem kapnak elegendő figyelmet. Ennek alapján módosíthatod a termékoldalakat vagy promóciókat indíthatsz ezeknek a termékeknek a népszerűsítésére.
+## Kinek ajánlott?
 
-### Csalárd tevékenységek felismerése
+- **WooCommerce tulajdonosoknak/üzemeltetőknek**, akik kódolás nélkül akarnak megbízható GA4 mérést.
+- **Marketingeseknek és elemzőknek**, akik tölcséreket, konverziókat és termékteljesítményt akarnak látni WordPressen belül.
+- **Ügynökségeknek**, akiknek fontos az export és az automatikus e‑mail riportolás.
+- **Fejlesztőknek**, akik gyors, stabil alapmérést keresnek saját optimalizálásokhoz.
 
-A kuponok és visszatérítések követésével felismerheted a potenciális csalárd tevékenységeket. Ha például látod, hogy egy adott kupon túlzottan használatos egy bizonyos időszakban, akkor alaposabban megvizsgálhatod az adott tranzakciókat.
+## Gyors indulás – ajánlott lépések
 
-## Szószedet
+```
+1) Telepítsd és aktiváld az Analytify Pro bővítményt.
+2) Csatlakoztasd a GA4 propertydet (OAuth/Measurement ID).
+3) Az Add-ons oldalon aktiváld a WooCommerce modult.
+4) Nyisd meg a bolt termékoldalát → ellenőrizd a GA4 Realtime-ban a view_item eseményt.
+5) Tegyél terméket a kosárba → ellenőrizd az add_to_cart eseményt.
+6) Indítsd el a checkoutot, majd tesztvásárlás → figyeld a begin_checkout és purchase eseményeket.
+7) A WordPressben nyisd meg a WooCommerce irányítópultot → nézd meg a bevételt, AOV-t, tölcsért.
+8) Állíts be heti e‑mail riportot és próbálj ki egy CSV/PDF exportot.
+```
 
-- **Kupon**: Kedvezményre jogosító kód.
-- **Megjelenés**: Hányszor jelent meg egy termék egy oldalon.
-- **Részletes oldalmegtekintés**: Hányszor tekintettek meg egy adott termékoldalt.
-- **Kosárba helyezési arány**: A látogatók hány százaléka helyezi a kosárba az adott terméket.
-- **Vásárlási arány**: A látogatók hány százaléka vásárolja meg végül az adott terméket.
-- **Viselkedési tölcsér**: Vizualizáció, amely bemutatja, hogyan haladnak végig a látogatók a vásárlási folyamat különböző szakaszain.
+## Megjegyzés
+
+A WooCommerce funkció napjainkban az Analytify Pro moduláris része. Ha régebbi leírásban külön “add‑on” névvel találkozol, az a korábbi termékstruktúrára utal. Az Analytify fejlesztői csapata Google Analytics Technology Partner minősítéssel rendelkezik, a bővítmény pedig folyamatosan frissül a GA4 ökoszisztéma ajánlásaihoz igazodva.

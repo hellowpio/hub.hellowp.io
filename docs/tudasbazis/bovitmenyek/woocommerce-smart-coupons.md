@@ -1,75 +1,93 @@
-# WooCommerce Smart Coupons
+---
+title: "WooCommerce Smart Coupons"
+description: "Minden az egyben kupon- és ajándékkártya-megoldás WooCommerce-hez: fejlett szabályok, BOGO, URL-kuponok, tömeges kódkezelés és kényelmes beváltás."
+sidebar_label: "WooCommerce Smart Coupons"
+---
 
-A WooCommerce Smart Coupons az egyik legsokoldalúbb és legteljesebb kuponkezelő eszköz a WooCommerce ökoszisztémában. Különféle funkciókat kínál, amelyek lehetővé teszik az ajándékkártyák, kedvezmények, BOGO (Buy One Get One) ajánlatok és promóciók egyszerű kezelését. Ez a bővítmény tökéletes választás azok számára, akik növelni szeretnék értékesítésüket, javítani a vásárlói hűséget és hatékonyan kezelni a kedvezményeket.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A WooCommerce Smart Coupons a StoreApps prémium bővítménye, amely a WooCommerce alap kuponkezelését professzionális szintre bővíti. Ha eddig hiányoztak az ajándékkártyák (store credit), a precíz célzású kedvezményszabályok, a BOGO ajánlatok, az automatikus kuponalkalmazás vagy a tömeges kódkezelés, ezzel a bővítménnyel mindezt egy helyen megkapod. Célja, hogy növeld a bevételt, csökkentsd a kuponhasználat körüli súrlódást és kézben tartsd a promóciós szabályokat.
 
-### Kedvezményszabályok
+Fontos név- és márkázási megjegyzés: a „Smart Coupons” név alatt több bővítmény is ismert. Ez az oldal a StoreApps által készített, WooCommerce piactéren elérhető megoldásról szól.
 
-A WooCommerce Smart Coupons segítségével túlléphetsz az alapvető kedvezményeken, és különböző fejlett kedvezményszabályokat hozhatsz létre. Ezek közé tartoznak a mennyiségi kedvezmények, dinamikus árképzés, százalékos kedvezmények, termékalapú kedvezmények és lépcsőzetes kedvezmények. A Smart Coupons segítségével kampányokat futtathatsz villámakciókhoz, kosárelhagyási e-mailekhez, új termékek bevezetéséhez, nyereményjátékokhoz és Black Friday ajánlatokhoz.
+## Fő funkciók, érthetően
 
-### Ajándékkártyák időzítéssel
+### Ajándékkártyák és store credit
+- Értékesíthetsz tetszőleges vagy fix címletű ajándékkártyákat, amelyeket a vevő e-mailben kap meg.
+- A kredit több rendelésben is felhasználható a lejáratig, és beállíthatod, hogy terjedjen-e ki adóra/szállításra.
+- Időzített kézbesítés: megadhatod, mikor érkezzen meg az ajándékkártya a címzetthez (pl. ünnepnapon).
 
-Az ajándékkártyák kiváló alternatívái a készpénzes fizetéseknek. A Smart Coupons lehetővé teszi különféle ajándékkártyák létrehozását, például változó összegű ajándékkártyákat, fix összegű ajándékkártyákat és kedvezményes ajándékkártyákat. A kártyák mennyiségben is értékesíthetők és tömegesen generálhatók.
+### Fejlett kupon- és kedvezményszabályok
+- Pontosan meghatározhatod, ki és mikor használhat kupont: hely (ország/régió), fizetési vagy szállítási mód, felhasználói szerepkör, termékkategória/attribútum, kosárérték és mennyiség alapján.
+- Kombinálhatod a feltételeket, így minimalizálhatod a visszaéléseket és a nem kívánt „stackelést”.
 
-### BOGO kuponok / Ingyenes ajándék kuponok
+### BOGO és ajándéktermék
+- Készíthetsz Buy X Get Y, „vegyél 2‑t, a 3. ingyen” vagy BOGOF akciókat.
+- A bővítmény a kosárhoz automatikusan hozzáadja az ajándékterméket a szabályok teljesülése esetén.
 
-A Smart Coupons segítségével beállíthatod az „egy termék vásárlása, egy másik ingyen” ajánlatokat ugyanazon termékre vagy különböző termékekre. Több termék kombinációját is kínálhatod ingyenesen vagy kedvezményesen.
+### URL‑kuponok és automatikus alkalmazás
+- Létrehozhatsz megosztható, egykattintásos kuponokat, amelyek kattintáskor azonnal alkalmazódnak.
+- Szabályalapú automatikus alkalmazás a pénztárban/kosárban: a vevőnek nem kell kódot beírnia.
 
-### Kuponkód generátor
+### Tömeges kuponkód‑generálás és import/export
+- Több száz vagy ezer egyedi kuponkódot generálhatsz előtag/utótag és mintázati szabályok szerint.
+- CSV export/importtal könnyen migrálhatsz vagy kioszthatsz kódokat, akár e-mailben is küldve őket.
 
-A Smart Coupons lehetővé teszi több száz vagy akár több ezer egyedi kuponkód generálását és exportálását CSV formátumban. A kuponkódokat e-mailben is elküldheted a címzetteknek.
+### Kuponok megjelenítése és UX
+- Ki tudod listázni az elérhető kuponokat a kosárban, a pénztárban és a Saját fiók oldalon.
+- Rövidkódokkal tetszőleges oldalra vagy termékoldalra is kiteheted a kuponokat és a store credit egyenleget, testreszabható megjelenéssel.
 
-### URL kuponok automatikus alkalmazással
+Példa rövidkódra:
+```
+[wc_sc_available_coupons]
+```
 
-Adj hozzá egyetlen vagy több kuponkódot bármilyen URL-hez az oldaladon, amely automatikusan alkalmazza a kuponokat, amikor a felhasználók rákattintanak a linkre. Ez különösen hasznos lehet partneroldalakon, e-mailekben vagy közösségi médiában történő megosztáskor.
-
-### Előfizetés / Ismétlődő kuponok
-
-Engedd meg a felhasználóknak, hogy üzletkrediteket alkalmazzanak az előfizetések vásárlására vagy megújítási fizetésekre. Különböző korlátozásokkal kombinálhatod az előfizetési kuponokat a visszaélések elkerülése érdekében.
-
-## Előnyök
-
-### Minden üzleti típus számára hasznos
-
-Legyen szó divatról, kisállat kiegészítőkről, hobbi cikkekről, ismétlődő termékekről vagy tagságokról, a Smart Coupons minden WooCommerce áruház számára előnyös lehet.
-
-### Egész évben használható
-
-Akár Black Friday, Karácsony, fesztiválok vagy recesszió idején is bevételt generálhatsz a Smart Coupons segítségével.
-
-### Magas teljesítmény
-
-A Smart Coupons nem lassítja az oldaladat vagy a fizetési folyamatot. Néhány legnagyobb WooCommerce áruház is használja, így te is nyugodtan bízhatsz a minőségében.
-
-### Könnyen használható
-
-Bárki könnyedén kezelheti a promóciókat fejlesztői segítség nélkül, legyen szó ügyfelekről, áruházadminisztrátorokról vagy junior munkatársakról.
-
-## Együttműködési lehetőségek
-
-### WooCommerce Blocks
-
-A Smart Coupons kompatibilis a WooCommerce Blocks-szal, így még könnyebbé válik az oldalad testreszabása és a kuponok alkalmazása.
-
-### Előfizetések és pénznemváltó
-
-A bővítmény zökkenőmentesen működik együtt a WooCommerce Előfizetésekkel és pénznemváltó pluginokkal, így rugalmas fizetési lehetőségeket kínálhatsz.
+### Adminisztráció és fejlesztői lehetőségek
+- Aktiválás után a Marketing > Kuponok alatt új fülek jelennek meg: Coupons, Bulk Generate, Import Coupons, Send Store Credit.
+- Nagy forgalmú boltokra optimalizált; HPOS-kompatibilis kialakítás; REST API és hookok fejlesztőknek.
 
 ## Gyakorlati példák
 
-- **Bulk generate coupons**: Tömegesen generálj egyedi kuponkódokat Black Friday szezonban.
-- **Ajándékkártyák létrehozása**: Hozz létre fix összegű ajándékkártyákat ($10, $20, $30) az áruházadban.
-- **Felhasználói szerepkör alapú kuponok**: Csak „Előfizető” felhasználói szerepkörök számára engedélyezd a kupon alkalmazását.
-- **Karácsonyi színvilág**: Testreszabhatod a kupon színeit pirosra és zöldre a karácsonyi hangulat érdekében.
-- **URL alapú kuponok**: Adj hozzá kuponokat az URL-ekhez és oszd meg őket közösségi platformokon.
-- **BOGO ajánlatok**: Futtass BOGO ajánlatokat kozmetikai termékekre – például vegyél három rúzst és kapj egyet ingyen.
+- Bevételnövelés kosárértékhez kötve: „10% kedvezmény 30 000 Ft felett”. A kedvezmény csak a határ felett lép életbe, megakadályozva a túlzott kedvezményeket.
+- BOGO promóció: „Vásárolj 3 terméket, a 4. ajándék”. A rendszer a kritériumok teljesülésekor automatikusan hozzáadja az ajándékot.
+- Geo-targetált akció: „Csak magyarországi szállítás esetén” – ideális régiós kampányokhoz.
+- VIP ajánlat: „Kupon csak VIP szerepkörű ügyfeleknek” – hűségprogramok és zárt klubok támogatása.
+- Store credit visszatérítés: pénzvisszafizetés helyett kreditet küldesz, ami a következő vásárlásra ösztönöz.
+- „Következő rendelés” kupon: a vásárló a vásárlás után automatikusan kap egy időzített, egyszer használható kódot.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **BOGO**: Buy One Get One – egyet fizet kettőt kap ajánlat.
-- **CSV**: Comma-Separated Values – vesszővel elválasztott értékek.
-- **REST API**: Representational State Transfer Application Programming Interface – alkalmazásprogramozási felület.
-- **URL**: Uniform Resource Locator – egységes erőforrás-helymeghatározó.
+- **Nagyobb konverzió kevesebb súrlódással**: automatikus és URL-kuponokkal nem kell a kódot keresgélni vagy elírni.
+- **Finomhangolt kontroll**: összetett feltételek és korlátozások; hatékony visszaélés-megelőzés.
+- **Operációs hatékonyság**: tömeges generálás/import/export és e-mailes kiosztás jelentős manuális munkát spórol.
+- **Hűség és megtartás**: ajándékkártyák és kreditek révén visszahozod a vevőket.
+- **Skálázhatóság**: nagy forgalmú boltokhoz optimalizált, fejlesztőbarát bővíthetőséggel.
 
-A WooCommerce Smart Coupons bővítmény használatával egyszerűen és hatékonyan kezelheted az összes kedvezményt és promóciót az áruházadban.
+## Kinek ajánlott?
+
+- **E-kereskedelmi marketingeseknek**: A/B tesztelhető promók, szezonális kampányok, upsell/retention eszközök.
+- **Nagy SKU-val vagy B2B árazással dolgozó boltoknak**: lépcsőzetes és mennyiségi kedvezmények, kategória- és attribútum-alapú szabályok.
+- **Előfizetéses modellekhez**: ismétlődő kedvezmények és kredithasználat.
+- **Ügynökségeknek és fejlesztőknek**: REST API, hookok, HPOS-kompatibilitás, dokumentált folyamatok.
+
+## Telepítés és első lépések (röviden)
+
+1. Telepítsd és aktiváld a bővítményt.
+2. Menj a Marketing > Kuponok menübe. Új füleket látsz: 
+   - **Coupons**: egyedi kuponok és szabályok létrehozása.
+   - **Bulk Generate**: tömeges kódgenerálás.
+   - **Import Coupons**: CSV alapú import/migráció.
+   - **Send Store Credit**: kredit küldése egy vagy több ügyfélnek.
+3. Helyezz el rövidkódot az oldalaidon a kuponok láthatóságához:
+```
+[wc_sc_available_coupons]
+```
+4. Teszteld a kosárban/pénztárban az automatikus alkalmazást és a BOGO szabályokat.
+
+## Változatok és alternatívák
+
+A „Smart Coupons” név alatt elérhető egy másik, hasonló nevű bővítmény is más gyártótól, eltérő funkciókkal és licenccel. Ha nem a StoreApps megoldását kerested, érdemes ellenőrizni, melyik termékre van szükséged. Ez az oldal a StoreApps által fejlesztett, WooCommerce piactéren elérhető változatot dokumentálja.
+
+---
+
+Összefoglalva: a WooCommerce Smart Coupons egy átfogó, skálázható kupon- és ajándékkártya-rendszer. Pontos szabályokkal, kényelmes beváltással és tömeges admin eszközökkel valós marketing- és operatív előnyt ad – hogy te a kampányokra, a vásárló pedig a vásárlásra koncentrálhasson.

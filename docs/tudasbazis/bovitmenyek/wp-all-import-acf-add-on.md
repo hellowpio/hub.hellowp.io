@@ -1,73 +1,97 @@
-# WP All Import - ACF Add-On
+---
+title: "WP All Import - ACF Add-On"
+description: "ACF-mezők tömeges importja CSV/XML/Excel forrásból drag‑and‑drop felületen, ütemezéssel és fejlesztői bővíthetőséggel."
+sidebar_label: "WP All Import - ACF Add-On"
+---
 
-A WP All Import - ACF Add-On lehetővé teszi az adatok importálását a WordPress Advanced Custom Fields (ACF) bővítményébe. Ez a kiegészítő számos egyedi funkcióval és testreszabási lehetőséggel rendelkezik, amelyek megkönnyítik az adatok kezelését és importálását a weboldaladra. Nézzük meg részletesen, milyen előnyei vannak és hogyan használhatod ki maximálisan a WP All Import - ACF Add-On nyújtotta lehetőségeket.
+## Mi ez és milyen problémát old meg?
 
-## Támogatott ACF mezőtípusok
+A WP All Import – ACF Add‑On egy kiegészítő, amivel tetszőleges CSV, XML vagy Excel fájlodból közvetlenül az Advanced Custom Fields (ACF) mezőidbe importálhatsz adatot. Ha eddig kézzel töltöttél be ACF‑mezőket, ez a bővítmény órákat‑napokat spórol: az importfájl mezőit drag‑and‑drop módszerrel illesztheted az ACF mezőkhöz, és a folyamat ütemezhető, ismételhető, frissíthető.
 
-### Teljes támogatás minden ACF mezőhöz
-A WP All Import - ACF Add-On támogatja az összes ACF mezőtípust, beleértve a következőket:
-- Repeater mezők
-- Flexible Content mezők
-- Relationship mezők
-- Dátum és idő választók
-- Képgalériák
-- Google Maps mezők
+## Hogyan működik röviden?
 
-### Bármilyen fájlformátum, bármilyen adatstruktúra
-A WP All Import nem törődik azzal, hogy az adataid hogyan vannak struktúrálva. A kiterjedt testreszabási opciók segítségével a rendszer képes az adatokat feldolgozni és pontosan oda importálni, ahol szükség van rá.
+1. Indíts új importot, add meg a fájlt vagy URL‑t, válaszd ki a cél tartalomtípust (pl. bejegyzés, egyedi post type).
+2. Nézd át a fájl szerkezetét, majd nyisd meg az ACF panelt.
+3. Húzd rá a forrásmezőket az ACF mezőkre (Repeater, Flexible, Relationship stb. a Pro változatban).
+4. Állíts be egy egyedi azonosítót (Unique Identifier), hogy a későbbi importok frissítsék a megfelelő rekordokat.
+5. Futtasd az importot, ellenőrizd az eredményt az ACF mezőknél.
 
-## Testreszabás és PHP funkciók
+Megjegyzés: az ACF mezőcsoportokat előre hozd létre.
 
-### Egyedi PHP funkciók használata importáláskor
-Ha több testreszabásra van szükséged, mint amit a drag & drop eszközeink lehetővé tesznek, akkor egyedi PHP funkciókat írhatsz és tesztelhetsz az import oldal szerkesztésénél. Minden opció és szövegmező teljesen testreszabható.
+## Fő funkciók, magyarázattal
 
-### Dokumentált API és akcióreferencia
-A plugin rendelkezik egy teljesen dokumentált API-val és akcióreferenciával, amely lehetővé teszi az importálási folyamat teljes mértékű testreszabását. Írhatsz egyedi kiegészítőket, adatok átadására szolgáló függvényeket, és saját kódot futtathatsz az importálás előtt, közben vagy után.
+### Rugalmas források
+- Importálhatsz helyi fájlból, URL‑ről, sőt táblázatokból is. A fájltípus felismerése automatikus.
+- Nincs kötött oszlopnév‑ vagy sémaelvárás: a párosítást az importképernyőn végzed.
 
-## Specifikus előnyök
+### Teljes ACF‑támogatás
+- Az ingyenes add‑on az alap ACF‑mezőket kezeli.
+- A Pro csomag a komplex mezőtípusokat is támogatja: **Repeater**, **Flexible Content**, **Relationship**, **Gallery**, **Google Maps**, dátumok stb., így hierarchikus/tömbös adatokat is be tudsz emelni kódolás nélkül.
 
-### Drag & Drop képek és galériák
-Könnyedén importálhatsz ingatlan galériákat képekkel, amelyeket akár a számítógépedről, akár egy másik szerverről tölthetsz fel.
+### Képek és galériák
+- Képek letöltése URL‑ről vagy a médiatárból; kiemelt kép beállítása, több kép galériába rendezése.
+- Meglévő képek egyeztetése és metaadatok kezelése a duplikátumok csökkentéséhez.
 
-### Teljes körű testreszabás
-Minden egyes adat darabot részletesen szabályozhatsz. Ha azt gondolod, hogy az import túl bonyolult, gondold újra!
+### Ütemezés és szinkron
+- Manuális vagy felhőalapú ütemezés: rendszeres újrafuttatás külső feedekhez.
+- Frissítés Unique Identifier alapján: pontos illesztés és szelektív mezőfrissítés (pl. csak képek, csak bizonyos custom fieldek).
 
-### Nagy mennyiségű adat kezelése
-Nem számít, hogy mekkora a weboldalad vagy mennyi adatot kell importálnod, a WP All Import képes kezelni.
+### Nagy fájlok, megbízható futás
+- Automatikus darabolás, újrapróbálkozás és képfeldolgozási opciók a time‑out kockázatának mérséklésére.
 
-### Multilingual ACF importok WPML-lel
-Az ACF adatok importálása egy többnyelvű weboldalra soha nem volt könnyebb, köszönhetően a WPML csapat támogatásának.
+### Fejlesztői bővíthetőség
+- Inline PHP‑t hívhatsz a térképezésben adattisztításra/átalakításra.
+- Add‑on API és szűrők segítségével egyedi ACF mezőtípusokat is támogathatsz.
 
-### Nem csak ACF, minden
-Importálhatsz és exportálhatsz WooCommerce termékeket, ügyfeleket, rendeléseket, Toolset Types mezőket, kategóriákat, listákat, felhasználókat stb.
+Példa inline PHP hívásra a térképezésben:
+```
+{ normalize_phone([telefon]) }
+```
+ahol a normalize_phone saját függvényed, ami egységesíti a számformátumot.
 
-### WooCommerce, Yoast és más bővítmények támogatása
-ACF adatokat importálhatsz bármely témába vagy bővítménybe, beleértve a WooCommerce-t, listázási témákat, tagsági bővítményeket stb.
-
-### Ütemezett ACF importok
-Automatikusan futtathatod az importokat ütemezetten. Feliratkozhatsz a point-and-click ütemezési szolgáltatásunkra, vagy beállíthatsz cron jobokat.
-
-### Exportálás, migráció és tömeges szerkesztés
-Nem csak importok, hanem exportálások is lehetségesek. Migrálhatod az ACF adatokat egy másik WordPress telepítésre vagy tömegesen szerkesztheted Excelben.
+### Kapcsolódó export
+- Az ACF Export Add‑On‑nal az ACF adataidat CSV/XML formátumba exportálhatod tömeges szerkesztéshez vagy migrációhoz.
 
 ## Gyakorlati példák
 
-### Ingatlan weboldalak kezelése
-Képzeld el, hogy egy ingatlan weboldalt üzemeltetsz és több száz ingatlanlistát kell feltöltened. A WP All Import - ACF Add-On segítségével könnyedén importálhatod az ingatlanokat CSV vagy XML fájlokból úgy, hogy minden szükséges adat (pl. képgalériák, helyszínek) automatikusan a megfelelő mezőkbe kerül.
+- Ingatlanlista frissítése: hetente érkező CSV‑ből frissíted a lakások ACF mezőit (ár, alapterület, elhelyezkedés Google Maps mezőben, galéria képek). A Unique Identifier a hirdetés külső azonosítója.
+- Portfólió migráció: Excel táblából betöltöd projektek Flexible Content blokkjait (szekciók, képgalériák, idézetek) úgy, hogy a szekciók sorrendje és tartalma megmarad.
+- Állásportál feed: XML‑ből Relationship mezőbe társítod a pozíciókat a városok taxonómiájához, és Repeater mezőben listázod az elvárásokat.
 
-### E-kereskedelmi oldalak menedzsmentje
-Ha egy e-kereskedelmi oldalt üzemeltetsz WooCommerce segítségével, az ACF Add-On lehetőséget nyújt arra, hogy egyszerűen importáld a termékekhez kapcsolódó egyedi mezőket, például méret, szín vagy készlet információkat.
+## Előnyök és értékajánlat
 
-### Többnyelvű oldalak létrehozása
-Többnyelvű oldalak esetén a WPML és az ACF Add-On segítségével könnyedén kezelheted a különböző nyelvi változatokat. Az adatok egyszerre több nyelven is importálhatók és kezelhetők.
+- Jelentős időmegtakarítás: a kézi ACF‑kitöltést automatizálja.
+- Adatminőség: beépített egyeztetés, képfeldolgozás, inline PHP az adattisztításhoz.
+- Skálázhatóság: nagy fájlok, gyakori frissítések, ütemezett futások.
+- Kódmentes komplexitás: Repeater/Flexible import kódolás nélkül a Pro funkciókkal.
+- Megismételhetőség: stabil Unique Identifierrel megbízható frissítési folyamatot kapsz.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **ACF (Advanced Custom Fields)**: Egy WordPress bővítmény, amely lehetővé teszi egyedi mezők hozzáadását különböző tartalomtípusokhoz.
-- **CSV (Comma-Separated Values)**: Egy fájlformátum adatok tárolására vesszővel elválasztott értékek formájában.
-- **XML (Extensible Markup Language)**: Egy fájlformátum adatok tárolására hierarchikus struktúrában.
-- **WooCommerce**: Egy WordPress bővítmény, amely lehetővé teszi e-kereskedelmi funkciók hozzáadását weboldalakhoz.
-- **WPML (WordPress Multilingual Plugin)**: Egy bővítmény, amely többnyelvű funkciókat biztosít WordPress weboldalak számára.
-- **Cron job**: Egy időzített feladat Unix-alapú rendszereken.
+- Ügynökségeknek és fejlesztőknek, akik ACF‑alapú webhelyeket migrálnak vagy tartalmat szinkronizálnak.
+- E‑kereskedelmi, ingatlan‑, állás‑ vagy katalógusoldalak üzemeltetőinek, akik külső feedekből dolgoznak.
+- Tartalomkezelőknek, akik rendszeresen kapnak Excel/CSV adatokat, és azokat ACF‑mezőkbe szeretnék bevinni.
 
-Reméljük, hogy ez a leírás segített megérteni a WP All Import - ACF Add-On funkcionalitását és előnyeit. Ha további kérdéseid vannak vagy tanácsra van szükséged a beállítással kapcsolatban, ne habozz kapcsolatba lépni velünk.
+## Legjobb gyakorlatok és tippek
+
+- **Unique Identifier**: mindig külső, stabil azonosítót használj (pl. SKU, külső ID), hogy a frissítések pontosak legyenek.
+- **Szelektív frissítés**: ismételt futtatásnál csak azt jelöld, amit tényleg módosítani akarsz (pl. ár, készlet, képek).
+- **Képek**: ha a forrás URL változhat, kapcsold ki a képek megtartását, hogy újra letöltődjenek; az első képet jelöld kiemeltnek.
+- **Ütemezés**: ha nem kezelnél szerver‑cron beállításokat, válassz felhőalapú ütemezést a gondozásmentes futtatáshoz.
+- **Adattisztítás**: használd az inline PHP‑t normalizálásra (dátumok, pénznemek, telefonszámok).
+
+## Korlátok és előfeltételek
+
+- Az ACF mezőcsoportokat előre létre kell hozni (a bővítmény nem hoz létre field groupokat).
+- Az ingyenes add‑on csak az alap ACF mezőket támogatja; a komplex mezőtípusokhoz a Pro funkciók szükségesek.
+- Szerverkörnyezeted beállításai befolyásolják a nagy importok teljesítményét; érdemes megfelelő erőforrást biztosítani.
+
+## Gyors indulás – mintafolyamat
+
+1. Készítsd elő az ACF mezőcsoportokat a kívánt mezőkkel.
+2. Indíts új importot, töltsd fel a CSV/XML/Excel fájlt vagy add meg az URL‑t.
+3. ACF panelen húzd rá a forrásmezőket az ACF mezőkre; komplex mezők esetén kövesd a mezőstruktúrát.
+4. Állíts be Unique Identifiert, majd futtasd az importot.
+5. Ellenőrizd a bejegyzéseket, szükség esetén finomhangold a szelektív frissítést és az ütemezést.
+
+Ezzel az eszközzel megbízható, skálázható és fejlesztőbarát módon tudsz ACF‑mezőket adatforrásaidból naprakészen tartani.

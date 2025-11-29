@@ -1,66 +1,114 @@
-# GenerateBlocks Pro
+---
+title: "GenerateBlocks Pro"
+description: "Prémium kiegészítő a GenerateBlocks-hoz, amellyel a Gutenberg szerkesztőből gyors, kódszegény és professzionális oldalépítőt varázsolsz, globális stílusokkal, overlay panelekkel és fejlett reszponzív vezérléssel."
+sidebar_label: "GenerateBlocks Pro"
+---
 
-A GenerateBlocks Pro a webdizájn világában egy igazán sokoldalú és könnyen használható eszközt kínál. Ez a bővítmény lehetővé teszi, hogy a WordPress szerkesztőben könnyedén készíthessünk egyedi és látványos weboldalakat anélkül, hogy túlterhelnénk azt rengeteg egyfunkciós blokkal. A GenerateBlocks Pro négy alapvető blokkot kínál: Konténer, Fejléc, Gomb és Kép. Ezeket kombinálva szinte bármit megvalósíthatsz.
+## Mi ez és milyen problémát old meg?
 
-## Konténer
+A GenerateBlocks Pro a GenerateBlocks ingyenes blokkbővítmény prémium kiegészítője. Célja, hogy a WordPress blokk­szerkesztőjét profi oldalépítővé emelje – kompromisszumok nélkül, felesleges kód és lassulás nélkül. Ha eleged van a nehéz page builderek bloatjából, széttartó stílusokból és a sok „még egy plugin kell” helyzetből (popup, mega menü, feltételes megjelenítés), akkor ez a bővítmény pont neked való: tiszta HTML/CSS kimenet, reszponzív finomhangolás és kevesebb külön eszköz.
 
-A konténer lehetővé teszi, hogy tartalmadat sorokba és szakaszokba rendezd. Ezzel a blokkal létrehozhatsz átfogó elrendezéseket, amelyek jól strukturáltak és vizuálisan vonzóak.
+Fontos: a Pro önmagában nem fut, a GenerateBlocks ingyenes bővítmény az alap.
 
-## Fejléc
+## Hogyan működik röviden?
 
-A fejléc segítségével szöveges tartalmakat készíthetsz, legyen az statikus vagy dinamikus. Ez a blokk különösen hasznos blogbejegyzések vagy oldalfejlécek kialakításakor.
+- A szerkesztőben ugyanazokkal a blokkokkal dolgozol (Container, Grid, Headline, Button stb.), mint az ingyenes kiadásban.
+- A Pro új paneleket és eszközöket ad a blokkokhoz: globális stíluskezelő, haladó hátterek, effektek, overlay panelek, feltételek, mintakönyvtár, egyedi töréspontok és attribútumok.
+- A stílusok osztályalapon, újrahasznosíthatóan épülnek, így a kimenet tiszta és karcsú marad. Nem CSS‑t kell írnod, hanem vizuális stílusbuilderben dolgozol – a rendszer mégis fejlesztőbarát HTML/CSS‑t állít elő.
 
-## Gomb
+## Fő funkciók részletesen
 
-A gombok kulcsfontosságúak az átkattintások és konverziók növelésében. A GenerateBlocks Pro gombjai nem csak esztétikusak, de testreszabhatók is, így tökéletesen illeszkednek az oldalad stílusához.
+### Globális stílusok
+- Egy helyen hozol létre újrahasznosítható stílusokat (osztályokat), amelyeket bármely blokkon alkalmazhatsz.
+- Kezelheted az állapotokat (hover/focus), célzhatsz haladó szelektorokra, és több töréspontot definiálhatsz.
+- Eredmény: konzisztens design rendszer, villámgyors egységesítés, kevesebb lokális „tűzoltás”.
 
-## Kép
+### Pro mintakönyvtár
+- Közvetlenül a szerkesztőből érsz el több száz professzionális mintát (szekciók, hero, pricing, lábléc, teljes oldalak).
+- Drag‑and‑drop beillesztés után csak a tartalmat cseréled – a reszponzív és a stíluslogika adott.
 
-A kép blokk lehetővé teszi, hogy statikus vagy dinamikus képeket adj hozzá tartalmaidhoz. Ez a funkció különösen hasznos portfólió oldalak vagy termékbemutatók esetében.
+### Haladó hátterek és effektek
+- Több háttérréteg képpel, gradienssel, külön eszközökre és állapotokra.
+- Finom vizuális hatások: transzformációk, szűrők, áttűnések – mind blokkszinten szabályozva.
 
-## Grid
+### Overlay panelek és feltételek
+- Beépített popup, slide‑in, modális, off‑canvas és mega menü megoldások – külön plugin nélkül.
+- Feltételek: megmondhatod, mikor és kinek jelenjen meg egy elem (oldaltípus, dátum/idő, eszköz, UTM, referrer, user‑szerep, cookie, nyelv, szerző, meta stb.).
+- Ezzel pontosan célozhatsz, miközben karcsú marad a rendszered.
 
-A grid segítségével fejlett elrendezéseket hozhatsz létre rugalmas rácsokkal. Ez a funkció különösen hasznos oldalak és bejegyzések elrendezésének kialakításakor, mivel lehetővé teszi a tartalom könnyed átrendezését.
+### Reszponzív vezérlés és egyedi töréspontok
+- Eszköz‑láthatóság: megjelenítés/elrejtés mobilon, tableten, asztali eszközön.
+- Saját media és container query‑k: ott finomhangolsz, ahol tényleg szükséges – nem kell kompromisszumos fix töréspontokhoz ragaszkodnod.
 
-## Query Loop
+### Asset Library, stílus másolás és konténer linkek
+- Saját ikonok/shape‑ek központi kezelése és beszúrása.
+- Stílusok copy/paste és „Clear styles” a gyors újrafelhasználáshoz.
+- Konténer link: teljes szekció kattintható, tökéletes kártya‑UI‑hoz.
 
-A query loop blokk lehetővé teszi, hogy listázd a bejegyzéseket bármilyen bejegyzéstípusból. Ez a funkció ideális blogokhoz és hírportálokhoz, ahol dinamikusan változó tartalomra van szükség.
+### Egyéni attribútumok, hozzáférhetőség
+- Tetszőleges HTML és data-* attribútumok, ARIA címkék megadása a blokkoknál.
+- Integrációkhoz és akadálymentesítéshez nélkülözhetetlen.
 
-## Együttműködés más eszközökkel
+Példa:
+```html
+<div class="gb-container card -elevated"
+     aria-label="Ajánlat kártya"
+     data-utm-source="newsletter"
+     data-track="cta-card">
+  ...
+</div>
+```
 
-A GenerateBlocks Pro zökkenőmentesen működik együtt más népszerű eszközökkel, mint például:
-- **GeneratePress**: A GenerateBlocks és a GeneratePress együttes használata különösen hatékony, mivel mindkét eszköz ugyanazon fejlesztőcsapat munkája, így teljes mértékben kompatibilisek egymással.
-- **Advanced Custom Fields (ACF)**: Az ACF segítségével egyedi mezőket adhatsz hozzá az oldaladhoz, amelyeket a GenerateBlocks Pro blokkjai könnyedén kezelnek.
-- **WooCommerce**: Ha online áruházat működtetsz, a GenerateBlocks Pro segíthet abban, hogy az oldalad megjelenése professzionális és felhasználóbarát legyen.
+### Fülek és harmonikák
+- Teljesen testreszabható Tabs/Accordions komponensek, a már ismert blokkok logikájára építve.
 
-## Konkrét helyzetek és gyakorlati példák
+### Query Loop bővítések
+- Tartalomlisták dinamikus építése, lekérdezés meta/option mezők alapján is – célzott listák, grid-ek egyszerűen.
 
-### Blogbejegyzések és hírportálok
+## Gyakorlati példák
 
-A GenerateBlocks Pro query loop blokkja lehetővé teszi, hogy dinamikus listákat készíts a legfrissebb bejegyzéseidről vagy híreidről. Ez különösen hasznos olyan oldalak esetében, ahol rendszeresen frissülő tartalmat szeretnél bemutatni.
+1) Landing oldal 30 perc alatt  
+- Válassz egy Pro hero és pricing mintát, illeszd be.  
+- Adj globális gomb‑ és tipográfia stílust; az egész oldal egyszerre frissül.  
+- Állíts be egy lead‑mágnes popupot Overlay Panellel, ami csak mobilon és UTM kampányból érkezőknek jelenik meg (feltétel: eszköz + query paraméter).  
+- A pricing kártyák kapjanak konténer linket és hover effektet.
 
-### Üzleti weboldalak
+2) Mega menü és mobil off‑canvas  
+- Készíts menüpanelt Overlay Panelben, Grid + Headline blokkokkal.  
+- Asztali nézetben mega menü, mobilon off‑canvas.  
+- Feltételek: eszköz szerinti megjelenítés, így egy konfiguráció két viselkedés.
 
-Ha egy vállalkozás weboldalát építed, a konténer és grid blokkokkal könnyedén létrehozhatsz professzionális elrendezéseket, amelyek jól szervezettek és vizuálisan vonzóak. A gombok és képek használatával pedig növelheted a felhasználói interakciót és konverziót.
+3) Design rendszer egy délután alatt  
+- Hozz létre globális stílusokat: „heading‑lg”, „btn‑primary”, „card‑base”, töréspontokkal.  
+- A mintákat ezekhez a stílusokhoz igazítsd; új oldalaknál csak mintát illesztesz be, és kész a konzisztens UI.
 
-### Online áruházak
+## Előnyök és értékajánlat
 
-A WooCommerce integrációval a GenerateBlocks Pro kiválóan használható online áruházak kialakítására. Az egyedi fejlécek, gombok és képek segítségével professzionális megjelenést adhatsz termékoldalaidnak, míg a query loop blokk segítségével dinamikusan jelenítheted meg az akciós termékeket vagy új érkezéseket.
+- Gyorsabb webhelyek: minimális kimeneti kód, célzott CSS.
+- Kevesebb plugin: popup, slide‑in, mega menü, feltételek – mind beépítve.
+- Következetes design: globális stílusokkal megszűnik a „minden oldal más” probléma.
+- Gyorsabb csapatmunka: minták, stílus copy/paste, közös eszköztár.
+- Profibb hozzáférhetőség: ARIA, egyéni attribútumok, szemantikus HTML.
 
-### Portfólió oldalak
+## Kinek ajánlott?
 
-Művészeknek, fotósoknak vagy designereknek ideális választás a kép blokk, amellyel könnyedén bemutathatják munkáikat. A konténer és grid blokkok segítségével pedig egyedi elrendezéseket hozhatsz létre, amelyek kiemelik a portfóliódat.
+- Ügynökségeknek és freelance‑eknek: skálázható design rendszerek és minták több ügyfélhez.  
+- Marketing csapatoknak: gyors kampányoldalak, célzott popupok/feltételek, A/B iterációk bloat nélkül.  
+- Fejlesztőknek: vizuális stílusbuilder, mégis tiszta, kontrollálható kimenet; egyedi query‑k és attribútumok.
 
-## Szószedet
+## Telepítés röviden
 
-- **Konténer**: Egy blokk, amellyel tartalmakat sorokba és szakaszokba rendezhetsz.
-- **Fejléc**: Szöveges tartalmak készítésére alkalmas blokk.
-- **Gomb**: Interaktív elemek létrehozására szolgáló blokk.
-- **Kép**: Statikus vagy dinamikus képek hozzáadására szolgáló blokk.
-- **Grid**: Rugalmas rácsok segítségével fejlett elrendezések létrehozása.
-- **Query Loop**: Dinamikus listák készítése bármilyen bejegyzéstípusból.
-- **GeneratePress**: Egy népszerű WordPress téma.
-- **Advanced Custom Fields (ACF)**: Egy WordPress bővítmény, amely egyedi mezők hozzáadását teszi lehetővé.
-- **WooCommerce**: Egy WordPress bővítmény, amely online áruházak létrehozását teszi lehetővé.
+1. Telepítsd és aktiváld a GenerateBlocks (free) bővítményt.  
+2. Szerezd be a Pro kiegészítőt, töltsd le a zip fájlt.  
+3. WordPress → Bővítmények → Új hozzáadása → Feltöltés → Telepítés és aktiválás.  
+4. Add meg a licencet a Vezérlőpultban (GenerateBlocks menü), majd kapcsold be a Pro modulokat.
 
-Ez a részletes bemutató remélhetőleg segít jobban megérteni a GenerateBlocks Pro funkcionalitását és előnyeit.
+## Best practice tippek
+
+- Nevezéktani rend: állíts be következetes globális osztályneveket (pl. btn‑, card‑, heading‑, layout‑ prefix).  
+- Töréspont‑stratégia: üzleti igények alapján határozd meg a media/container query‑ket; ne csak „mobil‑tablet‑desktop” sémát kövesd.  
+- Hozzáférhetőség: overlay paneleknél adj ARIA‑címkéket, jelöld a bezáró gombot, és tartsd a fókuszt a panelen.
+
+---
+
+Ha Gutenbergben szeretnél valóban gyors, tiszta és fenntartható oldalakat építeni, a GenerateBlocks Pro az a réteg, ami a blokkokból komplett, vállalati szintű rendszeré teszi a szerkesztőt – felesleges kód és külső „mankók” nélkül.

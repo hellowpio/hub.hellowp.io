@@ -1,64 +1,101 @@
-# Polylang for WooCommerce
+---
+title: "Polylang for WooCommerce"
+description: "Prémium kiegészítő, amellyel a WooCommerce teljes tartalma, e-mailjei és a vásárlói élmény többnyelvűvé és konzisztenssé tehető a Polylanggal."
+sidebar_label: "Polylang for WooCommerce"
+---
 
-A Polylang for WooCommerce lehetővé teszi, hogy a két népszerű WordPress bővítmény erejét egyesítve többnyelvű webáruházat hozz létre. Ez a bővítmény a WooCommerce és a Polylang kombinációjával használható. Lehetővé teszi, hogy a WooCommerce oldalait, egyszerű, változó és csoportosított termékeket, kategóriákat, címkéket és attribútumokat közvetlenül a WooCommerce felületén fordítsd le. Az olyan közös adatok, mint a készlet és az árak, automatikusan szinkronizálódnak a termékfordítások között.
+## Mi ez és milyen problémát old meg?
 
-## Fő funkciók és képességek
+A Polylang for WooCommerce egy prémium kiegészítő, amely teljessé teszi a WooCommerce és a Polylang együttműködését. Segítségével a teljes áruházad – a termékektől és kategóriáktól kezdve az alapoldalakon, attribútumokon és e-maileken át – több nyelven kezelhető. Megoldja a tipikus többnyelvű e‑kereskedelmi gondokat: az árak/készletek eltérését a fordítások között, a kosár elvesztését nyelvváltáskor, és azt, hogy a vásárló mindenhol a saját nyelvén kapjon tartalmat és tranzakciós levelet.
 
-### Termékek és kategóriák fordítása
+Kötelező hozzá: **WooCommerce** és **Polylang** (vagy Polylang Pro).
 
-A Polylang for WooCommerce lehetővé teszi, hogy egyszerűen lefordítsd a termékeket, kategóriákat, címkéket és globális attribútumokat. Ez különösen hasznos lehet olyan webáruházak számára, amelyek többnyelvű közönséget szolgálnak ki. A bővítmény segítségével minden terméket és kategóriát az általad választott nyelvekre fordíthatsz le.
+## Fő funkciók és működés
 
-### Közös adatok szinkronizálása
+### WooCommerce-tartalmak fordítása
+- Fordíthatod az összes terméktípust (**egyszerű, variálható, csoportos**), a **kategóriákat, címkéket, globális attribútumokat**, valamint az alapoldalakat (**Shop, Cart, Checkout, My Account**).  
+- A telepítési varázsló létrehozza/fordítja a hiányzó alapoldalakat, és letölti a szükséges nyelvi fájlokat.
 
-A készletek, árak és egyéb közös adatok automatikusan szinkronizálódnak a különböző nyelvi verziók között. Ez biztosítja, hogy minden vásárló ugyanazt az információt látja függetlenül attól, hogy melyik nyelvet használja.
+### Automatikus szinkronizálás a fordítások között
+- A **készletszint** és az **ár** automatikusan azonos marad minden nyelvi változatnál, így nincsenek eltérések.
+- Szinkronizálhatók még: **kategóriák, címkék, szállítási osztályok, attribútumok, termékképek/galériák**, és egyes metaadatok másolása új fordítás létrehozásakor.
 
-### CSV import és export támogatás
+### Nyelv szerinti kosár és vásárlói élmény
+- A **kosár tartalma megőrizhető** nyelvváltáskor, így a vásárló zökkenőmentesen folytathatja a vásárlást.
+- Több domain/subdomain közti kosármegosztáshoz **Polylang Pro** és technikai feltételek (megfelelő WooCommerce/PHP verzió, SSL minden domainen) szükségesek.
 
-A bővítmény kompatibilis a WooCommerce 3.1 verzió óta elérhető CSV import és export eszközökkel. Ez lehetővé teszi a termékadatok könnyű kezelhetőségét és gyors áthelyezését más platformokra vagy adatbázisokba.
+### Rendelések és e-mailek nyelve
+- A rendszer rögzíti a **rendelés nyelvét**, és a WooCommerce **tranzakciós e-maileket a vásárló nyelvén** küldi.
+- A WooCommerce e-mail tárgyai, fejléc‑szövegei és több beállítás a **Languages > Translations** felületen fordíthatók.
 
-### Kosár szinkronizálás
+### CSV import/export többnyelvűen
+- Teljesen kompatibilis a WooCommerce beépített **CSV importőr/exportőr** eszközével.
+- Kezeli a **Language** és **Translation group** mezőket, így tömeges műveleteknél is rendben maradnak a fordítások.
 
-A kosár tartalma automatikusan szinkronizálódik a különböző nyelvek között. Ez azt jelenti, hogy ha a vásárló nyelvet vált az oldal böngészése közben, nem veszíti el a kosárba tett termékeit.
+Példa CSV-sorokra:
+```
+Language,Translation group,Name,SKU,Regular price,Stock
+hu,123,Termék neve,S123,9990,25
+en,123,Product name,S123,29.90,25
+```
 
-### E-mailek fordítása
+### Jelentések és duplikálás
+- A WooCommerce **jelentések** a fordításokat egyetlen termékként kezelik, így az **értékesítési statisztikák egységesek**.
+- Termék **duplikálásakor** a fordítások is másolhatók.
 
-A Polylang for WooCommerce biztosítja, hogy az ügyfelek a saját nyelvükön kapják meg az e-maileket. Ez növeli az ügyfélélményt és csökkenti a félreértések esélyét.
+### URL-ek és végpontok (Pro-val)
+- Polylang Pro-val fordíthatod a **permalinkeket, WooCommerce végpontokat és slugokat**, így a **SEO-barát URL-struktúrák** nyelvenként egységesek (hreflang és közösségi meta támogatással a Polylang ökoszisztémában).
 
-## Kompatibilis kiegészítők
+### Fejlesztőknek: REST API és stringfordítás
+- A **WooCommerce REST API** többnyelvű használata Polylang Pro-val elérhető.
+- További admin opciók és e-mail beállítások fordításához használhatsz `wpml-config.xml` fájlt:
 
-A Polylang for WooCommerce több népszerű WooCommerce kiegészítővel is kompatibilis, mint például:
-- WooCommerce Subscriptions
-- Product Bundles
-- WooCommerce Bookings
-- Table Rate Shipping
-- Dynamic Pricing
-- Min/Max Quantities
-- Variation Swatches and Photos
+```xml
+<wpml-config>
+  <admin-texts>
+    <key name="woocommerce_email_from_name" />
+    <key name="woocommerce_email_from_address" />
+  </admin-texts>
+</wpml-config>
+```
 
-Ezek a kiegészítők integrációja lehetővé teszi, hogy még komplexebb és testreszabottabb webáruházakat hozz létre.
+### Kompatibilitás és teljesítmény
+- Kompatibilis ismert WooCommerce kiegészítőkkel (pl. Bookings, Subscriptions, Product Bundles, Shipment Tracking). A Bookings közös kapacitást és nyelvhelyes értesítéseket biztosít.
+- Teljesítményközpontú kialakítás, **HPOS-kompatibilitás** a modern rendeléskezeléshez.
 
 ## Gyakorlati példák
 
-### Többnyelvű webshopok
+- Többnyelvű katalógus: magyar–angol–német áruházban a variálható termék árát és készletét elég egy helyen módosítanod; minden fordítás automatikusan követi.
+- Nyelvváltás vásárlás közben: a vásárló kosarában lévő termékek megmaradnak, ha nyelvet vált, így nem veszíted el a konverziót.
+- E-mail lokalizáció: a német vásárló német nyelvű rendelés-visszaigazolást kap, míg az angol vásárló angolul – kézi válogatás nélkül.
+- CSV tömeges kezelés: új piacot indítasz; a meglévő termékeket exportálod, kitöltöd a Language/Translation group mezőket, majd visszaimportálod – percek alatt kész a többnyelvű kínálat.
+- Foglalások: egy szolgáltatás kapacitása közös a fordítások között, a visszaigazolás mindig a foglalás nyelvén megy ki.
 
-Ha egy webáruház több országot szolgál ki, elengedhetetlen, hogy az oldal több nyelven is elérhető legyen. A Polylang for WooCommerce segít abban, hogy minden termék és kategória könnyedén lefordítható legyen.
+## Telepítés röviden
 
-### Nemzetközi értékesítés
+1. Telepítsd a WooCommerce-t (a saját varázslóját ideiglenesen kihagyhatod).
+2. Telepítsd a Polylangot (vagy Polylang Pro-t).
+3. Töltsd fel és aktiváld a Polylang for WooCommerce-t.
+4. Futtasd a Polylang varázslót: add meg a licencet, vedd fel a nyelveket, rendeld hozzá a médiát/tartalmat; a WooCommerce-lépés létrehozza a hiányzó oldalfordításokat.
+5. Ezután futtasd a WooCommerce varázslót.
 
-Azoknak a vállalkozásoknak, amelyek nemzetközi piacokon is szeretnének jelen lenni, hasznos lehet ez a bővítmény. Az automatikus készlet- és ár szinkronizálás biztosítja, hogy minden vásárló ugyanazt az információt lássa.
+## Előnyök és értékajánlat
 
-### Ügyfélélmény javítása
+- **Konzisztens adatok**: ár és készlet minden nyelven azonos.
+- **Jobb konverzió**: a kosár nem vész el nyelvváltáskor, az e-mailek mindig a megfelelő nyelven mennek.
+- **Gyors tartalomkezelés**: CSV-vel és duplikálással nagy katalógusok is könnyen karbantarthatók.
+- **SEO és UX**: nyelvenként fordított URL-ek, hreflang, tiszta navigáció.
+- **Idő- és költségmegtakarítás**: kevesebb manuális szinkron, kevesebb hiba.
 
-Az ügyfelek saját nyelvükön kapják meg az e-maileket, ami növeli az elégedettséget és csökkenti a félreértések esélyét.
+## Kinek ajánlott?
 
-## Szószedet
+- **Nemzetközi webáruházaknak**, akik több nyelven értékesítenek.
+- **Ügynökségeknek/fejlesztőknek**, akik megbízható, skálázható többnyelvű megoldást keresnek WooCommerce-hez.
+- **Nagy katalógusok üzemeltetőinek**, ahol a CSV-alapú tömeges műveletek kritikusak.
+- **Előfizetéses és foglalásos üzleti modelleknek**, ahol a közös készlet/kapacitás és a nyelvhelyes értesítések fontosak.
 
-- **Polylang**: Egy bővítmény, amely lehetővé teszi többnyelvű tartalom létrehozását WordPress oldalakhoz.
-- **WooCommerce**: Egy népszerű e-kereskedelmi bővítmény WordPresshez.
-- **CSV**: Comma-Separated Values, egy fájlformátum adatcserére.
-- **Kategóriák**: A termékek csoportosításának módja.
-- **Címkék**: Kulcsszavak vagy rövid kifejezések, amelyek jellemzik a terméket.
-- **Attribútumok**: Termékjellemzők, mint például szín vagy méret.
-- **Szinkronizálás**: Az adatok összehangolása különböző helyek vagy rendszerek között.
+## Megjegyzések, ismert sajátosságok
 
-Ez a részletes bemutató remélhetőleg segített megérteni a Polylang for WooCommerce funkcionalitását és előnyeit, valamint azt is, hogy milyen konkrét helyzetekben lehet hasznos a felhasználók számára.
+- Több domain/subdomain közti kosárszinkronhoz **Polylang Pro**, megfelelő WooCommerce/PHP környezet és **SSL** szükséges minden domainen.
+- A WooCommerce Blocks és más kiegészítők többnyelvű viselkedése folyamatosan javul; mindig tartsd naprakészen a bővítményeket.
+- A teljes értékhez érdemes a Polylang Pro-t a Polylang for WooCommerce-szel együtt használni (URL‑fordítások, REST API, fejlesztői bővíthetőség).

@@ -1,54 +1,97 @@
-# WP Booking System - Pricelabs
+---
+title: "WP Booking System - Pricelabs"
+description: "Hivatalos kiegészítő, amellyel a PriceLabs dinamikus árait és foglalási korlátozásait automatikusan szinkronizálhatod a WP Booking System naptáraiba."
+sidebar_label: "WP Booking System - Pricelabs"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Pricelabs integráció lehetővé teszi, hogy a PriceLabs.co által biztosított dinamikus árazási és foglalási korlátozásokat közvetlenül a naptáradba importáld. Ez az integráció kiválóan alkalmas rövid távú bérbeadással foglalkozó ingatlankezelők számára, akik szeretnék optimalizálni bevételeiket adatvezérelt döntésekkel.
+A WP Booking System – PriceLabs egy hivatalos kiegészítő, amellyel a PriceLabs által számolt **dinamikus árakat** és **foglalási korlátozásokat** (minimum éjszaka, érkezési/távozási szabályok) közvetlenül be tudod tölteni a WordPress oldaladon futó WP Booking System naptáraiba. Ezzel megszűnik a kézi árfrissítés terhe, és a saját, közvetlen foglalási oldalad ugyanazt az árlogikát követi, mint a többi csatornád.
 
-### Dinamikus árazás
+## Hogyan működik röviden?
 
-A PriceLabs egy bevételkezelő eszköz, amely adatvezérelt dinamikus árazást biztosít. Ez azt jelenti, hogy a rendszer folyamatosan figyeli a piacot és a versenytársak árait, majd ezek alapján javaslatokat tesz a saját áraiddal kapcsolatban. Az árak automatikusan frissülnek, így mindig versenyképes maradhatsz anélkül, hogy állandóan figyelemmel kellene kísérned az árakat.
+- A bővítményt a PriceLabs **ügyfél API‑kulcsával** kapcsolod össze.
+- Naptáranként kiválasztod, melyik PriceLabs **property**-hez tartozzon.
+- A szinkron a PriceLabs-ból érkező napi árakat (és kérésre korlátozásokat) **automatikusan átírja** a kiválasztott naptárban.
+- Alapesetben napi egyszer frissül; a PriceLabs-ból manuális “Sync Now” kéréssel azonnali frissítés is kérhető. Gyakoribb szinkron külön beállítható (és külön díjazású).
+- Fontos: a szinkron **felülírhatja** a naptárban korábban megadott árakat.
 
-### Foglalási korlátozások kezelése
+## Fő funkciók részletesen
 
-A PriceLabs nemcsak az árakat kezeli, hanem különféle foglalási korlátozásokat is beállíthatóvá tesz. Például meghatározhatod, hogy egy adott időszakra minimum hány éjszakára lehessen foglalni. Ezek a korlátozások automatikusan átkerülnek a WP Booking System naptárába, így nem kell manuálisan beállítani őket.
+- **Dinamikus árak szinkronizálása**
+  A PriceLabs a piaci kereslet, szezonok, események és versenytársak alapján napi szintű árakat számol. A kiegészítő ezeket az értékeket importálja a WP Booking System naptáradba, így a vendégek mindig aktuális díjakat látnak – anélkül, hogy kézzel szerkesztenéd az árakat.
 
-### Integráció más eszközökkel
+- **Foglalási korlátozások importja**
+  Opcionálisan átveheted a **minimum tartózkodás** és **check-in/check-out** szabályokat. Így a saját naptárad és foglalási űrlapod ugyanazokat a feltételeket érvényesíti, mint amiket a PriceLabs meghatároz.
 
-A WP Booking System - Pricelabs zökkenőmentesen működik együtt különféle Property Management System (PMS) eszközökkel és channel manager-ekkel. Ez azt jelenti, hogy ha több különböző platformon (pl. Airbnb, Booking.com) hirdeted ingatlanjaidat, akkor az árak és foglalási korlátozások mindenhol automatikusan frissülnek.
+- **Naptárankénti property hozzárendelés**
+  Minden naptárnál kiválasztod, hogy melyik PriceLabs **listing** adatait használja. Több naptár esetén mindegyikhez külön property rendelhető – hasznos több apartman vagy szoba kezelésekor.
 
-## Kiemelkedő jellemzők
+- **API‑alapú, biztonságos kapcsolat**
+  Az API-kulcsot egyszer adod meg a WP Booking System beállításaiban. Ezt követően a bővítmény a háttérben intézi a szinkronokat, és naprakészen tartja a naptárakat.
 
-### Automatizált adatvezérelt döntések
+- **Licencelés**
+  A PriceLabs integráció a WP Booking System **Business (és magasabb)** csomagjaiban érhető el.
 
-Az egyik legfontosabb előnye ennek az integrációnak, hogy lehetővé teszi az automatizált adatvezérelt döntéseket. Nem kell órákat töltened az árak elemzésével és beállításával; a PriceLabs ezt megteszi helyetted, így több időt fordíthatsz üzleted fejlesztésére.
+## Telepítés és beállítás
 
-### Részletes analitika
+1. Szerezz PriceLabs **Customer API** kulcsot a fiókodban, és engedélyezd az API-hozzáférést.
+2. Add meg a kulcsot a WordPress adminban:
+   ```
+   WP Booking System → Settings → Payment Options → PriceLabs
+   ```
+3. Nyisd meg a kívánt naptárat, és válaszd ki a PriceLabs listát:
+   ```
+   Edit Calendar → Calendar Options → PriceLabs
+   ```
+   - Állítsd be a megfelelő property-t.
+   - Ha szeretnéd, kapcsold be az „Enable booking restrictions” opciót.
+   - Mentsd a változtatásokat.
 
-A PriceLabs részletes analitikát biztosít, amely segít megérteni az aktuális piaci trendeket és versenytársak árait. Ezek az információk alapvető fontosságúak lehetnek a stratégiai döntések meghozatalában.
-
-### Könnyű kezelhetőség
-
-Az integráció telepítése és használata egyszerű és intuitív. A felhasználói felület könnyen érthető, így gyorsan beállíthatod az összes szükséges paramétert.
+Figyelmeztetés: az import **felülírja** a korábbi naptár-árakat. Érdemes előtte tesztnaptáron kipróbálni vagy biztonsági mentést készíteni.
 
 ## Gyakorlati példák
 
-### Rövid távú bérbeadás optimalizálása
+- **Egy lakás Airbnben és saját oldalon**  
+  PriceLabs kezeli a dinamikus árazást. A bővítménnyel a saját WordPress foglalási oldaladon ugyanaz a napi díj és minimum éjszaka jelenik meg, mint a csatornákon – kézi beavatkozás nélkül.
 
-Egy rövid távú bérbeadással foglalkozó ingatlankezelő cég esetében a dinamikus árazás segíthet maximalizálni a bevételeket. Például egy nyári szezonban a PriceLabs figyeli a versenytársak árait és a kereslet változásait, majd ennek megfelelően állítja be az árakat, hogy mindig a lehető legjobb árat kapd.
+- **Apartmanhálózat rendezvénycsúcsokkal**  
+  A városi fesztiválok idején a PriceLabs megemeli az árakat és hosszabb minimum tartózkodást állít be. A változások a következő szinkronnál automatikusan átkerülnek az összes kapcsolt naptáradba.
 
-### Nagyobb foglalási ráták elérése
+- **Panzió hétvégi szabályokkal**  
+  Péntek–vasárnap minimum 2 éjszaka és csak pénteki érkezés engedélyezett. A korlátozások importjával a foglalási űrlapod pontosan ezekhez a szabályokhoz igazodik.
 
-Egy kisebb panzió tulajdonosa minimális foglalási éjszakák beállításával optimalizálhatja a foglalásait. Például hétvégékre hosszabb minimum tartózkodást állíthat be, míg hétköznapokon rövidebbeket engedélyezhet.
+## Előnyök és értékajánlat
 
-### Versenytársak árazásának követése
+- **Időmegtakarítás:** nem kell naponta/hetente átírni az árakat.
+- **Konzisztens árképzés:** a saját oldalad árai és szabályai illeszkednek a többi csatornához.
+- **Gyors reagálás:** a piaci változások a következő szinkronnál megjelennek.
+- **Kevesebb hiba:** kevesebb kézi szerkesztés = kisebb esély rossz árakra.
+- **Több bevétel esélye:** a dinamikus árképzés a kereslethez igazít, a direkt foglalások sem maradnak le az optimalizációról.
 
-Egy apartmanház tulajdonosa számára hasznos lehet a versenytársak árazásának folyamatos figyelemmel kísérése. A PriceLabs által nyújtott analitika segít abban, hogy mindig versenyképes árat kínálhasson anélkül, hogy saját maga folyamatosan monitorozná a piacot.
+## Kinek ajánlott?
 
-## Szószedet
+- Rövid távú szállásadóknak, akik PriceLabs-ot használnak, és van **saját WordPress foglalási oldaluk**.
+- Több ingatlant kezelő üzemeltetőknek, akik **naptáranként** szeretnék párosítani a listákat.
+- Panzióknak, kisebb hoteleknek, akik egységesítenék a **minimum éjszaka** és **check-in/out** szabályokat minden csatornán, beleértve a saját oldalt is.
 
-- **Dinamikus árazás**: Az árak folyamatos módosítása piaci adatok alapján.
-- **Foglalási korlátozás**: Szabályok, amelyek meghatározzák, hogyan lehet foglalni egy ingatlant (pl. minimum éjszakák száma).
-- **PMS (Property Management System)**: Ingatlankezelő rendszer, amely segít az ingatlanok adminisztrációjában és foglaláskezelésében.
-- **Channel manager**: Eszköz, amely több különböző online foglalási platformmal való integrációt biztosít.
+## Üzemeltetés és tippek
 
-Ez a leírás áttekintést nyújtott a WP Booking System - Pricelabs integráció főbb funkcióiról és előnyeiről, kiemelve azokat a specifikus jellemzőket és gyakorlati példákat, amelyek valódi értéket nyújtanak a felhasználók számára.
+- Nagyobb módosítás után futtasd le a PriceLabs-ban a **manuális szinkront**, hogy azonnal átjöjjenek a változások.
+- Több, napközbeni frissítéshez állíts be **gyakoribb szinkronokat** (külön díjazás mellett).
+- Több naptár esetén készíts egy listát, melyik naptár melyik property-hez tartozik – ez segít elkerülni a téves párosítást.
+
+## Megjegyzések, korlátok, kockázatok
+
+- **Felülírás:** a szinkron átírhatja a naptár-árakat. Teszteld sandbox/teszt naptáron, és készíts biztonsági mentést.
+- **API-költség:** a PriceLabs ügyfél API használata listánként havi többletköltséggel jár.
+- **Szinkron gyakoriság:** alapértelmezetten napi egyszer frissül. Gyakoribb frissítés külön állítható be és külön díjas.
+- **Licencelés:** a kiegészítő nem elérhető belépő szintű csomagban; **Business** vagy magasabb licenc szükséges.
+- **Előfeltétel:** aktív PriceLabs-fiók és legalább egy konfigurált listing szükséges.
+
+## Gyors hibaelhárítás
+
+- Nem látszanak az árak? Ellenőrizd az **API-kulcsot**, a **property hozzárendelést**, és hogy a PriceLabs oldalon van-e aktuális, publikált ár.
+- Nem érvényesülnek a szabályok? Kapcsold be az „Enable booking restrictions” opciót a naptárban.
+- Nem frissül időben? Indíts **manuális szinkront** a PriceLabs-ból, vagy állíts be gyakoribb szinkronizálást.
+- Több naptár keveredik? Nézd át a naptár–property párosításokat, és ments minden módosítást.

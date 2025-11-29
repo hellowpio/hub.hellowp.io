@@ -1,59 +1,81 @@
-# Ninja Forms - Zapier
+---
+title: "Ninja Forms - Zapier"
+description: "Hivatalos kiegészítő, amellyel a Ninja Forms űrlapbeküldéseket kód nélkül kapcsolhatod össze több ezer külső alkalmazással a Zapier-en keresztül."
+sidebar_label: "Ninja Forms - Zapier"
+---
 
-A Ninja Forms - Zapier integráció lehetővé teszi, hogy a Ninja Forms űrlapjaidat összekapcsold más online szolgáltatásokkal és alkalmazásokkal. Ez a funkcionalitás különösen hasznos azok számára, akik szeretnék automatizálni folyamataikat, csökkenteni a manuális munka mennyiségét és hatékonyabbá tenni az adatkezelést.
+## Mi ez és milyen problémát old meg?
 
-## Ninja Forms konfigurálása a Zapierrel
+A Ninja Forms – Zapier a Ninja Forms hivatalos kiegészítője, amely az űrlapjaid beküldéseit azonnal továbbítja a Zapier felé, onnan pedig bármelyik kiválasztott alkalmazásba. Így egyetlen űrlapból automatikusan hozhatsz létre leadet a CRM-ben, feliratkozót a marketing rendszerben, sort egy táblázatban, értesítést a csapatnak – mindezt fejlesztés nélkül. Megoldja a “nincs natív integráció” helyzeteket, és kiváltja a kézi adatrögzítést, valamint a drága, egyedi API-fejlesztéseket.
 
-1. **Új Zap létrehozása**: Először jelentkezz be a Zapier fiókodba, és kattints a "Make A New Zap!" gombra. Válaszd ki a Ninja Forms-t mint trigger alkalmazást.
-2. **Trigger beállítása**: Válaszd a "New Form Submission" opciót, majd kattints a "Continue" gombra.
-3. **Webhook másolása**: Másold a webhook URL-t a vágólapodra.
-4. **Űrlap megnyitása**: Nyisd meg az űrlapodat a Ninja Forms-on belül, és menj az "Emails & Actions" fülre.
-5. **Új akció hozzáadása**: Kattints az "Add new action" gombra, és válaszd ki a Zapier-t.
-6. **Webhook beillesztése**: Illeszd be a másolt webhook URL-t a "ZAPIER WEB HOOK" mezőbe.
-7. **Akció mentése és publikálása**: Kattints a "DONE" gombra, majd a "PUBLISH" gombra.
-8. **Űrlap tesztelése**: Előnézetben töltsd ki az űrlapot és küldd el.
-9. **Teszt sikerességének ellenőrzése**: Visszatérve a Zapier fiókodhoz, kattints az "OK, I did this" gombra. Ha sikeres volt a teszt, megjelenik egy üzenet.
+## Hogyan működik röviden
 
-## Együttműködő eszközök
+- Az űrlap beküldésekor a Ninja Forms a Zapier Webhook URL-re küldi a beküldési adatokat.
+- A Zapier ezt “New Form Submission” triggerként veszi, és elindítja a Zapot.
+- A Zap következő lépéseiben tetszőleges appokhoz térképezheted a mezőket (CRM, e‑mail marketing, táblázatok, projektmenedzsment, stb.).
+- Ha változtatod az űrlap mezőit, futtass újra tesztet a Zapierben, hogy a friss mezők is elérhetők legyenek.
 
-### Google Sheets
-Az űrlap adatait automatikusan importálhatod egy Google Sheets táblázatba, ami nagymértékben megkönnyíti az adatgyűjtést és -elemzést.
+## Fő funkciók részletesen
 
-### Trello
-Hozz létre új kártyákat egy Trello táblán minden űrlapbeküldés után. Ez különösen hasznos lehet projektek és feladatok követésére.
+- **Zapier akció az űrlapban**: A bővítmény egy új “Zapier” akciót ad az űrlap “Emails & Actions” paneljéhez. Ide illeszted a Zapier által adott Webhook URL-t, és már mehet is az adatküldés.
+- **Azonnali trigger**: A Zapier oldalon a Ninja Forms “New Form Submission” jellegű, azaz az űrlap beküldése után azonnal indul a folyamat.
+- **Mezőfelismerés és -térképezés**: A Zapier automatikusan felismeri a Ninja Forms mezőit. Ezeket egyszerűen hozzárendelheted a célalkalmazás mezőihez (például név, e‑mail, cég, megjegyzés, testreszabott mezők).
+- **Egylépéses bekötés Co‑Pilot segítségével**: A Zapier Co‑Pilot természetes nyelvű leírás alapján összeállítja a Zapot, így gyorsan elindulhatsz. Elég bemásolni a Webhook URL-t, tesztelni a triggert, majd elvégezni a mezőtérképezést.
+- **Fájlfeltöltések kezelése**: A Ninja Forms a feltöltött fájlok URL-jét adja át. Ezt a célalkalmazásban csatolmányként használhatod (például “attach file” lépésben).
+- **Széles integrációs lefedettség**: Több ezer alkalmazással működik együtt – CRM, marketing automatizálás, táblázatok, kommunikációs és projektmenedzsment eszközök, sőt WordPress‑műveletek is elérhetők.
 
-### Mailchimp
-Automatikusan add hozzá az új űrlapbeküldőket a Mailchimp hírlevél-listádhoz, így könnyen kezelheted az email marketing kampányaidat.
+## Konkrét, gyakorlati példák
 
-### Slack
-Értesítéseket kaphatsz minden új űrlapbeküldésről közvetlenül a Slack csatornádon, ami segít gyorsan reagálni az új információkra.
+- **CRM lead rögzítés**: Űrlapbeküldés → új személy/lead létrehozása a CRM-ben, majd automatikus értékesítési folyamat indítása.
+- **Marketing feliratkozás**: Űrlap → feliratkozó hozzáadása a hírlevél-listához, címkék/segmentek beállítása, üdvözlő kampány indítása.
+- **Adattáblák frissítése**: Minden beküldés → új sor egy táblázatban (például jelentkezési űrlapok, foglalások, visszajelzések naplózása).
+- **Csapatértesítés és feladatkezelés**: Új beküldés → azonnali értesítés csatornára, majd kártya vagy feladat létrehozása a megfelelő táblán/boardon.
+- **WordPress művelet**: Beküldés → új felhasználó létrehozása, jogosultság megadása, visszaigazoló e‑mail küldése.
+- **Mellékletek továbbítása**: Űrlapon feltöltött fájlok URL-je → csatolmányként társítva a célszoftverben (például ajánlatkéréshez kapcsolt dokumentum).
 
-### Airtable
-Integrálhatod az űrlap adatait az Airtable adatbázisoddal, ami lehetővé teszi az adatok szervezését és strukturálását egyedi igények szerint.
+## Bevezetés lépései
 
-## Felhasználási módok
+1. **Bővítmény telepítése és aktiválása** a WordPressen, majd engedélyezd az adott űrlapon.
+2. **Zap létrehozása a Zapierben**: írd le, mit szeretnél (pl. “űrlap → CRM lead”), és kérd le a Webhook URL-t.
+3. **Webhook beillesztése a Ninja Forms űrlapba**:
+   ```
+   Ninja Forms → űrlap → Emails & Actions → Add action → Zapier
+   → “Zapier Web Hook” mező → illeszd be az URL-t → Publish
+   ```
+4. **Teszt és mezőtérképezés**:
+   ```
+   Küldj próba beküldést → Zapier: Test Trigger
+   → válaszd ki a célappot → mezők hozzárendelése → Publish
+   ```
+5. **Változtatás esetén**: ha bővíted vagy átnevezed az űrlap mezőit, ismételd meg a tesztet/szinkronizálást.
 
-### Online regisztrációk kezelése
-Az eseményekre vagy workshopokra történő regisztrációk egyszerűen kezelhetők, ha az űrlap adatai automatikusan egy Google Sheets táblázatba kerülnek.
+## Előnyök és értékajánlat
 
-### Ügyfélszolgálati jegyek kezelése
-Az űrlapokon keresztül érkező ügyfélszolgálati kéréseket Trello kártyák formájában követheted nyomon, így minden kérés rendezett és átlátható marad.
+- **Kódmentes automatizálás**: nincs szükség egyedi fejlesztésre vagy API‑karbantartásra.
+- **Idő- és költségmegtakarítás**: megszűnik a kézi adatrögzítés, csökken a hibalehetőség.
+- **Gyors bevezetés**: percek alatt összekötheted az űrlapot kedvenc eszközeiddel.
+- **Rugalmasság**: ha nincs natív integráció, a Zapierrel akkor is össze tudod kötni.
+- **Skálázhatóság**: több űrlap, több Zap, több csapat – ugyanazon logika mentén bővíthető.
 
-### Automatikus visszaigazoló emailek küldése
-Mailchimp segítségével automatikus visszaigazoló emaileket küldhetsz minden új beküldés után, ami növeli az ügyfelek elégedettségét.
+## Kinek ajánlott?
 
-### Csapatmunka javítása
-A Slack értesítések segítségével csapatod mindig naprakész lehet a legújabb beküldésekről, így gyorsabban tudtok reagálni a fontos eseményekre.
+- **Kis- és középvállalkozásoknak**, akik űrlapjaikból azonnal CRM‑be, marketingbe vagy táblázatba szeretnének adatot küldeni fejlesztő bevonása nélkül.
+- **Ügynökségeknek és webfejlesztőknek**, akik gyorsan akarnak megbízható integrációt szállítani ügyfeleiknek.
+- **Marketing- és értékesítési csapatoknak**, akik automatizálnák a leadkezelést, kampányindítást és belső értesítéseket.
+- **Operációs és admin csapatoknak**, akik standardizálnák az adatáramlást és csökkentenék a manuális munkát.
 
-### Adatok rendszerezése
-Airtable integrációval az űrlap adatait struktúráltan és rendszerezetten tárolhatod, ami segít az adatok könnyebb kezelésében és elemzésében.
+## Gyakorlati megjegyzések és korlátok
 
-## Szószedet
+- **Trigger**: a Ninja Forms jelenleg új beküldés alapú, azonnali triggert kínál; ez lefedi a tipikus automatizálásokat.
+- **Fájlfeltöltések**: a fájlok URL-je kerül továbbításra (nem a bináris), a csatolást a célapp végzi.
+- **Mezők frissítése**: űrlapmezők módosítása után futtasd újra a Zapier tesztet, hogy az új/átnevezett mezők megjelenjenek.
+- **Fiók és megfelelőség**: Zapier‑fiók szükséges; állítsd be az adatvédelmi és hozzáférési szabályokat a saját előírásaid szerint.
+- **Környezet**: használd a Ninja Forms és a WordPress támogatott, naprakész verzióit.
 
-- **Webhook**: Egy URL cím, amely lehetővé teszi, hogy egy alkalmazás értesítést küldjön egy másik alkalmazásnak valamilyen esemény bekövetkezésekor.
-- **Trigger**: Egy esemény vagy feltétel, amely aktivál egy bizonyos akciót.
-- **Action**: Egy művelet, amelyet egy trigger vált ki.
-- **Zap**: Egy munkafolyamat a Zapierben, amely összekapcsol két vagy több alkalmazást automatizált módon.
-- **URL**: Uniform Resource Locator, egy internetes cím.
-  
-Ezzel az integrációval könnyen automatizálhatod folyamataidat és optimalizálhatod az adatkezelést anélkül, hogy sok időt vesztegetnél manuális feladatokra.
+## Licenc és beszerzés röviden
+
+A kiegészítő éves licenccel érhető el, többféle csomagban (egy, öt vagy húsz webhely). Profi csomagban is elérhető. A licenc a frissítéseket és a támogatást biztosítja.
+
+## Összegzés
+
+A Ninja Forms – Zapier a legrövidebb út ahhoz, hogy a WordPress űrlapjaidból automatikusan eljussanak az adatok a neked fontos rendszerekbe. Webhook beillesztés, gyors teszt, mezőtérképezés – és kész is az automatizált, megbízható adatfolyam a CRM‑be, e‑mail marketingbe, táblázatokba vagy belső csatornákra. Ha szeretnél kézi admin nélkül, skálázhatóan és kódmentesen dolgozni, ez a kiegészítő neked való.

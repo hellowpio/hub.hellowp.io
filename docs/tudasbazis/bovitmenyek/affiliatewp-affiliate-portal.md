@@ -1,54 +1,100 @@
-# AffiliateWP - Affiliate Portal
+---
+title: "AffiliateWP - Affiliate Portal"
+description: "Teljes képernyős, témától független affiliate felület az AffiliateWP-hez: gyors, egységes és mobilbarát portál a partnereknek."
+sidebar_label: "AffiliateWP - Affiliate Portal"
+---
 
-Az AffiliateWP - Affiliate Portal egy olyan megoldás, amely optimalizált élményt nyújt az affiliate partnerek számára egy egyedi irányítópult felület segítségével. Ez a bővítmény modern és elegáns megjelenést biztosít a felhasználóknak, amely tökéletesen működik asztali gépeken, táblagépeken és mobil eszközökön egyaránt. Nem igényel kódolást vagy testreszabást, és minden WordPress témával kompatibilis.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók és előnyök
+Az Affiliate Portal az AffiliateWP hivatalos Pro/Professional kiegészítője, amely a klasszikus Affiliate Area helyett egy különálló, teljes képernyős, témától független felületet ad az affiliate partnereidnek. Célja, hogy a partnerek minden fontos információt (referralok, látogatások, kifizetések, kreatívok) gyorsan, letisztultan és egységes élményben érjenek el – bármilyen WordPress témát használsz.
 
-### Vonzó felület
-Az Affiliate Portal vonzó felületet kínál, amely kiváló első benyomást kelt az affiliate partnerek körében. Ez különösen fontos, mivel a partnerek motivációja nagymértékben függ attól, hogy milyen könnyen tudják használni az eszközt és milyen benyomást kelt bennük.
+A portál kiveszi a képletből a témaütközéseket, a lassú betöltést és a széteső UI-t. Nem tölti be a téma CSS/JS állományait, ezért kevesebb konfliktus, gyorsabb renderelés és konzisztens megjelenés vár. Emellett csökkenti a support igényt: az affiliateek magabiztosan találnak meg mindent, amire szükségük van.
 
-### Reszponzív dizájn
-A felület minden eszközön jól néz ki, legyen szó telefonról, táblagépről vagy számítógépről. Ez azt jelenti, hogy a partnerek bárhol és bármikor hozzáférhetnek a szükséges információkhoz és eszközökhöz.
+## Fő funkciók részletesen
 
-### Könnyű beállítás
-Az Affiliate Portal telepítése és konfigurálása egyszerű, és nem változtatja meg véglegesen a weboldaladat. Ha úgy döntesz, hogy eltávolítod a bővítményt, az affiliate partnerek a default Affiliate Area-t fogják látni az Affiliate Portal helyett.
+- **Teljes képernyős, témától független UI**
+  - A portál saját stílusokat és erőforrásokat használ, így egységes marad a kinézet és a sebesség, függetlenül a használt témától vagy oldalépítőtől.
 
-### Modern böngészési élmény
-A portál modern paginált böngészést kínál a kreatív anyagokhoz, ami megkönnyíti azok megtalálását és használatát.
+- **Reszponzív kialakítás**
+  - Mobilon, tableten és asztali gépen is optimális. A táblázatok gördíthetők, a fő mutatók jól olvashatók.
 
-### Kódolás nélkül
-Nincs szükség karbantartásra, egyedi CSS, JS vagy PHP kódolásra. Az Affiliate Portal minden szükséges funkciót automatikusan biztosít.
+- **Irányítópult (Dashboard)**
+  - Belépés után azonnal látod a kulcsadatokat: összesített jutalékok, legutóbbi referralok, trendek. Innen éred el a többi nézetet.
 
-## Kompatibilis kiegészítők
+- **Affiliate URL-ek kezelése**
+  - Egykattintásos linkmásolás; az URL-előnézet élőben frissül, amikor kampányparamétert vagy céloldalt adsz meg. Beépített megosztás X/Twitterre, Facebookra és Emailre, testreszabható üzenetszöveggel.
 
-A legtöbb add-on, amely az Affiliate Area-val működik együtt, kompatibilis az Affiliate Portal-lal is. Két kivétel van:
-- Affiliate Area Tabs
-- Affiliate Dashboard Sharing
+- **Referrals, Visits, Payouts**
+  - Rendezhető, színkódolt táblázatok segítik a gyors értelmezést (pl. függőben, jóváhagyva, kifizetve). Könnyebb a státuszok és időszakok szerinti ellenőrzés.
 
-## Hasznos tippek
+- **Kreatívok (Creatives)**
+  - Rácsnézet több kreatív egyidejű áttekintéséhez. Kattintásra előnézet, leírás és azonnal másolható beágyazható HTML-kód (pl. bannerek, text-linkek).
 
-### Koncentrálj a partneri élményre
-Az egyszerű telepítés és a vonzó felület segít abban, hogy az affiliate partnerek elégedettek legyenek. Ez növeli a motivációjukat és az elkötelezettségüket.
+- **Beállítások és testreszabás**
+  - Logó feltöltése a portál tetejére, hogy márkázott élményt adj.
+  - Megosztási opciók szövegeinek testreszabása.
+  - **Egyedi menülinkek** hozzáadása (pl. tudásbázis, tréning, közösség); csak jóváhagyott affiliatek látják.
+  - Lapozási beállítások: **Items per page**, **Creatives per page** a táblázatok és rácsok finomhangolásához.
 
-### Használd ki a reszponzív dizájnt
-Mivel a portál minden eszközön jól működik, érdemes arra ösztönözni a partnereket, hogy akár útközben is használják azt. Ez különösen hasznos lehet olyan partnerek számára, akik gyakran vannak úton.
+- **Affiliate Feedback**
+  - Opcionális, névtelen visszajelzési űrlap a portálon belül. Nem gyűjt személyes adatot, mégis segít megérteni az affiliateek igényeit.
+
+- **Többnyelvűség**
+  - Fordításra kész, elterjedt fordító bővítményekkel használható.
+
+- **Admin-előnézet**
+  - Admin fiókkal megtekintéshez legyen affiliáció kötve, vagy használhatsz felhasználóváltó bővítményt.
 
 ## Gyakorlati példák
 
-### E-kereskedelmi oldalak
-Egy e-kereskedelmi oldal tulajdonosa könnyedén kezelheti affiliate programját az Affiliate Portal segítségével. A partnerek egyszerűen generálhatnak hivatkozásokat, követhetik teljesítményüket és hozzáférhetnek a kreatív anyagokhoz.
+- **Gyors promóció indítása:** Belépsz a Portálba, kiválasztod a kampány céloldalát, az előnézet azonnal frissül. Egy kattintás a másolásra vagy a megosztásra (X/Twitter, Facebook, Email), és mehet is a promóció – nincs kézi linképítés, nincs hibázás.
+- **Kifizetések ellenőrzése:** A Payouts táblában színkódok jelzik a státuszt. Rendezel dátum szerint, látod a függő tételeket és a legutóbbi kifizetést – kevesebb kérdés a supportnak.
+- **Kreatívok beágyazása:** A Creatives rácsban kiválasztod a bannert, megnyitod az előnézetet, kimásolod a HTML-kódot, és beilleszted a weboldaladra vagy hírleveledbe – percek alatt kész.
 
-### Online tanfolyamok
-Az online tanfolyamokat kínáló platformok szintén nagy hasznát vehetik az Affiliate Portal-nak. Az oktatók és tanfolyamok népszerűsítésére felkért partnerek könnyedén követhetik bevételeiket és jutalékaikat.
+## Előnyök és értékajánlat
 
-### Tagsági oldalak
-Tagsági alapú weboldalak tulajdonosai szintén profitálhatnak az Affiliate Portal használatából. A partnerek könnyen hozzáférhetnek minden szükséges eszközhöz és információhoz, hogy hatékonyan népszerűsítsék a tagsági programot.
+- **Sebesség és stabilitás:** Nem terhel a témád CSS/JS-e; kevesebb konfliktus, gyorsabb betöltés.
+- **Kevesebb support kör:** Átlátható státuszok, egyértelmű linkkezelés, önkiszolgáló kreatívok.
+- **Egységes márkaélmény:** Logó, testreszabott megosztási szövegek, egyedi menülinkek.
+- **Kevesebb bővítmény, kevesebb karbantartás:** A beépített megosztás és menülinkek kiváltanak régebbi kiegészítőket.
+- **Jobb affiliate-élmény mobilon:** A reszponzív UI előnyös terepen és útközben is.
 
-## Szószedet
+## Telepítés és beállítás
 
-- **Affiliate Portal**: Egy optimalizált élményt nyújtó irányítópult az affiliate partnerek számára.
-- **Affiliate Area**: Az alapértelmezett terület, ahol az affiliate partnerek bejelentkezhetnek és kezelhetik tevékenységüket.
-- **Add-on**: Kiegészítő bővítmények, amelyek további funkciókat biztosítanak.
-- **Reszponzív dizájn**: Olyan webdesign, amely minden eszközön jól néz ki és könnyen használható.
+1. Telepítsd és aktiváld az AffiliateWP-t, érvényesítsd a licencet.
+2. Telepítsd és aktiváld az Affiliate Portal kiegészítőt (Pro/Professional csomag része).
+3. Lépj a Settings → Affiliate Portal részre, kapcsold be az **Enable** opciót.
+4. Állítsd be a logót, a megosztási szövegeket, az egyedi menülinkeket.
+5. Finomhangold az **Items per page** és **Creatives per page** értékeket.
+6. Mentés után az affiliate felhasználók automatikusan a Portálba lépnek be.
 
-Ezekkel az információkkal felszerelkezve könnyedén kihasználhatod az AffiliateWP - Affiliate Portal nyújtotta előnyöket, és hatékonyan növelheted bevételeidet affiliate marketing programodon keresztül.
+Megjegyzés: Adminként előnézethez affiliált fiók szükséges, vagy használj felhasználóváltást.
+
+## Kompatibilitás és korlátozások
+
+- Támogatott a legtöbb hivatalos AffiliateWP-kiegészítő (pl. Lifetime Commissions, Custom Affiliate Slugs, Direct Link Tracking, Landing Pages, Pushover Notifications, Store Credit, Order Details for Affiliates).
+- Nem kompatibilis a klasszikus Affiliate Area-ra épülő bővítményekkel (pl. Affiliate Area Shortcodes, Affiliate Area Tabs, Affiliate Dashboard Sharing – ezt a Portál megosztása kiváltja).
+- Oldalépítők (pl. Oxygen, Jupiter X) esetén szükség lehet külön beállításokra.
+- Haladó testreszabáshoz saját CSS tölthető be.
+
+Példa egyéni CSS hozzáadására:
+```css
+/* Példa: elsődleges gomb színének módosítása */
+.affwp-portal .button.button-primary {
+  background-color: #1e73be;
+}
+```
+
+## Portál vs. klasszikus Affiliate Area
+
+- **Klasszikus Affiliate Area:** a témádon belüli oldal, a téma stílusait örökli.
+- **Affiliate Portal:** különálló, teljes képernyős UI saját stílusokkal – gyorsabb, konzisztens és kevésbé sérülékeny témaütközésekkel szemben. Ha vegyes vagy komplex témakörnyezeted van, a Portál a biztosabb választás.
+
+## Kinek ajánlott?
+
+- **Webshopoknak és szoftver-szolgáltatóknak,** ahol az affiliate forgalom kritikus, és fontos a gyors, zökkenőmentes partnerélmény.
+- **Ügynökségeknek és marketingcsapatoknak,** akik egységes felületet és kevesebb support kört szeretnének.
+- **Olyan oldalaknak,** ahol a klasszikus Affiliate Area lassú, összeakad a témával vagy nem elég letisztult.
+- **Növekedésre fókuszáló programoknak,** amelyek értékelik az azonnali linkmegosztást, a rácsos kreatívkezelést és a beépített visszajelzést.
+
+Megjegyzés: A Portál a Pro/Professional licenccel érhető el. Az AffiliateWP márka az Awesome Motive termékcsalád része, ami biztosítja a folyamatos fejlesztést és ökoszisztéma-támogatást.

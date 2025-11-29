@@ -1,61 +1,108 @@
-# MB Custom Table
+---
+title: "MB Custom Table"
+description: "Meta Box prémium kiegészítő egyedi mezők sémázott, saját adatbázis-táblákba mentéséhez, nagy teljesítménnyel és fejlesztőbarát API-val."
+sidebar_label: "MB Custom Table"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és mit old meg?
 
-Az **MB Custom Table** lehetővé teszi a felhasználók számára, hogy a custom fields adatokat egyedi táblákba mentsék a WordPress alapértelmezett meta táblái helyett. Minden meta érték egy sorban kerül elmentésre, és minden oszlop egy meta kulcs lesz. Ez jelentősen csökkenti az adatbázis sorainak számát, ami a teljesítmény növekedéséhez vezethet nagyobb adatmennyiség esetén. Az adatokat egy helyen tárolva könnyebbé válik azok megtekintése, szerkesztése, importálása és exportálása.
+Az MB Custom Table a Meta Box prémium bővítménye, amellyel a Meta Box-szal létrehozott egyedi mezőket nem a WordPress alap meta tábláiba, hanem saját, sémázott adatbázis-táblákba mentheted. Minden entitás (bejegyzés, felhasználó, taxonómia, komment) egy sor, és minden mező külön oszlop. Ezzel drasztikusan csökkented a sorok számát, gyorsabbak lesznek a lekérdezések, és átláthatóbbá válik a riportolás/import-export.
 
-### Előnyök
-- **Adatbázis méretének csökkenése:** Az egy sorban tárolt adatok csökkentik az adatbázis sorainak számát.
-- **Gyorsabb és egyszerűbb lekérdezések:** A meta adatok egy sorban történő tárolása gyorsabb és egyszerűbb lekérdezéseket tesz lehetővé.
-- **Adatok egyszerű megtekintése:** Bármely adatbázis-kezelő eszköz segítségével az összes adat egyszerre megtekinthető.
-- **Könnyebb adatexport:** Az adatok exportálása egyszerűbbé válik, mivel csak egy táblát kell exportálni.
+## Hogyan működik röviden?
 
-## Együttműködés más eszközökkel
+- Az oszlopnevek megegyeznek a mezők azonosítóival.
+- Az ID oszlopot a bővítmény kezeli (primer kulcs), és összekapcsolja a WP entitásokkal.
+- Csoport (group) mezők felső szintű ID-ja egy oszlop, értéke szerializált tömb.
+- A tábla létrehozása a WordPress ajánlott dbDelta mechanizmusával történik, így a séma biztonságosan frissíthető.
+- A mezőlekérdezések cache-elve vannak az adott objektumon belül.
 
-Az **MB Custom Table** kompatibilis az összes Meta Box plugin mezőtípussal és minden meta típussal (post, user, term). Az egyedi táblák létrehozásához és a custom fields adattárolásához egyszerű API-t biztosít, amely nem igényli a meta box definíciók módosítását.
+## Fő funkciók, érthetően
 
-### Integrációk
-- **Meta Box Plugin:** Teljes kompatibilitás az összes Meta Box mezőtípussal.
-- **MB Admin Columns:** Egyedi oszlopok meghatározása a táblalistákhoz.
-- **WooCommerce:** Nagy mennyiségű rendelési adat hatékony kezelése.
-- **Más Meta Box bővítmények:** Széleskörű kompatibilitás más Meta Box bővítményekkel.
+- Egyedi táblákba mentés: Az összes meződ tárgyanként egy sorban, mezőnként egy oszlopban tárolódik. Ez kevesebb JOIN-t és gyorsabb WHERE feltételeket jelent.
+- Teljes meta-típus támogatás: Bejegyzés-, felhasználó-, taxonómia- és komment-meta mentése ugyanazzal a logikával.
+- UI-alapú beállítás: Az MB Builderben csak bekapcsolod a „Custom table” opciót; kérésre a tábla automatikusan létrejön (alapból TEXT oszlopokkal).
+- Fejlesztői API: Táblák programozott létrehozása (pontos típusokkal és indexekkel), illetve adatműveletek (exists, get, add, update, delete).
+- WordPress-kompatibilis sémakezelés: dbDelta-val idempotens, verziózható sémafrissítés.
+- Custom Models: Olyan önálló „modellek”, amelyek a teljes adatot egy saját táblában tartják, és admin CRUD felületet kínálnak, posztstruktúra nélkül.
+- Integrációk: Admin listanézeti oszlopok (MB Admin Columns), valamint keresés a custom táblák tartalmában megfelelő keresőintegrációval.
 
-## Konkrét helyzetek és gyakorlati példák
+## Gyakorlati példák
 
-Az **MB Custom Table** számos konkrét helyzetben hasznos lehet a felhasználók számára:
+- Nagy rendelési adatbázis: 40+ mező rendelésenként – meta táblában ez sok tízezer sor, egyedi táblában viszont soronként rendezett, indexelhető mezők.
+- Katalógus/ingatlan/CRM: Gyakori szűrés mezőértékekre (pl. státusz, ár, kategória) – gyors WHERE feltételek és indexek.
+- Riportolás és export: Minden adat egy táblában, oszlopokban – egyszerű CSV/BI export.
+- Custom Models: Nincs szükséged permalinkre/archívumra, de kell admin CRUD és sémázott tárolás – kezeld „üzleti entitásként”.
 
-### WooCommerce Webáruházak
-Egy webáruház, mint például egy virágbolt, ahol naponta több tucat rendelés érkezik, gyorsan nagy mennyiségű adatot generálhat. A rendelésekkel kapcsolatos minden egyes custom field adatot külön sorban tárolva az adatbázis gyorsan túlterheltté válhat. Az MB Custom Table segítségével ezek az adatok egy sorban kerülnek tárolásra, jelentősen csökkentve az adatbázis méretét és növelve a teljesítményt.
+## Gyors indulás
 
-### Egyedi Adatkezelés
-Amikor különleges adatokat kell kezelni (például felhasználói profiladatok vagy taxonómiai adatok), az MB Custom Table lehetőséget biztosít arra, hogy ezeket az adatokat egyedi táblákban tárold. Ez különösen hasznos lehet olyan projektek esetén, ahol nagymennyiségű vagy összetett adatokat kell kezelni.
+### UI-val (MB Builder)
+1. Nyisd meg a Meta Box > Custom Fields nézetet, szerkeszd a mezőcsoportot.
+2. A Settings fülön kapcsold be a „Custom table”-t, add meg a tábla nevét.
+3. Opcionálisan kapcsold be az „Auto create table”-t (alapból TEXT oszlopok).
 
-### Weboldalak Nagy Adatbázissal
-Ha egy weboldal jelentős mennyiségű custom field adattal rendelkezik (pl. blogbejegyzések metaadatai), az MB Custom Table segít ezeknek az adatoknak a hatékony kezelésében. Az egyedi táblák használatával az adatbázis mérete csökken és a lekérdezések gyorsabbá válnak.
+### Kóddal (típusok és indexek fölött teljes kontroll)
+```php
+use MetaBox\CustomTable\API as MBCT;
 
-## Legfontosabb jellemzők
+add_action( 'init', function() {
+    MBCT::create( 'wp_my_orders', [
+        'status' => 'VARCHAR(20)',
+        'amount' => 'BIGINT',
+        'notes'  => 'TEXT',
+    ], [ 'status' ] );
+} );
 
-### Custom Fields Egyedi Táblákban
-- Minden custom field adat egy sorban kerül elmentésre.
-- Egyszerű API az egyedi táblák létrehozásához.
-- Nem szükséges a meta box definíciók módosítása.
+// Mezőcsoport (részlet)
+return [
+  'id'           => 'order_fields',
+  'storage_type' => 'custom_table',
+  'table'        => 'wp_my_orders',
+  'fields'       => [
+    [ 'id' => 'status', 'type' => 'select',  'options' => [ 'new' => 'Új', 'completed' => 'Kész' ] ],
+    [ 'id' => 'amount', 'type' => 'number' ],
+    [ 'id' => 'notes',  'type' => 'textarea' ],
+  ],
+];
+```
 
-### Teljesítmény Növelése
-- Adatbázis méretének csökkentése.
-- Gyorsabb és egyszerűbb lekérdezések.
-- Egyszerűbb adatmegtekintés és -exportálás.
+## Lekérdezések és kompatibilitás
 
-### Kompatibilitás és Integráció
-- Meta Box plugin összes mezőtípusa.
-- Bármely meta típus: post meta, user meta, term meta, comment meta.
-- MB Admin Columns és más Meta Box bővítmények támogatása.
+- WP_Query: A meta_query nem működik a custom táblára. Előbb SQL-lel gyűjtsd az ID-kat, majd WP_Query-ben használd a post__in-t:
+```php
+global $wpdb;
+$ids = $wpdb->get_col( "SELECT ID FROM wp_my_orders WHERE status = 'completed'" );
+$q   = new WP_Query( [ 'post__in' => $ids, 'orderby' => 'post__in' ] );
+```
+- Keresés: Keresőintegrációval a custom táblák tartalma (akár szerializált group-értékek is) kereshetővé tehető.
+- Admin listanézet: Az admin oszlopok könnyen testreszabhatók; Custom Models esetén különösen hasznos.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Custom fields:** Egyedi mezők, amelyeket a felhasználók definiálnak és töltenek fel adatokkal.
-- **Meta table:** WordPress alapértelmezett táblája, amelyben a metaadatok (egyedi mezők) kerülnek tárolásra.
-- **API:** Alkalmazásprogramozási felület, amely lehetővé teszi az egyedi táblák létrehozását és kezelését.
-- **WooCommerce:** Népszerű WordPress plugin webáruházak létrehozására.
-- **Lekérdezés:** Adatok keresése és visszaadása az adatbázisból.
+- Teljesítmény: Kevesebb rekord, kevesebb JOIN, indexelhető oszlopok – gyorsabb lekérdezések és admin felület.
+- Átlátható adatmodell: Sémázott tárolás, könnyebb riportolás és migráció.
+- Rugalmasság: UI a gyors beállításhoz, fejlesztői API a professzionális sématervezéshez.
+- Jövőállóság: WordPress-ajánlott sémakezelés, idempotens frissítések.
 
-Reméljük, hogy ez a részletes bemutató segít megérteni az MB Custom Table funkcionalitását és előnyeit.
+## Kinek ajánlott?
+
+- Fejlesztőknek és ügynökségeknek, akik nagy mennyiségű egyedi mező-adattal dolgoznak.
+- E-kereskedelmi, katalógus-, ingatlan- és CRM-projektekhez, ahol létfontosságú a gyors szűrés és riport.
+- Olyan rendszerekhez, ahol a posztmeta-duzzadás már teljesítménygondot okoz, vagy célzott üzleti entitásokra van szükség (Custom Models).
+
+## Korlátok és fontos tudnivalók
+
+- A WP_Query meta_* paraméterei nem működnek custom táblákra; külön SQL szükséges az ID-khoz.
+- Group mezők értéke szerializált – nehézkes rá SQL-szintű szűrés; csak akkor használd, ha tényleg csoportos tárolás kell.
+- Az automatikus tábla-létrehozás minden oszlopot TEXT-ként hoz létre; teljesítményhez definiálj célzott típusokat és indexeket kóddal.
+- A Custom Models nem kap front-end sablont/permalinket; admin oldali adatkezelésre optimalizált.
+
+## Adatmigráció
+
+Meglévő mezőid postmeta-ból áthelyezhetők egyedi táblába. Tipikus lépések:
+- Kapcsold be a „Custom table”-t és állítsd be a táblát.
+- Hozd létre/finomítsd a sémát (típusok, indexek).
+- Írj migrációs rutint, amely az érintett postok ID-ján végigmegy, beolvassa a régi mezőket, és az új táblába menti őket.
+
+## Összegzés
+
+Ha strukturált, gyors és skálázható tárolást szeretnél a Meta Box mezőidnek, az MB Custom Table a legjobb eszköz: egyszerre kapod meg a kényelmes UI-t, a fejlesztői kontrollt és a WordPress-kompatibilis sémakezelést. Tudatos sématervezéssel és a lekérdezési sajátosságok figyelembevételével jelentős teljesítmény- és kezelhetőségi előnyt nyersz.

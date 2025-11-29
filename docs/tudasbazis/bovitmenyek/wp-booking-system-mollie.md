@@ -1,67 +1,76 @@
-# WP Booking System - Mollie
+---
+title: "WP Booking System - Mollie"
+description: "Hivatalos kiegészítő a WP Booking Systemhez, amely a Mollie fizetési kaput integrálja a foglalási folyamatba, így az ügyfelek azonnal online tudnak fizetni."
+sidebar_label: "WP Booking System - Mollie"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Mollie egy kiváló kiegészítő, amely lehetővé teszi, hogy a felhasználók könnyedén fogadják az online fizetéseket különböző módszerekkel. Ez a kiegészítő integrálja a Mollie fizetési platformot a WP Booking System-be, így széleskörű fizetési lehetőségeket biztosít, mint például hitelkártyák, banki átutalások, és számos helyi fizetési mód.
+A WP Booking System – Mollie egy hivatalos fizetési add-on, amellyel a foglalásaidat azonnali online fizetéssel tudod véglegesíteni. Nem kell webáruházat építened: a vendég kiválasztja a dátumokat, kitölti az űrlapot, majd a Mollie-n keresztül kényelmesen fizet. Így egyszerű, “foglalás → fizetés → visszaigazolás” folyamattal dolgozhatsz, felesleges komplexitás nélkül.
 
-### Fizetési módszerek támogatása
+Az add-on a WP Booking System Business és Developer licencek része. Ha csak offline fizetést (átutalás, helyszíni fizetés) szeretnél, a Personal licenc is elég; online fizetéshez a Business/Developer csomag szükséges.
 
-A Mollie támogatja az összes nagyobb fizetési módszert, beleértve a következőket:
+## Hogyan működik a folyamat?
 
-- **Hitelkártyák**: VISA, MasterCard, American Express, Cartes Bancaires (Franciaország), CartaSi (Olaszország)
-- **Betéti kártyák**: V Pay, Maestro
-- **Európai és helyi fizetési módszerek**: iDEAL (Hollandia), Bancontact (Belgium), ING Home’Pay (Belgium), Giropay (Németország), EPS (Ausztria), Przelewy24 (Lengyelország), SOFORT banking (EU), Belfius (Belgium), KBC/CBC fizetési gomb (Belgium), SEPA – Credit Transfer (EU), SEPA – Direct Debit (EU), ajándékkártyák (Hollandia)
-- **Nemzetközi fizetési módszerek**: PayPal, Paysafecard
+1. A látogatód kiválasztja a dátumokat a naptárban és elküldi a foglalási űrlapot.
+2. A pénztári lépésnél a Mollie-t választja (és azon belül a Mollie-fiókodban engedélyezett fizetési módok egyikét).
+3. A rendszer átirányítja a Mollie biztonságos fizetési felületére, ahol megtörténik a tranzakció.
+4. A fizetés eredménye visszakerül a WP Booking Systembe, a foglalás státusza frissül, te pedig a felületen látod a Payment Details résznél.
 
-## Integráció más eszközökkel
+Csak azokat a fizetési módokat látja a vendég, amelyeket a Mollie-fiókodban engedélyeztél és az országodban elérhetők.
 
-A WP Booking System - Mollie zökkenőmentesen működik együtt számos más eszközzel és szolgáltatással:
+## Fő funkciók, részletesen
 
-- **WooCommerce**: E-commerce platform, amely lehetővé teszi a termékek és szolgáltatások online értékesítését.
-- **WPML**: Többnyelvű weboldalak készítésére alkalmas plugin.
-- **Gravity Forms**: Haladó űrlapkészítő plugin.
-- **Mailchimp**: E-mail marketing automatizálási platform.
+- **Mollie integráció a pénztárban**: A pénztári lépésbe beépül a Mollie, így bankkártyák, európai helyi módszerek (pl. iDEAL, Bancontact, Giropay, EPS, Przelewy24, SOFORT), valamint nemzetközi megoldások (pl. PayPal, paysafecard) is használhatók. A tényleges lista a Mollie-fiókod beállításaitól és országától függ.
+- **Egyszerű beállítás**: A WordPress adminban (WP Booking System → Settings → Payment Gateways → Mollie) csak a Mollie Test API key és Profile ID megadása szükséges a teszteléshez, majd élesítéskor a live adatok.
+- **Test/Live mód**: Először biztonságosan tesztelhetsz, majd egy kapcsolóval élesítheted a fizetést.
+- **Testreszabható megjelenés**: Beállíthatod, hogy a pénztárban mi legyen a megjelenített név és leírás, valamint megadhatod a számlatétel nevét (Invoice Item Name), ami a könyvelésnél és számlázásnál hasznos.
+- **Átlátható fizetéskezelés**: A WP Booking System fizetési nézeteiben látod a tranzakciók és státuszaik áttekintését, így nem kell rendszerek között ugrálnod.
+- **Kompatibilitás a prémium funkciókkal**: Működik az árképzés dátumonként, több pénznem, adók, kuponok és előlegek/depozitok funkciókkal, így összetett árazási szabályokat is gond nélkül kiszolgál.
 
-## Konkrét helyzetekben hasznos
+## Telepítés és beállítás
 
-### Szállásfoglalás
+1. **Előfeltételek**: WP Booking System Business vagy Developer licenc; aktív Mollie-fiók a kívánt fizetési csatornákkal.
+2. **Add-on telepítése**: A WordPressben telepítsd és aktiváld a Mollie kiegészítőt.
+3. **API-kulcsok megadása**: Admin → WP Booking System → Settings → Payment Gateways → Mollie.
+4. **Megjelenítés és számlázás**: Töltsd ki a Display Name, Description, Invoice Item Name mezőket.
+5. **Tesztelés és élesítés**: Próbáld ki Test módban a foglalás → fizetés folyamatot, majd válts Live módra.
 
-A szállásadók könnyedén kezelhetik a foglalásokat és az online fizetéseket különböző fizetési módokkal. Például egy vendégház tulajdonosa beállíthatja a WP Booking System - Mollie-t, hogy elfogadja a PayPal vagy hitelkártyás fizetéseket, így a vendégek rugalmasan választhatják ki a számukra legmegfelelőbb fizetési módot.
+Példa beállítás:
 
-### Autóbérlés
+```
+WP Booking System → Settings → Payment Gateways → Mollie
+Active: Yes
+Display Name: Fizetés Mollie-val
+Description: Biztonságos online fizetés a kedvenc módszereddel.
+Invoice Item Name: Foglalás #{{booking_id}}
+Test API key: test_xxxxxxxxxxxxxxxxxxxxx
+Profile ID: pfl_xxxxxxxxx
+```
 
-Az autókölcsönző cégek is profitálhatnak ebből a bővítményből, mivel az ügyfelek online lefoglalhatják az autókat és azonnal fizethetnek is. Az autókölcsönzők beállíthatják a banki átutalást vagy hitelkártyás fizetést, így az ügyfelek előre rendezhetik a költségeket.
+## Gyakorlati példák
 
-### Rendezvények szervezése
+- **Apartman Hollandiában**: A vendég iDEAL-lal fizet. A foglalás azonnal végleges, a Payment Details mutatja a “Paid” státuszt. Nincs szükség telefonos egyeztetésre, kevesebb a lemondás.
+- **Kerékpárkölcsönző Belgiumban**: Bancontact és kártya fizetést kínálsz. A kauciót előlegként kéred, a fennmaradó összeg helyszínen fizethető. A rendszer kezeli a külön adókat és kuponokat.
+- **Csónakbérlés szezonális árakkal**: Dátumonként eltérő árak, hétvégi felár, kupon kedvezménnyel. A vendég kártyával vagy SOFORT-tal fizet, a backendben pedig egy helyen követed a fizetéseket.
 
-Rendezvényszervezők használhatják a WP Booking System - Mollie-t jegyek értékesítésére és a fizetések kezelésére. A rendszer támogatja a különböző nemzetközi és helyi fizetési módokat, így a résztvevők könnyedén megvásárolhatják a jegyeket bármely országban.
+## Előnyök és értékajánlat
 
-## Gyakorlati tippek
+- **WooCommerce nélkül is teljes**: Nincs kosár és termékkatalógus, csak a lényeg: foglalás és fizetés. Kevesebb bővítmény, kevesebb hibaforrás.
+- **Jobb konverzió helyi módszerekkel**: iDEAL, Bancontact, Giropay és társaik a piacaidon bevett megoldások – a vendég azt használja, amit ismer.
+- **Kevesebb adminisztráció**: Ár, adó, kedvezmény és előleg logika egy helyen; a fizetési státuszok automatikusan frissülnek.
+- **Biztonságos lebonyolítás**: A kártyaadat-kezelést a Mollie végzi a saját felületén, így egyszerűbb megfelelni a biztonsági elvárásoknak.
+- **Rugalmasság és bővíthetőség**: Ha más kapu kell, ott vannak a Stripe, PayPal, Square, Authorize.Net, GoPay add-onok; ha teljes webáruházas élmény kell, használhatod a WooCommerce Checkout kiegészítőt.
 
-### Hatékony használat
+## Kinek ajánlott?
 
-- **Tesztelés**: Mielőtt élesben használod, mindig teszteld le a fizetési folyamatot, hogy biztos lehess benne, minden megfelelően működik.
-- **Kezelés**: Használd a Mollie Dashboard-ot a tranzakciók nyomon követésére és jelentések készítésére.
-- **Kommunikáció**: Tájékoztasd ügyfeleidet a rendelkezésre álló fizetési módokról és azok előnyeiről.
+- **Szállásadóknak** (apartmanok, panziók, vendégházak), akik gyorsan, online szeretnék véglegesíteni a foglalásokat.
+- **Eszköz- és járműkölcsönzőknek**, akik napidíjas bérléseket kezelnek és előleget/depozitot szednek.
+- **Ügynökségeknek és fejlesztőknek**, akik ügyfeleiknek stabil, egyszerű és bővíthető foglalás + online fizetés megoldást építenek.
+- **Akiknek elég az offline fizetés**: számukra a Personal licenc megfelelő; ha viszont online fizetés kell, válts Business/Developer csomagra.
 
-## Gyakorlati példák az alkalmazására
+## Megjegyzések és jó gyakorlatok
 
-### Szállodák és panziók
-
-Egy szálloda tulajdonosa integrálhatja a WP Booking System - Mollie-t a weboldalára, hogy az ügyfelek online foglalhassanak szobát és azonnal fizethessenek bankkártyával vagy PayPallal.
-
-### Autókölcsönző cégek
-
-Az autókölcsönzők beállíthatják a rendszert, hogy az ügyfelek online foglalhassanak autót és fizethessenek különböző módszerekkel, például hitelkártyával vagy banki átutalással.
-
-### Rendezvényszervezők
-
-Egy rendezvényszervező cég használhatja ezt a bővítményt jegyek értékesítésére különböző eseményekre. Az ügyfelek könnyedén megvásárolhatják a jegyeket online különböző fizetési módokkal.
-
-## Szószedet
-
-- **Hitelkártya**: Bank által kibocsátott kártya, amely lehetővé teszi az áruk és szolgáltatások hitelre történő vásárlását.
-- **Betéti kártya**: Bank által kibocsátott kártya, amely közvetlen hozzáférést biztosít az ügyfél bankszámláján lévő pénzhez.
-- **SEPA**: Egységes Euró Fizetési Övezet, amely lehetővé teszi az euróval történő banki átutalásokat az európai országok között.
-- **iDEAL**: Hollandiában elterjedt online banki átutalási rendszer.
-- **PayPal**: Nemzetközi online fizetési rendszer, amely lehetővé teszi az elektronikus pénzküldést és fogadást.
+- A fizetési módok elérhetősége ország- és vállalkozásfüggő; a Mollie fiókodban engedélyezd a kívánt csatornákat, a pénztárban csak ezek jelennek meg.
+- Mindig teszteld végig a folyamatot Test módban (különböző fizetési módszerekkel), majd válts Live-ra.
+- Árazásnál és számlázásnál használj beszédes Invoice Item Name mezőt (pl. foglalás azonosítóval), hogy egyértelmű legyen a könyvelésben.

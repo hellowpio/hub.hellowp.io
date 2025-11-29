@@ -1,51 +1,89 @@
-# WP Booking System - Contracts
+---
+title: "WP Booking System - Contracts"
+description: "Prémium kiegészítő a WP Booking Systemhez: automatikus, márkázható PDF-szerződések generálása és e-mail csatolása minden foglaláshoz."
+sidebar_label: "WP Booking System - Contracts"
+---
 
-## Részletes bemutatás
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System egyik legfontosabb és legértékesebb kiegészítője a Contracts add-on, amely lehetővé teszi, hogy professzionális megjelenésű szerződéseket generálj és e-mailben küldj el ügyfeleidnek. Ez a funkció különösen hasznos lehet azok számára, akik bérbeadással vagy más szolgáltatásokkal foglalkoznak, és szeretnék automatizálni a szerződéskötési folyamatot.
+A WP Booking System – Contracts egy prémium kiegészítő, amely minden beérkező foglaláshoz automatikusan professzionális, PDF formátumú szerződést készít. Így nem kell többé kézzel Word/PDF dokumentumokat szerkesztened, a szerződés egységes, hibamentes és azonnal küldhető a vendégnek. A tartalom az űrlapmezőkből dinamikusan épül fel, és illeszthető a márkádhoz (logó, fejléc, számozás).
 
-### Professzionális szerződések generálása
+## Hogyan működik röviden?
 
-A Contracts add-on automatikusan generál egy PDF formátumú szerződést minden egyes foglaláshoz. A szerződést mellékletként is hozzáadhatod az értesítő e-mailekhez, így az ügyfelek azonnal hozzáférhetnek a szükséges dokumentumokhoz. Emellett lehetőséged van arra is, hogy személyre szabjad a szerződést, például logó hozzáadásával.
+1. Engedélyezed az add-ont, beállítod a logót, fejlécet, számozást.
+2. A kiválasztott űrlapnál megírod a szerződés sablonját dinamikus tagekkel.
+3. A vendég beküldi a foglalást, a rendszer azonnal legenerálja a PDF szerződést.
+4. A szerződést a foglalásnál megtekintheted/letöltheted, vagy automatikusan csatolhatod értesítő e-mailekhez (akár ütemezetten is), illetve manuális e-mailhez mellékelheted.
+5. Szükség esetén a konkrét foglalás szerződésszövege szerkeszthető és újragenerálható.
 
-### Könnyű integráció és személyre szabhatóság
+## Fő funkciók részletesen
 
-A Contracts add-on zökkenőmentesen működik együtt más eszközökkel és bővítményekkel, például a WooCommerce-szel, PayPal-lal és Stripe-pal, így könnyedén kezelheted az online fizetéseket és foglalásokat. A szerződés tartalmát is testre szabhatod, hogy megfeleljen vállalkozásod igényeinek és jogi követelményeinek.
-
-## Felhasználási helyzetek
-
-### Rövid távú bérbeadás
-
-Ha apartmanokat vagy nyaralókat adsz bérbe, a WP Booking System - Contracts segítségével automatikusan generálhatsz szerződéseket minden egyes foglaláshoz. Ez különösen hasznos lehet olyan esetekben, amikor az ügyfelek távolról intézik a foglalásokat, mivel így azonnal megkapják a szükséges dokumentumokat.
-
-### Esküvői vagy rendezvényhelyszínek
-
-Esküvői vagy más rendezvényhelyszínek bérbeadásánál szintén nagy előnyt jelenthet ez a bővítmény. Az automatikusan generált szerződések biztosítják, hogy minden részlet rögzítve legyen, és elkerülhetőek legyenek a félreértések.
-
-### Szolgáltatás alapú vállalkozások
-
-Ha szolgáltatásokat nyújtasz (például fotózás, rendezvényszervezés), a Contracts add-on lehetővé teszi, hogy minden foglalás után azonnal elküldd a szerződést az ügyfeleknek. Ez segít abban, hogy mindkét fél tisztában legyen a feltételekkel és kötelezettségekkel.
+- **Automatikus PDF-generálás foglalásonként**: Minden új foglaláskor létrejön egy PDF, így minden ügyfélhez kapcsolódik egy archiválható megállapodás.
+- **E-mail csatolás (automatikus és manuális)**: Az értesítő e-mailekhez egy kapcsolóval csatolhatod a „Contract” dokumentumot. Ütemezett e-maileknél is működik. A foglalás adatlapjáról manuális leveledhez is mellékelheted.
+- **Márkázható megjelenés**: Beállíthatsz **logót** vagy **szöveges fejlécet**, alcímeket. A szerződésszám alapja a **Booking ID**, amihez **offset** adható (például 100, így 101-től indul).
+- **Szerződés sablonozása dinamikus tagekkel**: A szerződéstörzsben használhatsz sablonváltozókat (pl. dátumok, vendégadatok, foglalási azonosító). Elérhető a speciális **{Signature}** tag az aláírás képének beillesztéséhez.
+- **Elektronikus aláírás mező**: Az add-on űrlapmezőt ad a foglalási űrlaphoz. Az ügyfél a beküldéskor aláírhat, az aláírás képe a PDF-be automatikusan bekerül.
+- **Megtekintés, módosítás, újragenerálás**: A foglalás kezelőfelületén megnyithatod, szerkesztheted a szöveget, letöltheted a PDF-et, és szükség esetén visszaállíthatod az eredeti sablon alapján („Regenerate Contract”).
+- **Többszintű konfiguráció**:
+  - Globális: logó, számozás, feliratok.
+  - Űrlap-szint: a konkrét űrlaphoz tartozó szerződéstörzs és tagek.
+  - Foglalás-szint: egyedi szerkesztés és letöltés.
 
 ## Gyakorlati példák
 
-### Példa 1: Nyaraló bérbeadása
+- **Apartmanbérlés**: A vendég kitölti a foglalási űrlapot (név, érkezés/távozás, vendégek száma). A rendszer azonnal elkészíti a bérleti szerződést PDF-ben, a dátumokkal és az összeggel kitöltve, és csatolja a visszaigazoló e-mailhez.
+- **Eszközkölcsönzés**: A bérlő aláír a foglaláskor. A PDF-be bekerül a használati feltételek blokkjába az aláírás kép formájában. A kollégád a helyszínen mobilról is le tudja tölteni.
+- **Rendezvényhelyszín**: A foglalás elfogadásakor automatikus „Szerződés és házirend” e-mail megy ki, a szerződés PDF melléklettel. Ha módosul a program, a szerződést a foglalásnál átírod és újragenerálod.
 
-Egy nyaraló tulajdonosa minden új foglalás után automatikusan generált szerződést küld az ügyfeleknek, amely tartalmazza a bérleti feltételeket, a fizetési részleteket és az esetleges lemondási szabályokat. A szerződés mellékletként csatolva van az értesítő e-mailhez.
+## Mintasablon dinamikus tagekkel
 
-### Példa 2: Esküvői helyszín foglalása
+```text
+Szerződésszám: {Booking ID}
+Bérlő: {2:Name} ({2:Email}), Telefon: {2:Phone}
 
-Egy esküvői helyszín menedzsere minden új foglaláskor egy személyre szabott szerződést küld az ügyfeleknek, amely tartalmazza az esemény részleteit, az árakat és egyéb fontos információkat. A szerződés automatikusan generálódik és e-mailben kerül elküldésre.
+Tárgy: Szállásbérleti szerződés
+Időtartam: {Start Date} – {End Date}
+Szállás: {Calendar Name}
+Létszám: {Guests}
 
-### Példa 3: Fotós szolgáltatások
+Díjak és feltételek:
+- Teljes díj: {Total Price}
+- Fizetési határidő: {Due Date}
+- Lemondási feltételek: …
 
-Egy fotós minden megrendelés után automatikusan elküldi a szerződést az ügyfeleknek, amely tartalmazza a szolgáltatás részleteit, az árakat és a fizetési feltételeket. Ez biztosítja, hogy mindkét fél tisztában legyen a megállapodás részleteivel.
+Nyilatkozatok:
+A bérlő elfogadja a házirendet és a feltételeket.
 
-## Szószedet
+Aláírás:
+{Signature}
+Dátum: {Today}
+```
 
-- **Add-on**: Kiegészítő bővítmény.
-- **PDF**: Portable Document Format.
-- **WooCommerce**: Egy nyílt forráskódú e-kereskedelmi bővítmény WordPresshez.
-- **PayPal**: Online fizetési rendszer.
-- **Stripe**: Online fizetési platform.
-- **Foglalás**: Egy szolgáltatás vagy termék előzetes lefoglalása.
-- **Értesítő e-mail**: Automatikus e-mail, amely tájékoztatja az ügyfelet egy adott eseményről vagy műveletről.
+(A `{2:Name}` jellegű címkék az űrlapmezők azonosítóihoz kötődnek; a pontos tag-ek az űrlapod mezőitől függenek.)
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás**: Automatikus dokumentumkészítés, nincs kézi szerkesztés.
+- **Kevesebb hiba**: Az adatok az űrlapból kerülnek a szerződésbe, minimális elírás és inkonzisztencia.
+- **Egységes arculat**: Márkához illesztett logó, fejléc és következetes számozás.
+- **Gyors kommunikáció**: Azonnali csatolás az értesítőkbe, ütemezhető küldés.
+- **Nyomon követhetőség**: Minden foglaláshoz tartozó, letölthető és archiválható PDF.
+
+## Kinek ajánlott?
+
+- **Szálláshelyeknek**: apartmanok, panziók, nyaralók.
+- **Jármű- és eszközkölcsönzőknek**: autó, kerékpár, vízi sporteszköz.
+- **Rendezvényhelyszíneknek**: termek, szabadtéri helyszínek.
+- **Bármely bérleti vagy időalapú szolgáltatásnak**, ahol szükség van szerződésre minden foglalásnál.
+
+## Beállítási tippek és megfontolások
+
+- **Sablonozás**: Használd a standard dinamikus tageket (pl. `{Start Date}`, `{End Date}`, `{Booking ID}`) és a form-mező tageket (pl. `{2:Name}`), hogy a dokumentum mindig személyre szabott legyen.
+- **Aláírás**: Építsd be a `{Signature}` taget a szerződés aljára; az aláírás az űrlap „Signature" mezőjéből kerül a PDF-be.
+- **E-mail csatolás**: Kapcsold be a „Contract” mellékletet az értesítőknél; manuális küldéshez a foglalás adatlapján mellékeld.
+- **Változatok kezelése**: Egyedi eseteknél módosítsd a foglalás-szintű szöveget, majd szükség esetén regeneráld az eredeti sablonból.
+- **Jogi megjegyzés**: Az aláírás képalapú. A joghatás területenként eltérhet; igazítsd a folyamatot a helyi előírásokhoz.
+
+## Követelmények és licenc
+
+A Contracts a WP Booking System prémium ökoszisztémájának része, a Business és magasabb licenccsomagok tartalmazzák. A fejlesztő a Veribo IT Solutions SRL. A használathoz szükség van a WP Booking System bővítményre és egy kompatibilis prémium licencre.

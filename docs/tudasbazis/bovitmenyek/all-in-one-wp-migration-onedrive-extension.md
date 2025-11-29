@@ -1,62 +1,107 @@
-# All-in-One WP Migration OneDrive Extension
+---
+title: "All-in-One WP Migration OneDrive Extension"
+description: "Fizetős kiegészítő az All‑in‑One WP Migrationhez, amely összeköti WordPress oldaladat a Microsoft OneDrive‑val. Közvetlen export/import, ütemezett és inkrementális mentések retencióval."
+sidebar_label: "All-in-One WP Migration OneDrive Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az All-in-One WP Migration OneDrive Extension egy kiegészítő, amely lehetővé teszi a WordPress webhelyek teljes körű exportálását és importálását közvetlenül a OneDrive fiókodba. Ez a kiegészítő különösen hasznos, ha biztonsági mentést szeretnél készíteni a webhelyedről, vagy ha át szeretnéd helyezni azt egy másik szerverre.
+Az All‑in‑One WP Migration OneDrive Extension egy kiegészítő, amellyel a teljes WordPress webhelyedet közvetlenül a OneDrive‑ra mentheted, onnan pedig egy kattintással visszaállíthatod vagy migrálhatod. Megspórolod a manuális fájl+adatbázis mentést, nem terheled a webszerver tárhelyét, és kapsz ütemezett, megbízható offsite backupot a Microsoft ökoszisztémában.
 
-### Export és import lehetőségek
+## Hogyan működik röviden?
 
-Az All-in-One WP Migration OneDrive Extension lehetőséget nyújt arra, hogy:
-- Webhelyed teljes tartalmát (adatbázis, médiafájlok, bővítmények és témák) exportáld közvetlenül a OneDrive fiókodba.
-- Könnyedén importálj egy korábban mentett webhelyet közvetlenül a OneDrive-ból.
+- Az alap All‑in‑One WP Migration plugin készít egy **.wpress** archívumot (fájlok + adatbázis).
+- A OneDrive Extension ezt az archívumot a megadott **OneDrive mappába** tölti fel, illetve onnan tölti le importkor.
+- Beállíthatod az ütemezést, a retenciót, az értesítéseket és az inkrementális mentést, hogy a backup folyamatosan és takarékosan működjön.
 
-### Ütemezett biztonsági mentések
+## Fő funkciók, érthetően
 
-A kiegészítő egyik legnagyobb előnye, hogy lehetőséget biztosít ütemezett biztonsági mentések készítésére. Beállíthatsz óránkénti, napi vagy heti mentéseket, így biztos lehetsz benne, hogy mindig van egy friss biztonsági másolatod a webhelyedről.
+- **Közvetlen export/import OneDrive‑ra/‑ról**  
+  Exportkor a bővítmény feltölti a .wpress mentést a OneDrive‑odra; importkor egy felugró listából kiválasztod a kívánt mentést, és a rendszer teljes oldal‑visszaállítást végez (adatbázis, média, bővítmények, témák).
 
-### OneDrive for Business támogatás
+- **Ütemezett mentések és e‑mail értesítések**  
+  Beállíthatsz óránkénti/napi/heti/havi futásokat. A rendszer e‑mailt küld a sikeres vagy hibás futásokról, így azonnal tudod, ha beavatkozás kell.
 
-A kiegészítő támogatja a OneDrive for Business fiókokat is, így ha üzleti környezetben használod a OneDrive-ot, akkor is könnyedén készíthetsz biztonsági mentéseket és importálhatod a webhelyedet.
+- **Retenció és tárhelykorlát**  
+  Megadhatod, hány utolsó mentést tartson meg és mekkora összméretig tároljon a bővítmény. A régi mentések automatikus törlésével kézben tarthatod a OneDrive fogyasztást.
 
-### Korlátlan használat
+- **Célkönyvtár testreszabás**  
+  Alapértelmezetten egy “[sajat‑oldal‑neve]-wordpress” mappába ment, de tetszőleges OneDrive mappát beállíthatsz.
 
-Az All-in-One WP Migration OneDrive Extension-t bármennyi webhelyen használhatod, amelyeket te birtokolsz. Ez különösen előnyös azok számára, akik több WordPress oldalt kezelnek.
+- **Advanced export opciók**  
+  - DB **Keresés/Csere**: URL‑ek és elérési utak korrekciója migrációkor.  
+  - **Kizárások**: spam, cache, inaktív bővítmények/témák kihagyása a kisebb archívumért.  
+  - **Jelszóval védett archívum**: extra biztonsági réteg a .wpress fájlra.
 
-## Együttműködés más eszközökkel
+- **Átviteli sebesség finomhangolás**  
+  A „Transfer” beállítással optimalizálhatod az import/export tempóját instabil vagy korlátozott kapcsolatnál.
 
-### WP CLI parancsok
+- **Inkrementális mentések**  
+  Az első teljes mentés után csak a változások mennek a következő backupokba, jelentősen csökkentve az időt és a sávszélességet – különösen nagy oldalaknál hasznos.
 
-A kiegészítő támogatja a WP CLI parancsokat is, amelyek segítségével automatizálhatod az export és import folyamatokat. Ez különösen hasznos lehet fejlesztők számára, akik gyakran végeznek ilyen műveleteket.
+- **WP‑CLI és automatizálás**  
+  Az alap plugin CLI‑vel vezérelhető; a Pro csomag kiterjeszti a felhős célokra is. Integrálható ütemezőkbe és CI/CD folyamatokba.
 
-### Egyéb bővítményekkel való kompatibilitás
+## Gyakorlati használati esetek
 
-Az All-in-One WP Migration OneDrive Extension zökkenőmentesen működik együtt az alábbi bővítményekkel:
-- Google Drive Extension
-- Dropbox Extension
-- Amazon S3 Extension
-- FTP Extension
-- Multisite Extension
+1. **Offsite biztonsági mentés**  
+   Beállítasz egy napi ütemezést, retencióval (pl. 14 nap) és e‑mail értesítéssel. Ha frissítés után gond van, pár kattintással importálsz a OneDrive‑ról.
 
-## Gyakorlati példák
+2. **Migráció fejlesztőről élesre**  
+   Fejlesztői környezetben exportálsz a OneDrive‑ra, majd az élesen importálod ugyanazt az archívumot. A DB Keresés/Csere opcióval átírod a domain‑eket.
 
-### Biztonsági mentés készítése
+3. **Ügynökségi többoldalas mentés**  
+   Minden ügyfélhez külön OneDrive mappát és retenciót állítasz be. Hibánál azonnali e‑mail, régi backupok automatikus törlése.
 
-Képzeld el, hogy egy nagy forgalmú WordPress oldalt kezelsz. Az All-in-One WP Migration OneDrive Extension segítségével könnyedén beállíthatsz napi biztonsági mentéseket, amelyek automatikusan feltöltődnek a OneDrive fiókodba. Így mindig van egy friss másolatod az oldaladról, amit szükség esetén gyorsan visszaállíthatsz.
+## Beállítás és napi használat – rövid útmutató
 
-### Webhely átköltöztetése
+1. **Előfeltételek**  
+   - Telepített és aktív All‑in‑One WP Migration.  
+   - OneDrive fiók és hozzáférés (vállalati környezetben ellenőrizd az engedélyeket).  
+   - Írási jogok a wp‑content/ai1wm‑backups és a bővítmény storage mappáiba.
 
-Egy másik gyakorlati példa lehet, ha egy webhelyet szeretnél átköltöztetni egyik szerverről a másikra. Az All-in-One WP Migration OneDrive Extension segítségével először exportálhatod az egész webhelyet a OneDrive fiókodba, majd az új szerveren egyszerűen importálhatod azt.
+2. **Kapcsolódás és konfiguráció**  
+   - Jelentkezz be a OneDrive Settings képernyőn (OAuth).  
+   - Állítsd be a célmappát, retenciót, e‑mail értesítéseket és (opcionálisan) az ütemezést.
 
-### Fejlesztési környezet frissítése
+3. **Export**  
+   - Válaszd az Export → OneDrive opciót.  
+   - Használd az Advanced opciókat (kizárások, jelszó, Keresés/Csere) igény szerint.
 
-Ha fejlesztőként dolgozol egy WordPress oldalon, gyakran szükséged lehet arra, hogy a helyi fejlesztési környezetedet frissítsd a legújabb éles adatbázissal és fájlokkal. Az All-in-One WP Migration OneDrive Extension segítségével gyorsan és egyszerűen exportálhatod az éles oldalt, majd importálhatod azt a helyi fejlesztési környezetedbe.
+4. **Import**  
+   - Válaszd az Import → OneDrive lehetőséget, jelöld ki a .wpress archívumot.  
+   - Figyelem: a folyamat felülírja a teljes jelenlegi oldalt.
 
-## Szószedet
+5. **CLI példa (általános)**
 
-- **Export**: Webhely adatainak kimentése egy fájlba.
-- **Import**: Korábban kimentett adatok visszatöltése a webhelyre.
-- **Ütemezett biztonsági mentés**: Automatikusan, előre meghatározott időpontokban történő biztonsági másolat készítése.
-- **OneDrive for Business**: A Microsoft üzleti felhasználók számára biztosított felhőalapú tárolási szolgáltatása.
-- **WP CLI**: A WordPress parancssori eszköze.
-  
-Használd az All-in-One WP Migration OneDrive Extension-t, hogy biztosítsd webhelyed folytonosságát és könnyű kezelhetőségét!
+```
+# Teljes mentés készítése (helyi), majd feltöltés a OneDrive-ra a bővítmény beállításai alapján
+wp ai1wm backup
+
+# Visszaállítás egy meglévő archívumból
+wp ai1wm restore ./backups/site-YYYYMMDD.wpress
+```
+
+A felhős célok és opciók a Pro környezetben érhetők el; a pontos paraméterezést a CLI súgó mutatja.
+
+## Hibaelhárítás és kompatibilitás
+
+- **OneDrive API hibák**: Invalid Credentials, Too Many Requests, Rate Limit, Insufficient permissions, File not found. Tipikus megoldások: kijelentkezés/újrabejelentkezés, más OneDrive kliensek leállítása, rövid várakozás limit után, jogosultságok és megosztási szabályok ellenőrzése.  
+- **Vállalati korlátozások**: előfordulhat „Cannot be used within the domain” jellegű tiltás; kérd az admin engedélyét.  
+- **Fájlrendszer/jogosultság**: ha nincs írási jog vagy betelik a tárhely, a mentés leállhat. Ellenőrizd a mappajogokat és a szerver kvótáit.  
+- **Helyi erőforrás‑korlátok**: ütemezett backup és OneDrive cél segít elkerülni a host idő‑ és méretlimitjeit.
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás**: egyklikkes, teljes archívum, automatizált ütemezéssel.  
+- **Biztonság**: offsite mentés, jelszavas archívum, értesítések.  
+- **Költséghatékonyság**: kevesebb webszerver tárhely és sávszélesség.  
+- **Skálázhatóság**: inkrementális mentés nagy oldalakhoz, ügynökségi használatra is alkalmas.
+
+## Kinek ajánlott?
+
+- **Kis‑ és középvállalkozásoknak**, akik Microsoft környezetben dolgoznak és egyszerű, megbízható offsite mentést szeretnének.  
+- **Fejlesztőknek és ügynökségeknek**, akik gyakran mozgatnak oldalakat környezetek között, és több ügyfél backupját kezelik.  
+- **Nagy forgalmú vagy nagy méretű oldalak üzemeltetőinek**, ahol az inkrementális mentés és a retenció kritikus.  
+
+Ha szeretnéd, készíthetek személyre szabott telepítési és üzembe helyezési ellenőrzőlistát (előfeltételek, jogosultságok, ütemezés, teszt‑restore), hogy az indulás zökkenőmentes legyen.

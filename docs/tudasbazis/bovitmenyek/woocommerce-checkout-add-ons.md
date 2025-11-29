@@ -1,58 +1,104 @@
-# WooCommerce Checkout Add-Ons
+---
+title: "WooCommerce Checkout Add-Ons"
+description: "Rendelés-szintű opciók, felárak és információgyűjtő mezők a WooCommerce pénztárban, kódolás nélkül."
+sidebar_label: "WooCommerce Checkout Add-Ons"
+---
 
-A WooCommerce Checkout Add-Ons egy rendkívül hasznos bővítmény, amely lehetővé teszi, hogy a vásárlási folyamat során különféle kiegészítő opciókat kínálj a vásárlóid számára. Legyen szó ingyenes vagy fizetős szolgáltatásokról, a Checkout Add-Ons segítségével könnyedén testre szabhatod a checkout élményt.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A WooCommerce Checkout Add-Ons egy prémium kiegészítő, amellyel a pénztárfolyamatban rendelés-szintű mezőket és választható opciókat adhatsz hozzá. Ezek lehetnek díjmentes információk (pl. ajándéküzenet) vagy bevételnövelő elemek (pl. ajándékcsomagolás, sürgősségi kezelés, borravaló). A WooCommerce alapból nem kínál kényelmes megoldást rendelés-szintű, nem termékhez kötött opciókra – ezt a hiányt tölti be a bővítmény, kódlapátolás nélkül.
 
-### Többféle mezőtípus hozzáadása
-A bővítmény segítségével számos egyedi mezőtípust adhatsz hozzá a checkout oldalhoz. Ezek közé tartoznak:
-- Szövegmezők
-- Szövegterületek
-- Legördülő listák (select fields)
-- Többválasztásos listák (multi-selects)
-- Rádiógombok
-- Jelölőnégyzetek
-- Fájlfeltöltések
+Fontos: a bővítmény a klasszikus (shortcode-alapú) kosár/pénztár sablonokkal működik. A blokkalapú pénztár jelenleg nem támogatott.
 
-### Opciók és upsellek
-A bővítmény lehetőséget biztosít arra, hogy kiegészítő szolgáltatásokat és upselleket kínálj, például:
-- Rendelési borravaló elfogadása százalékos alapú díjakkal
-- Ingyenes vagy fizetős szolgáltatások, mint például szállítási biztosítás vagy sürgős kezelés
-- Ajándékopciók, mint üzenetek, ajándékcsomagolás és ajándékblokkok
+## Hogyan működik a gyakorlatban?
 
-### Dinamikus frissítések és feltételes megjelenítés
-A Checkout Add-Ons lehetővé teszi, hogy a rendelési részletek és az összesített összeg dinamikusan frissüljön a vásárló választásai alapján. Emellett feltételes add-onokat is létrehozhatsz, amelyek csak bizonyos feltételek teljesülése esetén jelennek meg, például:
-- Kosár összegének meghatározott értéke
-- Kosárban lévő termékek
-- Egy másik add-on értéke
+- A WooCommerce adminban létrehozol add-on mezőket (címke, leírás, típus).
+- Beállítod az árkorrekciót: fix összeg vagy százalék, felárként vagy kedvezményként; megjelölheted adóztathatóként.
+- Feltételeket adhatsz meg (cart összeg, kosárban lévő termék/kategória, más add-on értéke).
+- A mezők elhelyezését a Testreszabóban szabályozhatod; a vevő választásai azonnal frissítik az összegzőt.
+- A választott értékek megjelennek a visszaigazoláson, e-mailekben és a Saját fiókban; a bővítmény el is menti őket, ha a vevő elnavigál, majd visszatér.
+- Az admin rendelés-szerkesztőben és a Megrendelések listában láthatod, szűrheted/rendezheted a mezőket (típustól függően).
 
-## Előnyök
+## Fő funkciók
 
-### WooCommerce Subscriptions támogatás
-A bővítmény kompatibilis a WooCommerce Subscriptions bővítménnyel, így az add-onokat hozzáadhatod az első vásárláshoz és opcionálisan a megújítási rendelésekhez is.
+### Testreszabható mezőtípusok
+- **Szöveg, szövegterület**: üzenetek, megjegyzések.
+- **Választók**: legördülő, multiselect, rádiógomb, jelölőnégyzet, több-jelölős lista – jól definiált opciókhoz.
+- **Fájlfeltöltés**: a vevő egy fájlt csatolhat a rendeléshez (mezőnként egy fájl; több fájlhoz több mező vagy ZIP javasolt).
 
-### One Page Checkout integráció
-A WooCommerce One Page Checkout bővítménnyel is zökkenőmentesen működik együtt, ami tovább egyszerűsíti és gyorsítja a vásárlási folyamatot.
+### Rugalmas árképzés
+- **Fix vagy százalékos** korrekció a rendelés részösszegéhez képest.
+- **Pozitív érték** = felár, **negatív érték** = kedvezmény.
+- **Adózható** tételként kezelhető.
+- Az add-on díjak **rendelési díjként (fee)** viselkednek, nem termékként: nincs SKU/készletkezelés – ideális szolgáltatásokhoz, biztosításhoz, borravalóhoz.
 
-### Adminisztrátori eszközök
-Az adminisztrátorok számára lehetőség van az add-onok alapján rendezni és szűrni a WooCommerce > Orders oldalt. Emellett a választott opciók és feltöltött fájlok akkor is megmaradnak, ha a vásárlók elnavigálnak a checkout oldalról.
+### Feltételes megjelenítés
+- Mutasd az add-ont csak akkor, ha:
+  - a kosár értéke elér egy küszöböt,
+  - bizonyos termék/kategória a kosárban van,
+  - egy másik add-on meghatározott értéket vett fel.
+- Így a pénztár letisztult marad, és csak releváns ajánlatokat láttatsz.
+
+### Elhelyezés és UX
+- A mezők pozícióját a Testreszabóban választhatod (pl. számlázási adatok elé/után, vagy az összegző elé).
+- A választások **dinamikusan frissítik** az összesítőt – azonnali visszajelzés a vevőnek.
+
+### Admin és riportálás
+- Az értékek megjelennek a rendelésen és a rendeléslistában; bizonyos mezőknél rendezés/szűrés is elérhető.
+- Export bővítményekkel a mezők és költségeik külön oszlopokként exportálhatók.
+
+### Integrációk és kompatibilitás
+- **Előfizetések**: add-onok a kezdeti vásárlásnál, igény szerint a megújításoknál is alkalmazhatók.
+- **Egyoldalas pénztár**: kompatibilis.
+- **Blokkalapú pénztár**: jelenleg nem támogatott; a klasszikus pénztárra van szükség.
 
 ## Gyakorlati példák
 
-### Rendelési borravaló elfogadása
-Egy éttermi webáruházban használhatod a bővítményt borravaló elfogadására, ahol a vásárlók százalékos alapon adhatnak borravalót a rendelésükhöz.
+- **Borravaló**: százalékos mező (pl. 5/10/15%), ami a részösszegre számítódik.
+- **Ajándékcsomagolás + üzenet**: jelölőnégyzet felárral; ha bejelölik, jelenjen meg egy szövegmező az üzenetnek.
+- **Sürgősségi feldolgozás**: fix felár jelölőnégyzettel; csak akkor jelenjen meg, ha a kosár értéke meghalad egy küszöböt.
+- **Szállítási biztosítás**: rádiógomb opciók több szintű felárral.
+- **Fájlfeltöltés**: egyedi kártyaborító vagy logó beküldése a rendeléshez.
 
-### Ajándékcsomagolás és üzenetek
-Egy ajándékboltban kínálhatsz ajándékcsomagolási opciókat és személyre szabott üzeneteket. A vásárlók kiválaszthatják a csomagolás típusát és megadhatják az üzenet szövegét.
+## Miért érdemes használni?
 
-### Sürgős kezelés
-Egy e-kereskedelmi áruházban lehetőséged van sürgős kezelési díjat felszámítani azoknak az ügyfeleknek, akik gyorsított feldolgozást szeretnének rendelésükhöz.
+- **Bevételnövelés**: egyszerű upsell a pénztárban, készletkezelés nélkül.
+- **Jobb UX**: feltételek alapján csak releváns opciók látszanak; a pénztár gyors és tiszta marad.
+- **Admin hatékonyság**: a kért információk strukturáltan, exportálhatóan jelennek meg.
+- **Idő- és költségmegtakarítás**: fejlesztés nélküli, karbantartható megoldás a tipikus rendelési extrákra.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Add-on**: Kiegészítő opció vagy szolgáltatás, amelyet a vásárlók választhatnak a rendelési folyamat során.
-- **Upsell**: Olyan termék vagy szolgáltatás ajánlása, amely kiegészíti vagy javítja az eredeti terméket.
-- **Dinamikus frissítés**: A rendelési részletek és összeg valós idejű frissítése a vásárlói választások alapján.
-- **Feltételes add-on**: Olyan kiegészítő opciók, amelyek csak bizonyos feltételek teljesülése esetén jelennek meg.
+- **Ajándékboltok, D2C márkák**: csomagolás, üzenet, prémium kezelés.
+- **Nyomda/merch és POD**: fájlfeltöltés, speciális instrukciók.
+- **Étel/ital és szolgáltatások**: borravaló, kezelési díj.
+- **Előfizetéses üzletek**: kiegészítők a kezdeti és megújító rendelésekhez.
+- **Ügynökségek/megvalósítók**: gyors, stabil megoldás ügyfél-igényekre, hosszú távú karbantarthatósággal.
 
-Ezáltal a WooCommerce Checkout Add-Ons bővítmény lehetővé teszi számodra, hogy még testre szabottabbá és vonzóbbá tedd webáruházad vásárlási folyamatát, növelve ezzel az ügyfélélményt és az értékesítéseket.
+## Korlátozások és mikor ne
+
+- **Rendelés-szintű**, nem termék-szintű megoldás. Ha termékenként eltérő opció kell, válaszd a Product Add-Ons bővítményt.
+- **Nincs készlet/SKU**: az add-on díjak nem termékek.
+- **Fájlfeltöltés**: mezőnként egy fájl.
+- **Blokkalapú pénztár**: nem támogatott; használj klasszikus kosár/pénztár nézetet.
+
+## Gyors beállítás
+
+1. Lépj a WooCommerce > Checkout Add-ons menübe.
+2. Hozz létre egy mezőt (címke, leírás, típus).
+3. Állítsd be az árkorrekciót (fix/százalék, adózás).
+4. Adj meg feltételes megjelenítési szabályokat.
+5. A Testreszabóban válaszd ki a megjelenítés helyét, majd teszteld a pénztárat.
+
+## Fejlesztőknek
+
+Hookokkal/filtrekkel bővítheted a működést (egyedi validáció, attribútumok, elhelyezés). Példa a pozíció kód szintű módosítására:
+
+```php
+// A Checkout Add-Ons blokk áthelyezése az ügyféladatok után
+add_filter( 'wc_checkout_add_ons_position', function() {
+    return 'woocommerce_checkout_after_customer_details';
+} );
+```
+
+Ezzel a WooCommerce Checkout Add-Ons átláthatóan és rugalmasan teszi lehetővé, hogy a pénztárban bevételnövelő és információgyűjtő elemeket adj a rendeléshez – pontosan ott és úgy, ahogy a vásárlóidnak a legérthetőbb.

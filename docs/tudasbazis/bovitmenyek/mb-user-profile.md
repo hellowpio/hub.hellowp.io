@@ -1,55 +1,110 @@
-# MB User Profile
+---
+title: "MB User Profile"
+description: "Frontend regisztrációt, bejelentkezést és profil‑szerkesztést ad a WordPresshez, a Meta Box felhasználói mezőinek teljes támogatásával."
+sidebar_label: "MB User Profile"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-Az **MB User Profile** egy kiterjesztés a Meta Box pluginhoz, amely lehetővé teszi regisztrációs, bejelentkezési és profil szerkesztési űrlapok létrehozását a frontend oldalon. Ezeket az űrlapokat shortcode-ok segítségével bárhol beágyazhatod az oldalon, és nem igényelnek egyedi kódolást.
+Az MB User Profile a Meta Box keretrendszer prémium kiterjesztése, amellyel a WordPress‑en teljes, testreszabható **frontend felhasználókezelést** valósíthatsz meg: regisztráció, bejelentkezés, jelszókezelés és profil‑szerkesztés, mindezt az admin felület érintése nélkül. A natív WordPress nem ad kész, rugalmas frontend űrlapokat – ezt pótolja ez a bővítmény. Beépítve tartalmazza az MB User Meta funkcióit, és a Meta Box alap bővítményre épül.
 
-## Funkcionalitás
+## Fő funkciók részletesen
 
-### Egyedi mezők a felhasználói profilokhoz
+### Frontend űrlapok és beágyazás
+- **Regisztráció**, **bejelentkezés** és **profil‑szerkesztés** shortcode‑okkal helyezhető el bármely oldalra.
+- A három űrlaphoz elérhető **Gutenberg‑blokk**, valamint **Elementor, Bricks és Oxygen** widget, így kattintgatva is beillesztheted.
+- Művelet utáni **átirányítás** és űrlap‑feliratok testreszabása attribútumokkal.
 
-Az MB User Profile tartalmazza az [MB User Meta](https://metabox.io/plugins/mb-user-meta/) kiterjesztést, amely lehetővé teszi egyedi mezők hozzáadását a felhasználói profilokhoz. Az MB User Meta hátránya, hogy csak az adminisztrációs felületen működik. Az MB User Profile segítségével létrehozhatod ezeket az űrlapokat a frontend oldalon, így a felhasználók könnyedén szerkeszthetik az adataikat.
+### Meta Box mezők teljes támogatása
+- Az űrlapok ismerik a Meta Box összes **mezőtípusát**, beleértve a **klónozható/ismételhető** mezőket is, így komplex profilokat építhetsz (például több telefonszám, galéria, kapcsolt bejegyzések).
+- A WordPress alap user mezőinek (például **first_name**, **last_name**, **user_email**) szerkesztéséhez csak add meg ugyanazokat a mező‑ID‑kat a Meta Box csoportban.
 
-### Korlátlan űrlapok és egyedi mezők
+### Biztonság és kényelmi funkciók
+- **Google reCAPTCHA v3** a regisztrációs és bejelentkezési űrlapokon a spam ellen.
+- **Jelszó‑erősség ellenőrzés** és beépített **elfelejtett jelszó/jelszó‑visszaállítás**.
+- **E‑mailes regisztráció‑megerősítés** és opcionális **kényszerített jelszócsere** az első bejelentkezés után.
+- Opcionális beállítások: **e‑mail mint felhasználónév**, **szerepkör hozzárendelés** vagy hozzáfűzés.
 
-Az MB User Profile három shortcode-ot tartalmaz három különböző típusú űrlaphoz: bejelentkezés, regisztráció és profil szerkesztés. Ezekben a shortcode-okban bármely egyedi mezőt beillesztheted, amelyet a Meta Box plugin segítségével hoztál létre. Nincs korlátozás az űrlapok vagy mezők számára. Például létrehozhatsz két bejelentkezési űrlapot, egyet a sidebar widgethez és egyet a fejlécbe. Emellett létrehozhatsz két profil szerkesztési űrlapot is: egyet általános információkhoz és egyet bankszámla adatokhoz.
+### Sablonozás és átirányítás
+- Az értesítő **e‑mailek sablonjai** felülírhatók a témádban, így egységes arculatot tarthatsz.
+- Az űrlapok után történő **visszairányítás** szűrővel módosítható, az űrlapok feliratai és azonosítói shortcode attribútumokkal szabhatók testre.
 
-### Drag and drop építő használata
+### Admin beállítások
+- A Meta Box menüben külön **User Profile** oldal: itt kapcsolhatod a kényszerített jelszócserét, és kijelölheted az e‑mail megerősítés siker/hiba oldalait.
 
-A [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/) segítségével anélkül hozhatsz létre felhasználói profil űrlapokat, hogy kódot kellene írnod. Egyszerűen menj a Meta Boxes → Add New menüpontba, és adj hozzá bármilyen mezőt. Ezután menj a Beállítások fülre, és válaszd ki a "Show meta box for users" opciót.
+## Shortcode‑gyorstalpaló
 
-### Kiemelkedő jellemzők
+### Regisztráció
+```
+[mb_user_profile_register
+  id="user-fields"
+  redirect="/profil"
+  email_confirmation="true"
+  role="subscriber"
+  recaptcha_key="SITE_KEY"
+  recaptcha_secret="SECRET_KEY"
+  label_register="Regisztráció"]
+```
 
-- **Regisztrációs, bejelentkezési és profil szerkesztési űrlapok létrehozása**: A bővítmény lehetővé teszi ezeknek az űrlapoknak a könnyű létrehozását és beágyazását bárhol a weboldalon.
-- **Egyedi mezők hozzáadása**: Támogatja az összes egyedi mezőtípust, beleértve az alapvető mezőket és a fejlettebb mezőket is, mint például a WYSIWYG szerkesztő, dátum idő választó, csúszka vagy fájl feltöltés.
-- **Rugalmas beágyazás**: Az űrlapokat bárhol megjelenítheted az oldalon shortcode-ok segítségével, legyen az oldal tartalma, szöveg widget vagy egyedi PHP funkció.
+Gyakori attribútumok: id (user mezőcsoport), redirect, email_confirmation, password_strength, email_as_username, role/append_role, recaptcha_key/secret, label_*, id_*.
 
-## Együttműködés más eszközökkel
+### Bejelentkezés
+```
+[mb_user_profile_login
+  redirect="/fiokom"
+  recaptcha_key="SITE_KEY"
+  recaptcha_secret="SECRET_KEY"]
+```
 
-Az MB User Profile zökkenőmentesen működik együtt más Meta Box kiterjesztésekkel és eszközökkel, mint például:
+Gyakori attribútumok: redirect, value_username, value_remember, label_*, id_*, recaptcha_key/secret.
 
-- **MB Frontend Submission**: Ez lehetővé teszi szerkesztési űrlapok létrehozását blogbejegyzésekhez a frontend oldalon.
-- **Meta Box Conditional Logic**: Ezzel feltételeket állíthatsz be az egyes mezők megjelenítésére vagy elrejtésére.
+### Profil‑szerkesztés
+```
+[mb_user_profile_info
+  id="user-fields"
+  user_id="123"
+  redirect="/fiokom?updated=1"]
+```
+
+Az id kötelező (user típusú mezőcsoport), a user_id opcionális; ha nincs megadva, az aktuális felhasználó profilját szerkeszti.
 
 ## Gyakorlati példák
 
-### Felhasználói regisztrációs folyamat testreszabása
+- **Tagoldal/közösségi platform**: Regisztráció és login oldalak, profil‑szerkesztés oldalon bio, érdeklődések, közösségi linkek, avatar feltöltés. A belépés után a felhasználó saját maga frissíti az adatait, nincs szükség admin belépésre.
+- **Piactér/katalógus**: Eladói profilok cím‑ és kapcsolati mezőkkel, “ellenőrzött” státusz kapcsolóval, több telephely klónozható mezőként. Regisztrációnál automatikus szerepkör hozzárendelés.
+- **Intranet/LMS**: Szervezet‑specifikus mezők (osztály, beosztás), egyszerű belépés, kötelező jelszócsere az első login után, és saját jelszó‑visszaállítás.
 
-Egy e-commerce weboldalon a felhasználói regisztrációs folyamat testreszabása segíthet több adat begyűjtésében, például szállítási cím vagy preferenciák megadásával.
+## Fejlesztői bővíthetőség
 
-### Bejelentkezési űrlap widgetként
+Hasznos hookok:
+- **rwmb_profile_redirect** – sikeres művelet utáni URL módosítása
+- **rwmb_profile_before_process / after_process** – feldolgozás előtt/után
+- **rwmb_profile_validate** – egyedi validáció
+- **rwmb_profile_insert_user_data / update_user_data** – adatmódosítás létrehozás/frissítés előtt
+- **rwmb_profile_before_save_user / after_save_user** – mentés előtt/után
+- Mezők listájának módosítása: **rwmb_profile_register_fields**, **rwmb_profile_login_fields**, **rwmb_profile_info_fields**
 
-Hozz létre egy bejelentkezési űrlapot, amelyet widgetként helyezhetsz el az oldal sávjában, így könnyen hozzáférhetővé teheted a felhasználók számára.
+Ezekkel finomhangolhatod az űrlapok mezőit, validációt és a mentési folyamatot.
 
-### Profil szerkesztési űrlap különböző adatcsoportokhoz
+## Bevált gyakorlatok és sajátosságok
 
-Különböző űrlapokat hozhatsz létre különböző adatcsoportokhoz, például egy általános információk űrlapot és egy pénzügyi adatok űrlapot.
+- **Fájl/kép feltöltés**: Feltöltéshez a felhasználónak be kell jelentkeznie, és rendelkeznie kell upload_files jogosultsággal; ellenkező esetben használj egyszerű file/image mezőt és engedélyezett feltöltési folyamatot.
+- **Gyorsítótárazás**: Az űrlapok nonce mezői miatt az ilyen oldalakat ne tedd teljes oldal‑cache alá. Legalább böngésző‑oldali és statikus cache kivétele javasolt az űrlapokat tartalmazó oldalaknál.
+- **Stílus**: Alap Meta Box CSS‑t használ. A téma dizájnjához gyakran érdemes saját CSS‑t adni.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Frontend**: A weboldal azon része, amelyet a látogatók látnak és használnak.
-- **Shortcode**: Olyan rövid kód, amely speciális funkciókat hajt végre vagy megjelenítést biztosít.
-- **Widget**: Kicsi alkalmazás vagy tartalmi blokk, amelyet elhelyezhetsz a weboldal különböző részein.
-- **Meta Box**: Egyedi mezők csoportja a WordPress adminisztrációs felületén vagy frontend oldalán.
+- **Kódolás helyett konfiguráció**: Nem kell saját űrlap‑, validáció‑ és mentési logikát írnod – a Meta Box mezőidet a plugin automatikusan kezeli frontendről.
+- **Biztonság beépítve**: reCAPTCHA, jelszó‑policy és e‑mail megerősítés csökkenti a spamet és növeli a fiókbiztonságot.
+- **Gyors beágyazás**: Shortcode, Gutenberg‑blokk és page builder widgetek – percek alatt üzembe helyezheted.
+- **Rugalmasság**: Egyszerű tagoldaltól a komplex piactérig skálázható, klónozható mezőkkel és többlépéses profilokkal.
 
-Reméljük, hogy az MB User Profile bővítmény segít könnyedén kezelni és testreszabni a felhasználói profilokat weboldaladon!
+## Kinek ajánlott?
+
+- **Membership és közösségi oldalak** készítőinek, akik frontend profilkezelést akarnak admin nélkül.
+- **Piactereknek, katalógusoknak**, ahol eladó/szolgáltató profilokat és szerepköröket kell kezelni.
+- **Oktatási és vállalati portáloknak**, ahol belső felhasználók adatait kell biztonságosan karbantartani.
+- **Ügynökségeknek és fejlesztőknek**, akik időt akarnak nyerni és megbízható, bővíthető megoldást keresnek.
+- **No‑code/builder felhasználóknak**, akik blokkokkal és widgetekkel dolgoznak.
+
+Röviden: ha frontend regisztrációt, belépést és profi profil‑szerkesztést szeretnél a Meta Box erejével, az MB User Profile gyors, biztonságos és fejlesztőbarát választás.

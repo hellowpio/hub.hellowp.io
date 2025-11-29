@@ -1,72 +1,97 @@
-# CheckoutWC
+---
+title: "CheckoutWC"
+description: "Konverzióra optimalizált WooCommerce pénztár-sablon és eszközkészlet, amely gyorsabb, egyszerűbb, mobilbarát checkoutot ad, növelve a bevételt."
+sidebar_label: "CheckoutWC"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A CheckoutWC egy WooCommerce bővítmény, amely helyettesíti a standard WooCommerce fizetési oldalt egy Shopify-stílusú kosárral és fizetési oldallal. Célja a vásárlói élmény javítása és a kosárelhagyás csökkentése. Az alábbiakban részletesen bemutatom a funkcióit, előnyeit, valamint néhány gyakorlati példát is ismertetek az alkalmazására.
+A CheckoutWC egy WooCommerce‑hez készült, **Shopify‑szerű** pénztár megoldás. Lecseréli az alapértelmezett checkoutot egy **gyorsabb, letisztultabb és mobil‑első** folyamatra, csökkentve a súrlódást, az elhagyott kosarakat és növelve a konverziót. Ha nem akarsz platformot váltani, de szeretnél jobb teljesítményt a meglévő forgalomból, ez a bővítmény erre készült.
 
-## Funkciók
+Fejlesztői háttér: a terméket Clifton Griffin indította és vezeti; 2024-ben csatlakozott a Kestrel termékcsaládhoz, a fejlesztés továbbra is fókuszáltan zajlik.
 
-### Optimalizált fizetési folyamat
+## Hogyan működik röviden?
 
-A CheckoutWC egy letisztult és felhasználóbarát fizetési oldalt biztosít, amely segít növelni a konverziókat. A Shopify-stílusú kialakítás egyszerűsíti a vásárlói folyamatot, így a felhasználók könnyebben és gyorsabban tudják végrehajtani a vásárlást.
+- **Sabloncserét** hajt végre a WooCommerce checkouton, téma‑független, reszponzív nézetekkel.
+- **Oldalsó kosarat** (Side Cart) ad, amely a teljes kosár→pénztár útvonalat felgyorsítja.
+- **Űrlap‑intelligenciával** (autokitöltés, validáció) csökkenti a hibákat és a bevitel idejét.
+- **Rendelésnövelő elemekkel** (order bump, post‑purchase upsell) emeli az átlagos kosárértéket.
+- **Express fizetési gombokkal** rövidíti a folyamatot, ha a fizetési átjáró támogatja.
+- A sablonok licencelt módon futnak; lejárat esetén a bolt visszaáll a téma alap pénztárára.
 
-### Oldalkosár (Side Cart)
+## Fő funkciók, érthetően
 
-Az oldalkosár funkció lehetővé teszi a vásárlóknak, hogy könnyedén hozzáférjenek és módosítsák kosarukat anélkül, hogy elhagynák az aktuális oldalt. Ez segít csökkenteni a kosárelhagyást és növelni a vásárlói elégedettséget.
+- **Pénztár sablonok és elrendezések**
+  - Választhatsz **egyoldalas** vagy **többlépéses** checkoutot. A lépések logikusan tagoltak (szállítás, számlázás, fizetés), mobilon nagy, könnyen érinthető mezőkkel.
+  - Teljes **márkázás**: logó, színek, betűkészletek; CSS‑sel mélyen finomhangolható.
 
-### Rendelési bónuszok (Order Bumps)
+- **Oldalsó kosár (Side Cart / Flyout Cart)**
+  - A vásárló **oldalváltás nélkül** növelheti/csökkentheti a mennyiséget, eltávolíthat tételeket, kuponkódot adhat meg.
+  - Opcionális **ingyenes szállítás előrehaladás‑jelző** motiválja a kosárnövelést.
 
-Az order bumps segítségével növelheted az átlagos rendelési értéket azáltal, hogy releváns termékeket ajánlasz a fizetési folyamat során. Ezek az ajánlatok vonzóbbá teszik a vásárlást és ösztönzik a további költést.
+- **Express fizetés**
+  - Apple Pay, Google Pay, PayPal, Amazon Pay gombok jelennek meg, ha a választott fizetési kapu támogatja. A vásárló **átugorhatja az űrlap nagy részét**, és azonnal fizethet.
 
-### Expressz fizetés
+- **Cím‑ és e‑mail autokitöltés, validáció**
+  - Gyors **címjavaslatok** és irányítószám‑alapú kitöltés (EU‑kompatibilis mezőkezeléssel).
+  - **Valós idejű e‑mail ellenőrzés** és **nemzetközi telefonszám formátum** segít a hibák elkerülésében.
 
-A CheckoutWC támogatja az expressz fizetési lehetőségeket, mint például az Apple Pay és Google Pay, amelyek gyorsabbá és egyszerűbbé teszik a fizetést.
+- **Rendelésnövelők**
+  - **Order bump**: plusz ajánlat a checkouton (pl. kiegészítő, garancia) célzási szabályokkal, kedvezménnyel.
+  - **Post‑purchase upsell**: a rendelés leadása után egykattintásos felajánlás. A gyártói adatok szerint akár kétszámjegyű AOV‑növekedés érhető el.
 
-### Cím automatikus kitöltése (Address Autocomplete)
+- **Elhagyott kosár visszahódítás**
+  - **Automatikus e‑mailek** kedvezményekkel vagy ösztönzőkkel, testreszabható tartalommal és időzítéssel.
 
-Az automatikus címkitöltés funkcióval a vásárlók gyorsabban tudják megadni szállítási adataikat, ami csökkenti a hibák lehetőségét és gyorsítja a fizetési folyamatot.
+- **Felhasználói élmény és bizalom**
+  - **Bizalmi jelvények**, jól látható **boltirányelvek** modálban, tiszta **rendelés‑áttekintő** lépés.
+  - **User Matching**: a rendszer a visszatérő vásárló rendelését automatikusan a fiókjához társítja, egyszerűsített névmezővel és gördülékeny fiókáramlással.
 
-### Gyönyörű sablonok
-
-A CheckoutWC számos előre elkészített sablont kínál, amelyek közül választhatsz. Ezek a sablonok modern és esztétikus megjelenést biztosítanak, amely megfelel minden webáruház stílusának.
-
-### Fejlesztőbarát
-
-A fejlesztők könnyen testre szabhatják a CheckoutWC-t saját igényeik szerint. A bővítmény kompatibilis számos más WooCommerce bővítménnyel és API-val, ami biztosítja a zökkenőmentes integrációt.
-
-## Előnyök
-
-- **Gyorsabb vásárlási folyamat:** A felhasználók kevesebb lépésben tudják végrehajtani a vásárlást.
-- **Csökkentett kosárelhagyás:** Az optimalizált fizetési folyamat és az oldalkosár funkció csökkenti a kosárelhagyást.
-- **Nagyobb átlagos rendelési érték:** Az order bumps funkcióval növelheted az átlagos rendelési értéket.
-- **Modern megjelenés:** A gyönyörű sablonok vonzóvá teszik a webáruházat.
-- **Expressz fizetés támogatása:** Az Apple Pay és Google Pay támogatása gyorsabbá teszi a fizetést.
-
-## Együttműködő eszközök
-
-A CheckoutWC zökkenőmentesen működik együtt számos más eszközzel és bővítménnyel:
-
-- **WooCommerce:** Természetesen teljes mértékben integrált WooCommerce-szel.
-- **Payment Gateways:** Támogatja az összes népszerű fizetési kaput, mint például Stripe, PayPal.
-- **Shipping Plugins:** Kompatibilis különféle szállítási bővítményekkel, mint például a WooCommerce Shipping.
-- **Marketing Plugins:** Integrálható marketing eszközökkel, mint például Mailchimp for WooCommerce.
+- **Kompatibilitás és teljesítmény**
+  - Széles körű **fizetési kapu** és **kiegészítő** kompatibilitás (pl. előfizetések, digitális/fizikai termékek, helyi átvétel).
+  - **Gyors betöltés**, fejlesztői **hookok** és sablon‑felülírások.
 
 ## Gyakorlati példák
 
-### Webáruházaknak
-Egy divatwebshop számára ideális megoldás lehet a CheckoutWC, hiszen az optimalizált fizetési folyamat és a gyönyörű sablonok vonzóbbá teszik a vásárlói élményt. Az order bumps funkcióval pedig további kiegészítő termékeket ajánlhatsz, növelve ezzel az átlagos rendelési értéket.
+- Egy divatwebshop a **többlépéses** checkoutot és az **express fizetést** aktiválja. Eredmény: mobilon rövidebb folyamat, kevesebb elhagyás.
+- Egy kávé‑DTC bolt **order bump** segítségével kávédarálót kínál a pénztárban, majd **post‑purchase upsell** formában előfizetést ajánl. Eredmény: magasabb átlagos rendelési érték.
+- Egy helyi kereskedő **Side Carttal** váltja ki a kosár oldalt, **helyi átvételt** kínál, az EU‑specifikus címmezők pedig gyorsítják a kitöltést. Eredmény: kevesebb hibás rendelés, gyorsabb folyamat.
 
-### Elektronikai termékeket árusító boltoknak
-Egy elektronikai webshop esetében az expressz fizetés támogatása kulcsfontosságú lehet. Az Apple Pay vagy Google Pay használatával a vásárlók gyorsan és egyszerűen tudják kifizetni rendeléseiket.
+## Előnyök és értékajánlat
 
-### Kézműves termékek árusítóinak
-Egy kézműves termékeket árusító webshop számára az oldalkosár funkció jelenthet nagy előnyt. A vásárlók könnyen hozzáférhetnek és módosíthatják kosarukat anélkül, hogy elhagynák az aktuális oldalt, ami különösen fontos lehet számukra.
+- **Több bevétel a meglévő forgalomból**: jobb konverzió, magasabb AOV.
+- **Kevesebb fejlesztési teher**: kész sablonok, beépített kosár, upsell és e‑mail eszközök.
+- **Mobil‑első élmény**: gyors, egyszerű űrlapok, kevesebb mező, okos kitöltés.
+- **Stabilitás és skálázhatóság**: téma‑független működés, fejlesztőbarát bővíthetőség.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Order Bumps:** Rendelési bónuszok, amelyekkel további termékeket ajánlhatsz a fizetési folyamat során.
-- **Expressz fizetés:** Gyors fizetési lehetőségek, mint például Apple Pay és Google Pay.
-- **Oldalkosár (Side Cart):** Egy kosár megjelenítő modul, amely lehetővé teszi a felhasználók számára, hogy módosítsák kosarukat anélkül, hogy elhagynák az aktuális oldalt.
-- **Cím automatikus kitöltése (Address Autocomplete):** Egy funkció, amely automatikusan kitölti a szállítási adatokat.
+- **WooCommerce bolttulajdonosoknak**, akik konverziót és AOV‑t növelnének platformváltás nélkül.
+- **Ügynökségeknek**, akik gyorsan, megbízhatóan akarnak modern, márkázható checkoutot szállítani.
+- **Előfizetéses, digitális és fizikai** termékeket vegyesen értékesítőknek, akiknek fontos a kompatibilitás és a mobilos teljesítmény.
+- **Magas mobilforgalmú** webáruházaknak, ahol minden plusz kattintás számít.
 
-A CheckoutWC tehát egy rendkívül hasznos bővítmény mindazok számára, akik szeretnék optimalizálni WooCommerce alapú webáruházuk fizetési folyamatát és növelni a vásárlói elégedettséget.
+## Üzemeltetés, licenc, kiadások
+
+- A bővítmény prémium; létezik egy **Lite** kiadás is, amely a teljes verzió alapfunkcióinak részhalmazát adja (pl. sablonok, lebegő kosár, cím‑autokitöltés, helyi átvétel, egyoldalas checkout).
+- **Licenc lejáratakor** a bolt visszaáll az alap WooCommerce sablonokra.
+- Több nyelvi fordítás és régió‑specifikus mezőlogika elérhető.
+
+## Gyors kezdés
+
+1. Telepítsd és aktiváld a bővítményt a WordPress adminban.
+2. Válassz **elrendezést** (one‑page vagy multi‑step), állítsd be a **logót, színeket, betűket**.
+3. Kapcsold be a **Side Cartot** és a **kupon** kezelést.
+4. Engedélyezd az **express fizetést** a választott kapunál.
+5. Aktiváld a **cím‑autokitöltést** és az **e‑mail/telefon** validációt.
+6. Hozz létre **order bump** szabályt és szükség esetén **post‑purchase upsellt**.
+7. Teszteld a folyamatot mobilon és asztali gépen, majd monitorozd a **konverziót és AOV‑t**.
+
+```
+Beállítási tipp:
+- Egyszerre csak 1-2 változtatást vezess be (pl. multi-step + express gombok),
+- Mérd a hatást (konverzió, AOV, elhagyási arány),
+- Finomhangold a szabályokat és a dizájnt a mért adatok alapján.
+```
+
+Ezzel a megközelítéssel gyorsan, kockázatmentesen tudod modernizálni a WooCommerce pénztáradat, és kézzelfogható eredményeket hozni anélkül, hogy platformot váltanál vagy egyedi fejlesztésekbe fognál.

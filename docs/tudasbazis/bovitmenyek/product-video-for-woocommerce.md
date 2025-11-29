@@ -1,51 +1,78 @@
-# Product Video for WooCommerce
+---
+title: "Product Video for WooCommerce"
+description: "Prémium WooCommerce-bővítmény kiemelt és galériavideókhoz, egységes lejátszással és rugalmas beágyazással a termékoldalakon."
+sidebar_label: "Product Video for WooCommerce"
+---
 
-A Product Video for WooCommerce egy olyan bővítmény, amely lehetővé teszi, hogy videókat adj hozzá a termékoldalaidhoz. Ezáltal nem csak képekkel, hanem videókkal is bemutathatod a termékeidet, ami nagyobb vonzerőt és részletesebb tájékoztatást biztosít a potenciális vásárlók számára.
+## Mi ez és milyen problémát old meg?
 
-## Főbb funkciók
+A **Product Video for WooCommerce** egy prémium kiterjesztés, amellyel videókat adhatsz a termékoldalakhoz: külön **kiemelt videót** és **több videót a termékgalériába**. Az alap WooCommerce galéria nem kezeli a videókat; ez a bővítmény ezért saját, videóra felkészített galériát ad, egységes lejátszással és adminfelülettel. Ezzel látványosabban mutathatod be a termék működését, minőségét, méretét, és már a **bolt- és listanézetben** is megfoghatod a figyelmet mozgóképes tartalommal.
 
-### Videók hozzáadása termékoldalakon
+## Fő funkciók, érthetően
 
-- **Kiemelt termékvideó**: Cseréld le a kiemelt termékképeket videókra, amelyeket megjeleníthetsz akár felugró ablakban, akár közvetlenül az oldalon.
-- **Több videó a termékgallériában**: A képek mellett több videót is hozzáadhatsz a termékgallériához, így részletesebb és vonzóbb bemutatót készíthetsz.
-- **Videók lejátszása**: Videókat játszhatsz le felugró ablakban, az oldalon belül, vagy teljes képernyős módban.
+### Kiemelt videó a termékhez
+- Egy termékhez beállíthatsz egy **kiemelt videót**, ami a fő képdobozban jelenik meg, és akár a kategória- vagy boltlistában is megmutatható.  
+- A kiemelt videót **feltöltheted** (önhostolt fájl), vagy **beágyazhatod** népszerű szolgáltatóktól (például YouTube, Vimeo, Dailymotion, Facebook, Metacafe).  
+- Választhatsz **saját bélyegképet**, és dönthetsz, hogy a videó **lightboxban** nyíljon meg, vagy **inline** játsszon le az oldalon.
 
-### Videók feltöltése és beágyazása
+### Több videó a galériában
+- A termék **galériájában képek és videók** együtt jeleníthetők meg.  
+- A galériaelemeket megnyithatod **lightboxban**; így a vásárló fókuszáltan nézheti végig a tartalmat.  
+- Ugyanazt a galériavideót **több termékhez is hozzárendelheted**, így nem kell mindent többször feltölteni.
 
-- **Videók feltöltése vagy beágyazása**: Feltölthetsz saját videókat, vagy beágyazhatsz videókat népszerű webhelyekről, mint például YouTube, Vimeo, Dailymotion, Facebook, Metacafe.
-- **Egyéni miniatűrök**: Minden feltöltött vagy beágyazott videóhoz egyéni miniatűrt adhatsz meg, amely vonzóbbá teszi a videót a látogatók számára.
+### Források és formátumok
+- Támogatottak a leggyakoribb **önhostolt videóformátumok** (például MP4, MKV, AVI, MOV, FLV, WMV).  
+- A **külső források** beágyazása egyszerű URL-alapon vagy beágyazókóddal történik.
 
-### Testreszabási lehetőségek
+### Galériastílusok
+- **HTML5 Lightbox Gallery**: a kiemelt videó a terméklapon és a boltlistában játszható; a galériaelemek lightboxban nyílnak.  
+- **Woo Custom Gallery**: a képek és videók a kiemelt dobozban együtt jelennek meg; a **bélyegképek pozíciója** (felül, alul, bal, jobb) testreszabható.
 
-- **Videók szélességének és magasságának testreszabása**: Szabadon beállíthatod a videók szélességét és magasságát mind a bolt, mind a termékoldalak számára.
-- **Videógaléria stílusok**: Két különböző galéria stílus közül választhatsz: HTML5 LightBox vagy WooCommerce Stílus Galéria.
-- **Automatikus lejátszás és egyéb beállítások**: Lehetőség van az automatikus lejátszás bekapcsolására, a hurokban való lejátszásra, valamint a videóvezérlők megjelenítésére vagy elrejtésére.
+### Lejátszásvezérlők
+- **Önhostolt videók**: állítható az **autoplay**, **loop**, **némítás**, valamint a **vezérlők** megjelenítése.  
+- **Beágyazott videók**: kapcsolhatod az **autoplayt**, a **teljes képernyő** gombot, a **némítást** és a **kapcsolódó videók** megjelenítését (a szolgáltató és a böngésző szabályai szerint).
+
+### Adminfelület és beállítás
+- A bővítmény egy külön **Product Video** menüt ad az adminban, valamint egy **“Featured Video”** szekciót a termékszerkesztőben.  
+- A globális opciókat a **WooCommerce beállításai** között találod (Product Videos).  
+- A galériavideókat a **Product Video > All Videos** alatt hozhatod létre és kötheted több termékhez.
+
+### Oldalépítő-kompatibilitás
+- Dedikált opciók segítenek, ha **Elementor** vagy **Divi** mellett egyedi termékelrendezést használsz, és a videós galéria illesztéséhez finomhangolás kell.
 
 ## Gyakorlati példák
 
-### Kiemelt termékvideó hozzáadása
+- **Tech/elektronika**: állíts be kiemelt „gyors áttekintés” videót, a galériába pedig részletes funkció- és beüzemelési klipeket.  
+- **Divat/ruházat**: mutasd meg a ruhadarab **mozgás közbeni illeszkedését**; a galériában lehet lookbook-szerű összeállítás.  
+- **Bútor/lakberendezés**: kiemelt videóban érzékeltesd a **méretet és anyagminőséget**; lightboxban mehet az összeszerelés.  
+- **DIY/kozmetikum/sport**: tegyél a galériába **használati útmutatót** vagy „előtte–utána” videót, ami jól működik lightboxban.
 
-A bővítménnyel könnyedén hozzáadhatsz egy kiemelt termékvideót az adminisztrációs felületen keresztül. Például egy elektronikai eszköz részletes bemutatását egy videóban sokkal hatékonyabban lehet megmutatni, mint képekkel.
+## Miért érdemes használni? (Értékajánlat)
 
-### Több videó hozzáadása a termékgallériához
+- **Magasabb konverzió**: a videó gyorsabban ad választ a vásárlói kérdésekre, csökkenti a bizonytalanságot.  
+- **Katalógus-szintű figyelemfelkeltés**: mozgókép már a listanézetben; jobb átkattintási arány.  
+- **Hatékony tartalomkezelés**: egy videót **több termékhez** rendelhetsz, nincs duplikált feltöltés.  
+- **Egységes élmény**: különböző forrásokból származó videók **azonos kezelőfelületen** és logikával működnek.  
+- **Kevesebb fejlesztés**: kész galéria és lejátszó; nem kell egyedi kódolás.
 
-Egy ruházati termék esetében több videót is hozzáadhatsz a termékgallériához, például egy modellt viselve az adott ruhadarabot különböző szögekből és helyzetekben.
+## Kinek ajánlott?
 
-### Videók lejátszása felugró ablakban
+- Webáruházaknak, ahol a termék **használat közben** mutatja meg az értékét (műszaki cikkek, sporteszközök, kozmetikumok).  
+- **Divat** és **bútor** szegmensnek, ahol fontos a **mozgás**, az **anyag** és a **méretérzékeltetés**.  
+- Olyan csapatoknak, akik több terméklapon újrahasznosítanák ugyanazt a videót, és **adminidőt** takarítanának meg.
 
-Egy bútordarab bemutatásánál hasznos lehet, ha a videókat felugró ablakban játszhatják le a látogatók, így nem zavarja őket az oldal többi része.
+## Gyors indulás
 
-## Tippek a hatékony használathoz
+1. Telepítés és aktiválás után nyisd meg a **WooCommerce > Settings > Product Videos** oldalt, és válaszd ki az alapértelmezett **galériastílust** és lejátszásbeállításokat.  
+2. A termékszerkesztőben add meg a **Featured Video**-t (feltöltés vagy beágyazás), állíts be **bélyegképet**, és döntsd el, hogy **inline** vagy **lightbox** legyen a lejátszás.  
+3. A **Product Video > All Videos** alatt készíts galériavideókat, és rendeld hozzá **egy vagy több termékhez**.
 
-- **Miniatűrök testreszabása**: Mindig használj egyedi miniatűröket a videókhoz, hogy vonzóbbá tedd azokat.
-- **Automatikus lejátszás beállítása**: Ha fontosnak tartod, hogy a látogatók azonnal lássák a videót, állítsd be az automatikus lejátszást.
-- **Videók szélességének és magasságának optimalizálása**: Ügyelj arra, hogy a videók mérete megfelelő legyen az adott oldal elrendezéséhez.
+## Megfontolások és korlátok
 
-## Szószedet
+- A bővítmény ott, ahol videót használsz, **lecseréli a téma gyári galériáját** a sajátjára. Egyedileg erősen testreszabott témák esetén **CSS**- vagy **fejlesztői igazítás** szükséges lehet.  
+- Egyedi, oldalépítővel készült termékoldalaknál előfordulhat, hogy a beillesztéshez a beépített kompatibilitási opciókat kell használnod.  
+- Teljesítményoptimalizálásnál érdemes átgondolni az **autoplay**, a **bélyegképek mérete** és a **videófájlok tömörítése** beállításokat.
 
-- **Kiemelt termékvideó**: A termék fő képe helyett megjelenített videó.
-- **Termékgalléria**: A termékhez tartozó képek és videók gyűjteménye.
-- **HTML5 LightBox**: Egy könnyűsúlyú felugró ablakos galéria stílus.
-- **WooCommerce Stílus Galéria**: A WooCommerce alapértelmezett galéria stílusa.
+## Ne keverd össze más bővítményekkel
 
-Ez a bővítmény különösen hasznos lehet azoknak az e-kereskedelmi vállalkozásoknak, amelyek vizuálisan szeretnék bemutatni termékeiket és ezáltal növelni kívánják az értékesítést.
+A névrokonság miatt könnyű összekeverni más „Product Video” jellegű kiterjesztésekkel. Ügyelj rá, hogy ezt a leírást a **Product Video for WooCommerce** (Addify) bővítményhez olvasod; más fejlesztők termékei eltérő funkciókkal és működéssel rendelkezhetnek.

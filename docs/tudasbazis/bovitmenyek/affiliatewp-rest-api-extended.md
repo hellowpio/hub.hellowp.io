@@ -1,62 +1,126 @@
-# AffiliateWP - REST API Extended
+---
+title: "AffiliateWP - REST API Extended"
+description: "Pro kiegészítő, amely a core AffiliateWP REST API-t teljes CRUD-funkcionalitással bővíti (affiliates, referrals, visits, payouts, creatives), egységes autentikációval és granuláris engedélyezéssel."
+sidebar_label: "AffiliateWP - REST API Extended"
+---
 
-## Funkcionalitás és előnyök
+## Röviden
 
-### Teljes körű adatkezelés
-Az AffiliateWP REST API Extended bővítmény kiegészíti az alapvető, csak olvasásra szolgáló RESTful API-t olyan funkciókkal, mint a létrehozás, frissítés és törlés. Ezzel lehetőséget ad a fejlesztők és külső alkalmazások számára, hogy teljes kontrollt gyakoroljanak az AffiliateWP adatbázisban tárolt adatok felett. A bővítmény használatával a következő műveletek válnak elérhetővé:
+Az AffiliateWP – REST API Extended egy Pro kiegészítő, amellyel a korábban csak olvasható AffiliateWP REST API teljes értékű CRUD-képességet kap: az affiliates, referrals, visits, payouts és creatives objektumok nem csak lekérdezhetők, hanem létrehozhatók, módosíthatók és törölhetők is.
 
-- Affiliate/creative/referral/visit/payout létrehozása
-- Affiliate/creative/referral/visit/payout frissítése
-- Affiliate/creative/referral/visit/payout törlése
+## Mit old meg?
 
-### Zökkenőmentes együttműködés más eszközökkel
-Az AffiliateWP REST API Extended zökkenőmentesen integrálható különböző e-commerce platformokkal és egyéb rendszerekkel. Különösen jól működik együtt a következő eszközökkel:
+Alapból az AffiliateWP REST API read-only. Ha külső rendszerekből akarsz partnert létrehozni, referralokat rögzíteni vagy kifizetéseket kezelni, egyedi admin felületet vagy közvetlen adatbázis-műveleteket kellene írnod. A REST API Extended ezt szünteti meg: egységes, dokumentált, hitelesítéssel védett REST végpontokon keresztül mindent automatizálhatsz és integrálhatsz.
 
-- WooCommerce
-- Easy Digital Downloads
-- Elementor
-- PayPal
-- WPForms
-- MemberPress
+## Fő funkciók és működés
 
-### Specifikus előnyök és felhasználási módok
+- **Teljes CRUD az affiliate adatokhoz**
+  - **Affiliates**: partnerfiókok programozott létrehozása és módosítása (pl. státusz, kifizetési e‑mail, jutalék beállítások).
+  - **Referrals**: jutalékok/konverziók rögzítése, státuszváltás, törlés (pl. rendelés feldolgozásakor).
+  - **Visits**: kattintások/látogatások naplózása külső forrásból (pl. nem‑WordPress webshopból).
+  - **Payouts**: kifizetések létrehozása és menedzselése (pl. zárt könyvelési folyamatból).
+  - **Creatives**: kreatívok (bannerek, szöveglinkek) kezelése az API-n keresztül.
 
-#### Külső weboldalak látogatásainak és ajánlásainak követése
-Az API segítségével könnyedén nyomon követheted a látogatásokat és ajánlásokat külső, nem WordPress alapú weboldalakon is.
+- **Útvonalak és metódusok**
+  - Gyűjtemény: `/wp-json/affwp/v1/{object}` – GET listáz, POST/PUT létrehoz.
+  - Erőforrás: `/wp-json/affwp/v1/{object}/{id}` – GET lekér, PATCH frissít, DELETE töröl.
+  - **OPTIONS**: felfedi a séma- és validációs információkat (kötelező mezők, típusok, engedélyezett metódusok).
 
-#### Testreszabott e-commerce rendszerek ajánlásainak követése
-Hasznos lehet olyan egyedi vagy nem WordPress alapú e-commerce rendszerekben, ahol az ajánlások követése szükséges.
+- **Autentikáció és jogosultság**
+  - **Basic Auth API-kulcsokkal**: a Public Key a “felhasználó”, a Token a “jelszó”.
+  - A kulcsok WordPress jogosultságokhoz kötöttek; csak azt engedik, amit a kulcshoz tartozó szerepkör is tud.
 
-#### Adatok szinkronizálása több adatbázis és szerver között
-Lehetőség van az affiliate fiókok szinkronizálására több adatbázis és szerver között, biztosítva az adatok egységességét.
+- **Konfiguráció**
+  - Aktiválás után az adminban az AffiliateWP → Settings → REST API lapon külön-külön engedélyezheted az objektumtípusok végpontjait (affiliates, referrals, visits, payouts, creatives).
+  - API-kulcsok: AffiliateWP → Tools → API Keys alatt generálhatók.
 
-#### Automatikus fiókfrissítés külső alkalmazásokból
-Automatikusan frissítheted az affiliate fiókokat, amikor változtatásokat hajtasz végre külső alkalmazásokban.
+## Gyakorlati példák (Getting started)
 
-#### Ajánlási rekordok létrehozása külső fizetési processzorokban történt rendelések alapján
-Külső fizetési processzorokban történt rendelések esetén automatikusan létrehozhatsz ajánlási rekordokat az affiliate partnerek számára.
+- Autentikáció minta (cURL):
+```
+curl -u PUBLIC_KEY:TOKEN https://sajatoldalad.hu/wp-json/affwp/v1/affiliates
+```
 
-#### Testreszabott affiliate területek létrehozása WordPress-en kívül
-Lehetőséged van arra, hogy testreszabott affiliate területeket hozz létre, amelyek nem WordPress alapúak.
+- Új affiliate létrehozása:
+```
+curl -X POST -u PUBLIC_KEY:TOKEN \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 123,
+    "status": "active",
+    "payment_email": "partner@example.com"
+  }' \
+  https://sajatoldalad.hu/wp-json/affwp/v1/affiliates
+```
 
-## Gyakorlati példák
+- Referral rögzítése:
+```
+curl -X POST -u PUBLIC_KEY:TOKEN \
+  -H "Content-Type: application/json" \
+  -d '{
+    "affiliate_id": 45,
+    "amount": "29.00",
+    "reference": "ORDER-10045",
+    "context": "checkout",
+    "status": "pending"
+  }' \
+  https://sajatoldalad.hu/wp-json/affwp/v1/referrals
+```
 
-1. **Külső weboldalak látogatásainak nyomon követése:** Ha van egy nem WordPress alapú weboldalad, és szeretnéd nyomon követni a látogatásokat és ajánlásokat, az API segítségével ezt könnyedén megteheted.
-   
-2. **Egyedi e-commerce rendszer integrációja:** Egy egyedi fejlesztésű e-commerce rendszeren belül nyomon követheted az ajánlásokat és frissítheted az affiliate adatokat.
+- Erőforrás frissítése (PATCH) és törlése:
+```
+# Referral státuszváltás
+curl -X PATCH -u PUBLIC_KEY:TOKEN \
+  -H "Content-Type: application/json" \
+  -d '{ "status": "paid" }' \
+  https://sajatoldalad.hu/wp-json/affwp/v1/referrals/987
 
-3. **Affiliate fiókok szinkronizálása:** Több adatbázist és szervert használó nagyobb cégek számára hasznos lehet az affiliate fiókok közötti szinkronizálás.
+# Törlés
+curl -X DELETE -u PUBLIC_KEY:TOKEN \
+  https://sajatoldalad.hu/wp-json/affwp/v1/referrals/987
+```
 
-4. **Automatikus adatfrissítés külső alkalmazásokból:** Például, ha egy CRM rendszeren belül módosítasz egy affiliate adatot, az API-val automatikusan frissítheted ezt az információt az AffiliateWP-ben is.
+- Kötelező mezők felfedezése (OPTIONS):
+```
+curl -X OPTIONS -u PUBLIC_KEY:TOKEN \
+  https://sajatoldalad.hu/wp-json/affwp/v1/referrals
+```
 
-5. **Ajánlási rekordok automatikus létrehozása:** Amikor egy külső fizetési processzoron keresztül rendelést dolgozol fel, az API segítségével automatikusan létrehozhatod az ehhez kapcsolódó ajánlási rekordokat.
+Tipp: az OPTIONS válasz pontosan megmutatja, milyen mezők szükségesek az adott POST/PUT/PATCH híváshoz, így gyorsabban és hibamentesen fejleszthetsz.
 
-## Szószedet
+## Tipikus használati esetek
 
-- **Affiliate:** Partner, aki jutalékot kap az általa hozott látogatások vagy vásárlások után.
-- **Creative:** Kreatív anyagok, amelyek segítik az affiliate partnereket a promóciós tevékenységük során.
-- **Referral:** Ajánlás, amelynek alapján jutalékot kap az affiliate partner.
-- **Visit:** Látogatás, amelyet egy affiliate link generál.
-- **Payout:** Kifizetés, amelyet az affiliate partner kap a sikeres ajánlásokért.
+- **Külső rendszerekből történő követés**: nem‑WordPress webshop a vásárlásnál referral-t hoz létre.
+- **Két WordPress oldal szinkronja**: ha az A oldalon jóváhagysz egy affiliate-et, az API-n keresztül automatikusan létrejön a B oldalon is.
+- **ERP/CRM integráció**: ügyfélfázis alapján referral státuszok frissítése vagy kifizetések indítása.
+- **Zapier automatizáció**: űrlap beküldésekor affiliate létrehozása, vagy Google Sheets sorból payout készítése. (Az adott “Action”-höz szükséges végpontokat engedélyezned kell.)
 
-Az AffiliateWP REST API Extended lehetőséget biztosít arra, hogy teljes mértékben testreszabott és integrált megoldásokat hozz létre a saját vállalkozásod igényei szerint.
+## Előnyök és értékajánlat
+
+- **Idő- és költségmegtakarítás**: nincs szükség egyedi admin felületekre vagy közvetlen adatbázis-műveletekre.
+- **Headless és több-rendszeres működés**: az affiliate programod teljesen irányítható külső alkalmazásokból.
+- **Biztonságos és következetes**: egységes, jogosultságokkal védett API az egész affiliate adatmodellhez.
+- **Gyors fejlesztés**: OPTIONS, sémák és ismerős REST minták segítik a gyors implementációt.
+
+## Kinek ajánlott?
+
+- **Fejlesztők és integrátorok**: akik saját backendből, szolgáltatásból vagy middleware-ből akarják vezérelni az affiliate folyamatokat.
+- **Üzemeltetők és growth csapatok**: akik automatizálni szeretnék az affiliate onboardingot, a referral-kezelést és a kifizetéseket.
+- **No‑code/low‑code felhasználók**: akik Zapierrel vagy hasonló eszközökkel építenek automatizmusokat.
+
+## Követelmények és telepítés
+
+1. Szükséged van aktív AffiliateWP core telepítésre és érvényes Pro licencre.
+2. Telepítsd és aktiváld a REST API Extended bővítményt.
+3. Menj az AffiliateWP → Settings → REST API oldalra, és pipáld ki a használni kívánt objektumtípusok végpontjait.
+4. Generálj API-kulcsot az AffiliateWP → Tools → API Keys alatt (Public Key + Token).
+5. Használd a kulcsokat Basic Auth-tal a hívásokhoz.
+
+## Jó gyakorlatok és biztonság
+
+- **Mindig HTTPS**: a Basic Auth csak titkosított csatornán biztonságos.
+- **Legkisebb jogosultság elve**: csak a szükséges végpontokat engedélyezd, és a kulcsokhoz minimális szükséges szerepkört adj.
+- **Kulcsrotáció és naplózás**: rendszeresen cseréld a Tokeneket, és figyeld a hívási naplókat.
+- **OPTIONS használata**: kódolás előtt derítsd ki a validálási szabályokat és kötelező mezőket.
+
+Ezzel a kiegészítővel teljes kontrollt kapsz az affiliate programod fölött API-n keresztül: gyorsabban integrálhatsz, kevesebbet hibázol, és minden folyamatot automatizálhatsz.

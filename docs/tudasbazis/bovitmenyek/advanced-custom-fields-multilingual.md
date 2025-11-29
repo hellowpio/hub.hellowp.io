@@ -1,50 +1,87 @@
-# Advanced Custom Fields Multilingual
+---
+title: "Advanced Custom Fields Multilingual"
+description: "Hivatalos WPML-kiegészítő az ACF-mezők, mezőcsoportok és azok tartalmainak többnyelvű fordításához, mezőcsoport-szintű vezérléssel."
+sidebar_label: "Advanced Custom Fields Multilingual"
+---
 
-Az Advanced Custom Fields Multilingual (ACFML) egy hatékony eszköz, amely lehetővé teszi az Advanced Custom Fields (ACF) plugin által létrehozott egyedi mezők többnyelvű kezelését. Ez a plugin kiválóan együttműködik a WPML (WordPress Multilingual Plugin) bővítménnyel, lehetővé téve az egyedi mezők egyszerű és gyors fordítását. Az alábbiakban bemutatjuk az ACFML főbb funkcióit és előnyeit, valamint gyakorlati példákat adunk a használatára.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+Az Advanced Custom Fields Multilingual (ACFML) egy „glue” bővítmény: összekapcsolja az ACF/ACF PRO mezőidet a WPML fordítási folyamataival. Arra való, hogy a mezőcsoportok, a mezők értékei, címkéi és választási lehetőségei (Choices) nyelvek között konzisztensen, hibamentesen fordíthatók legyenek. Megoldja azokat a tipikus gondokat, mint a hiányzó ACF-értékek az ATE-ben, tévesen másolt repeater-struktúrák, nem fordított címkék vagy rossz nyelvi linkek.
 
-### Egyedi mezők fordítása
+## Követelmények
 
-Az ACFML lehetővé teszi az egyedi mezők egyszerű fordítását. Ez különösen hasznos lehet akkor, ha többnyelvű weboldalt üzemeltetsz, és szeretnéd, hogy a látogatók saját nyelvükön olvashassák a tartalmakat. Az ACFML automatikusan felismeri az ACF által létrehozott mezőket, és lehetőséget biztosít azok fordítására.
+- Szükséges: ACF (vagy ACF PRO), WPML alapmodul, WPML String Translation és az ACFML.
+- Fejlesztő: a WPML csapata (OnTheGoSystems).
+- Elérhetőség: a WPML többnyelvű csomagjaiban.
 
-### Zökkenőmentes integráció a WPML-lel
+## Hogyan működik röviden?
 
-Az ACFML szorosan integrálódik a WPML-lel, amely az egyik legnépszerűbb többnyelvűség bővítmény a WordPress platformon. Az integráció révén biztosított a könnyű kezelhetőség és a zökkenőmentes működés. Az ACFML segítségével az ACF mezők fordítási beállításai közvetlenül elérhetők a WPML felületén.
+Az ACFML aktiválása után az ACF → Field Groups képernyőn megjelenik a Multilingual Setup. Itt mezőcsoportonként kiválasztod a fordítási módot:
 
-### Több mezőtípus támogatása
+- Same fields across languages: azonos mezőstruktúra minden nyelven, a tartalom az Advanced Translation Editorban (ATE) fordulhat, akár automatikusan.
+- Different fields across languages: nyelvenként eltérő értékek/struktúra; szerkesztés a WordPress editorban vagy a page builderben.
+- Expert mód: mezőnként beállítható a Translate, Copy, Copy once vagy Don’t translate.
 
-Az ACFML minden mezőtípust támogat, amelyet az ACF kínál. Legyen szó egyszerű szövegmezőkről, képgalériákról vagy összetett ismétlődő mezőkről, az ACFML gondoskodik róla, hogy mindegyiket könnyen lehessen fordítani.
+A tartalmat a WPML felületéről küldöd fordításra, majd az ATE-ben vagy natív szerkesztőben véglegesíted.
 
-### Könnyen kezelhető adminisztrációs felület
+## Fő funkciók, érthetően
 
-Az ACFML felhasználóbarát adminisztrációs felülete lehetővé teszi a mezők egyszerű kezelését és fordítását. Az adminisztrációs felületen könnyedén kiválaszthatod, mely mezőket szeretnéd fordítani, és ezekhez különböző nyelveken megadhatod a megfelelő értékeket.
+- Mezőértékek, címkék, Choices fordítása: nem csak a tartalom, hanem a mezőcímkék és választási listák is többnyelvűek, így a szerkesztők és a frontend feliratok minden nyelven rendben lesznek.
+- Két előre beállított mód: gyors döntés, hogy egyezzen-e a mezőstruktúra (ATE-alapú fordítás) vagy nyelvenként szabadon eltérhessen (natív szerkesztés).
+- Expert preferenciák: tűpontos kontroll. Példa: Text = Translate, Number/Image = Copy, URL = Copy once, admin-only technikai mező = Don’t translate.
+- ACF Blocks támogatás: a blokkok tartalma ugyanígy fordítható mindkét módszerrel.
+- Page builder integráció: Elementor PRO dinamikus ACF-mezői fordításbarát módon jelennek meg.
+- Taxonómia-mezők: a fogalmak neve/slugja és az ACF-hez kötött term meta helyesen fordul.
+- Média nyelvenként: ACF Image/File mezőkhöz nyelvspecifikus fájlokat használhatsz; „Same fields” módban a Media Translation a javasolt út.
+- Biztonság és kényelem: az ACF belső objektumai nem fordíthatók (hibák megelőzése), WYSIWYG-mezőkben a linkek nyelvi konverziója automatikus, gyorsabb opciós oldalak és jobb UX sok mezőcsoportnál.
+- Repeater/Flexible vezérlés: a sorok szinkronja kikapcsolható; a Nested Repeater blokkoknál is támogatott.
+- JSON/PHP-regisztrált csoportok: a fordítási preferenciák szinkronizálása kapcsolható, teljesítmény és forráskezelés szerint hangolható.
+- Fejlesztői API: konstansok és horgok a finomhangoláshoz.
+
+Példa konstansokra:
+```
+/* Alapértelmezett repeater-szinkron kikapcsolása és jelölések elrejtése az ATE-ben */
+define('ACFML_REPEATER_SYNC_DEFAULT', false);
+define('ACFML_HIDE_FIELD_ANNOTATIONS', true);
+```
 
 ## Gyakorlati példák
 
-### Webshop termékadatok fordítása
+- Marketing landing: Hero cím, alcím, CTA (Text, Link). Állítsd a csoportot „Same fields” módba, a szövegek az ATE-ben fordulnak, a linkek automatikusan a célnyelvi oldalakra mutatnak.
+- Portfólió galéria: Projektenként más képek nyelvenként. Az Image mezőkhöz használd a Media Translationt, így a szerkezet egységes marad, a képek viszont nyelvspecifikusak.
+- Magazin – GYIK Repeater: Ha azonos sorrendet és sorstruktúrát akarsz, hagyd bekapcsolva a szinkront. Ha piaconként eltérő kérdéssor kell, kapcsold ki a szinkront és használd a „Different fields” módot.
+- Gutenberg + ACF Blocks: A tartalom „Same fields” módban ATE-vel fordul; összetettebb, nyelvenként eltérő blokkelrendezéshez válts „Different fields”-re.
+- Elementor lista: Dinamikus ACF-mezőkből épített „Csapat” szekció. A címek és leírások az ATE-ben fordulnak, a képek nyelvenként cserélhetők.
 
-Egy webshopban gyakran szükség van arra, hogy a termékek részletes leírását, specifikációit több nyelven is elérhetővé tegyük. Az ACFML segítségével könnyedén fordíthatók az ilyen típusú egyedi mezők, így minden vásárló saját nyelvén olvashatja a termékinformációkat.
+## Legjobb gyakorlatok
 
-### Többnyelvű blogposztok egyedi mezői
+- Mezőnevek legyenek egyediek, és ne kezdődjenek aláhúzással, hogy az ATE minden értéket megjelenítsen.
+- Repeater/Flexible: előre döntsd el, egyezzen-e a struktúra (Copy/Sync) vagy térjen el nyelvek között (Copy once + kézi szerkesztés).
+- Média: „Same fields” módban a médiacserét a Media Translationon végezd, ne közvetlenül a szerkesztőben.
+- JSON/PHP csoportok: csak ott szinkronizálj preferenciát, ahol valóban szükséges – gyorsabb lesz az admin.
 
-Egy többnyelvű blog esetében előfordulhat, hogy minden bejegyzéshez külön-külön kell hozzáadni egyedi információkat (pl. szerző neve, publikálás dátuma, kapcsolódó bejegyzések). Az ACFML segítségével ezeket az adatokat könnyedén fordíthatjuk és kezelhetjük.
+## Előnyök és értékajánlat
 
-### Portfólió oldalak kezelése
+- Kevesebb hibakör: nincs eltűnő érték, rosszul klónozott repeater vagy téves címke.
+- Gyorsabb fordítás: ATE, memóriával és automatizált fordítással.
+- Skálázhatóság: nagy, adatintenzív ACF-architektúrák is kezelhetők, blokkokkal és builderrel.
 
-Ha portfólió oldalt üzemeltetsz, ahol bemutatod a munkáidat vagy projektjeidet, gyakran szükség van részletes információk megadására minden egyes projektről. Az ACFML lehetővé teszi ezeknek az adatoknak a többnyelvű kezelését, így minden látogató számára elérhetők lesznek a projektek részletei.
+## Kinek ajánlott?
 
-## Tippek a hatékony használathoz
+- Ügynökségek és fejlesztők, akik ACF-re építik a struktúrát több nyelven.
+- Tartalomgazdag portálok, magazinok, marketing oldalak, portfóliók.
+- Gutenberg (ACF Blocks) és Elementor/Divi felhasználók, akik dinamikus ACF-tartalmat fordítanak.
 
-- **Fordítási beállítások:** Ügyelj rá, hogy az egyedi mezők fordítási beállításait helyesen állítsd be a WPML felületén. Ez biztosítja, hogy minden mező helyesen jelenjen meg minden nyelven.
-- **Tesztelés:** Mielőtt élesben használnád a fordított mezőket, mindig teszteld le azokat különböző nyelvi beállításokkal. Így elkerülheted az esetleges hibákat vagy hiányzó fordításokat.
-- **Dokumentáció:** Használd ki az ACFML és a WPML részletes dokumentációját és támogatási fórumait. Ezek hasznos információkat és tippeket nyújthatnak a bővítmények hatékony használatához.
+## Rövid technikai jegyzet
 
-## Szószedet
+A 2.0-s főverzió hozta a mezőcsoport-szintű fordítási módokat és az egyszerűsített beállítást. A 2.1.x kiadások tovább javították a teljesítményt, bővítették a CPT/taxonómia címke-fordítást és bevezették a WYSIWYG link-konverziót.
 
-- **ACF (Advanced Custom Fields):** Egy WordPress bővítmény, amely lehetővé teszi egyedi mezők létrehozását és kezelését.
-- **WPML (WordPress Multilingual Plugin):** Egy WordPress bővítmény, amely lehetővé teszi weboldalak többnyelvű kezelését.
-- **Fordítási beállítások:** Azok a beállítások, amelyek meghatározzák, hogyan kezeljük az egyes mezők fordítását különböző nyelveken.
-- **Adminisztrációs felület:** Az a kezelőfelület, ahol a weboldal adminisztrátora beállításokat végezhet és tartalmat kezelhet.
+## Gyors induló ellenőrzőlista
 
-Az Advanced Custom Fields Multilingual bővítmény kiváló megoldást nyújt azoknak, akik többnyelvű weboldalt üzemeltetnek, és szeretnék az egyedi mezők kezelését egyszerűvé és hatékonnyá tenni. Az integráció a WPML-lel és a széleskörű funkcionalitás biztosítja, hogy minden szükséges mezőt könnyedén lehessen fordítani és karbantartani.
+1. Telepítsd: ACF/ACF PRO, WPML, String Translation, ACFML.
+2. Válaszd ki csoportonként a fordítási módot.
+3. Állítsd be az Expert preferenciákat a speciális mezőkhöz.
+4. Teszteld egy bejegyzés fordítását (ATE vagy natív szerkesztő).
+5. Ellenőrizd a média- és repeater-viselkedést.
+6. Fordítsd a taxonómiákat és a hozzájuk kötött ACF-mezőket.
+7. Kapcsold be a WYSIWYG link-konverziót és finomhangold a konstansokat/horgokat.

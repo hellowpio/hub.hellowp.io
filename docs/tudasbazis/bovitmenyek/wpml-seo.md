@@ -1,62 +1,77 @@
-# WPML SEO
+---
+title: "WPML SEO"
+description: "A WPML‑hez készült kiegészítő, amely teljes többnyelvű SEO‑kompatibilitást ad a Yoast SEO és Rank Math bővítményekhez: fordítható SEO‑mezők, helyes hreflang és sitemap kezelés."
+sidebar_label: "WPML SEO"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A WPML SEO egy kifejezetten hasznos eszköz, amely segít a többnyelvű weboldalak keresőoptimalizálásában. Az eszköz integrációja megkönnyíti a különböző nyelveken elérhető tartalmak SEO-jának kezelését és optimalizálását, így weboldalad könnyebben megtalálható lesz a keresőmotorokban.
+A WPML SEO egy „összekötő” bővítmény a WPML és a legnépszerűbb SEO‑pluginek (Yoast SEO, Rank Math) között. Segítségével a többnyelvű webhelyeden a SEO‑mezők és technikai elemek nem csak lefordíthatók, hanem minden nyelven helyesen, konzisztensen működnek. Megoldja azt a gyakori gondot, hogy a címek, meta leírások, slugok, breadcrumbs és a hreflang/sitemap logika külön életet él, emiatt duplikáció, kannibalizáció vagy feltérképezési hiányosságok jelentkeznek.
 
-## Funkcionalitás
+## Hogyan működik?
 
-### Globális SEO szövegek fordítása
+A bővítmény a WPML fordítási folyamataiba „beköti” a Yoast/Rank Math által kezelt SEO‑adatokat. Amikor egy bejegyzést, oldalt vagy taxonómiát fordítasz, az on‑page SEO‑mezők együtt utaznak a tartalommal. Technikai szinten a WPML SEO kezeli a többnyelvű hreflangot és a sitemapok felépítését is, így a keresőrobotok minden nyelvi verziót helyesen látnak.
 
-A WPML SEO lehetővé teszi, hogy a weboldal globális SEO szövegeit is lefordítsd. Ez azt jelenti, hogy az oldalad összes fontos SEO eleme, beleértve a meta leírásokat és kulcsszavakat, könnyedén elérhetővé válik a különböző nyelveken.
+## Fő funkciók, érthetően
 
-### URL-ek formázása
+- SEO‑mezők fordítása és szinkronban tartása  
+  Fordíthatod a SEO címet, meta leírást, URL‑slugot, képek ALT és felirat mezőit, breadcrumbs szövegeket és a közösségi megosztási metákat. A Yoast/Rank Math által generált schema adatok is a megfelelő nyelvi változattal társulnak.
 
-Az eszköz lehetőséget biztosít arra, hogy kiválaszd, hogyan szeretnéd formázni az URL-eket a különböző nyelvű oldalakon. Ez nagyban segíti az oldal struktúráját és hozzájárul az oldal SEO teljesítményéhez.
+- Hreflang kezelés két módon  
+  Alapértelmezés szerint a hreflang a sitemapokban jelenik meg (ideális a modern keresőrobotoknak). Igény esetén átteheted az oldal fejléceibe (head), hogy minden nyelvi pár explicit legyen.
 
-### On-page SEO attribútumok fordítása
+- Többnyelvű sitemap logika  
+  A forrás és a fordítások egyetlen sitemap indexben, helyes nyelvi összerendeléssel jelennek meg. A Yoast/Rank Math automatikusan felveszi a fordításokat – így a robotok könnyen feltérképezik az összes verziót.
 
-A WPML SEO segítségével egyszerűen lefordíthatod az on-page SEO attribútumokat, mint például a címsorokat, meta leírásokat és alt szövegeket. Így minden nyelven optimalizált tartalommal rendelkezhetsz.
+- Taxonómiák SEO‑metája fordítható  
+  Kategóriák, címkék és egyéb taxonómiák SEO‑címei és leírásai a WPML fordítási felületén fordíthatók, nem kell admin‑nyelvet váltogatnod.
 
-### Breadcrumbs lokalizálása
+- Globális SEO‑szövegek fordítása  
+  A breadcrumbs kezdőlap‑címkéje, sablonszövegek és egyéb globális stringek a WPML String Translationben kényelmesen kezelhetők.
 
-Az eszköz lehetővé teszi a breadcrumbs (morzsamenü) lokalizálását, ami segít a felhasználóknak jobban navigálni az oldalon. Ez nemcsak a felhasználói élményt javítja, hanem a keresőmotorok számára is hasznos információkat biztosít.
-
-### Hreflang címkék automatikus létrehozása
-
-A WPML SEO automatikusan létrehozza a hreflang címkéket, amelyek segítenek a keresőmotoroknak megérteni, hogy melyik oldal melyik nyelven érhető el. Ez növeli az esélyét annak, hogy a megfelelő nyelvű oldal jelenjen meg a keresési találatok között.
-
-## Integráció más eszközökkel
-
-### Yoast SEO
-
-A WPML SEO teljes mértékben kompatibilis a Yoast SEO bővítménnyel. Ez lehetővé teszi, hogy az összes Yoast által kínált funkciót kihasználd a többnyelvű oldaladon is.
-
-### Rank Math
-
-A WPML SEO szintén kiválóan működik együtt a Rank Math bővítménnyel. A Rank Math funkcióinak teljes kihasználása mellett biztosíthatod, hogy minden nyelven optimalizált tartalommal rendelkezel.
+- Teljes kompatibilitás Yoast SEO‑val és Rank Math‑tal  
+  A WPML SEO kifejezetten ehhez a két bővítményhez ad tartós, támogatott kompatibilitási réteget.
 
 ## Gyakorlati példák
 
-### Többnyelvű webáruház
+- Blogcikk több nyelven: a magyar „SEO cím” és „Meta leírás” fordításai az angol és német változatban külön‑külön adhatók meg és szinkronban maradnak a tartalommal, nincs kézi másolgatás.
+- WooCommerce breadcrumbs: Rank Math használatakor a kenyérmorzsa útvonal minden nyelven helyes lesz; a korábban hiányzó vagy hibás elemeket a WPML SEO rendezi.
+- Kategóriaoldalak SEO‑ja: a „Hírek” kategória SEO‑címe/leírása a fordítási irányítópulton fordítható, nem kell külön a kategória adminját nyelvenként megnyitnod.
+- Hreflang a head‑ben: ha szükséged van rá, egy kapcsolóval átteheted a hreflang címkéket a head‑be.
 
-Ha egy többnyelvű webáruházat üzemeltetsz, a WPML SEO segít abban, hogy minden termékoldal optimálisan jelenjen meg minden nyelven. Ez növeli az esélyét annak, hogy a termékeid megtalálhatók legyenek a különböző keresési találatok között.
+```php
+// Hreflang címkék áthelyezése a <head> részbe (wp-config.php)
+define('WPML_SEO_ENABLE_SITEMAP_HREFLANG', false);
+// Ezután a WPML → Languages → SEO opciók alatt engedélyezd a head‑beli megjelenítést.
+```
 
-### Nemzetközi blog
+## Telepítés és beállítás
 
-Egy nemzetközi blog esetében a WPML SEO lehetővé teszi, hogy minden bejegyzés optimalizált legyen minden nyelven. Így növelheted az olvasók számát és javíthatod a keresőmotorokban való helyezésedet.
+1. Telepítsd és aktiváld: WPML (core) + WPML String Translation.  
+2. Telepítsd a választott SEO‑plugint: Yoast SEO vagy Rank Math.  
+3. Telepítsd és aktiváld a WPML SEO bővítményt.  
+4. Fordítási folyamat: a WPML Translation Dashboardból küldd fordításra a tartalmat; az SEO‑mezők az Advanced Translation Editorban együtt fordulnak.  
+5. Hreflang: alapból a sitemapban jelenik meg; ha a head‑et választod, állítsd be a fenti konstanssal, majd kapcsold be a vonatkozó opciót.
 
-### Turisztikai oldal
+Megjegyzés: A WPML SEO a WPML Multilingual CMS és Multilingual Agency csomagok része. AIOSEO és SEOPress esetén általában nincs rá szükség.
 
-Egy turisztikai oldalon fontos, hogy az információk több nyelven is elérhetők legyenek. A WPML SEO segít abban, hogy minden oldal megfelelően optimalizált legyen, így könnyebben megtalálhatók lesznek a keresőmotorokban.
+## Ismert korlátok és óvintézkedések
 
-## Szószedet
+- Rank Math speciális permalink opciói (pl. kategória bázis eltávolítása) többnyelvű oldalon problémákat okozhatnak. Törekedj konzervatív permalink‑sémára.
+- Mindig tartsd naprakészen a WPML‑t, a WPML SEO‑t és a SEO‑plugint; nyitott hibák esetén a frissítések rendszerint tartalmaznak javításokat.
 
-- **SEO**: Search Engine Optimization, keresőoptimalizálás.
-- **URL**: Uniform Resource Locator, internetes cím.
-- **Meta leírás**: Rövid leírás egy weboldal tartalmáról, amely megjelenik a keresőmotorok találati listájában.
-- **Alt szöveg**: Alternatív szöveg, amely leírja egy kép tartalmát.
-- **Breadcrumbs**: Morzsamenü, navigációs elem, amely mutatja az oldal helyét a weboldal hierarchiájában.
-- **Hreflang címke**: HTML attribútum, amely jelzi a keresőmotorok számára az oldal nyelvét és régióját.
-  
-Ez a tartalom segít megérteni a WPML SEO funkcionalitását és előnyeit, valamint gyakorlati példákkal illusztrálja annak alkalmazási lehetőségeit.
+## Előnyök és értékajánlat
+
+- Időmegtakarítás: az SEO‑mezők a fordítási folyamattal együtt menedzselhetők, nincs duplikált munka.  
+- Technikai pontosság: helyes hreflang, konzisztens sitemapok, breadcrumbs és canonicals minden nyelven.  
+- Kevesebb hibakockázat: a Yoast/Rank Math együttműködését dedikált kompatibilitási réteg biztosítja.
+
+## Kinek ajánlott?
+
+- Többnyelvű vállalati, tartalommarketing és e‑kereskedelmi oldalak üzemeltetőinek, akik WPML‑t és Yoast SEO‑t vagy Rank Math‑ot használnak.  
+- Ügynökségeknek és fejlesztőknek, akik skálázható, hibamentes többnyelvű SEO‑folyamatot akarnak.  
+- Szerkesztőségi csapatoknak, ahol a fordítók egységes felületen kezelik a tartalmat és az SEO‑adatokat.
+
+Ha külön domaint, aldomaint vagy könyvtáras struktúrát használsz nyelvekhez, a WPML és a WPML SEO együtt kezeli a sitemapokat és a hreflangot. A beállítás után érdemes minden nyelvi tulajdont ellenőrizni a keresőkben, hogy a feltérképezés teljes és konzisztens legyen.
+
+Összefoglalva: a WPML SEO pontosan azt adja, amire a többnyelvű SEO‑hoz szükséged van — fordítható és szinkronban tartott SEO‑mezőket, valamint stabil technikai alapot a helyes hreflanghoz és sitemapokhoz, minimális kézi munkával.

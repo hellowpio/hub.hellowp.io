@@ -1,58 +1,84 @@
-# LearnDash LMS - MemberPress Integration
+---
+title: "LearnDash LMS - MemberPress Integration"
+description: "Hivatalos LearnDash kiegészítő, amely a MemberPress tagsági szinteket a LearnDash tanfolyam-hozzáféréssel kapcsolja össze, automatikus be- és leiratkozással."
+sidebar_label: "LearnDash LMS - MemberPress Integration"
+---
 
-A LearnDash LMS és a MemberPress integrációja lehetővé teszi, hogy kurzusaidat összekösd a MemberPress tagsági rendszerével. Ez az integráció sokféle funkcióval rendelkezik, amelyek révén hatékonyan kezelheted az online kurzusaidat és a tagsági rendszereidet.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+A LearnDash LMS – MemberPress Integration egy hivatalos LearnDash bővítmény, amely összeköti a tagsági szinteket a tanfolyam-hozzáféréssel. Amikor valaki megvásárol egy tagságot, **automatikusan beiratkozik** a hozzá rendelt tanfolyamokra; amikor a tagság lejár vagy lemondásra kerül, **automatikusan leiratkozik**. Így nem kell kézzel kezelni a hozzáféréseket, elkerülhetők a “vettem, de nem férek hozzá” helyzetek, és skálázhatóvá válik a kurzuseladás.
 
-### Tagsági szintek létrehozása
-A MemberPress segítségével különböző tagsági szinteket hozhatsz létre, és ezekhez különféle kurzusokat rendelhetsz hozzá. Ez lehetővé teszi, hogy tagjaid különböző szintű hozzáférést kapjanak a kurzusokhoz attól függően, hogy melyik tagsági szintet választották.
+## Hogyan működik?
 
-### Kuponok és kedvezménykódok
-Az integráció lehetővé teszi kuponok vagy kedvezménykódok alkalmazását, amelyeket a felhasználók beválthatnak a kurzusaidra. Ez hasznos lehet promóciók és különleges ajánlatok során.
+- A MemberPress-ben létrehozott **tagsági szinthez** kiválasztod, mely LearnDash tanfolyamok tartoznak.
+- A kiválasztott tanfolyamok hozzáférési módját **Closed**-ra állítod, így a beléptetést a tagság vezérli.
+- Vásárláskor a rendszer beiratkoztatja a felhasználót; a tagság státusza (aktív, lemondott, lejárt) alapján a hozzáférés **automatikusan frissül**.
+- Több tanfolyam is rendelhető egy tagsághoz, így **csomagként** értékesíthetsz.
 
-### Kurzusok csomagban történő értékesítése
-Az integráció lehetővé teszi, hogy több kurzust egyetlen csomagban értékesíts. Ez azt jelenti, hogy egyetlen áron több kurzushoz is hozzáférést biztosíthatsz a felhasználóknak.
+## Fő funkciók és mit csinálnak
 
-### Előfizetéses hozzáférés
-Az integráció segítségével előfizetéses rendszert is kialakíthatsz, ahol a felhasználók havi vagy éves díj ellenében kapnak hozzáférést a kurzusokhoz. Ez folyamatos bevételt biztosíthat számodra.
+### Tanfolyam-hozzárendelés tagságokhoz
+A MemberPress tagsági szerkesztőjében a LearnDash fülön kiválasztod a tanfolyamokat. A hozzárendelés után a tagság jogosultsága dönti el, ki mit lát. Ezzel a teljes beiratkozási logika egységesen kezelhető.
 
-## További eszközök, amelyekkel zökkenőmentesen működik
+### Automatikus beiratkozás és leiratás
+Vásárláskor azonnali beiratkozás történik, lemondáskor vagy lejáratkor a rendszer kiveszi a felhasználót a kurzus(ok)ból. Nem kell manuálisan adminisztrálni, csökken a hibázás esélye.
 
-### WooCommerce
-A WooCommerce integrációval könnyedén kezelheted a fizetéseket és a termékek értékesítését. A WooCommerce és a MemberPress közötti összeköttetés biztosítja, hogy a felhasználók minden szükséges fizetési opciót megtaláljanak.
+### Csomagolt értékesítés (bundling)
+Egy tagsághoz **több tanfolyam** is rendelhető, így könnyen létrehozhatsz “Bronz/Ezüst/Arany” csomagokat vagy tematikus kurzuscsomagokat.
 
-### Stripe és PayPal
-A Stripe és a PayPal fizetési átjárók támogatása révén könnyedén kezelheted a fizetéseket. Ezek az átjárók globálisan ismertek és elfogadottak, így biztosítják a zökkenőmentes fizetési élményt.
+### Kuponok és próbaverziók
+A MemberPress kuponjai és próbaverziós beállításai **közvetlenül érvényesek** a LearnDash tanfolyamokra a tagságon keresztül. Így egyszerűen futtathatsz akciókat vagy kínálhatsz ingyenes próbanapokat.
 
-### Zapier
-A Zapier integrációval automatizálhatod a különböző folyamatokat. Például beállíthatod, hogy amikor egy új tag regisztrál, automatikusan hozzáadódjon egy adott e-mail listához.
+### Retroactive Tool
+Ha utólag adsz új tanfolyamot egy meglévő tagsághoz, vagy valakinél elmaradt a beiratkozás, a Retroactive Tool **visszamenőleg rendez**. Végigpásztázza a tranzakciókat/szabályokat, és beiratkoztatja az érintett felhasználókat.
 
-## Használati helyzetek
+### Háttérbeiratkozás nagy csomagoknál
+Ha egy tagsághoz **5 vagy több** tanfolyam tartozik, a beiratkoztatás **háttérfolyamatban** fut. Ehhez működő cron szükséges, hogy a beiratkozások megbízhatóan lefussanak nagy terhelésnél is.
 
-### Online oktatási platformok
-Ha online oktatási platformot üzemeltetsz, az integráció segítségével könnyedén kezelheted a tagságokat és a kurzusokat. Különböző tagsági szintekkel biztosíthatsz hozzáférést az eltérő tudásszintű tanulóknak.
+Példa WP-CLI paranccsal:
+```
+wp cron event run --due-now
+```
 
-### Vállalati képzések
-Vállalatok számára kínálhatsz előfizetéses alapon hozzáférést különböző képzési anyagokhoz. Így a vállalatok könnyedén menedzselhetik alkalmazottaik képzését.
-
-### Személyes fejlődési programok
-Különböző személyes fejlődési programokat is kínálhatsz, ahol a felhasználók havi vagy éves előfizetés ellenében hozzáférhetnek az anyagokhoz.
+### E-kereskedelem és checkout
+A checkout és a fizetés teljes folyamata a MemberPressen megy keresztül. A támogatott fizetési átjárók és e-kereskedelmi funkciók a MemberPress képességeit követik.
 
 ## Gyakorlati példák
 
-- **Példa 1:** Egy nyelviskola különböző nyelvi kurzusokat kínál különböző tagsági szinteken. Az alapszintű tagság csak az alapfokú kurzusokhoz biztosít hozzáférést, míg a haladó szintű tagság minden elérhető kurzushoz.
-  
-- **Példa 2:** Egy fitnesz edző havi előfizetéses rendszerben kínál online edzésprogramokat. Az előfizetők havonta új edzésvideókat és étrendi tanácsokat kapnak.
-  
-- **Példa 3:** Egy marketing szakértő különböző marketing tanfolyamokat kínál csomagban. Az alapcsomag tartalmazza az alapvető tanfolyamokat, míg a prémium csomag az összes elérhető tanfolyamot magában foglalja.
+- **Csomagszintek**: Bronz tagság = 2 alapkurzus; Ezüst = Bronz + haladó kurzus; Arany = minden kurzus. A vásárló egyetlen előfizetéssel megkapja a szintjéhez tartozó összes kurzust.
+- **Próbaverziós kampány**: 7 napos próba az “Ezüst” tagsághoz. A felhasználó azonnal hozzáfér a kijelölt tanfolyamokhoz, majd a próba végén automatikusan folytatódik az előfizetés.
+- **Utólag bővített csomag**: Hozzáadsz még 1 kurzust az “Arany” tagsághoz. A Retroactive Tool lefuttatásával a korábbi előfizetők is megkapják a hozzáférést.
+- **Vállalati belső akadémia**: Éves vállalati tagság több tucat kurzussal. A háttérbeiratkozás cron mellett stabilan fut, így nincs időtúllépés a böngészőben.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **LearnDash LMS:** Egy WordPress alapú tanulásmenedzsment rendszer.
-- **MemberPress:** Egy WordPress alapú tagságkezelő plugin.
-- **WooCommerce:** Egy WordPress alapú e-kereskedelmi plugin.
-- **Stripe:** Egy online fizetési átjáró.
-- **PayPal:** Egy online fizetési rendszer.
-- **Zapier:** Egy automatizációs eszköz, amely összekapcsol különböző alkalmazásokat.
+- **Időmegtakarítás**: megszűnik a kézi be- és kijelentkeztetés.
+- **Kevesebb hiba**: automatikus jogosultság-kezelés, Retroactive Tool-lal kiegészítve.
+- **Rugalmas értékesítés**: csomagok, előfizetések, kuponok és próbák egyben.
+- **Skálázhatóság**: nagy kurzuscsomagok esetén háttérbeiratkozás cron-nal.
+- **Egységes checkout**: a fizetés és a hozzáféréskezelés logikája egy helyen.
 
-Az LearnDash LMS és MemberPress integrációjának használatával hatékonyan kezelheted az online kurzusaidat és tagsági rendszereidet, miközben biztosítod a zökkenőmentes felhasználói élményt.
+## Telepítés és alapbeállítás
+
+1. **Szükséges bővítmények**: aktív LearnDash és aktív MemberPress licenc. Az integrációs add-on ingyenes.
+2. **Telepítés**: LearnDash LMS > Add-Ons > “MemberPress for LearnDash” > Install/Activate, vagy manuális feltöltés a letöltött ZIP segítségével.
+3. **Tanfolyamok beállítása**: a kurzusok hozzáférési módját állítsd **Closed**-ra.
+4. **Hozzárendelés tagsághoz**: MemberPress > Membership szerkesztése > Membership Options > LearnDash fül > válaszd ki a tanfolyamokat.
+5. **Nagy csomagok (5+)**: gondoskodj működő cron-ról a háttérbeiratkozáshoz.
+6. **Visszamenőleges javítás**: MemberPress > Settings > LearnDash fül > Tools > Run, majd mentsd a beállításokat.
+
+## Követelmények, megjegyzések, jó gyakorlatok
+
+- **Kötelező** a tanfolyamoknál a **Closed** hozzáférési mód, különben a tagság nem fogja kezelni a beléptetést.
+- A fizetési átjárók és e-kereskedelmi részletek a MemberPress képességeit követik.
+- Az integráció opcionális: LearnDash önmagában is védhet tananyagokat, de a MemberPress ad haladó tagság-, előfizetés-, kupon- és jelentés-funkciókat.
+- A bővítmény fejlesztője a **LearnDash**; hivatalos add-onként folyamatosan karbantartott.
+
+## Kinek ajánlott?
+
+- **Online akadémiák és edtech vállalkozások**: csomagolt és előfizetéses értékesítéshez.
+- **Vállalati képzési programok**: sok kurzus, sok felhasználó, szükség van megbízható automatikára és háttérfolyamatokra.
+- **Trénerek, ügynökségek**: rugalmas kupon- és próbaverziós kampányok, minimális adminisztrációval.
+- **Bárki, aki szeretné a checkoutot és a hozzáférést** egyetlen, stabil tagsági rendszerben kezelni.
+
+Ha az a célod, hogy a kurzusaidat tagsági modellel, megbízható automatikával és skálázható háttérrel add el, ez az integráció pontosan erre való.

@@ -1,90 +1,93 @@
-# GP Premium
+---
+title: "GP Premium"
+description: "Moduláris prémium kiegészítő a GeneratePress témához: blokk‑alapú sablonépítés, fejlett elrendezés- és stílusvezérlés, valamint gyors indulást segítő kezdőoldal-könyvtár."
+sidebar_label: "GP Premium"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-GP Premium egy sokoldalú és könnyen használható bővítmény, amely számos funkcióval és testreszabási lehetőséggel gazdagítja a weboldalad. Ez a bővítmény különösen azok számára hasznos, akik szeretnék egyedi megjelenést és funkcionalitást biztosítani anélkül, hogy mélyebb technikai tudásra lenne szükségük. Nézzük meg részletesen, milyen lehetőségeket kínál GP Premium:
+A **GP Premium** a GeneratePress ingyenes WordPress témához készült prémium bővítmény. Úgy bővíti a témát, hogy közben megmarad a teljesítmény: moduláris felépítésének köszönhetően csak azt töltöd be, amire szükséged van. Ha ügynökségként, fejlesztőként vagy haladó felhasználóként gyakran kell gyorsan, mégis rugalmasan testreszabható webhelyeket építened, a GP Premium megszünteti a gyermek-témák és nehézkes page builderek kényszerét. Blokk‑alapú sablonokkal, precíz elrendezés- és stílusvezérléssel, valamint kész **starter site** mintákkal dolgozhatsz – gyorsan, kódolás nélkül vagy minimális kóddal.
 
-### Moduláris felépítés
+Licencelés: éves előfizetéssel frissítéseket és támogatást kapsz, a licenc legfeljebb 500 webhelyen használható. Elérhető önálló termékként és csomagban is.
 
-GP Premium moduláris felépítése lehetővé teszi, hogy csak azokat a funkciókat aktiváld, amelyekre valóban szükséged van. Ez segít optimalizálni a weboldalad teljesítményét és sebességét.
+## Fő funkciók és hogyan működnek
 
-### Site Library
+### Elements + Block Elements (Theme Builder)
+- A **Block Elements** a blokkszerkesztőben enged egyedi sablonelemeket készíteni: fejlécek, láblécek, hősávok, tartalmi sablonok, oldalsávok, hook‑alapú beillesztések.
+- **Megjelenítési szabályokkal** célzottan alkalmazhatod: globálisan vagy feltételekhez kötve (pl. bejegyzéstípus, kategória, szerző, adott oldal).
+- A blokkos megközelítés együttműködik a generatív blokkokkal, így pixelpontos, dinamikus komponenseket alkothatsz.
 
-A Site Library segítségével könnyedén importálhatsz előre elkészített sablonokat és dizájnokat. Ezek a sablonok különféle témákhoz és iparágakhoz készültek, így gyorsan elindíthatod a weboldalad anélkül, hogy nulláról kellene kezdened.
+### Site Library (starter sablonok)
+- Több tucat professzionális **kezdőoldal** importálható pár kattintással. Ezek teljes oldalstruktúrákat és beállításokat hoznak, amelyeket utána finomhangolsz a saját tartalmadra.
 
-### Layout Controls
+### Haladó stílusvezérlés
+- **Színek, tipográfia, térközök, háttérképek**: részletes kontroll a témakomponensek felett. A GeneratePress újabb kiadásaiban számos stílusopció közvetlenül a témába költözött, így az irányítás egységes és átlátható.
 
-A Layout Controls segítségével részletesen szabályozhatod a weboldalad elrendezését. Állíthatsz be margókat, paddingeket, tartalom szélességet és még sok más paramétert. Ez különösen hasznos akkor, ha egyedi dizájnt szeretnél létrehozni.
+### Blog modul
+- Rugalmas **archívum- és bejegyzéselrendezések**: oszlopos és masonry rácsok, kivonatkezelés, metaelemek láthatósága, végtelen görgetés vagy gombos betöltés.
 
-### Typography
+### Menu Plus és Secondary Navigation
+- **Ragadós navigáció**, mobil fejlécek, **off‑canvas**/slide‑out menü, automatikus elrejtés-görgetés effektek.
+- Másodlagos menü külön elhelyezési és igazítási opciókkal, teljes szélességű vagy keretezett kialakítással.
 
-A Typography modul lehetővé teszi a betűtípusok, betűméretek, betűközök és egyéb tipográfiai elemek testreszabását. A Google Fonts integrációval több száz betűtípus közül választhatsz, így biztosan megtalálod az igényeidnek megfelelőt.
+### WooCommerce integráció
+- Kiterjesztett **bolt-, termék- és pénztár-oldal** beállítások: rácsok, képarányok, kapcsolódó/upsell termékek, menükosár ikon, **“sticky” kosárpanel**, kenyérmorzsa és több. A használathoz a WooCommerce bővítmény szükséges.
 
-### Colors
-
-A Colors modul segítségével könnyedén megváltoztathatod a weboldalad színeit. Testreszabhatod a szövegek, linkek, hátterek és más elemek színeit, hogy tökéletesen passzoljanak a márkádhoz.
-
-### Elements
-
-Az Elements modul lehetővé teszi egyedi elemek hozzáadását és testreszabását a weboldaladon. Ide tartoznak például a saját fejlécek, láblécek, oldalsávok és más egyedi blokkok.
-
-### WooCommerce Integration
-
-GP Premium kiválóan működik együtt a WooCommerce bővítménnyel, így könnyedén létrehozhatsz egyedi megjelenésű webáruházat. Szabályozhatod a termékoldalak elrendezését, színeit és tipográfiáját is.
-
-### Menu Plus
-
-A Menu Plus modul segítségével fejlett navigációs menüket hozhatsz létre. Állíthatsz be sticky menüket, mobilbarát menüket és egyéb navigációs elemeket.
-
-### Spacing
-
-A Spacing modul lehetővé teszi az oldalad különböző részei közötti távolságok finomhangolását. Így biztosíthatod, hogy minden elem harmonikusan helyezkedjen el az oldalon.
-
-## Együttműködés más eszközökkel
-
-### Beaver Builder és Elementor
-
-GP Premium zökkenőmentesen integrálódik népszerű oldalépítő bővítményekkel, mint például a Beaver Builder és az Elementor. Ez lehetővé teszi, hogy vizuális szerkesztők segítségével még egyszerűbben készítsd el az egyedi oldalakat.
-
-### WooCommerce
-
-Ahogy már említettük, GP Premium kiválóan működik együtt a WooCommerce bővítménnyel. Ez különösen hasznos azok számára, akik online áruházat szeretnének létrehozni és testreszabni.
-
-### Yoast SEO
-
-A Yoast SEO bővítménnyel való integráció lehetővé teszi, hogy optimalizáld a weboldalad keresőmotorokra. Így biztosíthatod, hogy a tartalmad könnyen megtalálható legyen a keresési eredményekben.
+### Disable Elements, Spacing, Backgrounds
+- Oldalanként tilthatod a komponenseket (pl. címsor, fejléc, lábléc, navigáció), illetve globálisan vezérelheted a **szélességeket, margókat és paddingokat**, valamint a háttérképeket. Így gyorsan állítasz össze letisztult, céloldal‑szerű nézeteket.
 
 ## Gyakorlati példák
 
-### Blog készítés
+- **Ügynökségi folyamat:** importálsz egy starter site‑ot, majd Block Elements‑szel készítesz egy egyedi fejlécet. Megjelenítési szabály: csak a Blog és Kategória archívumokon aktív. A többi oldalon marad az alapfejléc.
+- **Kampánylanding:** ugyanarra a bejegyzéstípusra több sablont hozol létre. Egyik sablon hősávval és CTA‑val csak az “Esemény” kategórián, a másik kódolt elemek nélkül a “Hírek” kategórián jelenik meg.
+- **Mobil navigáció:** bekapcsolod a sticky headert és az off‑canvas menüt. Hosszú menüdet mobilon kényelmes, ikon‑vezérelt panelbe költözteted.
+- **WooCommerce bolt:** kétoszlopos terméklistát állítasz, nagyított képekkel és “sticky” kosárral, hogy a felhasználó görgetés közben is lássa a kosár állapotát.
 
-Ha egy professzionális blogot szeretnél indítani, GP Premium segíthet abban, hogy egyedi kinézetet adj az oldaladnak. A tipográfia és színbeállításokkal könnyedén megteremtheted a megfelelő vizuális hangulatot.
+Példa megjelenítési szabályokra (illusztráció):
+```
+Element: Page Hero
+Include: Bejegyzéstípus = Bejegyzés
+Exclude: Kategória = Hírek
+Hook: after_header
+```
 
-### Üzleti weboldal
+## Előnyök és értékajánlat
 
-Egy kisvállalkozás weboldalának létrehozása során GP Premium modulkészlete kiváló alapot nyújt. Az előre elkészített sablonokból kiindulva gyorsan beállíthatod a szükséges oldalakat és funkciókat.
+- **Gyermek-téma nélkül** alakítható sablonozás és hook‑kezelés – tisztább, karbantarthatóbb megoldás.
+- **Gyors indulás**: starter site import, majd finomhangolás. Projektek közt újrahasznosítható munkafolyamat.
+- **Teljesítménybarát**: moduláris felépítés, minimális bloat.
+- **Page builder nélkül** is haladó elrendezések: kevesebb bővítmény, kevesebb konfliktus, kevesebb karbantartás.
+- **Skálázható licenc**: sok webhelyen használható, támogatással és frissítésekkel.
 
-### Online áruház
+## Kinek ajánlott?
 
-Ha online áruházat szeretnél indítani, GP Premium segítségével testreszabhatod a termékoldalak megjelenését és elrendezését. Így könnyedén létrehozhatsz egyedi vásárlói élményt.
+- **Ügynökségeknek**: egységes, gyors kivitelezés több projekten, újrahasznosítható elemekkel.
+- **Freelancereknek és fejlesztőknek**: blokk‑alapú theme builder, precíz kontroll kódhegyek nélkül.
+- **Haladó felhasználóknak és webshop‑tulajdonosoknak**: WooCommerce‑re szabható téma‑szintű finomhangolás, jobb mobil navigáció és UX.
 
-### Portfólió oldal
+## Telepítés és követelmények
 
-Művészek és kreatív szakemberek számára GP Premium ideális megoldás portfólió oldalak készítéséhez. Az Elements modul segítségével egyedi galériákat és bemutatókat hozhatsz létre.
+- Előfeltétel: aktív **GeneratePress** téma.
+- Telepítés:
+  1. Töltsd fel a gp-premium.zip fájlt bővítményként (ne témaként).
+  2. Aktiváld a bővítményt.
+  3. Az adminban kapcsold be a szükséges modulokat.
+- **Licenckulcs**: a frissítésekhez és értesítésekhez aktiváld a licencet.
+- WooCommerce funkciókhoz külön aktiválnod kell a WooCommerce bővítményt.
 
-## Szószedet
+## Fontos tudnivalók az életciklusról
 
-- **Moduláris felépítés**: Olyan struktúra, amelyben különálló funkciók aktiválhatók vagy deaktiválhatók.
-- **Site Library**: Előre elkészített sablonok gyűjteménye.
-- **Layout Controls**: Az oldalak elrendezésének finomhangolását lehetővé tevő beállítások.
-- **Typography**: Tipográfiai elemek testreszabása.
-- **Colors**: Színek testreszabása.
-- **Elements**: Egyedi elemek hozzáadása és testreszabása.
-- **WooCommerce Integration**: Webáruház létrehozását támogató funkciók.
-- **Menu Plus**: Fejlett navigációs menük létrehozása.
-- **Spacing**: Távolságok finomhangolása az oldalon belül.
-- **Beaver Builder**: Népszerű oldalépítő bővítmény.
-- **Elementor**: Népszerű vizuális szerkesztő bővítmény.
-- **Yoast SEO**: Keresőmotor-optimalizáló bővítmény.
+- Az **Elements** modul egységes keretbe hozta a korábbi Page Header és Hooks megoldásokat (migrációval).
+- A **Block Elements** bevezetésével a blokk‑alapú szerkesztés az alapértelmezett út.
+- Számos **szín- és tipográfia** beállítás közvetlenül a témába költözött, így a vezérlés még inkább központosított.
+- A klasszikus **Sections** modul hivatalosan elavult; modern alternatíva a blokk‑alapú szerkesztés.
 
-GP Premium valóban sokoldalú eszköz, amely számos helyzetben nyújt praktikus megoldásokat a felhasználók számára.
+## Hibaelhárítás – gyors tippek
+
+- **“Missing style.css” hiba telepítéskor**: valószínűleg témaként próbáltad feltölteni. Telepítsd bővítményként.
+- **Site Library nem tölt be**: ellenőrizd, hogy a szerver eléri‑e a külső forrásokat és működik‑e a WordPress REST API; próbálj állandó hivatkozásokat újramenteni, frissítsd a mintalistát, és nézd meg nincs‑e host oldali védelem, ami blokkol.
+- **Nincs frissítési értesítés**: ellenőrizd a licencaktivációt és az internet‑elérést a szerveren.
+
+--- 
+
+A GP Premium lényege: gyorsan indíthatsz, blokk‑alapon építhetsz célzott sablonokat, miközben precízen kontrollálod a megjelenést – mindezt karcsú, teljesítményorientált keretrendszerben. Ha hatékony, skálázható és jól karbantartható WordPress‑megoldást keresel, ez az ökoszisztéma neked szól.

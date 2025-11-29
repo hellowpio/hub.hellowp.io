@@ -1,78 +1,118 @@
-# Request a Quote for WooCommerce
+---
+title: "Request a Quote for WooCommerce"
+description: "Ajánlatkérő (RFQ) bővítmény WooCommerce-hez: tételek ajánlatkosárba helyezése, testreszabható űrlap, állapotkezelés és megrendeléssé alakítás – kifejezetten B2B és egyedi árazású esetekhez."
+sidebar_label: "Request a Quote for WooCommerce"
+---
 
-## A funkciók részletes bemutatása
+## Mi ez és milyen problémát old meg?
 
-A **Request a Quote for WooCommerce** bővítmény lehetővé teszi, hogy a vásárlók termékeket adjanak hozzá egy ajánlatkérési kosárhoz, és egy testreszabható űrlap kitöltésével árajánlatot kérjenek. Ezzel a bővítménnyel egy teljes árajánlat-kezelési rendszert hozhatsz létre a webáruházadban.
+A Request a Quote for WooCommerce egy professzionális ajánlatkérő (RFQ) bővítmény. Segítségével a vevőid nem azonnal vásárolnak, hanem termékeket egy **ajánlatkosárba** tesznek, majd egy **testreszabható űrlapon** elküldik az igényüket. Ez különösen hasznos, ha B2B modellel dolgozol, nagy tételű vagy **egyedi árazású** termékeket árulsz, vagy többféle vevőkört (kisker/nagyker) kezelsz eltérő feltételekkel. Digitalizálja az ártárgyalást, csökkenti az e-mailes egyeztetést, és átlátható munkafolyamatot ad a teljes RFQ-kezeléshez.
 
-### Alapvető jellemzők és képességek
+## Hogyan működik röviden?
 
-#### Ajánlat gomb hozzáadása
+- A kiválasztott termék(ek)nél a vásárló **Add to Quote** gombot lát (igény szerint a kosár gomb helyett).
+- A tételek az **ajánlatkosárba** kerülnek (mini ajánlatkosár is elérhető), ahol a mennyiségek szerkeszthetők.
+- A vevő egy **űrlapon** megadja az igényeit (mezők szabadon bővíthetők), akár **ajánlott árakat** is.
+- Az admin az ajánlatot megkapja, státuszt állít, szükség szerint **egyedi árakat** rögzít, és küldi az értesítéseket.
+- Az elfogadott ajánlat egy kattintással **megrendeléssé** alakítható (akár a vásárlói oldalon is).
 
-Az ajánlat gombot specifikus termékekhez adhatod hozzá, hogy a vásárlók azokat az ajánlatkérési kosárba tegyék. Beállíthatod, hogy a gomb csak bizonyos felhasználói szerepköröknek jelenjen meg, valamint elrejtheted az árakat és az "add to cart" gombot is.
+## Fő funkciók, részletesen
 
-#### Többszörös szabályok létrehozása
+- **Gombok és ármegjelenítés szabályozása**
+  - Megjelenítheted az **Add to Quote** gombot bizonyos termékeken vagy kategóriákban.
+  - Lecserélheted a **Kosárba** gombot, elrejtheted az **árakat**, vagy egyedi szöveget jeleníthetsz meg.
+  - Szabályok köthetők **felhasználói szerepekhez** (vendégekhez is), így más élményt adsz kisker és nagyker vevőknek.
 
-Több szabályt hozhatsz létre, hogy különböző felhasználói szerepköröknek más-más beállításokat biztosíts. Például elrejtheted az árakat a nagykereskedelmi vásárlóknak, és helyettesítheted az "add to cart" gombot egy ajánlatkérési gombbal.
+- **Szabályalapú vezérlés**
+  - Részletes **Quote Rules**: termék, kategória, szerepkör, mennyiség vagy más feltételek alapján.
+  - Vegyes modellekhez ideális: pl. vendégnek csak ajánlatkérés, regisztrált kiskernek kosár + ajánlat, nagykernek kizárólag RFQ.
 
-#### Egyedi ajánlati űrlap mezők
+- **Ajánlatkosár és felület**
+  - Teljes értékű **ajánlatkosár** mennyiségmódosítással, több tétellel.
+  - **Mini ajánlatkosár** a fejlécben, mint a mini cart.
+  - Választható **egy- vagy kétoszlopos** ajánlatoldal-elrendezés.
 
-Korlátlan számú mezőt adhatsz hozzá az ajánlati űrlaphoz, hogy a vásárlóktól a szükséges információkat begyűjthesd. Ezek a mezők lehetnek szöveg, e-mail, szám, legördülő menü, jelölőnégyzet stb.
+- **Űrlapmezők, validáció, reCAPTCHA**
+  - Korlátlan számú, különböző típusú **mező** (szöveg, e-mail, szám, legördülő, checkbox stb.).
+  - Kötelező jelölések, rend, címkék, súgók – kevesebb visszakérdezés.
+  - Beépített **reCAPTCHA v2** támogatás a spam csökkentésére.
 
-### Ajánlatok kezelése a háttérből
+- **Ajánlatállapotok és értesítések**
+  - Állapotok: **új, folyamatban, elfogadva, elutasítva, lemondva** stb.
+  - Automatikus **e-mail értesítések** a vevőnek és az adminnak minden fontos lépésnél.
+  - E-mail sablonok **felülírhatók** a témában.
 
-#### Ajánlatok létrehozása és kezelése
+- **Admin-munkafolyamat és rendeléskonverzió**
+  - Külön menüpontok: **All Quotes**, **Quote Rules**, **Quote Fields**, **Settings**.
+  - Ajánlatok szerkesztése: tételek, mennyiségek, **egyedi árak**, státuszok.
+  - Elfogadás után az ajánlat **megrendeléssé alakítható**, akár a frontenden is engedélyezve.
 
-Az admin felületen megtekintheted a beérkezett ajánlatokat, amelyek tartalmazzák a vásárló adatait, a termékeket, mennyiséget és az esetleges ajánlott árat. Új ajánlatokat is létrehozhatsz és e-mailben elküldheted azokat a vásárlóknak.
+- **“Offered price” és PDF-ajánlat**
+  - A vevők termékenként megadhatják a **saját ajánlott árukat**.
+  - Professzionális **PDF-ajánlat** generálás több sablonnal, logóval, színekkel, céges adatokkal.
 
-#### Ajánlat státuszok
+- **Integráció és testreszabás**
+  - **REST API** végpontok ajánlatokhoz és szabályokhoz (GET/POST/PUT/DELETE).
+  - **WooCommerce Product Add-Ons** kompatibilitás (megjegyzés: fájlfeltöltés mező nem továbbítható az ajánlatba).
+  - **Oldalépítők** esetén alternatív hookok, ha a téma lecseréli az alap WooCommerce hookot.
+  - **E-mail sablonok** és nézetek felülírása a témában.
 
-Az ajánlatok kezelésének megkönnyítése érdekében többféle státuszt állíthatsz be, mint például "Függőben", "Folyamatban", "Elfogadva" stb. Az állapotváltozásokról automatikus e-mail értesítéseket küldhetsz a vásárlóknak.
+### REST API példa
 
-#### Ajánlat átalakítása rendelésre
+```
+POST /wp-json/wc/v3/quotes
+{
+  "customer_id": 123,
+  "line_items": [
+    { "product_id": 99, "quantity": 25, "offered_price": 12.5 }
+  ],
+  "status": "pending",
+  "meta_data": [
+    { "key": "delivery_deadline", "value": "2025-11-30" }
+  ]
+}
+```
 
-Az ajánlatot rendelésre konvertálhatod az admin felületen. Az ajánlott árat használhatod termékárként a rendelésben, és erről értesítheted a vásárlót.
+### Sablonok felülírása a témában
 
-### Testreszabási lehetőségek
+```
+yourtheme/woocommerce/addify/rfq/
+yourtheme/woocommerce/addify/rfq/emails/
+```
 
-#### Árak és kosár gomb elrejtése
+## Gyakorlati példák
 
-Elrejtheted az árakat és az "add to cart" gombot azon termékeknél, ahol az ajánlatkérés engedélyezett. Az ár helyett egyedi szöveget jeleníthetsz meg, és az "add to cart" gombot egyéni gombbal helyettesítheted.
+- **Nagyker értékesítés**: a viszonteladók nem látnak árakat és kosár gombot, csak ajánlatot kérhetnek. Az admin mennyiség és kedvezmény alapján ad egyedi árat, amit a vevő elfogad és rendelésre vált.
+- **Egyedi gyártás**: a vevő kiválasztja a terméket, az űrlapon megadja a specifikációt (méret, anyag, határidő), és ajánlatot kér. A PDF-ajánlat tartalmazza a részleteket és az egyedi árat.
+- **Vegyes B2B/B2C**: a kisker vásárlók rendes kosárral vásárolhatnak, de kérhetnek ajánlatot is; a nagyker szerepkörnek az árak rejtve, csak RFQ látható.
 
-#### E-mail értesítések
+## Előnyök és értékajánlat
 
-Számos automatikus e-mail értesítést állíthatsz be mind az adminnak, mind a vásárlóknak. Az alapértelmezett WooCommerce e-mail sablonokat testreszabhatod a témádba való felülírással.
+- **Időmegtakarítás**: strukturált űrlap, automatizált értesítések, egykattintásos konverzió.
+- **Pontosság és kontroll**: állapotok, auditálható folyamat, PDF-ek, szabályok.
+- **Rugalmasság**: szerepkör-alapú viselkedés, egyedi árazás, testreszabható sablonok.
+- **Skálázhatóság**: API-val külső rendszerekhez köthető (ERP, CRM).
 
-### Egyéb fontos jellemzők
+## Kinek ajánlott?
 
-- Mini ajánlati kosár, amely hasonlóan működik, mint a mini kosár
-- Ajánlati kosár oldalon termékek hozzáadása, eltávolítása, mennyiség módosítása
-- Ajánlati kosár és részletező oldal testreszabása
-- PDF generálás és csatolás az ajánlati e-mailekhez
-- Oldalépítő bővítményekkel való kompatibilitás
+- **B2B webáruházaknak**, akik tárgyalásos árakkal dolgoznak.
+- **Egyedi/összetett termékeket** értékesítőknek, ahol az ár igényfüggő.
+- **Vegyes B2B/B2C modelleknek**, ahol vevőkörönként eltérő élményt szeretnél adni.
+- **Csapatoknak**, akik a manuális e-mailezés helyett nyomon követhető RFQ-folyamatot akarnak.
 
-## Gyakorlati példák és felhasználási módok
+## Telepítés és első lépések
 
-### B2B értékesítés
+1. Telepítsd és aktiváld a bővítményt; a menüben megjelenik a **Request a Quote**.
+2. Hozz létre legalább egy **Quote Rule**-t: válaszd ki, hol jelenjen meg az RFQ, kinek rejtsd az árakat, milyen gombfeliratok legyenek.
+3. Állítsd össze az **ajánlatűrlap mezőit** (kötelező jelölések, sorrend).
+4. Konfiguráld az **e-mail értesítéseket** és a **PDF**-beállításokat.
+5. Szükség esetén kapcsold be a **reCAPTCHA v2**-t.
 
-A B2B árak gyakran függnek a rendelés mennyiségétől, termékkövetelményektől és szállítási dátumtól. A WooCommerce Request a Quote lehetővé teszi az árak elrejtését és az ajánlatkérés kényszerítését ezen ügyfélcsoportok számára.
+## Tippek és hibaelhárítás
 
-### Személyre szabott termékek
+- Ha az **Add to Quote** gomb nem jelenik meg, ellenőrizd, hogy a termék **alapára nem üres**. Beállíthatsz 0-t, az árat külön elrejtheted.
+- Oldalépítő használatakor válts **alternatív hookokra**, ha a téma nem a WooCommerce alap hookot használja.
+- Product Add-Ons esetén a **fájlfeltöltés** mezők tartalma nem kerül át az ajánlatba – tervezz ennek megfelelően.
+- Testreszabásnál használd a **sablonfelülírás** útvonalait, és tartsd kézben az üzeneteket, átirányításokat és AJAX visszajelzéseket a jobb UX érdekében.
 
-Az olyan termékek esetében, amelyeknek nincs fix ára és az ügyféligények alapján kell árajánlatot adni, a bővítmény segít abban, hogy az ügyfelek árajánlatot kérjenek.
-
-### Különböző felhasználói szerepkörök kezelése
-
-Például:
-- Vendég felhasználók: Árak megjelenítése és egyéni gomb a bejelentkezési/ regisztrációs oldalra
-- Általános vásárlók: Normál "add to cart" funkció
-- Kiskereskedők: Normál "add to cart" + Ajánlatkérés gomb
-- Nagykereskedők: Árak és "add to cart" elrejtve – csak ajánlatkérés opció
-
-## Szószedet
-
-- **Quote button:** Ajánlat gomb
-- **Add to cart:** Kosárba tesz
-- **Backend:** Admin felület
-- **Mini quote basket:** Mini ajánlati kosár
-- **Custom text:** Egyedi szöveg
-- **PDF generation:** PDF generálás
+Ezzel a bővítménnyel teljes, professzionális RFQ-folyamatot kapsz, amellyel átláthatóan, gyorsan és rugalmasan tudod kezelni az egyedi árazású értékesítéseket.

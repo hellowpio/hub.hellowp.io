@@ -1,53 +1,109 @@
-# MB Frontend Submission
+---
+title: "MB Frontend Submission"
+description: "Frontend űrlapokkal és felhasználói dashboarddal teszi lehetővé bejegyzések, egyedi mezők és modellek beküldését a Meta Box ökoszisztémában."
+sidebar_label: "MB Frontend Submission"
+---
 
-## Részletes bemutatás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az MB Frontend Submission egy Meta Box kiterjesztés, amely lehetővé teszi fejlesztők számára, hogy egyedi űrlapokat hozzanak létre, amelyek segítségével a felhasználók bejegyzéseket nyújthatnak be a weboldal előoldalán. A kiterjesztés támogatja mind a hagyományos bejegyzésmezőket, mind az egyedi mezőket, és az űrlapok bárhol beágyazhatók az oldalon shortcode-ok segítségével — további kódolás nélkül.
+Az MB Frontend Submission a Meta Box prémium kiegészítője, amellyel kódolás nélkül tudsz frontend űrlapokat és felhasználói „dashboardot” megjeleníteni. Így a látogatóid bejelentkezés után bejegyzéseket, egyedi bejegyzéstípusokat vagy modelleket küldhetnek be, szerkeszthetnek és törölhetnek – anélkül, hogy admin hozzáférést adnál nekik. Megoldja a strukturált adatgyűjtést (összes Meta Box mezőtípus), a jogosultságkezelés terheit és az egységes beküldési folyamatot.
 
-### Fő jellemzők
+## Hogyan működik röviden?
 
-- **Egyedi űrlapok létrehozása**: Bármilyen mezővel rendelkező űrlapokat készíthetsz.
-- **Haladó mezők**: WYSIWYG szerkesztővel ellátott űrlapok létrehozása.
-- **Előoldali beküldés**: A felhasználók előoldali beküldése.
-- **Adatkezelés a háttérben**: A beküldött űrlapok zökkenőmentes kezelése a háttérben.
-- **Bejegyzések státusza**: Azonnali státusok (publikálás, vázlat, felülvizsgálat).
-- **Bejegyzések kezelése**: Új bejegyzések létrehozása vagy meglévők szerkesztése.
-- **Felhasználói irányítópult**: A felhasználók megtekinthetik, szerkeszthetik vagy törölhetik beküldött bejegyzéseiket.
-- **Bejegyzésmezők támogatása**: Cím, tartalom, kivonat, thumbnail stb.
-- **Meta Box egyedi mezők támogatása**: Teljes körű támogatás az egyedi mezők számára.
-- **Űrlapok beágyazása**: Shortcode-okkal bárhol beágyazható.
+- A Meta Box-szal létrehozol egy mezőcsoportot (field group), és hozzárendeled egy post type-hoz vagy modellhez.
+- Egy oldalra blokk vagy shortcode segítségével kirakod a beküldési űrlapot.
+- Egy másik oldalra kirakod a felhasználói dashboardot, ahol a saját beküldések listázhatók, szerkeszthetők, törölhetők.
+- Az űrlap a WordPress alap mezőit (cím, tartalom, kivonat, dátum, kiemelt kép) és a Meta Box által definiált custom fieldeket is kezeli.
 
-### Együttműködés más eszközökkel
+## Fő funkciók
 
-Az MB Frontend Submission zökkenőmentesen működik együtt számos más eszközzel és bővítménnyel, mint például:
+### Frontend beküldési űrlap
+- Gutenberg blokk vagy shortcode formában jelenítheted meg.
+- Kezeli a WordPress bejegyzésmezőket és bármely Meta Box mezőtípust (dátum, WYSIWYG, fájl, kép, számskála stb.).
+- Támogatja az Ajax-alapú beküldést, visszaigazoló üzenetet, átirányítást és reCAPTCHA v3 védelmet.
+- Testreszabható a mezők sorrendje és feliratozása, valamint az űrlap megjelenése.
+- Dinamikus paraméterezés: URL query stringből és hookokkal tölthetsz elő értékeket, saját validációs logikát építhetsz.
+- Fájl-/kép-feltöltéshez a felhasználói szerepkörnek szüksége van az „upload_files” képességre; enélkül használj egyszerű „file”/„image” mezőtípusokat.
 
-- **Meta Box Core Plugin**: Az alap Meta Box bővítmény minden funkciójával kompatibilis.
-- **Shortcode-ok használata**: Az űrlapok könnyen beágyazhatók bármely oldalra vagy bejegyzésbe shortcode-ok segítségével.
-- **Taxonomy mezők kezelése**: Egyedi taxonómia mezők kezelése a Meta Box Core Plugin segítségével.
+### Felhasználói dashboard
+- Rövidkóddal listázza a bejelentkezett felhasználó saját beküldéseit.
+- Szerkesztés és törlés a listából, megerősítő üzenetekkel.
+- Testreszabható oszlopok és feliratok; lapozás; „Új hozzáadása” gomb.
+- Az „edit_page” attribútummal összekötheted az űrlapot tartalmazó oldallal.
 
-### Konkrét helyzetek és gyakorlati példák
+### Egyedi modellek és saját táblák
+- Nem csak bejegyzésekhez: űrlapokat modellekhez is készíthetsz (object_type = model).
+- Nagy forgalmú, sok metaadatot kezelő rendszerekhez saját táblákat és modelleket használhatsz a jobb teljesítményért.
 
-#### Listázási oldalak
+### Sablonfelülírás és integrációk
+- A kimeneti sablonok a témában felülírhatók (mb-frontend-submission könyvtárban).
+- Natív blokkok, valamint elemek a népszerű page builderekhez (pl. Bricks, Elementor).
+- Page builder sajátosság: ha a dashboard nem találja a beküldő űrlap rövidkódját, tedd a shortcode-ot közvetlenül az oldal tartalmába, vagy használd a builder beépített Meta Box elemeit.
 
-Az MB Frontend Submission segítségével a felhasználók ingatlanokat nyújthatnak be bérbeadásra, eladásra vagy egyéb célokra. A térkép, kép és videó mezőtípusok nagyszerű lehetőséget biztosítanak az ingatlanok bemutatására — mindez egyetlen oldalról.
+### Biztonság és validáció
+- Backend (PHP) és frontend (JS) validáció, egyedi hibaüzenetekkel.
+- Hookok a folyamat minden pontján (pl. átirányítás, feldolgozás utáni műveletek).
+- Iframe-be ágyazásnál a böngészők sütiszabályai miatt szükség lehet SameSite=None; Secure beállításokra és HTTPS-re.
 
-#### Véleményoldalak
+## Gyakorlati példák
 
-A közösségi véleménygyűjtés kiváló módja a tartalom összeállításának, különösen akkor, ha mindenki véleménye fontos. Az MB Frontend Submission segítségével a felhasználók könyvek, filmek, albumok vagy más típusú véleményeket nyújthatnak be, amelyek egy összesített értékeléssel jelennek meg. Használhatod a **Slider** vagy a **number system** mezőtípust, valamint a **Text Area** mezőt a vélemények beküldéséhez.
+- Közösségi blog/híroldal: az olvasók cikket küldenek be. A beküldések alapértelmezés szerint piszkozatba kerülhetnek, a szerkesztők ellenőrzik, a szerző pedig a dashboardon bármikor javíthat.
+- Apróhirdetés/ingatlan listing: ár, hely, állapot, galéria – mind strukturált mezőkben. A beküldő űrlap új hirdetéseket hoz létre, a dashboardon szerkeszthetők és törölhetők.
+- Vélemény-/értékelőoldal: csillagos értékelés, előnyök/hátrányok, termékképek – egységes űrlapon, következetes adatstruktúrával.
 
-#### Craigslist típusú oldalak
+## Shortcode példák
 
-Az internet nagyszerű módja a kapcsolatok elősegítésének és az áruk cseréjének. Az MB Frontend Submission segítségével lehetővé teheted az emberek számára, hogy felajánlják tárgyaikat, adományaikat, időt vagy erőforrásokat. Így segíthetsz több embernek kapcsolatba lépni és megszerezni azt, amire szükségük van.
+Beküldési űrlap (egyedi bejegyzéstípushoz):
+```
+[mb_frontend_form
+  id="listing_fields"
+  post_type="listing"
+  post_fields="title,content,thumbnail"
+  ajax="true"
+  confirmation="Köszönjük, a bejegyzésed beérkezett."
+  redirect="/profil/dashboard"
+  recaptcha_key="SITE_KEY"
+  recaptcha_secret="SECRET_KEY"]
+```
 
-### Felhasználási tippek
+Felhasználói dashboard:
+```
+[mb_frontend_dashboard
+  edit_page="123"
+  post_type="listing"
+  columns="title,date,status,actions"
+  label_title="Cím"
+  label_date="Dátum"
+  add_new="Új bejegyzés"]
+```
 
-- **Beállítás egyszerűsége**: Használd a shortcode-okat az űrlapok gyors és egyszerű beágyazásához.
-- **Adatbiztonság**: Győződj meg róla, hogy az űrlapok biztonságosan vannak konfigurálva az adatvédelmi szempontok figyelembevételével.
-- **Egyedi mezők testreszabása**: Készíts egyedi mezőket az igényeidnek megfelelően a Meta Box Core Plugin segítségével.
+Hasznos attribútumok (válogatás):
+- űrlap: id, post_type, post_fields, ajax, edit, allow_delete, force_delete, confirmation, redirect, delete_confirmation, object_type, object_id, recaptcha_key, recaptcha_secret
+- dashboard: edit_page, post_type, object_type, model_name, columns, title_link, add_new, label_title/label_date/label_status/label_actions
 
-## Szószedet
+## Gyorsindító
 
-- **Meta Box**: Egy WordPress bővítmény a testreszabott mezők és meta boxok kezelésére.
-- **Shortcode**: Rövid kódrészlet, amely egyszerűsíti bizonyos funkciók megvalósítását WordPress oldalakban.
-- **WYSIWYG szerkesztő**: "What You See Is What You Get" szerkesztő, amely valós időben mutatja a tartalom végső kinézetét.
-- **Taxonómia mezők**: Kategóriák és címkék kezelésére szolgáló mezők.
+1. Telepítsd és aktiváld a Meta Box-ot és az MB Frontend Submission kiegészítőt.
+2. Hozz létre egy mezőcsoportot, és rendeld az érintett post type-hoz vagy modellhez.
+3. Készíts egy „Beküldés” oldalt, és illeszd be a beküldési űrlap rövidkódját a kívánt attribútumokkal.
+4. Készíts egy „Dashboard” oldalt, tedd rá a dashboard rövidkódot, és az „edit_page” értékéhez add meg a beküldő oldal ID-jét.
+
+## Előnyök és értékajánlat
+
+- Admin terhelés csökkentése: nincs szükség szerzőknek admin hozzáférésre.
+- Strukturált, konzisztens adatok: minden Meta Box mezőtípus elérhető.
+- Gyors bevezetés: blokkokkal és shortcode-okkal, kódolás nélkül.
+- Skálázható: modellek és saját táblák támogatása nagy adatvolumenhez.
+- Biztonságos és testreszabható: validáció, reCAPTCHA, hookok, sablonfelülírás.
+
+## Célközönség
+
+- Tartalomgyártó oldalak tulajdonosai, akik közösségi beküldést szeretnének.
+- Piactér-, apróhirdetés- és listing-üzemeltetők, ahol a felhasználói tételek kezelése kritikus.
+- Ügynökségek/fejlesztők, akik gyorsan, stabil alapon akarnak frontend űrlapokat és szerkesztői folyamatot építeni ügyfeleiknek.
+
+## Tippek és hibaelhárítás
+
+- Ha a dashboard azt jelzi, hogy gond van a shortcode-dal, ellenőrizd, hogy az „edit_page” valóban arra az oldalra mutat, ahol a beküldő űrlap rövidkódja a tényleges oldal-tartalomban szerepel (ne builder-specifikus mezőben).
+- Media feltöltéshez biztosíts „upload_files” jogosultságot, vagy használj egyszerű fájl/kép mezőket.
+- Iframe-be ágyazásnál állítsd a sütik SameSite és Secure attribútumait, és használj HTTPS-t.

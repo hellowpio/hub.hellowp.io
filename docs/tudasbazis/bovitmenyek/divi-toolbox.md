@@ -1,53 +1,101 @@
-# Divi Toolbox
+---
+title: "Divi Toolbox"
+description: "Divi-specifikus WordPress bővítmény, amely száz+ testreszabási opciót ad a Divi témához – kódolás nélkül, egy központi felületen."
+sidebar_label: "Divi Toolbox"
+---
 
-## Általános opciók: Gyors helyszíni változtatások
+## Mi ez és milyen problémát old meg?
 
-A Divi Toolbox lehetővé teszi számodra, hogy kiválaszd azokat az elemeket, amelyeket meg szeretnél változtatni. Amikor engedélyezel egy funkciót, az megjelenik a Theme Customizer-ben, ahol néhány kattintással végezhetsz el helyszíni módosításokat és fejlesztéseket. Ez az eszköz rengeteg időt takarít meg neked és több száz opciót ad hozzá a Divi Theme Customizer-hez.
+A **Divi Toolbox** a Divi témához készült kiegészítő bővítmény. Arra való, hogy a megszokott „kellene egy kis CSS/PHP/JS” feladatokat kattintgatós beállításokkal oldd meg. Egy helyre hozza a gyakran hiányzó finomhangolásokat: fejléc és mobilmenü vezérlés, lábléc trükkök, blogelrendezések, előtöltő, popupok, részecskés hátterek, mikróinterakciók. Így nem kell sok apró plugint összeraknod és kódot toldoznod: gyorsabb a munka, kevesebb a hiba.
 
-## Logó és fejlécek: Egyedi megjelenés létrehozása
+## Hogyan működik?
 
-A logódat és a fejlécet könnyedén módosíthatod. Létrehozhatsz egyedi lenyíló menüket, hozzáadhatsz CTA menüpontot, vagy interaktívabbá teheted a menüt hover-effektusokkal. Megváltoztathatod a logót a rögzített fejlécen, létrehozhatsz átfedő logó effektust, és bármilyen layoutot megjeleníthetsz a Divi könyvtárból a fejléc előtt és után. Mindezek a változtatások testreszabhatók közvetlenül a Theme Customizer-ben, és a Menü modulokra is alkalmazhatók.
+Aktiválás után két helyen kapsz beállításokat:
+- a **Divi menüben** (Divi → Divi Toolbox) külön szekciókra bontva,
+- a **Theme Customizerben** élő előnézettel (Divi → Theme Customizer → Divi Toolbox).
 
-## Mobilmenü: A mobil verzió finomhangolása
+Csak Divivel működik. A bővítmény teljesítménybarát: kizárólag a bekapcsolt opciókhoz tölti be a szükséges egy darab CSS/JS fájlt; a látványos effektek (pl. Particles, Parallax Scroll, 3D tilt) külön JS-t igényelnek, ezeket is csak akkor kapod meg, ha tényleg használod. Modern PHP környezet javasolt.
 
-Hozd létre a legjobb mobilélményt a mobilmenü beállításával! Ezzel az új beállításkészlettel rögzítheted a mobilmenüsávot, engedélyezheted a slide-in mobilmenüt, hozzáadhatsz hamburger ikon animációkat, összecsukhatod a beágyazott almenüket, és megváltoztathatod a logót a mobilmenüben! Ezek a főbb funkciók, és mindegyikük saját testreszabási lehetőségekkel rendelkezik.
+## Fő funkciók, érthetően
 
-## Blog: Tedd lenyűgözővé!
+### Admin és rendszer
+- **Login oldal arculata**: logó, színek, hátterek átállítása céges brandre.
+- **Divi Library shortcode**: elrendezéseket shortcode-ként is beilleszthetsz, így Widgetekben vagy klasszikus tartalmakban is használhatod őket.
+- **Projects poszttípus elrejtése/átnevezése**: ha nem használod a Divi Projects-et, egyszerűen tüntesd el.
+- **SVG és betűtípus-feltöltés engedélyezése**: designerek kedvence, nem kell külön „MIME fix” plugin.
 
-Unod már az alapértelmezett Divi blog elrendezést? A Toolbox segítségével percek alatt megváltoztathatod! A Divi Toolbox kilenc egyedi elrendezést kínál a blog kategóriák és archív oldalak számára. Minden elemet tovább testreszabhatsz a választott elrendezésben. Egyedi dobozt adhatsz hozzá az egyes blogbejegyzésekhez, kapcsolódó bejegyzéseket jeleníthetsz meg, valamint előző/következő bejegyzés navigációval tarthatod fenn a látogatók érdeklődését.
+### Globális UI és effektek
+- **Előtöltő (preloader)**: töltőanimáció a tartalom előtt; brandingelt élmény, kevesebb „villogás”.
+- **Popupok (max. 5)**: Divi Library-vel felépített tartalmakat jeleníthetsz meg felugróként; kampányokhoz, űrlapokhoz ideális.
+- **Közösségi ikonok bővítése**: YouTube, LinkedIn, Pinterest és társaik támogatása, stílusban egységesítve.
+- **Sticky elemek**: bármely szekciót vagy modult görgetéskor rögzíthetsz.
+- **Jelszóval védett űrlap stílus**: egységes, márkázott megjelenés.
+- **Particles háttér és egyedi görgetősáv**: modern, mégis könnyen állítható látvány.
 
-## Lábléc: Végtelen lehetőségek
+### Fejléc és navigáció
+- **Hover- és lenyíló animációk** a menüpontokon: gördülékeny, profi menüélmény.
+- **Logócsere és árnyékváltás** fixált fejlécnél: jobb olvashatóság és kontraszt.
+- **CTA gomb a menüben**: kiemelt hívás a navigációban (pl. Ajánlatkérés).
+- **Overlapping logó, egyéni fix fejléc**: egyedi arculati megoldások kód nélkül.
+- **Divi Library szekciók a menü elé/mögé**: például info-sávok, promo csíkok.
 
-A Divi Toolbox segítségével CSS nélkül is stílusossá teheted a láblécet! Testreszabhatod a widgeteket és a láblécmenüt, több közösségi ikon hozzáadásával – és stílusozásával! A Toolbox lehetővé teszi a sticky footer vagy footer reveal effekt gyors engedélyezését, valamint a vissza a tetejére gomb testreszabását. További lehetőségként egyedi Divi elrendezéseket adhatsz hozzá globálisan a lábléc előtt és után.
+### Lábléc és widgetek
+- **Sticky footer és „footer reveal”**: a lábléc elegánsan gördül a tartalom fölé.
+- **Vissza az elejére gomb**: testreszabható, akár más horgonyra is mutathat.
+- **Widget-stílusok és Library-blokkok** a lábléchez: rugalmas elrendezési lehetőségek.
 
-## Extrák: Különleges hatások különleges weboldalakhoz
+### Mobil fejlesztések
+- **Mobil böngésző témaszín és breakpoint**: jobban illeszted az arculatot és a töréspontokat.
+- **Fix mobil menüsáv vagy egyéni trigger**: gyors elérés mobilon.
+- **20+ nyit/zár animáció és 9 féle hamburger animáció**: finom, reszponzív mikróinterakciók.
+- **Mobil logócsere, menü-tartalom** (logó, kereső, közösségi ikonok, kosár link): valódi, használható mobil navigáció.
+- **Összecsukható al-menük, mobil parallax, oszlopszám-váltás**: jobb mobil olvashatóság és teljesítmény.
 
-Talán mindig is szerettél volna egy elegáns preloadert, de túl nagy kihívásnak tűnt? Most már megteheted! A Divi Toolbox emellett lehetővé teszi egyedi felugró ablakok engedélyezését, amelyek bármilyen elrendezést jelenítenek meg a Divi könyvtárból. Könnyedén hozzáadhatsz mozgó részecske hátteret, gépelési effektust vagy 3D dőlés effektust!
+### Blog és archívumok
+- **9 kész bloglista-elrendezés**: archívumokhoz és a Blog modulhoz, kód nélkül.
+- **Post meta ikonokkal**, oldalsáv globális stílusai vagy elrejtése.
+- **„Read more” gomb** hozzáadása/testreszabása.
+- **Kapcsolódó bejegyzések, előző/következő navigáció, szerződoboz**, szépített hozzászólás-forma.
+
+### Modul-kiegészítések
+- **Egérkövető overlay** Portfolio/Galéria modulhoz: látványos hover a képeken.
+- **Email optin „inline”**: kompakt feliratkozó űrlap tartalmon belül.
+- **Typing effekt és 3D Tilt**: néhány kattintással aktiválható, CSS osztállyal célzott.
+- **Magasság-kiegyenlítés** (blurbs, testimonials, pricing): rendezett kártyarácsok.
+- **Térkép pin cseréje, másodlagos gomb-stílus, accordion/toggle ikon animáció**.
+- **Egyszerű parallax sebességek** egyedi CSS osztályokkal.
 
 ## Gyakorlati példák
 
-### Egyedi fejléc létrehozása
+- **Ügynökségi sablon**: beállítasz egy fix mobil menüsávot, egységes hamburger animációt, 2-3 blogelrendezést és egy előtöltőt. Ezt exportálod, majd minden új Divi-projektnél 1-2 óra finomhangolással kész a konzisztens UX.
+- **Kampány-popup**: a Divi Library-ben építesz egy kuponos felületet, a Toolboxban popupként kijelölöd, majd meghatározod, mikor és hol jelenjen meg. Nem kell külön popup-bővítmény.
+- **Tartalomfókuszú blog**: bekapcsolod a szerződobozt, a kapcsolódó posztokat és a „Read more” gombot, egységes oldalsáv-stílussal. A blog áttekinthetőbb, a mélyebb olvasás aránya javul.
+- **Webáruház mobil UX**: a mobilmenübe bepakolod a logót, keresőt és kosár linket, a menü-animációkat és az al-menük összecsukhatóságát bekapcsolod – kevesebb koppintás, gyorsabb navigáció.
 
-Egy webáruház számára szeretnél egyedi fejléceket létrehozni, amelyekben különböző CTA-kat helyezel el. A Divi Toolbox segítségével könnyen megváltoztathatod a fejléc elemeit, hozzáadhatsz lenyíló menüket és interaktív effekteket.
+## Telepítés és licenc
 
-### Mobilbarát menü kialakítása
+- Telepítés: Bővítmények → Új hozzáadása → Feltöltés → divi-toolbox.zip → Telepítés → Aktiválás.
+- Licenc: Beállítások → Divi Toolbox Activation alatt add meg az API-kulcsot a frissítésekhez.
+- Beállításcsoportok: **Admin, Global, Header, Footer, Blog, Mobile, Modules**.
 
-Egy blog esetében fontos, hogy a mobil verzió könnyen kezelhető legyen. A Toolbox lehetővé teszi számodra, hogy testreszabhasd a mobilmenüt, így az felhasználóbarátabbá válik.
+## Előnyök és értékajánlat
 
-### Blog elrendezésének testreszabása
+- **Kevesebb plugin, kevesebb kód**: a tipikus Divi-hiányosságokat egy csomag kezeli.
+- **Időmegtakarítás**: élő előnézetben kapcsolgatható opciók, azonnali eredmény.
+- **Konzisztens arculat**: ugyanolyan menü-, lábléc- és blogviselkedés több projekten.
+- **Teljesítmény-tudatos**: csak a használt funkciók erőforrásait tölti be.
 
-Egy magazin oldal számára különböző blog kategória elrendezéseket szeretnél használni. A Toolbox kilenc egyedi elrendezést kínál, amelyekkel minden kategória és archív oldal egyedivé tehető.
+## Kinek ajánlott?
 
-### Lábléc stílusozása
+- **Ügynökségeknek és szabadúszóknak**: skálázható, ismételhető Divi-setup, gyors átadás.
+- **Egyéni weboldal-tulajdonosoknak**: látványos effektek és hasznos UX-elemek kódolás nélkül.
+- **Tartalomközpontú oldalaknak**: professzionális blog/archívum megoldások egy kattintásra.
+- **Divi fejlesztőknek**: kevesebb karbantartás, tisztább projektstruktúra.
 
-Egy vállalati weboldalon szeretnél elegáns láblécet használni közösségi ikonokkal és egyedi vissza a tetejére gombbal. A Toolbox segít ebben anélkül, hogy bármilyen CSS kódot kellene írnod.
+## Bevált gyakorlatok és korlátok
 
-## Szószedet
+- **Csak Divivel működik**; más sablon alatt nem helyettesít funkciókat.
+- **Projekt elején érdemes bevezetni**: ha már sok egyedi CSS-ed van, ütközhet a beállításokkal.
+- **Child theme továbbra is hasznos** a sablonfájlszintű, fejlettebb módosításokhoz.
 
-- **CTA**: Call to Action – cselekvésre ösztönző elem.
-- **Preloader**: Betöltési animáció, amely a tartalom betöltéséig látható.
-- **Slide-in menu**: Oldalról betolódó menü.
-- **Sticky footer**: Rögzített lábléc.
-- **Footer reveal effect**: Olyan lábléceffektus, amely görgetéskor tűnik elő.
-- **3D tilt effect**: 3D dőlés hatás.
-- **Theme Customizer**: Az eszköz, amellyel testreszabhatod a WordPress téma kinézetét és funkcióit.
+Szükséged van egy gyors induló check-listára különböző projekttípusokhoz? Jelezd, és adok egy lépésről lépésre listát a legfontosabb opciók bekapcsolásához.

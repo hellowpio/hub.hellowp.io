@@ -1,84 +1,106 @@
-# WooCommerce Bookings
+---
+title: "WooCommerce Bookings"
+description: "Hivatalos WooCommerce kiterjesztés időpontok, bérlések és helyfoglalások értékesítéséhez rugalmas elérhetőséggel, árazással és naptárintegrációval."
+sidebar_label: "WooCommerce Bookings"
+---
 
-A WooCommerce Bookings lehetővé teszi, hogy a vásárlóid könnyedén foglaljanak időpontokat, tegyenek le helyfoglalásokat vagy béreljenek eszközöket közvetlenül a weboldaladon keresztül. Ez a bővítmény nem csak időt takarít meg számodra, hanem a naptáradat is automatikusan kitölti, miközben a weboldalad végzi el a munka nagy részét.
+## Mi ez és milyen problémát old meg?
 
-## Foglalási lehetőségek
+A WooCommerce Bookings a WooCommerce hivatalos bővítménye, amellyel **foglalható termékeket** hozhatsz létre: időpontok, bérlések, idősávos belépők vagy terem-/eszközfoglalások értékesíthetők közvetlenül a webáruházadban. Kiváltja a manuális egyeztetést, megelőzi a dupla foglalásokat, kezeli az időzónákat és a **komplex árazást**, miközben neked egy átlátható admin naptárt ad.
 
-### Meghatározott opciók
-A WooCommerce Bookings lehetővé teszi, hogy előre meghatározott időpontokat kínálj, például egy osztály, időpont vagy vezetett túra esetében.
+## Hogyan működik röviden?
 
-### Rugalmas időpontválasztás
-Hagyd, hogy a vásárlók maguk választhassák ki a számukra legmegfelelőbb időpontot, például egy szállodai bejelentkezés esetén. Mindkét opció esetén blokkolhatsz időszakokat, így nem kell aggódnod a túlzott foglalások miatt.
+A termékadatoknál választod a **Bookable product** típust, majd beállítod:
+- a foglalási **időblokkokat** (pl. 30/60 perc vagy nap),
+- a **min./max. előfoglalási** időt és a **pufferidőket**,
+- opcionálisan **Persons** (létszám, személytípusok) és **Resources** (személyzet/helyiség/eszköz) kezelést,
+- a **költségeket** (alapdíj, blokkonkénti díj, megjelenítési ár),
+- az **elérhetőségi szabályokat** és az **időzóna**-logikát,
+- igény szerint **jóváhagyásos** folyamatot és **Google Naptár** szinkront.
 
-### Egyéni vagy csoportos foglalások
-A bővítmény lehetővé teszi, hogy egyéni foglalásokat vagy több résztvevős eseményeket is kezelj. Beállíthatod a minimális és maximális résztvevők számát, így biztosítva, hogy minden esemény zökkenőmentesen menjen.
+```text
+Minta beállítás (összefoglaló)
+- Típus: Bookable product
+- Időblokk: 60 perc
+- Előfoglalás: min. 24 óra, max. 30 nap
+- Puffer: 15 perc, adjacent buffering bekapcsolva
+- Persons: Has persons (Felnőtt/Gyerek), kapacitás 1–12
+- Resources: Has resources (Szoba A/B), automatikus kiosztás
+- Costs: Base + Block, hétvégi felár szabály
+- Elérhetőség: H-P 9–18, hétvége zárva
+- Jóváhagyás: szükséges, e-mail értesítések aktívak
+```
 
-### Különleges árazási lehetőségek
-A WooCommerce Bookings segítségével különleges árakat kínálhatsz csoportoknak, több helyfoglalás esetén, korai madaraknak vagy hétvégén magasabb árakat állíthatsz be. Az árazást teljesen testreszabhatod az igényeid szerint.
+## Fő funkciók részletesen
 
-## Időzónakezelés
+### Időblokkok és foglaláslogika
+- **Blokk-alapú időkezelés**: percek/órák/napok szerinti foglalás, fix vagy ügyfél által megadott időtartammal.
+- **Előfoglalási ablak**: szabályozod, milyen korán és meddig előre lehet foglalni.
+- **Pufferidők**: automatikus szüneteket iktatsz a foglalások közé; az „adjacent buffering” a szomszédos foglalások mindkét oldalára pufferel.
 
-A szolgáltatásaid elérhetőségét a vásárlók saját időzónájában jelenítheted meg. Ez különösen hasznos online órák, virtuális találkozók vagy bérlések esetén, amelyek kiszállítást igényelnek.
+### Elérhetőség és időzónák
+- **Részletes elérhetőségi szabályok** termék- és erőforrás-szinten (nyitvatartás, kivételek, kizárások).
+- **Alapértelmezett állapot**: megadhatod, hogy a termék általában elérhető vagy tiltott, és erre építesz szabályokat.
+- **Időzóna-támogatás**: az idősávok és visszaigazolások megjeleníthetők a látogató saját időzónájában, különösen óra/perc alapú foglalásoknál.
 
-## Foglalás visszaigazolása és lemondása
+### Persons (Személyek)
+- **Létszámkezelés**: min./max. fő és kapacitás.
+- **Személytípusok**: pl. felnőtt/gyerek eltérő árral és szabályokkal.
+- **Fejenkénti árazás**: az árak automatikusan szorzódnak személyenként.
 
-Beállíthatod, hogy minden foglalás megerősítést igényeljen, így időt biztosítva számodra a felülvizsgálathoz. Automatikus emlékeztetőket küldhetsz ki a foglalás előtt, csökkentve ezzel a nem megjelenések számát.
+### Resources (Erőforrások)
+- **Megosztott erőforrások**: személyzet, szoba vagy eszköz kapacitással.
+- **Választás vagy kiosztás**: az ügyfél választhat konkrét erőforrást, vagy a rendszer automatikusan kiosztja.
+- **Erőforrás-költségek és elérhetőség**: külön költség- és szabályrendszer erőforrásonként.
 
-## Emlékeztetők küldése
+### Árazás (Costs)
+- **Alapdíj (Base)** és **blokkdíj (Block)** kombinálható.
+- **Tartomány-alapú szabályok**: napszak, nap, létszám vagy időtartam szerinti felár/kedvezmény.
+- **Megjelenítési ár**: min./max. ár kommunikálása a termékoldalon.
 
-Küldj emlékeztető e-maileket a vásárlóknak, amikor foglalás történik, megerősítik azt, és egy nappal a foglalás dátuma előtt. Ha többet szeretnél tenni, különleges emlékeztetőt is küldhetsz közvetlenül az oldaladról.
+### Naptár és adminisztráció
+- **Admin naptárnézet**: hónap/nap/ütemezés nézet az összes foglalás áttekintéséhez.
+- **Kézi foglalás**: adminból új foglalás rögzíthető rendeléshez kötötten vagy anélkül.
+- **Szerkesztés és kezelés**: meglévő foglalások módosíthatók egy helyen.
 
-## Dupla foglalások elkerülése
+### Jóváhagyás és értesítések
+- **Előzetes jóváhagyás**: a beérkező foglalás először „jóváhagyandó”, majd fizetéskérés megy az ügyfélnek.
+- **E-mail életciklus**: értesítések a státuszokhoz (függőben, jóváhagyva, visszaigazolva), plusz rendelésszintű levelek.
 
-A szükséges erőforrásokat hozzárendelheted az egyes foglalásokhoz, így elkerülve a dupla foglalásokat. Például, ha egy 2 órás menyasszonyi próbaidőpontot foglalsz egy stylisttal 3:30-ig, az a stylist nem lesz elérhető más menyasszony számára 3:00-kor.
-
-## Naptárkezelés és Google Calendar szinkronizálás
-
-Használd a naptár nézetet, hogy lásd, hogyan alakul a napod vagy hónapod. Frissítsd a meglévő foglalásokat vagy elérhetőségeket, és szűrd meg bizonyos szolgáltatások vagy erőforrások megtekintéséhez. A manuálisan bevitt foglalások is azonnal szinkronizálódnak a Google Calendar-ral.
-
-## További bővítmények és integrációk
-
-### Deposits
-Fogadj el előleget a foglalásokhoz.
-
-### AutomateWoo
-Automatizált foglalás-visszaigazoló vagy befejező e-mailekkel javíthatod az ügyfélélményt és csökkentheted a lemondások számát.
-
-### Follow-Ups
-Erősítsd meg az emlékeztető e-maileket és küldj további értesítéseket.
-
-### Bookings Availability
-Mutasd be az elérhető idősávokat egy oldalon vagy posztban.
-
-### Accommodation Bookings
-Ingyenes kiegészítő szállodák vagy panziók számára.
-
-### Product Vendors
-Engedd meg a szolgáltatóknak, hogy maguk adják hozzá és kezeljék ajánlataikat.
-
-### Product Add-Ons
-Kínálj kiegészítő szolgáltatásokat vagy limitált kiadású termékeket egy csoportos foglaláshoz.
+### Integrációk és kiegészítők
+- **Google Naptár**: egy- vagy kétirányú szinkron; kétirányú módban a Google-be írt események blokkolják az elérhetőséget.
+- **Kiegészítők**: előlegfizetés, nyilvános foglalási naptár, szállás-specifikus funkciók.
+- **Kompatibilitás**: modern WooCommerce-ökológia (pl. HPOS, blokkalapú kosár/checkout) támogatása.
+- **Fejlesztőknek**: hookok, sablonok, CSS, olvasási REST-végpontok, valamint export/import eszköz.
 
 ## Gyakorlati példák
 
-### Oktatási intézmények
-Oktatási intézmények használhatják ezt az eszközt online órák vagy tanfolyamok foglalására. A diákok kiválaszthatják a számukra legmegfelelőbb időpontot és az oktatók egyszerűen kezelhetik az órarendjüket.
+- **Szépségszalon**: 60 perces blokkok, 15 perc puffer, munkatársak mint erőforrások, az ügyfél kiválasztja a stylistot. Hétvégére felár szabály.
+- **Jógaóra/csoportos tréning**: fix idősávok, 20 fős kapacitás, „Felnőtt/Gyerek” személytípus külön árral. A foglalás automatikusan visszaigazolt.
+- **Kajakbérlés**: óradíjas blokkok, eszközök mint erőforrások megosztott kapacitással, puffer a ki- és visszaadásra. Kétirányú naptárszinkron a csapat beosztásához.
+- **Múzeumi idősávos belépő**: naponta több fix sáv, létszámkorlát, megjelenítési ár a min.–max. kommunikációhoz, előzetes jóváhagyás kikapcsolva a gyors kasszához.
 
-### Szállodák és panziók
-Szállodák és panziók számára kiváló megoldás az online szobafoglalások kezelésére. Az ügyfelek láthatják az elérhető időpontokat saját időzónájukban és előleget is fizethetnek.
+## Előnyök és értékajánlat
 
-### Szépségszalonok
-Szépségszalonok számára lehetővé teszi az időpontfoglalások kezelését és az erőforrások (pl. stylistok) hozzárendelését a foglalásokhoz, ezzel elkerülve a dupla foglalásokat.
+- **Kevesebb admin**: az ügyfelek önkiszolgálóan foglalnak, te pedig naptárból kezeled.
+- **Nincs dupla foglalás**: kapacitás, erőforrások és pufferidők gondoskodnak a biztonságról.
+- **Rugalmas árazás**: valós üzleti szabályokat tudsz leképezni (hétvégi felár, létszámkedvezmény).
+- **Jobb ügyfélélmény**: időzóna-kijelzés, tiszta idősávok, automatizált értesítések.
+- **Skálázhatóság**: személyek, erőforrások, naptárszinkron és kiegészítők egységes rendszerben.
 
-### Sportlétesítmények
-Sportlétesítmények számára lehetőséget biztosít pályafoglalásokra és csoportos edzések szervezésére. Az ügyfelek kiválaszthatják a számukra legmegfelelőbb időpontot és fizethetnek előre is.
+## Kinek ajánlott?
 
-## Szószedet
+- **Szolgáltatóknak**: szépségszalon, orvos, tanácsadó, fotós – időpontfoglalás cap-pel és jóváhagyással.
+- **Edzőknek/oktatóknak**: csoportos órák, workshopok, kurzusok fix idősávokkal és létszámkezeléssel.
+- **Túraszervezőknek**: vezetett túrák, fix turnusok erőforrás- és személykezeléssel.
+- **Bérbeadóknak**: eszköz-, terem- vagy járműbérlés kapacitással és pufferidőkkel.
+- **Látogatóközpontoknak/attrakcióknak**: idősávos belépők, dinamikus kontingensek.
+- **Szállásadóknak**: ha szállás-specifikus igényed van, kiegészítővel bővítheted.
 
-- **Deposits**: Előlegfizetés
-- **AutomateWoo**: Automatizált marketing eszköz
-- **Follow-Ups**: Emlékeztető e-mailek küldése
-- **Bookings Availability**: Elérhető idősávok megjelenítése
-- **Accommodation Bookings**: Szállásfoglalási kiegészítő
-- **Product Vendors**: Szolgáltatók kezelése
-- **Product Add-Ons**: Kiegészítő termékek és szolgáltatások
+## Korlátok és tippek
+
+- **Google Naptár**: alapból egy naptár kapcsolható; kétirányú módban a Google-események az üzlet elérhetőségét blokkolják. A Google-ben szerkesztett események nem módosítanak visszamenőleg WooCommerce-foglalást.
+- **Pufferidők**: a puffer egysége megegyezik a foglalási blokk egységével, és beleszámít az elérhetőségbe.
+- **Időzóna**: különösen óra/perc alapú foglalásoknál hasznos; tartsd szem előtt a nemzetközi ügyfeleket.
+
+Ezzel a bővítménnyel pontosan azt kapod, amire egy professzionális online foglalási rendszerben szükséged van: szabályozható idősávokat, valós üzleti logikát követő árazást, erőforrás- és létszámkezelést, valamint egy tiszta naptárt – mindezt a saját WooCommerce áruházadba integrálva.

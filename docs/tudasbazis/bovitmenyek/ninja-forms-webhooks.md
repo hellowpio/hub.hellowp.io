@@ -1,77 +1,131 @@
-# Ninja Forms - Webhooks
+---
+title: "Ninja Forms - Webhooks"
+description: "A Ninja Forms hivatalos Webhooks kiegészítője, amellyel űrlapadataidat HTTP kéréssel tetszőleges külső végpontra küldheted, kódolás nélkül."
+sidebar_label: "Ninja Forms - Webhooks"
+---
 
-A Ninja Forms Webhooks funkciója lehetővé teszi, hogy egyszerű POST vagy GET kérésekkel küldjünk adatokat egy adott URL-re, amikor egy űrlap benyújtásra kerül. Ez a funkció az űrlap műveletei között érhető el, és egy új művelet létrehozását igényli.
+## Mi ez és milyen problémát old meg?
 
-## Webhooks hozzáadása az űrlaphoz
+A Ninja Forms – Webhooks egy hivatalos kiegészítő, amellyel az űrlapbeküldéseket azonnal továbbíthatod bármely külső rendszer felé egyszerű **HTTP GET** vagy **POST** kérésként. Akkor hasznos, ha nincs kész beépülő integráció a célrendszerhez, mégis szeretnéd, hogy a beérkező adatok automatikusan bekerüljenek egy **CRM-be**, **helpdeskbe**, **marketing-automatizációba**, **belső API-ba** vagy bármely más szolgáltatásba.
 
-Az Emails & Actions fülön kattints az Add New Action gombra, majd válaszd ki a Webhooks műveletet az Actions ablakban.
+## Hogyan működik?
 
-### Webhooks művelet beállítása
+Az űrlap szerkesztőjében az Emails & Actions fülön új **Webhooks** akciót adhatsz hozzá. Minden beküldésnél a bővítmény a beállított **Remote URL** címre küldi az általad definiált mezőket és értékeket. Több Webhooks akciót is hozzáadhatsz; mindegyik külön végpontra és formátumban küldhet.
 
-#### Remote URL
+### Fő funkciók, érthetően
 
-Az URL, amelyre az adatokat küldeni fogod.
+- **HTTP metódus: GET vagy POST**
+  - GET: a kulcs–érték párok a kérés **query string** részébe kerülnek.
+  - POST: a kulcs–érték párok a kérés **törzsébe** kerülnek. API-khoz általában ezt érdemes választani.
 
-#### Remote Method
+- **Remote URL**
+  - Ide érkezik az adat. Ez lehet külső szolgáltatás, saját szerver, felhőfunkció vagy bármilyen API-végpont, ami fogad kéréseket.
 
-- **GET**: Az adatok kérdésként kerülnek elküldésre az URL-be.
-- **POST**: Az adatokat feldolgozásra küldi az URL-re.
+- **Kulcs–érték (ARGS) párok**
+  - Szabadon nevezett kulcsokat adsz meg, amelyekhez űrlapmezőket társítasz **merge tagekkel** (pl. `{field:email}`) vagy **statikus értékeket** (pl. `"source": "website"`, `"api_key": "..."`).
+  - Így pontosan azt a struktúrát állítod elő, amit a cél API elvár.
 
-#### ARGS
+- **JSON-küldés**
+  - A megadott ARGS tartalom egyetlen **JSON** törzzsé alakítható. POST esetén a bővítmény ehhez megfelelő **Content-Type** fejlécet állít be.
+  - Hasznos összetett, beágyazott adatszerkezetekhez.
 
-- **Key**: Az a név, amit az URL használ az elküldött mezőadatok megértéséhez.
-- **Field**: Az a mező, amely tartalmazza a küldendő adatokat.
+- **Run in Debug Mode**
+  - Teszteléskor részletes visszajelzést kapsz a célrendszer válaszáról (például státuszkód, hibaüzenet). Élesítés után kapcsold ki.
 
-#### Advanced beállítások
+- **Tesztelhetőség**
+  - Könnyen kipróbálhatod egy tetszőleges teszt-végponttal, így látod, pontosan milyen payloadot küld a rendszer.
 
-- **Encode ARGS as a JSON string**: Lehetővé teszi, hogy az adatokat JSON formátumban kódold.
-- **Run in Debug Mode**: Az adatok részletes módon kerülnek elküldésre a végpontra, ami hasznos lehet hibakeresés során.
+- **Fejlesztői finomságok**
+  - A tartalomtípus és egyes fejlécek szűrőkkel testre szabhatók, ha speciális API-követelményekhez kell igazodni.
 
-## Példák és felhasználási módok
+## Gyakorlati példák
 
-### Key/Field párok hozzáadása
+### 1) GET kérés egyszerű lead rögzítéshez
 
-Új key/field pár hozzáadásához kattints az "Add New" gombra. Példaként vegyük a következő űrlapadatokat:
+Beállítás:
+- Metódus: GET
+- Remote URL: REMOTE_URL
+- ARGS:
+  - `name = {field:first_name} {field:last_name}`
+  - `email = {field:email}`
+  - `source = website`
 
-- Name: "Ninja Zach"
-- Email: "ninja@ninjaforms.com"
-- Message: "Hey man, I really love the team’s new Webhooks extension! Way to go!"
+Eredmény (lekérdezési karaktersor formában):
+```text
+REMOTE_URL?name={field:first_name}%20{field:last_name}&email={field:email}&source=website
+```
 
-### Key/Value párok térképezése
+### 2) POST JSON egy CRM-hez
 
-#### Statikus kulcs érték beállítása
+Beállítás:
+- Metódus: POST
+- Küldés JSON-ként: bekapcsolva
+- ARGS:
+  - `contact.email = {field:email}`
+  - `contact.name = {field:first_name} {field:last_name}`
+  - `meta.source = website`
+  - `auth.token = YOUR_API_KEY`
 
-Ha például egy API kulcsot kell megadnod (pl. abcdef123456), és a szolgáltatásod "id"-ként várja ezt, akkor használd az "id" kulcsot és másold be az API kulcsot a "field" mezőbe.
+Kimenő törzs:
+```json
+{
+  "contact": {
+    "email": "{field:email}",
+    "name": "{field:first_name} {field:last_name}"
+  },
+  "meta": {
+    "source": "website"
+  },
+  "auth": {
+    "token": "YOUR_API_KEY"
+  }
+}
+```
 
-#### Mezőadatok térképezése egy kulcshoz
+### 3) Saját API meghívása jegy létrehozására
 
-Például ha az API-d "name", "email" és "message" adatokat vár, akkor ezekhez a mezők listájában lévő "merge tag" ikon segítségével tudod hozzárendelni a megfelelő mezőket.
+- Metódus: POST
+- ARGS:
+  - `title = Új űrlapbeküldés`
+  - `requester = {field:email}`
+  - `payload = {"message":"{field:message}","priority":"high"}`
 
-### Példa kimenetek
+Ha JSON-ként küldöd, a payload mező is beágyazott objektumként mehet tovább.
 
-#### GET kérések
+## Lépésről lépésre
 
-- JSON stringként egyetlen változóval 'myVar': `Remote URL:`
-- JSON stringként: `Remote URL:`
+1. Telepítsd és aktiváld a Webhooks kiegészítőt a Ninja Forms mellé.
+2. Nyisd meg az űrlapodat > Emails & Actions > Add New Action > Webhooks.
+3. Add meg a **Remote URL** értéket, válaszd a **GET** vagy **POST** metódust.
+4. Állítsd be a **kulcs–érték párokat**: űrlapmezők merge tagjei és statikus értékek vegyesen.
+5. Opcionális: kapcsold be a **JSON-küldést** és/vagy a **Debug Mode**-ot.
+6. Küldj próba-beküldést, ellenőrizd a célrendszer válaszát, majd élesítsd.
 
-#### POST beküldések
+## Előnyök és értékajánlat
 
-- JSON stringként egyetlen változóval 'myVar': `Remote URL:` Args: `myvar => {"id":"abcdef123456","name":"Zach","email":"zach@ninjaforms.com","message":"This is my message box text."}`
-- JSON stringként: `Remote URL:` Args: `{"id":"abcdef123456","name":"Zach","email":"zach@ninjaforms.com","message":"This is my message text."}`
+- **Nincs kódolás**: néhány kattintással összekötöd az űrlapodat bármely API-végponttal.
+- **Gyors bevezetés**: percek alatt kész integráció nélkül is működik.
+- **Költségcsökkentés**: sok esetben kiválthatod a drága, harmadik fél automatizálókat.
+- **Rugalmas adattérkép**: a kulcs–érték párokkal pontos, API-kompatibilis payloadot építesz.
+- **Hatékony hibakeresés**: a Debug Mode miatt gyorsan látod, miért utasít el egy API egy kérést.
 
-### Gyakorlati példák
+## Kinek ajánlott?
 
-1. **Integráció más eszközökkel**: A Webhooks lehetővé teszi, hogy adatokat küldj különböző külső szolgáltatásoknak, mint például Zapier, Slack, vagy Google Sheets.
-2. **Automatizált értesítések**: Küldj értesítéseket egy CRM rendszerbe minden új űrlapbeküldésnél.
-3. **Adatfeldolgozás**: Az űrlapadatokat közvetlenül egy adatbázisba vagy egy külső API-ba küldheted feldolgozásra.
-4. **Real-time elemzés**: Az adatok valós idejű elemzése különböző analitikai eszközök segítségével.
+- **Webes ügynökségeknek és site buildereknek**: ha projektjeidben gyakran kell egyedi végpontokra továbbítani űrlapadatokat.
+- **Marketing és értékesítési csapatoknak**: leadek azonnali továbbítása CRM-be, e-mail automatizálásba vagy táblázatba.
+- **Ügyféltámogatásnak**: jegyek automatikus megnyitása űrlapbeküldésből.
+- **Fejlesztőknek és IT-nak**: saját API-k, mikroszervizek, szerver nélküli funkciók meghívása űrlaptriggerről.
 
-## Szószedet
+## Fontos technikai megjegyzések
 
-- **Webhooks**: Egy olyan módszer, amellyel adatokat lehet küldeni egy URL-re űrlap benyújtása után.
-- **GET Method**: Kérésként küldi el az adatokat az URL-be.
-- **POST Method**: Feldolgozásra küldi el az adatokat az URL-re.
-- **ARGS**: A kulcs/mező párok meghatározása az adatok küldéséhez.
-- **JSON**: JavaScript Object Notation, egy könnyű adatcsere formátum.
+- **Tartalomtípusok**: JSON-küldésnél a megfelelő Content-Type fejléc automatikusan beállításra kerül; igény szerint szűrőkkel testre szabható.
+- **Biztonság és frissítés**: mindig a legfrissebb kiadást használd, mert fontos biztonsági és kompatibilitási javításokat tartalmazhat.
+- **Követelmények**: a kiegészítő működéséhez támogatott WordPress, Ninja Forms és PHP környezet szükséges.
 
-Ez a dokumentáció bemutatja, hogyan használhatod hatékonyan a Ninja Forms Webhooks funkcióját különböző helyzetekben és integrációkban.
+## Licenc és elérhetőség
+
+A Webhooks külön éves előfizetéssel érhető el, és része a bővítménycsalád felsőbb csomagjainak is. Üzleti használatnál tervezd be az előfizetés megújítását a frissítések és támogatás miatt.
+
+---
+
+Szeretnél egy konkrét célrendszerhez mintakonfigurációt? Írd meg, milyen mezőid vannak és hova küldenéd az adatot, és adok kész ARGS-térképet és tesztelési lépéseket.
