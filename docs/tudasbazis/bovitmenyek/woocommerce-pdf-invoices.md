@@ -1,65 +1,87 @@
-# WooCommerce PDF Invoices
+---
+title: "WooCommerce PDF Invoices"
+description: "Automatikus, testreszabható PDF számlák generálása és csatolása WooCommerce rendelésekhez."
+sidebar_label: "WooCommerce PDF Invoices"
+---
 
-A WooCommerce PDF Invoices bővítmény segítségével könnyedén generálhatsz és kezelhetsz PDF formátumú számlákat a webáruházad számára. Az alábbiakban részletesen bemutatom a funkcióit és előnyeit, valamint azokat az eszközöket, amelyekkel zökkenőmentesen működik együtt. 
+## Mi ez, és milyen problémát old meg?
 
-## Funkciók és Előnyök
+A WooCommerce PDF Invoices egy kiterjesztés, amely automatikusan generál, számoz és csatol PDF számlákat a rendeléseidhez. Megszünteti a kézi számlázás nyűgjeit: nem kell külön dokumentumokat készítened, nem maradnak ki kötelező céges/jogi adatok, a vevők pedig önkiszolgáló módon letölthetik a számlákat. Így gyorsabban zárhatsz le rendeléseket, kevesebb hibával és kevesebb ügyfélszolgálati teherrel.
 
-### Automatikus Számlázás
+## Hogyan működik röviden?
 
-A WooCommerce PDF Invoices lehetővé teszi, hogy automatikusan generálj és küldj számlákat a vásárlók számára minden egyes rendelés után. Ez nemcsak időt takarít meg, hanem biztosítja a pontos és következetes számlázást is.
+- Rendelés teljesítésénél a bővítmény elkészíti a PDF számlát és csatolja a megfelelő e-mailhez (alapértelmezetten a Teljesített rendeléshez).
+- A számla letölthető az admin rendelésnézetből és a vásárlói fiók Rendeléseim oldaláról.
+- Az admin rendeléslistában megjelenik a számlaszám, gyors letöltési/újraküldési ikonokkal.
+- Több számlát egyszerre exportálhatsz ZIP-be könyveléshez.
 
-### Egyedi Számla Sablonok
+## Fő funkciók, érthetően
 
-Lehetőséged van egyedi sablonokat létrehozni a számláidhoz, így azok megfelelnek a vállalkozásod arculatának. A testreszabható sablonok segítségével hozzáadhatod a logódat, színeidet és egyéb vizuális elemeket.
+- Automatikus csatolás e-mailekhez: A teljesített rendelés e-mailjéhez automatikusan csatolja a PDF-et; igény szerint az admin „Új rendelés” e-mailjéhez is.
+- Teljesen testreszabható számlasablon: Logó, fejléc, oszlopok, elrendezés – mind a saját arculatodra hangolhatók. Fejlesztőként szűrőkön át saját mezőket/oszlopokat is beszúrhatsz.
+- Jogi és cégadatok: Cégnév, cím, adószám, kapcsolati adatok és minden kötelező információ megjeleníthető a számlán.
+- Szekvenciális számlaszámozás: Egyedi számlaszám-formátum, dátumminták és fájlnév-sémák állíthatók, biztosítva a következetes sorszámozást.
+- Letöltés és újraküldés: Az admin gyorsan letöltheti vagy újraküldheti a számlát; a vevő bármikor eléri a saját fiókjából.
+- Rendeléslista integráció: Külön számlaszám oszlop és ikonok a gyors műveletekhez; a láthatóság a lista beállításainál kapcsolható.
+- Tömeges export (ZIP): Időszakos záráskor kijelölöd a rendeléseket és egy kattintással ZIP-be gyűjtöd a számlákat.
+- Haladó admin eszközök: Bizonyos számlameta mezők utólagos frissítése (jogkövetkezmények tudatában), valamint hibakeresési mód a problémák feltárásához.
 
-### Többnyelvű Támogatás
+## Gyakorlati példák
 
-A bővítmény támogatja a többnyelvű számlák létrehozását, így könnyedén alkalmazkodik a nemzetközi ügyfelek igényeihez. Ez különösen hasznos, ha nemzetközi piacra értékesítesz.
+- B2C webáruház: Minden sikeres, teljesített rendelésnél automatikusan kimegy a számla a vásárlónak. Nem kell manuálisan mellékelned semmit.
+- B2B értékesítés: A számlán megjeleníted a vevő adószámát és a megrendelési hivatkozást. A partner könnyen be tudja küldeni saját beszerzési rendszerébe.
+- Könyvelési zárás: A hónap végén kijelölöd az adott időszak rendeléseit, és egy lépésben letöltöd a számlákat ZIP-ben a könyvelőnek.
+- Ügyfélszolgálat: Ha a vevő elvesztette az e-mailt, az admin rendelésnézetből egy kattintással újraküldi a számlát.
 
-### Adókezelés
+## Beállítás és testreszabás (lépésről lépésre)
 
-A WooCommerce PDF Invoices automatikusan kezeli az adókat a számlákon, figyelembe véve az egyes országok eltérő adószabályait. Ez biztosítja, hogy mindig megfelelj az aktuális adózási előírásoknak.
+1. Telepítés és aktiválás után nyisd meg a WooCommerce > PDF Invoice oldalt.
+2. Add meg az alapadatokat: cégnév, cím, adószám, logó.
+3. Állítsd be a dátum- és számlaszám-formátumot, valamint a fájlnév mintáját.
+4. Válaszd ki, mely e-mailekhez csatolja a számlát (pl. Teljesített rendelés).
+5. Készíts egy tesztrendelést, állítsd „Teljesített” állapotra, és ellenőrizd a generált PDF-et.
+6. Finomhangold a sablont (mezők, oszlopok, elrendezés). Fejlesztőként szűrőkkel további mezőket adhatsz hozzá.
+7. Használd a rendeléslistát a gyors letöltéshez/újraküldéshez, illetve a tömeges ZIP exporthoz.
 
-### Integrációk
+Példa dátumformátum minták:
+```
+Y-m-d
+Y.m.d. H:i
+d/m/Y
+```
 
-A bővítmény zökkenőmentesen integrálható számos más eszközzel, mint például a WooCommerce Subscriptions, WooCommerce Bookings, és különböző fizetési átjárók. Ez lehetővé teszi, hogy egy teljeskörű megoldást hozz létre az online áruházad számára.
+Példa számlaszám mintára (logika szemléltetésére):
+```
+INV-{YYYY}/{MM}-{NUMBER}
+```
 
-### Biztonság
+## Előnyök és értékajánlat
 
-A generált PDF számlák digitálisan aláírtak, ami biztosítja azok hitelességét és megakadályozza a hamisítást. Ez különösen fontos lehet üzleti partnerek vagy nagyobb értékű tranzakciók esetében.
+- Időmegtakarítás: Automatizálja a számlázást, kevesebb manuális munka, kevesebb hiba.
+- Jogkövető működés: Következetes sorszámozás, kötelező adatok, átlátható formátumok.
+- Jobb vevőélmény: A vásárló bármikor letöltheti a számlát a fiókjából.
+- Hatékony admin: Gyors újraküldés, letöltés, tömeges export – kevesebb támogatási jegy és gyorsabb könyvelési folyamat.
 
-### Archiválás
+## Kinek ajánlott?
 
-A bővítmény automatikusan archiválja a korábbi számlákat, így könnyen hozzáférhetsz bármikor a szükséges dokumentumokhoz. Ez megkönnyíti a könyvelést és az adminisztratív munkát.
+- Kis- és középvállalkozásoknak, akik automatizált, megbízható számlázást szeretnének.
+- B2B kereskedőknek, ahol elvárás a precíz számlaszámozás és a cégadatok kezelése.
+- Olyan boltoknak, ahol a könyvelés rendszeresen igényli a számlák összegyűjtését.
+- Ügyfélszolgálati fókuszú csapatoknak, akik gyorsan akarnak reagálni számlakérésekre.
 
-## Gyakorlati Példák
+## Kompatibilitás és követelmények
 
-### Webáruház Indítása
+- PHP 7.4 vagy újabb
+- WordPress 5.8 vagy újabb
+- WooCommerce 7.4.0 vagy újabb
 
-Ha éppen most indítod el az első webáruházadat, a WooCommerce PDF Invoices segít abban, hogy professzionális számlákat küldj a vásárlóidnak. Nincs szükség külön számlázó szoftverre, minden integráltan működik a webáruházaddal.
+## Tipikus munkafolyamat összefoglalva
 
-### Nemzetközi Értékesítés
+1. Beállítod a cég- és számlázási adatokat, a formátumokat és a csatolási szabályokat.
+2. Rendelés teljesítésekor a rendszer automatikus PDF-et generál és csatol.
+3. A számla letölthető az adminból és a vásárlói fiókból.
+4. Időszak végén tömeges ZIP exportot készítesz a könyvelésnek.
 
-Amennyiben nemzetközi piacra lépsz, a többnyelvű támogatás és az adókezelési funkciók nagyban megkönnyítik a dolgod. Nem kell manuálisan számolnod az eltérő adókulcsokat vagy fordítgatnod a számlákat.
+## Fontos megjegyzés a névazonosságról
 
-### Előfizetéses Szolgáltatások
-
-Ha előfizetéses szolgáltatásokat kínálsz (pl. havidíjas termékek vagy szolgáltatások), a WooCommerce PDF Invoices automatikusan kezeli az ismétlődő számlázást, integrálva a WooCommerce Subscriptions bővítménnyel.
-
-## Tippek a Hatékony Használathoz
-
-- **Testreszabás**: Használd ki az egyedi sablonok lehetőségét, hogy a számláid tükrözzék a márkád arculatát.
-- **Automatizálás**: Állítsd be az automatikus számlaküldést, hogy időt takaríts meg és csökkentsd az adminisztratív terheket.
-- **Integrációk**: Használd ki a különböző integrációs lehetőségeket, hogy egy teljeskörű rendszert építs ki az online üzleted számára.
-- **Archiválás**: Rendszeresen ellenőrizd az archivált számlákat, hogy mindig naprakész legyél a pénzügyi helyzeteddel kapcsolatban.
-
-## Szószedet
-
-- **Automatikus Számlázás**: A rendszer automatikusan generál és küld számlákat minden rendelés után.
-- **Egyedi Sablonok**: Testreszabható számlaformátumok.
-- **Többnyelvű Támogatás**: Lehetőség több nyelven is generálni számlákat.
-- **Adókezelés**: Automatikus adószámítás és megjelenítés a számlákon.
-- **Integráció**: Összekapcsolhatóság más WooCommerce bővítményekkel és eszközökkel.
-- **Archiválás**: Korábbi számlák automatikus tárolása.
-
-Remélem, ez az összefoglaló segít jobban megérteni a WooCommerce PDF Invoices bővítmény előnyeit és használati lehetőségeit!
+A „WooCommerce PDF Invoices” kifejezés több, hasonló célú bővítményt takarhat. Ez a leírás kifejezetten a hivatalos piactéren elérhető, Andrew Benbow által fejlesztett megoldásról szól. Ha másik, hasonló nevű bővítményre gondoltál, jelezd, és ahhoz igazítom a dokumentációt.

@@ -1,66 +1,75 @@
-# JetThemeCore
+---
+title: "JetThemeCore"
+description: "Vizuális theme builder Elementorhoz és Gutenberghez: sablonok (fejléc, lábléc, Single, Archive, Woo) létrehozása, feltételekhez kötése és központi kezelése."
+sidebar_label: "JetThemeCore"
+---
 
-## JetThemeCore funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-### Weboldal felépítése és kezelése
+A JetThemeCore egy prémium WordPress theme builder bővítmény, amellyel a teljes webhely szerkezetét – fejléc, lábléc, oldaltörzs, Single/Archive sablonok, 404 és keresési oldalak, valamint WooCommerce oldalak – egyetlen központi felületen hozhatod létre, szabhatod testre és rendelheted feltételekhez. Célja, hogy megszüntesse a „sablonkáoszt”: pontosan lásd, mi hol jelenik meg, mi hiányzik, mi ütközik, és mindezt vizuálisan, kódolás nélkül kezeld. Működik az Elementor (Free) és a Gutenberg szerkesztővel is – nincs szükség Elementor Pro‑ra.
 
-A JetThemeCore egy olyan eszköz, amely lehetővé teszi számodra, hogy könnyedén építsd és kezeld weboldalad szerkezetét. Az információs műszerfal segítségével egyszerűen áttekintheted és módosíthatod az oldalakat, sablonokat és blokkokat.
+## Gyors kezdés (3 perc)
 
-### Dinamikus tartalomkezelés
+1. Lépj be: Vezérlőpult > Crocoblock > Theme Builder.
+2. Kattints: Create new page template. Válaszd ki, milyen típusú sablont készítesz (fejléc, lábléc, Single, Archive, 404, Search, WooCommerce oldal).
+3. Állítsd be a feltételeket: Include/Exclude, Entire/Singular/Archive, szükség esetén további szűkítésekkel (eszköz, szerepkör, URL paraméter, stb.).
+4. Rendeld hozzá a részeket: fejléc, test, lábléc. Válassz szerkesztőt (Elementor vagy Gutenberg), készítsd el a tartalmat, ments.
+5. Ellenőrzés: a Tree vagy Grid nézet jelzi a sablon állapotát, ütközéseket, hiányokat. Szükség esetén futtasd a „Sync site conditions” eszközt.
 
-A bővítmény lehetőséget biztosít a dinamikus tartalmak kezelésére, ami különösen hasznos lehet olyan oldalak esetében, ahol gyakran frissül a tartalom. Például blogok, híroldalak vagy e-kereskedelmi platformok.
+## Fő funkciók, érthetően
 
-### Sablonok és blokkok használata
+- **Vizuális Theme Builder két nézettel**
+  - **Tree view**: a WordPress sablonhierarchiát fában mutatja. Láthatod, mely helyekhez van sablon, mi hiányzik, hol van ütközés. Gyors navigációt és „issue detection” jelzéseket kapsz.
+  - **Grid view**: kártyás áttekintés a sablonokról és feltételeikről.
+- **Teljes sablonkör**: készíthetsz fejlécet, láblécet, oldaltestet, Single és Archive elrendezéseket, 404 és Search oldalakat. WooCommerce‑hez egyedileg kezelheted a Checkout, Cart és My Account oldalakat.
+- **Feltételes megjelenítés (Conditions)**:
+  - Egyszerű szabályok: **Include/Exclude** a kívánt forrásokra (Entire/Singular/Archive).
+  - **Haladó feltételek**: eszköz (desktop/tablet/mobil), felhasználói szerepkör, URL paraméter, mobil OS, mobil böngésző, WordPress opció. Több feltételt kombinálhatsz (ÉS/VAGY logikával).
+- **Témarészek felülírása**: elrejtheted az eredeti téma fejléceit/láblécét, és a saját sablonjaidat használhatod mindenhol.
+- **Site conditions sync**: egy kattintással újraszkenneli és javítja a hozzárendeléseket, ha költözés, bővítménycsere vagy tömeges módosítás után inkonzisztencia lépett fel.
+- **Szerkesztői rugalmasság**: Elementor Free vagy Gutenberg – ugyanazon logika szerint hozol létre és rendelsz sablont, függetlenül attól, melyik szerkesztőt használod.
+- **Kompatibilitás és ökoszisztéma**: népszerű témákkal (Astra, GeneratePress, Kadence, stb.) és dinamikus mezőmegoldásokkal (JetEngine, ACF, Meta Box, Pods, Toolset) együttműködik. A JetWooBuilder, JetBlocks, JetMenu és JetElements kiegészítők tovább bővítik a lehetőségeket.
 
-A JetThemeCore előre elkészített sablonokat és blokkokat kínál, amelyek segítségével gyorsan létrehozhatsz professzionális kinézetű oldalakat. Ezek a sablonok és blokkok testre szabhatók, így biztosítva, hogy a weboldalad egyedi legyen.
+## Konkrét, gyakorlati példák
 
-## Együttműködés más eszközökkel
+- **Más fejléc vendégeknek és bejelentkezetteknek**: Készíts két fejlécet. Az első feltétele: Include > Entire Site + Role = Subscriber/Admin (vagy „Logged in”). A második: Include > Entire Site + Role = Guest. Eredmény: testreszabott navigáció és CTA-k státusz szerint.
+- **Kampányfejléc UTM alapján**: Hozz létre kampány‑fejlécet. Feltétel: Include > Entire Site + URL paraméter = utm_campaign=spring. Így a kampányból érkezők dedikált üzenetet kapnak.
+- **CPT archívumok JetEngine‑nel**: Hozz létre egy „Események” egyedi tartalomtípust és taxonómiákat. Készíts Archive és Single sablonokat, majd feltételként válaszd ki a CPT‑t/taxonómiát. Dinamikus listákat és mezőket a JetEngine biztosít.
+- **WooCommerce Checkout személyre szabása**: Alkoss egyszerűbb, konverzióbarát Checkout elrendezést, rendeld hozzá a Checkout oldalhoz, és állíts be egységes fejlécet/láblécet a bolt összes oldalára.
 
-### Elementor és Gutenberg kompatibilitás
+## Előnyök és értékajánlat
 
-A JetThemeCore zökkenőmentesen működik együtt az Elementor és Gutenberg szerkesztőkkel. Ez azt jelenti, hogy akár az egyik, akár a másik szerkesztőt használod, a JetThemeCore beépülése gördülékenyen zajlik, és nem kell kompromisszumot kötnöd a funkcionalitás terén.
+- **Rendszerezett sablonkezelés**: nincs több szétszórt beállítás és rejtett felülírás – minden egy helyen, vizuális hierarchiában.
+- **Gyorsabb fejlesztés**: automatikus célhely‑előbeállítások, másolható sablonok és kombinálható feltételek felgyorsítják a munkát.
+- **Kevesebb kód, kisebb kockázat**: vizuálisan oldod meg azt, ami korábban sablonfájlokkal és hookokkal ment.
+- **Rugalmasság WooCommerce‑ben is**: kosár, pénztár és fiókoldalak kódolás nélküli alakítása.
+- **Témafüggetlenség**: modern témákkal jól együttműködik, így bármikor válthatsz téma nélkülözhetetlen részek újraírása nélkül.
 
-### WooCommerce integráció
+## Kinek ajánlott?
 
-A bővítmény támogatja a WooCommerce integrációt is, ami lehetővé teszi, hogy összekapcsold az oldalak sablonjait a WooCommerce Checkout és Account végpontokkal. Ez különösen hasznos lehet e-kereskedelmi oldalak esetében.
+- **Ügynökségeknek és fejlesztőknek**: skálázható sablonstratégia több projektben, átlátható állapotjelzőkkel.
+- **E‑kereskedőknek**: gyors UX‑kísérletek a pénztárnál és kulcsoldalakon, feltételes tartalommal.
+- **Tartalomépítőknek és marketingeseknek**: célzott üzenetek eszköz, szerepkör vagy kampány szerint, A/B jellegű variációkhoz előkészítve.
+- **Haladó WP felhasználóknak**: dinamikus CPT‑projektek gyors felépítése JetEngine‑nel.
 
-### Polylang és WPML kompatibilitás
+## Kompatibilitás, rendszerkövetelmények és tippek
 
-A JetThemeCore kompatibilis a Polylang és WPML bővítményekkel is, amelyek segítségével többnyelvű oldalakat hozhatsz létre. Ez különösen fontos lehet, ha nemzetközi közönséget szeretnél elérni.
+- **Követelmények**: WordPress + Elementor Free és/vagy Gutenberg. WooCommerce oldalakhoz szükséges a WooCommerce.
+- **Elemátor Pro együttélés**: ne rendelj azonos helyekre sablont a Pro Theme Builder és a JetThemeCore oldaláról egyszerre. Ha ütközést tapasztalsz, kapcsold ki a Pro helyeit, vagy használd a JetThemeCore felülírás/„Prevent Pro locations registration” beállításait.
+- **Karbantartás**: tömeges módosítás után futtasd a „Sync site conditions” eszközt. A Tree view hibajelzései segítenek a gyors hibaelhárításban.
+- **GTM beillesztés példa**: ha a sablonokat a JetThemeCore kezeli, a szokásos WordPress hookok lefutnak minden érintett oldalon:
 
-## Specifikus előnyök és felhasználási módok
+```php
+// functions.php
+add_action('wp_head', function () {
+  // Itt a GTM Head rész
+}, 0);
 
-### Egyszerű telepítés és beállítás
+add_action('wp_body_open', function () {
+  // Itt a GTM Body rész (noscript)
+});
+```
 
-A JetThemeCore könnyen telepíthető és beállítható. A bővítmény átlátható felhasználói felülete lehetővé teszi, hogy gyorsan megtaláld a szükséges beállításokat és funkciókat.
+## Összefoglalás
 
-### Reusable Components
-
-A bővítmény egyik kiemelkedő tulajdonsága a Reusable Components funkció, amely lehetővé teszi, hogy egyszer létrehozott elemeket többször is felhasználj a weboldalon. Ez jelentősen csökkenti az időráfordítást és növeli a hatékonyságot.
-
-### Feltételes megjelenítés
-
-A JetThemeCore feltételes megjelenítési opciói segítségével meghatározhatod, hogy bizonyos elemek mikor és hogyan jelenjenek meg az oldalon. Például megadhatod, hogy egy adott blokk csak akkor jelenjen meg, ha a felhasználó be van jelentkezve.
-
-## Gyakorlati példák
-
-### Blog indítása
-
-Ha blogot szeretnél indítani, a JetThemeCore segítségével gyorsan létrehozhatsz professzionális kinézetű oldalakat. Használhatod az előre elkészített sablonokat és blokkokat, majd testre szabhatod őket a saját igényeid szerint.
-
-### E-kereskedelmi weboldal
-
-Egy e-kereskedelmi weboldal esetében a WooCommerce integráció és a dinamikus tartalomkezelés különösen hasznos lehet. A bővítmény segítségével könnyedén összekapcsolhatod az oldalak sablonjait a WooCommerce Checkout és Account végpontokkal.
-
-### Többnyelvű weboldal
-
-Ha többnyelvű weboldalt szeretnél létrehozni, a Polylang és WPML kompatibilitás révén könnyedén kezelheted a különböző nyelvi verziókat. Így biztosíthatod, hogy minden látogatód számára elérhető legyen a tartalom.
-
-## Szószedet
-
-- **JetThemeCore**: Olyan bővítmény, amely lehetővé teszi a weboldal szerkezetének egyszerű kezelését.
-- **Elementor**: Népszerű vizuális szerkesztő WordPresshez.
-- **Gutenberg**: WordPress blokk alapú szerkesztő.
-- **WooCommerce**: E-kereskedelmi platform WordPresshez.
-- **Polylang**: Többnyelvűség bővítmény WordPresshez.
-- **WPML**: Többnyelvűség bővítmény WordPresshez.
+A JetThemeCore egy erőteljes, mégis barátságos theme builder, amellyel a webhelyed minden sablonját központilag, feltételes szabályokkal vezérelheted. Megszünteti a sablonkáoszt, felgyorsítja a WooCommerce és dinamikus projektek kivitelezését, és csökkenti a téma‑ és kód‑függőséged – miközben végig te irányítod, mi hol és kinek jelenjen meg.

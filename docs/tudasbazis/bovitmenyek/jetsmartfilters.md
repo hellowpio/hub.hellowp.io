@@ -1,57 +1,106 @@
-# JetSmartFilters
+---
+title: "JetSmartFilters"
+description: "Dinamikus, AJAX-alapú, facettált szűrőrendszer WordPresshez, amely Elementorral, Gutenberggel és Bricks-szel működik, teljes WooCommerce-támogatással."
+sidebar_label: "JetSmartFilters"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A JetSmartFilters egy olyan fejlett szűrőrendszer, amely lehetővé teszi a weboldal tartalmának könnyű és hatékony szűrését és rendezését. Alkalmazásával a felhasználók gyorsan megtalálhatják a keresett információkat, termékeket vagy szolgáltatásokat, anélkül hogy hosszasan kellene keresgélniük az oldalon.
+A JetSmartFilters a Crocoblock dinamikus szűrőmegoldása, amivel kódolás nélkül építhetsz gyors, facettált (több feltételes) szűrést WordPressen. Elementor, a WordPress Block Editor (Gutenberg) és a Bricks builder felületén is natívan működik, WooCommerce-kompatibilis. Segít:
+- nagy katalógusokban villámgyorsan és pontosan találatokat adni (**AJAX**),
+- a “szűrt” állapotot megosztható, **SEO-barát URL**-re tenni,
+- több komponens (pl. lista + térkép) **szinkron szűrését** megoldani,
+- összetett, **hierarchikus** szűréseket felépíteni,
+- többnyelvű (**WPML**) projekteket kiszolgálni,
+- térképes, **távolság alapú** keresést biztosítani.
 
-### Szűrő típusok
+## Fő funkciók, magyarázattal
 
-A JetSmartFilters többféle szűrőtípust kínál, amelyek között mindenki megtalálhatja a számára legmegfelelőbbet:
+### Szűrőtípusok (12+)
+- **Checkboxes / Radio / Select / Search**: klasszikus mezők kategóriákra, tulajdonságokra, kulcsszavakra.
+- **Range** (csúszka) és **Check Range** (előre definiált sávok): ár, méret vagy bármely számszerű meta gyors szűrésére.
+- **Rating**: értékelés szerinti szűrés boltokban vagy könyvtárakban.
+- **Date Range / Date Period**: időintervallum vagy relatív időszak (pl. elmúlt 7 nap).
+- **Alphabet**: cím szerinti betűrendes böngészés.
+- **Sorting**: rendezés ár, dátum, népszerűség szerint.
+- **Visual**: szín- vagy képalapú opciók (pl. színminták WooCommerce-hez).
+- **Hierarchy Select**: több szintű kiválasztás (pl. kategória → alkategória).
+- **Hidden Filter**: rejtett paraméterek a lekérdezés finomításához (pl. csak akciós).
+- **Location & Distance**: geokeresés megadott ponthoz mért távolsággal (JetEngine Geo Search szükséges).
 
-- **Checkboxes Filter**: Lehetővé teszi, hogy a felhasználók több opciót is kiválaszthassanak egyszerre.
-- **Radio Filter**: Egyetlen választási lehetőséget biztosít.
-- **Range Filter**: Két érték közötti tartományt állíthatunk be, például ár vagy dátum esetén.
-- **Select Filter**: Legördülő menüvel választhatjuk ki a kívánt opciót.
-- **Search Filter**: Szabad szöveges keresést tesz lehetővé.
+### Alkalmazási módok és AJAX
+- **AJAX**: azonnali frissítés oldal-újratöltés nélkül.
+- **Page Reload**: klasszikus újratöltéssel, ha ezt igényled.
+- **Mixed**: AJAX-élmény, de közben az URL is frissül a megoszthatóság és SEO miatt.
+- **AJAX kéréstípusok**: default, referrer, self – összetett elrendezéseknél segítenek pontosan megadni, melyik komponens mit frissítsen.
 
-### Hierarchikus szűrés
+### Indexer (számlálók és teljesítmény)
+- **Darabszámok** az opciók mellett (pl. “Piros (12)”).
+- **Üres opciók** elrejtése vagy tiltása.
+- **Automatikus újraindexelés** nagyobb adatbázisokhoz. A felhasználó csak elérhető választékot lát, gyorsabb a döntés.
 
-A JetSmartFilters segítségével hierarchikus szűrőket is létrehozhatunk. Ez különösen hasznos lehet, ha kategóriákba sorolt termékeket vagy tartalmakat szeretnénk szűrni. Például egy e-kereskedelmi weboldalon a termékek kategóriák szerinti szűrésével gyorsan megtalálhatóak az adott kategóriába tartozó termékek.
+### URL és SEO
+- **Plain vs. Permalink**: választható URL-struktúra.
+- **URL Aliases**: beszédes, szebb szűrőparaméterek (pl. color=red).
+- **SEO Rules**: megadhatod, mely szűrt állapotok kerüljenek a sitemapbe, és dinamikus **SEO cím/description** is beállítható.
 
-### Ajax technológia
+### Providerek és integráció
+- Szűrhető **Elementor Pro** archívumok és gridek, **JetEngine** (Listing Grid, Map, Calendar, Table/Chart), **JetWooBuilder** terméklisták, **WooCommerce** shortcode-ok és **Bricks Query Loop**.
+- **Additional Providers**: egy szűrő több listát/térképet is frissíthet egyszerre.
+- **Query ID**: az adott listával való egyértelmű összekapcsolás.
+- **Adatforrások**: taxonómiák, meta mezők, bejegyzések, kézi értéklista; Query Variable/Builder támogatás.
+- **Mezőkezelők**: jól működik ACF, Pods, Meta Box és JetEngine mezőkkel.
 
-A JetSmartFilters az Ajax technológiát használja, így a szűrés valós időben történik, oldal újratöltése nélkül. Ez jelentősen javítja a felhasználói élményt, mivel a látogatóknak nem kell várniuk az oldal újratöltésére minden egyes szűrő alkalmazása után.
-
-## Kompatibilitás más eszközökkel
-
-A JetSmartFilters zökkenőmentesen működik együtt számos más bővítménnyel és eszközzel:
-
-- **Elementor**: A JetSmartFilters teljesen kompatibilis az Elementorral, így könnyedén integrálható a weboldal tervezési folyamatába.
-- **WooCommerce**: Kiválóan alkalmazható WooCommerce webáruházakban, ahol lehetőség van a termékek részletes szűrésére.
-- **JetEngine**: A JetEngine-nel való integráció révén dinamikus tartalmak szűrése is lehetséges.
-- **JetElements**: Ezen bővítménnyel együttműködve további design elemekkel gazdagíthatjuk a szűrők megjelenését.
-- **Gutenberg**: A JetSmartFilters kompatibilis a Gutenberg szerkesztővel is, így egyszerűen beilleszthető a blokkok közé.
+### Felhasználói élmény
+- **Active Filters/Active Tags**: az aktuálisan alkalmazott szűrők láthatók és egyenként törölhetők.
+- **Apply/Remove**: gombos vezérlés, ha nem azonnali alkalmazást szeretnél.
+- **Pagination**: lapozás, “Load more”, előző/következő.
+- **Provider preloader**, hozzáférhetőség és kompatibilitási beállítások.
 
 ## Gyakorlati példák
 
-### E-kereskedelmi webáruház
+- **Webshop (WooCommerce)**: Árhoz **Range**, színhez **Visual**, márkához **Checkboxes**, értékeléshez **Rating**. **Mixed** mód, hogy az URL megosztható legyen; **Indexer** a készleten lévő opciókra; **Active Filters** a gyors törléshez; **SEO Rules** a fontos állapotok indexeléséhez.
+- **Ingatlan-katalógus**: **JetEngine Listing Grid** + **Map Listing** közös szűrése **Additional Providers**-szal. Város → kerület **Hierarchy Select**, alapterület **Range**, elhelyezkedéshez **Location & Distance**. A térkép és a lista együtt szűkül.
+- **Blog/portfólió**: **Alphabet** a címekhez, **Date Period** az új tartalomra, **Sorting** népszerűség szerint. **Hidden Filter**-rel kiemelt posztokat automatikusan előresorolhatsz.
 
-Egy online boltban a JetSmartFilters segítségével a felhasználók könnyedén megtalálhatják a kívánt terméket. Például egy divatüzletben különböző szűrőket állíthatunk be méret, szín, ár és márka szerint.
+## Hogyan épül fel egy szűrés? (rövid lépések)
 
-### Ingatlanportál
+1. Menj az adminban: Smart Filters > Add New.
+2. Válassz **szűrőtípust** és **adatforrást** (tax/meta/post/manuális).
+3. Állítsd be a **Query Variable/ID**-t, ha szükséges.
+4. Helyezd ki a szűrő widgetet/blokkot a builderben a szűrendő listával egy oldalon.
+5. A szűrőn állítsd be a **Provider**-t (This filter for) és – ha több lista/térkép is van – az **Additional Providers**-t.
+6. Válaszd ki az **Apply type**-ot (AJAX / Page reload / Mixed).
+7. Kapcsold be az **Indexer**-t (számlálók, üres opciók kezelése).
+8. Finomhangold az **URL/SEO** beállításokat (Permalink, Aliases, SEO Rules).
 
-Egy ingatlanportálon a látogatók gyorsan kereshetnek ingatlanokat város, ár, alapterület és egyéb paraméterek alapján. Ez jelentősen lerövidíti az ingatlanok közötti böngészés idejét.
+```
+Gyors ellenőrzőlista
+- Filter Type: Checkboxes
+- Data Source: Taxonomy (pl. product_cat)
+- Apply type: Mixed
+- Provider: Listing Grid (Query ID: shop_grid)
+- Additional Providers: Map Listing
+- Indexer: Show counter + Hide empty
+- URL: Permalink + Aliases; SEO Rules: only key states
+```
 
-### Blog vagy magazin
+## Előnyök és értékajánlat
 
-Egy blog vagy online magazin esetében a tartalmak témák vagy szerzők szerint történő szűrése nagyban megkönnyíti az olvasók számára a releváns cikkek megtalálását.
+- **Jobb találhatóság** nagy adatbázisokban (gyors, releváns listák).
+- **Megosztható, SEO-barát** szűrt URL-ek, sitemap integrációval.
+- **Idő- és költségmegtakarítás**: összetett logika kód nélkül.
+- **Skálázható** teljesítmény (**Indexer**, AJAX).
+- **Rugalmas integráció** több builderrel és adatforrással.
+- **Professzionális UX**: vizuális opciók, aktív szűrők, lapozás.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Ajax**: Asynchronous JavaScript and XML technológia, amely lehetővé teszi az adatok dinamikus frissítését anélkül, hogy az egész oldalt újratöltené.
-- **Elementor**: Népszerű WordPress oldalépítő bővítmény.
-- **WooCommerce**: Az egyik legelterjedtebb e-kereskedelmi bővítmény WordPresshez.
-- **JetEngine**: Bővítmény dinamikus tartalmak létrehozásához és kezeléséhez.
-- **Gutenberg**: WordPress blokk-alapú szerkesztő.
+- **Webshop tulajdonosoknak**: konverziót növelő, gyors termékszűrés.
+- **Katalógusoknak/könyvtáraknak** (ingatlan, autó, állás): összetett, többtényezős szűrés térképpel.
+- **Ügynökségeknek/fejlesztőknek**: egységes szűrőréteg Elementor/Gutenberg/Bricks alatt.
+- **Tartalomgazda blogoknak/portfólióknak**: rendezett böngészés, betűrendes és idő alapú szűrés.
+- **Többnyelvű oldalaknak**: WPML-kompatibilis szűrők és címkék.
+- **Geolokációs projekteknek**: hely- és távolságszűrés térképes listákkal.
 
-A JetSmartFilters használatával nemcsak hatékonyabbá tehetjük weboldalunk tartalmának kezelését és szűrését, hanem javíthatjuk a felhasználói élményt is.
+A JetSmartFilters a JetPlugins ökoszisztéma része. Ha facettált keresést, szinkronizált listákat és SEO-barát szűrést szeretnél egyben, ez a bővítmény célzott, professzionális megoldás WordPressre.

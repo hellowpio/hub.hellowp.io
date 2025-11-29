@@ -1,55 +1,89 @@
-# Restrict Content Pro
+---
+title: "Restrict Content Pro"
+description: "WordPress tagsági és tartalom-hozzáférés kezelő bővítmény, amellyel előfizetéseket értékesíthetsz és tartalmat korlátozhatsz."
+sidebar_label: "Restrict Content Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Tartalom korlátozása
+A Restrict Content Pro egy komplett **tagsági és tartalom-hozzáférés** kezelő rendszer WordPresshez. Segítségével pontosan szabályozhatod, ki mit láthat az oldaladon (oldalak, bejegyzések, egyedi típusok, kategóriák, címkék), és **előfizetéses hozzáférést** árulhatsz bankkártyás fizetéssel. Megszünteti a széttöredezett megoldásokat: nem kell külön pluginekkel trükköznöd a korlátozáshoz, fizetéshez, számlázáshoz – minden egy helyen történik.
 
-A Restrict Content Pro segítségével egyszerűen létrehozhatsz olyan webhelyet, amely csak meghatározott felhasználók számára elérhető tartalmakat kínál. Ez lehetőséget ad arra, hogy különböző szinteken korlátozd a hozzáférést, például csak fizető tagok vagy regisztrált felhasználók számára.
+## Hogyan működik röviden?
 
-### Több tagsági szint kezelése
+1. Létrehozol **tagsági szinteket** (ár, időtartam, automatikus megújítás, próbák, belépési díj).
+2. Bekapcsolod a **fizetési átjárókat** (alapból Stripe; Pro-val továbbiak is).
+3. Kijelölöd, mely **tartalmak** elérhetők mely szinteknek/szerepköröknek.
+4. A látogatók **regisztrálnak és fizetnek**, majd belépve automatikusan megkapják a hozzáférést.
+5. A tagok saját **fiókfelületen** kezelik előfizetésüket, számláikat, megújításaikat.
 
-A bővítmény lehetővé teszi, hogy különböző tagsági szinteket hozz létre, mindegyikhez eltérő hozzáférési jogokat és előnyöket rendelve. Például lehetőséged van alap, prémium és VIP szintű tagságok kialakítására, amelyek különböző szintű hozzáférést biztosítanak az oldalon található tartalmakhoz.
+## Fő funkciók, érthetően
 
-### Fizetési integrációk
-
-A Restrict Content Pro számos fizetési átjárót támogat, beleértve a Stripe, PayPal Standard, PayPal Express, és Braintree szolgáltatásokat is. Ez lehetővé teszi, hogy könnyedén kezelhesd a tagsági díjak beszedését és a fizetési folyamatokat.
-
-### Jelentések és statisztikák
-
-A bővítmény részletes jelentéseket és statisztikákat kínál a tagságokkal kapcsolatban. Nyomon követheted az új regisztrációkat, a megújításokat, valamint a bevételeidet is. Ezek az információk segítenek a tagsági program hatékonyságának elemzésében és fejlesztésében.
-
-## Integrációk más eszközökkel
-
-### MailChimp és ActiveCampaign
-
-A Restrict Content Pro zökkenőmentesen integrálható népszerű e-mail marketing eszközökkel, mint például a MailChimp és az ActiveCampaign. Ez lehetővé teszi, hogy automatikusan feliratkoztasd a tagjaidat a hírleveleidre, és szinkronizáld a fiókadatokat az idő múlásával.
-
-### WooCommerce
-
-A bővítmény kompatibilis a WooCommerce-el is, így lehetőséged van az online boltod és a tagsági rendszered összekapcsolására. Például exkluzív kedvezményeket kínálhatsz a tagoknak vagy speciális termékeket csak bizonyos tagsági szintek számára tehetsz elérhetővé.
-
-### LearnDash
-
-A LearnDash oktatási platformmal való integráció révén könnyedén létrehozhatsz online kurzusokat, amelyek csak bizonyos tagsági szintek számára elérhetők. Ez különösen hasznos lehet oktatási intézmények vagy online tréningek esetében.
+- **Tartalomkorlátozás**: Beállíthatod, hogy egy teljes oldal, bejegyzés, egyedi bejegyzéstípus vagy akár teljes kategória/címke csak bizonyos tagoknak legyen látható. A kivonat publikus maradhat, a teljes tartalomhoz belépés szükséges. A korlátozás az **RSS**-ben és a **REST API**-ban is érvényes.
+- **Tagsági szintek és csomagok**: Tetszőleges csomagot készíthetsz külön árral és időtartammal (nap/hónap/év). Támogatott a **prorata** frissítés és visszaváltás (a rendszer arányosan számol), így nem kell kézzel visszatérítened.
+- **Fizetések és számlázás**: Az ingyenes kiadás Stripe-on fogad kártyás fizetést. A Pro eltávolítja a plusz Stripe díjat, és több fizetési átjárót ad. A tagok letölthető **PDF-számlákat** kapnak.
+- **E-mail értesítések**: Automatikus e-mailek megrendeléskor, megújításkor, lejárat előtt/után. Pro-ban sablonozható és tagsági szintenként testreszabható.
+- **Kedvezménykuponok (Pro)**: Fix vagy százalékos kuponok, lejárattal és felhasználási limittel – ideális kampányokhoz és akciókhoz.
+- **Jelentések (Pro)**: Bevételi grafikonok, időszakos és szintenkénti bontás – átlátható működési kép és döntéstámogatás.
+- **WooCommerce integráció (Pro kiegészítők)**: Termékek megtekintésének/vásárlásának korlátozása, automatikus **tagkedvezmények**.
+- **Dripelt és időzített tartalom (Pro kiegészítők)**: Tartalom fokozatos kiadása napok alapján, időzárak (lock/timeout), vagy fix lejárati dátumok.
+- **Csoportos tagság (Pro kiegészítő)**: Egy előfizetés alá több alfelhasználó – céges vagy csapatos felhasználásra.
+- **Fejlesztői eszköztár**: Teljes **REST API**, **WP-CLI** parancsok, sok hook/filter és sablon-override – könnyű integráció külső rendszerekkel.
+- **Biztonság és UX**: reCAPTCHA támogatás, jelszómegosztás elleni védelem, valamint gördülékeny tagfiók-élmény.
+- **Gutenberg és shortcode-ok**: Blokkszerkesztőben és shortcode-dal is korlátozhatsz.
 
 ## Gyakorlati példák
 
-### Online magazin
+- **Paywall magazin**: A cikkek kivonata publikus, a teljes tartalom “Bronz/Ezüst/Arany” szinthez kötött. A lejáró előfizetők automatikus figyelmeztető e-mailt kapnak.
+- **Online tananyag**: A leckéket dripelve adod ki – pl. minden tag a csatlakozását követő 3., 7., 14. napon kap új anyagot.
+- **Webshop tagkedvezmény**: Bejelentkezett tagok 10–20% automatikus kedvezményt kapnak bizonyos kategóriákban; egyes termékek csak tagoknak láthatók.
+- **Vállalati hozzáférés**: Egy cég előfizet, és a csapat tagjait alfelhasználóként osztja hozzá ugyanahhoz a csomaghoz.
+- **Multisite site-értékesítés**: Új aloldalakat hozol létre előfizetéshez kötve; a tagság aktiválása automatikusan létrehozza az új site-ot.
 
-Egy online magazin esetében a Restrict Content Pro segítségével exkluzív cikkeket és tartalmakat kínálhatsz csak fizető tagok számára. Emellett különböző tagsági szinteket hozhatsz létre, amelyek különböző előnyöket biztosítanak, például hozzáférést exkluzív interjúkhoz vagy letölthető anyagokhoz.
+## Előnyök és értékajánlat
 
-### Edzői weboldal
+- **Minden egyben**: korlátozás, fizetés, számlázás, e-mailek – kevesebb bővítmény, kevesebb hibaforrás.
+- **Kevesebb ügyfélszolgálat**: önkiszolgáló tagfiók és prorata csomagváltás.
+- **Bevételnövelés**: kuponok, próbák, drip, célzott e-mailek és WooCommerce kedvezmények.
+- **Biztonságosabb tartalom**: korlátozások RSS/REST felületen is; kiegészítő védelem jelszómegosztás ellen.
+- **Fejlesztőbarát**: API-k és hookok miatt könnyen illeszthető egyedi igényekhez.
 
-Egy edzői weboldalon különböző tagsági szintek révén exkluzív videókat, edzésterveket és táplálkozási tanácsokat kínálhatsz csak a fizető tagoknak. Az integrált fizetési átjárók segítségével könnyedén kezelheted a tagsági díjakat és az automatikus megújításokat.
+## Kinek ajánlott?
 
-### Oktatási platform
+- **Online magazinok, blogok, podcastok** – fizetős előfizetések és paywall.
+- **Oktatási oldalak** – tananyagok, modulok, dripelt leckék.
+- **Webshopok** – tagi árak és termék-hozzáférés.
+- **Közösségi oldalak, fórumok** – csak tagoknak látható szekciók.
+- **Ügynökségek, vállalatok** – csoportos előfizetés, multisite scenarios.
+- **Fejlesztők** – testreszabás, integráció, automatizálás.
 
-Egy oktatási platformon a Restrict Content Pro lehetővé teszi, hogy csak regisztrált diákok férjenek hozzá az oktatási anyagokhoz és kurzusokhoz. A LearnDash integráció révén pedig különböző kurzusokat kínálhatsz, amelyek csak bizonyos tagsági szinteken érhetők el.
+## Korlátok és megfontolások
 
-## Szószedet
+- **Médiavédelem**: a beágyazott média URL-je önmagában nem titkos; fájlletöltés-védelemhez külön megoldást használj.
+- **Blokkszintű korlátozás**: oldalszintű védelem alapból adott; finom, blokkonkénti szabályozáshoz külön kiegészítő szükséges.
+- **Oldalépítők**: a [restrict] shortcode nyitó és záró tagja ugyanabban az elemben legyen.
 
-- **Tagsági szint**: A felhasználói hozzáférés különböző szintjei egy weboldalon belül.
-- **Fizetési átjáró**: Olyan szolgáltatás, amely lehetővé teszi online fizetések kezelését.
-- **Integráció**: Különböző szoftverek vagy szolgáltatások összekapcsolása és együttműködése.
-- **Szinkronizálás**: Adatok automatikus frissítése két vagy több rendszer között.
-- **Oktatási platform**: Olyan online rendszer, amely lehetőséget biztosít tananyagok létrehozására és kezelésére.
+## Ingyenes vs. Pro és árak
+
+- **Ingyenes**: alap tartalomkorlátozás, tagsági szintek, tagfiók, alap e-mailek, Stripe fizetés – plusz Stripe-díjjal.
+- **Pro**: eltávolított Stripe-díj, további fizetési átjárók, kuponok, jelentések, próbaidő, reCAPTCHA, csoporttagság, drip és további kiegészítők, valamint prémium támogatás.
+
+Irányadó éves licencárak: 1 oldal: 99 USD/év; 5 oldal: 149 USD/év; korlátlan: 249 USD/év. Az árak változhatnak.
+
+## Gyors kezdés – shortcode példa
+
+```
+[restrict subscription="arany" message="Csak Arany tagok férhetnek hozzá."]
+Ez a bekezdés csak Arany tagsággal látható.
+[/restrict]
+```
+
+Lépések:
+1. Telepítsd és aktiváld a bővítményt.
+2. Hozz létre legalább egy tagsági szintet (ár, időtartam, megújítás).
+3. Állítsd be a fizetési átjárót.
+4. Jelöld korlátozottnak a kívánt tartalmakat (meta mező vagy shortcode).
+5. Teszteld vendégként és tagként is a hozzáférést.
+
+## Üzemeltetés és fejlesztés
+
+A bővítmény aktívan karbantartott, részletes dokumentációval, REST API-val, WP-CLI támogatással és számos hookkal/templattal. Ezekkel komplex folyamatokat, számlázási logikákat és külső rendszereket is könnyedén integrálhatsz.

@@ -1,51 +1,94 @@
-# WooCommerce Subscription Downloads
+---
+title: "WooCommerce Subscription Downloads"
+description: "Letölthető termékek előfizetéshez kötött hozzáférése WooCommerce-ben: digitális bónuszok kiosztása és jogosultságok automatizálása."
+sidebar_label: "WooCommerce Subscription Downloads"
+---
 
-A WooCommerce Subscription Downloads lehetővé teszi, hogy előfizetőidnek extra letölthető termékeket kínálj, miközben az egyes letölthető termékek különálló listázása megmarad az áruházadban. Ez azt jelenti, hogy a letölthető termékeket nem csak előfizetésen keresztül, hanem egyénileg is értékesítheted.
+## Mi ez és milyen problémát old meg?
 
-## Gyors és egyszerű konfiguráció
+A WooCommerce Subscription Downloads egy hivatalos Woo‑Marketplace bővítmény, amellyel letölthető termékeket kapcsolhatsz előfizetéses termékekhez. Ha valaki aktív előfizető, a kapcsolt fájlok automatikusan megjelennek neki a Saját fiók > Letöltések oldalon. Így digitális „előfizetői bónuszokat” (e‑könyvek, sablonok, hangminták, képkészletek, frissülő csomagok) adhatsz anélkül, hogy duplikálnod kellene a termékeket, vagy kézzel állítgatnád a jogosultságokat.
 
-### Letölthető termékek összekapcsolása előfizetésekkel
+## Hogyan működik?
 
-A WooCommerce Subscription Downloads egy új mezőt ad hozzá a letölthető termékekhez a **Product Data** meta box-ban. Miután az előfizetési terméket létrehoztad, az új **Subscriptions** mező segítségével kereshetsz az előfizetési termékre, amikor hozzáadod a letölthető terméket.
+- Egy letölthető termék adatlapján megjelenik egy új **Subscriptions** mező.
+- Ebben a mezőben rákeresel és hozzárendeled a megfelelő **előfizetéses termék(eke)t**.
+- Minden **aktív előfizető** automatikusan letöltési jogot kap ehhez a termékhez, amely a **Saját fiók > Letöltések** nézetben látszik.
+- A hozzáférés **állapotfüggő**: ha az előfizetés szünetel, lejár vagy lemondásra kerül, a letöltés azonnal megszűnik.
+- Ha frissíted a letölthető termék fájljait, a változás **automatikusan érvényes** az előfizetőknél – nincs külön újrakiosztás.
 
-### Hozzáférési jogosultságok frissítése
+A bővítmény a WooCommerce Subscriptions jogosultságkezelésére épít: ő dönti el, ki aktív előfizető. A Subscription Downloads ehhez a keretrendszerhez kapcsolja a letölthető termékeket.
 
-Amikor a letölthető termékek fájljait frissíted, az előfizetőid automatikusan megkapják a frissítést. Ez biztosítja, hogy mindig a legfrissebb tartalmakhoz férjenek hozzá, anélkül hogy neked külön értesítened kellene őket.
+## Fő funkciók, érthetően
 
-### Előfizetők letöltési nézete
+- **Letölthető termék és előfizetés összekapcsolása**  
+  A letölthető termék szerkesztésén belül kiválasztod, mely előfizetésekkel legyen összekötve. Innentől az aktív előfizetők automatikus hozzáférést kapnak.
 
-Az előfizetőid a My Account >> Downloads oldalon találhatják meg a letöltéseiket. Ez egyszerű hozzáférést biztosít számukra a megvásárolt tartalmakhoz.
+- **Több‑az‑egyhez kapcsolás**  
+  Ugyanaz a letölthető termék több különböző előfizetéshez is kapcsolható. Így például egy „Alap” és egy „Prémium” csomag is adhatja ugyanazt a fájlt.
 
-## Együttműködés más eszközökkel
+- **Automatikus jogosultságfrissítés**  
+  Fájlfrissítésnél nem kell új jogokat kiosztanod: az előfizetők a legújabb állapotot kapják.
 
-### WooCommerce Subscriptions
+- **Egységes előfizetői felület**  
+  A kapcsolt fájlok a vevő **Saját fiók > Letöltések** oldalán gyűlnek össze – nincs szétszórt hivatkozás, nincs keresgélés.
 
-A WooCommerce Subscriptions bővítménnyel együttműködve lehetővé teszi, hogy előfizetéseket hozz létre termékeidre vagy szolgáltatásaidra heti, havi vagy éves fizetéssel. Az előfizetések segítségével folyamatos bevételt generálhatsz, és hűséges ügyfélkört építhetsz ki.
+- **Állapotfüggő hozzáférés**  
+  Csak aktív előfizetés mellett érhető el a letöltés. Szünetelés, lejárat vagy lemondás esetén a jog automatikusan megszűnik.
 
-### WooCommerce Memberships
+- **Önálló értékesítés megőrzése**  
+  A letölthető termék továbbra is önállóan listázható és megvásárolható a boltban – az előfizetés csak extra hozzáférést ad.
 
-A WooCommerce Memberships bővítménnyel kombinálva lehetőséged van tagsági rendszert létrehozni, ahol különböző szinteken kínálhatsz hozzáférést a tartalmaidhoz és termékeidhez. Ezzel olyan exkluzív élményeket nyújthatsz, amelyek növelik az ügyfelek elégedettségét és elkötelezettségét.
+## Gyakorlati példák
 
-## Konkrét felhasználási helyzetek
+- **Sablonklub dizájnereknek**  
+  Havi előfizetésedhez több tucat letölthető sablont adsz. A sablonok külön‑külön is megvásárolhatók, de az előfizetők bónuszként hozzájuk férnek.
 
-### Digitális tartalom szolgáltatók
+- **Hangminta‑csomagok kiadója**  
+  Minden hónapban új pack jelenik meg letölthető termékként. A „Producer Club” előfizetők automatikusan megkapják az új csomagokat a Letöltések oldalon.
 
-Ha digitális tartalmakat, például e-könyveket, zenéket vagy szoftvereket árulsz, a WooCommerce Subscription Downloads segítségével folyamatos hozzáférést biztosíthatsz az előfizetőid számára az újabb és frissített tartalmakhoz. Ez különösen hasznos lehet azoknak, akik rendszeresen frissítik a kínálatukat.
+- **Fotókönyvtár**  
+  A fotócsomagok külön termékek, de egy „All‑Access” előfizetés mindhez hozzáférést ad – amíg aktív.
 
-### Oktatási anyagok
+- **Szoftveres kiegészítők**  
+  Bővítményekhez tartozó presetek és minták önálló termékek, ugyanakkor egy karbantartási előfizetés részeként is elérhetők.
 
-Az online oktatási platformok számára is ideális megoldás, ahol folyamatosan új kurzusokat és anyagokat kínálsz. Az előfizetések révén a diákok hozzáférhetnek az összes aktuális és jövőbeni oktatási anyaghoz.
+## Telepítés és alapbeállítás
 
-### Kreatív alkotók
+1. Telepítsd és aktiváld a WooCommerce Subscriptions bővítményt (külön megvásárolandó).
+2. Telepítsd és aktiváld a Subscription Downloads kiegészítőt.
+3. Nyiss meg vagy hozz létre egy **letölthető** terméket (jelöld be a Letölthető opciót).
+4. A termék adatlapján, az **Általános** fülön keresd meg a **Subscriptions** mezőt, majd válaszd ki a kapcsolni kívánt előfizetés(eke)t.
+5. Mentsd/publikáld a terméket. Az aktív előfizetők innentől látják a fájlokat a Letöltések oldalukon.
 
-Művészek, fotósok és egyéb kreatív szakemberek számára lehetőséget biztosít arra, hogy exkluzív letölthető tartalmakat (pl. stock fotók, design sablonok) kínáljanak előfizetőiknek.
+Tipp a teszteléshez:
+- Hozz létre egy tesztelőfizetést, állítsd aktívra, és ellenőrizd, hogy a Letöltések oldalon megjelennek‑e a fájlok.
+- Változtasd meg az előfizetés állapotát (szüneteltetés/lemondás), és nézd meg, hogy a hozzáférés megszűnik‑e.
 
-## Szószedet
+## Rendszerkövetelmények és kompatibilitás
 
-- **WooCommerce Subscription Downloads**: Olyan bővítmény, amely lehetővé teszi előfizetési alapon történő letölthető termékek kínálását.
-- **Product Data meta box**: A termék adatainak kezelésére szolgáló mezők egy csoportja.
-- **Subscriptions mező**: Olyan mező, amely lehetővé teszi az előfizetési termékek keresését és összekapcsolását.
-- **WooCommerce Subscriptions**: Egy bővítmény, amely előfizetési alapú értékesítést tesz lehetővé.
-- **WooCommerce Memberships**: Egy bővítmény, amely tagsági rendszert kínál az áruházban.
+- **Előfeltétel:** WooCommerce Subscriptions (fizetős bővítmény).
+- **WooCommerce és WordPress:** használat előtt ellenőrizd a saját környezetedben a kompatibilitást, különösen nagyobb frissítések után.
+- **Terméktípusok:** egyszerű és variálható letölthető termékekkel is működik.
 
-Ezek az eszközök és funkciók együttesen hatékonyan segíthetnek abban, hogy kibővítsd üzleti lehetőségeidet és növeld az ügyfelek elégedettségét a WooCommerce Subscription Downloads használatával.
+## Előnyök és értékajánlat
+
+- **Nincs duplikálás:** egy letölthető terméket több előfizetéshez is kapcsolhatsz.
+- **Automatizált jogosultságkezelés:** a hozzáférés az előfizetés állapotát követi – kevesebb manuális adminisztráció.
+- **Jobb termékstruktúra:** a fájlok önálló termékek maradnak, külön is marketingelhetők és eladhatók.
+- **Egyszerű előfizetői élmény:** minden elérhető letöltés egy helyen, kevesebb ügyfélszolgálati kérdés.
+- **Skálázható kezelés:** több csomag, sok fájl esetén is átlátható és fenntartható.
+
+## Kinek ajánlott?
+
+- **Digitális tartalom előfizetéses modellben:** sablonok, hangminták, fotók, e‑könyvek, mintagyűjtemények.
+- **Szoftveres ökoszisztémák:** kiegészítő fájlok, assetek, presetek, amelyeket előfizetéshez kötnél.
+- **Kiadók, ügynökségek, stúdiók:** ahol ugyanaz a tartalom több csomagban is megjelenik.
+- **Bárkinek, aki „előfizetői bónuszt” szeretne adni** anélkül, hogy egyedi felhasználói jogosultságokat kellene kézzel kezelnie.
+
+## Megjegyzések és alternatívák
+
+A Subscription Downloads **fájlletöltési jogosultságot** kezel előfizetésekhez. Ha weboldal‑részeket zárnál le, hozzáférési szinteket és kedvezményeket kezelnél, vagy tagsági szinteket építenél, azt tipikusan a WooCommerce Memberships oldja meg. A két bővítmény jól kiegészíti egymást.
+
+## Licencelés és támogatás
+
+Hivatalos, „by Woo” kiegészítő éves díjjal, amely tartalmazza a frissítéseket és a támogatást az előfizetés ideje alatt. Elérhető pénzvisszafizetési garancia is. Az aktuális árak és feltételek a vásárláskor érvényesek.

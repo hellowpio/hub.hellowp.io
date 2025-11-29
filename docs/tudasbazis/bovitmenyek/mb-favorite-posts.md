@@ -1,68 +1,101 @@
-# MB Favorite Posts
+---
+title: "MB Favorite Posts"
+description: "Kedvenc/mentés gomb és felhasználói kedvenclista WordPress‑hez; automatikus gomb, rövidkódok, vendég és bejelentkezett támogatás."
+sidebar_label: "MB Favorite Posts"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-Az **MB Favorite Posts** egy olyan bővítmény, amely lehetővé teszi a felhasználók számára, hogy kedvenc bejegyzéseiket könyvjelzővel lássák el és később visszatérjenek hozzájuk. Ez a funkció mind vendég, mind bejelentkezett felhasználók számára elérhető.
+Az MB Favorite Posts egy készre csomagolt megoldás, amivel kedvenc (bookmarks/kívánságlista) funkciót adhatsz bármely bejegyzéstípushoz. A látogatók egy kattintással elmenthetik a tartalmakat, majd egy “Kedvenceim” oldalon visszanézhetik őket. Ezzel kiváltod az egyedi fejlesztést: nem kell saját tárolást, gombkezelést és listázást írnod, mégis kapsz egy letisztult, skálázható rendszert, ami működik vendégeknek és bejelentkezett felhasználóknak is.
 
-## Jellemzők
+## Hogyan működik röviden?
 
-### Testreszabható kedvenc gomb
+- Aktiválás után automatikusan megjelenik egy **Add to Favorites** gomb az általad megjelölt bejegyzéstípusokon.
+- Vendég módban a kedvencek **cookie‑ban** tárolódnak; bejelentkezett felhasználóknál **felhasználói metában** maradnak tartósan.
+- Minden bejegyzéshez karbantart egy **számlálót**, és rövidkódokkal bárhol meg tudod jeleníteni a gombot, a listát vagy a darabszámot.
+- Kapsz egy beállítási felületet (élő előnézettel), ahol a megjelenést és a működést szabályozhatod.
 
-Az MB Favorite Posts különböző stílusú gombokat kínál, amelyek közül választhatsz:
-- **Alapértelmezett**: gomb formátum
-- **Like**: egyszerű like ikon (hasonló a Facebook like gombjához)
-- **Kerekített**: kerekített gomb csak ikonnal
+## Fő funkciók részletesen
 
-### Felhasználói irányítópult és regisztrációs oldal
+### Gomb elhelyezése és testreszabás
+- Automatikus elhelyezés: tartalom előtt/után, vagy manuális beszúrás rövidkóddal.
+- Három előre beállított **stílus**: Default, Like, Rounded.
+- Testreszabható **szöveg**, **méret**, **színek**, saját **CSS osztály**, ikon megjelenítése vagy **ikon‑only** mód.
+- Többféle **ikon** (pl. szív, csillag, pin, like, award) választható.
 
-Az MB Favorite Posts integrálva van az adminisztrációs felülettel, ami automatikusan létrehozza a felhasználói irányítópultot és regisztrációs oldalt. Az irányítópult mutatja az összes kedvenc bejegyzést, míg a regisztrációs oldalon keresztül a felhasználók fiókot hozhatnak létre, hogy használhassák a kedvenc funkciót.
+### Rövidkódok (gomb, lista, számláló)
+- Gomb megjelenítése:
+  ```
+  [mbfp-button id="123" add="Kedvencek közé" added="Kedvencekben" show_count="true" show_icon="true" icon="heart" icon_only="false" font_size="16" class="btn btn-primary"]
+  ```
+  - Gyakori paraméterek: id, add/added szöveg, show_count, show_icon, icon, icon_only, font_size, class.
 
-### Rövidkódok
+- Felhasználó kedvenceinek listázása:
+  ```
+  [mbfp-posts per_page="12" post_type="post,product"]
+  ```
 
-A bővítmény három rövidkódot biztosít:
-- `[mbfp-posts]`: Kedvenc bejegyzések listájának megjelenítése
-- `[mbfp-button]`: "Kedvencekhez adás" gomb megjelenítése
-- `[mbfp-count]`: Kedvenc bejegyzések számának megjelenítése
+- Egy bejegyzés kedvencek száma:
+  ```
+  [mbfp-count id="123"]
+  ```
 
-Ezeket bárhol elhelyezheted a weboldalon (oldalsávban, tartalom között stb.).
+### Dashboard és regisztráció
+- Kész **“Kedvenceim”** listaoldalt kapsz, ahol a felhasználó a saját mentéseit látja.
+- Integrálható regisztrációs/hozzáférési felülettel, így ösztönözheted a bejelentkezést a tartós mentéshez.
 
-### Adatkezelés
+### Elhelyezés és megjelenítés bárhol
+- Korlátozhatod, mely **bejegyzéstípusokon** jelenjen meg a gomb.
+- Beillesztheted **oldalsávba** vagy widget‑területre is rövidkóddal.
+- Admin felületen élő előnézettel állíthatod a stílust.
 
-Az adatok két helyen tárolódnak:
-- **Felhasználói metaadatok**: A kedvenc bejegyzések azonosítói tömb formájában tárolódnak a felhasználói metaadatokban.
-- **Bejegyzés metaadatok**: A kedvenc bejegyzéseket hozzáadó felhasználók azonosítói szintén tömb formájában tárolódnak.
-
-### Hookok
-
-- `mbfp_cookie_expiration`: Lehetővé teszi a cookie lejárati idejének módosítását.
-- `mbfp_limit`: Meghatározhatod a kedvenc bejegyzések maximális számát.
-
-## Előnyök
-
-### Könnyű integráció
-
-Az MB Favorite Posts zökkenőmentesen működik együtt más Meta Box bővítményekkel, így könnyedén kibővítheted a weboldalad funkcionalitását anélkül, hogy bonyolult kódolási feladatokba kellene bocsátkoznod.
-
-### Felhasználói élmény javítása
-
-Lehetővé teszi a felhasználók számára, hogy személyre szabott tartalomlistákat hozzanak létre, ami növeli az oldalhoz való kötődést és az oldalon eltöltött időt.
-
-### Testreszabhatóság
-
-A különböző gombstílusok és rövidkódok segítségével könnyedén testre szabhatod a bővítményt, hogy illeszkedjen az oldalad dizájnjához és funkcionalitásához.
+### Fejlesztői horgok és adatkezelés
+- Adattárolás:
+  - Felhasználói meta: **mbfp_posts** (kedvenc bejegyzés ID‑k tömbje).
+  - Bejegyzés meta: **mbfp_count** (felhasználói ID‑k tömbje a számláláshoz).
+- Horgok:
+  - `mbfp_cookie_expiration` – vendég kedvencek cookie lejárata (pl. “1 month”).
+  - `mbfp_limit` – maximális kedvenc darabszám korlátozása.
+- Egyszerű lekérdezés a felhasználó kedvenceire:
+  ```php
+  $ids = (array) get_user_meta( get_current_user_id(), 'mbfp_posts', true );
+  $q = new WP_Query([
+    'post_type' => ['post', 'product'],
+    'post__in'  => $ids,
+    'orderby'   => 'post__in',
+  ]);
+  ```
 
 ## Gyakorlati példák
 
-1. **Blogok és cikkek gyűjtése**: A felhasználók könnyedén gyűjthetnek össze cikkeket vagy blogbejegyzéseket, amelyeket később újra szeretnének olvasni.
-2. **E-commerce oldalak**: Vásárlók listát készíthetnek azokról a termékekről, amelyeket meg szeretnének vásárolni vagy összehasonlítani később.
-3. **Tanulási platformok**: Hallgatók elmenthetik azokat a tananyagokat vagy kurzusokat, amelyek különösen érdekesek vagy fontosak számukra.
-4. **Ingatlan oldalak**: Az érdeklődők listázhatják azokat az ingatlanokat, amelyek potenciálisan megfelelnek számukra, és később visszatérhetnek hozzájuk.
+- **Katalógus/listing** (ingatlan, autó, hotel): a kártyákon ikon‑only gombot jelenítesz meg, a felhasználó pedig a “Kedvenceim” oldalon egyben látja a kiválasztott tételeket.
+- **Blog/tudásbázis**: a cikk végén “Mentés későbbre” gomb; a menüben egy “Kedvenceim” hivatkozás vezet a felhasználói listához.
+- **E‑kereskedelem**: “Kívánságlista”‑szerű mentés még vásárlás előtt, számlálóval és szív ikonokkal.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Meta Box**: Egy WordPress bővítmény keretrendszer, amely lehetővé teszi egyedi mezők és metaboxok létrehozását.
-- **Shortcode**: Rövid kódok, amelyek segítségével dinamikus tartalmat adhatsz hozzá WordPress oldaladhoz.
-- **User meta**: Felhasználói metaadatok, amelyekben további információkat tárolhatsz egy adott felhasználóról.
-- **Post meta**: Bejegyzés metaadatok, amelyekben további információkat tárolhatsz egy adott bejegyzésről.
+- **Idő- és költségmegtakarítás**: kész funkció, fejlesztés nélkül.
+- **Jobb UX és elköteleződés**: a felhasználók könnyen visszatérnek a számukra fontos tartalmakhoz.
+- **Rugalmas testreszabás**: megjelenés, elhelyezés, ikonok, rövidkódok – mind adminból állítható.
+- **Skálázható adatkezelés**: szabványos user_meta és post_meta, fejlesztőbarát horgokkal.
 
-Ezek segítségével hatékonyan használhatod az MB Favorite Posts bővítményt, és javíthatod weboldalad felhasználói élményét.
+## Telepítés és követelmények
+
+1. Telepítsd és aktiváld a **Meta Box** alapbővítményt.
+2. Töltsd fel és aktiváld az **MB Favorite Posts** bővítményt (önálló “solution”, nem része az AIO‑nak).
+3. A beállítások a **Settings > Favorite Posts** menüpont alatt érhetők el (General, Button, Icon).
+4. Engedélyezd a kívánt bejegyzéstípusokon, állítsd be a stílust, ikont, pozíciót.
+5. Hozz létre egy “Kedvenceim” oldalt a `[mbfp-posts]` rövidkóddal, és (opcionálisan) egy regisztrációs oldalt.
+
+## Célközönség
+
+- **Katalógus és marketplace** üzemeltetők: menthető találatok, visszatérés ösztönzése.
+- **Tartalomkiadók/blogok**: “olvasd később” élmény, több session, jobb retenció.
+- **Webshopok**: kívánságlista‑szerű funkció konverziótámogatáshoz.
+- **Fejlesztők/ügynökségek**: gyors, megbízható kedvenc‑megoldás projekt‑sztenderdként.
+
+## Ismert korlátok és tippek
+
+- Alapból **egy** kedvenclista érhető el (nincs több párhuzamos “lista” gomb); egyedi fejlesztéssel bővíthető.
+- Egyes vizuális építők speciális listázásainál üres kedvenclistánál előfordulhat, hogy “mindent mutat” – kezeld egyedi lekérdezéssel.
+- Vendég mód cookie‑alapú; ha fontos a tartós megőrzés több eszközön, **ösztönözd a regisztrációt** és bejelentkezést.

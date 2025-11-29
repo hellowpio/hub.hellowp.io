@@ -1,65 +1,120 @@
-# Advanced Custom Fields PRO
+---
+title: "Advanced Custom Fields PRO"
+description: "Fizetős, önálló WordPress bővítmény, amellyel strukturált, egyedi mezőket és összetett tartalommodelleket hozhatsz létre – Repeaterrel, Flexible Contenttel, opcióoldalakkal és ACF Blocks-szal."
+sidebar_label: "Advanced Custom Fields PRO"
+---
 
-## Repeater field
+## Mi ez és milyen problémát old meg?
 
-A repeater field lehetőséget biztosít arra, hogy egy sor almezőt hozz létre, amelyeket újra és újra megismételhetsz. Bármilyen típusú mező hozzáadható almezőként, ami lehetővé teszi, hogy könnyedén kezelj és testreszabj összetett adatokat.
+Az **Advanced Custom Fields PRO** (ACF PRO) egy önálló WordPress bővítmény, amellyel tetszőleges, strukturált adatmezőket adhatsz a szerkesztőfelületekhez (bejegyzések, oldalak, egyedi bejegyzéstípusok, taxonómiák, felhasználók, média, kommentek, opcióoldalak). A cél: a „szövegdobozos” tartalom helyett jól definiált űrlapokkal vidd fel az adatot, és azt tiszta, kiszámítható **PHP API-val** jelenítsd meg a sablonokban. Így konzisztens szerkesztői élményt és karbantartható kódot kapsz – kevesebb hibával, gyorsabb fejlesztéssel.
 
-## ACF Blocks
+Röviden: az ACF PRO-val tartalommodellt tervezel, mezőcsoportokat rendelsz helyekhez, az értékeket pedig `get_field()`/`the_field()` hívásokkal olvasod ki. A PRO kiadás a haladó mezőtípusokkal és eszközökkel igazi „svájcibicska” a modern WordPress projektekben.
 
-Az ACF Blocks egy PHP-alapú keretrendszer, amely lehetővé teszi egyedi blokk típusok fejlesztését. Ezek a blokkok mélyen integrálódnak az egyedi mezőkkel, így a PHP fejlesztők számára lehetőség nyílik egyedi megoldások létrehozására a modern WordPress blokk szerkesztővel és témafejlesztéssel összhangban.
+## Fő funkciók (PRO)
 
-## Flexible content field
+### Repeater mező
+Ismétlődő elemek (sorok) tetszőleges almezőkkel – ideális listákhoz, csúszkákhoz, csapatblokkokhoz. Kezeli a min/max korlátokat, összehajtható sorokat és különböző elrendezéseket.
 
-A flexible content field egy teljes tartalomelrendezés-kezelő eszköz. Meghatározhatsz almezőcsoportokat (elrendezéseket), majd ezeket hozzáadhatod, szerkesztheted és átrendezheted, hogy rendkívül testreszabott tartalmakat hozz létre.
+```php
+<?php if (have_rows('team')): ?>
+  <ul>
+    <?php while (have_rows('team')): the_row(); ?>
+      <li>
+        <strong><?php the_sub_field('name'); ?></strong>
+        <span><?php the_sub_field('role'); ?></span>
+      </li>
+    <?php endwhile; ?>
+  </ul>
+<?php endif; ?>
+```
 
-## Options pages
+### Flexible Content mező
+„Blokkos” oldalépítés több **layouttal**, amelyeket a szerkesztő vegyesen, sorban építhet össze (hero, feature-k, CTA, stb.). 6.5-től kényelmesebb UX (pl. átnevezhető layoutok).
 
-Az options pages funkció lehetővé teszi extra adminisztrációs oldalak hozzáadását az ACF mezők szerkesztéséhez. Az itt mentett adatok globálisak, és bármely oldalra megjeleníthetők a webhelyen (például fejlécek és láblécek esetében).
+```php
+<?php if (have_rows('content_sections')): ?>
+  <?php while (have_rows('content_sections')): the_row(); ?>
+    <?php if (get_row_layout() === 'hero'): ?>
+      <section class="hero"><?php the_sub_field('headline'); ?></section>
+    <?php elseif (get_row_layout() === 'features'): ?>
+      <section class="features">...</section>
+    <?php endif; ?>
+  <?php endwhile; ?>
+<?php endif; ?>
+```
 
-## Gallery field
+### Gallery mező
+Képkollekciók válogatással, validációval és választható visszatérési formátummal (ID/URL/tömb). Praktikus portfóliókhoz, galériákhoz, csúszkákhoz.
 
-A gallery field egyszerű és intuitív felületet biztosít a képek kezeléséhez. Több kép hozzáadható, szerkeszthető és rendezhető könnyedén.
+### Clone mező
+Meglévő mezők/mezőcsoportok újrahasznosítása **seamless** vagy **group** módban. Csökkenti a duplikációt, segít moduláris mintákat építeni (pl. „Button”, „SEO beállítások”).
 
-## Clone field
+### Opcióoldalak (Options Pages) – PRO UI
+Globális webhelybeállítások (fejléc/lábléc, elérhetőségek, értesítési sáv) külön admin menüponttal. Az értékeket azonnal lekéred:
 
-A clone field lehetőséget biztosít meglévő mezők és mezőcsoportok újbóli felhasználására igény szerint. Sokféle erőteljes beállítással ez a mező hatékonyabb munkafolyamatot tesz lehetővé a mezőbeállítások kezelésében.
+```php
+<?php echo esc_html( get_field('company_phone', 'option') ); ?>
+```
 
-## Egyéb funkciók ACF v6-ban
+### ACF Blocks (Gutenberg)
+PHP-alapú blokkfejlesztés élő előnézettel. Nem kell külön build-lánc: mezőkkel paraméterezett, dinamikus blokkokat készítesz. 6.6-tól támogatott a **Blocks v3**.
 
-- **Több AJAX**: Több mező használ AJAX-alapú keresést a gyorsabb oldalbetöltés érdekében.
-- **Local JSON**: Az új automatikus JSON exportálás javítja a sebességet és lehetővé teszi a szinkronizációt.
-- **Egyszerű import/export**: A mezőcsoportok importálása és exportálása könnyen elvégezhető az új eszköz oldalon keresztül.
-- **Új form helyek**: Mezők mostantól hozzárendelhetők kommentekhez, widgetekhez és minden felhasználói űrlaphoz.
-- **Nagyobb testreszabhatóság**: Új PHP (és JS) akciók és szűrők kerültek hozzáadásra a nagyobb testreszabhatóság érdekében.
-- **Friss UI**: Az egész bővítmény dizájnja frissült, beleértve az új mezőtípusokat, beállításokat és dizájnt.
-- **Új oEmbed mező**: Új mezőtípus került bevezetésre a tartalom beágyazásához.
-- **Új beállítások**: Új mezőcsoport beállítások kerültek hozzáadásra a címke elhelyezéséhez és az utasítások elhelyezéséhez.
-- **Jobb front-end űrlapok**: Az `acf_form()` most már új bejegyzést hozhat létre beküldéskor sok új beállítással.
-- **Jobb validálás**: Az űrlap validálás most PHP + AJAX-al történik a csak JS helyett.
-- **Jobb kapcsolat mező**: Új kapcsolat mező beállítás a 'Szűrők' (Keresés, Bejegyzés típus, Taxonómia) számára.
-- **Mezők mozgatása**: Új mezőcsoport funkció lehetővé teszi egy mező mozgatását csoportok és szülők között.
+```php
+<?php
+add_action('acf/init', function () {
+  acf_register_block_type([
+    'name' => 'cta',
+    'title' => __('CTA'),
+    'render_callback' => function () {
+      echo '<a class="btn">'. esc_html(get_field('label')) .'</a>';
+    },
+    'supports' => ['align' => true, 'anchor' => true],
+  ]);
+});
+```
 
-## Gyakorlati példák
+### Kétirányú kapcsolatok (Bidirectional)
+Automatikus, UI-ból állítható **kétirányú szinkron** Relationship/Post Object/User/Taxonomy mezőkhöz. Példa: ha egy terméknél kijelölöd a kapcsolódó kategóriát, a kategória oldalán is megjelenik a termék – kód nélkül.
 
-### Egyedi tartalomkezelés
-Ha egy blogot üzemeltetsz, ahol minden bejegyzés különböző típusú tartalmat tartalmazhat (például szöveg, képek, videók), akkor a flexible content field segítségével könnyedén létrehozhatsz testreszabott elrendezéseket minden bejegyzéshez.
+### Licencelés
+A PRO funkciók és frissítések használatához **licencaktiválás** kell. A PRO önálló plugin; nem igényli a free verziót.
 
-### E-commerce oldalak
-Egy online áruház esetében a repeater field segítségével dinamikusan kezelheted a termékek változatait (színek, méretek), miközben az options pages lehetőséget biztosít az általános beállítások központi kezelésére.
+## Közös képességek (amelyeket a PRO kiterjeszt)
 
-### Galéria kezelés
-Ha egy portfólió oldalt üzemeltetsz, a gallery field segítségével egyszerűen kezelheted a képeid gyűjteményét, rendezheted őket kategóriák szerint, és könnyedén frissítheted a tartalmat.
+- **30+ mezőtípus**, mezőcsoportok, megjelenítési szabályok (Location Rules) és egyszerű **PHP API** (`get_field()`, `the_field()`).
+- **Egyedi bejegyzéstípusok és taxonómiák** regisztrálása admin UI-ból (6.1-től), import eszközzel.
+- **Local JSON**: a meződefiníciók JSON-ba mentése a témában – gyors betöltés, Git-barát verziózás, megbízható szinkron környezetek között.
+- **REST API integráció**: ACF mezők elérhetők/szerkeszthetők a WordPress REST API-n, mezőcsoport-szintű láthatósági beállítással.
+- **Block Bindings**: ACF metaadatokat köthetsz core blokkok attribútumaihoz (WP 6.5-től).
 
-### Egyedi adminisztrációs oldalak
-Az options pages segítségével létrehozhatsz külön adminisztrációs oldalakat, amelyekkel könnyedén kezelheted a weboldalad általános beállításait, például logók, szlogenek vagy közösségi média linkek kezelését.
+## Gyakorlati használati esetek
 
-## Szószedet
+- **Oldalépítés szerkesztőknek**: Flexible Contenttel hero + szolgáltatás-kártyák + referenciák sorrendben, kódírás nélkül.
+- **Csapat/termék listák**: Repeaterrel név, pozíció, fotó; Gallery mezővel képgaléria.
+- **Globális beállítások**: Opcióoldalon cím, telefonszám, social linkek; sablonban `get_field('...', 'option')`.
+- **Kapcsolt tartalmak**: Bidirectional kapcsolatokkal konzisztens „Kapcsolódó termékek” és „Kapcsolódó cikkek”.
+- **Headless**: ACF mezők REST API-n keresztül kiszolgálhatók Next.js/React/Vue frontendeknek.
+- **Egyedi blokkok**: ACF Blocks-szal konfigurálható CTA, Feature-lista, Cards – PHP renderrel.
 
-- **Repeater field**: Ismétlődő mező
-- **ACF Blocks**: Egyedi blokk típusok fejlesztési keretrendszere
-- **Flexible content field**: Rugalmas tartalom elrendezési mező
-- **Options pages**: Adminisztrációs oldalak
-- **Gallery field**: Galéria mező
-- **Clone field**: Klón mező
-- **Local JSON**: Helyi JSON
-- **oEmbed field**: Beágyazott tartalom mező
+## Előnyök és értékajánlat
+
+- **Gyors fejlesztés**: kész mezőtípusok, UI-alapú modellezés, egyszerű sablon API.
+- **Konzisztens szerkesztés**: űrlapokkal vezérelt tartalom, kevesebb hiba, jobb minőség.
+- **Modularitás és újrahasznosítás**: Clone, Flexible, Blocks – skálázható komponensek.
+- **Csapatmunka és CI/CD**: Local JSON a verziókövetéshez, gyors betöltés nagy projekteknél.
+- **Modern stack kompatibilitás**: REST API, Block Bindings, Blocks v3 támogatás.
+
+## Kinek ajánlott?
+
+- **WordPress fejlesztőknek és ügynökségeknek**: skálázható tartalommodellek, tiszta sablonkód, gyors iteráció.
+- **Szerkesztői/marketing csapatoknak**: biztonságos, egyszerű űrlapok, vizuálisan építhető oldalak.
+- **Headless/Frontend fejlesztőknek**: strukturált adat REST-en, stabil integrációk.
+- **Enterprise projekteknek**: verziózható definíciók, kontrollált workflow, hosszú távú karbantarthatóság.
+
+## Kompatibilitás és frissítések
+
+Az ACF folyamatosan követi a modern WordPress fejleményeket. A legújabb kiadásokban elérhető a **Blocks v3** támogatás, továbbfejlesztett szerkesztői élmény és akadálymentesítés, valamint olyan újdonságok, mint a **Block Bindings**. A PRO külön licenccel frissíthető és támogatott.
+
+## Rövid összegzés
+
+Az ACF PRO egy fejlesztőközpontú, mégis szerkesztőbarát eszközkészlet WordPresshez. A **Repeater**, **Flexible Content**, **Gallery**, **Clone**, az **Opcióoldalak**, a **Bidirectional kapcsolatok** és az **ACF Blocks** együtt teljes megoldást adnak a strukturált, skálázható és hosszú távon karbantartható webhelyekhez – akár klasszikus, akár headless felépítésben. Ha megbízható tartalommodellezést és gyorsabb fejlesztést keresel, ez az egyik legjobb alap.

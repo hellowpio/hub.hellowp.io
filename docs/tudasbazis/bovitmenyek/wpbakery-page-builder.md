@@ -1,74 +1,109 @@
-# WPBakery Page Builder
+---
+title: "WPBakery Page Builder"
+description: "Prémium, drag‑and‑drop oldalépítő WordPresshez, amellyel kódolás nélkül készíthetsz professzionális, reszponzív elrendezéseket."
+sidebar_label: "WPBakery Page Builder"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Front End Editor
+A **WPBakery Page Builder** egy vizuális, drag‑and‑drop oldalépítő WordPresshez. Lehetővé teszi, hogy programozás nélkül hozz felépített, reszponzív oldalakat: céges oldalak, landingek, blogok, portfóliók vagy WooCommerce‑oldalak pár perc alatt elkészülhetnek. A cél, hogy gyorsan dolgozhass a meglévő témáddal és bővítményeiddel, miközben egységes dizájnt és mobilbarát élményt adsz – fejlesztői beavatkozás nélkül.
 
-A WPBakery Page Builder egyik legnagyobb előnye a Front End Editor, amely lehetővé teszi, hogy valós időben szerkeszd a weboldal tartalmát. Ezzel az eszközzel azonnal láthatod a változtatásokat, amiket végrehajtasz, így elkerülhető a felesleges próbálkozások és hibák sora.
+## Hogyan működik röviden?
 
-### Artificial Intelligence
+Két szerkesztőt kapsz:
+- **Frontend Editor**: WYSIWYG mód, ahol az oldalt “élőben” látod, és elemeket húzol a vászonra.
+- **Backend Editor**: sémás, “drótváz” nézet, ahol gyorsan átrendezheted a struktúrát.
 
-A beépített mesterséges intelligencia (AI) segíti a felhasználókat a tartalom létrehozásában. Csak add meg a szükséges specifikációkat, és az AI automatikusan létrehozza a kívánt tartalmat és kódot.
+Sorokból és oszlopokból építkezel, ezekbe helyezed a **tartalomelemeket** (szöveg, gomb, kép, rács, ikonok stb.). A motor alatt **shortcode‑ok** futnak, így rugalmas és bővíthető a rendszer.
 
-### WPBakery SEO
+```text
+[vc_row][vc_column width="1/2"][vc_single_image image="123"][/vc_column]
+[vc_column width="1/2"][vc_column_text]Saját szöveg[/vc_column_text][/vc_column][/vc_row]
+```
 
-A WPBakery SEO modul segíti a keresőoptimalizálást (SEO). Ez a funkció beépül a Yoast SEO pluginba is, így könnyen optimalizálhatod az oldalad tartalmát a keresőmotorok számára.
+## Fő funkciók részletesen
 
-### Template Library
+- **50+ beépített elem és add‑on ökoszisztéma**  
+  Kész elemekből dolgozhatsz: szövegblokkok, képek, gombok, ikonok, tabok/akkordionok, videók, galériák, számlálók, rácsok. Több száz bővítmény egészíti ki az alapkészletet, így szinte bármilyen UI‑mintát le tudsz fedni.
 
-Az online Template Library hozzáférést biztosít számos prémium sablonhoz, amelyekkel percek alatt létrehozhatsz professzionális oldalakat. A könyvtár folyamatosan frissül új sablonokkal.
+- **Advanced Grid Builder**  
+  Dinamikus **rácsok** blogbejegyzésekhez, médiához vagy egyedi bejegyzéstípusokhoz. Választhatsz 40+ előkészített stílusból, bekapcsolhatsz **szűrőket**, **lapozást**, és saját **lekérdezést** állíthatsz össze – kódolás nélkül.
 
-### For Any WordPress Theme
+- **Sablonok és Template Library**  
+  Bármelyik elrendezésedet **sablonként** elmentheted, majd újra felhasználhatod más oldalakon. Az online **sablonkönyvtár** professzionális, letölthető layoutokat kínál gyors induláshoz.
 
-A WPBakery Page Builder bármely WordPress témával kompatibilis, így nem kell aggódnod az inkompatibilitási problémák miatt.
+- **Design Options és Skin Builder**  
+  Vezéreld a **teljes szélességű/felmagasított szekciókat**, **parallax** képet/videót, **Google Fonts** tipográfiát, ikonkönyvtárakat, képszűrőket és adj hozzá **egyedi CSS‑t**. Reszponzív vezérlőkkel külön beállíthatod mobil/tablet/desktop nézetet.
 
-### Content Elements
+- **Role Manager és jogosultságok**  
+  Pontosan meghatározhatod, ki mely **poszttípusokon** és melyik editorban (frontend/backend) szerkeszthet. Ügynökségi vagy több‑szerzős környezetben ez nagyban csökkenti a hibázás esélyét.
 
-A plugin különféle tartalmi elemeket kínál, amelyekkel gyorsan és egyszerűen hozhatsz létre komplex oldalakat. Az elemek széles skálája áll rendelkezésre, beleértve a szövegdobozokat, képgalériákat, videókat és űrlapokat.
+- **WooCommerce és népszerű integrációk**  
+  Termékek, kategóriák és promóciós blokkok villámgyors összerakása. Kompatibilis többek között SEO‑, többnyelvűségi, űrlap‑ és slider bővítményekkel, valamint multisite környezetben is használható.
 
-### Skin Builder
+- **Shortcode Mapper**  
+  Bármely külső shortcode‑ot **vizuális elemmé** alakíthatsz, így a csapatodnak nem kell kódokat másolgatni – egyszerűen paraméterezhető UI‑t kapnak.
 
-A Skin Builder segítségével testreszabhatod a WPBakery Page Builder kinézetét és elemeit, hogy azok tökéletesen illeszkedjenek a márka arculatához.
+- **WPBakery AI**  
+  Beépített asszisztens **szövegíráshoz**, **fordításhoz** és célzott **CSS/JS** kódrészletek generálásához – közvetlenül az editorból. Gyorsítja a tartalomkészítést és finomhangolást.
 
-### Responsive Pages
+- **Beépített SEO Toolkit és Gutenberg‑kompatibilitás**  
+  Meta‑ és social snippetek kezelése az editorból, valamint **Gutenberg blokk** beágyazása a layoutba, ha vegyes tartalomra van szükséged.
 
-A WPBakery Page Builder segítségével készített oldalak automatikusan reszponzívak, így azok minden eszközön megfelelően jelennek meg, legyen az asztali gép, tablet vagy mobiltelefon.
+- **Teljesítmény és friss fejlesztések**  
+  Okosabb script‑betöltés, optimalizált betűtípus‑kezelés, új **Google Maps** elem, **Font Awesome 6**, és az AI‑hoz kapcsolódó **API** az egyedi elemekben – mind a gyorsabb, stabilabb oldalakat szolgálják.
 
-### Extend WPBakery Page Builder
+## Gyakorlati példák
 
-A WPBakery Page Builder egyszerűen bővíthető új tartalmi elemekkel és funkciókkal. A fejlesztők könnyen hozzáadhatnak egyedi modulokat és kiegészítőket.
+1. **Landing oldal 30 perc alatt**  
+   - Hozz létre egy teljes szélességű hős szekciót háttérképpel és gombbal.  
+   - Adj hozzá 3 oszlopos szolgáltatás‑blokkot ikonokkal.  
+   - Zárd egy CTA sávval és űrlappal.  
+   Ezt sablonként elmentheted, és minden kampányhoz újra felhasználhatod.
 
-### Support
+2. **Blogrács szűrőkkel**  
+   - Az Advanced Grid Builderrel készíts masonry rácsot a “Hírek” kategóriára.  
+   - Kapcsold be a kategória‑szűrőt és lapozást.  
+   - Válassz előre beállított kártyastílust, majd finomítsd a spacinget.
 
-A pluginhez dedikált támogatási csapat is tartozik, akik hétfőtől szombatig elérhetők, hogy segítsenek a felmerülő problémák megoldásában.
+3. **WooCommerce termékkiemelés**  
+   - Húzd be a terméklista elemet az akciós termékek lekérdezésével.  
+   - Adj hozzá árjelvényt, “Kosárba” gombot, és állíts be 4 oszlopot desktopon, 2‑t mobilon.
 
-### Advanced Grid Builder
+4. **Ügynökségi jogosultságok**  
+   - A Role Managerrel engedélyezd az ügyfélnek csak a Frontend Editort a “Page” poszttípusra.  
+   - Így ő frissíti a tartalmat, te pedig megőrzöd a struktúra integritását.
 
-Az Advanced Grid Builderrel különféle rácsos elrendezéseket hozhatsz létre, amelyekkel egyedi módon jelenítheted meg a posztokat, portfóliókat és más egyedi post-típusokat.
+5. **AI‑val gyorsított finomhangolás**  
+   - Kérj rövid, magyar összefoglalót egy hosszú cikkből.  
+   - Generáltass CSS‑t a gomb árnyékához; illeszd be az elem egyedi CSS mezőjébe.
 
-## Gyakorlati alkalmazások
+## Előnyök és értékajánlat
 
-### Webshop készítése
+- **Időmegtakarítás**: sablonok, kész elemek és drag‑and‑drop szerkesztés.  
+- **Kódmentes rugalmasság**: fejlesztő bevonása nélkül hozol létre haladó layoutokat.  
+- **Egységes dizájn**: reszponzív vezérlők és globális tipográfia.  
+- **Biztonságos munkafolyamat**: Role Manager, sablonosítás, automatikus mentés.  
+- **Ökoszisztéma‑kompatibilitás**: témákkal és népszerű pluginekkel együttműködik.
 
-A WPBakery Page Builder kompatibilis a WooCommerce bővítménnyel, így egyszerűen hozhatsz létre termékoldalakat és webshopokat. Az előre elkészített sablonok és elemek segítségével gyorsan beállíthatod a termékleírásokat, árakat és képeket.
+## Kinek ajánlott?
 
-### Portfólió oldalak
+- **KKV‑k és marketingcsapatok**: gyors landingek, A/B variációk, kampányoldalak.  
+- **Ügynökségek**: folyamat‑ és jogosultságkezelés, újrafelhasználható sablonbázis.  
+- **Tartalomkészítők és bloggerek**: vizuális szerkesztés, dinamikus listázások.  
+- **Webshop‑tulajdonosok**: WooCommerce termékkiemelések és kategóriaoldalak.  
+- **Fejlesztők**: shortcode‑alapú API, egyedi elemek, AI‑integráció.
 
-A művészek és kreatív szakemberek számára ideális választás portfólió oldalak készítéséhez. A beépített rácsos elrendezések és galéria elemek segítségével látványosan mutathatod be munkáidat.
+## Licencelés és támogatás
 
-### Blogoldalak
+- **Egyszeri díjas, élethosszig tartó licenc**: egy webhelyre szóló Regular licenc.  
+- **Support Plus**: 1 év támogatás és extrák (egy kattintásos frissítések, Template Library, WPBakery AI, tipográfia). A támogatás évesen megújítható.
 
-A WPBakery Page Builderrel könnyedén hozhatsz létre különféle blogoldalakat. Az előre definiált sablonokkal és tartalmi elemekkel egyedi megjelenést adhatsz blogbejegyzéseidnek.
+## Tippek a kezdéshez
 
-## Szószedet
+- Indíts a **Backend Editorban** a szerkezet gyors összerakásához, majd válts **Frontend Editorra** vizuális finomhangoláshoz.  
+- Ments el mindent **sablonként** (fejléc‑rész, CTA sáv, lábléc), és építkezz ezekből.  
+- A **Shortcode Mapperrel** csomagold UI mögé a gyakran használt külső shortcode‑okat.  
+- Használd a **WPBakery AI‑t** szövegvázlatokra és apró CSS finomításokra – hatalmas időnyerés.
 
-- **Front End Editor**: Előnézeti szerkesztő, amely valós időben mutatja a változtatásokat.
-- **Artificial Intelligence (AI)**: Mesterséges intelligencia alapú funkciók a tartalom automatikus létrehozásához.
-- **WPBakery SEO**: Keresőoptimalizáló modul.
-- **Template Library**: Sablonkönyvtár prémium sablonokkal.
-- **Content Elements**: Tartalmi elemek széles választéka.
-- **Skin Builder**: Eszköz a kinézet testreszabásához.
-- **Responsive Pages**: Automatikusan reszponzív oldalak.
-- **Advanced Grid Builder**: Fejlett rácsos elrendezés készítő.
-
-Ezek a funkciók és alkalmazási módok teszik a WPBakery Page Buildert nélkülözhetetlenné mindazok számára, akik gyorsan és egyszerűen szeretnének professzionális weboldalakat létrehozni.
+Ezzel a bővítménnyel pontosan azt kapod, amire a tartalomgyártáshoz és oldalépítéshez szükséged van: gyors, vizuális munkafolyamatot, széleskörű kompatibilitást és profi végeredményt – mindezt kódolás nélkül.

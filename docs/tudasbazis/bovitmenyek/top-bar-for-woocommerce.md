@@ -1,51 +1,103 @@
-# Top Bar for WooCommerce
+---
+title: "Top Bar for WooCommerce"
+description: "Prémium WooCommerce-kiegészítő értesítési sávokhoz: időzítés, célzás, visszaszámláló és CTA-gombok a konverziók növeléséhez."
+sidebar_label: "Top Bar for WooCommerce"
+---
 
-A Top Bar for WooCommerce egy praktikus eszköz, amely lehetővé teszi, hogy figyelemfelkeltő értesítéseket helyezz el az oldal tetején vagy alján. Ez a bővítmény segít kiemelni a legújabb termékeket, ajánlatokat, vagy közelgő eseményeket. Az alábbiakban bemutatjuk a bővítmény részletes funkcionalitását és előnyeit.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+A Top Bar for WooCommerce egy prémium bővítmény, amellyel látványos, jól célzott **értesítési sávokat** helyezhetsz el a webáruházad tetején vagy lábléce környékén. Megoldja, hogy kódolás nélkül, percek alatt egységes, márkahű üzeneteket jeleníts meg az egész oldalon vagy csak ott, ahol relevánsak. Így könnyen kommunikálhatod az akciókat, határidőket, szállítási ajánlatokat – pontosan azoknak, akiket érintenek.
 
-### Több értesítési sáv létrehozása
-Lehetőséged van több értesítési sáv létrehozására és azok hozzárendelésére specifikus termékekhez, kategóriákhoz, főoldalhoz, kosárhoz, pénztárhoz és más oldalakhoz. Így könnyedén célozhatod meg a különböző látogatókat és optimalizálhatod az üzeneteid hatékonyságát.
+## Hogyan működik röviden?
 
-### Értesítési sáv helye
-Az értesítési sávot elhelyezheted az oldal tetején vagy alján. Ez rugalmasságot biztosít számodra, hogy a legmegfelelőbb helyen jelenítsd meg az információkat.
+- Több külön sávot hozhatsz létre, mindegyiket önálló tartalommal, stílussal és **időzítéssel**.
+- Választható **pozíció**: oldal teteje, a lábléc felett vagy alatt.
+- **Viselkedés**: fix (a tartalom előtt) vagy sticky (görgetéskor is látszik).
+- **Célzás**: teljes oldalra, vagy csak megadott termékekre/kategóriákra/oldalakra, akár **ország szerint** szűrve.
+- **Priorizálás**: ha több sáv versenyez egy helyen, szabályozhatod, melyik jelenjen meg.
+- **Tartalom**: WYSIWYG-szerű szerkesztés, több slide, CTA-gomb, visszaszámláló, animációk.
+- **Stílus**: színek, betűk, háttérkép, sarokkerekítés, egyedi CSS.
 
-### Ragasztott értesítési sáv opció
-A ragasztott értesítési sáv opció lehetővé teszi, hogy az értesítési sáv mindig látható maradjon, amikor a látogató görgeti az oldalt. Ezáltal biztosíthatod, hogy az üzeneteid mindig szem előtt maradjanak.
+## Fő funkciók, részletek
 
-### WYSIWYG szerkesztő
-A beépített WYSIWYG szerkesztő segítségével könnyedén szerkesztheted az értesítési sáv tartalmát, anélkül hogy kódot kellene írnod. Testre szabhatod a szöveg színét, betűtípusát és hátterét.
+- Többsávos kampánykezelés
+  - Hozz létre annyi sávot, amennyire a kampányaidnak szüksége van, mindegyiket külön **kezdő és záró dátummal**, magassággal és szélességgel.
+  - A **prioritás** mezővel beállíthatod a megjelenési sorrendet ütközés esetén.
 
-### Egyedi háttérkép hozzáadása
-Az értesítési sávokhoz egyedi háttérképeket is hozzáadhatsz, ami még figyelemfelkeltőbbé teszi őket.
+- Elhelyezés és viselkedés
+  - Választható pozíció: **Top**, **Above Footer**, **Below Footer**.
+  - **Fixed**: a sáv a tartalom része. **Sticky**: görgetés közben is látható, növelve a láthatóságot és az átkattintást.
 
-### Visszaszámláló időzítő
-Két különböző típusú visszaszámláló időzítőt használhatsz, amelyek sürgetést keltenek a látogatókban. Testre szabhatod az időzítő háttér- és szövegszínét is.
+- Célzás és feltételek
+  - **Whole Website**: az egész oldalon megjelenik.
+  - **Selected Items**: csak kiválasztott termékeken, kategóriákon, oldalakon, bejegyzéseken.
+  - **Geo-célzás**: jeleníts meg üzeneteket csak bizonyos országok látogatóinak (pl. eltérő szállítási feltételek).
+  - **Oldaltípus szerinti** célzás: főoldal, termék, kosár, pénztár külön üzenetekkel.
 
-### Gomb hozzáadása és testreszabása
-Az értesítési sávokhoz CTA (Call to Action) gombot is hozzáadhatsz. Testre szabhatod a gomb szövegét, háttérszínét és linkjét.
+- Tartalom és CTA
+  - WYSIWYG-szerkesztővel írd meg az üzenetet, adj hozzá **egy vagy több slide-ot**.
+  - **CTA-gomb**: testre szabható szöveg, link, háttér- és betűszín – ideális kuponoldalra vagy kategóriára mutatva.
 
-### Több értesítési sáv megjelenítése egymás után
-Lehetőséged van több értesítési sáv megjelenítésére egymás után. Ezzel több információt is közölhetsz anélkül, hogy túlzsúfolttá tennéd az oldalt.
+- Visszaszámláló
+  - Előre kész **sablonokkal** gyorsan felépítheted.
+  - Működési módok:
+    - **Dátumtartomány**: konkrét időpontig számol vissza (pl. kampány vége).
+    - **Ismétlődő/reset** időzítő: adott időközönként újrainduló sürgetés (pl. napi ajánlat).
+  - Egyedi színek és tipográfia a márkádhoz igazítva.
 
-### WooCommerce és WordPress kompatibilitás
-A bővítmény zökkenőmentesen működik együtt mind a WooCommerce-szel, mind pedig a WordPress-szel, így nem kell aggódnod a kompatibilitási problémák miatt.
+- Animációk
+  - **Statikus** sáv vagy **automatikus csúszás** több slide között.
+  - **Manuális csúsztatás** (felhasználó által) vagy **vízszintes scroll** (futószöveg) folyamatos hírsávhoz.
+
+- Stílus és egyedi CSS
+  - **Háttérszín/kép**, betűcsalád, méret, szín, **sarokkerekítés**.
+  - A **gomb** és a **visszaszámláló** külön formázható.
+  - Haladó felhasználóknak **egyedi CSS** mező a finomhangoláshoz.
+
+- Shortcode
+  - A sávokat shortcode-dal is beillesztheted tetszőleges tartalmi területre, ha nem a globális pozíciót szeretnéd használni.
 
 ## Gyakorlati példák
 
-1. **Termékpromóciók:** Akár új terméket vezetsz be, akár akciót hirdetsz, az értesítési sáv segítségével gyorsan felhívhatod a látogatók figyelmét.
-   
-2. **Közelgő események:** Események vagy webináriumok esetén a visszaszámláló időzítővel sürgetést kelthetsz, növelve ezzel az érdeklődést és a részvételi arányt.
-   
-3. **Kuponkódok és kedvezmények:** Az értesítési sávban elhelyezett kuponkódok vagy kedvezmények közvetlenül ösztönzik a vásárlókat a vásárlásra.
-   
-4. **Fontos bejelentések:** Például szállítási információk vagy ünnepi nyitvatartás közlésekor az értesítési sáv gyors és hatékony kommunikációs eszköz lehet.
+- Villámakció sürgetéssel
+  - Sticky top sáv, kontrasztos háttér, **visszaszámláló** az akció végéig, **CTA** a promóciós kategóriára. Csak az érintett kategóriákon jelenik meg.
 
-## Szószedet
+- Ingyenes szállítás kommunikálása
+  - Pénztár és kosár oldalon jelenik meg, **ország szerint** eltérő üzenettel (például más küszöbérték). Nem zavarja azokat, akiket nem érint.
 
-- **CTA (Call to Action):** Felhívás cselekvésre; olyan elem (általában gomb), amely arra ösztönzi a felhasználót, hogy valamilyen műveletet hajtson végre.
-- **WYSIWYG (What You See Is What You Get):** Olyan szerkesztő, amelyben a tartalom szerkesztése közben ugyanazt látod, mint amit a végleges formában fogsz látni.
-- **Ragasztott értesítési sáv:** Olyan értesítési sáv, amely görgetés közben is látható marad.
-- **Visszaszámláló időzítő:** Olyan elem, amely visszaszámolja az időt egy adott eseményig vagy határidőig.
+- Újraktározás bejelentése
+  - Készletre érkezéskor **futószöveges** sáv a főoldalon és az adott termékkategóriában. CTA a termékoldalra.
 
-Ezekkel az eszközökkel és funkciókkal a Top Bar for WooCommerce hatékonyan növelheti az eladásaidat és javíthatja a felhasználói élményt.
+- Szezonális kampány előkészítése
+  - Előre **időzített** sávok különböző időintervallumokkal (beharangozó, indulás, utolsó nap), automatikus váltással.
+
+## Beállítás lépésről lépésre
+
+1. Telepítés és aktiválás után nyisd meg a Vezérlőpultban a Top Bar menüt.
+2. Hozz létre új sávot: add meg a címet és a **pozíciót** (Top/Above Footer/Below Footer).
+3. Állítsd be a **viselkedést** (Fixed/Sticky) és az **animációt** (statikus, csúszás, futószöveg).
+4. Szerkeszd a **tartalmat**: üzenet, több slide, **CTA-gomb**.
+5. Kapcsold be és konfiguráld a **visszaszámlálót** (dátumtartomány vagy ismétlődő).
+6. Válaszd ki a **célzást**: egész webhely vagy konkrét termékek/kategóriák/oldalak; szükség esetén ország szerinti szűrés.
+7. Add meg az **időzítést** (kezdés, zárás), valamint a **prioritást** ütközés elkerülésére.
+8. Finomhangold a **stílust** (színek, betűk, háttérkép, egyedi CSS).
+9. Mentsd, majd ellenőrizd éles és mobil nézetben; szükség esetén módosíts.
+
+## Előnyök és értékajánlat
+
+- **Kódolás nélkül** hozhatsz létre professzionális, egységes értesítési felületeket.
+- **Célzott üzenetek**: csak a releváns felhasználóknak és oldalakon jelenik meg, növeli a konverziót anélkül, hogy zavarna.
+- **Sürgetés és fókusz**: visszaszámláló és CTA kombinációja gyorsítja a döntést.
+- **Több kampány párhuzamosan**: ütemezés és prioritáskezelés minimalizálja a kézi munkát.
+- **Márkahű megjelenés**: részletes stílusopciók és egyedi CSS.
+
+Megjegyzés: a bővítmény nem hoz létre kedvezményeket – a sáv a kommunikációt szolgálja, a tényleges árkedvezményt kuponokkal vagy árszabályokkal kezeld.
+
+## Kinek ajánlott?
+
+- **Webáruház-tulajdonosoknak**, akik gyorsan kommunikálnának akciókat kódolás nélkül.
+- **Marketingeseknek**, akik időzített, célzott üzenetekkel növelnék a konverziót.
+- **Ügynökségeknek**, amelyek több ügyfél kampányait kezelik és skálázható megoldást keresnek.
+- **Nemzetközi boltoknak**, ahol **geo-célzásra** és többnyelvű kommunikációra van szükség.
+
+Fejlesztő: Addify. A bővítmény WooCommerce-kompatibilis, multisite és fordításbarát, így rugalmasan illeszthető a legtöbb webáruház környezetébe. Fizetős, támogatással és pénzvisszafizetési garanciával érhető el.

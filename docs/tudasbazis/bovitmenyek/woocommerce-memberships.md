@@ -1,82 +1,111 @@
-# WooCommerce Memberships
+---
+title: "WooCommerce Memberships"
+description: "Prémium WooCommerce-bővítmény tagsági rendszerekhez: tartalom- és termékhozzáférés, kedvezmények, drip tartalom, tagfelület és integrációk egy helyen."
+sidebar_label: "WooCommerce Memberships"
+---
 
-## Bevezetés
+## Mi ez, és milyen problémát old meg?
 
-A WooCommerce Memberships egy átfogó, könnyen használható megoldás, amely lehetővé teszi számodra, hogy webáruházad tartalmát és termékeit tagokhoz kapcsolódóan kezelhesd. Azáltal, hogy a tartalomhoz való hozzáférést időzítve biztosítja, és különféle tagi kedvezményeket kínál, ez az eszköz kiválóan alkalmas arra, hogy értékesítésedet és felhasználói élményedet növeld.
+A WooCommerce Memberships egy bolt‑központú tagsági megoldás. Segítségével szabályozhatod, hogy ki láthat, olvashat vagy vásárolhat bizonyos tartalmakat és termékeket, adhatsz tagsági kedvezményeket, és időzítheted a „drip” jellegű feloldásokat. Ha ismétlődő díjazással szeretnél tagságot értékesíteni, a Memberships a hozzáférést kezeli, míg az előfizetéses számlázást egy külön bővítmény végzi. Így egy rendszerben tudod a paywallt, a termékhozzáférést, a kedvezményeket és az ügyfélkommunikációt.
 
-## Funkciók
+## Hogyan működik röviden?
 
-### Tagságok Értékesítése és Hozzárendelése
+- **Tagsági tervek** (Membership Plans) határozzák meg, ki mihez fér hozzá.
+- A hozzáférést **manuálisan**, **regisztrációkor** vagy **termékvásárlás után** adhatod.
+- A rendszer automatikusan **korlátozza** a tartalmakat/termékeket, megjeleníti a megfelelő **üzeneteket**, és a tagoknak egy **tagfelületet** biztosít.
+- „Drip” szabályokkal ütemezheted a feloldást; e‑mailek értesítik a tagokat a fontos státuszokról.
 
-A tagságokat külön termékként értékesítheted vagy más termékek megvásárlásához is hozzárendelheted. A tagsági tervek függetlenül jönnek létre a termékektől, ami maximális rugalmasságot biztosít. Például:
+## Fő funkciók részletesen
 
-- Tagság eladása önálló termékként.
-- Tagsági hozzáférés biztosítása egy termék megvásárlása révén.
-- Több termékről is elérhető ugyanaz a tagság (pl. éves vagy havi előfizetés).
-- Tagságok manuális hozzárendelése meghívásos alapon.
+### Tagsági tervek
+- **Időtartam**: lehet korlátlan, fix időre szóló vagy konkrét dátumhoz kötött.
+- **Belépés módja**: manuális engedélyezés, regisztráció, vagy egy/ több termék megvásárlása. Ugyanazon tervhez több külön termék is adhat belépést.
+- **Életciklus**: aktív, szüneteltetett, lejárt állapotok; ezekhez igazodik a hozzáférés.
 
-### Tartalomhozzáférés Stratégiai Biztosítása
+### Tartalom- és termékhozzáférés
+- **Restrict Content**: bejegyzések, oldalak, egyedi bejegyzéstípusok és akár kategóriák/címkék korlátozása.
+- **Gutenberg blokkok** és a `[wcm_restrict]` shortcode segítségével tagokra és nem tagokra szabott szakaszokat jeleníthetsz meg.
+- **Termékkorlátozás**:
+  - Megtekintés csak tagoknak (a katalogizált termékek rejtése/teaser).
+  - Vásárlás korlátozása (látható, de csak tagok tehetik kosárba).
+- **Megjelenítés nem tagoknak**: teljes elrejtés (404), teaser/kivonat, vagy átirányítás egy magyarázó oldalra dinamikus üzenetekkel.
 
-A tartalomhoz való hozzáférést időzítheted, így például egy hét tagság után válik elérhetővé bizonyos tartalom. Ezáltal jobban irányíthatod, hogyan kezdik el használni az oldalt a tagok, és bevezetheted őket a tartalomba saját tempódban.
+### Tagsági kedvezmények
+- **%-os vagy fix** diszkont adható a teljes boltra, kategóriákra vagy konkrét termékekre.
+- Beállíthatod, hogy a nem tagok **lássák‑e** a tagkedvezményeket (konverziónövelő teaser).
 
-### Vásárlói Klub Létrehozása
+### Tartalomcsorgatás (drip)
+- Hozzáférés azonnal, **X nap/hét/hónap/év** után vagy **konkrét dátumon**. Ideális leckék, modulok, bónuszok ütemezett kiadására és onboardingra.
 
-Készíthetsz csak tagok számára elérhető termékeket, így az oldalad vásárlói klubként is működhet. Ez lehetőséget ad arra, hogy bizonyos termékeket csak tagok vásárolhassanak meg.
+### Tagfelület (Members’ Area)
+- Választható szekciók: **Content**, **Products**, **Discounts**, **Membership Notes**, **Manage**.
+- A tag egy helyen látja az elérhető tartalmat, termékeket és kedvezményeket; innen tud kezelni, megújítani (előfizetéses modellben).
 
-### Különleges Szállítási Opciók Tagoknak
+### E‑mailek és értesítések
+- Előre beállítható és időzíthető üzenetek: **aktiválás**, **lejárat előtt**, **lejárt**, **megújítás emlékeztető**, **tagsági jegyzet**.
+- Előfizetéshez kötött tagságnál a levelek összehangoltak a számlázási történésekkel.
 
-A tagoknak külön szállítási opciókat kínálhatsz, például ingyenes szállítást, miközben a nem tagoknak más feltételeket kell teljesíteniük az ingyenes szállítás igénybevételéhez.
+### Szállítási kedvezmények
+- **Ingyenes szállítás** csak tagoknak, a meglévő ingyenes szállítási móddal kombinálva és jogosultsághoz kötve.
 
-### Tagok Jutalmazása Különleges Kedvezményekkel
+### Import/Export
+- Beépített **CSV import/export** tömeges létrehozáshoz, frissítéshez, migráláshoz. Fejlettebb folyamatokhoz REST/CLI eszközök érhetők el.
 
-Tagjaidnak különleges kedvezményeket biztosíthatsz minden termékre, bizonyos termékekre vagy termékkategóriákra.
+### Tagkönyvtár
+- Nyilvános vagy zárt **taglista** blokkal/shortcode‑dal, terv és státusz szerint szűrhető. Az adminban külön kapcsolóval engedélyezhető.
 
-### Tagok Perkjeinek Automatikus Megjelenítése
+### Integrációk és ökoszisztéma
+- **Előfizetéses számlázás**: ismétlődő díjhoz külön előfizetés-kezelő szükséges; a Memberships a hozzáférést, a másik bővítmény a fizetést kezeli.
+- **Csoportos tagság**: Teams kiegészítővel céges/családi „ülések”, szerepkörök, meghívások.
+- **E‑mail marketing**: tagsági szegmensek szinkronizálása kampányokhoz.
+- Egyéb kompatibilitások: közösségi fórumok, márkakezelés, csoportok.
 
-A tagok könnyen hozzáférhetnek tagsági információikhoz a "Saját fiók" oldalról. Itt megtekinthetik az elérhető tartalmakat, termékeket, kedvezményeket és tagsági jegyzeteket.
+### Kompatibilitás és adatvédelem
+- **Cart & Checkout Blocks** és **HPOS** támogatás.
+- Együttműködés a WordPress/WooCommerce **adat‑export és törlés** eszközeivel (GDPR folyamatok).
 
-### Tagok Importálása és Exportálása
+## Gyakorlati példák
 
-Tagjaidat CSV fájl segítségével importálhatod vagy exportálhatod, így könnyen integrálhatod más szolgáltatásokkal is.
+- **Prémium cikkek/paywall**: csak tagok olvashatják a teljes cikket; nem tagok teaser‑t látnak és felhívást a csatlakozásra.
+- **Wine Club**: tagok vásárolhatnak exkluzív borokat, a „Bor” kategóriára például **20%** kedvezményt kapnak, korai hozzáféréssel új tételekhez.
+- **E‑learning**: modulonként „drip” feloldás (pl. hetente egy lecke), automatikus emlékeztető e‑mailekkel.
+- **B2B csapatok**: a Teams kiegészítővel a beszerzési jogot egy adminisztrátor osztja szét az üléskeret alapján.
 
-### Egyszerű Kommunikáció a Tagokkal
+## Előnyök és értékajánlat
 
-A "Membership Notes" segítségével könnyen nyomon követheted a tagságokkal kapcsolatos információkat, saját jegyzeteket adhatsz hozzá, és egyszerűen kommunikálhatsz a tagokkal e-mailben.
+- **Egy rendszerben** kezeled a tartalom‑ és termékhozzáférést, kedvezményeket, dripet, e‑maileket.
+- **Kevesebb bővítmény, kevesebb egyedi kód**, gyorsabb üzemeltetés és kisebb hibakockázat.
+- **Konverzió‑barát** megjelenítési módok (teaser, átirányítás, dinamikus üzenetek).
+- **Működtetési kényelem**: CSV import/export, tagfelület, automatizált kommunikáció.
+- **Skálázható**: előfizetés, csapatok, marketing integrációk.
 
-## WooCommerce Subscriptions Integráció
+## Kinek ajánlott?
 
-A WooCommerce Memberships tökéletesen működik együtt a WooCommerce Subscriptions bővítménnyel. Ezzel a tagságokat még rugalmasabban kezelheted:
+- Tartalomkiadóknak és blogoknak, akik **paywallt** szeretnének.
+- Webáruházaknak **VIP/hűségprogramhoz**, korai hozzáféréshez és tagkedvezményekhez.
+- Oktatóknak/coachoknak **drip** tananyaggal.
+- Kluboknak/egyesületeknek **zárt közösségi** tartalomhoz és tagsági előnyökhöz.
+- B2B értékesítőknek, akik **csapat‑ vagy céges hozzáférést** adnak.
+- Ügynökségeknek, akik **WooCommerce‑natív** tagsági megoldást keresnek ügyfeleiknek.
 
-- Ismétlődő számlázás.
-- Előfizetések használata fizetési tervként.
-- Ingyenes próbaverziók.
-- Tagok saját maguk szüneteltethetik tagságukat.
-- Tagságok frissítése vagy leminősítése előfizetés váltásával.
+## Fontos tudnivalók és tippek
 
-## Gyakorlati Példák
+- **Permalinks**: ne használj „Plain” struktúrát.  
+- **Cache/optimalizálók**: a belépési/korlátozott oldalaknál zárd ki a teljes gyorsítótárat a téves láthatóság elkerüléséhez.
+- **Üzenetek**: testreszabhatod a korlátozási szövegeket és a bejelentkezési emlékeztetőket.
+- **Termékek**: több külön termék is adhat hozzáférést ugyanahhoz a tervhez; csoportos termék nem használható közvetlen beléptetésre.
+- **Előfizetés**: ismétlődő díjhoz külön előfizetés‑kezelő kell; a Memberships önmagában nem számláz ismétlődően.
+- **Tagfelület**: csak aktív tagságnál elérhető; a szekciók be‑/kikapcsolhatók.
+- **Tagkönyvtár**: csak akkor jelenjen meg, ha az adminban engedélyezted; privát használathoz tedd korlátozó blokk mögé.
 
-### Online Magazin
+### Hasznos shortcode példák
 
-Egy online magazin esetében a tartalmakat csak előfizetők számára teheted elérhetővé. Az új cikkeket hetente vagy havonta "drippelheted", így az olvasók mindig friss tartalomhoz jutnak.
+```
+[wcm_restrict plans="gold, silver"]
+  Ez a tartalom csak Gold és Silver tagoknak elérhető.
+[/wcm_restrict]
 
-### Oktatási Oldal
+[wcm_directory plan="gold" status="active"]
+```
 
-Egy e-learning oldal esetében a kurzusokat modulonként teheted elérhetővé a tagok számára. Így biztosíthatod, hogy a tanulók fokozatosan haladjanak előre.
-
-### Vásárlói Klub
-
-Egy exkluzív vásárlói klub létrehozásával bizonyos termékeket csak a tagok számára érhetsz el. Ez növelheti a tagsági előfizetések számát.
-
-### Céges Tagságok
-
-A bővítmény segítségével céges vagy csoportos tagságokat is értékesíthetsz, ami különösen hasznos lehet B2B környezetben.
-
-## Szószedet
-
-- **Drip content**: Tartalom fokozatos hozzáférhetővé tétele idővel.
-- **Subscription**: Előfizetés.
-- **Member Area**: Tag terület.
-- **CSV**: Komma-szeparált értékek (Comma-Separated Values), adatcsere formátum.
-- **Membership Notes**: Tagsági jegyzetek.
-  
-Ez a WooCommerce Memberships bővítmény részletes áttekintése és gyakorlati példái. Használd ezt az eszközt webáruházad sikerének növelésére!
+Ezzel a bővítménnyel a tagsági élményt a boltod logikájába illesztheted: a hozzáférés, a kedvezmények és a kommunikáció egy kézben, WooCommerce‑natív módon kezelhető. Ha ismétlődő díjazásra, csapatokra vagy marketing szinkronra van szükséged, a kapcsolódó kiegészítőkkel teljes körű rendszert építhetsz.

@@ -1,61 +1,82 @@
-# LearnDash LMS - Integrity
+---
+title: "LearnDash LMS - Integrity"
+description: "Hivatalos, ingyenes LearnDash kiegészítő a kurzusoldalak integritásának védelmére: hotlink‑védelem, párhuzamos bejelentkezés tiltása, tartalom‑másolás gátlása és reCAPTCHA."
+sidebar_label: "LearnDash LMS - Integrity"
+---
 
-A LearnDash Integrity bővítmény hatékony eszköz a tanfolyamok integritásának védelmére. Számos funkciót kínál, amelyekkel megakadályozhatod a tartalom lopását, a spamet és a jogosulatlan hozzáférést. Ismerd meg részletesen a funkciókat és előnyöket.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+A LearnDash LMS – Integrity egy ingyenes, hivatalos kiegészítő, amely a kurzusoldalak “integritását” védi. Célja, hogy csökkentse a leggyakoribb visszaéléseket: a médiatartalmak hotlinkelését, a felhasználói fiókok megosztását (párhuzamos bejelentkezés), a felületi tartalom‑másolást, valamint a bot‑regisztrációkat és kéretlen bejelentkezési kísérleteket. Nem helyettesít átfogó biztonsági/DRM‑rendszert, de hatékonyan visszatart és erőforrást spórol.
 
-### Hotlinking megakadályozása
+## Fő funkciók és hogyan működnek
 
-Ez a funkció megvédi az oldalon tárolt videókat és képeket a hotlinkeléstől, ami azt jelenti, hogy más weboldalak nem tudják közvetlenül linkelni az eszközeidet, így megóvva a szerver erőforrásaidat.
+- **Hotlink‑védelem**  
+  Megakadályozza, hogy más domainek közvetlenül hívják be a nálad tárolt képeket vagy videókat. Ezzel elkerülöd a “potyautas” sávszélesség‑használatot, és mérsékeled a szerverterhelést. A látogatók a saját oldaladon továbbra is rendben látják a médiát.
 
-### Egyidejű bejelentkezés megakadályozása
+- **Párhuzamos bejelentkezés tiltása (Concurrent Login)**  
+  Lezárja a lehetőséget, hogy ugyanazzal a fiókkal egyszerre több eszközről vagy helyről legyen aktív munkamenet. Így visszaszoríthatod az “account sharinget”. Kivételt adhatsz szerepkör szerint (pl. admin/oktató) és egyes felhasználóknál egyedileg is engedélyezheted a többszörös bejelentkezést a “Bypass Concurrent Login Lockout” opcióval.
 
-Ez a funkció megakadályozza, hogy egy felhasználói fiókot egyszerre több helyről használjanak. Ha egy másik helyről próbál valaki bejelentkezni ugyanazzal a felhasználónévvel, hibaüzenetet kap, amely jelzi, hogy az adott fiók már be van jelentkezve.
+- **Tartalom‑másolás tiltása (Prevent Content Copy)**  
+  Kikapcsolja a jobb klikket, illetve a copy/paste funkciókat az oldalaidon. Ez nem feltörhetetlen védelem (képernyőfotókat, fejlett scrapinget nem akadályoz), de hatékonyan visszatartja a kevésbé technikai felhasználókat a kurzusanyag egyszerű kimásolásától.
 
-### Tartalommásolás megakadályozása
+- **reCAPTCHA integráció**  
+  Beépített támogatás a Google reCAPTCHA v2 (checkbox) és v3 (láthatatlan) megoldásaihoz a LearnDash saját bejelentkezési és regisztrációs űrlapjain. Beállíthatod, hogy a reCAPTCHA a Login, a Registration vagy mindkettő űrlapon jelenjen meg. Ezzel számottevően csökkentheted a bot‑regisztrációkat és az automatizált próbálkozásokat.
 
-Ez a funkció letiltja a "Copy" és "Paste" funkciókat, valamint a jobb egérgomb kattintását az oldalon. Bár nem teljesen bolondbiztos módszer, jelentős mértékben csökkentheti a tartalom másolását.
+## Telepítés és beállítás röviden
 
-### reCAPTCHA integráció
+Előfeltétel: aktív LearnDash bővítmény.
 
-A reCAPTCHA védelmet nyújt spam, csalás és visszaélések ellen, mind botok, mind rosszindulatú felhasználók részéről. Két változata érhető el:
-- **reCAPTCHA v3 (láthatatlan)**: Automatikusan védi az oldalt anélkül, hogy a felhasználónak bármit is tennie kellene.
-- **reCAPTCHA v2 (jelölőnégyzet)**: A felhasználóknak egy jelölőnégyzetet kell kipipálniuk, hogy bizonyítsák, nem robotok.
+1. Telepítés:
+   - WordPress admin felületen keresztül a LearnDash Add‑Ons menüből, vagy
+   - ZIP fájl feltöltésével.
 
-A reCAPTCHA beállításai között választhatsz, hogy mely űrlapokon jelenjen meg: csak a bejelentkezési űrlapon, csak a regisztrációs űrlapon vagy mindkettőn.
+2. Aktiválás után a beállítások itt találhatók:
+   ```
+   WordPress admin > LearnDash LMS > Settings > Integrity
+   ```
 
-## Előnyök és alkalmazások
+3. Kapcsold be a kívánt védelmeket (Hotlinking, Concurrent Login, Prevent Content Copy, reCAPTCHA).  
+   reCAPTCHA‑hoz add meg a site és secret key‑eket, válaszd ki a típust (v2/v3), és jelöld, mely űrlapokon jelenjen meg.
 
-### Más eszközökkel való kompatibilitás
+## Gyakorlati példák
 
-Az Integrity bővítmény zökkenőmentesen együttműködik más népszerű WordPress eszközökkel, mint például:
-- **WooCommerce**
-- **MemberPress**
-- **Gravity Forms**
-- **Zapier**
+- **Hotlink‑védelem a gyakorlatban:**  
+  Egy külső oldal beágyazná a kurzusod borítóképét. A hotlink‑védelem blokkolja a kérést, így nem a te szervered fizeti a másik oldal forgalmát. Nálad a kép továbbra is rendben megjelenik.
 
-Ezen integrációk révén különféle funkciókat érhetsz el, például fizetési kapuk, tagsági rendszerek és automatizált folyamatok kezelését.
+- **Account sharing visszaszorítása:**  
+  Előfizetőd megosztja a belépési adatait. A párhuzamos bejelentkezés tiltása nem enged több aktív munkamenetet. Az adminoknak vagy oktatóknak, akik több eszközről dolgoznak, adhatsz kivételt.
 
-### Gyakorlati példák
+- **Tartalom‑másolás nehezítése:**  
+  A tanulók nem tudnak jobb klikkel másolni, nem működik a Ctrl+C a leckeszövegen. Ezzel jelzed a felhasználási feltételeket és visszatartod a gyors másolást. (Képernyőmentést ez nem akadályoz.)
 
-#### Oktatási intézmények
+- **reCAPTCHA a regisztráción:**  
+  Bekapcsolod a v2‑t a regisztrációs űrlapon. A hamis, automatizált fiók‑létrehozások látványosan visszaesnek, kevesebb kéretlen felhasználó kerül a rendszeredbe.
 
-Egy egyetem vagy főiskola online kurzusokat kínálhat anélkül, hogy aggódnia kellene az anyagok illetéktelen megosztása miatt. Az egyidejű bejelentkezés megakadályozása biztosítja, hogy minden diák saját felhasználói fiókkal rendelkezzen és használjon.
+## Előnyök és értékajánlat
 
-#### E-learning platformok
+- **Kézzelfogható erőforrás‑védelem:** kevesebb sávszélesség‑lopás, stabilabb szerverterhelés.
+- **Bevételvédelem:** a párhuzamos bejelentkezések tiltása csökkenti a jogosulatlan hozzáférésekből adódó bevételkiesést.
+- **Kevesebb spam és admin‑teher:** a reCAPTCHA csökkenti a kézi moderációt és support igényeket.
+- **Gyors bevezetés, egyszerű használat:** pár kattintással aktiválható, a legfontosabb védelmekkel.
 
-Az online tanfolyamok értékesítése során fontos, hogy a tartalom biztonságban legyen. Az Integrity bővítmény segít megvédeni az értékes tananyagokat és biztosítja, hogy csak azok férjenek hozzá, akik ténylegesen megvásárolták azokat.
+## Célközönség
 
-#### Vállalati tréningek
+- **Online kurzus‑készítők és oktatók,** akik védenék a tananyagot és a bevételi modellt.  
+- **Vállalati képzési oldalak,** ahol a hozzáférések kontrollja kritikus.  
+- **Ügynökségek és webmesterek,** akik LearnDash‑alapú e‑learning site‑okat üzemeltetnek és standardizálható védelmet keresnek.
 
-Vállalatok gyakran használnak online platformokat munkavállalói képzésre. Az Integrity funkciói biztosítják, hogy a képzési anyagok titkosak maradjanak és csak az arra jogosultak férjenek hozzájuk.
+## Fontos megjegyzések és korlátok
 
-## Szószedet
+- **Nem feltörhetetlen:** a “Prevent Content Copy” nem helyettesít DRM‑et, a képernyőfelvételt és haladó scrapinget nem állítja meg. Célja a visszatartás és a kockázatcsökkentés.
+- **reCAPTCHA kompatibilitás:** harmadik féltől származó bejelentkezési/regisztrációs űrlapokkal előfordulhat ütközés. Ha hibaüzeneteket látsz, teszteld külön az egyedi űrlapokat, vagy használd a LearnDash beépített űrlapjait.
+- **Rendszerkövetelmények:** naprakész WordPress és LearnDash használata javasolt a stabil működéshez.
 
-- **Hotlinking**: Más weboldalak által közvetlenül linkelt tartalmak (képek, videók) használata.
-- **Concurrent login**: Egy felhasználói fiók több helyről történő egyidejű használata.
-- **reCAPTCHA**: Google által fejlesztett eszköz a weboldalak védelmére botok és visszaélések ellen.
-- **reCAPTCHA v3**: Láthatatlan verzió, amely automatikusan védi az oldalt.
-- **reCAPTCHA v2**: Jelölőnégyzetes verzió, amelyben a felhasználók igazolják, hogy nem robotok.
+## Bevezetési javaslatok
 
-Az Integrity bővítmény számos hasznos funkcióval rendelkezik, amelyek segítenek megvédeni az online kurzusok integritását és biztonságát. Használatával biztosíthatod, hogy tartalmaid csak az arra jogosultakhoz jussanak el.
+1. **Kezdd a Hotlink és Concurrent Login** bekapcsolásával, majd teszteld több szerepkörrel. Az adminoknak/oktatóknak adj szerepkör‑alapú kivételt vagy egyedi “Bypass” jogot.
+2. **reCAPTCHA:** regisztráld a domaint, add meg a kulcsokat, először csak a regisztrációs űrlapon teszteld, majd kapcsold be a login űrlapon is. Egyedi űrlapoknál külön ellenőrizd az esetleges ütközéseket.
+3. **Prevent Content Copy:** élesítés után vizsgáld az akadálymentességet (pl. billentyűzet‑navigáció, jegyzetelés). Tájékoztasd a tanulókat, hogy a tartalom másolása tiltott.
+
+## Kell ez neked?
+
+Ha LearnDash‑ot használsz, és fontos számodra a tartalom és a bevételek védelme, az Integrity gyorsan bevezethető, ingyenes alapréteget ad. Nem mindenható pajzs, de jelentősen csökkenti a legjellemzőbb visszaéléseket, miközben minimálisra fogja az üzemeltetési terhet.

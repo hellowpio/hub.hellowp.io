@@ -1,52 +1,127 @@
-# Solid Security Pro
+---
+title: "Solid Security Pro"
+description: "Professzionális WordPress biztonsági bővítmény több rétegű védelemmel: bejelentkezés‑biztonság, sérülékenységkezelés, tűzfal és automatizált frissítések."
+sidebar_label: "Solid Security Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Felhasználói bejelentkezési biztonság
+A Solid Security Pro egy több rétegű WordPress biztonsági bővítmény, amely a bejelentkezés megerősítésétől a sérülékenységek kezelésén át a tűzfalig és az automatizált frissítésekig lefedi a legkritikusabb kockázatokat. Célja, hogy megakadályozza a fiókátvételt és a brute force támadásokat, időben észlelje és csillapítsa a bővítmény/téma sérülékenységeket (akár gyártói javítás előtt is), és folyamatos rálátást adjon az eseményekre. A termék korábban iThemes Security Pro néven volt ismert; ma a SolidWP márkához tartozik.
 
-A Solid Security Pro többféle bejelentkezési biztonsági megoldást kínál, amelyek lehetővé teszik a felhasználók számára, hogy biztonságosabbá tegyék webhelyüket. Ezek közé tartozik:
+## Fő funkciók és hogyan működnek
 
-- **Kétfaktoros hitelesítés (2FA)**: Támogatja a Time-Based One-Time Password (TOTP) szabványt, így kompatibilis a legnépszerűbb hitelesítő alkalmazásokkal, mint a Google Authenticator és az Authy.
-- **Bejelentkezési kísérletek korlátozása**: Megakadályozza a brute force támadásokat azáltal, hogy korlátozza a sikertelen bejelentkezési kísérletek számát.
-- **Egyedi jelszókövetelmények**: Lehetővé teszi a szigorú jelszókövetelmények beállítását, hogy a felhasználók erősebb jelszavakat használjanak.
+### Bejelentkezés- és fiókvédelem
+- **2FA**: TOTP‑alapú alkalmazásokkal, e‑maillel vagy hardverkulccsal erősítheted a belépést.
+- **Passkeys (WebAuthn)**: jelszó nélküli, biometrikus belépés (pl. Face ID, Touch ID, Windows Hello).
+- **Passwordless és Magic Links**: ideiglenes, e‑mailes egyszeri belépő link, hasznos lockout után vagy mobilon.
+- **Jelszópolitika**: erős jelszókövetelmény, jelszókorhatár, kiszivárgott jelszavak tiltása.
 
-### Patchstack integráció
+Mit jelent ez neked? Ha egy támadó megszerzi a jelszót, 2FA/passkeys nélkül nem jut be; ha egy felhasználó elfelejti a jelszót, Magic Linkkel gyorsan és biztonságosan visszaléphet.
 
-A Solid Security Pro tartalmazza a Patchstack integrációt, amely virtuális javításokat biztosít a WordPress sebezhetőségek ellen. Ez különösen hasznos lehet olyan helyzetekben, amikor a bővítmény vagy téma fejlesztői még nem adtak ki frissítést egy ismert biztonsági rés javítására.
+### Brute force és botvédelem
+- **Helyi és hálózati brute force védelem**: IP‑alapú lockoutok és tiltólisták.
+- **CAPTCHA-k**: Turnstile, reCAPTCHA (v2, v3, Invisible) vagy hCaptcha a belépési és űrlapoknál.
 
-### Kapcsolat és kompatibilitás más eszközökkel
+Ez csökkenti az automata próbálkozások számát és a szerverterhelést.
 
-A Solid Security Pro zökkenőmentesen működik együtt számos más eszközzel és szolgáltatással:
+### Tűzfal (WAF) és IP‑kezelés
+- **Szabályok és naplók**: finomhangolható védelmi szabályok, részletes naplózás.
+- **Virtuális foltozás**: valós idejű sérülékenység‑intelligencia alapján blokkolja a kihasználásokat, még hivatalos javítás előtt.
+- **IP Management**: engedélyezett/tiltott IP listák külön kezelőfelületen.
 
-- **CAPTCHA támogatás**: Integrálható a Google reCAPTCHA (minden verzió), Cloudflare Turnstile és hCaptcha szolgáltatásokkal, hogy megerősítse a bejelentkezési folyamatot.
-- **WordPress Multisite kompatibilitás**: Képes kezelni több WordPress telepítést is egy központi adminisztrációs felületen keresztül.
+A WAF a publikus támadási mintákat még a WordPress réteg előtt megfogja.
 
-### Biztonsági jelentések és elemzések
+### Sérülékenység‑kezelés és Site Scan
+- **Időzített vizsgálat**: a Pro kiadás gyakori (óránkénti) ellenőrzésekkel dolgozik.
+- **Kockázati pontszám és teendők**: egyértelműen jelzi, mi kritikus és mit tegyél.
+- **Káros listák ellenőrzése**: figyeli, hogy az oldal szerepel‑e ismert blokkolólistán.
+- **Virtuális foltozás**: áthidaló védelem addig, amíg meg nem érkezik a gyártói frissítés.
 
-A Solid Security Pro részletes biztonsági jelentéseket és elemzéseket nyújt, amelyek segítségével azonosíthatod és kijavíthatod a sebezhetőségeket:
+### Verziókezelés
+- **Automatikus frissítések**: WordPress, bővítmények, témák kezelése.
+- **Auto Update if Fixes Vulnerability**: csak akkor frissít, ha ismert hibát javít.
+- **Frissítési késleltetés**: beállítható csúsztatás a kompatibilitási kockázatok mérséklésére.
+- **Elavult szoftver-védelem és „rogue installok” feltárása**: régi, elfelejtett telepítések felkutatása ugyanazon tárhelyen.
 
-- **Sebezhetőségi jelentések**: Részletes jelentéseket készít a webhelyeden található bővítményekről és témákról, kiemelve azok biztonsági kockázatait.
-- **Felhasználói tevékenység naplózása**: Nyomon követi a felhasználók tevékenységeit a webhelyen, így azonosíthatod a gyanús viselkedést.
+### Eszköz- és munkamenet‑védelem
+- **Trusted Devices**: ismeretlen eszközön korlátozza az érzékeny műveleteket.
+- **Session Hijacking Protection**: eszközváltás észlelésekor automatikusan kijelentkeztet.
 
-## Gyakorlati alkalmazási példák
+### Naplózás és irányítópult
+- **User Logging**: be‑ és kijelentkezések, bővítménykezelés és egyéb admin események naplózása.
+- **Security Dashboard**: testreszabható kártyákkal valós idejű áttekintés a kockázatokról és a lockoutokról.
 
-### Webáruházak védelme
+### CAPTCHA‑ökoszisztéma
+- A legnépszerűbb szolgáltatókkal integrálható, és több űrlap‑típusra bekapcsolható (login, regisztráció, jelszó‑visszaállítás, hozzászólások).
 
-Egy webáruház számára elengedhetetlen a felhasználói és pénzügyi adatok védelme. A Solid Security Pro kétfaktoros hitelesítése és szigorú jelszókövetelményei megnehezítik az illetéktelen hozzáférést. Emellett a virtuális javításokkal gyorsan reagálhatsz az újonnan felfedezett sebezhetőségekre.
+### Haladó eszközök
+- **Temporary Privilege Escalation**: időzített admin/editor jog kiosztása automatikus visszavonással.
+- **File Change Detection**: fájlváltozások észlelése online hash‑összevetéssel a fals pozitívok csökkentésére.
+- **Hardening**: rejtett login URL, adatbázis‑prefix módosítás, salts csere, szerver‑ és wp‑config szabályok.
+- **Multisite és WP‑CLI**, valamint **központi menedzsment** több oldalhoz.
 
-### Többfelhasználós blogok
+## Gyakorlati példák
 
-Egy népszerű blog sok felhasználói bejelentkezést kezelhet. A bejelentkezési kísérletek korlátozásával és CAPTCHA integrációval minimalizálhatod a brute force támadások kockázatát. A felhasználói tevékenység naplózása segít nyomon követni az adminisztrátori tevékenységeket, így gyorsan azonosíthatod a gyanús viselkedést.
+- **Webshop**: kötelező 2FA a szerkesztőknek és adminoknak, passkeys a tulajdonosnak, CAPTCHA a checkout‑on, Site Scan + „Auto Update if Fixes Vulnerability”, WAF virtuális foltozással a 0‑day próbálkozások ellen.
+- **Ügynökség**: több ügyféloldal központi kezelése, automatizált riportok, ideiglenes jogemelés alvállalkozóknak, lockoutok távoli feloldása.
+- **Közösségi/membership**: Trusted Devices megfékezi a fiókátvételt, CAPTCHA a hamis regisztrációk ellen, Passwordless gyorsítja a belépést.
+- **Régi telepítések**: verziókezeléssel és késleltetett frissítéssel biztonságosan hozod naprakésszé, közben feltárod az elfelejtett példányokat.
 
-### Vállalati weboldalak
+## Előnyök és értékajánlat
 
-A vállalati weboldalak gyakran érzékeny adatokat tárolnak. A Solid Security Pro segítségével megbízható biztonsági jelentéseket készíthetsz, amelyek segítenek azonosítani és javítani az esetleges biztonsági réseket. A kétfaktoros hitelesítés és a szigorú jelszókövetelmények biztosítják, hogy csak jogosult felhasználók férhessenek hozzá az adminisztrációs felülethez.
+- **Kevesebb incidens, kisebb terhelés**: a brute force és botok visszaszorítása csökkenti a szerverköltséget.
+- **Gyors reagálás sérülékenységekre**: virtuális foltozás és célzott frissítések minimális kieséssel.
+- **Átláthatóság**: naplók és dashboard segítenek azonnal látni, mi történik.
+- **Időmegtakarítás**: sablonos beállítások, automatizált frissítések és központi menedzsment.
 
-## Szószedet
+## Rendszerkövetelmények és kompatibilitás
 
-- **2FA (Kétfaktoros hitelesítés)**: Egy extra biztonsági réteg, amely megköveteli egy második tényező használatát a bejelentkezéshez.
-- **TOTP (Time-Based One-Time Password)**: Egy olyan rendszer, amely időalapú egyszeri jelszavakat generál hitelesítés céljából.
-- **Brute force támadás**: Egy módszer, amelyben automatizált eszközökkel próbálnak különböző jelszó kombinációkat, hogy feltörjenek egy fiókot.
-- **Patchstack**: Egy szolgáltatás, amely virtuális javításokat biztosít WordPress sebezhetőségek ellen.
-- **CAPTCHA**: Egy technológia, amely megkülönbözteti az embereket és a robotokat bejelentkezéskor vagy űrlap kitöltésekor.
-- **Sebezhetőségi jelentés**: Egy dokumentum, amely részletezi a webhelyen található biztonsági réseket és kockázatokat.
+WordPress 6.5 vagy újabb, PHP 7.4 vagy újabb. Működik Apache/LiteSpeed (mod_rewrite) és NGINX környezetben. Multisite támogatott.
+
+## Korlátok és megfontolások
+
+- **Nem komplett malware‑eltávolító**: a fókusz a megelőzésen és a sebezhetőség‑kezelésen van. Ha fertőtlenítés kell, egészítsd ki dedikált szkennerrel.
+- **Mentések**: a beépített megoldás adatbázisra fókuszál; teljes webhelymentéshez használj külön backup eszközt.
+- **Lockout finomhangolás**: állítsd be ésszerűre, hogy valós felhasználókat ne zárj ki.
+
+## Célközönség
+
+- **KKV és e‑kereskedelem**: tranzakcióbiztonság, fiókvédelem, gyors javítások.
+- **Ügynökségek és fejlesztők**: tömeges üzemeltetés, audit és ideiglenes hozzáférések.
+- **Közösségi/membership oldalak**: fiókátvétel és spam regisztráció elleni kontroll.
+- **Többszerzős blogok és vállalati oldalak**: erős hitelesítés, naplózás, hardening.
+
+## Gyors bevezetési javaslat
+
+1. Futtasd az onboardingot, válassz megfelelő **Site Template**‑et (pl. Ecommerce/Blog).
+2. Kapcsold be: **2FA vagy Passkeys**, **Network Brute Force**, **CAPTCHA**.
+3. Állítsd be a **Site Scan**‑t és a **Verziókezelést** „Auto Update if Fixes Vulnerability” móddal, 24–72 órás késleltetéssel.
+4. Engedélyezd a **Trusted Devices** funkciót és az admin értesítéseket.
+5. Nézd át a **WAF** automatizált beállításait, és konfiguráld az **IP‑listákat**.
+6. Készíts biztonsági mentést, majd futtasd a **Hardening** ajánlásokat.
+
+```yaml
+# Minimum baseline (példa)
+auth:
+  passkeys: enabled
+  two_factor: required_for_editors_and_admins
+brute_force:
+  network_protection: enabled
+  captcha: login_registration
+vuln_management:
+  site_scan: hourly
+  auto_update_if_fixes_vuln: true
+  update_delay_hours: 48
+waf:
+  automated_virtual_patching: enabled
+  ip_whitelist: [your.office.ip]
+sessions:
+  trusted_devices: enabled
+logging_dashboard:
+  user_logging: enabled
+  security_dashboard: enabled
+``` 
+
+## Licencelés röviden
+
+Elérhető ingyenes és **Pro** kiadásban. A Pro éves előfizetéses, egy webhelyre érvényes licenccel indul, és tartalmazza a fejlett sérülékenység‑ és tűzfal funkciókat (beleértve a virtuális foltozást).

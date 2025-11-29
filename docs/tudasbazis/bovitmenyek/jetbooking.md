@@ -1,63 +1,113 @@
-# JetBooking
+---
+title: "JetBooking"
+description: "Napi/éjszakai foglalásokhoz készült, WooCommerce-kompatibilis WordPress bővítmény rugalmas árazással, egységkezeléssel és naptárszinkronnal."
+sidebar_label: "JetBooking"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A JetBooking bővítmény lehetővé teszi a felhasználók számára, hogy könnyedén kezeljenek különböző foglalási és bérlési folyamatokat a weboldalukon. Az alábbiakban részletesen bemutatjuk a funkcióit és előnyeit, valamint azt, hogy mely más eszközökkel működik együtt zökkenőmentesen.
+A JetBooking egy professzionális foglalási bővítmény WordPresshez, amelyet kifejezetten **napi/éjszakai** (daily/nightly) jellegű foglalásokra terveztek. Segít egységes rendszerbe fogni azt, amit sokan több külön pluginnal oldanak meg: elérhetőségi naptár, foglalási űrlap, árkalkuláció, fizetés, egység- és kapacitáskezelés, admin felület és automatizált értesítések. Szorosan **integrálható a WooCommerce-szel**, és működik a népszerű oldalszerkesztőkkel (Elementor, Gutenberg, Bricks).
 
-### Foglalási naptár
+## Hogyan működik? (architektúra)
 
-A JetBooking tartalmaz egy intuitív foglalási naptárat, amely lehetővé teszi a felhasználók számára, hogy megtekintsék és kezeljék a rendelkezésre álló időpontokat. A naptár vizuálisan vonzó és könnyen használható, ami növeli a felhasználói élményt.
+Két üzemmód közül választhatsz:
 
-### WooCommerce integráció
+- **Plain (CPT-alapú)**: saját Egyedi Bejegyzéstípusokkal (pl. „Apartmanok”), JetEngine mezőkkel és JetFormBuilder űrlappal építesz adatmodellt és foglalási folyamatot. Maximális testreszabhatóság no-code/low-code eszközökkel.
+- **Woo-alapú**: a foglalások **WooCommerce-termékekhez** kapcsolódnak, így a teljes WooCommerce checkout, adózás és rendeléskezelés érhető el. Kétirányú rendelés-szinkron tartja egyben a JetBooking és a WooCommerce adatait.
 
-A JetBooking közvetlenül integrálható a WooCommerce bővítménnyel, így a felhasználók könnyedén kezelhetik a foglalásokat és a termékvásárlásokat egy helyen. Ez a kétirányú szinkronizáció lehetővé teszi, hogy a WooCommerce rendelési státuszok automatikusan frissüljenek a foglalási státusz változásakor.
+A foglalási űrlap egy elérhetőségi naptárat használ dátumtartomány-választással. A beküldött adatok alapján a rendszer lefoglalja a kiválasztott egységeket, kiszámolja az árat, és Woo-alapú módban végigviszi a kosár/checkout folyamatot.
 
-### Egyéni mezők és űrlapok
+## Fő funkciók részletesen
 
-A JetBooking segítségével egyéni mezőket és űrlapokat hozhatsz létre, amelyekkel testreszabhatod a foglalási folyamatot. Ez különösen hasznos lehet speciális igények kielégítésére, például ha több információt szeretnél kérni a vendégektől.
+### Foglalási motor és naptár
+- **Elérhetőségi naptár** dátumtartomány-választással.
+- **Min./max. tartózkodás**, első foglalható nap, legkorábbi/legkésőbbi dátum.
+- **Check-out nap** beleszámítása vagy kihagyása az árképzésből.
+- **Munkanapok/hétvégék/ünnepnapok** kezelése és kizárások.
 
-### Többnyelvű támogatás
+Mit jelent ez a gyakorlatban? Beállíthatod például, hogy egy apartmant legalább 2, legfeljebb 14 éjszakára lehessen foglalni, a távozás napja ne számítson teljes árnak, és bizonyos ünnepnapok ki legyenek zárva.
 
-A bővítmény kompatibilis olyan többnyelvű bővítményekkel, mint a WPML vagy Polylang, így könnyedén használhatod különböző nyelveken, ami különösen hasznos lehet nemzetközi közönség elérése esetén.
+### Dinamikus árazás
+- **Szezonális és hétvégi árak** (pl. főszezonban drágább).
+- **Ár éjszakánként/naponta**.
+- **Tartózkodáshossz-kedvezmény** (pl. 7+ éj -10%).
+- **Személyenkénti árképzés** (külön felnőtt/gyerek díj).
+- Számított mezők támogatása az **automatikus végösszeg** kalkulációhoz.
 
-### Zökkenőmentes együttműködés más eszközökkel
+Példa egy egyszerű kalkulációra (logika szemléltetéséhez):
+```
+összeg = alapár_éj * éjszakák
+       + hétvégi_pótdíj
+       + felnőtt_díj * felnőttek
+       + gyerek_díj * gyerekek
+       - hosszútáv_kedvezmény
+```
 
-#### JetEngine
+### WooCommerce és fizetés
+- **Woo checkout**, kuponok, adózás, számlázási adatok.
+- **Kétirányú szinkron** a JetBooking foglalás és a Woo-rendelés között.
+- Támogatott több fizetési mód (a WooCommerce beállításaid szerint).
 
-A JetBooking zökkenőmentesen együttműködik a JetEngine bővítménnyel, amely lehetővé teszi az egyedi post típusok és mezők létrehozását. Ezzel még testreszabottabb foglalási rendszereket hozhatsz létre.
+### Egységek és kapacitás
+- **Units manager**: több azonos típusú egység kezelése (pl. 10 db „Deluxe szoba”).
+- **Egységstátuszok**, egyedi ütemezési szabályok és akár buffer idők túlfoglalás ellen.
+- Kapacitás és férőhely szerinti számítás (pl. plusz díj extra vendégekért).
 
-#### JetSmartFilters
+### Admin és automatizálás
+- **JetBooking Dashboard**: Naptár, Idővonal és Lista nézet, szűrés, rendezés.
+- **Kézi foglalás rögzítése**, módosítás, lemondás.
+- **Export**: iCal és CSV.
+- **Workflows**: eseményalapú e-mailek (visszaigazolás, emlékeztető), valamint webhookok (pl. Zapier/Make).
+- **iCal/Google Calendar szinkron**: egy- és kétirányú; fontos tudnod, hogy a Google naptárfrissítések láthatósága késhet a Google frissítési ciklusa miatt.
 
-A JetSmartFilters segítségével könnyedén szűrheted és rendezheted a foglalásokat különböző kritériumok alapján. Ez különösen hasznos lehet nagyobb mennyiségű adat kezelése esetén.
-
-#### JetStyleManager
-
-A JetStyleManager-rel testreszabhatod az űrlapok és naptárak megjelenését, hogy illeszkedjenek a weboldalad dizájnjához.
-
-## Konkrét felhasználási helyzetek
-
-### Szállodák és vendégházak
-
-A JetBooking kiválóan alkalmas szállodák és vendégházak számára, akik online szeretnék kezelni a szobafoglalásokat. A vendégek könnyedén lefoglalhatják a kívánt szobát az elérhető időpontok alapján.
-
-### Autókölcsönzők
-
-Az autókölcsönzők számára is hasznos lehet, mivel lehetővé teszi az autók elérhetőségének kezelését és online foglalását. Az ügyfelek gyorsan és egyszerűen megtalálhatják és lefoglalhatják a számukra megfelelő járművet.
-
-### Szolgáltatások időpontfoglalása
-
-A bővítmény használható különböző szolgáltatások, például fodrászat, szépségszalon vagy orvosi rendelők időpontfoglalására is. Az ügyfelek kényelmesen kiválaszthatják a számukra megfelelő időpontot online.
+### Oldalszerkesztők és adatszerkezet
+- Teljesen kompatibilis **Elementorral, Gutenberggel és Bricks-szel**.
+- A Plain mód ideális **JetEngine** (CPT, dinamikus listák) és **JetFormBuilder** (űrlapok, számított mezők) használatával.
+- Katalógus-szűréshez és listázáshoz jól illeszthető **JetSmartFilters**-szel.
 
 ## Gyakorlati példák
 
-1. **Szálloda**: Egy kis hotel tulajdonosa könnyedén beállíthatja a szobák elérhetőségét és árait, valamint kezelheti a foglalásokat egyetlen rendszeren belül.
-2. **Autókölcsönző**: Egy autókölcsönző cég az autók elérhetőségét és bérleti díjait kezelheti, valamint automatikusan frissítheti a WooCommerce rendelési státuszokat.
-3. **Szépségszalon**: Egy szépségszalon tulajdonosa különböző szolgáltatásokra vonatkozó időpontokat kezelhet, így az ügyfelek egyszerűen lefoglalhatják az időpontokat online.
+- **Boutique hotel 12 szobával**: két szobatípus, főszezoni és hétvégi ár, minimum 2 éjszaka. A Units manager kezeli a típusonkénti darabszámot, a vendég e-mailben automatikus visszaigazolást kap, a WooCommerce végzi a fizetést.
+- **Autókölcsönző**: napi bérlés, hétvégi pótdíj, kaució WooCommerce-ben kezelve. A naptár kizárja a már foglalt napokat, a hosszú bérlés kedvezményes.
+- **Sífelszerelés-bérlés**: szezonális árak, gyerek kedvezmény, iCal szinkron a pultnál használt naptárhoz.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Foglalási naptár**: Olyan eszköz, amely lehetővé teszi az elérhető időpontok megtekintését és kezelését.
-- **WooCommerce**: Egy népszerű WordPress bővítmény, amely online áruházak létrehozására szolgál.
-- **JetEngine**: Egy bővítmény, amely lehetővé teszi az egyedi post típusok és mezők létrehozását.
-- **JetSmartFilters**: Egy bővítmény, amely lehetővé teszi az adatok szűrését és rendezését.
-- **JetStyleManager**: Egy bővítmény, amely lehetővé teszi az elemek megjelenésének testreszabását.
+- **Kevesebb plugin, kevesebb kockázat**: egy rendszerben a naptár, egységek, árak, fizetés és értesítések.
+- **Túlfoglalás mérséklése**: egységszintű készlet, min/max tartózkodás, buffer idők, naptárszinkron.
+- **Rugalmas árazás**: szezonok, hétvégék, tartózkodáshossz és személyenkénti díjak.
+- **Üzemeltetési hatékonyság**: központi dashboard, exportok, automatikus e-mailek.
+- **No-code/low-code**: gyors testreszabás JetEngine-nel és JetFormBuilderrel.
+
+## Kinek ajánlott?
+
+- **Apartman- és nyaralókiadóknak**, panzióknak, kisebb hoteleknek.
+- **Napi bérlést** kínáló szolgáltatóknak (autó, eszköz, sportszer).
+- **Ügynökségeknek és fejlesztőknek**, akik WooCommerce-alapú foglalási megoldást keresnek, testreszabható adatmodellel.
+- Ha **órás/slot-os időpontfoglalás** kell (fodrász, orvos, stúdió), inkább a JetAppointment az ajánlott; a JetBooking a napi/éjszakai foglalásokra optimalizált.
+
+## Gyors indulás (Plain mód)
+
+1. Hozz létre egy **Booking Instance** CPT-t (pl. „Apartmanok”) a szükséges mezőkkel (ár, képek, férőhely, szabályok).
+2. Készíts **foglalási űrlapot** számított mezőkkel (éjszakák, személyek, szezonális/hétvégi logika).
+3. Állítsd be az **elérhetőségi naptárat**, min/max tartózkodást, kizárásokat.
+4. Tedd ki az űrlapot a **Single** sablonra vagy egy **dinamikus popupba**.
+5. Kapcsold be a **Workflows** értesítéseket (visszaigazolás, emlékeztető) és az **iCal szinkront**.
+6. Ha online fizetés kell, válts **Woo-alapú** módra, és használd a WooCommerce checkoutot.
+
+## Korlátok és megfontolások
+
+- **Óraalapú foglalásra** nem ideális; napi/éjszakai (vagy heti) logikára optimalizált.
+- **Google Calendar** szinkronnál számolj azzal, hogy a Google frissítési ciklusa miatt a változások megjelenése késhet.
+- Plain módban a mély testreszabáshoz érdemes **JetEngine**-t és **JetFormBuilder**-t használni.
+
+## Fogalomtár
+
+- **Booking Instance**: a foglalható entitás (pl. egy apartman) rekordja.
+- **Units manager**: több azonos egység kezelése egy típuson belül.
+- **Workflows**: eseményalapú e-mailek és webhookok automatizálása.
+- **iCal szinkron**: naptárimport/export ICS URL alapján, egy- vagy kétirányban.
+
+## Licenc röviden
+
+Elérhető önálló éves licenc egy webhelyre, illetve teljes csomagban az összes JetPlugins bővítménnyel. A csomag rugalmas árazást és pénzvisszatérítési garanciát kínál.

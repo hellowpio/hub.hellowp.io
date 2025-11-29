@@ -1,57 +1,92 @@
-# MainWP Jetpack Scan Extension
+---
+title: "MainWP Jetpack Scan Extension"
+description: "MainWP Pro kiegészítő, amellyel a Jetpack Scan felhős vizsgálatait központilag indíthatod, követheted és javíthatod az összes Child Site-on."
+sidebar_label: "MainWP Jetpack Scan Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A MainWP Jetpack Scan Extension egy kiegészítő modul, amely lehetővé teszi a Jetpack Scan funkcióinak integrálását a MainWP irányítópultba. Ez a bővítmény különösen hasznos azoknak, akik több WordPress webhelyet kezelnek, és hatékony eszközökre van szükségük a biztonsági fenyegetések felderítésére és kezelésére.
+A MainWP Jetpack Scan Extension a MainWP hivatalos Pro bővítménye, amely a Jetpack Scan szolgáltatással integrálva központosítja a WordPress biztonsági ellenőrzést. Ha több webhelyet kezelsz, nem kell egyesével belépned minden oldalra: a vizsgálatokat, a sérülékenység- és kártevőleleteket, valamint a legtöbb javítást egyetlen MainWP irányítópultról intézheted. A cél: gyorsabb észlelés, egyértelmű teendők, kevesebb manuális munka.
 
-### Integráció és együttműködés
+## Hogyan működik?
 
-A MainWP Jetpack Scan Extension zökkenőmentesen működik együtt más MainWP bővítményekkel, mint például a MainWP Dashboard és a MainWP Child Plugin. Emellett integrálható különböző Jetpack funkciókkal, mint például a Jetpack Backup és a Jetpack Security.
+- A vizsgálatok a Jetpack Scan felhős infrastruktúráján futnak, a sérülékenység-információk forrása a WPScan adatbázis.
+- A MainWP a Jetpack Scan API-n keresztül kapcsolódik: egy WordPress.com fejlesztői (OAuth) alkalmazással hitelesítesz, majd a Child Site-okat hozzárendeled.
+- A napi automatikus ellenőrzések mellett bármikor indíthatsz on‑demand újravizsgálatot.
+- A legtöbb fenyegetéshez elérhető „egy kattintásos javítás”, amelyhez (S)FTP/SSH hozzáférés szükséges a céloldalhoz.
+- Az eredményeket a MainWP szinkronizálja; külön nézetekben követheted a leleteket és az előzményeket.
 
-### Használati helyzetek
+## Fő funkciók
 
-- **Webhelyek biztonsági ellenőrzése**: Automatikusan ellenőrzi a webhelyeket a potenciális biztonsági rések és rosszindulatú kódok után.
-- **Sérülékenységek kezelése**: Azonnali értesítést küld, ha sérülékenységet talál, és megoldási javaslatokat is nyújt.
-- **Történeti adatok megőrzése**: Részletes naplókat vezet az összes biztonsági eseményről és azok kezeléséről, amelyeket később visszanézhetsz.
+- **Központi áttekintés és widget**
+  Az Overview oldali widgetben és a részletes nézetben egy helyen látod az összes Child Site WordPress core, bővítmény és sablon sérülékenységeit, illetve a kártevő-észleléseket. Könnyen priorizálhatod, mely oldalakon kell azonnal beavatkozni.
 
-## Legfontosabb jellemzők és képességek
+- **Automatikus és igény szerinti vizsgálat**
+  A csatlakoztatott oldalak napi automatikus ellenőrzést kapnak. Emellett egy kattintással újravizsgálhatod az összes webhelyet, egy csoportot vagy csak egy kiválasztott oldalt – például frissítés után vagy incidens gyanúja esetén.
 
-### Automatikus szkennelés
+- **Egykattintásos javítások**
+  Ha a fenyegetéshez elérhető fix és megadtad a távoli elérési adatokat, a bővítmény közvetlenül végrehajtja a javítást. Ez csökkenti a kézi fájlműveletek és adminisztrátori belépések számát.
 
-A Jetpack Scan Extension automatikusan ellenőrzi webhelyedet rosszindulatú kódok, vírusok és egyéb biztonsági fenyegetések után. Ezáltal időt takaríthatsz meg, mivel nem kell manuálisan futtatnod a szkenneléseket.
+- **Fenyegetések és előzmények**
+  A **Threats** nézet minden találatnál leírja, mi a probléma és mit kell tenned. A **History** fülön visszakeresheted, mi lett megoldva vagy figyelmen kívül hagyva, dátummal és idővel – ez audit és riportálás szempontjából aranyat ér.
 
-### Részletes jelentések
+- **Tömegműveletek**
+  Hasznos, ha sok oldalt kezelsz: tömeges újravizsgálat, a Jetpack plugin frissítése, a Jetpack plugin elrejtése a gyerekoldal adminjából és egyéb bulk műveletek, akár csoportokra szűrve.
 
-A bővítmény részletes jelentéseket készít a megtalált biztonsági problémákról. Ezek a jelentések tartalmazzák a probléma leírását, a veszélyességi szintet és javaslatokat a probléma megoldására.
+- **Adatszinkronizálás**
+  A **Sync Jetpack Scan Data** opcióval bármikor behúzhatod a legfrissebb állapotokat a MainWP-be, így a döntéseid mindig aktuális információn alapulnak.
 
-### Sérülékenység-figyelmeztetések
+- **REST API integráció**
+  A MainWP REST API-n keresztül a Jetpack Scan adatokat és műveleteket automatizálhatod: riportgenerálás, incidens-automatizmusok, külső rendszerek integrációja.
 
-Azonnali értesítéseket küld e-mailben vagy az irányítópulton keresztül, ha sérülékenységet talál. Így azonnal intézkedhetsz, mielőtt a probléma komolyabbá válna.
-
-### Történeti naplók
-
-A bővítmény naplózza az összes végrehajtott szkennelést és az ezek során talált problémákat. Ez hasznos lehet egy audit során vagy amikor vissza kell nézned, hogy milyen lépéseket tettél egy-egy biztonsági incidens kezelésére.
+- **Kuponkezelés**
+  Első éves Jetpack Scan előfizetéshez a bővítményen belül kérhetsz kedvezménykupont. A promóciók idővel változhatnak.
 
 ## Gyakorlati példák
 
-### Több webhely kezelése
+- **Ügynökségi felügyelet**: Van 30 ügyféloldalad. Reggel ránézel az Overview widgetre; két oldalnál kritikus bővítmény-sérülékenység látszik. Kijelölöd őket, indítasz **bulk rescan**-t, majd a Threats nézetből elindítod az **egy kattintásos javítást**. Néhány perc, és minden tiszta.
+- **Incidenskezelés**: Gyanús e-mailt kapsz. A MainWP-ben azonnal **on‑demand** vizsgálatot futtatsz az érintett csoportra, majd a leletek alapján célzottan javítasz. Az **előzmények** rögzítik a lépéseket.
+- **Compliance riport**: Havi jelentéshez a History alapján exportálod, mely fenyegetéseket orvosoltál és mikor – egyszerű, visszakövethető dokumentáció.
 
-Ha több WordPress webhelyet kezelsz, akkor ez a bővítmény segít abban, hogy egy központi helyről figyelhesd az összes webhelyed biztonsági állapotát. Például, ha tíz webhelyed van, nem kell külön-külön bejelentkezned mindegyikbe, hanem az irányítópultról egy kattintással ellenőrizheted őket.
+## Telepítés és előfeltételek
 
-### Gyors reagálás biztonsági incidensekre
+1. **Gyerekoldalak előkészítése**: Telepítsd a Jetpack Protect vagy a Jetpack bővítményt a Child Site-okra, és biztosíts aktív Jetpack Scan előfizetést.
+2. **Bővítmény telepítése a MainWP-ben**: Az Extensions nézetből telepítsd és aktiváld a Jetpack Scan kiegészítőt.
+3. **API-kapcsolat létrehozása**: A bővítmény „Add App” felületén hozz létre egy WordPress.com fejlesztői (OAuth) alkalmazást a megadott Redirect URL-lel, majd kapcsold hozzá a webhelyeidet.
+4. **Javításokhoz hozzáférés**: Add meg az érintett Child Site-ok (S)FTP/SSH adatait, hogy az automatikus javítások működjenek.
+5. **Használat**: Az Overview/Threats/History nézetekkel menedzseld a leleteket, szükség esetén indíts újravizsgálatot és szinkronizáld az adatokat.
 
-Tegyük fel, hogy egy webhelyeden feltörési kísérlet történt. A Jetpack Scan Extension azonnal értesítést küld erről, így azonnal tudsz reagálni: letilthatod az érintett felhasználói fiókokat, frissítheted a jelszavakat, vagy más szükséges intézkedéseket tehetsz.
+```
+Gyors checklista
+- Jetpack Scan előfizetés: AKTÍV
+- Child Site-okon: Jetpack Protect vagy Jetpack plugin
+- WordPress.com OAuth app: létrehozva és csatlakoztatva
+- (S)FTP/SSH adatok: megadva az automatikus fixekhez
+- MainWP: szinkron futtatva, Overview/Threats ellenőrizve
+```
 
-### Webfejlesztő csapatok számára
+## Előnyök és értékajánlat
 
-Webfejlesztő csapatok gyakran dolgoznak több ügyfél webhelyén egyszerre. A bővítmény lehetővé teszi számukra, hogy gyorsan azonosítsák és kezeljék a biztonsági problémákat minden ügyfélnél anélkül, hogy külön-külön kellene átmenniük minden egyes webhelyen.
+- **Időmegtakarítás**: Központi irányítás, tömegműveletek, on‑demand vizsgálat.
+- **Gyors reagálás**: Napi automatikus ellenőrzés + azonnali újravizsgálat csökkenti az észlelés–reagálás idejét.
+- **Egyértelmű teendők**: A Threats nézet konkrét lépéseket javasol; ahol lehet, egy kattintásos fix.
+- **Auditálhatóság**: Részletes előzmények, visszakövethető beavatkozások.
+- **Automatizálhatóság**: REST API-val riportok, riasztások, folyamatautomaták építhetők.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Jetpack Scan**: Automatikus szkennelési szolgáltatás, amely keres rosszindulatú kódokat és biztonsági réseket.
-- **MainWP Dashboard**: Központi irányítópult több WordPress webhely kezeléséhez.
-- **MainWP Child Plugin**: A MainWP Dashboard-al összekapcsolódó plugin, amelyet az egyes webhelyekre kell telepíteni.
-- **Sérülékenység**: Biztonsági rés vagy hiba egy szoftverben, amely kihasználható rosszindulatú tevékenységekre.
-- **Audit**: Ellenőrzés vagy vizsgálat annak megállapítására, hogy egy rendszer megfelel-e bizonyos szabványoknak vagy előírásoknak.
+- **Webügynökségek és fejlesztők**: Sok webhely, kevés idő – ideális a központosított biztonsági felügyelethez.
+- **Vállalati/in‑house csapatok**: Több belső portál és microsite biztonságának egységes kezelése.
+- **MSP-k/IT szolgáltatók**: Skálázható workflow, automatizálható riportolás és incidenskezelés.
 
-Remélem, hogy ez a részletes leírás segített megérteni a MainWP Jetpack Scan Extension előnyeit és alkalmazási lehetőségeit. Ha bármilyen további kérdésed van, ne habozz kérdezni!
+Ha csak egy-két oldalt kezelsz, vagy nem használsz Jetpack Scan szolgáltatást, a haszon kisebb lehet. Több webhely esetén viszont az érték exponenciálisan nő.
+
+## Megjegyzések és korlátok
+
+- A napi automatikus vizsgálat a szolgáltatás ütemezése szerint fut; az on‑demand újravizsgálat bármikor indítható.
+- Az eredmények szinkronizációja miatt egyes változások késleltetve jelenhetnek meg a felületen.
+- Az egykattintásos javítás elérhetősége függ a fenyegetés típusától és a megadott (S)FTP/SSH hozzáféréstől.
+- A kuponkedvezmények időszakosak; elérhetőségük és mértékük változhat.
+- A bővítmény a MainWP aktuális főverzióival kompatibilis, a részletek a kiadási megjegyzésekben találhatók.
+
+Ezzel a kiegészítővel egyetlen irányítópultról tudod a biztonsági vizsgálatot, a leletek kiértékelését és a javításokat irányítani – gyorsabban, átláthatóbban és kevesebb hibalehetőséggel.

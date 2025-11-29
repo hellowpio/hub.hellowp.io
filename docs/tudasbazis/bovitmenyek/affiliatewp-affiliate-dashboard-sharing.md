@@ -1,60 +1,92 @@
-# AffiliateWP - Affiliate Dashboard Sharing
+---
+title: "AffiliateWP - Affiliate Dashboard Sharing"
+description: "Egykattintásos affiliate linkmegosztás a partnerfelületről; ma beépítve az AffiliateWP-be és az Affiliate Portalba, UTM-követéssel és QR-kóddal."
+sidebar_label: "AffiliateWP - Affiliate Dashboard Sharing"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az AffiliateWP - Affiliate Dashboard Sharing funkciója lehetővé teszi, hogy az affiliate partnerek könnyedén megosszák a generált referral URL-eket közvetlenül az affiliate dashboardjukról. Ez a megoldás nagymértékben megkönnyíti a partnerek számára a promóciós tevékenységeket, hiszen egyetlen kattintással megoszthatják a linkeket különböző közösségi média platformokon.
+Az AffiliateWP – Affiliate Dashboard Sharing eredetileg egy hivatalos kiegészítő volt, ami a partnereidnek egykattintásos linkmegosztást adott az Affiliate Area (partnerfelület) oldalán. A cél: megszüntetni a másolás–beillesztés körüli hibákat és súrlódást, hogy a partnerek gyorsabban, pontosabban tudjanak posztolni. Ma ugyanez a funkció az AffiliateWP alapbeállításai közé beépítve érhető el **Affiliate Link Sharing** néven, míg az új **Affiliate Portal** kiegészítő saját, natív megosztást tartalmaz. A régi add-on a Portal mellett már nem szükséges.
 
-### Közösségi média integráció
+## Hogyan működik röviden?
 
-Az Affiliate Dashboard Sharing zökkenőmentesen működik együtt számos közösségi média platformmal, például:
-- **Facebook**
-- **Twitter**
-- **LinkedIn**
-- **Google+**
+- A WordPress adminban a következő útvonalon kapcsolhatod: **AffiliateWP » Settings » Affiliates » Affiliate Link Sharing**.
+- Itt kiválaszthatod, mely csatornák legyenek elérhetők a partnereknek (pl. Facebook, LinkedIn, X, E-mail, QR-kód).
+- X és E-mail esetén további mezők nyílnak meg (előre kitöltött szöveg, tárgy).
+- Mentés után az Affiliate Area felületen a partner saját hivatkozása alatt megjelennek a megosztási ikonok; kattintásra az adott platform azonnal a megfelelően paraméterezett linkkel nyílik meg.
+- **Affiliate Portal** használatakor a megosztás beépített; QR-kódhoz külön kiegészítő érhető el. A régi Dashboard Sharing add-on itt nem támogatott.
 
-Az integráció révén a partnerek gyorsan és egyszerűen oszthatják meg a referral URL-eket ezekre a hálózatokra. Amikor egy új URL generálódik, az automatikusan frissül az összes csatlakoztatott hálózaton.
+## Fő funkciók részletesen
 
-### Email megosztás
+### Egykattintásos megosztás
+A partnerek az ikonokra kattintva azonnal megnyithatják a választott csatorna megosztó felületét. A rendszer automatikusan a partner saját azonosítójával és – ha kéred – kampányparaméterekkel látja el a linket. Ezzel elkerülhetők a hibás vagy hiányos linkek.
 
-A bővítmény lehetőséget biztosít az affiliate linkek emailben történő megosztására is. Az email ikonra kattintva a partner alapértelmezett email kliensében egy előre kitöltött tárgymezővel és tartalommal ellátott üzenet nyílik meg, amely tartalmazza a referral URL-t is.
+### Választható csatornák
+Te döntöd el, mely megosztási opciók jelenjenek meg. Ha például a programod főként LinkedInre épül, egyszerűen kikapcsolhatsz minden mást, hogy tiszta, célzott felületet kapjanak a partnerek.
 
-### Kampánykövetés
+### E-mail megosztás testreszabása
+Előre megadhatsz tárgyat és bevezető szöveget, így a partnerek egy gombnyomással kész, szerkeszthető e-mail vázlatot kapnak. Ez kiváló, ha a partnereid hírlevelet küldenek vagy személyes megkeresést végeznek.
 
-Az Affiliate Dashboard Sharing rendelkezik kampánykövetési funkcióval is. Ha ez be van kapcsolva, a közösségi médián keresztül megosztott linkek automatikusan tartalmazni fogják az adott hálózat nevét a **utm_source** paraméterben. Például, ha Twitteren osztják meg a linket, az így fog kinézni: `https://example.com/?utm_source=twitter`.
+Példa sablon:
+```
+Tárgy: Nézd meg ezt az ajánlatot!
+Üzenet: Szia! Ajánlok neked egy oldalt, ahol kedvezményesen vásárolhatsz. Itt találod: [AFFILIATE_LINK]
+```
 
-## Együttműködés más eszközökkel
+### Kampánykövetés UTM-mel
+A megosztási csatorna alapján automatikusan hozzáadhatók UTM paraméterek, így pontosabban elemezheted, honnan jött a forgalom és a konverzió.
 
-Az Affiliate Dashboard Sharing zökkenőmentesen integrálható számos népszerű WordPress bővítménnyel és platformmal, mint például:
-- **WooCommerce**: Az affiliate linkek könnyen generálhatók és megoszthatók a WooCommerce termékeihez.
-- **Easy Digital Downloads**: Ideális digitális termékek promóciójához.
-- **Elementor**: Az Elementor oldalkészítővel készült oldalakon is tökéletesen működik.
-- **PayPal**: Az affiliate kifizetések egyszerűen kezelhetők PayPal-on keresztül.
-- **WPForms**: Az affiliate linkek űrlapokba történő beillesztése is könnyedén megoldható.
-- **MemberPress**: Előfizetéses rendszerek promóciójához is kiváló.
+Példa paraméterezés:
+```
+?ref=AFFILIATE_ID&utm_source=x&utm_medium=affiliate&utm_campaign=dashboard_share
+```
 
-## Konkrét helyzetek és gyakorlati példák
+### QR-kód generálás
+A partnerek a saját linkjükhöz QR-kódot kérhetnek és letölthetnek. Ez különösen hasznos offline helyzetekben: nyomtatott szórólap, rendezvény roll-up, csomagolás.
 
-### Webáruházak
+### Integrációk
+- **Custom Affiliate Slugs**: ha egyedi slugokat használsz, a partner felületen a slugos és a normál link között lehet váltani, és mindkettő megosztható.
+- **Multi‑Tier Commissions**: a partner hálózati (toborzó) linkje ugyanúgy megosztható az összes csatornán, segítve az al-partnerek szerzését.
 
-Egy online áruház tulajdonosa vagy? Használd az Affiliate Dashboard Sharing funkciót, hogy az affiliate partnereid gyorsan és egyszerűen megoszthassák a terméklinkeket a közösségi médiában és emailben. Ez növeli a láthatóságot és elősegíti az értékesítést.
+### Admin oldali beállítások
+- Kapcsold be a kívánt csatornákat az AffiliateWP beállításaiban.
+- Állíts be előre kitöltött szöveget X és E-mail esetén.
+- Mentés után a partnerek azonnal látják az ikonokat az Affiliate Area oldalon.
+- **Affiliate Portal** esetén a megosztás beépített; QR-kódhoz külön kiegészítő szükséges.
 
-### Digitális tartalom készítők
+## Gyakorlati példák
 
-Ha digitális termékeket árulsz, például e-könyveket vagy online tanfolyamokat, az Affiliate Dashboard Sharing lehetőséget biztosít partnereid számára, hogy könnyedén promóciós kampányokat indítsanak közösségi médián keresztül.
+- **Közösségi poszt 10 másodperc alatt**: a partnered rákattint az X ikonra, a felugró szerkesztőben már ott a saját azonosítós link és az előre megadott üzenet. Szerkeszt, posztol – kész.
+- **Gyors hírlevél-beillesztés**: e-mail megosztásra kattintva megnyílik a levelező kliens sablonnal és az affiliate linkkel. A partner csak személyre szabja és küldi.
+- **Offline kampány**: QR-kód letöltése, nyomtatás flyeren. A vásárló mobilról azonnal a hivatkozott oldalra jut, a jutalék mérhető.
+- **Többszintű toborzás**: a hálózati toborzó link megosztása LinkedInen; az új al-partnerek után a felsőbb szint is jutalékot kap.
 
-### Szolgáltatások
+## Előnyök és értékajánlat
 
-Szolgáltatásokat kínálsz? Az affiliate partnereid könnyedén megoszthatják szolgáltatásaid linkjeit közösségi médiában és emailben, így szélesebb körben érheted el potenciális ügyfeleidet.
+- **Kevesebb hiba, több megosztás**: nincs több elrontott link vagy hiányzó azonosító.
+- **Konzisztens mérés**: automatikus UTM-ekkel tisztábban látod, mely csatorna hoz konverziót.
+- **Gyors bevezetés**: percek alatt beállítható, a partnerek azonnal használják.
+- **Kisebb támogatási teher**: a “hol találom a linkem?” és “hogyan osszam meg?” kérdések száma csökken.
+- **Jobb partnerélmény**: látható, kézre álló ikonok, kevesebb kattintás.
 
-### Előfizetéses rendszerek
+## Célközönség
 
-Ha előfizetéses rendszert működtetsz, például tagsági oldalakat vagy online klubokat, az Affiliate Dashboard Sharing segít partnereidnek abban, hogy egyszerűen megosszák az ajánlói linkeket és növeljék az előfizetői bázist.
+- **Webáruházak és SaaS szolgáltatók**: akik affiliate programot futtatnak, és a partnereik aktivitását szeretnék növelni.
+- **Marketing- és partnerprogram-menedzserek**: akik átlátható, csatornánként mérhető kampányokat akarnak.
+- **Affiliate partnerek**: akik gyorsan, hibamentesen szeretnének posztolni, e-mailt írni vagy QR-kódot használni.
+- **Többszintű programok üzemeltetői**: ahol a hálózati toborzás kulcsfontosságú.
 
-## Szószedet
+## Kompatibilitás és licenc megjegyzések
 
-- **Affiliate partner**: Olyan személy vagy entitás, aki/ami promóciós tevékenységeket végez egy adott vállalkozás számára jutalékért cserébe.
-- **Referral URL**: Olyan URL, amely tartalmazza az affiliate partner azonosítóját, és amelyen keresztül követhetővé válik a generált forgalom és értékesítés.
-- **Kampánykövetés (campaign tracking)**: Olyan funkció, amely lehetővé teszi az egyes marketing kampányok hatékonyságának mérését különböző paraméterek hozzáadásával a URL-ekhez (pl. utm_source).
-- **utm_source**: Egy URL paraméter, amely a forgalom forrását jelöli (pl. Google, Facebook).
+- **Affiliate Area vs. Affiliate Portal**: a klasszikus Affiliate Area esetén a megosztási funkció az AffiliateWP beállításaiból kapcsolható. Az Affiliate Portal saját megosztási felületet ad; a régi Dashboard Sharing add-on ott nem szükséges.
+- **Pro kiegészítők**: a Custom Affiliate Slugs és a Multi‑Tier Commissions külön licencet igényelhetnek. Maga a megosztási funkció az AffiliateWP-ben érhető el.
 
-Ez a részletes leírás remélhetőleg segít jobban megérteni az AffiliateWP - Affiliate Dashboard Sharing funkcionalitását és előnyeit.
+## Tipp: ajánlott alapbeállítások
+
+- Engedélyezd a Facebook, LinkedIn, X, E-mail és QR-kód csatornákat.
+- Állíts be rövid, egységes e-mail tárgyat és nyitó szöveget.
+- Használj konzisztens UTM sémát:
+```
+utm_source=[CSATORNA]  utm_medium=affiliate  utm_campaign=dashboard_share
+```
+- Teszteld partnerként az Affiliate Area/Portal felületet, és nézd meg, hogy a linkek és a QR-kódok helyesen működnek-e.

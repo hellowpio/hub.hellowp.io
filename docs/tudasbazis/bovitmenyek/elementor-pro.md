@@ -1,79 +1,106 @@
-# Elementor Pro
+---
+title: "Elementor Pro"
+description: "Az Elementor Pro a népszerű Elementor oldalépítő prémium kiegészítője: teljes Theme Builder, űrlap‑ és popup‑készítő, WooCommerce‑sablonozás, dinamikus tartalom és haladó jogosultságok."
+sidebar_label: "Elementor Pro"
+---
 
-Az Elementor Pro egy népszerű WordPress oldalépítő bővítmény, amely számos fejlett funkcióval és eszközzel rendelkezik. Ezek segítségével könnyedén készíthetők professzionális, pixeltökéletes weboldalak. Az alábbiakban részletesen bemutatom az Elementor Pro legfontosabb funkcióit, előnyeit, valamint konkrét gyakorlati példákat is adok az alkalmazására.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és kulcsfontosságú jellemzők
+Az **Elementor Pro** az Elementor vizuális oldalépítő **prémium** kiegészítője. Arra való, hogy kódolás nélkül, egyetlen eszközben építs teljes WordPress‑webhelyet: **témaelemek** (fejléc, lábléc, single, archívum), **űrlapok**, **popupok**, **WooCommerce**‑oldalak, **dinamikus tartalom**, sőt **egyedi kód/CSS** és **csapatmunka** is benne van. A Pro a Core (ingyenes) bővítményt egészíti ki – a használatához az ingyenes Elementor telepítése szükséges.
 
-### Drag & Drop szerkesztő
-Az Elementor Pro intuitív Drag & Drop szerkesztője lehetővé teszi, hogy kódolás nélkül építsd fel weboldalad. Az elemeket egyszerűen áthúzhatod a szerkesztőfelületre, ahol teljes mértékben testreszabhatod őket.
+A fő probléma, amit megold: nem kell külön téma‑override, PHP sablonozás, külön űrlap‑ és popup‑plugin, vagy külső menedzsment eszköz. Mindent vizuálisan, egyetlen felületen kezelsz.
 
-### Design System
-Az Elementor Design System segítségével biztosíthatod a színek, tipográfia és egyéb design elemek következetességét az egész weboldalon. Ez elősegíti a professzionális megjelenést.
+## Fő funkciók és hogyan működnek
 
-### Responsive Design
-Az Elementor Pro-val optimalizálhatod a weboldalad különböző eszközökre (asztali gép, tablet, mobil). Egyedi töréspontokat állíthatsz be és eszköz-specifikus beállításokat végezhetsz, hogy minden felületen tökéletes élményt nyújtson az oldal.
-
-### Theme Builder
-A Theme Builder lehetővé teszi, hogy az egész weboldal minden részét (fejléc, lábléc, bejegyzések elrendezése, archív oldalak) saját magad tervezd meg és állítsd be.
-
-### Popup Builder
-Az Elementor Popup Builder segítségével lenyűgöző felugró ablakokat hozhatsz létre fejlett célzási és aktiválási opciókkal, amelyek segítenek a felhasználói interakció és a konverziók növelésében.
+### Theme Builder és megjelenési feltételek
+A teljes témaelemkészletet vizuálisan építheted:
+- **Fejléc/Lábléc**, **Single** (bejegyzés/oldal/CPT), **Archive**, **Keresési eredmény**, **404**, valamint **WooCommerce** nézetek.
+- **Megjelenési feltételek**: pontosan meghatározod, hol jelenjen meg egy sablon (pl. kategória X, szerepkör Y, dátum/idő, eszköz).
+- Elemszinten is adhatsz feltételeket: ugyanazon sablonon belül eltérő blokkokat látsz külön közönségeknek.
 
 ### WooCommerce Builder
-Az Elementor Pro zökkenőmentesen integrálható a WooCommerce-el, így egyedi termékoldalakat, bolt elrendezéseket, termékarchívumokat, kosármenüket és fizetési oldalakat tervezhetsz.
+A bolti élmény teljesen márkázottá tehető:
+- **Termékoldal**, **bolt/archívum**, **kosár**, **pénztár**, **Saját fiók**, értesítések és üzenetek.
+- Dinamikus címkék, upsell/cross‑sell elemek, kész **webáruház‑blokkok** és oldalbeállítások a gyors induláshoz.
 
-### Dynamic Content
-A Dynamic Content funkcióval személyre szabott és interaktív webes élményeket hozhatsz létre azáltal, hogy a dizájnodat különböző adatforrásokhoz kapcsolod.
+### Form Builder és beküldések
+Építs profi űrlapokat és kezeld az adatokat házon belül:
+- Változatos **mezőtípusok**, **többlépéses** űrlapok.
+- **Actions after submit**: e‑mail, átirányítás, popup nyitás, webhook/automatizáció.
+- **Beküldések mentése** a WordPress‑adminban, **CSV export**.
+- **Integrációk** (pl. CRM/automatizáció), és **spam‑szűrés** Akismet‑tel.
 
-### Motion Effects
-Haladó mozgáseffektusokkal teheted még dinamikusabbá és lebilincselőbbé a weboldalad. Animációkat és átmeneteket adhatsz az elemekhez.
+### Popup Builder
+Teljes képernyős, sávos, slide‑in vagy in‑line popupokat szerkeszthetsz:
+- **Megjelenési feltételek** és **triggerek**: kilépési szándék, időzítés, görgetés, kattintás.
+- **Haladó szabályok** (pl. oldal/role/iparági logikák), űrlapbeküldés utáni popup megjelenítés.
 
-### Custom Fonts & Icons
-Az Elementor Pro lehetőséget biztosít egyedi betűtípusok és ikonok feltöltésére és használatára, így biztosítva a márkád arculatának következetességét.
+### Dinamikus tartalom és egyedi mezők
+Kösd össze a dizájnt a WordPress‑adatokkal:
+- **ACF**‑ és **CPT**‑támogatás, dinamikus címkék bármely widgetben.
+- Egy sablont elég egyszer megépítened – az adatoktól függően sokoldalúan feltöltődik.
 
-## Zökkenőmentes integráció más eszközökkel
+### Loop Builder (Loop Grid/Carousel)
+Egyedi listázások teljes kontrollal:
+- Saját **kártyasablon**, testreszabható **lekérdezés** (include/exclude, rendezés, aktuális lekérdezés).
+- **Lapozás**: számok, előző/következő, AJAX, **végtelen görgetés**.
+- **Alternáló sablonok** (pl. minden 3. elem más elrendezés).
 
-Az Elementor Pro számos más eszközzel működik együtt problémamentesen, mint például:
+### Layout és navigáció
+Modern, teljesítménybarát elrendezések:
+- **Flexbox/Grid konténerek**, **Nested Elements** a tisztább DOM‑ért és jobb reszponzivitásért.
+- **Menu** widgettel készíthetsz összetett **mega menüt** többoszlopos tartalommal.
 
-- **WooCommerce**: Az online boltok kialakítására szolgáló legnépszerűbb WordPress bővítmény.
-- **Yoast SEO**: A keresőoptimalizálásra (SEO) szolgáló népszerű bővítmény.
-- **Advanced Custom Fields (ACF)**: Egyedi mezők hozzáadására szolgáló eszköz.
-- **WPML**: Többnyelvű weboldalak kialakítására szolgáló bővítmény.
-- **Mailchimp**: Email marketing integrációra szolgáló eszköz.
-- **Zapier**: Automatikus munkafolyamatok létrehozására szolgáló platform.
+### Egyedi kód és CSS
+Ha kell, mélyebben is testreszabhatod:
+- **Custom Code** (HTML/JS/CSS) globálisan vagy feltételekhez kötve.
+- **Custom CSS** elemenként vagy szinten, AI‑asszisztenciával.
 
-## Gyakorlati alkalmazási példák
+Példa Custom CSS‑re egy gombhoz:
+```
+selector {
+  transition: .2s ease;
+}
+selector:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+```
 
-### Egyedi portfólió oldal készítése
-Az Elementor Pro segítségével könnyedén készíthetsz egyedi portfólió oldalakat, amelyek bemutatják a munkáidat professzionális módon. A Portfolio widget és a Testimonial Carousel kombinálásával látványos bemutatókat készíthetsz.
+### Globális stílusok és sablonok
+- **Theme Style**: globális tipográfia, színek, gombok, űrlapok.
+- **Sablon‑ és készletkönyvtár**, valamint felhőalapú sablonkezelés a gyors újrafelhasználáshoz.
 
-### Blog oldalak személyre szabása
-A Theme Builder segítségével teljes kontrollt nyerhetsz a blog oldalad minden elemének megjelenése felett. Egyedi bejegyzéselrendezéseket, fejléceket és lábléceket tervezhetsz, amelyek megfelelnek a márkád stílusának.
+### Együttműködés és jogosultságok
+- **Notes**: megjegyzések közvetlenül a vásznon az ügyfél/kollega számára.
+- **Role Manager**: ki mit szerkeszthet.
+- **Element Manager**: szerepkörönként szabályozhatod, mely widgetek érhetők el.
 
-### Online áruház kialakítása
-A WooCommerce Builder-rel egyedi termékoldalakat és bolt elrendezéseket hozhatsz létre. A Custom Add To Cart widget segítségével testreszabhatod a vásárlási folyamatot is.
+### Teljesítmény és technikai alapok
+A konténeres elrendezés kevesebb burkolóelemmel dolgozik, így gyorsabb renderelést és jobb reszponzivitást kapsz. Javasolt naprakész WordPress és modern PHP‑verzió használata.
 
-### Lenyűgöző felugró ablakok készítése
-A Popup Builder-rel különféle célzott felugró ablakokat hozhatsz létre promóciókhoz, hírlevél-feliratkozáshoz vagy akár visszajelzés gyűjtéséhez. Az Advanced Targeting opciókkal pontosan meghatározhatod, hogy mikor és hol jelenjenek meg ezek az ablakok.
+## Gyakorlati példák
 
-## Tippek a hatékony használathoz
+- Üzleti landing oldal: pár kattintással építesz egy hősszakaszt, ügyfélvéleményeket, **CTA‑űrlapot**, majd **exit‑intent popupot** kuponnal. A beküldések az adminban mentődnek, és mehetnek automatizációba.
+- Magazin/blog: készítesz **Single/Archive** sablont, a **Loop Builderrel** kategóriaoldali rácsot lapozással és végtelen görgetéssel. Dinamikus címkék húzzák be a szerzőt, dátumot, taxonómiákat.
+- Webáruház: kialakítod az **egyedi termékoldalt** (galéria, USP‑k, értékelések), a **kosár/pénztár** folyamatot márkaazonos komponensekkel, és célzott értesítéseket jelenítesz meg popupban.
+- Adatvezérelt portál: **ACF**‑mezős ingatlanlistát építesz. A **Loop Grid** sablon kártyáján mezőktől függően jelennek meg címkék (pl. „Új építésű”), a **dinamikus címkék** pedig automatikusan töltik a paramétereket.
 
-- **Design System használata**: Használd az Elementor Design System-et a színek és tipográfia egységesítésére.
-- **Responsive Design tesztelése**: Mindig ellenőrizd a weboldalad különböző eszközökön, hogy biztosítsd az optimális megjelenést minden felületen.
-- **Sablonok és blokkok újrafelhasználása**: Készíts saját sablonokat és blokkokat, amelyeket újra felhasználhatsz különböző projektekben.
-- **Mozgáseffektusok alkalmazása**: Ne vigyük túlzásba a mozgáseffektusokat; csak ott használd őket, ahol valóban hozzáadott értéket képviselnek.
+## Előnyök és értékajánlat
 
-## Szószedet
+- **Egy eszköz, több plugin helyett**: űrlap, popup, sablonozás, WooCommerce – mind egy helyen.
+- **No‑code/low‑code**: fejlesztői kapacitás nélkül is profi, karbantartható megoldásokat építhetsz.
+- **Gyors iteráció**: sablonok, globális stílusok és készletek miatt rekordidő alatt hozol létre új oldalakat.
+- **Konzisztens márka‑ és UX**: a teljes site és shop vizuális egységben tartható.
+- **Skálázható dinamikus tartalom**: egyszeri sablonozás, tömeges alkalmazhatóság.
+- **Csapatmunka és kontroll**: megjegyzések, szerepkörök, widget‑panel korlátozás ügyfeleknek.
 
-- **Drag & Drop szerkesztő**: Húzd és ejtsd módszerrel működő szerkesztő.
-- **Design System**: Tervezési rendszer.
-- **Responsive Design**: Reszponzív tervezés.
-- **Theme Builder**: Témaépítő.
-- **Popup Builder**: Felugró ablak építő.
-- **WooCommerce Builder**: Webshop építő.
-- **Dynamic Content**: Dinamikus tartalom.
-- **Motion Effects**: Mozgáseffektusok.
-- **Custom Fonts & Icons**: Egyedi betűtípusok és ikonok.
-- **Advanced Targeting**: Haladó célzás.
+## Kinek ajánlott?
 
-Az Elementor Pro rengeteg lehetőséget kínál azoknak, akik professzionális és egyedi weboldalakat szeretnének készíteni anélkül, hogy mélyebb technikai tudásra lenne szükségük.
+- **Kis‑ és középvállalkozásoknak**: gyors, költséghatékony webhely‑ és kampányoldal‑építés.
+- **Marketing csapatoknak**: űrlapok, popupok, A/B‑iterációk fejlesztő nélkül.
+- **Tartalomportáloknak/magazinoknak**: dinamikus sablonok és rugalmas listázások.
+- **WooCommerce boltoknak**: teljesen márkázott termék‑ és pénztári élmény, konverziófókusz.
+- **Ügynökségeknek és szabadúszóknak**: gyors átadás, skálázható sablonrendszer, jogosultságkezelés.
+
+Megjegyzés: az Elementor Pro a Core bővítményre épül – előbb telepítsd az ingyenes Elementort, majd aktiváld a Pro‑t. Így kapod meg a vizuális webhely‑építés teljes élményét, a dinamikus tartalom és az e‑kereskedelem haladó eszköztárával együtt.

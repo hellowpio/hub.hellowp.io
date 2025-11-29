@@ -1,73 +1,90 @@
-# Oxygen Gutenberg Integration
+---
+title: "Oxygen Gutenberg Integration"
+description: "Hivatalos Oxygen Builder kiegészítő, amellyel az Oxygenben tervezett elemeket teljes értékű Gutenberg blokkokként szerkesztheted, központi dizájnkontroll mellett."
+sidebar_label: "Oxygen Gutenberg Integration"
+---
 
-## Funkcionalitás
+## Mi ez és milyen problémát old meg?
 
-Az Oxygen Gutenberg Integration lehetővé teszi, hogy az Oxygen segítségével megtervezett teljes oldalakat vagy egyes blokkokat közvetlenül a Gutenberg szerkesztőben használjunk és szerkesszünk. Az integráció lehetőséget biztosít arra, hogy az alábbi mezőtípusokat közvetlenül a Gutenbergben módosítsuk:
+Az Oxygen Gutenberg Integration az Oxygen Builder hivatalos kiegészítője. Híd a dizájn és a tartalomszerkesztés között: az Oxygenben felépített komponenseket Gutenberg blokkokká alakítja, így a tartalomszerkesztők a natív WordPress blokkszerkesztőben dolgozhatnak, miközben a layout és a stílus központilag, az Oxygenben marad kontroll alatt. Ez megelőzi a „szétcsúszó” oldalakat, egységesíti a szerkesztői élményt, és gyorsítja a karbantartást.
 
-- Szöveg
-- Formázott szöveg (Rich Text)
-- Képek
-- Ikonok
-- Link URL-ek
-- Szekció háttérképek
+## Hogyan működik röviden
 
-Ezzel a megoldással te vagy az ügyfeleid könnyedén végezhettek tartalommal kapcsolatos módosításokat anélkül, hogy a dizájn alapvető elemeit érintenétek.
+- Az Oxygenben megtervezett szekciókat/komponenseket blokkként regisztrálod.
+- A WordPress szerkesztőben ezek az „Oxygen Blocks” kategóriában jelennek meg.
+- A blokkoknak kijelölhetsz szerkeszthető mezőket (pl. szöveg, kép, link), amelyeket a tartalomszerkesztők Gutenbergben módosítanak.
+- Teljes oldalakat is szerkeszthetővé tehetsz „Full Page Blockként”.
+- A „Client mode” elrejti az Oxygen felületet a kijelölt felhasználóknál/bejegyzéstípusoknál.
+- A renderelés továbbra is az Oxygenen keresztül történik; a WordPress téma‑rendszer nem vesz részt.
 
-## Blokk létrehozása
+A bővítményt külön kell telepíteni és licencelni (külön licencmező az Oxygen beállításain belül).
 
-Oxygen blokkokat háromféleképpen hozhatsz létre:
+## Fő funkciók részletesen
 
-1. Lépj be az Oxygen -> Block Library menübe és hozz létre egy új blokkot.
-2. Kattints a szekció vagy div címkéjére a Structure panelben, majd válaszd a "Copy to Block" opciót.
-3. Miután megterveztél egy oldalt, jelöld be a "Make This Full Page Editable In Gutenberg" jelölőnégyzetet az adott oldal Oxygen meta dobozában.
+- **Oxygen elemekből Gutenberg blokkok**: Bármely Oxygen szekciót vagy komponenst gyorsan blokká alakíthatsz. A Gutenbergben a saját, kategorizált „Oxygen Blocks” között találod meg őket. Egész oldalakat is publikálhatsz „Full Page Block” módban, hogy az oldal teljes tartalma a blokkszerkesztőből legyen módosítható.
 
-## Blokk használata a Gutenberg szerkesztőben
+- **Tartalmi mezők kijelölése és szerkesztése**: A blokkokon belül meghatározod, hogy mely mezők legyenek szerkeszthetők (például **szöveg**, **rich text**, **képek**, **ikonok**, **link URL‑ek**, **szekcióháttér-képek**). A szerkesztő felület kiemeléssel jelzi, pontosan melyik elemhez tartozik az adott mező, így nem tévedsz el a komponensben.
 
-Ha egy blokkot hozzá szeretnél adni a Gutenberg szerkesztőben:
+- **Központi dizájnfrissítés**: Ha az Oxygenben módosítod egy blokk dizájnját, a változtatás minden előforduláson érvényesül. A Gutenbergben megadott tartalmi értékek megmaradnak, így a dizájn és a tartalom elválik egymástól.
 
-1. Kattints a **+** gombra a Gutenbergben és válaszd ki az **Oxygen Blocks** kategóriát.
-2. Kattints a blokk nevére, hogy hozzáadd az oldaladhoz vagy bejegyzésedhez.
+- **„Client mode” és jogosultságok**: Elrejtheted az Oxygen szerkesztőt adott szerepkörök vagy bejegyzéstípusok esetén. Az ügyfelek/tartalomszerkesztők csak a Gutenberget látják, így nem tudják véletlenül felülírni a layoutot.
 
-Ha egy teljes oldalt szeretnél hozzáadni, ami blokk formájában van elmentve:
+- **Újrafelhasználás több webhelyen**: A blokkokat megoszthatod és telepítheted más site‑okra az Oxygen beépített könyvtárával vagy a WordPress import/export eszközeivel.
 
-1. Válaszd ki az **Oxygen Full Page Blocks** kategóriát.
-2. Kattints a teljes oldal blokk nevére, hogy hozzáadd az oldaladhoz vagy bejegyzésedhez.
+- **Teljesítmény finomhangolás**: Kikapcsolhatod a „Gutenberg Blocks CSS” betöltését, ha nem használsz natív Gutenberg blokkokat. Ezzel gyorsíthatod a betöltést; ha mégis használsz natív blokkokat, szükség lehet saját CSS‑re.
 
-## Tartalom szerkesztése a Gutenberg szerkesztőben
-
-A szövegeket, képeket és link szövegeket közvetlenül kattintással szerkesztheted a megfelelő elemre a szerkesztőben. Az ikonokat, háttérképeket és URL-eket a blokkok oldalsáv menüjében módosíthatod. Az oldalsáv mezők felett lebegve vagy kattintva az elem körvonala kék lesz, ami segít azonosítani a kapcsolódó elemet.
-
-## Client Mode
-
-Miután az összes Oxygen oldaladat vagy dizájnodat áthelyezted a Gutenbergbe, hatékonyan átválthatsz Client Mode-ra az alábbiak szerint:
-
-1. Menj az **Oxygen -> Settings -> Post Type Manager** menübe és jelöld be azon bejegyzéstípusokat, amelyeknél szeretnéd elrejteni az Oxygen meta dobozt.
-2. Ha te vagy az egyetlen adminisztrátori hozzáféréssel rendelkező felhasználó, menj a **Settings -> Role Manager** menübe és tiltsd le az Oxygen hozzáférést minden nem-adminisztrátori felhasználó számára.
-
-## Blokk szerkesztése az Oxygenben
-
-Egy használatban lévő blokk szerkesztése az Oxygenben minden helyen módosítja a blokk dizájnját, ahol az használatban van. A tartalmi változtatások, amelyeket a Gutenbergben végeztél, megmaradnak, kivéve, ha az elemeket törlöd a blokkból vagy az oldal dizájnjából.
-
-## Nem támogatott elemek
-
-Néhány elem, mint például a **Repeater** és **Dynamic Data**, nem támogatott a Gutenbergben. Ezek az elemek ugyan működnek a front end-en, de nem jelennek meg a Gutenberg szerkesztőben, helyettük egy helykitöltő lesz látható. A helykitöltő címkék megváltoztatásához egyszerűen nevezd át az elemet az Oxygen Structure Pane-jében.
+- **Licenc és frissítés**: A kiegészítő saját licencmezőt kap az Oxygen beállításai között; a frissítések és a hibakeresés ehhez a licenchez kötődnek.
 
 ## Gyakorlati példák
 
-### Webshop termékoldalak
-Az Oxygen és Gutenberg integrációval könnyedén készíthetsz egyedi termékoldalakat, amelyeket utána egyszerűen szerkeszthetővé tehetsz ügyfeleid számára a Gutenberg felületen.
+- **Márkakomponens-könyvtár**: Készíts hős szekciót, ártáblát, CTA‑sávot Oxygenben. Jelöld szerkeszthetőként a címet, leírást, gombszöveget és képet. A szerzők Gutenbergben variálhatják a tartalmat, a tipográfia és a spacing központilag egységes marad.
 
-### Blog bejegyzések
-Egy blog bejegyzés dizájnját megtervezheted az Oxygennel, majd a tartalomkezelést ráhagyhatod azoknak, akik nem jártasak a dizájnban, hiszen könnyedén módosíthatják azt Gutenberg segítségével.
+- **Landing oldalak „Gutenberg‑esítése”**: Az oldalt Full Page Blockként teszed szerkeszthetővé. A marketing csapat a megszokott blokkszerkesztőben frissít, miközben a rács, a komponensek és a reszponzív viselkedés érintetlen marad.
 
-### Landing oldalak
-Készíts gyönyörű landing oldalakat Oxygennel és tedd lehetővé marketing csapatod számára, hogy gyorsan és hatékonyan módosíthassák a tartalmakat közvetlenül a Gutenbergben.
+- **Ügyfélátadás**: Bekapcsolod a client mode‑ot, és elrejted az Oxygent a szerkesztő szerepkörnél. Az ügyfél csak azokat a mezőket látja és módosítja, amelyeket erre kijelöltél.
 
-## Szószedet
+- **Többsite‑os projektek**: Ugyanazokat a Oxygen‑blokkokat használod több webhelyen. Ha frissíted a dizájnt, mindenhol egységesen megjelenik, a helyi tartalom közben megmarad.
 
-- **Oxygen**: Egy vizuális weboldalépítő eszköz.
-- **Gutenberg**: A WordPress beépített blokk alapú tartalomszerkesztője.
-- **Client Mode**: Üzemmód, amely korlátozza a felhasználók hozzáférését bizonyos adminisztratív funkciókhoz.
-- **Meta box**: Egy kezelőfelület elem, amely kiegészítő információkat vagy funkciókat biztosít egy adott tartalomhoz.
-- **Block Library**: Egy könyvtár, amely tárolja az Oxygennel készített blokkokat.
-- **Structure Pane**: Az Oxygen szerkesztőjében található panel, amely a weboldal struktúráját mutatja.
+## Telepítés és első blokk lépésről lépésre
+
+1. **Telepítés**: Aktiváld az Oxygent, majd telepítsd és aktiváld az Oxygen Gutenberg Integration kiegészítőt.
+2. **Licenc**: Az Oxygen beállításain belül add meg a kiegészítő licenckulcsát.
+3. **Blokk létrehozása**:
+   - Oxygen → Block Library → új blokk; vagy
+   - Structure panel: Section/Div → „Copy to Block”; vagy
+   - Oldalszinten: Oxygen meta box → „Make This Full Page Editable In Gutenberg”.
+4. **Szerkesztés Gutenbergben**: Keresd az „Oxygen Blocks” (vagy „Oxygen Full Page Blocks”) kategóriát, illeszd be a blokkot, majd szerkeszd a kijelölt mezőket.
+
+```
+Oxygen → Block Library → Add New
+Structure panel → jobb klikk Section/Div → Copy to Block
+Oldal szerkesztése → Oxygen meta box → Make This Full Page Editable In Gutenberg
+```
+
+## Előnyök és értékajánlat
+
+- **Idő- és költségmegtakarítás**: Egyetlen helyen végzett dizájnmódosítás mindenhol érvényesül.
+- **Kevesebb hibalehetőség**: A tartalom külön szerkeszthető, a layout védett.
+- **Gyors szerkesztői munka**: A szerzők a natív Gutenberg felületen dolgoznak.
+- **Skálázhatóság**: Ugyanaz a komponenskönyvtár több site‑on használható.
+- **Teljesítmény‑kontroll**: Felesleges CSS kikapcsolása, célzott optimalizálás.
+
+## Célközönség
+
+- **Ügynökségek és fejlesztők**, akik Oxygennel építenek, de a tartalmat a csapat vagy az ügyfél Gutenbergben szeretné szerkeszteni.
+- **Marketing és tartalomcsapatok**, akiknek a gyors, biztonságos tartalomfrissítés fontos, dizájnkockázat nélkül.
+- **Többsite‑os működés** vagy franchise hálózatok, ahol egységes márkakomponensek szükségesek.
+
+## Korlátok és megjegyzések
+
+- **Előnézeti korlátok**: Bizonyos dinamikus elemek (pl. repeater, dinamikus adatok) a Gutenbergben csak placeholdert mutathatnak; a frontenden rendben megjelennek.
+- **Téma‑függetlenség**: Az Oxygen letiltja a WordPress téma‑rendszert; a renderelést az Oxygen sablonjai végzik. A blokktémás/FSE funkciók itt nem célzottak.
+- **CSS beállítás**: Ha letiltod a Gutenberg Blocks CSS‑t, és natív blokkokat használsz, külön stílusra lehet szükség.
+- **Függőség**: A blokkok működéséhez az Oxygen és a kiegészítő aktív jelenléte szükséges.
+
+## Best practice tippek
+
+- Csak a valóban **tartalmi** mezőket tedd szerkeszthetővé; a struktúrát és spacinget hagyd Oxygen kontroll alatt.
+- Adj egyértelmű **mezőcímkéket** és leírásokat, hogy a szerkesztők tudják, mit módosítanak.
+- Tervezz **újrafelhasználható** komponensekben (atomok → molekulák → szekciók), hogy skálázni tudd a könyvtárat.
+- Használd a **client mode‑ot** és a szerepkör‑szabályokat a biztonságos átadásért.

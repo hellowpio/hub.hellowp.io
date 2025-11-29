@@ -1,55 +1,99 @@
-# WP Booking System - Booking Manager
+---
+title: "WP Booking System - Booking Manager"
+description: "A WP Booking System hivatalos kiegészítője, amely egy központi felületen kezeli az összes naptár összes foglalását – listanézetben és naptárnézetben, szűréssel és exporttal."
+sidebar_label: "WP Booking System - Booking Manager"
+---
 
-## A WP Booking System - Booking Manager funkcionalitása
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Booking Manager egy felhasználóbarát eszköz, amely lehetővé teszi, hogy minden foglalásodat egyetlen kezelőfelületről irányítsd. A bővítmény segítségével könnyen átláthatod és menedzselheted az összes foglalásodat, akár egy listanézetben, akár egy naptárnézetben.
+A WP Booking System – Booking Manager a WP Booking System foglalási bővítmény kiegészítője. Arra való, hogy az oldaladon lévő **összes naptár minden foglalását egyetlen központi felületen** lásd, kezeld és exportáld. Ha több apartmanod, járműved vagy eszközöd van, nem kell naptáranként keresgélned: **egy helyen** szűrhetsz, kereshetsz, jóváhagyhatsz, elutasíthatsz és exportálhatsz. Ezzel csökken a hibázás esélye, gyorsul az adminisztráció, és minimalizálódik a dupla foglalások kockázata.
 
-### Foglalások központi kezelése
+A WP Booking System maga napi (nem időréses) foglalásokra készült, és teljes folyamatot ad a naptáraktól az űrlapokon át az árazásig, fizetésig és értesítésekig.
 
-A WP Booking System - Booking Manager összegyűjti az összes foglalásodat egy helyre, függetlenül attól, hogy hány naptárat használsz. Ez lehetővé teszi, hogy egyetlen oldalon tekintsd át és kezeld az összes beérkezett foglalást.
+## Hogyan működik a Booking Manager?
 
-### Keresési és szűrési lehetőségek
+- A WordPress adminban új menüpont jelenik meg, ahol a **teljes foglalásállomány** elérhető.
+- **Listanézet** és **naptárnézet** között válthatsz.
+- Foglalásokat **kereshetsz**, **szűrhetsz** (dátum, naptár, státusz, űrlapmezők stb.), a **múltbeli tételeket elrejtheted**.
+- Saját igényeid szerint **kiválaszthatod, mely űrlapmezők** jelenjenek meg oszlopként (mezőtérképzés).
+- Egy kattintással **jóváhagyhatsz/elutasíthatsz**, jegyzetelhetsz, nyomtathatsz.
+- Az adatokat **CSV-be exportálhatod** könyveléshez, riporthoz.
+- A kiegészítő „Personal” vagy magasabb licencszinten érhető el.
 
-A foglalások között könnyedén kereshetsz dátum, név vagy egyéb szempontok alapján. Szűrhetsz időszak szerint is, így gyorsan megtalálhatod a szükséges információkat.
+## Fő funkciók – röviden és érthetően
 
-### Exportálási funkciók
+### Központi foglaláslista
+Minden naptár foglalása egy listában. Rendezés név, dátum, státusz vagy egyedi űrlapmező szerint. Tipikus használat: gyors áttekintés a heti érkezésekről és kintlévőségekről.
 
-A foglalások adatait egyszerűen exportálhatod CSV fájlba. Ez különösen hasznos lehet, ha külső rendszerekben is szeretnéd feldolgozni az adatokat, vagy ha statisztikai elemzéseket kívánsz végezni.
+### Naptárnézet
+Vizuális áttekintés színezéssel és legendákkal. Könnyebb észrevenni az üres foltokat és az átfedéseket. A changeover napok jól elkülöníthetők.
 
-### Integráció más eszközökkel
+### Szűrés és keresés
+Precíz szűrők naptárra, időszakra, státuszra, csatornára vagy ügyféladatokra. Nagy foglalásszám esetén is pillanatok alatt megtalálod, amit keresel.
 
-A WP Booking System - Booking Manager zökkenőmentesen működik együtt számos más eszközzel és bővítménnyel. Az alábbiakban néhány példát találsz:
+### Testreszabható oszlopok
+A foglalási űrlap egyedi mezőit (pl. vendégszám, opciók, kupon) oszlopokként jelenítheted meg. Így a csapatod azt látja elöl, ami számukra fontos.
 
-- **WooCommerce**: Ha webshopot üzemeltetsz, a WP Booking System zökkenőmentesen integrálható a WooCommerce-el, így egyszerűen kezelheted a termékekhez kapcsolódó foglalásokat.
-- **Google Calendar**: Szinkronizálhatod a foglalásaidat a Google Naptárba, így mindig naprakész lehetsz.
-- **PayPal és Stripe**: Könnyedén elfogadhatsz online fizetéseket, mivel a bővítmény támogatja a PayPal és a Stripe fizetési rendszereket is.
+### Export és riport
+CSV exporttal egy kattintás a havi bevételi riport vagy a könyvelési összesítő. Szűrt nézetet is exportálhatsz (pl. csak adott apartman és hónap).
 
-## Gyakorlati példák az alkalmazására
+### Gyors műveletek
+Foglalás jóváhagyása, elutasítása, manuális hozzáadása, jegyzetek rögzítése. A státuszváltás automatikusan blokkolja a napokat a naptárban.
 
-### Szálláshelyek kezelése
+## Mit ad a WP Booking System ökoszisztémája?
 
-Ha szállásadó vagy, a WP Booking System - Booking Manager segítségével könnyen átláthatod és menedzselheted az összes foglalásodat. Például, ha több apartmanod van, mindegyiket külön naptárban kezelheted, de a foglalásokat egy helyen tekintheted át és kezelheted.
+- **Naptárak:** több naptár, egyedi legendák, tömeges dátumszerkesztés, jogosultságkezelés.
+- **Űrlapok:** rugalmas mezők, feltételes logika, oszlopos elrendezés, reCAPTCHA, többnyelvűség.
+- **Árazás és fizetés:** nap/idényárak, adó, kedvezmények, kuponok, előleg, biztosíték, több pénznem, számlák és szerződések.
+- **Fizetési integrációk:** Stripe, PayPal, Square, Authorize.Net, Mollie, GoPay; WooCommerce checkout támogatás.
+- **Értesítések:** automatizált e-mail és (add-on-nal) SMS, emlékeztetők, iCal-csatolmány.
+- **Szinkron (iCal):** import/export Airbnb, Google Calendar, Outlook, Vrbo stb. felé. A szinkron a rendelkezésre állást kezeli.
+- **Beágyazás:** shortcode, Gutenberg blokk, Elementor/Divi modulok, reszponzív megjelenés.
+- **Kiegészítők:** Kereső widget, készlet/inventory, foglalási korlátozások, riportok, ügyfélkezelés.
 
-### Szolgáltatások időpontfoglalása
+## Gyakorlati példák
 
-Ha például fodrászként dolgozol, a bővítmény lehetőséget biztosít arra, hogy az ügyfelek online időpontot foglaljanak hozzád. Ezen kívül a rendszer automatikusan értesítést küld neked és az ügyfélnek is a közelgő időpontról.
+- **Apartmanház 5 lakással:** Minden lakás külön naptár. A Booking Managerben a heti érkezők listája egyben látszik, státuszokkal és előlegekkel. Egy kattintással visszaigazolod a beérkező foglalásokat és exportálod a hét pénzügyi összesítőjét.
+- **Csónakkölcsönző:** Napi bérlések, készletlimit naponként. A központi naptárnézetben gyorsan ellenőrzöd, hol van még kapacitás, és a telefonon beérkező érdeklődést azonnal manuális foglalássá alakítod.
+- **Fotós szolgáltatás:** iCal szinkron a személyes naptárral, hogy kizárja az ütközéseket. A Booking Managerben a hónap leadásai és emlékeztető e-mailek áttekintése egy helyen.
 
-### Tanfolyamok és workshopok szervezése
+## Telepítés és első lépések
 
-Ha tanfolyamokat vagy workshopokat szervezel, a WP Booking System - Booking Manager segítségével egyszerűen kezelheted az eseményekre történő jelentkezéseket. Könnyedén nyomon követheted, hogy hányan jelentkeztek, és mennyi hely maradt még.
+1. Telepítsd és aktiváld az alap WP Booking System bővítményt.
+2. Hozz létre egy naptárat és egy foglalási űrlapot.
+3. Ágyazd be az oldalra blokkal vagy shortcode-dal:
+```
+[wpbs id="1" form_id="1"]
+```
+4. Szerezz be és aktiválj egy olyan licencet, amely tartalmazza a Booking Manager add-ont („Personal” vagy magasabb).
+5. Nyisd meg a Booking Manager menüt: állítsd be az oszlopokat, szűrőket, exportot.
+6. Kapcsold be az iCal import/exportot a naptáraknál; állíts be online fizetést (pl. Stripe/PayPal) és e-mail/SMS értesítéseket.
 
-## Tippek a hatékony használathoz
+## Előnyök és értékajánlat
 
-- **Használj címkéket és megjegyzéseket**: A foglalásokhoz fűzött megjegyzések és címkék segítenek abban, hogy könnyebben átláss mindent és ne veszítsd el a fontos információkat.
-- **Rendszeres exportálás**: Időnként exportáld a foglalási adatokat, hogy mindig legyen biztonsági mentésed és könnyebben elemezhesd a trendeket.
-- **Automatikus értesítések beállítása**: Állíts be automatikus értesítéseket, hogy mindenki időben megkapja a szükséges információkat.
+- **Időmegtakarítás:** Minden foglalás egy képernyőn, kevesebb kattintás, gyors döntések.
+- **Kevesebb hiba:** Átlátható státuszok, automatikus blokkolás, iCal szinkron.
+- **Jobb pénzügyi kontroll:** Előlegek, kedvezmények, adók és számlák egységes kezelése.
+- **Skálázható működés:** Több naptár, több termék, több felhasználó – központi irányítás.
+- **Professzionális ügyfélélmény:** Online foglalás, azonnali visszaigazolások, automatizált emlékeztetők.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **CSV (Comma-Separated Values)**: Egy fájlformátum, amelyet adatok tárolására használnak, ahol az értékeket vessző választja el egymástól.
-- **WooCommerce**: Egy népszerű WordPress bővítmény, amely webshopok létrehozására szolgál.
-- **Google Calendar**: Egy naptárszolgáltatás a Google-tól, amely lehetővé teszi események és találkozók nyomon követését.
-- **PayPal**: Egy online fizetési rendszer, amely lehetővé teszi pénzügyi tranzakciók végrehajtását az interneten keresztül.
-- **Stripe**: Egy másik népszerű online fizetési rendszer, amely széles körben használt e-commerce weboldalaknál.
+- **Szállásadóknak:** apartman, nyaraló, panzió, kisebb szállodák.
+- **Kölcsönzőknek:** autó, motor, jet-ski, csónak, sporteszköz.
+- **Helyszíneknek és szolgáltatóknak:** eseményterem, fotós, előadó – napi foglalási modellel.
+- Bárkinek, aki több naptárt kezel, és szeretné a foglalásait egy központi, szűrhető felületen látni.
 
-A WP Booking System - Booking Manager egy sokoldalú eszköz, amely jelentősen megkönnyíti a foglalások kezelését és nyomon követését. A fentiekben bemutatott példák és tippek segítségével hatékonyan használhatod ezt a bővítményt saját vállalkozásodban is.
+## Fontos megfontolások és korlátok
+
+- **Napi modell:** nincs időréses (órás) foglalás. Ha időablakokra van szükséged, más megoldás kell.
+- **iCal sajátosságok:** a szinkron csak a rendelkezésre állást kezeli; árak és korlátozások nem mennek át. A frissülés gyakorisága külső platformfüggő.
+- **SMS értesítés:** külön add-on és külső szolgáltatói fiók szükséges.
+- **Elnevezési tisztázás:** a „Booking Manager” név más bővítményre is utalhat; itt a WP Booking System hivatalos kiegészítőjéről van szó.
+- **Licenc:** a Booking Manager a Personal (vagy magasabb) csomag része; az árképzés éves előfizetésen alapul.
+
+## Háttér
+
+A bővítményt egy romániai fejlesztőcég (Veribo IT Solutions) gondozza 2014 óta, erős felhasználói visszajelzésekre építve. Az alapverzió széles körben használt, magas értékeléssel, a kiegészítők pedig professzionális igényeket fednek le.
+
+Ezzel a kiegészítővel a WP Booking System nemcsak jól foglalhatóvá, hanem hatékonyan és hibamentesen adminisztrálhatóvá teszi a napi bérlésre épülő vállalkozásodat.

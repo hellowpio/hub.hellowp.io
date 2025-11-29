@@ -1,48 +1,85 @@
-# MainWP WordPress SEO Extension
+---
+title: "MainWP WordPress SEO Extension"
+description: "A MainWP Yoast SEO Extension központi irányítást ad a Yoast SEO-beállításokhoz és SEO-metákhoz több WordPress-oldalon, közvetlenül a MainWP irányítópultról."
+sidebar_label: "MainWP WordPress SEO Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A MainWP WordPress SEO Extension egy praktikus eszköz, amely megkönnyíti a Yoast SEO kezelését az összes webhelyed esetében. Ez az eszköz lehetővé teszi, hogy egyetlen központi helyről irányítsd a SEO beállításokat, így nem kell minden egyes oldalon külön-külön elvégezni a beállításokat. A következő részletek bemutatják, hogy miként működik és milyen konkrét előnyöket kínál.
+A MainWP WordPress SEO Extension (mai nevén: **MainWP Yoast SEO Extension**) egy MainWP kiterjesztés, amellyel a **Yoast SEO** beállításait **központilag, tömegesen** kezelheted az összes, MainWP-hez csatlakoztatott WordPress „Child” webhelyeden. Arra való, hogy ne kelljen site-ról site-ra belépned ugyanazokat a SEO-beállításokat kattintgatni, és hogy a tartalomközzétételhez szükséges **SEO-metákat** (cím, leírás, noindex, canonical stb.) **egy helyről** add meg és küldd ki.
 
-## Zökkenőmentes integráció a Yoast SEO-val
+Röviden: egységesíti és felgyorsítja a **Yoast SEO**-val végzett munkát sok webhelyen, miközben átlátható kontrollt ad a teljes portfóliód fölött.
 
-Az egyik legnagyobb előnye a MainWP WordPress SEO Extensionnek, hogy zökkenőmentesen integrálódik a Yoast SEO meta box-szal. Ez lehetővé teszi, hogy testre szabhasd az egyes bejegyzések vagy oldalak SEO beállításait, majd ezeket a testreszabott beállításokat publikáld a gyermekszolgáltatási (Child) oldalaidra. Így biztosíthatod a következetességet anélkül, hogy minden egyes oldal között váltogatnod kellene.
+## Hogyan működik?
 
-## Központi irányítás az Extension Dashboard segítségével
+- A kiterjesztést csak a **MainWP Dashboard**-ra telepíted.
+- A **Yoast SEO** plugint a Dashboardon és minden érintett **Child** site-on aktiválnod kell – ez a működés előfeltétele.
+- A MainWP irányítópulton megjelenik egy **Yoast SEO** menü, ahol:
+  - áttekinted, mely site-okon aktív a Yoast,
+  - sablonként importált beállításokat **terítesz** több site-ra,
+  - új bejegyzések/oldalak publikálásakor a **Yoast metabox** is elérhető, így a SEO beállítások a tartalommal együtt kerülnek ki.
+- Integrálódik a **MainWP Boilerplate**-tel, így sablon tartalmakat és azok SEO-metáit egyszerre viheted ki, helykitöltő tokenekkel személyre szabva.
 
-Az Extension Dashboard az irányítás központja, ahol kezelheted a Yoast SEO-t a gyermekszolgáltatási oldalakon. Az irányítópult értesítéseket küld, ha frissítések érhetők el vagy ha a bővítmény deaktiválva van. Így mindig naprakész maradsz és kézben tarthatod az irányítást.
+## Fő funkciók, érthetően
 
-## Hatékony tartalomoptimalizálás
+### Központi Yoast SEO panel
+Egy nézetben látod, hol fut a Yoast, hol hiányzik, és hol van elintéznivaló. Innen gyorsan átnavigálhatsz a konkrét site admin felületére vagy a helyi Yoast beállításokhoz. Ez megszünteti a „vakon keresgélés” és a tab-dzsungel problémáját.
 
-A bővítmény integrálja a Yoast SEO meta box-ot az 'Új bejegyzés hozzáadása' és 'Új oldal hozzáadása' szakaszokba. Az elérhető opciók segítségével optimalizálhatod a tartalmat, majd az optimalizált tartalmat egyetlen kattintással publikálhatod minden gyermekszolgáltatási oldalra.
+### Beállítássablonok importálása és terítése
+A Yoast saját Import/Export eszközével kinyert konfigurációt feltöltöd a MainWP-be, elmented sablonként, majd kiválasztod a cél site-okat és egy kattintással alkalmazod. Így az olyan kritikus elemek, mint a **címképzés**, **meta- és indexelési szabályok**, automatikusan egységesen mennek ki.
 
-## Központosított kezelés
+### SEO metabox a központi publikálásban
+Új bejegyzést vagy oldalt hozol létre a MainWP-ben? Ugyanott megkapod a **Yoast metaboxot**: megadhatod a SEO címet, meta leírást, canonical URL-t, noindex/no-follow beállításokat, sőt a haladó opciókat is. Amikor publikálsz, a tartalom és a SEO-meta **együtt** kerül ki a kiválasztott site-okra – nincs több „elfelejtett meta”.
 
-A MainWP Dashboard segítségével kezelheted az összes Yoast SEO bővítményt az egész hálózatodon. Ez a központosított megközelítés időt takarít meg, és lehetővé teszi, hogy az ügynökséged növekedésére koncentrálj.
+### Integráció a MainWP Boilerplate-tel
+Használj tokeneket (pl. {SITE_NAME}, {CITY}) sablon tartalmakban, és rendelj hozzájuk Yoast beállításokat is. Így egyszerre kapsz **következetes**, mégis **személyre szabott** megjelenést sok site-on, egyetlen folyamatban.
 
-## SEO beállítások gyors telepítése import funkcióval
-
-Ha van egy előre beállított SEO konfigurációd, könnyedén importálhatod és alkalmazhatod új gyermekszolgáltatási oldalakon. Ez különösen hasznos új oldalak hozzáadásakor, mivel segít fenntartani a következetességet és értékes időt takarít meg.
-
-## Testreszabott SEO beállítások
-
-A Yoast SEO meta box lehetővé teszi a bejegyzések és oldalak beállításainak testreszabását. Amikor tartalmat publikálsz az irányítópultról a gyermekszolgáltatási oldalakra, minden testreszabott beállítás is átkerül, így biztosítható a konzisztencia az egész hálózatban.
-
-## Integráció más MainWP bővítményekkel
-
-A WordPress SEO Extension zökkenőmentesen integrálódik az összes MainWP bővítménnyel, beleértve a Boilerplate Extension-t is. Ez azt jelenti, hogy az előre elkészített sablonjaidhoz is beállíthatod a SEO paramétereket, tovább optimalizálva a munkafolyamatot.
+### Állapot- és frissítésfigyelés
+A panel jelzi, ha a Yoast inaktív valamelyik site-on, vagy teendő van. Ezzel időben észreveszed a „kilógó” konfigurációkat, csökkented a hibákat és az SEO-inkonzisztenciát.
 
 ## Gyakorlati példák
 
-- **Ügynökségek számára:** Ha több ügyfél weboldalát kezeled, a bővítmény segítségével gyorsan áttekintheted és módosíthatod az összes weboldal SEO beállításait egy helyen.
-- **Tartalomkészítők számára:** Könnyedén optimalizálhatod minden új bejegyzésedet vagy oldaladat anélkül, hogy minden webhelyen külön-külön kellene dolgoznod.
-- **Webhelykezelők számára:** Rendszeres értesítések révén mindig naprakész lehetsz a bővítményfrissítésekkel és aktivációkkal kapcsolatban.
+- Ügynökségi alapbeállítás: Egy „mintasite”-on finomhangolod a címképzést és indexelési szabályokat, exportálsz, majd sablonként ráteríted 30+ ügyféloldalra. Pár perc munka, napok helyett.
+- Új site onboarding: Frissen csatlakoztatott oldalra azonnal „ráöntöd” a Yoast sablont, és a kötelező oldalakat (Impresszum, Adatkezelés) a szükséges noindex/canonical beállításokkal publikálod.
+- Kampánykezelés: Akcióidőszakban több site-on azonos canonical szabályokat állítasz be kampányoldalakra, központilag, tévesztés nélkül.
+- Archívumok rendbetétele: A címkézett archívumokat noindexre állítod hálózatszinten, egyetlen terítéssel.
 
-## Szószedet
+## Telepítés és első lépések
 
-- **Meta box:** Egy szerkesztési terület az adminisztrációs felületen, ahol különböző beállításokat adhatsz meg.
-- **Gyermekszolgáltatási (Child) oldalak:** Azok az oldalak, amelyek egy fő irányítópult alá tartoznak.
-- **Boilerplate:** Előre elkészített sablon vagy minta, amely gyorsan alkalmazható új tartalom létrehozásakor.
-- **Központi irányítás:** Egyetlen felület vagy eszköz használata több különböző elem kezelésére.
+1. Telepítsd és aktiváld a kiterjesztést a MainWP Dashboardon.
+2. Győződj meg róla, hogy a Yoast SEO a Dashboardon és minden Child site-on aktív.
+3. A Yoastból exportált konfigurációt töltsd fel sablonként a MainWP-ben.
+4. Válaszd ki a cél site-okat, és alkalmazd a sablont.
+5. Hozz létre új bejegyzést/oldalt a MainWP-ben, töltsd ki a Yoast metaboxot, majd publikálj.
 
-Ezek az információk segítenek jobban megérteni a MainWP WordPress SEO Extension működését és előnyeit.
+```txt
+Ellenőrzőlista
+- [ ] MainWP Dashboard elérhető és működik
+- [ ] Yoast SEO aktív a Dashboardon
+- [ ] Yoast SEO aktív minden Child site-on
+- [ ] Exportált Yoast konfiguráció kéznél
+- [ ] Teszt site-on próba-terítés és ellenőrzés
+```
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás**: Több órányi ismétlődő kattintás helyett percekben terítesz beállításokat.
+- **Következetesség**: Egységes cím- és indexelési szabályok mindenhol, kevesebb SEO-hiba.
+- **Gyors publikálás**: A SEO-meták nem maradnak le; a tartalom és beállítás együtt megy ki.
+- **Skálázhatóság**: Tucatnyi vagy száz site kezelése is áttekinthető marad.
+- **Minőségbiztosítás**: Központi láthatóság az inaktív/hibás állapotokra, gyors beavatkozás.
+
+## Kinek ajánlott?
+
+- **Digitális ügynökségeknek**: Sok ügyféloldal egységes SEO-jához.
+- **Fejlesztői és webmester csapatoknak**: Gyors onboarding és frissítésmenedzsment.
+- **Franchise- és multi-brand hálózatoknak**: Sablon alapú, mégis személyre szabott tartalom és meta.
+- **Vállalati SEO-csapatoknak**: Irányítás, megfelelőség és hibacsökkentés központilag.
+
+## Biztonság és karbantartás
+
+Korábbi kiadásokban azonosított jogosultságkezelési hiba már javításra került. Javasolt mindig a **legfrissebb** kiadást használni, a MainWP-t és a Yoast SEO-t rendszeresen frissíteni. Tartsd meg a **legkisebb szükséges jogosultság** elvét a MainWP-hez, és nagyobb terítés előtt végezz **tesztet** egy kiválasztott site-on. Tömeges módosítás előtt készíts **biztonsági mentést**.
+
+---
+
+Megjegyzés a névről: a bővítmény történeti okokból „WordPress SEO” néven is ismert, a jelenlegi hivatalos megnevezés **MainWP Yoast SEO Extension**. Elérhető a MainWP Pro csomag részeként.

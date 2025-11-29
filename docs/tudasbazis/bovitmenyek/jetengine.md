@@ -1,52 +1,96 @@
-# JetEngine
+---
+title: "JetEngine"
+description: "Dinamikus tartalom- és adatmodell-bővítmény WordPresshez: CPT/CCT, relációk, lekérdezések, listázások és felhasználói funkciók egy ökoszisztémában."
+sidebar_label: "JetEngine"
+---
 
-## JetEngine funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-A JetEngine egy komplex eszköz, amely lehetővé teszi a dinamikus tartalom létrehozását és kezelését WordPress alapú weboldalakon. Különösen hasznos azok számára, akik testreszabott adatstruktúrákat szeretnének létrehozni és megjeleníteni, legyen szó egyedi bejegyzéstípusokról, taxonómiákról vagy egyéb adatmezőkről.
+A JetEngine egy dinamikus tartalomkezelő bővítmény WordPresshez, amely Elementorral, a Blokk Szerkesztővel (Gutenberg) és Bricks-szel működik. Akkor kell, ha strukturált adatokból építenél komplett webhelyet – kódolás nélkül. Egyetlen eszközkészletben kapod meg a **tartalommodellt** (CPT, CCT, taxonómiák, mezők, relációk), a **megjelenítést** (Listings, térkép, naptár), a **lekérdezés-kezelést** (Query Builder), a **személyre szabást** (Visibility, Profile, Data Stores) és az **integrációkat**.
 
-## Együttműködés más eszközökkel
+A JetEngine célja, hogy leváltsd a sok kis plugint: központosítja az adatmodellt és a lekérdezéseket, gyors, skálázható (CCT), és komplex kapcsolatokkal is boldogul.
 
-A JetEngine zökkenőmentesen működik együtt a következő eszközökkel:
-- **Elementor**: Lehetővé teszi a dinamikus tartalom egyszerű húzással való szerkesztését.
-- **Gutenberg**: A natív blokkszerkesztővel történő kompatibilitás biztosítja, hogy az egyedi tartalom blokkok formájában jelenjen meg.
-- **Bricks**: A modern és gyors weboldalkészítő eszközzel is integrálható.
+## Hogyan működik – fő modulok
 
-## Konkrét helyzetekben való hasznossága
+### Tartalomszerkezet
+- **Custom Post Types, Taxonomies, Meta Boxes, Custom Fields**: felépíted a tartalomtípusokat és a mezőket (dátum, reláció, repeater, galéria stb.), és hozzárendeled a szerkesztőfelülethez.
+- **Options Pages**: globális adatok (pl. cégadatok, kapcsolatok) egy helyen, bárhol dinamikusan felhasználhatók.
+- **Custom Content Types (CCT)**: adataid külön SQL-táblában tárolódnak, így nagy adatmennyiségnél is gyors marad a webhely. Kapnak saját mezőket, admin oszlopokat/szűrőket és igény szerint single-oldal megjelenítést.
 
-### Egyedi bejegyzéstípusok létrehozása
-Ha például egy ingatlan weboldalt üzemeltetsz, könnyedén létrehozhatod az ingatlanok adatbázisát egyedi bejegyzéstípusokkal és taxonómiákkal.
+### Listázás és megjelenítés
+- **Listings + Listing Grid**: kártyasablonokat készítesz, majd rácsban, sliderben, térképen vagy naptárban listázod őket.
+- **Dynamic Field/Tag/Function, Macros**: bármilyen mező, kapcsolat vagy aggregált érték (darabszám, átlag, min/max, összeg) dinamikus kiírása.
+- **Dynamic Calendar**: időalapú tartalmak (események, foglalások) naptárszerű nézete.
+- **Map Listings**: Google Maps és OpenStreetMap megjelenítés, cookie/consent-kompatibilis mintákkal.
 
-### Dinamikus listázás
-Egy webáruház esetében a JetEngine lehetővé teszi az egyedi terméklisták és szűrők létrehozását, amelyek dinamikusan frissülnek az adatbázis alapján.
+### Kapcsolatok és adatmodellezés
+- **Relations**: 1–1, 1–N és N–N relációk CPT-k, CCT-k, taxonómiák és felhasználók között. Kezelhetsz relációs metamezőket (pl. szerep egy film–színész kapcsolatban), és lekérdezheted a szülő/gyermek/nagyszülő ágakat.
 
-### Keresési funkciók
-A JetEngine segítségével testreszabott keresési funkciókat adhatsz hozzá a weboldalhoz, amelyek például földrajzi hely vagy egyéb specifikus adatok alapján szűrik a találatokat.
+### Lekérdezés-kezelés
+- **Query Builder**: központi helyen hozol létre lekérdezéseket posztokra, termekre, felhasználókra, kommentekre, CCT-re, REST API-ra vagy közvetlen **SQL**-re. Tud cache-elni, és kérésre **REST végpontot** is regisztrál.
+- **AI Query Generator**: prompt alapján javasol SQL-t/lekérdezést, amit finomíthatsz.
+
+### Felhasználói funkciók és személyre szabás
+- **Profile Builder**: saját fiók- és profiloldalak menüvel, aloldalakkal, jogosultság-alapú hozzáféréssel.
+- **Data Stores**: kedvencek, like-ok, nemrég megtekintett elemek – tárolás usermeta, cookie, session vagy local storage módban.
+- **Dynamic Visibility**: elemek feltételes megjelenítése metaérték, felhasználói szerep, dátum/idő vagy egyéb feltételek szerint. Shortcode-on át is használható.
+
+### AI-eszközök
+- **AI Website Structure Builder**: promptból javasolt tartalommodell (CPT, mezők, relációk), amit egy kattintással átvehetsz és szerkeszthetsz.
+
+### Admin és integrációk
+- **Admin Columns & Filters**: egyedi oszlopok és szűrők a listanézetekhez.
+- **Integrációk**: Elementor Pro, Gutenberg (JetStyleManagerrel), Bricks, ACF, WooCommerce, Pods, CPT UI, fő SEO-bővítmények.
+- **Űrlapok**: frontenden beküldéshez és szerkesztéshez használd a JetFormBuildert (a JetEngine beépített űrlapmodulja legacy).
+
+### REST API
+- **CCT végpontok**: CRUD műveletek, listázás és külső rendszerek felé történő integráció fekete doboz kód nélkül.
 
 ## Gyakorlati példák
 
-### Ingatlan weboldalak
-Egy ingatlan ügynökség weboldalán minden ingatlan külön egyedi bejegyzéstípusban kerül tárolásra, amely tartalmazza a szükséges mezőket, mint például ár, cím, alapterület stb. A JetEngine segítségével könnyedén lehet listázni és szűrni az ingatlanokat különböző paraméterek alapján.
+### 1) Ingatlanportál
+- **Adatmodell**: CCT „Ingatlan”, mezők: ár, város, cím, alapterület, képgaléria; Taxonómia: ingatlantípus; Reláció: „Ingatlan” – „Ügynök” (felhasználó).
+- **Lekérdezés**: Query Builderrel ár, város és típus szűrés, cache bekapcsolva.
+- **Megjelenítés**: Listing Grid + Map Listing (pin-ek az ingatlanok címe alapján).
+- **Funkciók**: Data Stores „Kedvencek”; Dynamic Visibility-val a „Kapcsolatfelvétel” gomb csak bejelentkezetteknek látszik; Profile Builderen ügynök-profilok.
 
-### E-kereskedelmi oldalak
-Egy online boltban az egyedi termékekhez kapcsolódó adatokat, például termékkategóriákat, színeket vagy méreteket, külön mezőkben tárolhatjuk. A JetEngine segítségével ezek az adatok dinamikusan jeleníthetők meg a termékoldalakon.
+### 2) Állásportál
+- **Adatmodell**: CPT „Állás”, Taxonómia „Kategória”; reláció „Cég” CCT-vel.
+- **Naptár**: Dynamic Calendar a jelentkezési határidőkhöz.
+- **Űrlap**: JetFormBuilder frontendes beküldés és állás-szerkesztés jóváhagyási folyamattal.
 
-### Blogok és magazinok
-Egy blognál vagy online magazinnál könnyedén lehet egyedi bejegyzéstípusokat létrehozni különböző cikkekhez vagy rovatokhoz. Például egy tech blognál külön bejegyzéstípus lehet a „termékbemutatók” és a „hírek”.
+### 3) Directory/Marketplace
+- **Relációk**: N–N „Szolgáltatás” és „Város” között, relációs metával (árkategória).
+- **Lekérdezés**: REST-forrásból érkező kínálat kombinálása saját CCT-vel a Query Builderben.
+- **Felhasználói élmény**: like-ok és „nemrég megtekintett” lista Data Stores-szal.
 
-## Tippek a hatékony használathoz
+## Előnyök és értékajánlat
 
-- **Struktúra tervezése**: Mielőtt elkezded használni a JetEngine-t, gondosan tervezd meg az adatstruktúráidat, hogy minden mező és bejegyzéstípus logikusan kapcsolódjon egymáshoz.
-- **Szűrők és listázások**: Használd a JetEngine Query Builder funkcióját, hogy testreszabott szűrőket és listázásokat hozz létre.
-- **Dynamic Visibility**: A dinamikus láthatósági szabályok segítségével szabályozhatod, hogy mely felhasználók milyen adatokat látnak.
+- **Egy ökoszisztéma**: kevesebb plugin, kevesebb inkompatibilitás.
+- **Skálázható teljesítmény**: CCT külön táblában, Query Builder cache és SQL mód.
+- **Modellezési szabadság**: komplex relációk és relációs metaadatok.
+- **Átlátható logika**: lekérdezések központosítva, újrahasznosíthatóak.
+- **Gyakorlati eszköztár**: térkép, naptár, profilok, kedvencek, feltételes láthatóság.
+- **No-code/low-code**: fejlesztői rugalmasság kódolás nélkül, de igény esetén bővíthető.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Egyedi bejegyzéstípus (Custom Post Type)**: Olyan tartalomtípus, amelyet kifejezetten egy adott felhasználási célra hozol létre.
-- **Taxonómia**: Az adatok kategorizálására szolgáló rendszer.
-- **Query Builder**: Olyan eszköz, amely lehetővé teszi az adatbázis lekérdezések egyszerű létrehozását.
-- **Dynamic Visibility**: Funkció, amely lehetővé teszi a tartalom láthatóságának dinamikus szabályozását.
-- **Elementor**: Népszerű WordPress oldalépítő bővítmény.
-- **Gutenberg**: WordPress alapértelmezett blokkszerkesztője.
-- **Bricks**: Modern oldalépítő eszköz WordPresshez.
+- **Ügynökségeknek és fejlesztőknek**, akik összetett, adatvezérelt projekteket szállítanak gyorsan.
+- **Vállalkozásoknak**, akik saját directory/marketplace, ingatlan- vagy állásportált építenének.
+- **Tartalomkezelőknek**, akik globális adatokat és listázásokat akarnak konzisztensen kezelni.
+- **No-code alkotóknak**, akik vizuális builderekkel dolgoznak, de profi adatmodellre van szükségük.
 
-Reméljük, hogy ez a leírás hasznos volt számodra, és segít jobban megérteni a JetEngine kínálta lehetőségeket és előnyöket.
+## Gyors kezdőminta
+
+```text
+1) Hozz létre CCT „Listing” entitást (ár, helyszín, képek).
+2) Készíts Relation-t „Listing” ↔ „User (Owner)”.
+3) Hozz létre Query Builderben listázó lekérdezést (szűrés ár/hely szerint, cache).
+4) Építs Listing sablont (Dynamic Field + galéria), majd tedd ki Listing Gridbe.
+5) Adj hozzá Map Listinget cím mező alapján.
+6) Kapcsold be a Data Stores „Kedvencek” funkciót.
+7) Állíts be Dynamic Visibility szabályt (pl. „Ajánlatkérés” gomb csak bejelentkezett tulajdonoson kívülieknek).
+8) Készíts Options Page-et (céges adatok), és jelenítsd meg a fejléchez.
+```
+
+Ezzel a folyamattal néhány óra alatt egy skálázható, dinamikus listázóoldalt kapsz, amely készen áll keresőre, térképre, kedvencekre és profilokra – egyetlen bővítményen belül.

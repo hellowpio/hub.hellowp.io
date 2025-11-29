@@ -1,85 +1,104 @@
-# JetPopup
+---
+title: "JetPopup"
+description: "Prémium WordPress felugró‑ablak készítő Elementorhoz és Gutenberghez; célzott, időzített, animált popupok kódolás nélkül."
+sidebar_label: "JetPopup"
+---
 
-A JetPopup egy olyan eszköz, amely lehetővé teszi a felhasználók számára, hogy könnyedén készítsenek és kezeljenek különböző pop-up ablakokat a WordPress oldalaikon. Az Elementor és Gutenberg szerkesztőkkel való kompatibilitásának köszönhetően gyorsan és egyszerűen integrálható a legtöbb weboldalba. Az alábbiakban részletesen bemutatjuk a JetPopup funkcionalitását, előnyeit, valamint gyakorlati példákat és tippeket adunk a hatékony használathoz.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők
+A JetPopup egy prémium WordPress bővítmény, amivel kódolás nélkül, vizuálisan építhetsz felugró ablakokat. Elementorral és a Gutenberg (Block) szerkesztővel is működik, így gyorsan hozhatsz létre feliratkoztató űrlapokat, promóciós üzeneteket, WooCommerce gyorsnézetet vagy bármilyen tájékoztató popupot. A célzott triggereknek és feltételeknek köszönhetően nem lesz tolakodó: csak ott és akkor jelenik meg, ahol és amikor akarod.
 
-### Drag & drop szerkesztés
-A JetPopup használatával az Elementor widgetjeit is alkalmazhatod a kívánt elrendezés létrehozásához, valamint tartalom hozzáadásához.
+## Fő funkciók, érthetően
 
-### Pop-up triggerek beállítása
-Lehetőséged van különféle események kiválasztására, időzítők és dátumok megadására, amikor a pop-up blokkok megjelennek az oldalon.
+### Vizuális építő és sablonok
+- **Drag‑and‑drop szerkesztés**: Az egész popupot elemekből rakod össze, mint egy szokásos oldalt. Nem kell kód.
+- **Előre gyártott minták (175+)**: Kategóriák szerint kereshető sablonokkal azonnal indulhatsz, majd a saját arculatodra szabhatod.
 
-### Animációs effektusok
-A figyelem felkeltése érdekében különféle animációs effektusokat alkalmazhatsz a pop-up ablakokra.
+### Megjelenési formák és animációk
+- **Elrendezéstípusok**: Klasszikus középre nyíló, oldalsó slide‑in, felső/alsó sáv (bar), keretező (bordering), teljes nézet (full view), vagy teljesen egyedi.
+- **Animációk**: Fade, zoom, slide (fel/le/balra/jobbra), bounce, flip, rotate stb. – a megjelenés és eltűnés stílusát külön is állíthatod.
 
-### Előre elkészített sablonok
-Nem szükséges mindent a nulláról felépíteni. Választhatsz a különféle pop-up sablonok közül, mint például visszaszámláló, kedvezmény, eladás, feliratkozás stb.
+### Triggerek (mikor nyíljon meg)
+- **Oldalbetöltés és késleltetés**: Megadhatod, hogy az oldal betöltése után hány másodperccel nyíljon meg.
+- **Inaktivitás**: Ha a felhasználó bizonyos ideig nem csinál semmit, megjelenik a popup.
+- **Görgetési százalék**: Amikor az oldal egy adott százalékáig legörgetnek.
+- **Kilépési szándék**: Ha az egér a böngésző felső sávja felé mozdul, a popup megelőzi a távozást.
+- **Időzítés**: Konkrét dátum/időszak alapján.
+- **Kattintás**: Gombra, widgetre vagy egy tetszőleges CSS‑szelektorra kattintva.
 
-## Pop-up megjelenítési beállítások
+Példák kattintás‑trigger szelektorokra:
+```
+.open-quickview
+#kupon-gomb
+```
 
-### Oldal megnyitásakor
-A pop-up ablak megjelenhet az oldal betöltésekor, hogy információkat közöljön például akciókról, legújabb hírekről vagy szabályzatváltozásokról.
+### Megjelenítési feltételek (hol és kinek)
+- **Oldaltartomány**: Teljes site, konkrét oldalak/bejegyzések, archívumok.
+- **Eszköz**: Csak mobilon, csak asztali gépen stb.
+- **Szerepkör**: Vendégeknek, bejelentkezett felhasználóknak, szerkesztőknek stb.
+- **URL‑paraméterek**: Kampány‑UTM vagy keresési kifejezés alapján.
+```
+utm_campaign=nyari-akcio
+q=ingyenes+szallitas
+```
+- **WooCommerce oldalak**: Terméklista, termékoldal, kosár, pénztár.
+- **Dinamikus feltételek**: Egyedi lekérdezésekre épülő megjelenítés, ha van releváns tartalom.
 
-### Kilépési szándék észlelésekor
-Amikor a látogató el akarja hagyni az oldalt, megjelenítheted a pop-upot, hogy például egy feliratkozási űrlapot vagy egy speciális ajánlatot mutasson.
+### Integrációk és bővíthetőség
+- **MailChimp**: Dedikált widget listák és API kulcs kezeléséhez – beépített feliratkozó popupokkal.
+- **Popup Action Button**: Speciális gombfunkciók (bezárás, „ne mutasd többet”, összes popup bezárása).
+- **Dinamikus tartalom**: Egyedi listákból, opciós oldalról vagy lekérdezésekből töltött tartalom.
+- **WooCommerce**: Gyorsnézet, kosárba helyezés értesítések, upsell/ajánlók.
 
-### Oldal görgetése közben
-Az oldal görgetésekor megjelenő pop-up segítségével alapvető tanácsokat adhatsz az oldal vagy szolgáltatás használatáról, feliratkozási ajánlatokat vagy közösségi megosztási linkeket helyezhetsz el.
+### Teljesítmény és UX beállítások
+- **AJAX‑os betöltés**: A popup tartalma aszinkron tölt, így könnyebb a teljesítmény.
+- **Háttér görgetés tiltása**: Megakadályozza az oldal mögötti mozgást, fókuszban tartja a popupot.
+- **Overlay és bezárás**: Átlátszó réteg, kattintásra bezárás, egyedi bezárási események.
+- **Show once / gyakoriság**: Te döntöd el, milyen sűrűn jelenjen meg a felhasználónak.
 
-### Widgethez kötve
-Az Elementor widgetekhez specifikusan beállítható pop-upok, amelyek kattintásra, görgetésre vagy oldalbetöltésre jelennek meg, hogy kapcsolatfelvételi információkat vagy közösségi média linkeket jelenítsenek meg.
+## Hogyan működik a gyakorlatban?
 
-### Inaktivitás észlelésekor
-A pop-up ablak akkor jelenik meg, ha a látogató egy ideje inaktív az oldalon. Ez lehet például egy feliratkozási űrlap, yes/no űrlap vagy reklámbanner.
+### Lépések röviden
+1. **Új popup létrehozása**: Válassz mintát a könyvtárból vagy kezdd üresen.
+2. **Szerkesztés**: Húzd be az elemeket (kép, szöveg, űrlap, gomb), állítsd az elrendezést és animációkat.
+3. **Triggerek és feltételek**: Beállítod, mikor és hol jelenjen meg, kinek szóljon.
+4. **Publikálás**: Teszteld asztali és mobil nézetben, majd élesíts.
 
-### Meghatározott dátumon
-Beállíthatsz egy konkrét dátumot, amikor a pop-up megjelenik, hogy tájékoztasson például egy projekt indításáról, akciós árakról vagy különleges eseményekről.
+### Használati példák
+- **Kilépési kedvezmény termékoldalon**: Vendégeknek, termékoldalakon, kilépési szándékra nyíló 10% kupon, „Show once” korlátozással.
+- **Hírlevél‑feliratkozás blogon**: 10 másodperces késleltetés után, csak mobilon; MailChimp űrlappal, overlay‑bezárással és görgetés tiltással.
+- **Termék gyorsnézet rácsban**: Termékkártyák „Gyors nézet” gombjára kattintáskor nyíló popup; kattintás‑trigger CSS szelektorral:
+```
+.products .product .open-quickview
+```
 
-## Együttműködés más eszközökkel
+## Előnyök és értékajánlat
 
-A JetPopup zökkenőmentesen működik együtt az alábbi Crocoblock bővítményekkel:
+- **Fejlesztő nélkül megoldod**: Marketing és tartalom oldalról is gyorsan bevethető.
+- **Releváns, nem tolakodó**: Precíz célzás és gyakoriság‑szabályozás javítja a felhasználói élményt.
+- **Gyors bevezetés**: A sok minta és kész widget jelentősen csökkenti az indulási időt.
+- **Konverzió‑fókusz**: Exit‑intent, időzítés és kattintás triggerek kombinációival hatékony kampányokat futtathatsz.
+- **Skálázható**: Dinamikus tartalommal és e‑kereskedelmi integrációkkal a teljes funnel lefedhető.
 
-- **JetEngine**: Dinamikus tartalmak és egyedi mezők kezelése.
-- **JetElements**: Különféle vizuális elemek hozzáadása.
-- **JetStyleManager**: Stílusok egyszerű kezelése.
-- **JetSearch**: Fejlett keresési lehetőségek biztosítása.
-- **JetSmartFilters**: Szűrők alkalmazása tartalmakra.
-- **JetGridBuilder**: Rácselrendezések létrehozása.
-- **JetBlocks**: Fejléc és lábléc építése.
-- **JetCompareWishlist**: Összehasonlítási és kívánságlista funkciók.
-- **JetBooking**: Foglalási rendszerek integrálása.
-- **JetTabs**: Fül alapú elrendezések létrehozása.
-- **JetMenu**: Egyedi menük készítése.
-- **JetReviews**: Vélemények kezelése és megjelenítése.
-- **JetWooBuilder**: WooCommerce termékoldalak testreszabása.
-- **JetBlog**: Blogbejegyzések látványos megjelenítése.
-- **JetThemeCore**: Teljes weboldal sablonok kezelése.
-- **JetAppointment**: Időpontfoglalási rendszer.
-- **JetProductGallery**: Termékképgalériák létrehozása.
-- **JetTricks**: Speciális effektusok hozzáadása.
-- **JetFormBuilder**: Formok készítése és kezelése.
+## Kinek ajánlott?
 
-## Gyakorlati példák
+- **E‑kereskedőknek**: Kuponok, kosár‑értesítések, gyorsnézet, upsell.
+- **Marketingeseknek**: Kampány‑alapú üzenetek, A/B ötletek gyors tesztelése.
+- **Tartalomszerkesztőknek**: Feliratkoztató és információs popupok kód nélkül.
+- **Ügynökségeknek**: Sablonokkal gyors kivitelezés, standardizálható folyamatok.
+- **SaaS/termékoldalaknak**: Bejelentések, státusz, időszakos promók.
 
-### Feliratkozási űrlapok
-A JetPopup segítségével könnyedén létrehozhatsz feliratkozási űrlapokat, amelyek az oldal betöltésekor vagy kilépési szándék esetén jelennek meg. Ezzel növelheted a hírlevélre feliratkozók számát.
+## Bevezetési tippek
 
-### Akciók és kedvezmények kommunikálása
-Az oldal betöltésekor megjelenő pop-up ablakok segítségével tájékoztathatod a látogatókat az aktuális akciókról és kedvezményekről. Ez különösen hasznos lehet e-commerce oldalak számára.
+- **Kezdj mintával**: Válassz presetet, majd igazítsd arculathoz.
+- **Célzás finomítása**: Szerepkör, eszköz és URL‑paraméter alapján szűkíts, hogy releváns maradj.
+- **Trigger kombinációk**: Kilépési szándék + késleltetés + „Show once” nagyon jó konverziót hozhat.
+- **Teljesítmény**: Nagy tartalomnál kapcsold be az AJAX betöltést; szükség esetén tiltsd a háttér görgetést.
 
-### GDPR és Cookie Policy elfogadása
-A GDPR és Cookie Policy elfogadását kérheted a látogatóktól egy egyszerű pop-up ablakban. Ez segít biztosítani a jogszabályoknak való megfelelést.
+## Licenc és kompatibilitás
 
-### Közösségi média követés ösztönzése
-Az oldal görgetése közben megjelenő pop-up ablakokban közösségi média linkeket helyezhetsz el, amivel ösztönözheted a látogatókat a követésre.
+A JetPopup prémium bővítmény. Elementorral (az ingyenes kiadás is elég) és a Gutenberg szerkesztővel működik, többnyelvű környezetekkel kompatibilis. Frissítésekhez és támogatáshoz érvényes licenc szükséges; elérhető önállóan vagy átfogó bővítménycsomag részeként.
 
-## Szószedet
+## Biztonsági megjegyzés
 
-- **Elementor**: Egy vizuális oldalépítő eszköz WordPresshez.
-- **Gutenberg**: A WordPress alapértelmezett blokk szerkesztője.
-- **Trigger**: Az az esemény, amely aktiválja a pop-up megjelenését.
-- **Inaktivitás**: Az az időtartam, amely alatt a látogató nem végez tevékenységet az oldalon.
-- **Sablon**: Előre elkészített dizájn vagy elrendezés.
-  
-A JetPopup lehetőséget ad arra, hogy kreatívan és hatékonyan kommunikálj a látogatóiddal. Az egyedi triggerek és animációk révén figyelemfelkeltő és interaktív élményt nyújthatsz számukra.
+Az elmúlt években több funkcionális és biztonsági javítás érkezett. Mindig tartsd naprakészen, és csak megbízható forrásból frissíts. Élesítés előtt tesztelj alaposan, különösen egyedi triggerek és feltételek kombinálásakor.

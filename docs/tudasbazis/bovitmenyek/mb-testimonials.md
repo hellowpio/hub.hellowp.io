@@ -1,45 +1,94 @@
-# MB Testimonials
+---
+title: "MB Testimonials"
+description: "Meta Box‑alapú WordPress kiegészítő ügyfélvélemények gyors rögzítéséhez és megjelenítéséhez rács vagy csúszka nézetben, sablonokkal és shortcode‑dal."
+sidebar_label: "MB Testimonials"
+---
 
-Az MB Testimonials egy olyan bővítmény, amely lehetővé teszi, hogy egyszerűen és hatékonyan adjunk hozzá ajánlásokat a weboldalunkhoz. Az ajánlásokat rácsos vagy csúszkás elrendezésben jeleníthetjük meg, és hét beépített sablon közül választhatunk, vagy saját HTML/CSS segítségével testre szabhatjuk azokat.
+## Mi ez és milyen problémát old meg?
 
-## Fő jellemzők
+Az MB Testimonials egy Meta Box‑alapú WordPress bővítmény, amellyel pillanatok alatt felveheted és egységes, profi megjelenéssel kirakhatod az ügyfélvéleményeket. Nem kell külön egyedi poszttípust, mezőket és sablonokat építened: kész adatstruktúrát, 7 beépített sablont és rugalmas megjelenítést kapsz. A cél az azonnali, hiteles „social proof” biztosítása, ami javítja a konverziót a kezdőlapon, landing oldalakon, termék‑/szolgáltatásoldalakon vagy a „Rólunk” oldalon.
 
-### Sablonok és testreszabhatóság
-Az MB Testimonials hét beépített sablont kínál, amelyek közül választhatsz. Ha ennél egyedibb megjelenést szeretnél, könnyedén testre szabhatod a sablonokat HTML és CSS használatával. Ezáltal teljes kontrollt kapsz az ajánlások megjelenítése felett.
+## Hogyan működik röviden?
 
-### Tartalom és megjelenítés
-Az MB Testimonials segítségével nem csak az ajánlások szövegét adhatod meg, hanem az ajánlást író személy képét, pozícióját, témáját, csillagos értékeléseit és a vélemény linkjét is. Ezek az információk egy helyen szerkeszthetők és jeleníthetők meg.
+- Az adminban megjelenik a **Testimonials** menü, ahol egyetlen „Testimonial” bejegyzésben több véleményt is felvehetsz.
+- A véleményeket rendezheted **drag‑and‑drop** módszerrel.
+- A **Display** fülön kiválasztod a sablont (7 opció), és egy kattintással eléred a sablon HTML/CSS kódját, amit testre szabhatsz.
+- A **Styling** fülön beállítod a kinézetet (rács vagy csúszka, oszlopszám, szélesség, slider mód).
+- Publikáláskor a bővítmény **shortcode‑ot** generál, amit bárhol beilleszthetsz.
 
-### Stílus opciók
-A bővítmény számos stílus opciót kínál, amelyek segítségével finomhangolhatod az ajánlások megjelenését. Még akkor is, ha egyedi CSS-t használsz a sablonokban, további beállításokkal biztosíthatod, hogy a megjelenés tökéletesen illeszkedjen a weboldalad stílusához.
+Például:
+```
+[mb_testimonials id="123"]
+```
 
-### Meta Box integráció
-Az MB Testimonials a Meta Box bővítmény és annak kiegészítői alapjaira épül. Ez azt jelenti, hogy a Meta Box telepítése és aktiválása szükséges a használathoz. A szükséges kiegészítők már be vannak építve a bővítménybe, így nem kell külön telepítened őket.
+## Fő funkciók és részletek
 
-## Együttműködés más eszközökkel
+### Megjelenítés: rács és csúszka
+- **Rács (grid)** nézet: oszlopok, sorok, egységes kártyák. Ideális hosszabb listákhoz, tartalmi oldalakon.
+- **Csúszka (slider)** nézet: helytakarékos, figyelemfelkeltő. Jó választás a kezdőlapra vagy hero szekcióba.
 
-### Meta Box Group
-Ez a kiegészítő lehetővé teszi az ajánlások csoportosítását, ami különösen hasznos lehet nagy mennyiségű ajánlás kezelése esetén.
+A megjelenést a Styling fülön állítod: **oszlopszám**, **maximális szélesség**, **slider mód** és kapcsolódó opciók. Korábbi információk alapján az autoplay sebesség finomhangolása nem minden esetben elérhető; ha kritikus, ellenőrizd az aktuális funkciókészletet.
 
-### Meta Box Conditional Logic
-Ezzel a funkcióval feltételes logikát alkalmazhatsz az ajánlások megjelenítésére, így például csak bizonyos feltételek teljesülése esetén jelennek meg az ajánlások.
+### Sablonok és testreszabás
+- **7 beépített sablon**: azonnal használható, egységes dizájnok.
+- A sablonok **HTML/CSS‑e egy kattintással** megnyitható és módosítható a felületen, így kódolás nélkül is finomíthatod a részleteket (például tipográfiát, elrendezést, ikonokat).
 
-### Meta Box Tabs
-A fül funkció segít rendszerezni az ajánlásokhoz tartozó információkat egy átláthatóbb szerkesztési felületen.
+### Tartalomkezelés és mezők
+- Egy „Testimonial” bejegyzésen belül **több véleményt** is rögzíthetsz.
+- Beépített mezők: **vélemény szövege**, **szerző neve**, **pozíciója**, **fotója**, **subject**, **csillagos értékelés**, **link az eredeti értékeléshez**.
+- A vélemények sorrendjét **drag‑and‑drop** módszerrel változtathatod.
+
+### Shortcode‑os beágyazás
+- A publikálás után kapsz egy **shortcode‑ot**, amit beilleszthetsz oldalakba, bejegyzésekbe vagy widgetekbe.
+- A megjelenéshez szükséges beállításokat a bejegyzés menti; általában nincs szükség paraméterezésre. Ugyanazt a beállítást több oldalon is újra felhasználhatod.
+
+### Technikai alapok és függőségek
+- A használathoz szükséges a **Meta Box** ingyenes alapkiegészítő.
+- Az MB Testimonials csomag tartalmazza és használja a Meta Box egyes kiterjesztéseit: **MB Group**, **MB Conditional Logic**, **MB Tabs**.
+- Nem része a Meta Box AIO‑nak; **önállóan telepíthető** bővítményként érkezik.
+- **Elérhetőség**: a Meta Box **Lifetime Bundle** részeként tölthető le, a saját fiókodból.
+
+## Telepítés és első lépések
+
+1. Telepítsd és aktiváld a **Meta Box** (ingyenes) bővítményt a bővítménytárból.
+2. Töltsd le az **MB Testimonials** csomagot a fiókodból, majd telepítsd **.zip** fájlból és aktiváld.
+3. A vezérlőpulton nyisd meg a **Testimonials** menüt, és kattints az **Add New** gombra.
+4. Vedd fel a véleményeket (többet is egy bejegyzésbe), töltsd ki a mezőket; rendezd **drag‑and‑drop** módon.
+5. A **Display** fülön válassz sablont, szükség esetén kattints a sablonkód megnyitására és módosítsd a **HTML/CSS‑t**.
+6. A **Styling** fülön állítsd be a kinézetet (oszlopok, szélesség, slider mód).
+7. Publikálás után másold ki a **shortcode‑ot**, és illeszd oda, ahol megjelenítenéd.
 
 ## Gyakorlati példák
 
-1. **Ügyfélvélemények megjelenítése**: Az MB Testimonials segítségével professzionálisan jelenítheted meg ügyfeleid véleményeit a weboldalon. Ez növeli a hitelességet és segíthet az új látogatók meggyőzésében.
-2. **Csillagos értékelések**: Ha termékeket vagy szolgáltatásokat értékeltetnél, a csillagos értékelési rendszerrel vizuálisan is szemléltetheted az elégedettségi szintet.
-3. **Személyes ajánlások**: Ha fontos számodra, hogy ki mondott jó véleményt rólad vagy a cégedről, az ajánló személy képének és pozíciójának megjelenítésével hitelesebbé teheted az ajánlásokat.
+- **Landing oldal konverzióhoz**: hozz létre 6–8 rövid véleményt fotóval, állíts be 3 oszlopos **rács** nézetet, és szúrd be a blokkot a CTA előtt.
+- **Kezdőlap hero alá csúszkával**: válassz **slider** nézetet, 1 elem/diát, automatikus váltással. Kiemelt, rövid idézetek jól működnek itt.
+- **Szolgáltatásoldal részletes visszajelzésekkel**: használj sablont csillagos értékeléssel és hivatkozással az eredeti forrásra, így növeled a hitelességet.
+- **Több oldal, azonos beállítás**: készíts egy „Testimonials” bejegyzést, finomhangold a sablont és a stílust, majd ugyanazt a shortcode‑ot több oldalra is beillesztheted.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Sablon**: Előre elkészített minta vagy struktúra, amely meghatározza az elemek elrendezését.
-- **CSS**: Stíluslapok (Cascading Style Sheets), amelyek meghatározzák a HTML elemek megjelenését.
-- **Meta Box**: Egy WordPress bővítmény, amely lehetővé teszi egyedi mezők hozzáadását az adminisztrációs felülethez.
-- **Kiegészítő**: További funkciókat biztosító bővítmény vagy modul.
-- **Csillagos értékelés**: Vizuális értékelési rendszer, ahol általában 1-5 csillaggal lehet értékelni valamit.
-- **Feltételes logika**: Olyan szabályrendszer, amely meghatározza, hogy bizonyos feltételek teljesülése esetén mi történjen.
+- **Gyors bevezetés**: percek alatt kész a struktúra és a megjelenítés.
+- **Konzisztens dizájn kódolás nélkül**: 7 sablon, azonnali eredmény, opcionális finomhangolással.
+- **Editor‑barát folyamat**: több vélemény egy helyen, **drag‑and‑drop** sorrendezés, vizuális sablonszerkesztés.
+- **Rugalmas beágyazás**: shortcode‑dal bárhol megjeleníthető, témától és oldalszerkesztőtől függetlenül.
+- **Meta Box ökoszisztéma**: együttműködik más kiegészítőkkel; haladó testreszabásnál tipikusan **MB Views**‑szal kombinálható.
 
-Az MB Testimonials bővítmény különösen azoknak hasznos, akik professzionális és testreszabható módon szeretnék bemutatni ügyfeleik véleményeit a weboldalukon.
+## Legjobb gyakorlatok
+
+- Adj meg **szerzőnevet, pozíciót, fotót** – ettől lesz hiteles.
+- Használd a **csillagos értékelést** és – ha van – az **eredeti forrás linkjét**.
+- Rács vs. csúszka: sok véleménynél rács, kiemeléshez csúszka. Ne terheld túl a diát.
+- Sablonmódosításnál a változtatásokat **kis lépésekben** teszteld, és őrizd meg az eredeti kód másolatát.
+
+## Kinek ajánlott?
+
+- **Ügynökségek és freelancerek**: gyorsan szállíthatsz profi testimonial szekciót több ügyfélnek, egységes minőségben.
+- **Kis‑ és középvállalkozások**: egyszerű szerkesztéssel, fejlesztő nélkül frissítheted a visszajelzéseket.
+- **SaaS és szolgáltatók**: konverziókritikus oldalakon erős „social proof” néhány kattintással.
+- **Meta Boxot használó fejlesztők**: zökkenőmentes integráció az ökoszisztémában, bővíthető sablonozás.
+
+## Megjegyzések és korlátozások
+
+- **Előfeltétel**: szükséges a Meta Box alapkiegészítő.
+- **Elérhetőség**: az MB Testimonials a **Lifetime Bundle** része; nem része a Meta Box AIO‑nak.
+- **Slider finomhangolás**: az automatikus váltás sebességének külön beállítása nem minden verzióban érhető el; ha ez fontos, ellenőrizd az aktuális állapotot.

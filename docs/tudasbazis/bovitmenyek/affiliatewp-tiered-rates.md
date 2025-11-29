@@ -1,50 +1,98 @@
-# AffiliateWP - Tiered Rates
+---
+title: "AffiliateWP - Tiered Rates"
+description: "Teljesítményalapú, sávos jutalékrendszer az AffiliateWP-hez, amely automatikusan magasabb rátát ad a küszöbök elérése után."
+sidebar_label: "AffiliateWP - Tiered Rates"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az AffiliateWP - Tiered Rates egy olyan kiegészítő, amely lehetővé teszi a felhasználók számára, hogy különböző jutalékokat állítsanak be az affiliate partnerek számára, az általuk generált eladások mennyiségétől függően. Ez azt jelenti, hogy az affiliate partnerek magasabb jutalékot kapnak, ha több eladást hoznak létre, ami motiválja őket arra, hogy még több forgalmat generáljanak a weboldaladra.
+Az AffiliateWP – Tiered Rates egy hivatalos kiegészítő, amely **teljesítményalapú, sávos (tiered) jutalékrendszert** ad az affiliate programodhoz. A lényege: amikor egy affiliate elér egy előre definiált **küszöböt** (ajánlások száma vagy kifizetett affiliate kereset alapján), onnantól **magasabb jutalék** vonatkozik a jövőbeni ajánlásaira. Így egyszerre kapsz átlátható, objektív ösztönzőt és automatikus skálázást, minimális adminisztrációval.
 
-### Specifikus előnyök
+## Hogyan működik? – alapfogalmak és logika
 
-- **Motiváció növelése:** Az affiliate partnerek számára nagyobb ösztönzőt jelent a magasabb jutalék, ha több eladást generálnak.
-- **Rugalmas beállítások:** Lehetőséged van különböző jutalékstruktúrákat létrehozni az eltérő teljesítményszintekhez.
-- **Automatizálás:** Az egyes szintek automatikusan alkalmazásra kerülnek, így nem szükséges manuálisan nyomon követni az egyes partnerek teljesítményét.
+A bővítmény a WordPress adminban, az AffiliateWP beállításai között ad egy külön felületet, ahol bármennyi **sávot** hozhatsz létre. Minden sáv négy mezőből áll:
 
-## Együttműködés más eszközökkel
+- **Type**: a teljesítménymutató típusa. Két opció:
+  - **Number of Referrals**: a kifizetett ajánlások darabszáma,
+  - **Total Earnings**: az affiliate részére kifizetett összesített jutalék.
+- **Threshold**: a küszöbérték, amelytől a sáv érvénybe lép.
+- **Rate**: az új jutalékmérték. Ez lehet **százalék** vagy **fix összeg**, az AffiliateWP globális beállításától függően.
+- **Disabled**: a sáv ideiglenes kikapcsolása.
 
-Az AffiliateWP - Tiered Rates zökkenőmentesen működik együtt számos népszerű WordPress bővítménnyel és platformmal. Néhány kiemelkedő példa:
+Fontos működési szabályok:
 
-### WooCommerce
-A WooCommerce integráció lehetővé teszi, hogy az e-kereskedelmi webhelyek könnyedén alkalmazzák a Tiered Rates funkciót az affiliate partnereik számára.
+- **Nem visszamenőleges**: a magasabb ráta csak a küszöb elérését követő ajánlásokra érvényes.
+- **Csak “Paid” számít**: a küszöbök számításakor kizárólag a kifizetett ajánlások és a kifizetett affiliate kereset kerül figyelembevételre.
+- **Havi nullázás (Tiered Rate Expiration)**: opcionálisan minden hónap 1-jén visszaállíthatod a sávokat, így kampányokat és versenyeket frissen tarthatsz, elkerülve a tartós “beragadást” magas rátán.
+- **Automatikus sorbarendezés és 0%-os alap sáv**: mentéskor a sávok rendeződnek; létrehozhatsz **0%**-os belépő sávot is, és bármely sáv külön letiltható.
 
-### Easy Digital Downloads
-Ez a plugin is teljes mértékben kompatibilis, így a digitális termékeket árusító weboldalak is élvezhetik a tiered rates előnyeit.
+### Ráta-hierarchia (összeférési szabályok)
 
-### MemberPress
-A tagdíj alapú weboldalak esetében is kiválóan működik, motiválva az affiliate partnereket több új tag megszerzésére.
+Ha egy affiliate elér egy sáv-küszöböt, az így érvényesülő **tiered ráta** felülírja a globális, kategória- és termékszintű rátákat, valamint a több szintű jutalékot kezelő kiegészítők rátáit is. Kivétel: a **per-affiliate egyedi ráta** felülírja a sávos rátát. Bizonyos speciális helyzetekben a **Lifetime Commissions** és a **Recurring Referrals** beállításai befolyásolhatják a végeredményt.
 
-## Használati tippek
+### Előfizetéses (recurring) jutalékok
 
-- **Állíts be reális szinteket:** Olyan jutalékstruktúrákat hozz létre, amelyek motiválóak, de reálisak is.
-- **Kövesd nyomon a teljesítményt:** Rendszeresen ellenőrizd az affiliate partnerek teljesítményét, hogy szükség esetén módosíthasd a szinteket.
-- **Kommunikálj világosan:** Tudasd az affiliate partnerekkel a különböző szintek előnyeit és feltételeit.
+A **Recurring Referrals** kiegészítővel a sávos ráták a megújuló kifizetésekre is érvényesíthetők. Ezt a Recurring opciói között külön engedélyezheted, így a teljes előfizetéses életciklusra érvényben marad a teljesítményalapú logika.
+
+## Beállítás lépésről lépésre
+
+1. **Követelmény**: aktív AffiliateWP és érvényesített licenc (a kiegészítő a Professional vagy magasabb csomagban érhető el).
+2. **Telepítés**: az AffiliateWP felületéről telepíthető és aktiválható.
+3. **Konfiguráció**: menj a Settings > Tiered Rates oldalra, és add meg a sávokat:
+   - válaszd ki a **Type**-ot (Referrals vagy Earnings),
+   - állítsd be a **Threshold**-ot,
+   - add meg a **Rate**-ot (százalék vagy fix),
+   - igény szerint kapcsold be a **Tiered Rate Expiration** havi nullázást.
+
+Példa beállítás (ajánlásszám alapú, százalékos rátával):
+
+```
+Type: Number of Referrals
+Threshold | Rate
+0         | 20%
+11        | 25%
+21        | 30%
+```
+
+Példa beállítás (kifizetett affiliate kereset alapú):
+
+```
+Type: Total Earnings
+Threshold | Rate
+0         | 20%
+101       | 25%
+201       | 30%
+```
+
+Megjegyzés: a “Total Earnings” mindig a kifizetett affiliate jutalék összegét jelenti, nem a bruttó rendelési értéket.
 
 ## Gyakorlati példák
 
-### E-kereskedelmi webhelyek
-Egy online áruház tulajdonosa különböző jutalékszinteket állíthat be, például 5% jutalék 10 eladásig, 7% 20 eladásig és 10% 50 eladás felett. Ezáltal az affiliate partnerek törekedni fognak a magasabb eladási számok elérésére.
+- **Kampány hónapról hónapra**: állíts be 0–10 = 20%, 11–20 = 25%, 21+ = 30% sávokat, és kapcsold be a havi nullázást. Minden hónap 1-jén újraindul a verseny, tiszta lappal.
+- **Earnings-alapú prémium**: ha fontos a profitabilitás, mérd a kifizetett jutalék összegét (pl. 0–100 = 20%, 101–200 = 25%, 201+ = 30%). Így az affiliaték nemcsak a mennyiségért, hanem a minőségért is motiváltak.
+- **Előfizetéses szolgáltatás**: aktiváld a Recurring Referrals-t, és engedélyezd, hogy a sávos ráták a megújításokra is vonatkozzanak. A kezdeti akvizíció és a hosszú távú megtartás is ugyanazon ösztönző logika alá kerül.
 
-### Digitális termékeket árusító oldalak
-Egy szoftverfejlesztő cég különböző szinteket állíthat be az eladott licenszek számától függően. Például 10% jutalék 5 licenszig, 15% 15 licenszig és 20% 30 licensz felett.
+## Előnyök és értékajánlat
 
-### Tagsági oldalak
-Egy online kurzusokat kínáló oldal különböző jutalékszinteket kínálhat az új tagok számától függően. Például 5% jutalék 10 új tagig, 10% 20 új tagig és 15% 30 új tag felett.
+- **Automatikus skálázás**: a rendszer magától lépteti az affiliatékat a magasabb sávokba, kézi állítgatás nélkül.
+- **Átlátható ösztönzés**: egyértelmű, előre kommunikálható célok; nincs vita a feltételekről.
+- **Kontrollált jutalékszintek**: a havi lejárat megfékezi a hosszú távú “jutalékinflációt”.
+- **Konfliktusmentes beállítás**: a ráta-hierarchia egyértelmű; előre láthatod, melyik ráta lesz érvényes.
+- **Előfizetésbarát**: a megújításokra is kiterjeszthető, így egységes a jutaléklogika.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Affiliate partner:** Olyan személy vagy entitás, aki másoknak ajánlja a termékeket vagy szolgáltatásokat és ezért jutalékot kap.
-- **Jutalék:** Az az összeg, amit az affiliate partner kap minden egyes sikeres eladás után.
-- **Szint:** Egy meghatározott teljesítményszint, amely különböző jutalékokat kínál az affiliate partnerek számára.
-- **WooCommerce:** Egy népszerű WordPress bővítmény, amely lehetővé teszi az e-kereskedelmi webhelyek létrehozását és kezelését.
-- **Easy Digital Downloads:** Egy WordPress bővítmény, amely digitális termékek értékesítésére specializálódott.
-- **MemberPress:** Egy WordPress bővítmény, amely lehetővé teszi tagsági oldalak létrehozását és kezelését.
+- **Webáruházaknak**, akik forgalomnövelést és minőségibb leadeket szeretnének objektív, teljesítményalapú jutalmazással.
+- **SaaS és előfizetéses szolgáltatóknak**, ahol a hosszú távú megtartás számít, és fontos a megújítások jutalmazása.
+- **Digitális termékeket értékesítőknek**, akik rugalmas, gyorsan állítható kampányokat futtatnának.
+- **Ügynökségeknek és hálózatoknak**, ahol sok affiliate dolgozik, és kritikus az adminisztratív teher csökkentése.
+
+## Bevált gyakorlatok és tippek
+
+- **Kezdd egyszerűen**: 2–3 jól kommunikálható sávval indíts, majd finomhangolj a teljesítményadatok alapján.
+- **Használd a havi nullázást** rövid promóciókhoz és versenyekhez.
+- **Ellenőrizd a ráta-hierarchiát**, ha per-affiliate vagy termékszintű rátákat is alkalmazol, hogy elkerüld a váratlan felülírásokat.
+- **Kommunikáld a küszöböket** az affiliaték felé; a transzparencia növeli a részvételt.
+- **Előfizetés esetén** kapcsold be a Recurring integrációt, és engedélyezd a sávos ráták alkalmazását a megújításokra.
+
+Összefoglalva: a Tiered Rates egy célzott, skálázható eszköz, amellyel a jutalékaid automatikusan követik az affiliate teljesítményét. Tisztább ösztönzők, kevesebb adminisztráció, jobb megtérülés – mindezt az AffiliateWP ökoszisztémáján belül.

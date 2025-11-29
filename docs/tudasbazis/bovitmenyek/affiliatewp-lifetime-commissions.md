@@ -1,84 +1,100 @@
-# AffiliateWP - Lifetime Commissions
+---
+title: "AffiliateWP - Lifetime Commissions"
+description: "Add-on az AffiliateWP-hez: ügyfelek tartós összekapcsolása affiliáttal, hogy a jövőbeli vásárlások után is járjon jutalék."
+sidebar_label: "AffiliateWP - Lifetime Commissions"
+---
 
-## Hogyan működik?
+## Mi ez és milyen problémát old meg?
 
-Az AffiliateWP - Lifetime Commissions lehetővé teszi, hogy egy vevő és egy affiliate között tartós kapcsolat alakuljon ki, amely során a hozzárendelt affiliate minden jövőbeni vásárlás után jutalékot kap. Amikor egy vevő egy affiliate referral URL-jére kattintva vásárol a weboldaladon, azonnal hozzárendelődik az affiliate-hez. Ha a vevő később visszatér és újra vásárol, az affiliate jutalékot kap, még akkor is, ha a vevő közvetlenül a weboldalra látogat.
+Az AffiliateWP – Lifetime Commissions egy hivatalos, profi kiegészítő, amellyel egy **vevőt tartósan** (életre vagy meghatározott időre) **összekapcsolhatsz** egy **affiliáttal**. Így az affiliate a vevő későbbi vásárlásai után is jutalékot kap – akkor is, ha a vásárló már nem affiliate linken érkezik, törölte a sütijeit, vagy másik eszközt használ. Ezzel a cookie‑alapú követés megbízhatatlanságát oldod meg, és stabilabb, kiszámíthatóbb jutalékozást adsz a partnereidnek.
 
-A vevő egyszerre csak egy affiliate-hez rendelhető hozzá. Ha a vevő vendégként (bejelentkezés nélkül) vásárol, az e-mail címét használják az affiliate-hez való hozzárendeléshez. Ha be van jelentkezve, a WordPress felhasználói azonosítója alapján történik a hozzárendelés. Ha a vevő másik e-mail címet használ vagy megváltoztatja az e-mail címét, az új e-mail cím is társítva lesz az affiliate-hez, biztosítva ezzel a jutalékot a jövőbeni vásárlások után is.
+Követelmény: az add-on használatához **AffiliateWP Professional** licenc szükséges. A bővítményt az AffiliateWP csapat fejleszti.
 
-## Integrációk
+## Hogyan működik? (fő funkciók és logika)
 
-Az AffiliateWP - Lifetime Commissions jelenleg az alábbi integrációkkal működik együtt:
+### Tartós vevő–affiliate összekapcsolás
+- Az első, affiliate linkről érkező sikeres konverziónál a rendszer **összeköti** a vevőt az affiliáttal.
+- Bejelentkezett vevőnél a **WordPress felhasználó‑ID**, vendég vásárlónál a **vevő e‑mail címe** az azonosító.
+- Az e‑mail változását a rendszer követi, hogy későbbi vendégvásárlásnál is felismerje a vevőt.
+- Egy vevő egyszerre **csak egy affiliáthoz** kapcsolható.
 
-1. Easy Digital Downloads
-2. WooCommerce
-3. Gravity Forms
-4. Ninja Forms
-5. Paid Memberships Pro
-6. Restrict Content Pro
-7. PayPal Buttons
-8. MemberPress
+### Lifetime időtartam (Lifetime Length)
+- Beállíthatod, hogy az összekapcsolás **határozatlan** legyen (0 nap), vagy **időben korlátozott** (pl. 180 vagy 365 nap).
+- Így szabályozhatod a kockázat–jutalom arányt a programodban.
 
-Fontos megjegyezni, hogy ez a bővítmény nem támogatja a `[affiliate_conversion_script]` shortcode által generált referral jutalékokat.
+### Engedélyezés és ráták
+- **Globális vagy per‑affiliate** engedélyezés: bekapcsolhatod mindenkire, vagy csak kiválasztott partnerekre.
+- Külön **Lifetime Referral Rate** adható meg **globálisan** és **egyedileg** (százalék vagy fix összeg).
+- A lifetime jutalék eltérhet az általános affiliate rátáktól.
 
-## Előnyök
+### Kupon alapú összekapcsolás
+- Ha a vevő **affiliáthoz rendelt kupont** használ, a rendszer ezzel is összekapcsolja a vevőt az adott affiliáttal – még kattintás nélkül is.
+- Ha egy már összekapcsolt vevő **másik affiliate** kuponját használja, akkor az a másik affiliate **kapja a jutalékot** azon a rendelésen.
 
-### Növekvő eladások
+### Affiliate felület és adatvédelem
+- Az affiliate számára megjeleníthető egy **Lifetime Customers** nézet (listázás).
+- Az e‑mail címek **elrejthetők** adatvédelmi okokból.
+- Rövidkód a megjelenítéshez:
+```
+[affiliate_lifetime_customers]
+```
 
-Az affiliate-ek sokkal keményebben dolgoznak majd azért, hogy egy vevőt hozzárendelhessenek magukhoz, ami jelentős mértékben növeli az eladásokat.
+### Admin eszközök
+- Vevők **kézi hozzárendelése/eltávolítása**, áthelyezése egyik affiliattól a másikhoz.
+- A **Referrals** listában vizuális jelölés mutatja, ha a jutalék **lifetime** ügyféltől érkezett.
+- Opcionális: a bővítmény törlésekor az adatok **teljes eltávolítása**.
 
-### Jutalék biztosítása
+### Integrációk
+- Hivatalosan támogatott: **WooCommerce**, **Easy Digital Downloads**, **Gravity Forms**, **Ninja Forms**, **Paid Memberships Pro**, **Restrict Content Pro**, **MemberPress**, **PayPal Buttons**.
 
-Egy affiliate garantáltan jutalékot kap, ha a hozzárendelt vevő vásárol, függetlenül attól, hogy a vevő törli-e a böngésző cookie-jait, másik számítógépet használ, vagy vendégként vásárol.
-
-### Több vevő, több eladás
-
-Az affiliate-ek több vevőhöz is hozzárendelhetők, ami több forgalmat és több eladást eredményez a weboldalon.
-
-## Funkciók
-
-### Lifetime jutalékok engedélyezése
-
-Engedélyezheted a lifetime jutalékokat minden affiliate-nek az oldalon, vagy egyenként is.
-
-### Referral arányok beállítása
-
-Beállíthatod a lifetime referral arányokat minden affiliate-re vonatkozóan vagy egyenként is.
-
-### Vevő-hozzárendelés
-
-Bármely vevőt hozzárendelheted egy affiliate-hez közvetlenül a WordPress adminból, így az affiliate jutalékot kap minden jövőbeni vásárlás után.
-
-### Manuális kezelés
-
-Lehetőséged van manuálisan hozzáadni vagy eltávolítani lifetime vevő rekordokat az affiliate-ek számára.
-
-### Kapcsolat időtartama
-
-Beállíthatod, hogy mennyi ideig tartson a lifetime vevő-kapcsolat.
-
-### Áthelyezés
-
-Bármely vevőt áthelyezhetsz egy meglévő affiliate-től egy újhoz közvetlenül a WordPress adminból.
+### Korlátozások
+- Egyszerre csak **egy affiliate** kapcsolható egy vevőhöz.
+- A lifetime logika nem működik az **affiliate_conversion_script** rövidkód által generált jutalékokkal.
+- Kuponhasználat egy rendelés erejéig felülírhatja, ki kapja a jutalékot.
 
 ## Gyakorlati példák
 
-### E-commerce vállalkozások
+- WooCommerce digitális termék: Anna egy blogposztból kattintva vásárol. Összekapcsolódik az ajánlóval. Fél év múlva közvetlenül tér vissza és újra vásárol – az affiliate **jutalékot kap**, noha nincs kattintás és a sütik törölve lettek.
+- Tagság/előfizetés: Péter egy tagságot vesz fel Restrict Content Pro-ban. Később másik böngészőből hosszabbít – a rendszer a **felhasználó‑ID / e‑mail** alapján felismeri, és jutalékot könyvel.
+- Kupon esete: Márta korábban A affiliáthoz kapcsolódott. Most B kuponját használja egy akcióban. Ezen a rendelésen **B kap jutalékot** a kupon miatt.
 
-Egy online bolt tulajdonosa kihasználhatja a lifetime commissions előnyeit, hogy hosszú távú kapcsolatot alakítson ki affiliate-jeivel, ezzel biztosítva a folyamatos bevételt és növekedést.
+## Beállítás és használat
 
-### Oktatási platformok
+1. Telepítés: aktiváld az AffiliateWP-t, érvényesítsd a **Professional** licencet, majd telepítsd és aktiváld a **Lifetime Commissions** add‑ont.
+2. Konfigurálás: AffiliateWP → Settings → Lifetime Commissions
+   - **Enable for all affiliates**
+   - **Lifetime Customers Access** + **Hide Emails**
+   - **Lifetime Referral Rates** (százalék/fix, globális és per‑affiliate)
+   - **Lifetime Length** (0 = határozatlan)
+   - **Link customers on user registration**
+   - **Remove data when deleted**
+3. Napi használat:
+   - Egyedi engedélyezés és ráták az adott affiliate szerkesztő oldalán.
+   - **Kézi hozzárendelés**: vevő e‑mail cím hozzáadása az affiliate-hez.
+   - Affiliate felületen a lifetime ügyfelek listázása a fenti rövidkóddal.
 
-Oktatási platformok, mint például LearnDash vagy LifterLMS integrációval rendelkező oldalak számára előnyös lehet ez a funkció, mivel az affiliate-ek jobban ösztönözhetők arra, hogy aktívan népszerűsítsék a kurzusokat.
+## Előnyök és értékajánlat
 
-### Tagsági oldalak
+- **Megbízhatóság a sütiken túl**: e‑mail/ID alapú hozzárendelés eszközváltás és cookie törlés mellett is működik.
+- **Motiváltabb partnerek**: a tartós jutalék növeli az affiliate-ek elkötelezettségét és a promóció intenzitását.
+- **Kisebb viták**: kevesebb “első kattintás vs. utolsó kattintás” konfliktus.
+- **Rugalmasság**: globális és **per‑affiliate** ráták, időkorlátos “lifetime”, kupon‑logika.
+- **Adatvédelem**: e‑mailek elrejthetők az affiliate nézetben.
+- **Admin-hatékonyság**: kézi kezelés, áthelyezés, egyértelmű jelölések a riportokban.
 
-Tagsági oldalak (pl. MemberPress) esetén a lifetime commissions segítségével biztosítható, hogy az affiliate-ek folyamatosan részesüljenek jutalékban minden új tag után, akiket ők hoztak.
+## Kinek ajánlott?
 
-## Szószedet
+- **WooCommerce** és **EDD** webáruházak, ahol sok a visszatérő vásárlás.
+- **Tagság**/**SaaS** modellek (PMPro, MemberPress, RCP), ahol az előfizetés hosszú távú.
+- **Szolgáltatók/ügynökségek**, akik szolgáltatáscsomagokat, krediteket vagy retainer jellegű csomagokat értékesítenek.
+- Olyan programok, ahol fontos a partnerek **hosszú távú motiválása** és a stabil, tervezhető jutalék.
 
-- **Affiliate**: Partner, aki népszerűsíti az oldalt és jutalékot kap az általa hozott vásárlások után.
-- **Referral URL**: Olyan URL, amelyen keresztül az affiliate-ek hirdetik az oldalt.
-- **Lifetime commissions**: Olyan jutalékrendszer, amely során az affiliate minden jövőbeni vásárlás után jutalékot kap.
-- **Guest purchase**: Bejelentkezés nélküli vásárlás.
-- **WordPress admin**: A WordPress adminisztrációs felülete, ahol a weboldal beállításait kezelheted.
+## Tippek a beállításhoz
+
+- Kezdd **180–365 nap** Lifetime Length-tel, és mérd a hatását; nagy értékű, ritka vásárlásoknál érdemes akár határozatlanra állítani.
+- Adj külön **lifetime rátát** a top partnereknek (per‑affiliate), és kommunikáld a feltételeket.
+- Dokumentáld a **kupon**-szabályokat (ki, mikor kap jutalékot), hogy elkerüld a félreértéseket.
+- Kapcsold be a **Hide Emails** opciót, ha szigorúbb adatvédelmet szeretnél.
+- Mutasd meg az affiliátoknak a **Lifetime Customers** listát – növeli a bizalmat és az aktivitást.
+
+Ha szeretnéd, készítek egy személyre szabott bevezetési ellenőrzőlistát, és javaslatot a **Lifetime Length** és **Lifetime Referral Rate** optimális beállítására a te stack-ed és üzleti céljaid alapján.

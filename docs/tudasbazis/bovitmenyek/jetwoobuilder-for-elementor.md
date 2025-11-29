@@ -1,69 +1,93 @@
-# JetWooBuilder For Elementor
+---
+title: "JetWooBuilder For Elementor"
+description: "Elementorhoz készült WooCommerce oldalépítő, amellyel kód nélkül készíthetsz egyedi termék-, bolt-, kosár-, pénztár-, fiók- és köszönőoldalakat."
+sidebar_label: "JetWooBuilder For Elementor"
+---
 
-## Funkcionalitás
+## Mi ez és milyen problémát old meg?
 
-A JetWooBuilder For Elementor kifejezetten a WooCommerce alapú webshopok testreszabására készült. Az Elementor vizuális szerkesztőjével kombinálva lehetőséged nyílik egyedi oldalak létrehozására, amelyek nem csak esztétikusak, de funkcionálisan is kiválóak. 
+A **JetWooBuilder** egy WooCommerce-hez tervezett oldalépítő bővítmény **Elementor** alá. Arra való, hogy a webshopod minden kulcsoldalához (termék, bolt/katalógus, kategória/archívum, kosár, pénztár, Saját fiók, Köszönjük) **egyedi, vizuálisan szerkeszthető sablonokat** készíts — **kódolás nélkül**. A WooCommerce alap sablonjai rugalmatlanok, a JetWooBuilder viszont **dedikált Elementor-widgetekkel** ad teljes kontrollt a tartalom és az elrendezés felett.
 
-### Egyedi termékoldalak
+## Hogyan működik röviden?
 
-A bővítmény segítségével könnyedén hozhatsz létre egyedi termékoldalakat. Nincs szükség kódolási ismeretekre, mivel minden elemet drag-and-drop módszerrel helyezhetsz el és alakíthatsz ki.
+- A bővítmény beépít egy **Woo Page Builder** felületet, ahol létrehozhatod a sablonokat (Single Product, Shop/Archive, Cart, Checkout, My Account, Thank You).
+- A sablonokat **megjelenési feltételekkel** társíthatod (pl. minden termékre, csak bizonyos kategóriákra stb.).
+- A sablonokat Elementorban építed fel, **JetWooBuilder widgetekkel**, melyek a WooCommerce dinamikus adatait jelenítik meg és formázhatóak.
+- A JetWooBuilder a WooCommerce-oldalak **törzsrészét (body)** kezeli. A **fejléc/lábléc** és a globális sablonfeltételek vizuális kezelése a JetThemeCore-ral a legkényelmesebb.
 
-### Kategória és archívum oldalak
+## Fő funkciók részletesen
 
-Lehetővé teszi az egyedi kategória- és archívum oldalak létrehozását is. Ezáltal a különböző termékkategóriákhoz és archívumokhoz egyedi megjelenést rendelhetsz hozzá, ami segít a vásárlói élmény fokozásában.
+### Oldalsablon-építés WooCommerce-hez
+- Készíts és rendelj hozzá sablonokat a következőkhöz: **Single Product**, **Shop/Archive**, **Cart**, **Checkout**, **My Account**, **Thank You**.
+- Egy sablont akár több feltételhez is hozzárendelhetsz, így egységes vagy kategóriaspecifikus élményt is megvalósíthatsz.
 
-### Bevásárlókosár és pénztár oldalak
+### Elementor widgetkészlet (válogatás)
+- **Shop/Archive**: terméklista rácsban vagy listában (**Products Grid/List/Loop**), **kategóriacsempék**, **rendező** és **lapozó** elemek. A JetSmartFilters integrációval profi **szűrés** és **lapozás** is társítható.
+- **Single Product**: **ár**, **akciós ár**, **készlet**, **SKU**, többféle **képgaléria**, **értékelések**, **megosztás**, **jelvények**, **fülek**, **kapcsolódó/ajánlott/keresztértékesített** termékek, **Kosárba** gomb.
+- **Cart/Checkout/Thank You**: **kosártábla**, **összesítők**, **kupon**, **számlázási/szállítási űrlapok**, **fizetési szakasz**, **rendelésösszegzés**, **visszaigazoló elemek**.
+- **My Account**: **bejelentkezés/kijelentkezés**, **regisztráció**, **rendeléseim**, **letöltések**, **címek/adataim**, **irányítópult** blokkok.
 
-A JetWooBuilder For Elementor segítségével testreszabhatod a bevásárlókosár és pénztár oldalakat is. Ez különösen hasznos lehet, ha szeretnéd, hogy ezek az oldalak is harmonizáljanak a weboldal általános dizájnjával.
+### Elrendezés és dinamikus funkciók
+- Többféle **termékképgaléria** elrendezés, **termékkártya/loop váltó** (kártya ↔ lista) a katalógusban.
+- **AJAX “Kosárba”** gomb lista nézetekben, gördülékeny interakció a termékböngészés során.
+- **Quick View** (JetPopup), **Összehasonlítás/Kívánságlista** (JetCompare&Wishlist) integráció a terméklistákba.
 
-## Előnyei
-
-### Egyszerű használat
-
-Az Elementor vizuális szerkesztőjével történő integráció révén a JetWooBuilder használata rendkívül egyszerű. Minden elem könnyen hozzáadható és módosítható, így nem szükséges programozói tudás.
-
-### Teljes kontroll a dizájn felett
-
-A bővítmény lehetővé teszi, hogy teljes kontrollt gyakorolj a webshopod megjelenése felett. Minden egyes elem testreszabható, így a dizájn tökéletesen illeszkedik az arculathoz.
-
-### Kompatibilitás más Crocoblock bővítményekkel
-
-A JetWooBuilder zökkenőmentesen együttműködik más Crocoblock bővítményekkel, mint például a JetElements, JetSmartFilters vagy a JetPopup. Ez lehetővé teszi, hogy még komplexebb és funkciógazdagabb weboldalakat hozz létre.
-
-## Hasznos helyzetek
-
-### Egyedi webshopok létrehozása
-
-Ha egyedi megjelenésű webshopot szeretnél létrehozni, a JetWooBuilder kiváló választás. Az egyszerű drag-and-drop felületnek köszönhetően könnyedén kialakíthatod a saját dizájnt.
-
-### Jobb felhasználói élmény
-
-A testreszabható bevásárlókosár és pénztár oldalakkal javíthatod a felhasználói élményt, ami növeli a konverziós arányt és csökkenti az elhagyott kosarak számát.
-
-### Speciális termékoldalak
-
-Ha speciális termékeket árulsz, amelyek különleges bemutatást igényelnek, a JetWooBuilder segítségével egyedi termékoldalakat hozhatsz létre, amelyek kiemelik a termék különleges jellemzőit.
+### Ökoszisztéma-integrációk
+- **JetThemeCore**: fejléc/lábléc és feltételek vizuális kezelése, a JetWooBuilder “body” sablonjaival együtt.
+- **JetSmartFilters**: haladó szűrés, lapozás és rendezés a JetWooBuilder rács/lista/loop widgetjeihez.
+- **JetPopup**, **JetCompare&Wishlist**: gyorsnézet, összehasonlítás, kívánságlista gombok.
 
 ## Gyakorlati példák
 
-### Egyedi divatwebshop
+- **Egyedi termékoldal**: képgaléria balra, jobb oldalon ár, készlet, Kosárba gomb és jelvények; alul fülekben leírás, jellemzők és értékelések; végül kapcsolódó termékek.
+- **Katalógus elrendezés-váltó**: alapértelmezetten kártyás rács, de a látogató átválthat listanézetre; fent rendező és szűrők, lent lapozó.
+- **Fókuszált pénztár**: minimalista Checkout sablon, csak a szükséges űrlapok, jól látható fizetési lépések és rendelésösszegzés.
+- **Saját fiók irányítópult**: egyedi kártyák “Rendeléseim”, “Letöltések”, “Számlázási és szállítási címek” gyors elérésével.
 
-Egy divatwebshop esetében minden egyes kategóriaoldal és termékoldal egyedi megjelenést kaphat. A JetWooBuilder segítségével különböző sablonokat használhatsz a férfi, női és gyermek ruházat számára, így minden kategória sajátos megjelenéssel rendelkezhet.
+## Előnyök és értékajánlat
 
-### Elektronikai cikkek webáruháza
+- **No-code szerkesztés**: fejlesztés nélkül, vizuálisan állítod össze a WooCommerce-oldalak minden elemét.
+- **Konzisztens dizájn**: ugyanazzal az eszközkészlettel építed a teljes vásárlói utat a termékoldaltól a köszönőoldalig.
+- **Gyorsabb kivitelezés**: sablon-alapú munka, újrafelhasználható blokkok, kevesebb egyedi kód-karbantartás.
+- **Jobb UX és konverzió**: AJAX interakciók, Quick View, szűrés/lapozás – gyorsabb böngészés, kevesebb súrlódás.
 
-Elektronikai termékek esetében fontos lehet a specifikációk részletes bemutatása. A JetWooBuilder lehetővé teszi, hogy egyedi termékoldalakat hozz létre, ahol részletesen bemutathatod az egyes termékek jellemzőit és funkcióit.
+## Kinek ajánlott?
 
-### Kézműves termékek webshopja
+- **Kis- és középvállalkozóknak**: ha gyorsan, fejlesztő nélkül szeretnél igényes webshopot.
+- **Webes ügynökségeknek és site buildereknek**: skálázható sablonozás, egységes komponenskészlet.
+- **Marketingeseknek/üzemeltetőknek**: gyors módosítások kampányokhoz, szezonális sablonok feltételes kihelyezése.
+- **Fejlesztőknek**: prototípus-készítés, majd finomhangolás; kevesebb “templating” teher.
 
-Ha kézműves termékeket árulsz, minden egyes termék egyedi bemutatást igényelhet. A JetWooBuilder segítségével különleges termékoldalakat hozhatsz létre, amelyek kiemelik az egyediségüket és a kézműves munka minőségét.
+## Követelmények és kompatibilitás
 
-## Szószedet
+- Szükséges: **WordPress**, **WooCommerce**, **Elementor**. Az Elementor Pro nem kötelező.
+- Ajánlott: naprakész WordPress, PHP és Elementor verziók a stabil működéshez.
+- Opcionális: **JetThemeCore** (header/footer és feltételek), **JetSmartFilters** (szűrés/lapozás), **JetPopup**, **JetCompare&Wishlist**.
 
-- **Elementor**: Vizuális szerkesztő WordPresshez.
-- **WooCommerce**: Népszerű e-commerce platform WordPresshez.
-- **Drag-and-drop**: Húzd és ejtsd módszer, amely egyszerűsíti az elemek elhelyezését.
-- **Konverziós arány**: Azoknak a látogatóknak az aránya, akik ténylegesen vásárolnak.
-- **Crocoblock**: Fejlesztő cég, amely számos bővítményt kínál WordPresshez.
-  
-Ezek az információk remélhetőleg segítenek jobban megérteni a JetWooBuilder For Elementor képességeit és előnyeit.
+## Telepítés és első lépések
+
+1. Telepítsd és aktiváld a WooCommerce-t, az Elementort, majd a JetWooBuildert.
+2. Menj a Woo Page Builder felületre, válassz sablontípust (pl. Single Product) és hozd létre.
+3. Nyisd meg Elementorban, és építsd fel **JetWooBuilder widgetekkel**.
+4. Állítsd be a **megjelenési feltételeket** (pl. minden termék, kategória szerint).
+5. Szükség esetén kezeld a fejléceket/lábléceket a JetThemeCore-ban, és társítsd a “body” sablonhoz.
+
+```text
+Első beállítás – rövid checklist
+[ ] WooCommerce + Elementor aktív
+[ ] JetWooBuilder telepítve, widgetcsoportok engedélyezve
+[ ] Single Product sablon létrehozva és feltételekhez rendelve
+[ ] Shop/Archive sablon + szűrés/lapozás beállítva (opcionális: JetSmartFilters)
+[ ] Cart, Checkout, Thank You, My Account sablonok elkészítve
+[ ] Header/Footer sablonok (opcionális: JetThemeCore) hozzárendelve
+```
+
+## Megjegyzések és tippek
+
+- A JetWooBuilder a **törzstartalomért** felel. A **header/footer** és a **feltételkezelés** vizuális, központosított irányításához érdemes JetThemeCore-t használni.
+- A **Quick View**, **Összehasonlítás** és **Kívánságlista** funkciók az ökoszisztéma más bővítményeivel aktiválhatók és integrálhatók a terméklistákba.
+- Haladó **szűrés** és **lapozás** a JetSmartFilters-szel kapcsolható a Products Grid/List/Loop widgetekhez.
+
+## Összegzés
+
+A JetWooBuilder egy **Elementor-alapú WooCommerce oldalépítő**, amellyel teljes vizuális kontrollt kapsz a termék-, bolt-, kosár-, pénztár-, fiók- és köszönőoldalak felett. Ha kódolás nélkül, gyorsan és egységes dizájnnal szeretnél profi webshop-élményt, ez a bővítmény pontosan neked való.

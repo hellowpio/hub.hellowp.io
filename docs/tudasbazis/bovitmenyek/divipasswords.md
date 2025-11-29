@@ -1,71 +1,94 @@
-# DiviPasswords
+---
+title: "DiviPasswords"
+description: "Divi-kiegészítő, amellyel jelszóval védhetsz bármely Divi szekciót, sort, oszlopot vagy modult; a védett tartalom feloldásig teljesen eltűnik a DOM-ból."
+sidebar_label: "DiviPasswords"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A DiviPasswords egy olyan bővítmény, amely lehetővé teszi, hogy jelszóval védjük a weboldalunk különböző elemeit, például szekciókat, sorokat, oszlopokat és modulokat. Ez a funkció rendkívül hasznos lehet olyan helyzetekben, amikor bizonyos tartalmakat csak meghatározott felhasználók számára szeretnénk elérhetővé tenni.
+A **DiviPasswords** egy Divi-bővítmény, amellyel jelszóval zárható bármely Divi-elem (szekció, sor, oszlop, modul – beleértve a DonDivi modulokat is). A lényege: a védett HTML-t a rendszer teljesen **eltávolítja a DOM-ból**, és csak akkor illeszti vissza, amikor a látogató helyes jelszót ad meg. Így a tartalom nem bukkan fel az oldal forrásában, és nem olvasható ki egyszerű vizuális eszközökkel.
 
-## Főbb jellemzők
+Ezzel gyorsan megoldhatod azokat a helyzeteket, amikor csak egy-egy **blokkot** szeretnél védeni (pl. prémium letöltés, űrlap, árlista-részlet), anélkül, hogy komplett tagsági rendszert építenél.
 
-### Jelszóval védett tartalom
+Megjegyzés: Ne keverd össze más, hasonló nevű bővítményekkel; a DiviPasswords natív Divi-integrációt és elem-szintű beállítást használ.
 
-A DiviPasswords segítségével könnyedén beállíthatod, hogy mely tartalmak legyenek jelszóval védettek. Ha a felhasználó beírja a helyes jelszót, az adott tartalom megjelenik számára. Ezzel a módszerrel biztosíthatod, hogy csak az arra jogosultak férjenek hozzá a fontos információkhoz.
+## Fő funkciók, érthetően
 
-### Egyéni beállítások
+- **Elem-szintű védelem**: Bármely Section, Row, Column vagy Module jelszó mögé zárható. Így nem az egész oldal, csak a kijelölt rész lesz védett.
+- **Teljes DOM-elrejtés**: A védett HTML-t a rendszer nem rendereli, amíg nincs feloldás. Ez mérsékli a “forrásból kiszivárgás” kockázatát.
+- **Testreszabható beléptető űrlap**: Cím (alap: “RESTRICTED ACCESS”), helyőrző, gombszöveg, űrlapszín, valamint **lakat ikon** vagy saját kép választható, hogy passzoljon a designhoz.
+- **Jelszó megjegyzése (opció)**: Munkamenet-süti (cookie neve: `divi_passwords`). A böngésző bezárásakor lejár, így jó kompromisszum a kényelem és biztonság között.
+- **Natív beállítási hely**: Az adott Divi elem paneljén, az **Advanced > Password** fülön kapcsolhatod és konfigurálhatod.
+- **Jelszó-szabályok**: A mező nem lehet üres; tiltott karakterek: `&`, `<`, `>`.
 
-#### Jelszó meghatározása
+## Hogyan működik?
 
-A bővítmény lehetőséget ad arra, hogy egyéni jelszót állíts be minden egyes védett elemhez. Ha ez a mező üresen marad, a jelszóvédett form nem jelenik meg.
+A bővítmény a védett elemet ideiglenesen **jelszóűrlapra cseréli**. Sikeres ellenőrzés után kéri le és illeszti vissza a tartalmat a DOM-ba. A folyamatot WordPress noncék védik; ha ezeket a noncékat agresszívan cache-eli a tárhelyed vagy a pluginod, hibaüzenetet láthatsz. Ilyenkor állítsd a cache élettartamát kb. **10–12 órára** a noncék lejáratához igazítva.
 
-#### Ikon és kép választása
+## Konkrét, gyakorlati példák
 
-Lehetőséged van arra, hogy egy alapértelmezett lakat ikont vagy egyedi képet használj a jelszóvédett tartalom jelzésére.
+- **Prémium letöltések**: Egy gomb és a fájl-URL csak jelszó után kerül a DOM-ba.
+- **Űrlapok védelme**: Partneri vagy belső regisztrációs űrlapot zárolhatsz, így nem minden látogató tölti ki.
+- **Prémium szekciók**: Árazási oldalon “rejtett” csomagajánlat, ami csak meghívott ügyfeleknek látható.
+- **E-mail aláírások, kontaktblokk**: Csak bizonyos partnereknek jelenjen meg egyedi elérhetőség.
 
-#### Egyedi szövegek megadása
+## Telepítés és első lépések
 
-Testreszabhatod a form címét, amely alapértelmezés szerint "RESTRICTED ACCESS" (korlátozott hozzáférés). Emellett a jelszó mező helyőrző szövegét is módosíthatod, ami alapértelmezés szerint "Enter your password…" (Írd be a jelszót…).
+1. Követelmény: aktív **Divi Theme**.
+2. Telepítés: Plugins > Add New > Upload (ZIP feltöltése), majd aktiválás.
+3. Ha DonDivin keresztül vásároltad: licenc megadása a WordPress adminban (DonDivi > Licenses).
+4. Használat:
+   - Nyisd meg a védendő elemet a Divi Builderben.
+   - Advanced > Password: kapcsold be a **Password Protection**-t.
+   - Adj meg jelszót (ne használj `&`, `<`, `>` karaktereket).
+   - Állítsd be a cím/placeholder/gombszöveg/űrlapszín mezőket, valamint ikont vagy képet.
+   - Opcionálisan engedélyezd a **Remember Password** funkciót.
+   - Mentsd az oldalt és tesztelj bejelentkezett és inkognitó ablakban is.
 
-#### Gomb szövegének beállítása
+## Haladó testreszabás
 
-Testreszabhatod a form gombjának szövegét is, ami alapértelmezés szerint "Submit" (Elküld).
+- **CSS horgok** (gyakori szelektorok):
+  ```
+  .dd-password-protect, form, .et-pb-icon, h4, .dd-password, .dd-password-error, button
+  ```
+- **JS esemény**: Tartalom feloldásakor `divipasswords` esemény fut. Használd JS-függő elemek újrainicializálására:
+  ```js
+  document.addEventListener('divipasswords', (e) => {
+    // pl. slider/galéria/3rd-party modul újraindítása
+  });
+  ```
+- **Egyedi modulok támogatása**: Add hozzá a saját modul slugját a filterhez:
+  ```php
+  add_filter('divi_passwords_supported_modules', function ($modules) {
+      $modules[] = 'my_custom_module_slug';
+      return $modules;
+  });
+  ```
 
-#### Jelszó megjegyzése
+## Hibaelhárítás
 
-Beállíthatod, hogy a jelszó megjegyzésre kerüljön-e oldal újratöltésekor.
+- “An error has occurred” üzenet: jellemzően cache-elt **nonce** okozza. Állítsd a cache TTL-t 10–12 órára, ürítsd a gyorsítótárat, majd próbáld újra.
+- “Széteső” JS-elemek feloldás után: az init kód a betöltéskor futott, a védett HTML viszont csak később került a DOM-ba. Oldd meg a `divipasswords` eseményre való **újrainicializálással** vagy használj Divi/DonDivi natív modulokat.
 
-#### Form színe
+## Előnyök és értékajánlat
 
-A form elemeinek színét egyedi módon is beállíthatod, így az teljes mértékben illeszkedhet az oldalad dizájnjához.
+- **Perc alatt használható** elem-szintű zárás, tagsági rendszer nélkül.
+- **Kevesebb kiszivárgás**: a védett HTML nem jelenik meg a forrásban feloldásig.
+- **Natív szerkesztőélmény**: nincs shortcode-kényszer; minden a megszokott Divi panelen.
+- **Fejlesztőbarát**: CSS szelektorok, JS esemény és filter a finomhangoláshoz.
+- **Költséghatékony**: gyors megoldás light-membership jellegű igényekre.
 
-## Integrációk
+## Kinek ajánlott?
 
-### Harmadik fél moduljai
+- **Divi-t használó webes ügynökségeknek**: gyorsan átadható, ügyfél-specifikus zárt blokkok.
+- **Tartalomkészítőknek és oktatóknak**: prémium anyagok és letöltések szekciószinten védhetők.
+- **Kisvállalkozásoknak**: zárt ajánlatok, partneri űrlapok, belső információk.
+- **Fejlesztőknek**: egyedi modulok és JS-függő komponensek kontrollált feloldása.
 
-A DiviPasswords kompatibilis különböző harmadik fél által fejlesztett modulokkal is. Ha fejlesztő vagy, akkor a bővítmény dokumentációjában található filter hook segítségével integrálhatod saját moduljaidba is.
+## Árazás és elérhetőség – összkép
 
-## Gyakorlati példák
+A DiviPasswords önálló termékként is elérhető, és a DonDivi bővítmények az Elegant Themes felvásárlását követően bizonyos Divi Pro szolgáltatáscsomagok részeként bónuszként is hozzáférhetők. A pontos hozzáférés és ár időszakonként változhat.
 
-### Fájlok és letöltések védelme
+## Fontos különbségtétel
 
-Ha exkluzív tartalmakat kínálsz felhasználóidnak, például e-könyveket vagy PDF-eket, akkor a DiviPasswords segítségével biztosíthatod, hogy csak azok férjenek hozzá ezekhez a letöltésekhez, akik rendelkeznek a megfelelő jelszóval.
-
-### E-mail aláírások védelme
-
-Bizonyos e-mail aláírásokat vagy sablonokat csak meghatározott felhasználók számára tehetsz elérhetővé, ami különösen hasznos lehet üzleti környezetben.
-
-### Regisztrációs űrlapok védelme
-
-Ha különleges eseményekre vagy szolgáltatásokra történő regisztrációkat szeretnél korlátozni, a DiviPasswords segítségével jelszóval védheted ezeket az űrlapokat.
-
-### Prémium tartalom védelme
-
-Olyan prémium tartalmakat is védhetsz, mint például oktatóanyagok vagy előfizetéses cikkek, így biztosítva, hogy csak azok érjék el ezeket, akik előfizettek rájuk.
-
-## Szószedet
-
-- **Filter hook**: Egy programozási technika, amely lehetővé teszi a fejlesztők számára, hogy módosítsák vagy kiegészítsék a bővítmény funkcionalitását.
-- **Placeholder**: Helyőrző szöveg egy űrlapmezőben, amely utasítást vagy példát ad arra vonatkozóan, hogy milyen adatot kell beírni.
-- **Form**: Űrlap; itt azt az űrlapot jelenti, amelyet a felhasználó kitölt és beküld.
-- **Padlock icon**: Lakat ikon; a jelszóval védett tartalmat jelző ikon.
-- **Submit button**: Az űrlap elküldésére szolgáló gomb.
-
-Reméljük, hogy ez a részletes ismertető segít megérteni és hatékonyan használni a DiviPasswords bővítményt.
+Létezik más, hasonló nevű “protect” bővítmény is a Divi ökoszisztémában, eltérő kezelőfelülettel és működéssel. Ez az oldal kifejezetten a **DiviPasswords** bővítményt dokumentálja.

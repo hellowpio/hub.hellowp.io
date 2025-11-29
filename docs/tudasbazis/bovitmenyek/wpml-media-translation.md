@@ -1,56 +1,89 @@
-# WPML Media Translation
+---
+title: "WPML Media Translation"
+description: "WPML kiegészítő a WordPress médiáinak (képek, videók, PDF-ek) többnyelvű kezeléséhez: nyelvenként eltérő fájlok és média metaadatok fordítása."
+sidebar_label: "WPML Media Translation"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A WPML Media Translation funkciója lehetővé teszi, hogy a weboldalad médiaelemeit, például képeket, videókat és egyéb fájlokat, több nyelven is elérhetővé tedd. Ez különösen hasznos lehet, ha egy többnyelvű weboldalt üzemeltetsz, és szeretnéd, hogy minden látogatód számára ugyanazokat a médiaelemeket lásd, függetlenül attól, hogy milyen nyelvet beszélnek.
+A WPML Media Translation a WPML ökoszisztéma hivatalos kiegészítője, amely megoldja a többnyelvű média kezelésének két kulcskérdését: 
+- hogyan fordítsd a **képekhez tartozó metaadatokat** (alt szöveg, cím, felirat, leírás), és 
+- hogyan rendelj **eltérő médiát nyelvenként** ugyanahhoz az oldalhoz vagy termékhez.
 
-## Funkciók
+Ha például más képet szeretnél mutatni a francia változatban (eltérő jogi jelölések, kulturális különbségek), vagy nyelvek szerint optimalizálnád az alt szövegeket SEO és akadálymentesség miatt, ez a bővítmény erre ad professzionális, szerkesztőbarát megoldást.
 
-### Médiafájlok lefordítása
+## Hogyan működik röviden?
 
-A WPML Media Translation segítségével minden egyes médiafájlhoz különböző nyelvi változatokat adhatsz meg. Ez magában foglalja a kép címét, leírását és alternatív szövegét is.
+- A **WPML mag** végzi a média metaadatok fordítását (ATE/Translation Management használatával).
+- A **Media Translation add‑on** feladata, hogy az oldal/termék fordításaiban tetszőlegesen **másik fájlt** rendelhess a médiamezőkhöz nyelvenként.
+- Az „**Automatikus felismerés**” opcióval a WPML okosan kezeli, mikor kell a médiához kapcsolódó szöveges mezőket duplikálni a fordítási felületre (csak ha szükséges).
 
-### Több nyelv kezelése
+```text
+WPML → Settings → Media Translation
+[ ] Automatically detect best options for translating image texts
+```
 
-A bővítmény egyszerűen kezelhetővé teszi a többnyelvű médiaelemek kezelését. Lehetővé teszi, hogy egyetlen felületen keresztül irányítsd és szerkeszd az összes médiaelemet.
+## Fő funkciók, részletesen
 
-### Kompatibilitás más eszközökkel
+- **Média metaadatok fordítása**
+  - Az oldal/poszt fordításakor az ATE (Advanced Translation Editor) automatikusan felkínálja a képekhez kapcsolódó meta‑mezők fordítását. Így az alt, cím, felirat, leírás minden nyelven lokalizált lesz – ez egyszerre SEO és akadálymentességi előny.
 
-A WPML Media Translation zökkenőmentesen működik együtt más WPML bővítményekkel, mint például a WPML String Translation és a WPML Translation Management. Ezen kívül kompatibilis számos népszerű WordPress sablonnal és bővítménnyel, mint például az Elementor és a WooCommerce.
+- **Eltérő média per nyelv**
+  - Ugyanazon tartalom fordításaiban teljesen más **képet, videót, PDF‑et** adhatsz meg. Ezt a WPML → Media Translation képernyőn állítod, a kívánt nyelvnél a „Use a different file” funkcióval. A hozzárendelés stabil marad a fordítási frissítések során is.
 
-## Előnyök
+- **Intelligens duplikációkezelés**
+  - A rendszer nem másolja feleslegesen a fizikai képfájlokat. Csak a szükséges **szöveges mezőket** duplikálja (a használt szerkesztő/builder logikájához igazodva). Így a médiatár és az adatbázis tisztább, karcsúbb marad.
 
-### Egységes felhasználói élmény
+- **Kiemelt kép és galériák kezelése**
+  - A kiemelt képek és galériák a fordításokkal együtt következetesen szinkronizálhatók vagy cserélhetők. Ha a fordításban más képet szeretnél, a Media Translation felületén rendeld hozzá – a beállítás megmarad.
 
-A különböző nyelveken elérhető médiaelemek biztosítják, hogy minden látogatód ugyanolyan minőségi tartalmat kapjon, függetlenül attól, hogy melyik nyelvet használja. Ez különösen fontos lehet olyan weboldalak esetében, amelyek nagy nemzetközi közönséget szolgálnak ki.
-
-### SEO előnyök
-
-A többnyelvű médiaelemek használata növelheti a weboldalad keresőoptimalizálását (SEO), mivel a keresőmotorok különböző nyelveken is indexelik a tartalmat. Ezáltal több látogatót vonzhatsz be különböző nyelvekről.
-
-### Egyszerű beállítás és kezelés
-
-A WPML Media Translation felhasználóbarát felületet kínál, amely megkönnyíti a médiaelemek lefordítását és kezelését. Az egyszerű kezelhetőség mellett részletes dokumentáció is rendelkezésre áll, ami segít a beállításban és a használatban.
+- **Kompatibilitás, integráció**
+  - Gond nélkül működik a főbb oldalszerkesztőkkel (Gutenberg, Elementor, Divi, Beaver Builder) és képtömörítőkkel. A többnyelvű változatokhoz megadott fájlok optimalizálása is kezelhető.
 
 ## Gyakorlati példák
 
-### E-kereskedelmi oldalak
+- **WooCommerce termékek:** Országonként más csomagolásfotó vagy jogi piktogram. A magyar változatban HUN jelölés, a németben DE‑specifikus összetevőlista a címkén.
+- **Marketingoldal hero banner:** Az angol oldalon „Free shipping”, a spanyolon „Envío gratis” felirat szerepel a képen – két külön fájlt állítasz be nyelvenként.
+- **Infografikák és letölthető PDF‑ek:** Régiónként eltérő adatokkal. A PDF metaadatai (cím, leírás) is fordíthatók.
+- **SEO és AA (akadálymentesség):** Az alt szövegeket és címeket minden nyelven kulcsszó‑aligazítással optimalizálod, javítva a találhatóságot és az olvashatóságot.
 
-Egy e-kereskedelmi weboldalon fontos, hogy minden termék képe és leírása elérhető legyen több nyelven. A WPML Media Translation segítségével könnyen biztosíthatod, hogy a termékek képei és leírásai minden nyelven elérhetők legyenek, növelve ezzel az esélyét annak, hogy több nemzetközi vásárlót vonzz be.
+## Ajánlott munkafolyamat
 
-### Oktatási portálok
+1. **Metaadatok fordítása**
+   - Küldd az oldalt/posztot fordításra a Translation Managementből.
+   - Az ATE-ben fordítsd le a képhez tartozó mezőket (alt, cím, felirat, leírás).
+   - Kapcsold be az automatikus felismerést, hogy csak a szükséges média‑szövegek jelenjenek meg fordításra.
 
-Egy oktatási portál esetében létfontosságú lehet, hogy a tananyagokhoz tartozó képek és videók is elérhetők legyenek több nyelven. A WPML Media Translation segítségével egyszerűen lefordíthatod ezeket az elemeket, biztosítva ezzel a hallgatók számára a teljes körű oktatási élményt.
+2. **Eltérő fájl beállítása nyelvenként**
+   - Aktiváld a Media Translation add‑ont.
+   - Nyisd meg a WPML → Media Translation képernyőt.
+   - Válaszd ki a médiát, majd a célnyelvet, és használd a „Use a different file” opciót.
+   - Mentsd – a cserekép stabilan kapcsolódik a fordításhoz.
 
-### Blogok és hírportálok
+Tipp: Ha a fordítófelületen nem látsz média URL‑t, az normális. A médiák ID‑alapúak, a csere a Media Translation képernyőn történik.
 
-Egy blog vagy hírportál esetében gyakran előfordulhat, hogy különböző nyelvű olvasók látogatják az oldalt. A WPML Media Translation segítségével biztosíthatod, hogy minden cikkhez tartozó kép és médiaelem elérhető legyen az olvasók anyanyelvén.
+## Előnyök és értékajánlat
 
-## Szószedet
+- **Pontosan azt a képet mutatod**, amit az adott nyelvi közönségnek szeretnél.
+- **Jobb SEO és akadálymentesség** a lokalizált alt/cím mezőkkel.
+- **Kevesebb adatbázis‑terhelés**, nincs felesleges fájl‑duplikáció.
+- **Stabil fordítási folyamat**: a csereképek nem vesznek el ATE/TM frissítésekkor.
+- **Időmegtakarítás**: az automatikus felismerés csak a szükséges mezőket hozza át, kevesebb kattintás, kevesebb hibalehetőség.
 
-- **Médiafájl**: Képek, videók és egyéb digitális fájlok, amelyeket a weboldalon használnak.
-- **Alternatív szöveg (alt text)**: A képekhez tartozó szöveges leírás, amely segíti a keresőmotorokat és a látássérült felhasználókat.
-- **SEO**: Keresőoptimalizálás; azon technikák összessége, amelyek javítják a weboldal láthatóságát a keresőmotorok találati listáján.
-- **WPML**: WordPress Multilingual Plugin; egy bővítménycsomag, amely lehetővé teszi a WordPress weboldalak többnyelvűvé tételét.
+## Kinek ajánlott?
 
-Reméljük, hogy ez az útmutató segít jobban megérteni a WPML Media Translation funkcióit és előnyeit. Használd ezt az eszközt, hogy weboldalad még inkább elérhetővé tedd nemzetközi közönséged számára!
+- **Webáruházaknak (WooCommerce):** áruképek, címkék, jogi jelölések nyelvenként eltérők lehetnek.
+- **Marketingcsapatoknak és ügynökségeknek:** A/B‑tesztelt bannerek és üzenetek lokalizált képi változatai.
+- **Szerkesztőségeknek, blogoknak:** Infografikák és illusztrációk régióspecifikus adaptációi.
+- **SEO/AA fókuszú csapatoknak:** Nyelvspecifikus alt/cím szövegek a jobb rangsorolás és hozzáférhetőség érdekében.
+- **Oldalszerkesztőket használóknak:** Gutenberg/Elementor/Divi alatti médiamezők fordítása és cserefájl‑kezelése zökkenőmentesen.
+
+## Rendszerkövetelmények és megjegyzések
+
+- A Media Translation a **WPML Multilingual CMS** részeként használható; önmagában nem működik.
+- A média metaadatok fordítását a **WPML fordítófelületei** végzik; a **csereképek nyelvenkénti hozzárendelése** a Media Translation feladata.
+- Az „automatikus felismerés” alapértelmezésben minimalizálja a szükségtelen meződuplikációt.
+- Frissítések során a csereképek hozzárendelése megmarad.
+- A bővítményt az **OnTheGoSystems Limited** fejleszti és tartja karban.
+
+Ezzel a kiegészítővel teljes kontrollt kapsz a többnyelvű médiáid felett: eldöntheted, mikor elég a metaadatok fordítása, és mikor kell valóban másik fájlt megjeleníteni – mindezt biztonságosan, a fordítási folyamatokkal szinkronban.

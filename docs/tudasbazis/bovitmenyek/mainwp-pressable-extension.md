@@ -1,59 +1,77 @@
-# MainWP Pressable Extension
+---
+title: "MainWP Pressable Extension"
+description: "MainWP Pro kiegészítő, amellyel a Pressable hosztingon futó WordPress-oldalaidat a MainWP irányítópultból, a Pressable API-n keresztül menedzselheted – külön belépés nélkül."
+sidebar_label: "MainWP Pressable Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Weboldalak kezelése a vezérlőpulton keresztül
+A MainWP Pressable Extension egy **MainWP Pro** kiegészítő, amellyel a **Pressable** hosztingon futó webhelyeid hoszting-specifikus feladatait közvetlenül a **MainWP Dashboardból** intézheted. Nem kell többet felületről felületre ugrálnod: site-létrehozás, **staging/production** váltás, **CDN** kapcsolás, **backup** kezelés és **phpMyAdmin** elérés mind egy helyről, akár **tömegesen** is. Ügynökségi környezetben ez kézzelfogható idő- és hibacsökkentést hoz.
 
-A MainWP Pressable Extension lehetővé teszi számodra, hogy egy központi vezérlőpulton keresztül kezelhesd a Pressable tárhelyen található weboldalaidat. Ez magába foglalja az új weboldalak létrehozását, meglévők szerkesztését, biztonsági mentések készítését és a weboldalak törlését.
+## Fő funkciók, érthetően
 
-### Egyedi weboldalak kezelése
+- **Pressable-fiókok összekapcsolása**: a Pressable **API Client ID/Secret** megadásával kapcsolod a fiókod a MainWP-hez. Több fiókot is kezelhetsz egy irányítópultból. A Pressable-en lévő site-ok a kiegészítő táblájában akkor jelennek meg, ha child site-ként hozzáadtad őket a MainWP-hez.
 
-Az egyes Pressable weboldalak kezelésére különböző feladatokat végezhetsz el. Szinkronizálhatod az adatokat, részletes áttekintést kaphatsz az oldalról, szerkesztheted a beállításokat, hozzáférést adhatod vagy elveheted, törölheted az oldalt, kezelheted a CDN-t, hozzáférhetsz az adatbázishoz és biztonsági mentéseket végezhetsz.
+- **Új webhely létrehozása**: közvetlenül a MainWP-ből indíthatsz új Pressable site-ot. Megadhatod a **site nevet**, választhatsz **WordPress** vagy **WooCommerce** típust, jelölheted **Staging** környezetnek, kiválaszthatod a **PHP verziót** és az **adatközpont** lokációját. Így gyors a provisioning, nincs kontextusváltás.
 
-### Több weboldal kezelése egyszerre
+- **Életciklus-kezelés**: meglévő site-okat egy kattintással **letilthatsz/engedélyezhetsz** (Live/Disabled), vagy végleg **törölhetsz**. Válthatsz környezetet (**Convert to Staging** vagy **Staging to Live**) – praktikus átadás előtt vagy teszteléskor.
 
-Ha több weboldalt kezelsz, a hatékonyság kulcsfontosságú. A Pressable Extension segítségével több weboldalon is végezhetsz tárhely-specifikus műveleteket egyszerre, így időt és energiát takaríthatsz meg.
+- **CDN kezelése**: be- és kikapcsolhatod a **Pressable CDN**-t. Hasznos, ha kampány előtt teljesítményt optimalizálsz, vagy hibaelhárításnál ideiglenesen lekapcsolnád.
 
-### Biztonsági mentések kezelése
+- **Biztonsági mentések**: listázod a Pressable backupjaid, külön **fájl** és **adatbázis** letöltést kérhetsz, illetve **visszaállítást** indíthatsz ugyanarra vagy – ha igényli a folyamat – **másik Pressable site-ra**. Klónozásnál és incidenskezelésnél különösen hasznos.
 
-Soha többé nem kell aggódnod az adatvesztés miatt. A Pressable Extension átfogó listát kínál a meglévő Pressable biztonsági mentéseidről. Letöltheted a fájlokat és adatbázisokat, visszaállíthatod a weboldaladat, vagy akár alkalmazhatod egy másik Pressable oldalon is a biztonsági mentést.
+- **1 kattintásos phpMyAdmin**: közvetlen **phpMyAdmin**-hozzáférés linkkel a MainWP-ből, így gyorsan elérheted az adatbázist.
 
-## Együttműködés más eszközökkel
+- **Tömeges műveletek**: a fenti hoszting-specifikus akciók nagy részét **bulk** módban, több site-on egyszerre futtathatod. Ideális ügynökségi karbantartási rutinokhoz.
 
-### Zökkenőmentes integráció
+- **Gyors állapot-áttekintés**: a kiegészítő táblázatai hoszting-információkat is mutatnak: **State**, **Environment**, **Data Center**, **IP**, havi és 24 havi **látogatottság**, **CDN** állapot, **utolsó backup** ideje. Egyetlen nézetben látod a kritikus adatokat.
 
-A Pressable Extension zökkenőmentesen integrálódik a MainWP Dashboard-dal és a Pressable tárhelyfiókoddal anélkül, hogy további bővítményekre vagy API-kra lenne szükség.
+## Gyakorlati példák
 
-### Több fiók kezelése
+- **Villámrajtos indulás**: 5 új WooCommerce boltot indítasz. A MainWP-ben megadod a neveket, kiválasztod az európai adatközpontot és a kívánt PHP-t, jelölöd Stagingnek. Pár perc múlva mind az öt site kész a csapatnak a témák és bővítmények telepítéséhez.
 
-Az extension lehetővé teszi több Pressable fiók kezelését egyetlen vezérlőpulton keresztül, így egységesített irányítást biztosít minden Pressable-tárhelyen található weboldalad felett.
+- **Kampány előkészítés**: egy blognál bekapcsolod a **CDN**-t és ellenőrzöd az előző havi látogatottságot. Ha nő a terhelés, a staginget egy kattintással **Live**-ra emeled az átadás után.
 
-## Konkrét helyzetek és gyakorlati példák
+- **Incidenskezelés**: hibás frissítés miatt a site szétesett. A MainWP-ben ránézel a **backup** listára, kiválasztod a tegnapi mentést, és **restore**-t indítasz. Ha tesztelnéd, előbb egy **másik Pressable site**-ra állítod vissza.
 
-### Időmegtakarítás több weboldal kezelésekor
+- **Adatbázis gyorsjavítás**: kliens hibát jelez. Egy kattintással megnyitod a **phpMyAdmin**-t, javítod a táblát, kész.
 
-Ha több tucat weboldalt kezelsz, mindegyiknek külön-külön történő karbantartása időigényes lehet. A Pressable Extension segítségével egyszerre frissíthetsz több weboldalt is, így jelentős időt takaríthatsz meg.
+- **Tömeges karbantartás**: negyedéves takarításnál 30 site-on letiltod átmenetileg a CDN-t, vagy több tesztoldalt egyszerre **Disabled** állapotba teszel – mindezt egy körben.
 
-### Biztonsági mentés és visszaállítás
+## Előnyök és értékajánlat
 
-Egy esetleges adatvesztés esetén gyorsan és egyszerűen visszaállíthatod az oldalaidat a meglévő biztonsági mentésekből. Emellett akár másik oldalon is alkalmazhatod a mentést, ha szükséges.
+- **Időmegtakarítás**: hosztingfeladatok egy helyről, több fiókon és site-on át, tömegesen.
+- **Kevesebb hibalehetőség**: standardizált folyamatok, kevesebb kézi lépés és kevesebb bejelentkezés.
+- **Átláthatóság**: hoszting- és WordPress-információk **egységes nézetben**.
+- **Rugalmasság**: **staging/production** váltás, **backup**-alapú visszaállítás és **CDN**-kapcsolás pillanatok alatt.
+- **Önállóság és kontroll**: a MainWP önhosztolt megközelítése és a Pressable API integrációja biztonságos, auditálható működést tesz lehetővé.
 
-### Adatbázis kezelés
+## Kinek ajánlott?
 
-Az extension lehetővé teszi az adatbázis közvetlen elérését és kezelését, így gyorsan elvégezheted a szükséges módosításokat anélkül, hogy külön eszközökre lenne szükséged.
+- **WordPress ügynökségeknek**: portfólió-szintű menedzsment, bulk műveletek, gyors provisioning.
+- **Webhely-karbantartóknak/IT csapatoknak**: incidenskezelés, backup és adatbázis-hozzáférés központilag.
+- **Nagyobb szervezeteknek**: több **Pressable-fiók** és sok site egységes irányítása egy irányítópulton.
 
-## Tippek a hatékony használathoz
+## Követelmények
 
-- **Rendszeres biztonsági mentés:** Mindig készíts rendszeresen biztonsági mentéseket, hogy minimalizáld az adatvesztés kockázatát.
-- **Több weboldal egyszerre történő frissítése:** Használd ki a tömeges frissítési funkciót, hogy egyszerre több oldalt is naprakészen tarts.
-- **Szinkronizálás:** Gyakran szinkronizáld az adatokat a vezérlőpultoddal, hogy mindig pontos információkkal rendelkezz.
+- **MainWP Dashboard** aktív **Pro** előfizetéssel.
+- **Pressable-fiók** és érvényes **API** hozzáférés (**Client ID** és **Client Secret**).
+- A kezelt site-oknak **child site**-ként szerepelniük kell a MainWP-ben, hogy megjelenjenek az extension táblájában.
 
-## Szószedet
+## Gyors üzembe helyezés
 
-- **CDN (Content Delivery Network):** Tartalomkézbesítési hálózat, amely gyorsítja a weboldalak betöltését.
-- **API (Application Programming Interface):** Alkalmazásprogramozási felület, amely lehetővé teszi különböző szoftverek közötti kommunikációt.
-- **Biztonsági mentés:** Az adatok másolatának készítése, amelyet adatvesztés esetén használhatsz.
-- **Szinkronizálás:** Az adatok összehangolása több rendszer között.
-- **Tömeges frissítés:** Több weboldal egyidejű frissítése.
+```
+1) MainWP Dashboard > Extensions > Pressable > Install, majd Activate
+2) Pressable felület: hozz létre új API Applicationt (teljes jogosultság), jegyezd fel a Client ID / Secret értékeket
+3) MainWP > Extensions > Pressable > Settings: add meg és mentsd az API adatokat
+4) Add hozzá a Pressable site-jaidat child site-ként a MainWP-hez (ha még nem tetted)
+5) Nyisd meg az Extensiont és végezd a szükséges műveleteket (létrehozás, CDN, backup, staging/live, stb.)
+```
 
-A MainWP Pressable Extension egyszerűsíti és hatékonyabbá teszi a Pressable tárhelyen található WordPress weboldalaid kezelését, legyen szó akár egyedi oldalak kezeléséről, akár több oldal karbantartásáról egyidejűleg.
+## Használati megjegyzések és korlátok
+
+- Kifejezetten **Pressable** hosztinghoz készült; más szolgáltatóknál nem használható.
+- A végrehajtható műveletek a Pressable-fiókod **jogosultságaitól** függenek (például letiltás vagy törlés).
+- Csak azok a site-ok láthatók az extensionben, amelyeket **child site-ként** már hozzáadtál a MainWP-hez.
+- **Destruktív műveleteknél** (törlés, letiltás, restore) használj staginget és készíts előtte mentést.
+- Több **Pressable-fiók** párhuzamos kezelése támogatott ugyanazon Dashboardból.

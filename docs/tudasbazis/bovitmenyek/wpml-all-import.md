@@ -1,50 +1,89 @@
-# WPML All Import
+---
+title: "WPML All Import"
+description: "WPML kiegészítő a WP All Importhoz: többnyelvű tartalmak automatikus nyelvi hozzárendelése és fordítások összekapcsolása."
+sidebar_label: "WPML All Import"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WPML All Import egy olyan eszköz, amely lehetővé teszi a többnyelvű tartalom importálását WordPress oldalakra. Különösen hasznos azok számára, akik nagy mennyiségű adatot kívánnak áthelyezni anélkül, hogy manuálisan kellene bevinniük minden egyes nyelvi változatot. Az eszköz integrálható más népszerű bővítményekkel is, például a WooCommerce és az Advanced Custom Fields (ACF) bővítménnyel.
+A WPML All Import a WPML hivatalos kiegészítője, amely a WP All Import folyamataiba illeszkedve automatikusan kezeli a többnyelvű tartalmakat. Segít abban, hogy a bejegyzések, oldalak, egyedi bejegyzéstípusok, taxonómiák, média és egyedi mezők a megfelelő nyelvhez legyenek rendelve, és a fordítások egymással össze legyenek kapcsolva. Így nem kell kézzel összepárosítanod ugyanannak a tételnek a különböző nyelvi változatait.
 
-## Együttműködés más eszközökkel
+Megjegyzés: a bővítmény ma “legacy” jelölésű, azaz van újabb, ajánlott módszer, de továbbra is működik, támogatott és dokumentált.
 
-### WooCommerce
-A WPML All Import zökkenőmentesen működik együtt a WooCommerce bővítménnyel. Ez lehetővé teszi a többnyelvű termékadatok egyszerű importálását és exportálását. Például, ha egy webáruházban különböző nyelveken szeretnéd megjeleníteni a termékleírásokat, akkor ezzel az eszközzel mindezt egyetlen lépésben megteheted.
+## Fő funkciók, érthetően
 
-### Advanced Custom Fields (ACF)
-Az ACF bővítménnyel való kompatibilitás révén egyedi mezők importálása is lehetséges több nyelven. Ez különösen hasznos lehet olyan oldalak esetében, ahol sok egyedi tartalommező van beállítva különböző nyelveken.
+- Többnyelvű import teljes körűen  
+  Importálhatsz bármilyen poszttípust és taxonómiát több nyelven. A kiegészítő beállítja a tételek nyelvét, és azonosítók alapján a fordításokat egymáshoz kapcsolja. Ez a gyakorlatban azt jelenti, hogy például az angol és magyar változat ugyanahhoz a “törzs” tartalomhoz fog tartozni.
 
-## Konkrét helyzetek és gyakorlati példák
+- Fordítás-kapcsolatok automatikus kezelése  
+  Egy közös egyedi azonosító (Unique Identifier) alapján a rendszer felismeri, melyik elem melyik fordítása. A másodlagos nyelvű import során csak megadod, melyik az alapnyelvi import “szülője”, és a plugin elvégzi a kapcsolást.
 
-### Többnyelvű blogbejegyzések importálása
-Ha van egy blogod, ahol több nyelven szeretnél tartalmat közzétenni, a WPML All Import segítségével könnyedén importálhatod az összes bejegyzést és azok fordításait. Nem kell egyenként felvinni a bejegyzéseket minden nyelven, elég egyszer beállítani az importálást.
+- Taxonómiák és média nyelvi megfeleltetése  
+  Kategóriák, címkék és egyedi taxonómiák fordításai is rendben összekapcsolódnak. A képek és egyéb médiaelemek nyelve és kapcsolatai konzisztensen kerülnek be.
 
-### Nagy mennyiségű termékadat importálása
-Egy webáruház üzemeltetésekor gyakran szükség van nagy mennyiségű termékadat importálására. A WPML All Import lehetővé teszi a termékleírások, árak, képek és egyéb adatok egyszerre történő importálását több nyelven. Ez időt és energiát takarít meg, miközben biztosítja, hogy minden nyelvi változat helyesen legyen beállítva.
+- WooCommerce-támogatás  
+  Egyszerű és változatos termékek többnyelvű importja, a kapcsolódó adatokkal együtt. Az ajánlott és kapcsolódó termékek hivatkozásai a megfelelő fordított termékekre mutatnak. Ehhez a WooCommerce-hez való WP All Import kiegészítőre és a WPML WooCommerce többnyelvű bővítményére is szükséged lesz.
 
-### Egyedi tartalomtípusok kezelése
-Az eszköz támogatja az egyedi tartalomtípusok importálását is. Ha például egy ingatlanügynökség vagy, és különböző nyelveken szeretnéd megjeleníteni az ingatlanhirdetéseket, a WPML All Import segítségével ezt könnyedén megteheted.
+- Rugalmas források  
+  Bármilyen XML/CSV (vagy táblázatból exportált) adat feldolgozható a WP All Import drag and drop mező-hozzárendelésével kombinálva.
 
-## Kiemelt jellemzők
+## Hogyan működik? Ajánlott munkafolyamat
 
-### Egyszerű CSV és XML fájlkezelés
-A WPML All Import támogatja a CSV és XML fájlok kezelését, így bármilyen formátumú adatot egyszerűen importálhatsz. Ez különösen hasznos lehet, ha különböző forrásokból származó adatokat kell összevonni.
+1. Szervezd nyelvenként külön fájlokba az adatokat.  
+   Minden fájl tartalmazza ugyanazt a Unique Identifier mezőt (azonos értékkel a fordításoknál).
+2. Tartsd a bevált import-sorrendet:  
+   - Taxonómiák alapnyelven  
+   - Taxonómiák más nyelveken  
+   - Tartalom/termékek alapnyelven  
+   - Tartalom/termékek más nyelveken (itt add meg “szülőnek” az alapnyelvi importot)
+3. Változatos WooCommerce-termékeknél:  
+   - Használj numerikus Unique Identifiert (ne SKU-t).  
+   - A változatokhoz szükséges globális attribútumokat és azok fordításait hozd létre előre.  
+   - Futtass próbaimportot 1–2 tétellel, mielőtt nagy tömegben importálsz.
 
-### Automatikus fordítási kapcsolatok
-Az eszköz automatikusan felismeri a különböző nyelvek közötti kapcsolatokat, így nem kell manuálisan beállítani az egyes fordításokat. Ez jelentős időmegtakarítást eredményez, különösen nagy adatbázisok esetén.
-
-### Rugalmas mezőtérképzés
-Lehetőséget biztosít arra, hogy testre szabottan állítsd be, melyik mező melyik adatot tartalmazza. Ez különösen fontos lehet, ha az importált adatok struktúrája eltér a WordPress alapértelmezett mezőitől.
+Példa egy CSV-részletre (két nyelv, közös azonosítóval):
+```
+id;post_title;post_content;lang;product_type;attribute_pa_color
+1001;Póló;Kényelmes pamut póló.;hu;variable;piros|kék
+1001;T-Shirt;Comfortable cotton t-shirt.;en;variable;red|blue
+```
 
 ## Gyakorlati példák
 
-- **Többnyelvű termékek importálása**: Egy online boltban több nyelven elérhető termékek feltöltése.
-- **Blogbejegyzések áthelyezése**: Különböző nyelveken írt blogbejegyzések egyszerű áthelyezése egyik oldalról a másikra.
-- **Ingatlanhirdetések**: Több nyelven elérhető ingatlanhirdetések importálása egy ingatlanügynökség oldalára.
-- **Egyedi mezők kezelése**: Speciális tartalommezők több nyelvű adatainak egyszerű importálása.
+- Többnyelvű webhely migrációja  
+  Egy régi CMS-ből külön CSV-be exportálod a magyar, angol és német tartalmakat. Mindegyik rekord kap egy közös azonosítót. Először beimportálod a kategóriákat magyarul, majd angolul és németül, aztán a cikkeket ugyanígy. A WPML All Import a cikkek fordításait automatikusan összekapcsolja.
 
-## Szószedet
+- E‑kereskedelmi katalógus feltöltése  
+  Ruházati termékek variációkkal (szín, méret). Előre létrehozod a globális attribútumokat és azok fordításait. Az importban a fő termékek és variációk azonosítói alapján a rendszer felépíti a termék-variáció struktúrát több nyelven, és a kapcsolódó termékek linkjei a megfelelő nyelvi párjukra mutatnak.
 
-- **WPML**: WordPress Multilingual Plugin, többnyelvűség kezelésére szolgáló bővítmény.
-- **CSV**: Comma-Separated Values, adatfájlformátum.
-- **XML**: Extensible Markup Language, adatcserére szolgáló fájlformátum.
-- **WooCommerce**: WordPress webáruház bővítmény.
-- **ACF**: Advanced Custom Fields, egyedi mezők kezelésére szolgáló bővítmény.
+- Nagy tömegű taxonómiakezelés  
+  Több ezer címke és kategória nyelvi megfeleltetését pontosan viszi át, így elkerülheted a kézi utómunkát és a hibás hozzárendeléseket.
+
+## Előnyök és értékajánlat
+
+- Idő- és költségmegtakarítás: megszünteti a manuális fordítás-összekapcsolást.  
+- Kiszámítható, ismételhető folyamat: az ajánlott sorrenddel elkerülheted a törött kapcsolatok és keveredő taxonómiák problémáit.  
+- E‑kereskedelemre hangolva: a változatos termékek és kapcsolódó hivatkozások stabil kezelése.  
+- Nagy adatmennyiségekhez is alkalmas: megbízható a tömeges feltöltések során.
+
+## Követelmények és kompatibilitás
+
+- Szükséges: WP All Import, WPML, WPML String Translation és a WPML All Import.  
+- WooCommerce esetén: WP All Import WooCommerce Product Import addon és a WPML WooCommerce többnyelvű bővítménye.  
+- A kiegészítőt a WPML csapata fejleszti és támogatja, és hivatalosan együttműködik a WP All Import ökoszisztémával.  
+- A bővítmény “legacy” jelölésű; új projektnél érdemes megfontolni a modernebb WPML Export and Import megoldást.
+
+## Gyors ellenőrzőlista
+
+- Készíts nyelvenként külön CSV/XML fájlokat, egységes Unique Identifier mezővel.  
+- Importáld a taxonómiákat: alapnyelv → más nyelvek.  
+- Importáld a tartalmakat/termékeket: alapnyelv → más nyelvek (szülőként az alapnyelvi import).  
+- WooCommerce: csak globális attribútumokat használj; változatos termékekhez numerikus azonosító kell; futtass próbaimportot.
+
+## Kinek ajánlott?
+
+- Ügynökségeknek és fejlesztőknek, akik többnyelvű site-okat migrálnak vagy építenek.  
+- E‑kereskedelmi csapatoknak, akik nagy, többnyelvű termékkatalógusokat kezelnek.  
+- Tartalomkezelő és adatcsapatoknak, akik rendszeres, tömeges importokat futtatnak, és kritikus a pontos nyelvi megfeleltetés.
+
+Ha új projektet indítasz és elsődleges szempont az egyszerűbb, modernebb folyamat, fontold meg a WPML Export and Import használatát. Ha viszont meglévő WP All Import folyamatba szeretnéd gördülékenyen beilleszteni a többnyelvűséget, a WPML All Import megbízható, bevált megoldás.

@@ -1,56 +1,78 @@
-# WP Grid Builder - Pods
+---
+title: "WP Grid Builder - Pods"
+description: "Hivatalos kiegészítő, amely teljes értékű integrációt ad a Pods mezőkhöz a WP Grid Builder rácsaiban, kártyáiban és facettás szűrőiben."
+sidebar_label: "WP Grid Builder - Pods"
+---
 
-A WP Grid Builder - Pods add-on egy kiegészítő, amely támogatást nyújt a Pods bővítményhez. Ez a kiegészítő lehetővé teszi a Pods által létrehozott egyedi mezők (custom fields) egyszerű szűrését és megjelenítését a WP Grid Builder használatával.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A WP Grid Builder – Pods kiegészítő a WP Grid Builder hivatalos integrációja a Pods Frameworkhöz. Arra készült, hogy a Pods által kezelt egyedi mezőket – beleértve az összetett, ismétlődő és kapcsolat típusú mezőket – gond nélkül meg tudd jeleníteni a kártyákon, és ugyanilyen könnyedén szűrni tudd őket facettákkal. A Pods sokszor speciális adatstruktúrákat használ, amelyeket a „sima” egyedi mezőkre építő eszközök nem tudnak megfelelően indexelni. Ez a kiegészítő megoldja ezt: a Pods-mezők első osztályú állampolgárrá válnak a rácsokban és a valós idejű, AJAX-os facettás szűrésben.
 
-### Minden mezőtípus támogatása
+## Gyors telepítési és beállítási checklista
 
-Ez a kiegészítő minden mezőtípust támogat, amelyet a Pods plugin hoz létre. Legyen szó egyszerű szövegmezőkről, számokról, dátumokról vagy összetett, ismétlődő kapcsolati mezőkről, a WP Grid Builder - Pods képes ezeket megfelelően kezelni és szűrni.
+- Telepítsd és aktiváld a WP Grid Buildert és a Pods plugint.
+- Telepítsd és aktiváld a WP Grid Builder – Pods kiegészítőt (a WP Grid Builder fiókból érhető el).
+- Hozz létre vagy frissíts egy rácsot és kártyát a tartalmaidhoz.
+- Facetta létrehozásakor válaszd a Custom Fields forrást, majd keress rá a „pods” kifejezésre, és válaszd ki a kívánt Pods-mezőt.
+- A kártyaszerkesztőben add hozzá a „Custom field” blokkot, és ugyanígy válaszd ki a megfelelő Pods-mező(ke)t.
+- Ha térképes nézetet használsz, állíts be marker-mezőket Pods-ból.
+- Helyezd el a rácsot és a facettákat Gutenberg-blokkal vagy shortcode-dal.
 
-### Egyedi mezők megjelenítése kártyákban
+## Fő funkciók és működés
 
-A Pods által létrehozott mezők értékeit könnyedén megjelenítheted a WP Grid Builder kártyáiban. A kártyákban elhelyezett egyedi mező blokkok (custom field blocks) segítségével bármilyen adatot megjeleníthetsz, amelyet a Pods plugin tárol.
+### Teljes Pods-mezőtámogatás
+A kiegészítő minden Pods-mezőtípust támogat. Ez azt jelenti, hogy nemcsak egyszerű szöveg vagy szám mezőkre, hanem összetett, ismétlődő és kapcsolat alapú mezőkre is tudsz szűrni. A háttérben a kiegészítő elvégzi azokat az illesztéseket és indexelési lépéseket, amelyek a Pods struktúráit „érthetővé” teszik a WP Grid Builder számára.
 
-## Előnyök
+### Facettás szűrés Pods-mezőkre
+Facetta létrehozásakor forrásként kiválaszthatod a Custom Fields opciót, majd a mezőkeresőben a „pods” beírására megjelennek a Pods által regisztrált mezők. Ezekből bármelyikre készíthetsz checkbox, radio, select, range, date, search és más facettákat, így a felhasználók több feltételt kombinálva, azonnali visszajelzéssel szűrhetnek.
 
-### Könnyű szűrés
+### Mezők megjelenítése kártyákon
+A kártyaszerkesztő „Custom field” blokkjával közvetlenül be tudod húzni a Pods-mezők tartalmát a kártyáidra. Legyen szó kapcsolatban álló bejegyzések címéről, ismétlődő mezőlistáról, képekről vagy dátumokról – a kártya felépítésében szabadon használhatod őket.
 
-Az egyik legnagyobb előnye a WP Grid Builder - Pods add-on-nak az, hogy rendkívül egyszerűvé teszi az egyedi mezők szűrését. A szűrő beállításokból könnyedén keresheted és választhatod ki a Pods mezőket.
+### Térképfacettához marker-mezők
+Ha helyalapú listát készítesz, a Map facettában marker-mezőként is kijelölhetsz Pods-mezőket (például cím, koordináták). Így a térképes nézet és a listanézet ugyanazon Pods-adatokra épül, és egymással szinkronban működik.
 
-### Integráció más eszközökkel
-
-A WP Grid Builder - Pods zökkenőmentesen működik együtt más népszerű WordPress eszközökkel is. Például:
-- **Advanced Custom Fields (ACF)**: Ha mindkét bővítményt használod, akkor a WP Grid Builder segítségével egyszerre szűrheted az ACF és Pods mezőket.
-- **WooCommerce**: Különösen hasznos e-kereskedelmi webhelyeken, ahol termékek egyedi jellemzőit szeretnéd szűrni és megjeleníteni.
-- **Elementor**: Az Elementor oldalépítővel is jól együttműködik, így vizuálisan is könnyedén szerkesztheted az oldalakat.
-
-## Felhasználási helyzetek
-
-### Blogok
-
-Ha blogot üzemeltetsz, ahol különböző típusú tartalmakat jelenítesz meg (pl. cikkek, vélemények, interjúk), akkor a WP Grid Builder - Pods segít abban, hogy a látogatók könnyedén megtalálják az őket érdeklő tartalmakat a különböző egyedi mezők alapján.
-
-### Portfóliók
-
-Művészek, dizájnerek és fotósok számára hasznos lehetőség, hogy portfólióikat egyedi kritériumok szerint szűrjék és jelenítsék meg. Például szűrheted a munkákat dátum, ügyfél neve vagy projekt típusa alapján.
-
-### E-kereskedelem
-
-Online áruházakban kiemelten fontos a termékek hatékony szűrése. A WP Grid Builder - Pods lehetővé teszi, hogy a vásárlók gyorsan megtalálják a kívánt termékeket specifikus tulajdonságok alapján, mint például szín, méret vagy árkategória.
+### Egységes felület és teljesítmény
+Nem kell külön kód vagy adattranszformáció: a Pods-mezők ugyanazon kezelőfelületeken érhetők el, mint a natív mezők. A facettás szűrés saját index-táblát és AJAX-ot használ, így nagy adatmennyiségnél is gyors marad a keresés és a lapozás.
 
 ## Gyakorlati példák
 
-- **Blogbejegyzések szűrése dátum és szerző alapján**: Ha egy blog több szerzővel dolgozik és különböző típusú tartalmakat publikál, akkor a látogatók könnyedén megtalálhatják a legfrissebb cikkeket vagy egy adott szerző írásait.
-- **Portfólió projektek szűrése ügyfél neve alapján**: Egy dizájner portfóliójában az érdeklődők gyorsan rákereshetnek azoknak az ügyfeleknek a munkáira, amelyek érdeklik őket.
-- **Termékek szűrése e-kereskedelmi webhelyen**: Egy online boltban a vásárlók egyszerűen kiválaszthatják a számukra releváns termékeket például szín vagy méret szerint.
+- Ingatlanlista: Szűrés város, ár intervallum, alapterület, felszereltség (ismétlődő kapcsolatok) alapján; kártyán ár, cím, fotók, címkék; térképes nézet markerrel.
+- Címtár/portál: Cégek kategóriák, szolgáltatások (kapcsolatmezők) és minősítések szerint; kártyán logó, név, rövid leírás, cím.
+- Csapat/portfólió: Munkatársak szakterületei, technológiák (ismétlődő tax/kapcsolat), elérhetőség; kártyán fotó, pozíció, linkek.
+- Események: Időpont, helyszín (marker-mező), jegyár, szervező; idő- és helyalapú szűrés egyidejűleg.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Add-on**: Kiegészítő modul vagy bővítmény.
-- **Custom fields**: Egyedi mezők, amelyeket a felhasználók definiálnak és használnak adatainak tárolására.
-- **Facet settings**: Szűrő beállítások.
-- **Card builder**: Kártyaépítő eszköz.
-- **Pods**: Egy WordPress plugin az egyedi tartalomtípusok és mezők kezelésére.
+- Időmegtakarítás: kódolás helyett kattintgatással konfigurálhatsz összetett Pods-mezőkre épülő szűrőket és kártyákat.
+- Kevesebb hibalehetőség: a Pods-specifikus tárolásból adódó buktatókat a kiegészítő kezeli.
+- Jobb felhasználói élmény: gyors, AJAX-os facettás szűrés, letisztult kártyák, térképes nézet.
+- Skálázhatóság: nagy adatbázisoknál is gyors keresés az indexelt adatoknak köszönhetően.
+- Egységes munkafolyamat: minden egy helyen – rács, kártya, facetta – natív módon elérhető.
 
-Ezáltal a WP Grid Builder - Pods egy sokoldalú eszköz, amely segít az egyedi tartalmak hatékony szűrésében és megjelenítésében.
+## Célközönség
+
+- WordPress fejlesztők és ügynökségek, akik Pods-alapú adatmodellekkel dolgoznak.
+- No-code/low-code építők, akik kód nélkül szeretnének profi, szűrhető listákat és térképeket.
+- Portálok, címtárak, ingatlanos, eseményszervező és portfólió oldalak üzemeltetői.
+- Bárki, aki Pods-mezőkre támaszkodó, összetett szűrési logikát és látványos rácsokat szeretne.
+
+## Megjelenítés példák
+
+Shortcode-okkal:
+```
+[wpgb_grid id="123"]
+[wpgb_facet id="facets-1"]
+[wpgb_facet id="map-1"]
+```
+
+Tipikus elhelyezés: egy oldalra először a facetták, majd a rács kerül. A facetták és a rács automatikusan összekapcsolódnak.
+
+## Megjegyzések és követelmények
+
+- A kiegészítőt a WP Grid Builder csapata fejleszti.
+- Nem a nyilvános bővítménykönyvtárból érhető el, hanem a WP Grid Builder licenc részeként, a felhasználói fiókból telepíthető.
+- A használathoz aktív WP Grid Builder és Pods szükséges; a telepítést követően a facetták és kártyák mezőválasztójában a „pods” keresőkifejezésre láthatóvá válnak a Pods-mezők.
+- A rendszerkövetelmények megegyeznek a WP Grid Builder és a Pods aktuális elvárásaival; naprakész WordPress és PHP verzió használata ajánlott.
+
+Ezzel a kiegészítővel a Pods által kezelt egyedi adatszerkezetek azonnal beilleszthetők a WP Grid Builder ökoszisztémájába, így gyorsan készíthetsz professzionális, facettásan szűrhető rácsokat és térképeket – kódolás nélkül.

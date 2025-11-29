@@ -1,48 +1,103 @@
-# Divi Menu Cart
+---
+title: "Divi Menu Cart"
+description: "Ingyenes Divi-modul WooCommerce kosár ikonhoz, tételszám és végösszeg megjelenítéséhez a fejlécben vagy bármely Divi elrendezésben."
+sidebar_label: "Divi Menu Cart"
+---
 
-## Funkcionalitás
+## Mi ez és milyen problémát old meg?
 
-A Divi Menu Cart egy olyan bővítmény, amely megkönnyíti az online vásárlást a felhasználók számára azáltal, hogy láthatóbbá teszi a kosár ikont a weboldalon. Alapértelmezés szerint a WooCommerce plugin aktiválásával a kosár ikon a másodlagos Divi menüben jelenik meg, de ezzel a bővítménnyel lehetőséged nyílik ezt az ikont áthelyezni a főmenübe, vagy akár egyedi pozícióba shortcode segítségével.
+A Divi Menu Cart egy **ingyenes Divi-modul** WooCommerce webáruházakhoz. Lehetővé teszi, hogy a **fejlécben** vagy bármely Divi elrendezésben megjelenítsd a **kosár ikont**, a **tételszámot** és a **kosár végösszegét**. A tipikus gond – “hogyan mutassak kosárállapotot a fejlécben kódolás nélkül?” – ezzel a bővítménnyel egyetlen modul hozzáadásával megoldható.
 
-### Előnyök
+## Fő funkciók és hogyan működnek
 
-- **Kosár ikon áthelyezése**: Lehetőséged van a kosár ikont a másodlagos menüből áthelyezni a főmenübe, így a felhasználók könnyebben megtalálják azt.
-- **Termékek száma a kosárban**: A kosár ikon mellett megjeleníthető a benne lévő termékek száma, amely folyamatosan frissül.
-- **Ikon testreszabása**: Kép vagy saját ikon használata a kosár ikon helyett, valamint az ikon színének és formájának megváltoztatása.
-- **Ikon elrejtése**: Lehetőség van teljesen elrejteni a kosár ikont, ha csak shortcode-ként szeretnéd használni.
+- **WooCommerce-integráció**
+  - A modul csak akkor renderel, ha a WooCommerce aktív, és közvetlenül a kosár adatait (tételszám, összegek) olvassa ki. Így az **aktuális kosárállapot** látszik, nem statikus szöveg.
+  - Beépített ellenőrzés fut a renderelés elején, így WooCommerce hiányában nem dob hibát, egyszerűen nem jelenik meg.
 
-## Használati tippek
+- **Tartalomkapcsolók (show/hide)**
+  - Külön-külön kapcsolhatod: **Ikon**, **Tételszám**, **Ár**. Ha minimalista fejlécet szeretnél, elrejtheted az árat, és csak az ikont + darabszámot hagyhatod meg.
+  - Testreszabható feliratok: **Single Item Text** és **Multiple Item Text**, hogy a “1 termék” vs. “3 termék” típusú szövegezés márkádhoz és nyelvi igényeidhez igazodjon.
 
-### Vizualizáció és elhelyezés
+- **Stílus és tipográfia**
+  - Állítható **ikonméret** és **szín**, külön tipográfiai beállítások a feliratokhoz és az árhoz. Minden elem külön formázható a Divi Design fülein.
+  - A modul tartalmaz **egyéni CSS mezőket**, ha pixelpontos finomhangolásra van szükség.
 
-A bővítmény telepítése után egy új fül jelenik meg a Divi Theme opciók között, ahol az alábbi lehetőségek közül választhatsz:
+- **Vizuális Builder támogatás**
+  - Az **Icon**, **Item Count** és **Price** elemek élő előnézetben formázhatók. Amit a Visual Builderben látsz, azt kapja a felhasználó.
 
-1. **Kosár ikon megjelenítése**: Válaszd ki, hogy a kosár ikon menüpontként jelenjen meg vagy sem.
-2. **Kosár ikon helye**: Válaszd ki az ikon helyét a téma menüjében.
-3. **Termékek száma**: Dönthetsz arról, hogy megjelenjen-e a termékek száma egy körben az ikon mellett.
-4. **Ikon testreszabása**: Az Appearance > Customize > Divi Menu Cart menüpont alatt teljesen testreszabhatod az ikont és annak vizuális elemeit.
+- **Admin felület és stabilitás**
+  - A Vezérlőpulton külön menüpontot kapsz az alapbeállításokhoz, míg a részletes megjelenést magán a modulon belül szabhatod testre.
+  - Opcionális “**refresh cart on page load**” funkció segít, ha korábbi beállításmódosítások után a megjelenés nem frissül megfelelően.
 
-### Egyedi fejlécek
+## Telepítés és első lépések
 
-Ha egyedi fejlécet használsz a Theme Builder-ben, engedélyezd a bővítményt a fejléc menü beállításainál: Content > Elements – Show Shopping Cart Icon és állítsd „yes”-re.
+Előfeltételek: **Divi Theme/Builder**, **WooCommerce**, naprakész WordPress és PHP környezet.
+
+1. Telepítsd és aktiváld a bővítményt a szokásos módon.
+2. A Vezérlőpulton megjelenik a **Divi Menu Cart** alapbeállítási oldal.
+3. Nyisd meg a Divi Buildert, és add hozzá a **Menu Cart** modult a kívánt szekcióba (pl. egyedi fejlécben).
+
+Hasznos útvonalak:
+```
+Vezérlőpult > Divi Menu Cart
+Divi Builder > Add Module > Menu Cart
+```
+
+Alap beállítások a modulban:
+- Content: **Icon / Item Count / Price** megjelenítése, **Single/Multiple Item Text**.
+- Design: ikonméret/szín, betűtípusok, távolságok, **Custom CSS**.
+
+Példa feliratokra:
+```
+Single Item Text: termék
+Multiple Item Text: termékek
+```
 
 ## Gyakorlati példák
 
-### Webáruház tulajdonosok
+- **Egyedi fejléc kosárjelzővel**
+  - A Theme Builder fejlécében a logó és a menü mellé elhelyezed a Menu Cart modult. Asztali nézetben ikon + darabszám + ár látszik, mobilon elrejted az árat a letisztultságért.
 
-Webáruházak esetében rendkívül fontos, hogy a vásárlók könnyen elérjék a kosarukat. A Divi Menu Cart segítségével áthelyezheted a kosár ikont a főmenübe, így biztosítva, hogy mindig látható legyen.
+- **Brandelt szövegek többnyelvű boltban**
+  - Magyarul “termék/termékek”, angol nyelvű nézetben “item/items” – a két felirat miatt nem kell külön kódolnod, egyszerűen átkapcsolod a szövegeket.
 
-### Egyedi webshop dizájn
+- **Minimalista badge a menü mellett**
+  - Csak a kosár ikon és a tételszám aktív, nagy kontrasztos badge-stílussal. Tökéletes egyszerű, gyors boltokhoz.
 
-Ha saját dizájnt használsz egy webáruházhoz, fontos lehet az ikon teljes testreszabhatósága. Ezzel a bővítménnyel nemcsak áthelyezheted az ikont, hanem egyedi képeket is használhatsz, és megváltoztathatod az ikon színét és formáját is.
+## Használati tippek
 
-### Mobilbarát megoldások
+- Helyezd a modult a **menü mellé** a fejlécben, hogy azonnal észrevehető legyen.
+- A Divi **reszponzív beállításaival** készíts eltérő megjelenést mobilra (pl. ár elrejtése).
+- Ha módosítás után nem frissül a nézet, kapcsold be a **“refresh cart on page load”** opciót.
+- Kerüld a duplikált kosárikonokat: ha a témád saját kosárjelzőt ad, kapcsold ki az egyiket.
 
-Mobilbarát weboldalak esetében különösen fontos, hogy az ikonok jól láthatóak és könnyen hozzáférhetőek legyenek. A Divi Menu Cart lehetőséget ad arra is, hogy az ikont a hamburger menü mellé helyezd, így mobilon is könnyen elérhető marad.
+## Hibakeresés
 
-## Szószedet
+- **Nem jelenik meg a modul?**
+  - Ellenőrizd, hogy a WooCommerce aktív-e.
+  - Győződj meg róla, hogy van a kosárban tétel (előfordul, hogy üres kosárnál csak ikon látszik).
+  - Kapcsold be a frissítés opciót, ürítsd a gyorsítótárat, és frissítsd az oldalt.
 
-- **Shortcode**: Rövid kódok, amelyek lehetővé teszik speciális funkciók beillesztését WordPress oldalakba.
-- **Theme Builder**: Egy eszköz, amellyel egyedi sablonokat készíthetsz WordPress oldalakhoz.
-- **WooCommerce**: Az egyik legnépszerűbb e-commerce plugin WordPresshez.
-- **Appearance > Customize**: A WordPress admin felületének azon része, ahol vizuálisan testreszabhatod a weboldalad.
+- **Eltérő stílus / tördelés?**
+  - Nézd át a Divi Design beállításokat és az esetleges egyéni CSS-t. Kapcsold ki ideiglenesen a custom CSS mezőket a hiba izolálásához.
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás:** nincs szükség shortcode-okra vagy egyedi kódra a kosárjelzőhöz.
+- **Professzionális UX:** a felhasználó mindig látja, mennyi és milyen értékű termék van a kosarában.
+- **Rugalmasság:** különálló megjelenítés-vezérlők (ikon, darabszám, ár), testreszabható feliratok, teljes Divi-stílus integráció.
+- **Biztonságos működés:** WooCommerce-ellenőrzés és oldalbetöltéskori frissítés a stabil megjelenítésért.
+
+## Kinek ajánlott?
+
+- **Divi-alapú webshop tulajdonosoknak:** ha gyorsan, kódolás nélkül szeretnél kosárindikátort.
+- **Ügynökségeknek és fejlesztőknek:** skálázható, újrahasznosítható modul megoldás ügyfélprojektekben.
+- **Marketingeseknek/UX-eseknek:** egyértelmű kosárállapot = kevesebb bizonytalanság, jobb konverzió.
+
+## Megjegyzés a hasonló nevű bővítményekről
+
+Létezik egy másik, fizetős, hasonló nevű bővítmény is a piacon. Ez a dokumentáció az **ingyenes**, Divi-modult hozzáadó megoldásról szól, amely a Divi Builderben bárhová elhelyezhető kosár ikont, tételszámot és árat biztosít.
+
+## Rövid összegzés
+
+A Divi Menu Cart egy célzott, könnyű kiegészítő: **kosár ikon + tételszám + végösszeg** a Divi-ben, teljes **Visual Builder** támogatással. Segítségével percek alatt, **kódolás nélkül** készíthetsz professzionális kosárjelzőt az egyedi fejlécekben és elrendezésekben, teljesen a márkádra szabva.

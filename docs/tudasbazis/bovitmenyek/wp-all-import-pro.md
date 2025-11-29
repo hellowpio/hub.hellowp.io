@@ -1,75 +1,113 @@
-# WP All Import Pro
+---
+title: "WP All Import Pro"
+description: "Prémium WordPress-importáló bővítmény, amellyel bármilyen XML/CSV/Excel/Google Sheets forrásból rugalmasan tölthetsz be bejegyzéseket, termékeket, felhasználókat – ütemezéssel és automatizálással."
+sidebar_label: "WP All Import Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Adatok importálása
+A WP All Import Pro egy fejlett, mégis felhasználóbarát importmotor WordPresshez. Akkor van rá szükséged, ha heterogén, gyakran változó forrásokból (XML, CSV, Excel, Google Sheets) kell rendszeresen tartalmat töltened WordPressbe: bejegyzéseket, oldalakat, egyedi bejegyzéstípusokat, taxonómiákat, felhasználókat vagy akár WooCommerce termékeket. A bővítmény fő erőssége, hogy strukturálatlan vagy vegyes szerkezetű adatforrásokat is képes felvenni, átalakítani és a megfelelő WordPress mezőkbe irányítani – duplikáció nélkül, automatizált frissítésekkel.
 
-A WP All Import Pro lehetővé teszi az adatok importálását bármilyen WordPress témába vagy bővítménybe. A támogatott fájltípusok között megtalálható az XML, CSV és Excel formátum is. A fájlok mérete és struktúrája nem jelent akadályt, így akár nagy mennyiségű adat is könnyedén kezelhető.
+## Hogyan működik röviden?
 
-### Adatok exportálása
+1. Forrás kiválasztása: fájlfeltöltés, URL, FTP/SFTP, vagy Google Sheets.
+2. Előnézet: a rekordok azonosítása és a struktúra felismerése.
+3. Drag-and-drop mezőtérképezés: a forrás mezőit „ráhúzod” a WordPress célmezőkre (egyedi mezők, taxonómiák, képek, add-onok).
+4. Futtatás és ütemezés: egyszeri import vagy ismételt frissítés, törlési/összefésülési szabályokkal.
 
-Az adatok exportálása is egyszerű a WP All Import Pro-val. A felhasználók egyéni XML, CSV vagy Excel fájlokat hozhatnak létre, amelyek tartalmazzák a kívánt adatokat. Az exportálási folyamat során teljes irányításod van a mezők felett, így a végeredmény pontosan az igényeidnek megfelelő lesz.
+## Fő funkciók részletesen
 
-### Migráció
+### Rugalmas forráskezelés
+- **Formátumok**: XML, CSV, Excel, Google Sheets.
+- **Nagy fájlok**: szakaszos feldolgozás, timeout-kerülés. Akkor is működik, ha a forrásod nem teljesen egységes.
 
-A bővítmény segítségével könnyedén áthelyezheted az adatokat egyik WordPress webhelyről a másikra. Az exportált adatok importálhatók anélkül, hogy felülírnák a meglévő adatokat, ezáltal megőrizve a webhely integritását.
+### Drag-and-drop mezőtérképezés
+- **Bármely WordPress mező**: cím, tartalom, kivonat, státusz, dátum, szerző.
+- **Egyedi mezők (post meta) és taxonómiák**: témák és bővítmények által létrehozott mezők automatikus felismerése.
+- **Összetett struktúrák**: ismétlődő mezők, relációk, hierarchikus kategóriák.
 
-### Tömeges szerkesztés
+### Képek és média
+- **Források**: külső URL, szerverfájl, médiatár.
+- **Műveletek**: kiemelt kép, galéria, meglévő képek megőrzése vagy cseréje, hibakezelés (pl. sikertelen letöltés → piszkozat).
 
-Az adatokat exportálhatod, szerkesztheted Excelben, majd újra importálhatod a változtatásokat. Ez különösen hasznos lehet nagy mennyiségű adat gyors módosításához.
+### Ütemezés és automatizálás
+- **Saját cron**: időzített futás a tárhelyed cronjával, nagy importok feldarabolt feldolgozása.
+- **Beépített ütemező szolgáltatás**: pár kattintással, külön előfizetéssel.
 
-## Kiemelkedő jellemzők
+### Frissítések és összefésülés
+- **Egyedi azonosító (Unique Identifier)**: SKU, külső ID vagy bármilyen stabil mező alapján párosít.
+- **Szabályok**: meglévők frissítése, újak felvétele, és a forrásból hiányzók törlése igény szerint.
 
-### Custom fields támogatás
+### Haladó transzformációk
+- **Inline PHP**: futás közben átalakíthatod az értékeket (pl. „YES/NO” → „1/0”, dátumformátumok, feltételes logika).
+- **Egyedi XPath és hookok**: fejlesztőbarát, összetett esetekhez.
 
-A WP All Import Pro automatikusan felismeri a WordPress oldalon található egyéni mezőket, taxonómiákat, kép galériákat, helyszín mezőket és egyéb egyedi mezőket. Ez különösen hasznos lehet olyan bővítmények esetében, mint az ACF (Advanced Custom Fields) vagy a WooCommerce.
+### WP‑CLI integráció
+- Parancssorból futtathatod és szkriptelheted az importokat (CI/CD, távoli ütemezés, gyorsabb feldolgozás).
 
-### Nagyméretű fájlok kezelése
+```
+# Importok listázása
+wp all-import list
 
-A bővítmény képes kezelni akár több száz megabájtos fájlokat is, még megosztott tárhelyen is. Ez biztosítja, hogy nagy mennyiségű adat importálása vagy exportálása sem okoz problémát.
+# Konkrét import futtatása ID alapján
+wp all-import run --id=123
 
-### Automatikus frissítések és időzítés
+# Naplózás nélkül, kényszerített futás
+wp all-import run --id=123 --force --quiet
+```
 
-A bővítmény lehetőséget biztosít az import és export folyamatok időzítésére, így az adatok automatikusan frissülnek a megadott időpontokban.
+### WooCommerce támogatás (Add-On Pro)
+- **Termékek és variációk**: SKU/Parent SKU, cím vagy XML gyermekelemek alapján csoportosít.
+- **Attribútumok, ár, készlet, képek/galériák**: teljes körű szinkron támogatás.
+- **Komplex esetek**: több attribútum, eltérő változatsémák, képcsatolás variációnként.
 
-### Integráció más bővítményekkel
-
-WP All Import Pro számos népszerű WordPress bővítménnyel és témával zökkenőmentesen működik együtt, mint például:
-- WooCommerce
-- ACF
-- Gravity Forms
-- Meta Box
-- JetEngine
-- WPML
-- Yoast SEO
+### Hivatalos add-onok
+- **ACF, Meta Box, JetEngine**: natív mezőtérképezés (pl. repeater, kapcsolatok).
+- **Gravity Forms**: bejegyzések/leadek importja.
+- **Users**: felhasználók, jelszavak, szerepkörök, user meta és kapcsolatok importja.
 
 ## Gyakorlati példák
 
-### WooCommerce termékek importálása
+### 1) Beszállítói termékfeed WooCommerce-be
+- Forrás: CSV/Excel/URL-ről frissülő feed.
+- Unique ID: SKU.
+- Mapping: cím, leírás, ár, készlet, kategória, képek (kiemelt + galéria).
+- Ütemezés: napi frissítés; hiányzók törlése bekapcsolva, ár/készlet frissítés engedélyezve.
 
-Ha nagy mennyiségű terméket kell hozzáadnod a WooCommerce áruházadhoz, a WP All Import Pro segít az XML vagy CSV fájlok egyszerű importálásában. Akár változó termékeket is importálhatsz vele.
+### 2) Ingatlanportál migráció
+- Forrás: XML változó struktúrával.
+- Mapping: egyedi CPT (ingatlan), taxonómiák (város, típus), egyedi mezők (ár, alapterület).
+- Képek: külső URL-ek letöltése; hibás képnél a bejegyzés piszkozat marad.
+- Inline PHP: ár normalizálása, mértékegységek egységesítése.
 
-### Felhasználói adatok migrálása
+### 3) Felhasználók betöltése
+- Forrás: CSV.
+- Mapping: e‑mail, megjelenített név, role, jelszó, user meta (pl. számlázási adatok).
+- Szabályok: meglévők frissítése e‑mail alapján; új felhasználók létrehozása.
 
-Amikor új webhelyet indítasz vagy meglévőt frissítesz, a felhasználói adatok migrálása fontos lépés lehet. A bővítmény segítségével könnyedén átviheted a felhasználói adatokat anélkül, hogy bármi elveszne.
+## Előnyök és értékajánlat
 
-### Ingatlanlisták kezelése
+- **Időmegtakarítás**: tömeges importok és frissítések automatizálva.
+- **Rugalmasság**: szinte bármilyen forrásból és struktúrából dolgozik.
+- **Adatminőség**: transzformációk, feltételes logika, duplikáció elkerülése.
+- **Skálázhatóság**: nagy fájlok, szakaszos feldolgozás, WP‑CLI.
+- **Ökoszisztéma**: WooCommerce és fejlett mezőkezelés add-onokkal.
 
-Az ingatlanközvetítő cégek gyakran nagy mennyiségű adatot kezelnek. A WP All Import Pro lehetőséget biztosít arra, hogy az ingatlanlistákat gyorsan és egyszerűen importálják a WordPress webhelyükre.
+## Kinek ajánlott?
 
-### Blogbejegyzések tömeges szerkesztése
+- **Webáruházak és e‑kereskedelmi csapatok**: termék- és készletszinkron, affiliate feedek.
+- **Ügynökségek és fejlesztők**: migrációk, integrációk, egyedi mezők és CPT-k.
+- **Adatportálok és listázó oldalak**: ingatlan/állás/cégkatalógus tartalmak tömeges kezelése.
+- **Rendszergazdák/DevOps**: ütemezett folyamatok, WP‑CLI, megbízható frissítések.
 
-Ha több blogbejegyzést kell szerkesztened egyszerre (például kategóriák vagy címkék módosítása), az adatok exportálása Excelbe, szerkesztése, majd visszaimportálása sok időt takaríthat meg.
+## Tippek és best practice-ek
 
-## Szószedet
+- **Válassz stabil Unique ID-t**: pl. SKU vagy külső azonosító. Ez az alapja a pontos frissítésnek.
+- **Kezdd kis mintával**: ellenőrizd a mappinget és a képeket, csak utána futtasd az egészet.
+- **Használj ütemezést**: rendszeres feedfrissítéshez cron vagy a beépített ütemező szolgáltatás.
+- **Szakaszos feldolgozás**: nagy importnál csökkentsd a batch méretet, kerüld a timeoutot.
+- **Inline PHP-val normalizálj**: értékek, formátumok, kategóriatérképek egységesítéséhez.
 
-- **XML**: Extensible Markup Language, egy adatcserére használt jelölőnyelv.
-- **CSV**: Comma-Separated Values, egy egyszerű fájlformátum adatok tárolására.
-- **Excel**: Microsoft Excel táblázatkezelő program által használt fájlformátum.
-- **ACF**: Advanced Custom Fields, egy népszerű WordPress bővítmény egyedi mezők hozzáadására.
-- **WooCommerce**: Egy népszerű WordPress bővítmény online áruházak létrehozására.
-- **Gravity Forms**: Egy fejlett WordPress bővítmény űrlapok létrehozására és kezelésére.
-- **Meta Box**: Egy WordPress bővítmény egyedi mezők hozzáadására és kezelésére.
-- **JetEngine**: Egy WordPress bővítmény dinamikus tartalom létrehozására.
-- **WPML**: WordPress Multilingual Plugin, egy bővítmény többnyelvű webhelyek létrehozására.
-- **Yoast SEO**: Egy népszerű SEO bővítmény WordPress webhelyek számára.
+## Összegzés
+
+A WP All Import Pro akkor a legerősebb, amikor vegyes minőségű, változó forrásadatból kell megbízhatóan, ismételhetően és automatizáltan WordPress-tartalmat előállítanod. A rugalmas drag-and-drop mapping, a képek kezelése, az ütemezett frissítések, a WP‑CLI és az add-on ökoszisztéma együtt olyan importfolyamatot adnak a kezedbe, amellyel összetett migrációk és napi szintű szinkronok is biztonságosan megoldhatók. Ha rendszeresen dolgozol adatfeedekkel vagy nagy tömegű tartalommal, ez a bővítmény pontosan neked való.

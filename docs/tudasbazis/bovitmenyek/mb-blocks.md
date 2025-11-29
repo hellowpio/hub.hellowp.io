@@ -1,68 +1,115 @@
-# MB Blocks
+---
+title: "MB Blocks"
+description: "PHP‑alapú Gutenberg blokkfejlesztés Meta Box mezőkkel, React és build‑lánc nélkül."
+sidebar_label: "MB Blocks"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-Az MB Blocks segítségével egyedi Gutenberg blokkokat hozhatsz létre kizárólag PHP használatával. Ez lehetővé teszi, hogy elkerüld a JavaScript konfigurációkat és a React keretrendszer tanulását, ami sok WordPress fejlesztő számára megkönnyíti a munkát. Az MB Blocks a Meta Box plugin összes funkcióját és mezőtípusát örökli, ami jelentős időmegtakarítást biztosít a blokkok fejlesztése során.
+Az **MB Blocks** a Meta Box ökoszisztéma prémium kiterjesztése, amellyel **egyedi Gutenberg blokkokat készíthetsz kizárólag PHP‑val**. Nem kell Reactot, Webpacket vagy Bablet beállítanod: a megszokott Meta Box mezőszintaxist használod, és percek alatt felépítesz professzionális blokkokat. Támogatja a **block.json** alapú regisztrációt és teljesen **kompatibilis a Full Site Editinggel**, így a blokkok sablonokban és sablonrészekben is működnek.
 
-## Funkcionalitás
+A bővítmény lecsökkenti a Gutenberg fejlesztés belépési küszöbét, újrahasznosítja a már meglévő meződefinícióidat, és egységes, élő előnézetet ad a szerkesztőben – mindezt rugalmas adattárolással és fejlesztőbarát segédfunkciókkal.
 
-### Egyedi Gutenberg blokkok létrehozása PHP-val
+## Fő funkciók és mit jelentenek a gyakorlatban
 
-Az MB Blocks lehetővé teszi, hogy egyedi Gutenberg blokkokat hozz létre PHP használatával, így nincs szükség modern JavaScript eszközök, mint a Webpack vagy Babel használatára. Ez különösen hasznos azoknak a fejlesztőknek, akik már ismerik a PHP-t és a WordPress témakészítést vagy egyedi bővítmények készítését.
+- **PHP‑alapú blokkfejlesztés**: Blokkot hozol létre úgy, mintha egy mezőcsoportot definiálnál; a típus egyszerűen „block”. Nincs build‑lánc, nincs JS fordítás.
+- **block.json támogatás**: A blokkokat WordPress‑szabvány szerint regisztrálhatod. A szokásos kulcsokkal (például editorStyle, style, editorScript, script, viewStyle, viewScript) pontosan szabályozod, mi töltődjön be az editorban és a frontenden.
+- **FSE kompatibilitás**: A blokkok site szerkesztőben és sablonokban is gond nélkül használhatók; ideális site‑wide komponensekhez.
+- **Élő előnézet**: Mezőérték módosításkor a blokk azonnal újrarenderelődik. Látod, mit kap a szerző – nincs „preview” körhinta.
+- **Meta Box mezőtípusok teljes támogatása**: 40+ mezőtípus, ugyanaz a beállítási logika, mint a klasszikus field groupoknál. Amit már ismersz, azt viszed tovább blokkokba.
+- **InnerBlocks támogatás**: Beágyazott blokkokat adhatsz a sajátodhoz, szabályozva az engedélyezett típusokat, sablont és zárolást. A bővítmény gondoskodik arról, hogy az editor és a frontend markupja egyezzen (ne legyenek felesleges wrap‑elemek).
+- **MB Views integráció**: Sablonozz Twiggel; a blokkot egy view‑val rendereltetheted, így a markup és a logika még tisztábban szétválik.
+- **MB Builder integráció**: Vizuális felületen rakod össze a blokk mezőit és beállításait – ideális csapatoknak és gyors prototípushoz.
+- **Stílusok és scriptek kezelése**: Külön kezeli az editorra és a frontend‑nézetre vonatkozó CSS/JS‑t. PHP regisztrációnál enqueue_* paraméterekkel, block.json‑nal a megfelelő kulcsokkal dolgozol.
+- **Segédfüggvények és automatikus adatelőkészítés**: A render callbackben kapott $attributes már előkészített értékeket tartalmaz. Sablonban a mb_get_block_field() és mb_the_block_field() segít az értékek kiolvasásában.
+- **Rugalmas adattárolás**: Alapból a blokk attribútumaiban tárol (JSON), de dönthetsz post meta vagy egyedi tábla mellett is – nagy adatmennyiségnél különösen hasznos.
+- **Kiegészítő beállítások**: Ikon (Dashicons, SVG, Font Awesome), kategória, kulcsszavak, supports (align, customClassName, multiple, reusable, lock, anchor), context és saját CSS osztályok.
 
-### Örökölt mezőtípusok és beállítások
+## Hogyan működik? (gyors áttekintés)
 
-Az MB Blocks több mint 40 mezőtípust támogat, amelyeket a Meta Box-ból örököl. Ez azt jelenti, hogy a blokkok létrehozása során csak a logikára és a megjelenésre kell koncentrálnod, minden más mezőbeállítást a plugin kezel.
+1) **Definiálás**  
+– Block.json‑nal regisztrálsz és megadod az asseteket, vagy  
+– PHP‑ban hozod létre a blokkot és a mezőit az rwmb_meta_boxes hookkal.
 
-### Valós idejű élő előnézet
+2) **Renderelés**  
+– PHP sablonfájllal (render vagy render_template), vagy  
+– MB Views‑szal (Twig), ha sablonozni szeretnél.
 
-A blokkok szerkesztése során valós időben láthatod a változásokat. Minden mezőmódosítás azonnal újrarendereli a blokkot az új értékekkel. Ha dinamikus scriptet (például egy slider inicializálását) szeretnél hozzáadni, az is lehetséges.
+3) **Stílus/JS**  
+– Block.json kulcsokkal, illetve PHP‑s regisztrációnál enqueue opciókkal külön az editorhoz és a frontendhez.
 
-### Vizualis blokképítés
+### Minimális PHP példa
 
-Ha nem vagy jártas a kódolásban, az MB Blocks még mindig hasznos lehet számodra a Meta Box Builder segítségével. Ez az eszköz lehetővé teszi, hogy kód írása nélkül építsd meg a Gutenberg blokkokat, egyszerűen kiválasztva a beállításokat.
+```php
+add_filter('rwmb_meta_boxes', function ($meta_boxes) {
+  $meta_boxes[] = [
+    'type'   => 'block',
+    'id'     => 'hero',
+    'title'  => 'Hero szekció',
+    'icon'   => 'slides',
+    'supports' => [
+      'align'  => ['full', 'wide'],
+      'anchor' => true,
+    ],
+    'render_template' => get_theme_file_path('blocks/hero.php'),
+    'fields' => [
+      ['id' => 'heading',  'name' => 'Címsor',   'type' => 'text'],
+      ['id' => 'subtitle', 'name' => 'Alcím',    'type' => 'textarea'],
+      ['id' => 'bg',       'name' => 'Háttérkép','type' => 'image_advanced'],
+    ],
+    // 'inner_blocks' => [
+    //   'allowedBlocks' => ['core/buttons'],
+    //   'templateLock'  => 'all',
+    // ],
+  ];
+  return $meta_boxes;
+});
+```
 
-## Előnyök
+```php
+// blocks/hero.php
+<?php
+$heading  = mb_get_block_field('heading');
+$subtitle = mb_get_block_field('subtitle');
+$bg       = mb_get_block_field('bg'); // kép tömb URI‑val
+?>
+<section class="hero" style="background-image:url('<?php echo esc_url($bg[0]['url'] ?? ''); ?>')">
+  <h1><?php echo esc_html($heading); ?></h1>
+  <?php if ($subtitle) : ?>
+    <p class="hero__subtitle"><?php echo esc_html($subtitle); ?></p>
+  <?php endif; ?>
+  <?php echo $content; // InnerBlocks tartalom (ha engedélyezett) ?>
+</section>
+```
 
-### Gyors tanulási görbe
+Megjegyzés: ha post meta‑ba vagy egyedi táblába mentesz, az automatikus attribútum‑előkészítés és a mb_get_block_field() nem elérhető; ilyenkor rwmb_meta‑val kérdezd le az adatot.
 
-Ha már ismered a Meta Box plugin használatát, akkor nagyon rövid idő alatt megtanulhatod az MB Blocks használatát is. Az új funkciók elsajátítása nem igényel többet 10 percnél.
+## Konkrét használati esetek
 
-### Könnyű integráció
+- **Hero/CTA blokkok**: címsor, leírás, háttérkép, gombok – szerkesztőben azonnali előnézettel.  
+- **Feature lista / testimonial**: ismétlődő mezők, képek, ikonkészletek.  
+- **Adatvezérelt komponensek**: termékkiemelés, kapcsolódó bejegyzések, taxonómia‑szűrt listák.  
+- **FSE komponensek**: egységes header, footer, promo sáv – sablonrészekbe illesztve.
 
-Az MB Blocks zökkenőmentesen integrálható a Meta Box-szal, és más népszerű WordPress bővítményekkel is jól működik, mint például az ACF (Advanced Custom Fields) és Toolset. Ez megkönnyíti az átmérési folyamatokat és bővíthetőséget biztosít.
+## Előnyök és értékajánlat
 
-### Kiterjedt testreszabhatóság
+- **Időmegtakarítás**: nincs build‑lánc, nincs JS tooling – csak PHP és a már ismert Meta Box mezők.  
+- **Kisebb kockázat**: WordPress‑szabványos block.json és FSE támogatás, jövőálló megközelítés.  
+- **Skálázhatóság**: rugalmas adattárolás post meta‑ban vagy egyedi táblában nagy projekteknél.  
+- **Gyors fejlesztői feedback**: élő előnézet és egységes editor/frontend markup.
 
-A plugin támogatja a blokk igazítását, egyedi CSS osztályokat és horgonyokat is. Ezáltal nagyobb szabadságot biztosít a blokkok testreszabásában és az egyedi megjelenés kialakításában.
+## Kinek ajánlott?
 
-## Gyakorlati alkalmazások
+- **WordPress fejlesztőknek és ügynökségeknek**, akik gyorsan, megbízhatóan akarnak Gutenberg blokkokat szállítani JS stack nélkül.  
+- **PHP‑fókuszú csapatoknak**, akik már Meta Boxot használnak, és újrahasznosítanák mezőcsoportjaikat.  
+- **Tartalomkészítő csapatoknak**, akik konzisztens, FSE‑kompatibilis komponenseket szeretnének, élő előnézettel.
 
-### Egyedi tartalmi blokkok létrehozása
+## Fontos részletek és korlátozások
 
-Használhatod az MB Blocks-t egyedi tartalmi blokkok létrehozására, például ügyfél visszajelzések, szolgáltatás bemutatók vagy terméklisták megjelenítésére.
+- **Foglalt attribútumnevek**: kerüld az „id” és „name” használatát mezőazonosítóként; a blokk belső értékeit felülírhatják.  
+- **Azonosító szintaxis**: a blokk‑ID csak kisbetűt, számot és kötőjelet tartalmazhat (aláhúzás nélkül).  
+- **Többszörözhetőség és mentés**: ha post meta‑ba vagy egyedi táblába mentesz, javasolt a multiple tiltása, hogy ne legyen ütközés.  
+- **Adatlekérés**: meta/custom table tárolásnál rwmb_meta‑t használj; az automatikus attribútum‑előkészítés és a mb_get_block_field() ilyenkor nem aktív.  
+- **Függőség**: az MB Blocks a Meta Box kiterjesztése; a teljes élményhez szükséges a fő bővítmény, opcionálisan az MB Builder és az MB Views.
 
-### Dinamikus adatmegjelenítés
-
-A plugin segítségével dinamikus adatokat is megjeleníthetsz, például egyedi post típusokat vagy taxonómiákat. Ez különösen hasznos lehet olyan oldalak esetében, amelyek folyamatosan frissülő tartalmat jelenítenek meg.
-
-### Vizualis szerkesztés
-
-A Meta Box Builder segítségével vizuálisan szerkesztheted a blokkokat, ami nagyban megkönnyíti a nem kódoló felhasználók számára az egyedi blokkok létrehozását.
-
-## Tippek a hatékony használathoz
-
-- **Ismerkedj meg a Meta Box plugin alapjaival**, ha még nem tetted meg, mivel az MB Blocks ezekre épül.
-- **Használd a valós idejű előnézet funkciót** a blokk szerkesztésekor, hogy azonnal lásd a változásokat és finomhangold azokat.
-- **Próbáld ki a Meta Box Builder-t**, ha nem szeretnél kódolni. Ez lehetővé teszi számodra, hogy gyorsan és egyszerűen hozd létre az egyedi blokkokat.
-
-## Szószedet
-
-- **Gutenberg**: A WordPress új blokk alapú szerkesztője.
-- **PHP**: A webfejlesztésben gyakran használt szerveroldali programozási nyelv.
-- **Meta Box**: Egy WordPress plugin, amely lehetővé teszi egyedi meta dobozok és mezők létrehozását.
-- **React**: Egy JavaScript könyvtár, amelyet felhasználói felületek építésére használnak.
-- **Webpack**: Egy statikus modul csomagoló JavaScript alkalmazásokhoz.
-- **Babel**: Egy JavaScript fordítóeszköz, amely lehetővé teszi modern JavaScript kód írását régebbi böngészők számára.
-
-Remélem, hogy ez az összefoglaló segít jobban megérteni az MB Blocks előnyeit és felhasználási lehetőségeit!
+Ezzel a bővítménnyel pontosan azt kapod, amire a mindennapi fejlesztésben szükséged van: gyors, PHP‑centrikus blokkfejlesztést, amely azonnal illeszkedik a WordPress és a Meta Box bevált folyamataihoz.

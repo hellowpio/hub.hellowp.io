@@ -1,64 +1,121 @@
-# JetElements For Elementor
+---
+title: "JetElements For Elementor"
+description: "Prémium Elementor‑kiegészítő 45 kész widgettel vizuális, tartalmi és integrációs elemekhez – kódolás nélkül, gyorsan."
+sidebar_label: "JetElements For Elementor"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A JetElements egy olyan bővítmény, amely számos hasznos widgetet és interaktív effektet kínál az Elementor szerkesztőhöz. Ezzel a bővítménnyel könnyedén létrehozhatsz látványos és funkcionális tartalmi szekciókat anélkül, hogy kódolási ismeretekre lenne szükséged. Ebben a leírásban bemutatom a JetElements legfontosabb funkcióit, előnyeit és gyakorlati felhasználási módjait.
+A JetElements egy prémium bővítmény az **Elementor** oldalépítőhöz. Lényege, hogy több tucat, azonnal használható **widgettel** pótolja azokat az elemeket, amelyek az alap Elementorból hiányoznak (pl. táblázat, idővonal, grafikon, előtte–utána kép, térkép, Instagram, időjárás). Így nem kell tucatnyi külön kiegészítőt vadásznod vagy egyedi kódot írnod: egységes szerkesztői felületen, **kódolás nélkül** építhetsz látványos és adatvezérelt blokkokat.
 
-## Funkciók és jellemzők
+A bővítmény 45 beépített widgetet kínál; az engedélyezés/letiltás és az Editor teljesítményprofilja külön állítható, így **gyorsan**, stabilan dolgozhatsz.
 
-### Parallax Section
-A Parallax Section lehetővé teszi, hogy elegáns parallax hatásokat adj a tartalmi szekcióidhoz, amelyek mozgásban vannak a görgetés során. Ez különösen hasznos, ha vizuálisan vonzó és dinamikus weboldalakat szeretnél létrehozni.
+## Hogyan működik röviden?
 
-### Slider CSS ID opció
-A Slider CSS ID opcióval minden egyes diát egyedi CSS ID-vel láthatsz el, így testreszabhatod az egyes diák stílusát. Ez nagy rugalmasságot biztosít a dizájn kialakításában.
+- Szükséged van az **Elementorra**.  
+- Telepítés után a JetElements widgetek megjelennek az Elementor bal oldali paneljén.  
+- Az adminban a **JetPlugins > JetElements Settings** alatt kapcsolhatod a widgeteket, állíthatod az **Editor Load Level** szintet, és megadhatod az integrációk **API‑kulcsait** (Google Maps, Mailchimp, Instagram, Weather).  
+- Dinamikus tartalomhoz a JetElements szorosan együttműködik a **JetEngine** bővítménnyel (Repeater, Query).  
+- WooCommerce esetén dedikált **terméklistázó** és **slider** widgeteket kapsz.
 
-### Current Weather Widget
-A Current Weather Widget segítségével valós idejű időjárási adatokat jeleníthetsz meg egy adott területre vagy városra vonatkozóan. Ez különösen hasznos lehet utazási irodák vagy helyi szolgáltatók számára.
+## Fő funkciók, érthetően
 
-### Hotspot Widget
-A Hotspot Widget lehetőséget ad arra, hogy interaktív pontokat helyezz el a képeken, amelyek információkat vagy linkeket tartalmaznak. Ez nagyszerű eszköz termékbemutatókhoz vagy oktatási anyagokhoz.
+### Tartalom és vizuális elemek
+- **Slider/Karusszel**: képek vagy kártyák gördülő bemutatása, navigációval és automatikus lejátszással. Ideális hős szekciókhoz vagy partnerlogókhoz.  
+- **Képgaléria/Portfólió** (grid, masonry, justify): rugalmas képelrendezések szűréssel, felirattal, hover‑effektekkel.  
+- **Előtte–utána** (image comparison): húzható csúszkával mutatod meg egy beavatkozás előtti/utáni állapotát.  
+- **Bannerek, kreatív headline, animált szöveg**: figyelemfelkeltő címek és CTA‑k, finom animációkkal.  
+- **Lottie animáció, parallax/vertical scroll**: könnyű, vektoros animációk és gördülésre reagáló mozgások.  
+- **Tooltip/Dropbar**: kiegészítő magyarázatok, lebegő buborékokkal.
 
-### Pricing Table Widget
-A Pricing Table Widget segítségével átlátható és vonzó ártáblázatokat hozhatsz létre. Ez ideális választás szolgáltatásokat vagy termékeket értékesítő weboldalak számára.
+### Adatvizualizáció
+- **Táblázat**: reszponzív, horizontális görgetéssel is; árlista, specifikáció vagy ütemezés gyors felvitele.  
+- **Bar/Pie chart**: oszlop‑ és kördiagram adatok szemléltetésére.  
+- **Progress bar/Circle**: célok, teljesítési arányok vizuális jelzése.  
+- **Idővonal** (vertikális/horizontális): mérföldkövek, történelem, projektfázisok bemutatása.
 
-### Image Comparison Widget
-Az Image Comparison Widget lehetővé teszi, hogy két képet egymás mellett összehasonlíts. Ez különösen hasznos előtte-utána típusú bemutatókhoz, például szépségipari szolgáltatások vagy lakásfelújítások esetében.
+### Média és beágyazás
+- **Videólejátszó**: YouTube, Vimeo, Shorts támogatással; GDPR‑barát beállításokkal.  
+- **Audiolejátszó** (MP3): podcast‑szakaszok vagy hangminták embedelése.  
+- **Instagram rács**: vizuális közösségi feed beágyazása tokennel.  
+- **Letöltés gomb** és **inline SVG**: fájllehívás, éles vektorikonok.
 
-### Advanced Carousel
-Az Advanced Carousel többféle diavetítési lehetőséget kínál, beleértve a képeket, videókat és egyéb tartalmakat. Ez rugalmas megoldást nyújt a multimédiás tartalmak bemutatására.
+### Marketing és “bizalom”
+- **Testimonials/Referenciák**: ügyfélidézetek értékeléssel.  
+- **Csapatprofil**: fotó, pozíció, közösségi linkek.  
+- **Márka‑/Logó‑showcase**: partnerek, sajtólogók.  
+- **Visszaszámláló**: időzített promóciókhoz.  
+- **Szolgáltatás‑dobozok**: ikon, cím, leírás, CTA gomb.
 
-### Testimonials Widget
-A Testimonials Widget segítségével könnyedén megjelenítheted az ügyfelek véleményeit és visszajelzéseit. Ez növeli a weboldalad hitelességét és bizalmat épít a látogatókban.
+### Blog és elrendezések
+- **Post Grid/Lista**: bejegyzések rugalmas megjelenítése, kategória/ címke alapján.  
+- **Images Layout**: kifejező képelrendezések egyedi ratio‑val, hézagokkal.
 
-## Együttműködés más eszközökkel
+### E‑kereskedelem (WooCommerce)
+- **Products** rács és **slider**: legújabb, kiemelt, akciós vagy legjobbra értékelt termékek gyors kiemelése, Elementor‑stílusokkal.
 
-### Elementor
-A JetElements zökkenőmentesen integrálható az Elementor szerkesztővel, ami lehetővé teszi, hogy egyszerűen húzd és ejtsd módszerrel helyezd el a widgeteket a weboldaladon.
+### Integrációk
+- **Advanced Map** (Google Maps): egy vagy több jelölő, saját stílus; API‑kulcs szükséges.  
+- **Mailchimp feliratkozás**: hírlevél‑opt‑in mezők validációval.  
+- **Weather** (Weatherbit): aktuális időjárás és előrejelzés, városnév vagy koordináták alapján.
 
-### WooCommerce
-A WooCommerce integrációval könnyedén létrehozhatsz vonzó termékbemutatókat és ártáblázatokat. A JetElements widgetek segítenek abban, hogy a webáruházad professzionális és felhasználóbarát legyen.
-
-### Crocoblock Bővítmények
-A JetElements zökkenőmentesen működik együtt más Crocoblock bővítményekkel, mint például a JetEngine, JetSmartFilters és JetBooking. Ez lehetővé teszi a komplex funkciók és dinamikus tartalmak létrehozását.
+### Fordíthatóság és ökoszisztéma
+- **WPML** támogatás: widgettartalom fordítható.  
+- **JetEngine**: a JetElements statikus widgetjei dinamikus forrásokkal tölthetők fel (Repeater, Query), így adatvezérelt listák, kártyák, galériák építhetők.
 
 ## Gyakorlati példák
 
-### Utazási Iroda Weboldala
-Egy utazási iroda weboldalán használhatod a Current Weather Widget-et, hogy valós idejű időjárási adatokat jeleníts meg az utazási célpontokról. Emellett a Pricing Table Widget segítségével átlátható ártáblázatokat készíthetsz a különböző utazási csomagokról.
+- **Landing oldal**: hős **Slider** + értékajánlat **Animated Texttel**, társadalmi bizonyíték **Testimonials** és **Logo Carousel** formában, a végén **Countdown** és **CTA**.  
+- **Portfólió**: **Masonry Galéria** kategóriaszűrővel, esetleírásokhoz **Image Comparison**, vizuális fűszerként **Lottie** animáció.  
+- **Adatoldal**: **Táblázat** árakkal, alatta **Bar Chart** a teljesítménymutatókhoz, projektfázisok **Idővonalon**.  
+- **Webshop szekció**: **Products Grid** akciós termékszalaggal, mobilon áttördelő kártyákkal.  
+- **Kapcsolat/üzletek**: **Advanced Map** több boltponttal, mellette **Weather** és **Instagram** feed.
 
-### Online Bolt
-Egy online bolt esetében a Hotspot Widget-et használhatod, hogy interaktív pontokat helyezz el a termékfotókon, amelyek további információkat vagy vásárlási linkeket tartalmaznak. Az Image Comparison Widget pedig segíthet abban, hogy bemutasd a termék előnyeit előtte-utána képekkel.
+## Beállítások és teljesítmény
 
-### Szépségszalon Weboldala
-Egy szépségszalon weboldalán az Image Comparison Widget segítségével előtte-utána képeket jeleníthetsz meg a kezelésekről. A Testimonials Widget segítségével pedig könnyedén megoszthatod az ügyfelek pozitív visszajelzéseit.
+- Menj a **JetPlugins > JetElements Settings** menübe.  
+- Kapcsold ki a nem használt **widgeteket** – csökken a betöltési idő és a memóriahasználat.  
+- Állítsd az **Editor Load Levelt** (Low/Medium/Advanced/Full) a szerkesztő gördülékenységéhez.  
+- Add meg az **API‑kulcsokat** (Maps, Mailchimp, Instagram, Weather).  
+- Engedélyezheted az **SVG feltöltést**, és használhatod a Jet sablonokat az Elementor könyvtárból.  
+- AMP‑os projektnél csak az érintett, kompatibilis modulokat használd.
 
-## Szószedet
+```text
+Gyors indulás – 5 lépés
+1) Telepítsd és aktiváld az Elementort + JetElements‑et
+2) JetElements Settings: csak a szükséges widgeteket hagyd bekapcsolva
+3) Add meg az API‑kulcsokat (ha kell: Maps/Mailchimp/Instagram/Weather)
+4) Válaszd meg az Editor Load Level szintet
+5) Elementorban húzd be a JetElements widgeteket és állítsd a Content/Style/Advanced füleken
+```
 
-- **Widget**: Egy önálló elem vagy modul, amely funkcionális és vizuális elemeket ad hozzá egy weboldalhoz.
-- **Parallax**: Egy görgetési technika, amely során a háttér lassabban mozog, mint az előtér, így mélységet adva az oldalnak.
-- **CSS ID**: Egyedi azonosító, amely segítségével stílusokat alkalmazhatsz egy adott elemre.
-- **Diavetítés**: Képek vagy tartalmak sorozatos megjelenítése egy kijelzőn.
-- **Integráció**: Különböző rendszerek vagy eszközök összekapcsolása és együttműködése.
-- **Multimédia**: Különböző típusú tartalmak kombinációja, például szöveg, kép, videó és hang.
+## Előnyök és értékajánlat
 
-Ez volt tehát a JetElements For Elementor részletes bemutatása. Használd ki a bővítmény nyújtotta lehetőségeket, hogy még színvonalasabb és interaktívabb weboldalakat hozz létre!
+- **Kevesebb bővítmény, kevesebb gond**: a “hiányzó” elemeket egy csomag lefedi.  
+- **Gyors kivitelezés**: egységes Content/Style/Advanced vezérlők, előre beállított presetek.  
+- **Professzionális vizuál**: animációk, galériák, grafikonok – mind testreszabható.  
+- **Adatvezérelt oldalak kód nélkül**: JetEngine integrációval.  
+- **Stabil frissítések és támogatás**: folyamatos kompatibilitás és új funkciók.  
+- **Költséghatékony**: egyetlen licenc több tucat funkciót hoz (1 éves frissítés és támogatás).
+
+## Kinek ajánlott?
+
+- **Ügynökségek és freelancerek**: gyors prototípus, ismételhető komponensek, kevesebb kompatibilitási kockázat.  
+- **Marketingesek**: landingek, kampányblokkok, visszaszámlálók, referenciák – mind kód nélkül.  
+- **Webshop‑tulajok**: fókuszált termékkiemelés Elementor‑stílusokkal.  
+- **Tartalom‑ és adatközpontú oldalak**: táblázatok, grafikonok, idővonalak, dinamikus listák.  
+- **Portfóliók és kreatív projektek**: galéria‑variációk, előtte–utána bemutatók, Lottie.
+
+## Ár és csomagok röviden
+
+- **JetElements önálló licenc**: 45 widget, 1 év frissítés és támogatás, 1 webhelyen.  
+- **All‑Inclusive csomag**: több Jet‑bővítmény együtt, ~150+ widgettel.  
+Az aktuális árak és csomagok változhatnak; mindig az admin fiókodban elérhető információ a mérvadó.
+
+## Döntési segéd
+
+- Szükséged van táblázatra, idővonalra, grafikonra, előtte–utána képre, videóra, térképre vagy Instagram feedre?  
+- Szeretnél mindezt egy helyen, egységes vezérlőkkel és gyors szerkesztéssel kezelni?  
+- Jó lenne dinamikus adatokkal (Repeater/Query) etetni a vizuális blokkjaidat?  
+
+Ha ezekre igen a válasz, a JetElements pontosan neked való.

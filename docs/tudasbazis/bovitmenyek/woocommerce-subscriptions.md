@@ -1,67 +1,93 @@
-# WooCommerce Subscriptions
+---
+title: "WooCommerce Subscriptions"
+description: "Prémium WooCommerce-bővítmény előfizetéses termékekhez és szolgáltatásokhoz, ismétlődő számlázással, megújítási automatizmusokkal és teljes előfizetés‑életciklus‑kezeléssel."
+sidebar_label: "WooCommerce Subscriptions"
+---
 
-A WooCommerce Subscriptions lehetővé teszi, hogy ügyfeleid előfizetést kössenek termékeidre vagy szolgáltatásaidra, és hetente, havonta vagy évente fizessenek.
+## Mi ez és milyen problémát old meg?
 
-## Előfizetési bevétel növelése
+A WooCommerce Subscriptions egy hivatalos, prémium kiterjesztés, amellyel nem egyszeri termékeket, hanem **előfizetéses termékeket és szolgáltatásokat** árulhatsz. Lehetővé teszi a **heti/havi/éves** vagy egyéni **ismétlődő számlázást**, a próbaverziót, a regisztrációs díjat, az **automatikus és kézi megújítást**, valamint a fejlett ügyfél‑self‑service műveleteket.
 
-A WooCommerce Subscriptions segítségével rendszeres időközönkénti fizetéseket hozhatsz létre és kezelhetsz, amelyek maradék bevételt biztosítanak számodra. Ez lehetővé teszi, hogy fizikai vagy virtuális termékek és szolgáltatások széles skáláját kínáld előfizetésben. Létrehozhatsz havi klubokat, heti szolgáltatási előfizetéseket vagy akár éves szoftvercsomagokat. Hozzáadhatsz beiratkozási díjakat, kínálhatsz ingyenes próbaverziókat, vagy meghatározhatsz lejárati időszakokat.
+Ha eddig saját kóddal, manuális számlázással vagy nem támogatott megoldásokkal kezelted a visszatérő fizetéseket, ez a bővítmény egy **stabil, kipróbált** és jól dokumentált hátteret ad. Csökkenti az „involuntary churn”-t (lejárt/hibás kártya miatti lemorzsolódást) automatikus **újrapróbálással** és – bizonyos kapuknál – **kártyaadat‑frissítéssel**, miközben egyszerűsíti a logisztikát és az adminisztrációt.
 
-## WooCommerce Subscriptions Funkciók
+## Hogyan működik röviden?
 
-### Ingyenes próbaverziók és beiratkozási díjak
+- Az áruházban **előfizetéses termékeket** hozol létre (simple/variable). A vásárlás után a rendszer egy **előfizetés** objektumot hoz, amelyhez többféle rendelés kapcsolódhat (első rendelés, megújítás, váltás).
+- A megújításokat egy ütemező kezeli: automatikusan terheli a kártyát a támogatott kapukon, vagy **kézi megújítási** számlát küld.
+- A megújítások **szinkronizálhatók** (például minden hónap 1‑jén), az első időszak **arányosítható**.
+- Az ügyfelek a saját fiókjukban **lemondhatnak, szüneteltethetnek, újraaktiválhatnak**, címet és fizetési módot cserélhetnek.
+- Fejlesztőként teljes **REST API** és hook‑készlet áll rendelkezésedre; a bővítmény **HPOS‑kompatibilis**.
 
-Lehetőséged van kezdeti összeget felszámítani a beállítási költségek fedezésére, vagy ingyenes próbaverziókat kínálni az ügyfelek számára, hogy kipróbálják a terméket, mielőtt megvásárolnák.
+## Fő funkciók részletesen
 
-### Előfizetés kezelése
+- **Előfizetéses terméktípusok**  
+  Készíthetsz egyszerű és változó előfizetéses termékeket. Fontos: a „termék” csak az ajánlat leírása; a tényleges szerződés az **előfizetés** objektum, amely a teljes életciklust (állapotok, dátumok, kapcsolt rendelések) tárolja.
 
-Az adminisztrációs felületen teljes körű előfizetéskezelést biztosít. Lehetőséged van szüneteltetni vagy lemondani az előfizetést, módosítani a próbaverzió lejáratát, hozzáadni elemeket, szállítást, díjakat vagy adókat az előfizetéshez, illetve módosítani a jövőbeni fizetések összegét.
+- **Rugalmas számlázás, próbaverzió és regisztrációs díj**  
+  Beállíthatod a számlázási **periódust** (nap/hét/hónap/év) és **intervallumot** (például 2 havonta). Adhatsz **próbaverziót** (free trial) és **sign‑up fee‑t**, így kontrollálhatod az ügyfélszerzés költségét és a cash‑flow‑t.
 
-### Szinkronizált fizetések
+- **Szinkronizált megújítás és proráció**  
+  Igazítsd a megújításokat fix naphoz (például minden hónap 1‑je). Az első időszak díja **arányosítható**, hogy az ügyfél igazságos összeget fizessen a csatlakozás napjától a szinkronizált dátumig.
 
-Ha csak a hónap bizonyos napjain szeretnél szállítani, vagy az összes ügyfelet ugyanarra az éves tagsági időszakra szeretnéd igazítani, akkor ezt megteheted a WooCommerce Subscriptions megújítási szinkronizációs funkciójával. Az első fizetést akár arányosan is eloszthatod egy szinkronizált előfizetés vásárlásakor.
+- **Automatikus és kézi megújítások, kapuintegrációk**  
+  Számos hivatalos fizetési kapu támogatja az **automatikus terhelést**. Ha egy kapu nem tud ismétlődőt, akkor is használhatod **kézi megújítással**: a vevő e‑mailt kap, és a szokásos checkouton fizet.
 
-### Rugalmas termékopciók
+- **Sikertelen fizetések újrapróbálása**  
+  Beépített **retry** logika kezeli a kártyahibákat; a rendszer ütemezetten újrapróbál, és értesíti az ügyfelet. Ez jelentősen csökkenti a nem szándékos lemorzsolódást.
 
-Az előfizetéses termék létrehozásakor letölthetővé, virtuálissá vagy fizikailag is elérhetővé teheted a terméket, heti, havi vagy éves megújítási fizetésekkel. Korlátozhatod a terméket egy vásárlóra, és akár csak az első rendeléskor számíthatsz fel szállítási költséget.
+- **Előfizetés‑váltás (switching)**  
+  Az ügyfelek **upgrade/downgrade/cross‑grade** műveleteket végezhetnek. A bővítmény **prorációt** számol, kezeli az **időarányos különbözetet** (gap payment), és a következő megújítás dátumát is megfelelően módosítja.
 
-### Előfizetési kuponok
+- **Több előfizetés egy tranzakcióban**  
+  Az azonos ütemezésű tételeket a rendszer **csoportosítja**, így egyszerűbb a szállítás és kevesebb a tranzakciós költség.
 
-Kínálhatsz kedvezményt az ügyfeleknek a havi fizetésekre vagy csak a beiratkozási díjra. Az előfizetések tartalmaznak mind visszatérő kedvezménykuponokat, mind beiratkozási díjkuponokat.
+- **Kuponok és akciók**  
+  Támogatott a **visszatérő kedvezmény** és a **sign‑up fee**‑re adható kupon, így precízen tervezheted a promóciókat.
 
-### Változó előfizetések
+- **Ajándékozás (Gifting)**  
+  Az előfizetést **másnak** is megvehetik. A megajándékozott külön fiókot és előfizetés‑nézetet kap, miközben az érzékeny fizetési adatok nem látszanak számára.
 
-Hozhatsz létre változó előfizetési termékeket is, és megengedheted az ügyfeleknek, hogy kiválasszák a számukra legmegfelelőbb előfizetést. Az ügyfelek még a saját számlázási ütemezésüket is kiválaszthatják.
+- **Értesítések és ütemezés**  
+  Beépített e‑mailek jelzik a **közelgő megújítást**, a **próba végét** és a **lejáratot**. Az üzenetek ütemezése és újragenerálása adminból kezelhető.
 
-### Előfizetői fiókkezelés
+- **REST API és fejlesztői eszközök**  
+  Teljes **CRUD** az előfizetésekhez, több száz **action/filter**, naprakész adattáblák és HPOS támogatás – ideális integrációkhoz és egyedi folyamatokhoz.
 
-Az ügyfeleid saját maguk is kezelhetik előfizetéseiket. Az **"My Account > View Subscription"** oldalon az előfizetők szüneteltethetik vagy lemondhatják előfizetésüket, módosíthatják a szállítási címet vagy a jövőbeni megújításokhoz szükséges fizetési módot, és akár fel- vagy leminősíthetik előfizetésüket.
-
-### Fel- és leminősítések
-
-Lehetőséget adhatsz az ügyfeleknek arra, hogy különböző előfizetési termékek között váltogassanak. Rugalmas arányosítási lehetőségekkel a visszatérő összegre, beiratkozási díjra és hosszra testreszabhatod a váltás költségeit is.
-
-### Többszörös előfizetések
-
-Az ügyfeleid különböző előfizetési termékeket is vásárolhatnak egy tranzakcióban. Az előfizetések csoportosítása csökkenti a fizetési átjáró díjakat és a jövőbeni megújítások logisztikai terheit.
-
-### Ügyfél e-mailek
-
-Automatikusan értesítheted az ügyfeleidet, amikor egy előfizetés megújítási fizetése feldolgozásra kerül, egy előfizetés lemondásra kerül, vagy amikor egy előfizetés lejárt a beépített **előfizetési e-mailekkel**.
+Példa ütemezési beállítás szemléltetésére:
+```
+billing:
+  period: month
+  interval: 1
+trial: 14_days
+sign_up_fee: 1990
+renewal_synchronisation: monthly_day_1
+```
 
 ## Gyakorlati példák
 
-1. **Tartalomszolgáltatók**: Online magazinok esetén az olvasók havi vagy éves előfizetéssel férhetnek hozzá prémium tartalmakhoz.
-2. **E-learning platformok**: Oktatási oldalak havonta számlázhatnak a tanfolyamokhoz való hozzáférésért.
-3. **Szoftverek**: Szoftvercégek éves licencdíjat számlázhatnak termékeik használatáért.
-4. **Fogyasztói klubok**: Termékklubok havonta különleges termékcsomagokat küldhetnek hűséges ügyfeleiknek.
-5. **Szolgáltatások**: Heti takarítási szolgáltatásokat kínáló cégek rendszeres bevételhez juthatnak az előfizetések által.
+- **Subscription box (kávé, állateledel, kozmetikum)**: havi megújítás szinkronizálva minden hónap 1‑jére; az első hónap arányosított díja automatikusan számolódik.  
+- **Tagsági hozzáférés és e‑learning**: előfizetés + tagság integrációval tananyagok, közösségi területek, kedvezmények nyithatók meg automatikus megújítással.  
+- **SaaS/támogatási csomagok**: hónapról hónapra számlázás, csomag‑váltás közben időarányos elszámolás.  
+- **Adományok és klubtagság**: ismétlődő adománykezelés, opcionális egyedi összeggel és visszatérő kuponokkal.  
+- **B2B/céges vásárlás**: ajándékozással munkatársakhoz rendelhető előfizetés, központi számlázással.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Beiratkozási díjak**: Kezdeti összeg, amit az ügyfélnek kell fizetnie a szolgáltatás megkezdése előtt.
-- **Próbaverziók**: Ingyenes időszak, amely alatt az ügyfél kipróbálhatja a szolgáltatást.
-- **Szinkronizált fizetések**: Olyan fizetési ütemezés, amely minden ügyfelet ugyanarra a dátumra igazít.
-- **Fel- és leminősítések**: Az ügyfelek lehetősége arra, hogy váltogassanak különböző előfizetési szintek között.
-- **Változó előfizetések**: Többféle opcióval rendelkező előfizetési termékek.
+- **Bevétel‑tervezhetőség**: kiszámítható MRR/ARR, hatékonyabb pénzügyi tervezés.  
+- **Kevesebb lemorzsolódás**: automatikus retry és – kompatibilis kapuknál – kártyaadat‑frissítés.  
+- **Kevesebb admin**: ügyfél‑self‑service, csoportos megújítások, értesítési automatizmusok.  
+- **Rugalmas promóció**: trial + sign‑up fee + visszatérő kuponok kombinálhatók.  
+- **Logisztikai egyszerűsítés**: azonos ütemezésű előfizetések csoportos kezelése.  
+- **Fejlesztőbarát**: REST API, hookok, HPOS‑kompatibilitás.
 
-Ezekkel a funkciókkal és lehetőségekkel a WooCommerce Subscriptions rugalmas és hatékony eszköz lehet bármely vállalkozás számára, amely rendszeres időközönkénti bevételt szeretne generálni.
+## Kinek ajánlott?
+
+- **Webáruházaknak**, akik rendszeres szállítású termékeket értékesítenek.  
+- **Tartalom‑ és kurzuskészítőknek**, akik tagságot vagy hozzáférést monetizálnának.  
+- **SaaS‑szolgáltatóknak** és **ügynökségeknek**, ahol havi retainer vagy support csomagok futnak.  
+- **Nonprofit szervezeteknek**, ismétlődő adományokhoz.  
+- **B2B szereplőknek**, akik előfizetéseket osztanak ki munkatársaknak vagy partnereknek.
+
+## Összegzés
+
+A WooCommerce Subscriptions egy kiforrott, hivatalosan támogatott megoldás minden olyan WooCommerce‑alapú üzleti modellhez, ahol **ismétlődő bevétel** a cél. Rugalmas számlázása, széles **fizetési kapu** támogatása, a fejlett **megújítási és váltási** logika, a beépített **ajándékozás** és a transzparens **admin/ügyfél‑oldali** folyamatok miatt gyorsan bevezethető és hosszú távon is skálázható. Ha előfizetéses termékeket vagy szolgáltatásokat árulsz, ez a bővítmény a legbiztonságosabb és legteljesebb alap, amire építhetsz.

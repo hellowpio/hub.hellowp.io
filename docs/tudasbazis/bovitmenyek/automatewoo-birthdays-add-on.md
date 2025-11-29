@@ -1,75 +1,113 @@
-# AutomateWoo - Birthdays add-on
+---
+title: "AutomateWoo - Birthdays Add-on"
+description: "Születésnapok gyűjtése és automatizált, személyre szabott üzenetek/kedvezmények küldése WooCommerce-ben az AutomateWoo segítségével."
+sidebar_label: "AutomateWoo - Birthdays Add-on"
+---
 
-Az AutomateWoo - Birthdays add-on egy kiegészítő, amely lehetővé teszi, hogy különleges születésnapi üdvözleteket és kedvezményeket küldj vásárlóidnak, növelve ezzel az elköteleződést és a márkahűséget. Ez az eszköz ideális arra, hogy a vásárlók különleges napját emlékezetessé tegyük és ösztönözzük őket további vásárlásokra.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+Az AutomateWoo – Birthdays Add-on egy hivatalos kiegészítő, amellyel a vásárlóid születésnapjához köthető automatizmusokat építhetsz: időzített üdvözlő e‑mailek, egyszer használható kuponok, emlékeztetők, upsell/keresztértékesítési ajánlatok. A manuális “születésnapi naptár” helyett mindent automatizálsz: a rendszer pontosan a megfelelő napon (vagy előtte/utána) kommunikál, és így növeled a hűséget, az újravásárlást és a bevételt. A bővítmény az AutomateWoo alapra épül, ezért annak aktívnak kell lennie.
 
-### Születésnapi kuponok
+## Hogyan működik röviden?
 
-Az egyik legfontosabb funkciója, hogy lehetőséget biztosít egyedi születésnapi kuponok küldésére. Ezek a kuponok ösztönözhetik a vásárlókat, hogy meglepjék magukat egy új termékkel vagy szolgáltatással a különleges napjukon.
+- Születésnap mezőt jeleníthetsz meg a pénztárban és a “Saját fiók” oldalon, így kontextusban gyűjtöd az adatot.
+- Az AutomateWoo új **triggert**, **szabályokat** és **változókat** kap, amivel könnyen felépítesz időzített, személyre szabott workflow‑kat.
+- A rendszer minden évben a megadott időzítés szerint futtatja az üzeneteket és (igény szerint) egyedi kuponokat generál.
 
-### Testreszabható születésnapi e-mailek
+## Fő funkciók, részletesen
 
-Lehetőséged van teljesen testreszabni a születésnapi e-maileket, hogy azok tökéletesen illeszkedjenek a márkád stílusához. Hozzáadhatsz képeket, GIF-eket, és személyre szabhatod az üzeneteket a vásárlók nevének beillesztésével.
+### Adatgyűjtés a megfelelő helyen
+- **Pénztár mező**: opcionális születésnap mező a checkouton. Csak bejelentkezett vásárlóknak és csak addig jelenik meg, amíg nem adtak meg korábban születésnapot. Ez csökkenti a súrlódást, és rögtön a profiljukhoz kapcsolja az adatot.
+- **Fiókadatok mező**: a “Saját fiók → Fiókadatok” oldalon is szerkeszthető, így később is megadhatják vagy javíthatják.
+- **Testreszabás**: beállíthatod a kísérő leírást, a mező elhelyezését, és eldöntheted, kéred‑e a születési évet (kérhetsz csak hónap/napot is a minimalizált adatgyűjtéshez).
 
-### Automatikus küldés
+### Új AutomateWoo elemek
+- **Trigger – Customer Birthday**: workflow indítása a születésnap előtt, napján vagy utána. Tipikus használat: előtte 3 nappal emlékeztető; a napon üdvözlő e‑mail kuponnal; utána “reminder” az igénybevételhez.
+- **Szabályok – Customer Next/Last Birthday Date**: feltételek a következő vagy az utolsó születésnap dátuma alapján. Így például csak azoknak küldesz kampányt, akiknek ebben a hónapban van a születésnapjuk.
+- **Változó – `{{ customer.birthday }}`**: használhatod e‑mailben vagy sablonokban a személyre szabáshoz. A személyre szabott kuponokhoz a megszokott AutomateWoo változók állnak rendelkezésre (pl. egyedi kuponkód generálása).
 
-Az add-on segítségével automatikusan küldheted el a születésnapi e-maileket, amikor bizonyos feltételek teljesülnek. Ez lehet a születésnap előtt, a születésnap napján, vagy akár utána is.
+### Admin beállítások és adatkezelés
+- **Beállítások útvonala**: WooCommerce admin → AutomateWoo → Settings → Birthdays.
+- **Kulcsopciók**:
+  - Show birthday field on checkout
+  - Show birthday field in account area
+  - Birthday field description
+  - Collect year of birth
+  - Checkout field placement
+- **Adatjavítás**: adminisztrátorként a felhasználói szerkesztőoldalon módosíthatod vagy törölheted a születésnapot.
+- **Import/migráció**: nincs egykattintásos import. Fejlesztőként programból is beállíthatod a dátumot.
 
-### Születésnap megadása a pénztárnál
+Példa fejlesztői hívásra:
+```php
+// Példa: felhasználó születésnapjának beállítása import során
+$user_id  = 123;
+$birthday = '1990-07-15'; // vagy '07-15', ha nem gyűjtesz évet
+AW_Birthdays_Addon::set_user_birthday( $user_id, $birthday );
+```
 
-Az ügyfelek születésnapi információit könnyedén begyűjtheted a pénztárnál egy extra mező hozzáadásával. Így biztosíthatod, hogy minden szükséges adat rendelkezésre álljon.
-
-### GDPR-támogatás
-
-Az add-on megfelel a GDPR előírásainak, így biztosítva az ügyfelek adatainak védelmét.
-
-## Előnyök
-
-### Növekvő tranzakciós arány
-
-A statisztikák szerint a születésnapi e-mailek tranzakciós aránya 481%-kal magasabb, mint a hagyományos promóciós e-maileké. Ez azt jelenti, hogy az ügyfelek sokkal valószínűbb, hogy vásárolnak, ha egy személyre szabott üdvözletet kapnak.
-
-### Magasabb bevétel e-mailenként
-
-A születésnapi e-mailek 342%-kal magasabb bevételt generálnak e-mailenként, mint a standard promóciós üzenetek. Ez jelentős növekedést jelenthet az éves forgalomban.
-
-### Magasabb egyedi kattintási arány
-
-A születésnapi e-mailek egyedi kattintási aránya 179%-kal magasabb. Ez azt jelenti, hogy több ügyfél látogatja meg az oldalt, és böngészik a termékeidet.
-
-## Milyen eszközökkel működik együtt?
-
-Az AutomateWoo - Birthdays add-on zökkenőmentesen integrálódik más WooCommerce bővítményekkel és eszközökkel. Például:
-
-- **WooCommerce Points and Rewards**: Összekapcsolhatod a pontgyűjtési rendszert a születésnapi kedvezményekkel.
-- **WooCommerce Subscriptions**: Különleges ajánlatokat adhatsz előfizetőidnek a születésnapjuk alkalmából.
-- **WooCommerce Payments**: Biztosítja az egyszerű és biztonságos fizetési lehetőségeket a születésnapi kuponok felhasználásakor.
+### Adatvédelem
+Minimalizálható a gyűjtött adat (év opcionális), a mezők szövege testreszabható, és átláthatóan kommunikálhatod a célját. Ez támogatja a megfelelőségi elvárásokat.
 
 ## Gyakorlati példák
 
-### Webáruházak
+1. **“Boldog születésnapot” e‑mail egyedi kuponnal**
+   - Trigger: Customer Birthday (a napon).
+   - Akció: Send Email, a levélben egyedi kuponkód beszúrása.
+   - Eredmény: magas megnyitási és beváltási arány, mérhető pluszbevétel.
 
-Egy divatwebáruház például küldhet egy különleges 20%-os kedvezményt tartalmazó kupont minden vásárlójának a születésnapján. Az üdvözlő e-mail tartalmazhat egy személyre szabott üzenetet és egy linket az aktuális kollekcióhoz.
+   Egyszerű e‑mail törzs:
+   ```text
+   Szia {{ customer.first_name|default:"Kedves Vásárló" }}!
+   Boldog születésnapot! Meglepetésként itt a személyre szabott kuponod:
+   {{ customer.generate_coupon }}
+   Jó vásárlást és szép ünneplést!
+   ```
 
-### Szolgáltató cégek
+2. **“Treat yourself” kampány a hónap folyamán**
+   - Szabály: Next Birthday Date → az aktuális hónapban lévő ügyfelek.
+   - Akció: emlékeztető egy finom ajánlattal vagy ingyenes szállítással.
 
-Egy szépségszalon automatikusan küldhet egy ingyenes kezelést vagy kedvezményes szolgáltatást kínáló kupont hűséges ügyfeleinek a születésnapjukra.
+3. **VIP szegmens kiemelt ajánlattal**
+   - Kombináld a születésnapi szabályokat értékalapú szegmenssel (például összköltés).
+   - Adhatsz hosszabb érvényességű, nagyobb kedvezményt a VIP‑knek.
 
-### Éttermek
+## Előnyök és értékajánlat
 
-Egy étterem küldhet egy ingyenes desszertet vagy italt tartalmazó kupont az ügyfelek születésnapjára, ösztönözve őket arra, hogy ünnepeljenek az étteremben.
+- **Automatikus időzítés**: nem kell naptárat vezetned; a rendszer minden évben magától fut.
+- **Személyre szabás → konverzió**: a személyes apropó és az egyedi kupon érezhetően emeli a megnyitást, kattintást és beváltást.
+- **Kevesebb manuális munka**: egyszeri beállítás, utána skálázhatóan működik.
+- **Win‑back és upsell**: visszahozhatod az inaktívakat, és finom ajánlatokkal növelheted a kosárértéket.
+- **Adatvédelmi fókusz**: csak annyit kérsz, amennyire tényleg szükség van.
 
-## Tippek a hatékony használathoz
+## Kinek ajánlott?
 
-- **Időzítés**: Próbáld meg időzíteni az e-maileket úgy, hogy azok néhány nappal a születésnap előtt érkezzenek meg. Így több idejük lesz az ügyfeleknek tervezni.
-- **Személyre szabás**: Mindig használd az ügyfél nevét az e-mail tárgyában és üzenetében.
-- **Ajánlatok**: Adj valódi értéket képviselő ajánlatokat, amelyek ösztönzik az ügyfeleket a vásárlásra.
+- **Kereskedőknek**, akik hűségprogramot építenek és növelnék az újravásárlást.
+- **D2C márkáknak**, ahol erős a közvetlen kommunikáció és a személyre szabás.
+- **Szegmentációt használó webáruházaknak**, akik eltérő ajánlatokat küldenének VIP, új vagy inaktív vevőknek.
+- **Kis csapatoknak**, akiknek számít az automatizált, “beállít és felejt” működés.
 
-## Szószedet
+## Követelmények és telepítés
 
-- **AutomateWoo**: Egy marketing automatizálási bővítmény WooCommerce számára.
-- **GDPR**: Általános Adatvédelmi Rendelet (General Data Protection Regulation).
-- **Kupon**: Egy kód vagy ajánlat, amely kedvezményt biztosít a vásárlóknak.
-- **Testreszabás**: A folyamat, amely során egy terméket vagy szolgáltatást egyedi igényekhez igazítanak.
-- **Tranzakciós arány**: Azon vásárlások százalékos aránya, amelyek egy adott e-mail kampány eredményeként történnek.
+- Aktív AutomateWoo szükséges.
+- A bővítmény a WooCommerce ökoszisztémában érhető el és onnan telepíthető, licenckezeléssel együtt.
+- Kompatibilis a modern WooCommerce technológiákkal, beleértve a fejlettebb rendeléskezelést és a blokkalapú pénztár/kosár környezetet.
+
+## Gyors bevezetési ellenőrzőlista
+
+1. Telepítsd és aktiváld a Birthdays add‑ont (AutomateWoo már aktív).
+2. Lépj az AutomateWoo → Settings → Birthdays oldalra és állítsd be:
+   - mezők megjelenése,
+   - leírás,
+   - év bekérése,
+   - mező elhelyezése.
+3. Döntsd el, készítesz‑e előre kupont vagy workflow‑ban generálsz egyedit.
+4. Hozz létre egy workflow‑t:
+   - Trigger: Customer Birthday (előtte/napján/utána).
+   - Akció: Send Email, személyre szabott tartalommal és kuponnal.
+5. Teszteld egy tesztfelhasználóval, majd élesítsd.
+
+## Korlátok és tippek
+
+- A pénztári születésnap mező csak bejelentkezett vásárlóknak jelenik meg, és eltűnik, ha már van rögzített születésnapjuk – ez szándékos működés.
+- Nincs natív, egykattintásos import más rendszerekből; egyedi migrációhoz használj fejlesztői hívást.
+- Praktikus tipp: adj lejárati dátumot a születésnapi kuponnak (pl. 7–14 nap), és küldj emlékeztetőt a lejárat előtt.

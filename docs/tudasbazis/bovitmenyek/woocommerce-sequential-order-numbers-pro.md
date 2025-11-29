@@ -1,58 +1,98 @@
-# WooCommerce Sequential Order Numbers Pro
+---
+title: "WooCommerce Sequential Order Numbers Pro"
+description: "WooCommerce-rendelésekhez folyamatos, testreszabható sorszámokat ad előtaggal/utótaggal, dátummintákkal és fix hosszúsággal; megfeleléshez és integrációkhoz ideális."
+sidebar_label: "WooCommerce Sequential Order Numbers Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WooCommerce Sequential Order Numbers Pro bővítmény lehetővé teszi, hogy a WooCommerce áruházadban a rendelési számokat szekvenciálisan, azaz folyamatos sorrendben jelenítse meg. Ez különösen hasznos lehet azoknak a felhasználóknak, akik áttekinthetőbb és követhetőbb rendelési számozást szeretnének, mint az alapértelmezett WooCommerce random generált számsorok.
+A WooCommerce alapból a belső WordPress poszt-ID-t használja rendelési számnak, ami nem folyamatos és sokszor “ugrál”. A Sequential Order Numbers Pro ezt oldja meg: minden rendeléshez egy **folyamatosan növekvő, tetszőlegesen formázható rendelési sorszámot** ad, így a rendeléseid könnyen követhetők, beszámolhatók és kommunikálhatók. A megjelenített sorszám elkülönül a belső rendelés-ID-től, tehát az admin URL-ek és a háttérfolyamatok nem változnak.
 
-### Szekvenciális rendelési számok
+## Hogyan működik röviden?
 
-A bővítmény lehetőséget biztosít arra, hogy minden új rendelés egy folyamatosan növekvő számsort kapjon. Így könnyen nyomon követhetőek a rendelések, és egyszerűbbé válik az adminisztráció.
+Aktiválás után azonnal sorszámoz: üres boltban 1-től indul, meglévő boltban a legnagyobb eddigi szám után folytatja. A testreszabást a WooCommerce beállításokban éred el (General > Order Numbers): **kezdő szám**, **előtag/utótag**, **fix hossz**, dátum/idő elemek és **ingyenes rendelések külön számozása**.
 
-### Testreszabható kezdő szám
+## Fő funkciók, részletesen
 
-Lehetőséged van megadni, hogy milyen számról induljon a szekvenciális számozás. Ez akkor lehet hasznos, ha egy már meglévő rendszerből váltasz, és szeretnéd folytatni a meglévő számozást.
-
-### Rendelési szám előtag és utótag
-
-A bővítmény lehetőséget ad arra, hogy egyedi előtagot és utótagot adj hozzá a rendelési számokhoz. Ez segíthet abban, hogy még egyedibbé és azonosíthatóbbá tedd a rendeléseket.
-
-### Többféle formátum támogatása
-
-A WooCommerce Sequential Order Numbers Pro támogatja a különböző formátumok használatát, így könnyen beállíthatod, hogy a számsor hogyan jelenjen meg. Például használhatsz betűket és számokat kombinálva.
-
-## Együttműködés más eszközökkel
-
-### WooCommerce Subscriptions
-
-A bővítmény zökkenőmentesen integrálható a WooCommerce Subscriptions bővítménnyel, így az előfizetések is szekvenciális számozást kapnak. Ez különösen hasznos lehet azoknak, akik előfizetéses rendszert üzemeltetnek.
-
-### WooCommerce Bookings
-
-A WooCommerce Bookings bővítménnyel való integráció lehetővé teszi, hogy a foglalások is szekvenciális rendelési számokat kapjanak, ami megkönnyíti a foglalások nyomon követését és kezelését.
-
-### WPML kompatibilitás
-
-A bővítmény teljes mértékben kompatibilis a WPML (WordPress Multilingual Plugin) bővítménnyel, így többnyelvű webáruházak esetében is problémamentesen használható.
+- **Folyamatos sorszámozás:** Minden új rendelés egy egyértelműen növekvő sorszámot kap. Ez megszünteti a poszt-ID miatt tapasztalt kihagyásokat.
+- **Kezdő sorszám:** Beállíthatod, honnan induljon a számozás. Fontos: mindig a legnagyobb meglévő szám fölé állítsd, visszamenőleg nem módosít.
+- **Előtag/utótag + dátumminták:** Adj könnyen érthető kontextust (pl. év, csatorna, régió). Használható minták: például {YYYY}{MM}{DD}, {HH}{N}{S}. A sorszám a prefix és suffix között helyezkedik el.
+- **Fix hossz és nullázás:** Meghatározhatod a sorszám számjegyhosszát; a rendszer balról nullákkal tölti fel (pl. 000123).
+- **Ingyenes rendelések külön számozása:** A 0 összegű rendelések kivehetők a “fizetett” sorozatból, és kaphatnak külön előtagot (pl. FREE-) és saját számozást.
+- **Kompatibilitás a modern WooCommerce-funkciókkal:** Használható a Cart & Checkout Blocks és a High-Performance Order Storage mellett.
+- **Performance mode:** Nagy forgalmú vagy erőforrásszegény környezetben csökkenti a terhelést; nem “tölti vissza” a törölt utolsó sorszámokat.
 
 ## Gyakorlati példák
 
-### Számlázási rendszerek
+- **Könyvelési megfelelés:** Az év elején beállítod a prefixet “2025-”-re, a hossz 6 számjegy, így ilyen kimenetet kapsz: 2025-000001, 2025-000002, … Az ingyenes próbák FREE- előtaggal külön sorozatban futnak.
+- **Ügyfélszolgálat és raktár:** Régiók szerinti előtag: EU-, US-, HU-. A központi raktár így egyértelmű, rövid azonosítókkal dolgozik.
+- **Integrációk:** Számlázó/ERP rendszerek felé egységes, szabályos sorszám megy, elkerülve a poszt-ID okozta inkonzisztenciát.
 
-Ha olyan számlázási rendszert használsz, amely megköveteli a folyamatos rendelési számokat, ez a bővítmény jelentős mértékben megkönnyíti az integrációt.
+## Beállítás minták
 
-### Kereskedelmi elemzés
+- Prefix példák:
+  - Éves bontás: `ORD-{YYYY}-`
+  - Csatorna jelölés: `WEB-` vagy `POS-`
+  - Régió: `EU-` vagy `HU-`
 
-A szekvenciális rendelési számok segítségével könnyen nyomon követheted az eladások alakulását és azonosíthatod az esetleges problémás területeket. Az egyszerűbb számozás lehetővé teszi a gyorsabb adatfeldolgozást is.
+- Suffix példák:
+  - B2B jelölés: `-B2B`
+  - Kampánykód: `-BF`
 
-### Ügyfélszolgálat
+- Fix hossz:
+  - Hossz: 5 → 00001, 00002, …
 
-Az ügyfélszolgálat számára is egyszerűsíti a munkát, ha egyedi és könnyen követhető rendelési számokat használnak. Könnyebbé válik a rendelések azonosítása és kezelése.
+Egy gyakori beállítás:
+- Prefix: `WT-{YYYY}{MM}{DD}-`
+- Hossz: `5`
+- Suffix: üres
+Kimenet: WT-20250115-00001
 
-## Szószedet
+## Telepítés és első lépések
 
-- **Szekvenciális**: Folyamatosan növekvő vagy csökkenő sorrendben elhelyezkedő.
-- **Előtag**: A rendelési szám előtt elhelyezett szöveg vagy karakterek.
-- **Utótag**: A rendelési szám után elhelyezett szöveg vagy karakterek.
-- **Formátum**: A megjelenés módja vagy stílusa.
-- **WPML**: WordPress Multilingual Plugin, amely többnyelvű weboldalak létrehozását teszi lehetővé.
-- **Integráció**: Különböző rendszerek vagy eszközök összekapcsolása és együttműködése.
+1. Telepítsd és aktiváld a bővítményt a WordPress adminban.
+2. Lépj a WooCommerce beállításokhoz, és keresd az Order Numbers szekciót.
+3. Állítsd be a kezdő számot, a prefix/suffix sablont, a hosszot, és döntsd el, kihagyod-e az ingyenes rendeléseket a fő sorozatból.
+4. Mentsd a beállításokat – azonnal élnek.
+
+## Fejlesztőknek
+
+- A megjelenített rendelési számhoz mindig a következőt használd, ne a belső post ID-t:
+```php
+$order_number = $order->get_order_number();
+```
+
+- Keresés megjelenített sorszám alapján:
+```php
+$order = wc_seq_order_number_pro()->find_order_by_order_number( 'WT-20250115-00001' );
+```
+
+- Performance mode bekapcsolása (példa):
+```php
+add_filter( 'wc_seq_order_number_pro_performance_mode', '__return_true' );
+```
+
+Megjegyzés: az admin URL-ek továbbra is a belső rendelés-ID-t használják; ez nem változik. HPOS alatt a rendeléskeresés viselkedése az admin felület képességeitől függ.
+
+## Előnyök és értékajánlat
+
+- **Megfelelőség:** Folyamatos, auditálható számozás, a 0 értékű rendelések külön kezelése.
+- **Átláthatóság:** Rövid, jól kommunikálható azonosítók ügyfélszolgálatnak és raktárnak.
+- **Integrálhatóság:** Stabil sorszámok külső rendszerek felé.
+- **Idő- és hibamegtakarítás:** Kevesebb félreértés, egyszerűbb riportolás, gyorsabb ügyintézés.
+- **Skálázhatóság:** Nagy forgalom mellett is hatékony, performance móddal optimalizálható.
+
+## Kinek ajánlott?
+
+- **Könyvelési/jogi megfelelést** megkövetelő vállalkozásoknak.
+- **B2B és több csatornás** kereskedőknek, ahol a formátum vállalati szabvány.
+- **Integrációt** használó boltoknak (számlázó, ERP, logisztika).
+- **Nagy forgalmú** áruházaknak, ahol a stabil teljesítmény elsődleges.
+
+## Ismert megjegyzések és korlátok
+
+- A **kezdő sorszámot** mindig a legnagyobb meglévő sorszám fölé állítsd; visszamenőleg nem változtat.
+- A sorszám **formátumát** megváltoztatva a meglévő rendelések korábbi formátuma nem alakul át.
+- **Ingyenes rendelések** külön sorozatba szervezése befolyásolja a fő számozás folytonosságát (szándékosan).
+- Bizonyos **fizetési megoldásoknál** (pl. mobilfizetési gyorsgombok) előfordulhat, hogy a formázott sorszám nem minden ponton jelenik meg azonnal.
+- Performance módban a **törölt sorszámok** nem kerülnek visszaosztásra, ami egyes jogszabályi környezetekben előny (nincs “lyukkitöltés”).

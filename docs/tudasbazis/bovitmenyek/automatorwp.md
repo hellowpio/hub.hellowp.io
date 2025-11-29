@@ -1,53 +1,100 @@
-# AutomatorWP
+---
+title: "AutomatorWP"
+description: "No‑code automatizáló bővítmény WordPresshez: pluginek és külső szolgáltatások összekötése triggerek és akciók alapján."
+sidebar_label: "AutomatorWP"
+---
 
-Az AutomatorWP egy sokoldalú és hatékony bővítmény, amely lehetővé teszi a WordPress alapú oldalak automatizálását anélkül, hogy kódot kellene írni. A bővítmény segítségével különböző események (triggers) alapján automatikus műveleteket (actions) hajthatunk végre, ezzel időt és energiát takarítva meg.
+## Mi ez és milyen problémát old meg?
 
-## Főbb funkciók és képességek
+Az **AutomatorWP** egy no‑code “automator” bővítmény WordPresshez. Segítségével összekötheted a webhelyed különböző bővítményeit és külső szolgáltatásait, majd **automatikus folyamatokat (workﬂow‑okat)** építhetsz: amikor valami történik (**trigger**), hajts végre egy vagy több műveletet (**action**). Így megszűnnek a “plugin‑szigetek”, nem kell kódot írnod, és rengeteg kézi, ismétlődő feladatot automatizálhatsz.
 
-### Triggerek és akciók
+Példa: ha valaki vásárol egy terméket WooCommerce-ben, kapjon CRM‑taget, menjen neki egy késleltetett e‑mail, és irányítsd át egy köszönőoldalra.
 
-Az AutomatorWP alapvető elemei a triggerek és az akciók. A triggerek olyan események, amelyek elindítják az automatizációt, míg az akciók azok a műveletek, amelyeket a rendszer végrehajt az esemény bekövetkezésekor.
+## Hogyan működik röviden?
 
-- **Triggerek**: Több mint 130 különböző WordPress bővítménnyel és platformmal integrálható. Például, ha egy felhasználó megvásárol egy terméket, ír egy véleményt, vagy csatlakozik egy csoporthoz.
-- **Akciók**: Az elvégzendő feladatok széles skálája elérhető. Például e-mailek küldése, felhasználói jogosultságok módosítása, vagy adatküldés más alkalmazásokba.
+- **Automations (automatizmusok):** egy vagy több trigger + tetszőleges számú akció logikai feltételekkel.
+- **Trigger → Action logika:** a kiváltó események teljesülésekor az akciók futnak. Triggerekhez rendelhetsz sorrendkényszert, ismétlésszámot és teljesítési limiteket.
+- **Automatizmus‑típusok:**
+  - **Logged‑in:** bejelentkezett felhasználók eseményeire reagál.
+  - **Anonymous:** nem bejelentkezett látogatókhoz; beépített **user selector** dönt arról, hogy meglévő vagy új felhasználóra fussanak az akciók. (Egy automatizmusban itt 1 trigger használható.)
+  - **All users:** műveletek lefuttatása minden vagy szűrt felhasználón.
+  - **All posts:** műveletek lefuttatása minden vagy szűrt bejegyzésen.
+  - **Import file:** CSV/Google Sheets alapján tömeges vagy ütemezett futtatás.
 
-### Automatizációs folyamatok
+## Fő funkciók, érthetően
 
-Az AutomatorWP segítségével könnyedén hozhatsz létre összetett automatizációs folyamatokat, amelyek több lépésből állnak. Ezek a folyamatok jelentős mértékben növelhetik az oldalad hatékonyságát és felhasználói élményét.
+### Triggerek és akciók, vizuális szerkesztő
+- Több száz **trigger/akció** több mint kétszáz integrációból (pl. WooCommerce, LearnDash, MemberPress, ACF, Gravity Forms, WPForms, BuddyPress/BuddyBoss, Popup Maker).
+- Egy automatizmusban tetszőleges számú trigger és akció; beállítható **sorrend**, **hányszor** kell teljesülnie, és **limit**, hányszor futhat le.
 
-### Zökkenőmentes integrációk
+### Feltételek és dinamikus adatok (tagek)
+- **Filterek** bármely triggeren/akción, **AND/OR** logikával.
+- **Flat condition** összehasonlító feltételekhez (érték, meta, szám, szöveg).
+- **Tag‑rendszer:** dinamikus adatok átadása (felhasználó, oldal, dátum, meta, trigger/akció‑eredmények, függvény‑tagek). Így ugyanaz az automatizmus rugalmasan működik sok különböző helyzetben.
 
-Az AutomatorWP számos népszerű WordPress bővítménnyel és platformmal zökkenőmentesen működik együtt. Néhány példa:
+### Naplózás és átláthatóság
+- Részletes **logok** triggerekhez, akciókhoz és teljes automatizmusokhoz.
+- Láthatod a taghelyettesítés utáni konkrét értékeket, így könnyű a **hibakeresés**.
 
-- **WooCommerce**: Automatizálhatod a vásárlási folyamatokat, például kedvezményes kuponok küldését a vásárlóknak.
-- **LearnDash**: Automatizálhatod a tanulási folyamatokat, például automatikus kurzusbeiratkozásokat.
-- **BuddyPress**: Automatizálhatod a közösségi interakciókat, például új csoportokhoz való csatlakozáskor speciális rangok kiosztását.
+### Ütemezés és időzítés
+- A Schedule Actions kiegészítővel akciónként külön **késleltetést** vagy **konkrét dátum/időpontot** állíthatsz be. Akár egy automatizmuson belül is eltérő ütemezést adhatsz az akcióknak.
+
+### Speciális akciók fejlesztőknek
+- **Redirect user to URL** (azonnali átirányítás).
+- **Call a function** (saját PHP függvény hívása).
+- **Run a WordPress hook** (tetszőleges hook futtatása paraméterekkel).
+
+### Import/Export, megosztás
+- Automatizmusok megosztása és költöztetése **URL‑alapú import/exporttal** – fájl nélkül.
+
+### Integrációk és külső rendszerek
+- 200+ WordPress‑integráció és számos külső platform (pl. Google Sheets/Calendar, Mailchimp, HubSpot, ActiveCampaign, Twilio, Zoom, X/Twitter, Instagram, Bluesky).
+- Kétirányú **webhook** kommunikáció: adatküldés‑fogadás akár WordPress‑oldalak között is.
 
 ## Gyakorlati példák
 
-### Példa 1: E-mail küldése vásárlóknak
+- **E‑kereskedelem:** vásárlás után CRM‑tag hozzáadása, kupon kiosztása, késleltetett upsell e‑mail, dinamikus átirányítás.
+- **Oktatás/LMS:** kurzus befejezésekor automatikus beiratás a következő kurzusra, rang/jutalom kiosztása, tagsági szint frissítése.
+- **Közösség és tagság:** csoportcsatlakozásnál jogosultság módosítása, üdvözlő üzenet, profilmezők frissítése.
+- **Adminisztráció:** régi posztok archiválása/törlése, szerzők értesítése, tömeges műveletek All posts/All users módokkal.
+- **Marketing és adatkapcsolatok:** űrlapbeadásból felhasználó létrehozása/frissítése, CRM‑szinkron, táblázatokkal való adatcsere webhookkal.
 
-1. **Trigger**: Amikor egy felhasználó megvásárol egy terméket.
-2. **Akció**: Küldj egy e-mailt a felhasználónak egy köszönő üzenettel és egy kedvezményes kuponnal.
+Példa‑recept (logika szemléltetésére):
 
-### Példa 2: Kurzusbeiratkozás automatikusan
+```
+Automatizmus: "Kurzus után upsell"
+Triggerek (sorrendben):
+  1) Felhasználó befejez egy LearnDash kurzust
+  2) Ugyanaz a felhasználó 5 csillagra értékel
+Akciók:
+  - Várj 2 napot
+  - Küldj e-mailt kuponkóddal (tagek: {user_email}, {course_title})
+  - Add hozzá a "VIP" CRM taget
+  - Irányítsd át a "Következő kurzus" oldalra
+```
 
-1. **Trigger**: Amikor egy felhasználó befejez egy bizonyos H5P tartalmat.
-2. **Akció**: Íratkoztasd be a felhasználót egy következő kurzusra és adj neki tagsági jogosultságokat.
+## Előnyök és érték
 
-### Példa 3: Rangsorolás közösségi interakciók alapján
+- **Idő- és költségmegtakarítás:** a kézi, ismétlődő feladatok automatizálódnak.
+- **No‑code rugalmasság:** összekötöd, amid van – külön fejlesztés nélkül.
+- **Átláthatóság:** részletes logok, egyszerű hibakeresés.
+- **Skálázhatóság:** tömeges műveletek felhasználókra, bejegyzésekre vagy importált adatokra.
+- **Bővíthetőség:** fejlesztői hook‑ és függvényhívás akcióként; további add‑onok speciális igényekre.
 
-1. **Trigger**: Amikor egy felhasználó új fórumtémát hoz létre egy csoportban.
-2. **Akció**: Adj neki egy új rangot és küldd el az adatokat Zapier segítségével más alkalmazásokba.
+## Kinek ajánlott?
 
-## Szószedet
+- **Webáruház‑üzemeltetőknek:** vásárlói utak, címkézés, upsell/retenció.
+- **E‑learning oldalaknak:** automatikus beiratások, jutalmazás, tanulói életciklus.
+- **Közösségi/tagsági oldalaknak:** szerepkör‑ és hozzáféréskezelés eseményekhez kötve.
+- **Marketingeseknek/ügynökségeknek:** CRM‑szinkron, űrlapos leadkezelés, integrációk gyorsan.
+- **Webhely‑adminoknak:** tartalomkarbantartás, ütemezett háttérműveletek.
+- **Fejlesztőknek:** saját hookok/funkciók futtatása az automator ökoszisztémában.
 
-- **Trigger**: Egy esemény vagy feltétel, amely elindítja az automatizációt.
-- **Action**: Az automatizáció során végrehajtott művelet.
-- **WooCommerce**: Egy népszerű e-kereskedelmi bővítmény WordPress számára.
-- **LearnDash**: Egy tanuláskezelő rendszer bővítmény WordPress számára.
-- **BuddyPress**: Egy közösségi hálózatépítő bővítmény WordPress számára.
-- **H5P**: Interaktív tartalom létrehozására szolgáló eszköz.
-- **Zapier**: Egy online automatizációs eszköz, amely különböző alkalmazások összekapcsolását teszi lehetővé.
+## Technikai és licencelési megjegyzések
 
-Az AutomatorWP tehát lehetőséget nyújt arra, hogy különböző WordPress bővítmények és szolgáltatások között automatizációkat hozz létre, ezzel jelentős mértékben növelve az oldalad hatékonyságát és felhasználói élményét.
+- **Core ingyenes és nyílt forráskódú**, a WordPress bővítménykönyvtárból telepíthető.
+- **PRO / Add‑on rendszer:** külön kiegészítőkkel bővíthető (például Webhooks, Schedule Actions, Calculator, Formatter, Generator, QR Code). A haladó funkciók és integrációk többsége add‑onokkal érhető el.
+- **Anonymous automatizmusok:** automatizmusonként 1 trigger; a beépített **user selector** határozza meg, mely felhasználóra fussanak az akciók.
+- **Haladó vezérlés:** AND/OR filterek, sequential triggers, required number of times, completion limits; naplók és tag‑rendszer a dinamikus adatokhoz.
+
+Szeretnél konkrét, lépésről lépésre recepteket a saját bővítménykészletedhez (pl. WooCommerce + CRM vagy LearnDash + tagság)? Írj, és összeállítom a pontos automatizmust!

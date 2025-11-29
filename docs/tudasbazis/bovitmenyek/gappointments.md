@@ -1,52 +1,111 @@
-# gAppointments
+---
+title: "gAppointments"
+description: "Prémium Gravity Forms-kiegészítő online időpontfoglaláshoz: szolgáltatások, szolgáltatók, naptár és fizetés egy űrlapfolyamatban."
+sidebar_label: "gAppointments"
+---
 
-A gAppointments egy sokoldalú és hasznos bővítmény, amely lehetővé teszi az időpontfoglalás zökkenőmentes integrációját a Gravity Forms űrlapjaival. Ez a bővítmény különösen jól jön azoknak a vállalkozásoknak, amelyek nagymértékben függnek az időpontfoglalástól, mint például orvosi rendelők, szépségszalonok, tanácsadók és sok más szolgáltató.
+## Mi ez és milyen problémát old meg?
 
-## Főbb funkciók
+A gAppointments egy **időpontfoglaló bővítmény** a Gravity Forms-hoz. Arra való, hogy a meglévő űrlapfolyamataidba beépítsd a teljes foglalási logikát: szolgáltatásválasztás, szolgáltató, naptár, árkalkuláció, fizetés és értesítések. Így nem kell külön foglalómotort használnod, minden egy helyen marad – az űrlapjaidban.
 
-### Bármilyen fizetési átjárót támogat
-A gAppointments különféle fizetési átjárókkal működik együtt, beleértve a PayPal-t és a Stripe-ot. Ez lehetővé teszi, hogy az ügyfelek kényelmesen és biztonságosan fizethessenek az időpontfoglalásokért.
+## Hogyan működik röviden?
 
-### Előnézeti menedzsment
-Mind az ügyfelek, mind a szolgáltatók megtekinthetik időpontjaikat a weboldalon keresztül. Az előnézeti menedzsment lehetővé teszi az időpontok egyszerű ellenőrzését és módosítását.
+- Létrehozol **szolgáltatásokat** (ár, időtartam, kapacitás, pufferidő stb.).
+- Felveszel **szolgáltatókat** (egyedi munkaidő, szünetek, ünnepnapok).
+- A Gravity Forms-ban összeállítod az űrlapot a **dedikált foglalási mezőkkel**.
+- Opcióként bekapcsolod a **fizetést** és az **értesítéseket**.
+- Beágyazod az űrlapot, és az ügyfelek önkiszolgálóan foglalnak.
 
-### Korlátlan frissítések
-A bővítmény élettartamra szóló ingyenes frissítéseket kínál, így mindig hozzáférhetsz a legújabb funkciókhoz és javításokhoz.
+## Fő funkciók
 
-### E-mail értesítések
-Az e-mail értesítések révén az ügyfelek és a szolgáltatók mindig naprakészek maradnak az időpontjaikkal kapcsolatban.
+### Foglalási mezők a Gravity Forms-ban
+A bővítmény saját mezőket ad:
+- **Booking Services**: szolgáltatásválasztás és árazás alapja.
+- **Booking Providers**: konkrét szolgáltató kiválasztása.
+- **Booking Calendar**: időpont/dátum kijelölése az elérhetőségek szerint.
+- **Booking Cost**: foglalási költség kalkulációja.
+- **Gravity Forms Total integráció**: a teljes összeg a megszokott Total mezőbe kerül, hogy fizetési feedekkel azonnal használhasd.
 
-### Fordítási támogatás
-A naptár bármilyen nyelvre lefordítható, így a bővítmény nemzetközi használatra is alkalmas.
+Mit jelent ez a gyakorlatban? A felhasználó az űrlapon kiválasztja a szolgáltatást és a szolgáltatót, látja az **elérhető idősávokat**, a rendszer kiszámolja az árat, és rögtön fizethet.
 
-### Színvariációk
-A naptár színsémáját személyre szabhatod, hogy illeszkedjen a weboldalad megjelenéséhez.
+### Szolgáltatások és időrések
+- **Időrés-alapú vagy csak dátumos** foglalás.
+- **Időtartam** és **pufferidő (cleanup)** a találkozók között.
+- **Kapacitás/férőhely**: több résztvevős foglalások támogatása.
+- **Hézagcsökkentés (reduce gaps)**: optimalizálja az egymás utáni idősávokat.
+- **12/24 órás formátum**, **végidő megjelenítése**, **AM/PM tüntetése**.
+- **Előrendelési ablakok**: jövőbeni napok száma, dátumintervallum vagy egyedi napok.
+- **Többszörös foglalás engedélyezése**, napi foglalási limit, **dupla foglalás tiltása**.
 
-### SMS értesítések
-Az SMS értesítések révén további értesítési módot biztosíthatsz az ügyfelek számára.
+Ezekkel szabályozod, mikor és mennyit lehet foglalni, minimalizálva a kihagyott idősávokat és a túlfoglalást.
 
-### Személyre szabott időbeosztás
-Személyre szabhatod saját munkarendedet, beleértve a szüneteket és ünnepnapokat is.
+### Szolgáltatók kezelése
+- **Szolgáltatónként egyedi munkaidők**, szünetek, ünnepnapok.
+- A szolgáltatók a **frontenden megtekinthetik** saját időpontjaikat.
+- Egyszemélyes és több szolgáltatós működésre egyaránt alkalmas.
 
-### Mobilbarát
-A bővítmény minden eszközön remekül néz ki, így az ügyfelek bárhonnan foglalhatnak időpontot.
+### Fizetés és értesítések
+- Működik a Gravity Forms **fizetési kiegészítőivel** (pl. online fizetés).
+- A fizetés összege a **Form Total** alapján számolódik.
+- **E‑mail értesítések** alapból, **SMS** opcióval kiegészítve.
 
-## Együttműködés más eszközökkel
+Így az ügyfél a foglaláskor már fizethet, ami csökkenti a no-show-kat és az utólagos adminisztrációt.
 
-A gAppointments kiválóan működik együtt a Gravity Forms-szal, ami az egyik legnépszerűbb űrlapkészítő eszköz a WordPress ökoszisztémában. Ezen kívül zökkenőmentesen integrálható különféle fizetési átjárókkal, mint például a PayPal és a Stripe. Ezáltal egyszerűbbé válik az időpontfoglalások kezelése és a fizetések biztonságos lebonyolítása.
+### Naptár és többnyelvűség
+- **Google Calendar szinkron** opció, hogy a naptárad naprakész legyen.
+- **Add to Calendar** beállítás, hogy az ügyfél egy kattintással felvegye a találkozót.
+- **Fordítható naptárfelület** és **reszponzív** megjelenés mobilra.
+
+### Frontend önkiszolgálás
+- Rövidkódok a saját időpontok megjelenítéséhez:
+
+```
+[ga_appointments]
+[ga_provider_appointments]
+```
+
+- Szerepkör-alapú menük: külön menüpont ügyfeleknek és szolgáltatóknak.
 
 ## Gyakorlati példák
 
-- **Orvosi rendelők**: Az orvosok és páciensek könnyedén egyeztethetnek időpontokat, és az e-mail vagy SMS értesítések révén mindig naprakészek maradhatnak.
-- **Szépségszalonok**: A vendégek online foglalhatnak időpontot fodrászhoz vagy kozmetikushoz, miközben a szalon személyzete átláthatóan kezelheti a naptárat.
-- **Tanácsadók**: A tanácsadók egyszerűen kezelhetik ügyfeleik időpontfoglalásait, beleértve a fizetéseket is.
-- **Edzőtermek**: Az edzőtermek tagjai online foglalhatnak időpontot személyi edzőkhöz vagy csoportos órákra.
+- **Szépségszalon**: hajvágás 45 perc, 15 perc pufferrel; 2 fodrász külön munkaidőkkel; a vendég választ fodrászt és időpontot, fizet online, automatikus e‑mail és naptárbejegyzés készül.
+- **Magánrendelő**: 20 perces konzultációk, napi max. 12 foglalás; dupla foglalás tiltása; az orvos ünnepnapokon nem elérhető; az asszisztens a frontend listából látja a napi időpontokat.
+- **Online coaching/oktatás**: csak dátumfoglalás eseményenként, kapacitás 20 fő; a résztvevők “Add to Calendar” gombbal viszik a saját naptárukba.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Gravity Forms**: Egy népszerű WordPress űrlapkészítő bővítmény.
-- **Fizetési átjáró**: Olyan szolgáltatás, amely lehetővé teszi online fizetések biztonságos lebonyolítását.
-- **E-mail értesítés**: Elektronikus levélben küldött értesítés.
-- **SMS értesítés**: Szöveges üzenetben küldött értesítés.
-- **Mobilbarát**: Olyan weboldal vagy alkalmazás, amely minden mobil eszközön jól működik.
-- **Személyre szabott időbeosztás**: Egyedi munkarend kialakítása, beleértve szüneteket és ünnepnapokat.
+- **Egy ökoszisztéma**: űrlapok, logikák, értesítések, fizetés és foglalás egy helyen.
+- **Kevesebb adminisztráció**: automatikus idősávkezelés, értesítések és fizetések.
+- **Túlfoglalás elleni védelem**: kapacitás, dupla foglalás tiltása, naptárszinkron.
+- **Jobb erőforrás-kihasználás**: pufferidők, hézagcsökkentés és előrendelési szabályok.
+- **Ügyfélélmény**: gyors, mobilbarát foglalás és azonnali visszaigazolás.
+
+## Kinek ajánlott?
+
+- **Szolgáltatásalapú vállalkozásoknak**: szépségipar, egészségügy, tanácsadás, edzés/oktatás, javító- és helyszíni szolgáltatások.
+- **Olyan csapatoknak, akik már Gravity Forms-t használnak**, és a foglalást természetesen, külön rendszer nélkül, a meglévő űrlapfolyamataikban szeretnék kezelni.
+- **Több szolgáltatóval dolgozó vállalkozásoknak**, ahol kritikus a kapacitás és a beosztás.
+
+## Biztonság és frissítések
+
+Korábban azonosítottak egy **Reflected XSS** sérülékenységet, amelyet a fejlesztő frissítéssel javított. Mindig a **legfrissebb kiadást** használd, és tartsd naprakészen a bővítményt és a kapcsolódó kiegészítőket.
+
+## Rendszerkövetelmények
+
+- **WordPress** és **Gravity Forms** szükséges.
+- Opcionális: **Gravity Forms fizetési kiegészítők** online fizetéshez.
+- Opcionális: **Google Calendar** párosítás (a párosítás lépéseit a fejlesztő támogatása ismerteti).
+
+## Gyors bevezetési checklist
+
+- Szolgáltatások: időtartam, ár, kapacitás, puffer, foglalási ablakok beállítása.
+- Szolgáltatók: felhasználó-hozzárendelés, munkaidő, szünetek, ünnepnapok.
+- Űrlap: név/e‑mail/telefon mezők + Booking Services/Providers/Calendar/Cost + Total.
+- Logika: többszörös foglalás, napi limit, dupla foglalás tiltása, hézagcsökkentés.
+- Fizetés: fizetési feed(ek) beállítása; összeg a Total mezőből.
+- Értesítések: e‑mail sablonok és (ha kell) SMS.
+- Naptár: Google Calendar szinkron és/vagy Add to Calendar.
+- Frontend: rövidkód-oldalak az ügyfélnek és a szolgáltatónak.
+- Adatvédelem: adatkezelési és értesítési szabályok ellenőrzése.
+
+Ezzel a gAppointments-szel egy professzionális, rugalmas és skálázható foglalási rendszert kapsz, amely natívan illeszkedik a Gravity Forms világába.

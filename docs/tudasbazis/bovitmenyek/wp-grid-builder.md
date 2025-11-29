@@ -1,111 +1,105 @@
-# WP Grid Builder
+---
+title: "WP Grid Builder"
+description: "Prémium WordPress bővítmény egységes grid-elrendezéshez, carouselhez és fejlett, facettált szűréshez – nagy teljesítménnyel és vizuális szerkesztéssel."
+sidebar_label: "WP Grid Builder"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Grid Builder egy teljeskörű megoldás, amely lehetővé teszi a WordPress tartalmak lekérdezését, elrendezését és szűrését. A bővítmény számos egyedi funkcióval rendelkezik, amelyek megkönnyítik a felhasználók számára a tartalmak rendszerezését és megjelenítését.
+A WP Grid Builder egy „minden egyben” eszköz, amivel tartalmakat (bejegyzések, termékek, felhasználók, taxonómiák) tudsz rugalmas rácsokban és carouselekben megjeleníteni, és ezeket **facettált szűrőkkel** pillanatok alatt leszűrni. A WordPress alapból nem kínál erős, többkritériumos szűrést gyors válaszidővel – a WP Grid Builder ezt pótolja egy **indexelt adatbázis-táblával**, AJAX-alapú működéssel és vizuális eszközökkel, hogy mindez kódolás nélkül is gördülékeny legyen.
 
-### SEO-barát
+## Fő funkciók, érthetően
 
-WP Grid Builder 100%-ban W3C kompatibilis és a legjobb SEO gyakorlatokat alkalmazza, így biztosítva, hogy weboldalad keresőbarát legyen.
+### Grid és megjelenítés
+- **Elrendezések:** Masonry, Justified, Metro – bármelyikből egy kattintással **érintésvezérelt carousel** készíthető.
+- **Teljesen reszponzív:** rugalmas oszlopszámok, sor-magasságok, **lazy loading**, 20+ animáció, RTL és beépített lightbox.
+- **Kártyaépítő:** vizuális drag-and-drop szerkesztő 20+ előre gyártott kártyával, több száz betűtípussal és ikonokkal. A kártyákra dinamikus adatokat húzhatsz: poszt/term/user mezők, illetve ACF/Meta Box/Pods egyéni mezők.
 
-### Mobilbarát
+Mit jelent ez a gyakorlatban? Gyorsan építhetsz portfóliót, termékgrideket, karuszeleket, és minden tartalomelemet (kép, cím, ár, címke, gomb) teljesen a saját arculatodra szabhatod.
 
-A bővítmény teljesen reszponzív, támogatja az érintéses gesztusokat a beépített lightbox és karusszel funkcióknál.
+### Facettált szűrés
+- **20+ facettatípus:** checkbox, rádió, legördülő, gomb, hierarchia, szám- és dátumtartomány, értékelés, kereső, rendező, **pagináció** és **load more**, valamint reset.
+- **AJAX és URL-perzisztencia:** szűrés közben az oldal nem tölt újra, a **vissza/előre** böngészőgombok és a megosztható URL-ek működnek.
+- **Index tábla:** a szűrés egy dedikált, automatikusan karbantartott táblán fut, ezért nagy adatmennyiségnél is gyors. Kézi/automata újraindexelés adott.
 
-### Akadálymentes
+A “csak releváns opciók” megjelenítése és a többkritériumos finomítás így nem terheli a fő lekérdezést – a felhasználó gyors, pontos találatokat kap.
 
-A WP Grid Builder megfelel a WCAG szabványoknak, ezáltal jobb felhasználói élményt biztosít mindenkinek.
+### WordPress blokkok és archívumok szűrése
+- **Blokkok szűrése:** a Query Loop és több népszerű lekérdező blokk tartalma közvetlenül facettázható.
+- **Archívumok:** a bővítmény képes a fő lekérdezést is szűrni, még grid nélkül is. Így például a boltoldal vagy blog archívum meglévő sablonját tudod felokosítani.
+- **Egy grid, több sablon:** egyetlen gridből több archívum-sablon eredményét is meg tudod jeleníteni, külön beállítás nélkül.
 
-### Teljesítményorientált
+### Integrációk és add-onok
+- **Ökoszisztéma:** működik bármely témával, a blokk- és shortcode-alapú tartalommal, kompatibilis számos bővítménnyel (például webáruházak, keresőmotorok, többnyelvűség, page builderek).
+- **Map Facet:** térképes szűrő Google/Mapbox/Leaflet alapon, geolokációval és **távolság szerinti rendezéssel**.
+- **Caching:** az aszinkron kérések cache-elése egyedi táblában a még gyorsabb válaszidőért.
+- **Multilingual:** többnyelvű oldalakhoz nyelvhelyes lekérdezés és string-fordítás, egyetlen grid/facet készlet mellett.
 
-Az index táblázat és az egyedi Ajax végpontok használatával a szűrés villámgyors. A faceted search (szűrőrendszer) automatikusan épít egyedi URL-eket, így könnyen navigálhatunk a keresési eredmények között.
+### Fejlesztői lehetőségek
+- **PHP/JS API:** akciók, filtrek, JS események és metódusok. REST API útvonalak is rendelkezésre állnak az adatok lekérdezéséhez és kereséshez.
+- **Developer-friendly mód:** facetteket akkor is használhatsz, ha nem gridbe kötöd (egyedi markup és lekérdezés mellett).
 
-## Kompatibilitás más eszközökkel
+## Gyakorlati példák
 
-### Gutenberg
+### 1) Webáruház termékszűrés
+- Facettek: **ártartomány**, készlet, akciós, értékelés, attribútumok.
+- Interakció: AJAX-os rendezés, **pagináció vagy végtelen görgetés**.
+- Tipp: használd a bővítmény paginációját, és kapcsold ki a téma/bolt alap paginációját és rendezőjét a duplikáció és konfliktusok elkerüléséhez.
 
-Tökéletesen működik a Gutenberg szerkesztővel, lehetővé téve a rácsok és szűrők egyszerű beillesztését.
+### 2) Blog/portfólió
+- Facettek: kategória, címke, szerző, dátumtartomány, egyéni taxonómiák.
+- Kivitelezés: Query Loop-ot szűrj facettekkel, a kártyaépítőben állítsd be a bejegyzés-kártyát (kép, cím, kivonat, gomb).
 
-### WooCommerce
+### 3) Katalógus, ingatlan, állás
+- Map Facet geolokációval, marker-clusteringgel, **távolság szerinti rendezéssel**.
+- ACF/Meta Box pozíciómezők alapján pontos találati lista és térképes vizualizáció.
 
-Könnyedén szűrhetünk árak, átlagos értékelések, akciós státuszok és készletállapot alapján.
+### 4) Felhasználó- és taxonómialisták, tananyagok
+- Facettázd a szerzőket, szerepköröket, kurzusokat vagy term taxonómiákat – a kártyaépítővel egységes megjelenést adva.
 
-### Easy Digital Downloads
+### Rövid shortcode példa
 
-Lehetővé teszi a digitális termékek szűrését többféle kritérium szerint.
+```shortcode
+[wpgb_facet id="search"] 
+[wpgb_facet id="category"]
+[wpgb_facet id="price_range"]
 
-### Egyéb kompatibilitások
+[wpgb_grid id="12"]
+```
 
-Támogatott bővítmények: SearchWP, Relevanssi, Advanced Custom Fields (ACF), Meta Box, Polylang, WPML, Elementor, Beaver Builder, Oxygen, LearnDash, Pods, Bricks.
+Archívum főlekérdezés megjelenítése:
 
-## Fejlett szűrőrendszer
+```shortcode
+[wpgb_grid id="12" is_main_query="true"]
+```
 
-### Faceted Search
+## Előnyök és értékajánlat
 
-Okos szűrési rendszer, amely csak a releváns tartalmakat jeleníti meg a felhasználóknak. Többféle szűrési kritérium alkalmazásával szűkíthetjük a keresési eredményeket.
+- **Gyors, skálázható szűrés:** az index tábla és az opcionális cache miatt nagy adatnál is fürge.
+- **Kevesebb bővítmény, kevesebb kód:** grid + carousel + facettek + térkép egy rendszerben, vizuális szerkesztéssel.
+- **Konzisztens UX:** AJAX, megosztható URL-ek, vissza/előre kompatibilis böngészés.
+- **Rugalmas testreszabás:** kártyaépítő, tipográfia, ikonok, dinamikus mezők, integrációk.
+- **Fejlesztőbarát:** API-k, események, REST; könnyű bekötni egyedi use case-ekbe.
 
-### +20 szűrőtípus
+## Kinek ajánlott?
 
-A bővítmény több mint 20 különböző szűrőtípust kínál, például jelölőnégyzetek, rádiógombok, legördülő menük, csúszkák, értékelések stb.
+- **Webáruházaknak:** professzionális termékszűrés ár, készlet, attribútumok szerint.
+- **Ügynökségeknek és fejlesztőknek:** komplex katalógusok, portálok, többnyelvű és térképes projektek gyors kivitelezése.
+- **Tartalomkészítőknek:** blogok, portfóliók, magazinok egységes, látványos gridje és finom szűrése.
+- **Page builder felhasználóknak:** hivatalos integrációk stabil facettázással.
 
-### Ajax-alapú
+## Telepítés, kompatibilitás, licenc
 
-Gyorsan és hatékonyan szűri a tartalmat az oldal frissítése nélkül.
+- Bármely témával és szerkesztővel működik (blokkok és shortcodes). Népszerű page builderekhez hivatalos add-onok érhetők el.
+- Minimum környezet: WordPress 6.0 és PHP 7.0 (ajánlott PHP 8.x).
+- Éves licenc-csomagok érhetők el; minden add-on a licenc része, pénzvisszafizetési garanciával.
 
-### Egyedi mezők integrációja
+## Bevált gyakorlatok
 
-Szűrhetjük a tartalmat WordPress egyedi mezők alapján. Kompatibilis az ACF, Meta Box és Pods bővítményekkel.
+- **Indexelés:** nagy adatnál hagyatkozz az automatikus indexre; tartalomfrissítés után futtasd az újraindexelést.
+- **Archívumok/bolt:** kapcsold be az egyedi tartalomszűrést, használd a bővítmény paginációját, és kapcsold ki a téma/bolt saját paginációját/rendezőjét.
+- **Cache:** gyorsít, de véletlenszerű sorrend vagy erősen feltételes megjelenítés mellett óvatosan használd; adj meg kivételeket (pl. kereső facettákra).
+- **Térkép:** állítsd be a koordinátamezőket, kapcsold a marker-clusteringet, és engedélyezd a geolokációt, ha szükséges.
+- **Page builderek:** a hivatalos integrációs add-onok biztosítják a stabil facettázást és a grid-archívum kapcsolatot.
 
-## Erőteljes kártyaszerkesztő
-
-### 20+ előre elkészített kártya
-
-A WP Grid Builder több mint 20 előre elkészített kártyát tartalmaz, amelyeket testre szabhatunk igényeink szerint. Saját kártyákat is létrehozhatunk.
-
-### Drag & Drop szerkesztő
-
-Egyszerűen létrehozhatunk kártyákat rácsainkhoz a blokkok húzásával és átméretezésével.
-
-### 900+ Google betűtípus
-
-Könnyedén beállíthatjuk a betűtípusokat a Google Web Fonts könyvtárból bármely elemhez a kártyákban.
-
-### 250+ SVG ikon
-
-A bővítmény több mint 250 SVG ikont tartalmaz. Az ikonokat könnyedén kiválaszthatjuk és elhelyezhetjük bárhol a kártyákon.
-
-### E-commerce integráció
-
-Hozzáadhatjuk a kosár gombot, árakat, értékeléseket vagy akciós/készlet jelvényeket WooCommerce vagy Easy Digital Downloads termékekhez.
-
-## Rugalmas rácselrendezések
-
-### Teljesen reszponzív
-
-A rácsok dinamikusan átméreteződnek a különböző eszközökön és böngészőkben.
-
-### +3 rácselrendezés
-
-Készíthetünk Masonry, Justified vagy Metro elrendezéseket intuitív adminisztrációs felületen. Globálisan vagy egyedileg beállíthatjuk az oszlopok/sorok számát minden poszthoz.
-
-### Lazy loading
-
-Javítja az oldal betöltési idejét azzal, hogy csak az igényelt képeket tölti be. Színes helyettesítő képet vagy alacsony felbontású képeket jelenít meg betöltés közben.
-
-## Gyakorlati példák és felhasználási módok
-
-- **Webáruházak**: Könnyedén szűrhetjük a termékeket árak, értékelések és készletállapot alapján.
-- **Portfólió oldalak**: Különböző elrendezésekkel és kártyákkal prezentálhatjuk munkáinkat.
-- **Blogok**: Felhasználók könnyen megtalálhatják az érdeklődési körüknek megfelelő cikkeket.
-- **Ingatlan oldalak**: Szűrési lehetőségek alapján kereshetünk ingatlanokat ár, méret vagy elhelyezkedés szerint.
-- **Esemény naptárak**: Eseményeket kategóriák vagy dátum alapján szűrhetünk.
-
-## Szószedet
-
-- **SEO**: Search Engine Optimization (keresőoptimalizálás)
-- **WCAG**: Web Content Accessibility Guidelines (webtartalom akadálymentesítési irányelvek)
-- **Ajax**: Asynchronous JavaScript and XML (aszinkron JavaScript és XML)
-- **ACF**: Advanced Custom Fields (haladó egyedi mezők)
-- **SVG**: Scalable Vector Graphics (méretezhető vektorgrafika)
-
-Ez a dokumentum részletesen bemutatja a WP Grid Builder funkcionalitását és előnyeit. Használd bátran weboldalad optimalizálására és rendszerezésére!
+Ezzel a bővítménnyel gyors, vizuálisan egységes, skálázható és fejlesztőbarát tartalomlistákat és szűrőket építhetsz – kódolás nélkül, mégis profi kontrollal.

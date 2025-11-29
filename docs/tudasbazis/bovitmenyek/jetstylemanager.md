@@ -1,72 +1,82 @@
-# JetStyleManager
+---
+title: "JetStyleManager"
+description: "Ingyenes, nyílt forráskódú bővítmény, amely vizuális stíluskezelőt ad a Gutenberghez a JetPlugins blokkokhoz, reszponzív vezérlésekkel és fejlesztői API-val."
+sidebar_label: "JetStyleManager"
+---
 
-A JetStyleManager egy olyan bővítmény, amely lehetővé teszi, hogy testreszabhasd a Gutenberg blokkok stílusát és vizuális megjelenését. Ebben a részletes bemutatóban áttekintjük a JetStyleManager funkcionalitását, előnyeit, valamint gyakorlati alkalmazásait.
+## Mi ez és milyen problémát old meg?
 
-## Általános beállítások
+A JetStyleManager egy ingyenes kiegészítő, ami a Gutenberg szerkesztőt bővíti ki egy külön **Block Style** panellel. Ezzel kód írása nélkül, vizuálisan állíthatod a JetPlugins-hez tartozó blokkok (pl. JetEngine, JetSmartFilters, JetFormBuilder) stílusát. Megoldja a Gutenberg alapstílusok szűkösségét: részletes **tipográfia**, **színek**, **elrendezés**, **távolságok**, **szegélyek** és **ikon**-beállítások kerülnek a blokk oldalsávjába.
 
-A JetStyleManager számos beállítási lehetőséget kínál, amelyek lefedik a legapróbb blokk elemek frontend megjelenését is. Ezen beállítások segítségével egyedi és stílusos elrendezést hozhatsz létre bármely Gutenberg-blokk számára.
+## Hogyan működik a szerkesztőben?
 
-### Stílusvezérlők
+- Telepítés és aktiválás után a támogatott blokkoknál megjelenik a **Block Style** gomb.
+- Rákattintva egy panel nyílik, ahol a stílusokat valós időben állíthatod.
+- A beállítások eszköznézetenként (asztali/tablet/mobil) külön értéket kaphatnak, így **reszponzív** szabályokat hozol létre CSS nélkül.
+- A bővítmény a választásaidból generált stílusokat a frontendre optimalizáltan tölti be.
 
-A JetStyleManager segítségével testreszabhatod az alapvető stílusbeállításokat, mint például a szegélyek, párnázások, margók, igazítási opciók, színválasztó lehetőségek és méretek.
+## Fő funkciók, érthetően
 
-### Reszponzív vezérlők
-
-Ez a mód aktiválható az "add responsive control callback" funkcióval. Ez egy új opcióvezérlőt ad hozzá, amely lehetővé teszi a beállítások módosítását különböző eszközökön.
-
-### Tipográfia beállítások
-
-Minden apró részletet finomíthatsz a szövegekkel kapcsolatban: betűméret és betűcsalád, szín, vastagság, sorköz és betűköz, stílus és még sok más.
-
-## JetStyleManager jellemzői
-
-### Könnyedség
-
-A JetStyleManager lehetővé teszi egyedi stílusok hozzáadását bármilyen pluginhez anélkül, hogy extra kódot kellene írnod.
-
-### Kezelhetőség
-
-A generált stílusokat több mint 10 különböző típusú vezérlő segítségével kezelheted.
-
-### Több paraméter
-
-Több stílusparamétert is használhatsz egy adott elem megjelenésének finomításához.
-
-### Univerzalitás
-
-Egyedi designt hozhatsz létre minden egyes Gutenberg blokkhoz külön-külön.
-
-### Plugin-barát
-
-Alkalmazhatod a stílusbeállításokat minden Gutenberg-kompatibilis JetPluginhoz.
-
-## JetStyleManager és JetPlugins integrációk
-
-A JetStyleManager kiterjeszti az alapértelmezett WordPress szerkesztő funkcionalitását, és lehetővé teszi bármely Gutenberg blokk stílusának kialakítását. Ha más JetPluginokkal párosítod, egy jól kinéző webhelyet hozhatsz létre WordPress alapokon.
-
-- **JetEngine** – Dinamikus tartalom kezelése
-- **JetSmartFilters** – Fejlett szűrők bármely bejegyzéstípushoz
-- **JetFormBuilder** – Űrlapkészítő Gutenberghez
+- **Elrendezés és igazítás**: blokk- és tartalomszintű igazítások, sor- és oszlopközök, elemek közötti **gap/space** kezelés.
+- **Távolságok**: precíz **margin** és **padding** kontrollok, eszközönként eltérő értékekkel.
+- **Színek és háttér**: **háttérszín**, **szövegszín**, átlátszóság és állapotfüggő megjelenés (pl. hover).
+- **Szegély és lekerekítés**: szélesség, szín, stílus, valamint **border-radius** a modern kártya-szerű felületekhez.
+- **Ikon beállítások**: méret, szín, elhelyezés; ideális gomboknál és listáknál.
+- **Tipográfia**: betűcsalád, méret, súly, betűköz, sorköz; beépített **Google Fonts** támogatással, így nem kell külön betűtípus-kezelést beépítened.
+- **Reszponzív vezérlés**: egy-egy stílus minden eszközre finoman hangolható, külön médiakérdések írása nélkül.
+- **Teljesítmény-optimalizálás**: a generált stílusok a rendszer által szervezetten kerülnek betöltésre, így csökken a szerkesztő és a frontend terhelése.
+- **Editor Load Level és „skins” koncepció**: a Crocoblock ökoszisztémában csökkenthető a látható stílusopciók száma a gyorsabb szerkesztésért; a mentett „skin” stílusokkal következetes megjelenést tarthatsz. Gutenberg alatt a Block Style panel a fő funkció.
 
 ## Gyakorlati példák
 
-### Webshopok testreszabása
+- **JetEngine Listing Grid kártyák**: állíts egységes kártya-hátteret, kártyán belüli cím- és kivonat-tipográfiát, képarányt és a kártyák közti **gap**-et. Mobilon csökkentsd a paddinget és a címméretet.
+- **JetSmartFilters gombok**: add meg az aktív/hover állapot színeit, szegélyét és lekerekítését. Tablet nézetben növeld a gombok közötti távolságot, hogy könnyebb legyen érinteni.
+- **JetFormBuilder űrlapok**: hangold finomra a mezők szegélyét, fókusz-színeit, címkék tipográfiáját és a küldés gomb stílusát. Külön mobilnézetben nagyobb gomb és nagyobb sorköz a jobb hozzáférhetőségért.
 
-A JetStyleManager segítségével testreszabhatod a webshop termékoldalait. Például különböző színek és méretek alkalmazásával kiemelheted a legnépszerűbb termékeket.
+## Fejlesztőknek röviden
 
-### Blogoldalak kialakítása
+A JetStyleManager **API-t** kínál, amellyel saját Gutenberg-blokkjaidhoz egységes stílus-UI-t adhatsz:
 
-Használd a tipográfia beállításokat, hogy egyedi és olvasható blogposztokat hozz létre. A betűméret, betűstílus és színek kombinálásával vonzóbbá teheted a tartalmaidat.
+- **Vezérlők és szekciók**: több mint tíz kontrolltípus (szín, méret, tipográfia, kapcsoló stb.), csoportosítva szekciókba.
+- **Médiakérdések**: reszponzív értékek kezelése a vezérlőkben.
+- **Kimenet**: a választásokból generált stílusok különálló fájlba szervezhetők a jobb teljesítményért.
+- **Integrációs minta**:
 
-### Landing oldalak optimalizálása
+```php
+// Pszeudokód: JetStyleManager kontroll hozzáadása saját blokkhoz
+add_action( 'jet-sm/register-style-controls', function( $manager ) {
+  $manager->add_section( 'card', [ 'label' => 'Kártya' ] );
+  $manager->add_control( 'card_bg', [
+    'type'         => 'color',
+    'label'        => 'Háttérszín',
+    'css_selector' => '{{WRAPPER}} .card',
+    'css_property' => 'background-color',
+    'responsive'   => true,
+  ] );
+} );
+```
 
-A JetStyleManager lehetővé teszi, hogy minden egyes blokkot testreszabj egy landing oldalon. Így biztosíthatod, hogy az oldal minden eleme összhangban legyen az arculattal és a marketing célokkal.
+Ezzel kész UI-t és CSS-generálást kapsz, saját build-rendszer nélkül.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Gutenberg**: WordPress beépített blokkszerkesztője.
-- **JetPlugin**: A Crocoblock által fejlesztett pluginok gyűjteménye.
-- **Reszponzív vezérlők**: Olyan beállítási lehetőségek, amelyek különböző eszközökön eltérően működnek.
-- **Tipográfia**: A szövegek megjelenésének tervezése és beállítása.
+- **Kódmentes stílusolás**: kevesebb egyedi CSS, gyorsabb munka.
+- **Egységes dizájn**: a csapat ugyanazokat a vizuális szabályokat alkalmazza, eltérés nélkül.
+- **Reszponzív kontroll**: mobilra, tabletre, asztalira külön finomhangolás.
+- **Idő- és költségmegtakarítás**: fejlesztői órák helyett vizuális állításokkal készülsz el.
+- **Jobb teljesítmény**: a stílusok optimalizált betöltése könnyebb szerkesztőt és gyorsabb oldalt ad.
 
-A JetStyleManager használatával bármely Gutenberg blokkot egyedivé és vizuálisan vonzóvá tehetsz. Kombináld más JetPluginokkal a maximális hatékonyság érdekében!
+## Kinek ajánlott?
+
+- **Weboldal-építőknek és tartalomszerkesztőknek**, akik JetEngine, JetSmartFilters vagy JetFormBuilder blokkokat használnak a Gutenbergben, és gyorsan akarnak szép, reszponzív felületeket.
+- **Ügynökségeknek és csapatoknak**, ahol több szerkesztő dolgozik és kulcs az egységes megjelenés, minimális CSS-szel.
+- **Bővítményfejlesztőknek**, akik saját Gutenberg-blokkjaikhoz szeretnének kész stílus-UI-t és CSS-generálást adni, egységes API-val.
+
+## Korlátok és megjegyzések
+
+- A **Block Style** panel elsősorban a **JetPlugins** Gutenberg-blokkjaival működik; nem ad teljes körű stílusolást az összes alap WordPress blokkhoz.
+- Az **Editor Load Level** és a **skins** funkcionalitás a Crocoblock ökoszisztémában, bizonyos szerkesztőkben érhető el teljes értékűen; Gutenbergben a fő fókusz a Block Style panel.
+
+---
+
+Összefoglalva: a JetStyleManagerrel vizuálisan, gyorsan és következetesen stílusolhatod a JetPlugins Gutenberg-blokkjait. Ha kódmentes, reszponzív beállításokat és fejlesztőbarát stílus-API-t keresel, ez a bővítmény pontosan erre való.

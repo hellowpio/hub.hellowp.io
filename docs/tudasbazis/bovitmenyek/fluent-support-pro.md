@@ -1,126 +1,95 @@
-# Fluent Support Pro
+---
+title: "Fluent Support Pro"
+description: "Önhosztolt, WordPress‑alapú helpdesk és ügyfélszolgálati rendszer. A Pro kiegészítő haladó automatizálással, e‑mail pipinggel, riportokkal és integrációkkal bővíti a core funkciókat."
+sidebar_label: "Fluent Support Pro"
+---
 
-A Fluent Support Pro egy kiváló támogatási bővítmény, amely számos funkcióval és előnnyel rendelkezik. Ezek a funkciók nemcsak a hatékonyságot növelik, hanem a felhasználói élményt is javítják. Nézzük meg részletesen, hogy mit kínál a Fluent Support Pro és hogyan segíthet a vállalkozásoknak.
+## Mi ez és mit old meg?
 
-## Ticketing rendszer
+A Fluent Support egy teljes értékű, WordPressbe épülő helpdesk rendszer. A Pro kiegészítővel egy önhosztolt, több csatornás ügyfélszolgálatot kapsz: e‑mailekből automatikus jegyek, automatizmusok, részletes riportok, AI‑segítség és széles integrációs ökoszisztéma. Célja, hogy megszüntesse a drága, ügynökönként fizetős SaaS rendszerekhez kötöttséget, rendet tegyen az e‑mail káoszban, és kontextussal (rendelések, tagságok, kurzusok) gyorsítsa a válaszadást.
 
-### Jegyek
+## Hogyan működik dióhéjban
 
-A jegykezelés egyszerű és intuitív a Fluent Support segítségével. Prioritást állíthatsz be, és az ügyfélkérdéseket könnyedén megoldhatod. Te döntheted el, hogyan kezeled a jegyeket, minden lépésnél te irányítasz.
+- **WordPress bővítmény**: ingyenes core + Pro add‑on. A Pro képességekhez licenc szükséges.  
+- **Admin felület**: modern, gyors SPA (VueJS + REST), saját adatbázis‑táblákon (fs_*) dolgozik a teljesítményért.  
+- **Business Inboxes**: külön postafiókok és külön **ügyfélportál** per inbox; csatorna lehet “Web” vagy “Web + E‑mail”.  
+- **Adatkezelés**: az adatok a saját szervereden maradnak (önhosztolt, GDPR‑barát). Kivétel: az e‑mail piping feldolgozása átmenetileg szerver nélküli környezetben történik, tárolás nélkül.
 
-### Fejlett szűrők
+## Fő funkciók (Pro fókusz)
 
-A szűrés és keresés rendkívül egyszerű a Fluent Supportban. A fejlett keresési lehetőségek javítják a válaszidőket és megkönnyítik az ügynökök munkáját.
+### Jegykezelés és ügyfélportál
+- **Státuszok, prioritások, címkék**: ügyfél és admin is állíthat, termékek szerinti kategorizálás.  
+- **Összevonás/szétválasztás, ütközésérzékelés, piszkozatok**, belső megjegyzések, könyvjelzők, **CC‑kezelés**.  
+- **Több inbox**: márkánként/szolgáltatásonként elszeparált csapatok és portálok.  
+- **Fájlkezelés**: mellékletek a WordPress tárhelyen, vagy **Google Drive / Dropbox** offload jegyenkénti mappákkal.
 
-### Jegy státuszok
+### E‑mail és üzenetcsatornák
+- **E‑mail piping**: továbbított e‑mailekből automatikusan jegy keletkezik (nem IMAP, nem tölti le a régi leveleket, és nem töröl a levélszerverről).  
+- **Kétirányú válasz** Slackből és Telegramból; **WhatsApp** értesítés és válasz (gatewayen keresztül).
 
-A jegy státuszok segítségével áttekintheted, hogy az ügyfélszolgálatod hogyan áll. Egyszerűen láthatod, hogy kik várnak és kiket már elláttak.
+### Automatizálás és fejlesztői lehetőségek
+- **Workflows**: esemény alapú triggerek (pl. jegylétrehozás, ügyfélválasz), feltételek és akciók; tömeges műveletek.  
+- **Mentett válaszok**, automatikus lezárás, **billentyűparancsok**.  
+- **Webhookok és REST API**: bejövő/kimenő webhook, nyilvános végpontok WordPress‑es hitelesítéssel.
 
-### Jegy címkék
+### Jelentések és csapatirányítás
+- **Ügynök- és csapatteljesítmény**, inbox- és termékszintű riportok, aktivitási napló, **heatmap**.  
+- **Időkövetés** ügynökönként (timesheet) és **CSV export**.  
+- **Részletes jogosultságok** és **front‑end agent portal** a Pro csomagban.
 
-A címkék segítségével azonosíthatod és rendszerezheted a jegyeket a saját kezelési stílusod szerint. A Fluent Supportot teljesen a saját igényeidhez igazíthatod.
+### AI és tudás
+- **OpenAI integráció**: válaszjavaslatok, hangnem‑finomítás, összefoglalás; saját prompt testre szabható.  
+- **Tudásbázis‑javaslatok** a jegyűrlapon (BetterDocs integráció).
 
-## Beállítás és migráció
-
-### Könnyű beállítás
-
-A Fluent Support beállítása kevesebb mint 5 percet vesz igénybe. A letöltéstől kezdve a jegyek megválaszolásáig üzemben leszel, mire a reggeli kávéd elkészül.
-
-### Egyszerű migráció
-
-Az új kezdet nem jelenti azt, hogy mindent elölről kell kezdeni. Hozd át az ügyfélszolgálati jegyeidet más vezető támogatási platformokról, és folytasd onnan, ahol abbahagytad.
-
-## Üzleti előnyök
-
-### Postafiókok
-
-Adj hozzá különálló postafiókokat minden vállalkozásodhoz. Búcsút mondhatsz a zavaróan összekeveredett jegyeknek anélkül, hogy különböző lapokon kellene böngészned. Annyi postafiókot adhatsz hozzá, amennyit csak akarsz, nincs korlátozás.
-
-### Termékek
-
-A termékek kezelése fejfájást okozhat, különösen ha több ezres készleted van. A Fluent Support lehetővé teszi, hogy termékeket hozz létre a jegyek térképezéséhez. Tudd meg, mely termékeket szeretik (vagy utálnak!) az ügyfelek közvetlenül a jelentésekben.
-
-### Portál
-
-Egy testreszabható jegyportál lehetővé teszi, hogy megőrizd márkanevedet az egész webhelyeden és az ügyfélszolgálatodon keresztül. Egy zökkenőmentes ügyfélélmény vár rád.
-
-### Ügyfélprofilok
-
-Tudni, kivel üzletelsz, alapvető fontosságú. Találd meg az összes ügyfélinformációt könnyen hozzáférhető kapcsolati profilokban, amelyek az ügyfélszolgálati feladatokat egyszerűvé teszik.
-
-## Csapatok számára
-
-### Automatizációk
-
-A munkafolyamatokat manuálisan vagy automatikusan is végrehajthatod. A Fluent Supporttal az ismétlődő és időigényes feladatok a múlté lesznek.
-
-### Elmentett válaszok
-
-A gyors válaszok az egyetlen módja annak, hogy nyerj. Az elmentett válaszok lehetővé teszik, hogy kérdésekre válaszolj még mielőtt az ügyfél gondolna rá.
-
-### Ütközésérzékelés
-
-Nincs több ismétlődő üzenet vagy zavar. Azonnali értesítéseket kapsz, amikor több ügynök lép ugyanabba a jegybe, biztosítva ezzel a tisztaságot, hogy ki felelős.
-
-## Power userek számára
-
-### Automatikus kiosztás
-
-A WorkFlows segítségével automatikusan kioszthatod az ügynököket az új jegyekhez. Nem kell keresni, hogy ki érhető el. Ügynököket adhatsz hozzá termékek, munkaterhelés vagy bármilyen egyéni címke alapján.
-
-### CRM automatizációk
-
-Csatlakoztasd a FluentCRM-et és a Fluent Supportot, hogy teljes képet kapj az ügyfélbázisodról. Kampányokat futtathatsz és automatizálhatod őket a Fluent Support címkék használatával a CRM-ben.
-
-### E-mail csővezetés
-
-A postafiókok elengedhetetlenek, de az ügyfelek ugyanúgy támaszkodnak az e-mailekre is. A Fluent Support minden e-mailes lekérdezést jeggyé alakít, így anélkül oldhatod meg a problémákat, hogy bármi kimaradna.
-
-## Jelentések
-
-Tudd meg pontosan, mely ügynökök teljesítenek jól, mely ügyfelek igényelnek több figyelmet, és mely termékek szorulnak gyors javításra.
-
-## Ügynök jogosultságok
-
-Irányítsd az ügyfélszolgálatodat egyéni jogosultságokkal minden ügynök számára. Kezeld a rendszered pontosan úgy, ahogy szeretnéd.
-
-## Aktivitási naplók
-
-Nem minden nap ugyanolyan egy támogatási csapat számára. Az aktivitási naplók lehetővé teszik az ügynökök által végrehajtott minden művelet valós idejű nyomon követését.
-
-## Integrációk
-
-A Fluent Support Pro zökkenőmentesen integrálható számos népszerű eszközzel:
-- WooCommerce
-- Easy Digital Downloads
-- FluentCRM
-- Fluent Forms
-- Slack
-- Telegram
-- WhatsApp
-- Discord
-- Tutor LMS
+### Integrációk és migráció
+- **E‑kereskedelem**: WooCommerce, EDD.  
+- **Tagság/LMS**: MemberPress, PMPro, Restrict Content Pro, BuddyBoss, LearnDash, LifterLMS, TutorLMS, LearnPress.  
+- **Kommunikáció és automatizálás**: Slack, Telegram, Discord, WhatsApp; no‑code/low‑code eszközök.  
+- **Migrátorok**: import más helpdeskekből (pl. Freshdesk, Help Scout, Zendesk, SupportCandy, Awesome Support).
 
 ## Gyakorlati példák
 
-- **E-commerce**: Könnyedén kezelheted a termékvisszaküldéseket és ügyfélszolgálati kérdéseket több e-commerce platformon keresztül.
-- **Online kurzus platform**: A hallgatói kérdéseket és támogatási kérelmeket egyszerűen kezelheted.
-- **Szoftvercégek**: Az ügyféltámogatási kérelmek és hibajelentések hatékony kezelése.
-- **Marketing ügynökségek**: Az ügyfelek kampányaihoz kapcsolódó kérdések kezelése és nyomon követése.
+- **Webáruház támogatás**: a vásárló e‑mailt ír, az továbbítással jeggyé alakul. A jegyben látod a rendelést és a korábbi vásárlásokat. Workflow automatikusan hozzárendeli a “Visszatérítés” csapathoz, címkézi és válaszol egy sablonnal.
+- **LMS/edukáció**: hallgató problémát jelez egy leckénél; a jegyben azonnal látod, mely kurzusokra iratkozott és hol tart. A rendszer automatikusan magasabb prioritást ad “vizsgaidőszak” címkével.
+- **Ügynökség több márkával**: külön inboxok, külön portálok és ügynökgárda. A mellékletek a Drive‑ba mennek, így nem terhelik a webtárhelyet.
+- **B2B/SaaS és IT**: a saját alkalmazásodból REST API‑n nyitsz jegyet, a csapat Slackben válaszol kétirányú módban.
 
-## Szószedet
-- **Ticketing rendszer**: Jegykezelési rendszer.
-- **Fejlett szűrők**: Keresési és szűrési lehetőségek.
-- **Jegy státuszok**: Jegyek aktuális állapota.
-- **Jegy címkék**: Címkék a jegyek kategorizálásához.
-- **Portál**: Ügyfélszolgálati portál.
-- **Ügyfélprofilok**: Ügyfelek adatainak összegyűjtött profiljai.
-- **Automatizációk**: Automatizált folyamatok.
-- **Elmentett válaszok**: Előre mentett válaszok.
-- **Ütközésérzékelés**: Több ügynök egyidejű bejelentkezése egy jegyre vonatkozó értesítés.
-- **Automatikus kiosztás**: Jegyek automatikus kiosztása ügynököknek.
-- **CRM automatizációk**: CRM rendszerekkel való automatizált integráció.
-- **E-mail csővezetés**: E-mailes lekérdezések jeggyé alakítása.
-- **Aktivitási naplók**: Ügynöki tevékenységek naplózása.
-  
-A Fluent Support Pro átfogó eszközkészletet kínál az ügyfélszolgálat kezelésére és optimalizálására, amely könnyen integrálható más rendszerekkel is.
+Példa egy egyszerű workflow‑logikára:
+```
+Ha: jegy létrejön AND termék = "Pro csomag"
+Akkor: add_címke("priority-high"), assign_csapat("Pro Support"), küld_válasz("Köszönjük, dolgozunk rajta!")
+```
+
+## Előnyök és értékajánlat
+
+- **Önhosztolt és költséghatékony**: nincs ügynökönkénti díj, az adataid nálad maradnak.  
+- **Gyorsabb válaszadás**: rendelés/tagság/kurzus kontextus a jegyben.  
+- **Rend az e‑mailekben**: automatikus jegyképzés, CC, sablonok, ütközésvédelem.  
+- **Automatizálható folyamatok**: kevesebb kattintás, kevesebb hibázási lehetőség.  
+- **Átlátható teljesítmény**: csapat‑ és ügynökszintű riportok, időmérés.
+
+## Telepítés röviden (Pro képességekhez)
+
+1. Telepítsd a core bővítményt, majd aktiváld a **Fluent Support Pro** add‑ont és a licencet.  
+2. Hozz létre **Business Inboxokat**, állíts be portáloldalt (blokkal vagy shortcode‑dal).  
+3. Válaszd a csatornát: **Web** vagy **Web + E‑mail**; e‑mail pipinghez állítsd be a továbbítást.  
+4. Kapcsold az integrációkat (pl. Slack/Telegram/WhatsApp, e‑kereskedelem, LMS).  
+5. Készíts **workflókat**, sablonválaszokat, riportokat és jogosultságokat.
+
+## Kinek ajánlott?
+
+- **WooCommerce/EDD** boltoknak, ahol kulcs a rendelés‑kontextus és a gyors SLA.  
+- **Tagsági és LMS** oldalaknak, ahol a tanulói/tagi adatok nélkülözhetetlenek a támogatáshoz.  
+- **Ügynökségeknek és többmárkás csapatoknak**, külön inboxokkal és szerepkörökkel.  
+- **B2B/SaaS és belső IT** csapatoknak, akik REST API‑t és webhookokat használnak.
+
+## Fontos tudnivalók és korlátok
+
+- **E‑mail piping**: továbbítás alapú, nem IMAP; nem tölti le a korábbi leveleket és nem töröl a levelezőszerverről.  
+- **Feldolgozás**: az e‑mail piping átmeneti, szerver nélküli környezetet használ; adatot nem tárol, de megfelelőségi szempontból vedd figyelembe.  
+- **Pro funkciókhoz licenc kell**; a felhőmellékletekhez külső tárhelykapcsolat szükséges.
+
+## Pro vs Free röviden
+
+- **Free**: alap jegykezelés és ügyfélportál.  
+- **Pro**: e‑mail piping, automatizálás (workflows), haladó riportok és időkövetés, AI, külső csatornák, webhookok/REST, több inbox, felhőmellékletek, front‑end agent portal.

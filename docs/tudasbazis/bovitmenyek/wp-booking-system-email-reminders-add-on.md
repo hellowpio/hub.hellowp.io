@@ -1,59 +1,87 @@
-# WP Booking System - Email Reminders Add-on
+---
+title: "WP Booking System - Email Reminders Add-on"
+description: "Automatizált emlékeztető és követő e-mail értesítések a WP Booking System-ben; ma már a fő bővítmény részeként működik."
+sidebar_label: "WP Booking System - Email Reminders Add-on"
+---
 
-## Email emlékeztetők küldése
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Email Reminders Add-on lehetővé teszi, hogy automatikusan emlékeztető e-maileket küldj ügyfeleidnek a közelgő foglalásaikról. Ez különösen hasznos, ha az ügyfelek hónapokkal előre foglalnak, és könnyen elfelejthetik a részleteket. Ezenkívül követő e-maileket is küldhetsz, például köszönőlevelet a foglalásért vagy kuponkódot a következő foglaláshoz.
+A korábbi Email Reminders Add-on ma már a WP Booking System beépített **Email Notifications** funkciójának része. Segítségével teljesen automatizálhatod az ügyfélkommunikációt a foglalás teljes életciklusában: azonnali visszaigazolás, indulás előtti emlékeztetők, távozás utáni köszönő és értékeléskérő levelek, valamint **fizetési emlékeztetők**. Célja, hogy csökkentse a no-show-t, gyorsítsa a kifizetéseket és egységes, márkázott e-mail élményt adjon – minimális manuális munkával.
 
-### Automatikus küldés
+## Hogyan működik? – áttekintés
 
-Az emlékeztető e-mailek automatikus küldésével időt takaríthatsz meg, amit az üzleted fejlesztésére fordíthatsz. Beállíthatod, hogy az emlékeztetők az esemény előtt néhány nappal érkezzenek, így az ügyfelek biztosan nem felejtik el a találkozót.
+Az értesítések sablonokból épülnek fel, és **triggerek** indítják őket (például foglaláskor, a kezdés előtt/után X nappal, vagy végső fizetéskor). A küldési időzítést **Day Offset** értékkel állítod be, a feltételekhez kötött logika pedig megengedi, hogy csak a megfelelő ügyfelek kapják meg a levelet. A rendszer támogatja a **márkázást**, az **.ics naptármellékletet**, a **naplózást**, a kézbesítés **óra szerinti** ütemezését, és integrálható számlával vagy szerződéssel is, ha ezek az add-onok telepítve vannak. Bármikor küldhetsz **kézi e-mailt** is egy konkrét foglaláshoz.
 
-## Integrációk más eszközökkel
+### Hol találod és hogyan hozol létre egy értesítést?
 
-Az Email Reminders Add-on zökkenőmentesen működik együtt más eszközökkel, mint például a Google Calendar és a WooCommerce. Ez lehetővé teszi, hogy az ügyfeleid foglalásai automatikusan szinkronizálódjanak a naptárukkal, és minden információ egy helyen legyen elérhető.
+```
+WP Admin → WP Booking System → Email Notifications → Add New Email Notification
+```
 
-### Google Calendar
+1. Válassz sablont és címzettet (pl. a foglalási űrlap e-mail mezőjét).
+2. Állítsd be a triggert és a **Day Offset**-et (hány nappal előtte/utána).
+3. Adj meg feltételeket (pl. fizetési mód, űrlapmező érték).
+4. Kapcsold be az **.ics** mellékletet és – ha használod – csatold a számlát/szerződést.
+5. Mentsd el, és a beállított időben a rendszer automatikusan küldi.
 
-Ha integrálod a Google Calendar-ral, az ügyfelek emlékeztetői automatikusan megjelennek a saját naptárukban, így még könnyebben nyomon követhetik a foglalásaikat.
+Általános e-mail beállítások:
 
-### WooCommerce
+```
+WP Booking System → Settings → Email
+```
 
-A WooCommerce integrációval kombinálva a foglalásokról szóló emlékeztetők és visszajelzések még hatékonyabban érhetők el, hiszen minden vásárlás után automatikusan küldheted az e-maileket.
+Itt állíthatod a márkaelemeket (logo, színek), a feladói adatokat, CC/BCC-t, az **Email Logs** naplózást és a napi **Delivery Hour**-t.
 
-## Hasznos konkrét helyzetek
+## Fő funkciók részletesen
 
-Az Email Reminders Add-on számos gyakorlati helyzetben hasznos lehet. Például:
-
-- **Szállásfoglalások**: Ha egy vendégházat vagy szállodát üzemeltetsz, emlékeztetheted vendégeidet a közelgő érkezésükre.
-- **Szolgáltatások**: Ha például fodrászatot vagy wellness központot vezetsz, emlékeztetheted az ügyfeleket a lefoglalt időpontjukra.
-- **Rendezvények**: Ha rendezvényszervezéssel foglalkozol, emlékeztetheted a résztvevőket az esemény közeledtéről.
-
-## Specifikus előnyök és felhasználási módok
-
-### Köszönő e-mailek
-
-A foglalás után automatikusan küldhetsz köszönő e-mailt, amelyben megköszönöd az ügyfél bizalmát és további információkat nyújtasz a következő lépésekről. Ez javítja az ügyfélélményt és növeli a visszatérő ügyfelek számát.
-
-### Kuponkódok
-
-Automatikusan küldhetsz kuponkódokat, amiket az ügyfelek a következő foglalásuknál felhasználhatnak. Ez ösztönzi őket arra, hogy újra és újra visszatérjenek hozzád.
-
-### Emlékeztetők időzítése
-
-Az emlékeztetők időzítésével biztosíthatod, hogy az ügyfelek mindig naprakészek legyenek. Beállíthatod, hogy az emlékeztetők egy héttel vagy akár egy nappal az esemény előtt érkezzenek.
+- **Korlátlan e-mail sablon**: Annyi értesítést hozol létre, amennyire szükséged van (pl. több nyelv, több szolgáltatás, különféle időzítések). Minden sablonban dinamikus címkékkel személyre szabhatod a tartalmat (pl. foglaló neve, érkezés és távozás dátuma, foglalási azonosító).
+- **Rugalmas triggerek és időzítés**: 
+  - Küldés azonnal foglaláskor (visszaigazolás).
+  - Küldés a kezdés előtt/után X nappal (útmutató, házirend, köszönőlevél).
+  - Küldés a végső fizetés megtételekor (nyugtázás, további instrukciók).
+  A **Day Offset**-tel pontosan szabályozod, mikor menjen ki az üzenet.
+- **Feltételes logika**: Meghatározhatod, hogy az e-mail csak bizonyos feltételek mellett menjen ki, például ha a fizetési mód banki átutalás, ha a vendégek száma meghalad egy értéket, vagy ha egy űrlapmező adott választ tartalmaz. Így mindenki a releváns üzenetet kapja.
+- **Márkázott e-mailek**: Beállíthatod a logót, az akcentusszínt és az egységes láblécet, így a levelek profi, következetes megjelenést kapnak – ez növeli a bizalmat és a márkaismertséget.
+- **iCalendar (.ics) melléklet**: Az ügyfél egy kattintással hozzáadhatja a foglalást a saját naptárához. Ez csökkenti az elfelejtett érkezéseket és javítja a szervezettséget.
+- **Email Logs és Delivery Hour**: A naplózás segít visszakeresni, mi mikor ment ki és kinek, ami támogatja a támogatást és az auditot. A kézbesítés óráját beállítva elkerülheted az éjszakai üzenetküldést, és optimalizálhatod a megnyitási arányt.
+- **Fizetési emlékeztetők**: Automatizált üzenetek a rész- vagy végösszeg esedékessége előtt, egyértelmű fizetési instrukciókkal – kevesebb manuális utánkövetés, gyorsabb beérkezések.
+- **Integráció más add-onokkal**: Ha használsz számlázást vagy szerződéskezelést, a generált PDF-eket automatikusan csatolhatod az értesítésekhez.
+- **Kézi e-mailek a foglalásból**: Egy konkrét foglalás adatlapján sablont tölthetsz be, szerkeszthetsz és azonnal küldhetsz – például különleges kérés vagy változás esetén.
 
 ## Gyakorlati példák
 
-- **Turisztikai szolgáltatások**: Egy utazási irodában dolgozol, és szeretnéd biztosítani, hogy az ügyfeleid ne felejtsék el az utazási dátumaikat.
-- **Egészségügyi szolgáltatások**: Egy klinikán dolgozol, és szeretnéd emlékeztetni a pácienseket a közelgő vizsgálataikra.
-- **Oktatási intézmények**: Egy oktatási központot vezetsz, és szeretnéd emlékeztetni a diákokat a közelgő tanfolyamokra vagy vizsgákra.
+- **T−7 nap emlékeztető**: A kezdés előtt 7 nappal küldj útvonalat, parkolási és check-in információt, házirendet és **.ics** mellékletet.  
+  Példa beállítás:
+  ```
+  Trigger: Before Booking Start
+  Day Offset: 7
+  ```
+- **Fizetési emlékeztető**: Esedékesség előtt 3 nappal udvarias figyelmeztetés a fizetési linkkel és határidővel.  
+  ```
+  Trigger: Before Payment Due
+  Day Offset: 3
+  ```
+- **T+2 nap follow-up**: Távozás után 2 nappal köszönő e-mail értékeléskérő linkkel és visszatérő kuponnal az ismételt foglalás ösztönzésére.  
+  ```
+  Trigger: After Booking End
+  Day Offset: 2
+  ```
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Add-on**: Kiegészítő modul vagy bővítmény.
-- **Automatikus küldés**: Az e-mailek automatikus időzítése és küldése.
-- **Integráció**: Különböző rendszerek összekapcsolása és együttműködése.
-- **Kuponkód**: Kedvezményre jogosító kód.
-- **Emlékeztető e-mail**: Az esemény előtt küldött figyelmeztető üzenet.
+- **Kevesebb no-show** és késői érkezés a proaktív emlékeztetőknek köszönhetően.
+- **Gyorsabb kifizetések**, kisebb adminisztráció a fizetési emlékeztetőkkel.
+- **Időmegtakarítás**: az automatizált follow-up-ok kiváltják a manuális utánkövetést.
+- **Következetes márkaélmény** a sablonokkal és vizuális beállításokkal.
+- **Átláthatóság és auditálhatóság** az e-mail naplózással és ütemezett kézbesítéssel.
 
-Reméljük, hogy ez a részletes bemutató segít abban, hogy jobban megértsd a WP Booking System - Email Reminders Add-on előnyeit és lehetőségeit!
+## Kinek ajánlott?
+
+- **Szállásadóknak** (apartmanok, vendégházak, kempingek), akik automatizálnák a check-in/house rules kommunikációt.
+- **Szolgáltatóknak és bérbeadóknak** (eszközbérlés, teremfoglalás), ahol fontos az időben történő fizetés és az emlékeztetés.
+- **Túraszervezőknek, oktatóknak, rendezvényszervezőknek**, akik több időponttal dolgoznak, és szeretnék minimalizálni a meg nem jelenést.
+- **Kis csapatoknak és egyéni vállalkozóknak**, akiknek kritikus a hatékonyság és a professzionális megjelenés.
+
+## Elérhetőség és licenc
+
+Az Email Reminders ma már nem külön bővítmény, hanem a WP Booking System beépített **Notifications** funkciójának része. A licencelés éves csomagokban történik; az e-mail értesítések a fő bővítmény funkciói közé tartoznak. Az SMS értesítések továbbra is külön add-onként érhetők el, ha többcsatornás kommunikációt szeretnél.

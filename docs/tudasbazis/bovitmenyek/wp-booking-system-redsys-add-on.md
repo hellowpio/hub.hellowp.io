@@ -1,69 +1,68 @@
-# WP Booking System - Redsys Add-on
+---
+title: "WP Booking System - Redsys Add-on"
+description: "A WP Booking System fizetési bővítménye, amellyel közvetlenül a foglalási űrlapon fogadhatsz bankkártyás fizetést a Redsysen és opcionálisan BIZUMon keresztül."
+sidebar_label: "WP Booking System - Redsys Add-on"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Redsys Add-on lehetőséget biztosít arra, hogy a Redsys fizetési kaput integrálva hitelkártyás fizetéseket fogadj, illetve mobil fizetéseket a BIZUM szolgáltatással. Ez a kiegészítő különösen hasznos lehet a spanyol piac számára, ahol a Redsys és a BIZUM széles körben elterjedt és megbízható fizetési megoldások.
+A WP Booking System – Redsys Add-on egy **fizetési kiegészítő**, amellyel a WP Booking System foglalási űrlapján **azonnali bankkártyás** és opcionálisan **BIZUM** mobilfizetést fogadhatsz a **Redsys** átjárón keresztül. Ha a célpiacod Spanyolország, ez a páros a helyi ügyfelek számára megszokott, bizalomkeltő és gyors fizetési élményt ad – csökkenti a lemorzsolódást, és a foglalás azonnal **fizetéshez köthető**.
 
-### Redsys fizetési kapu
+## Hogyan működik a gyakorlatban?
 
-A Redsys egy spanyol fizetési szolgáltató, amely lehetővé teszi a vállalkozások számára, hogy online és személyes tranzakciókat dolgozzanak fel hitel- és bankkártyák segítségével. Az alábbi előnyöket nyújtja:
+A Redsys a WP Booking System általános **Payment** folyamába illeszkedik. A foglalási űrlapon megjelenik a **Fizetési mód** mező, ahol a vendég a Redsys (bankkártya) és – ha engedélyezed – a **BIZUM** közül választhat. A sikeres tranzakció után a rendszer **visszaigazolja a foglalást**, az összegek és adók a megszokott módon rögzülnek, és minden adat egy helyen, a WP Booking System adminban marad.
 
-- **Biztonságos online fizetések**: A Redsys SSL titkosítást használ, így biztosítva a tranzakciók biztonságát.
-- **Támogatott kártyatípusok**: Visa, MasterCard, American Express és más nemzetközi kártyák elfogadása.
-- **Fraud prevenció**: Különböző eszközökkel rendelkezik a csalások megelőzése érdekében.
+### Fő funkciók, érthetően
 
-### BIZUM mobil fizetés
+- **Redsys integráció (kártyás fizetés)**: Visa, Mastercard és más kártyák elfogadása a Redsysen keresztül, közvetlenül a foglalási folyamat részeként. Célja, hogy a vendég ne essen ki a folyamatból, és a fizetés a foglalással együtt történjen.
+- **BIZUM támogatás (opcionális)**: Kapcsolóval engedélyezhető a spanyol piacon népszerű BIZUM. A fizetési mezőben külön **megjelenítési név** és **leírás** adható, így pontosan elmagyarázhatod, mit kap a vendég.
+- **Test mód és tesztelés**: Beállítás közben biztonságosan próbálhatod a folyamatot. Dokumentált tesztkártya áll rendelkezésre:
+  ```
+  Kártyaszám: 4548 8120 4940 0004
+  Lejárat: jövőbeli dátum (pl. 12/30)
+  CVC: tetszőleges (pl. 123)
+  ```
+- **Állítható megjelenítés**: A Redsys és a BIZUM fizetési opcióknál külön **Display Name** és **Description** mezőkkel igazíthatod az üzenetet a márkádhoz (pl. „Bankkártya – Redsys” és „Fizess biztonságosan bankkártyával”).
+- **Egységes ökoszisztéma**: Az addon a WP Booking System fizetési logikáját használja (árképzés, adók, visszaigazolások), így nem kell több helyen adminisztrálnod.
 
-A BIZUM egy spanyol mobil fizetési szolgáltatás, amely lehetővé teszi a felhasználók számára, hogy okostelefonjuk segítségével pénzt küldjenek és fogadjanak. A BIZUM főbb előnyei:
+### Kompatibilitás és alternatív útvonalak
 
-- **Gyors és egyszerű tranzakciók**: Azonnali átutalások más BIZUM felhasználók között.
-- **Széles körű banki támogatás**: Több nagy spanyol bank támogatja.
-- **Számla megosztás**: Lehetővé teszi a vásárlások költségének megosztását több ember között.
+- **Közvetlen Redsys**: Az addon önállóan működik a WP Booking Systemen belül, **nem igényel WooCommerce-t**.
+- **WooCommerce pénztár alternatíva**: Ha szélesebb fizetési palettát szeretnél (pl. más, WooCommerce-bővítmények által támogatott átjárókat), használd a **WooCommerce Checkout** addont. Ilyenkor a WP Booking System foglalás összege a WooCommerce pénztárán keresztül fizethető. Fontos: ez nem WooCommerce-termékek foglalása, csak a pénztár használata.
 
-## Zökkenőmentes együttműködés más eszközökkel
+## Telepítés és beállítás röviden
 
-### WP Booking System
+1. **Addon telepítése**: WP Admin → WP Booking System → Add-ons. A Redsys Add-on a **Business** és **Developer** licencek része (külön nem vásárolható).
+2. **Kereskedői adatok**: Igényelj Redsys kereskedői hozzáférést és **API-kulcsokat** a bankodtól/Redsysetől.
+3. **Redsys aktiválása**: WP Admin → WP Booking System → Payment Gateways → Redsys. Kapcsold **Active**-ra, add meg a **Display Name**-et és **Description**-t, majd rögzítsd az API-kulcsokat.
+4. **BIZUM engedélyezése (opcionális)**: Ugyanitt kapcsold be, és add meg a saját megnevezést/leírást.
+5. **Tesztelés**: Kapcsold test módba és használd a fenti tesztkártyát. Ellenőrizd a sikeres fizetést és a foglalás állapotát.
+6. **Élesítés**: Válts éles Redsys kulcsokra, kapcsold ki a test módot.
 
-A WP Booking System - Redsys Add-on zökkenőmentesen integrálható a WP Booking System főmodullal. Ez lehetővé teszi, hogy egyszerűen kezelhesd a foglalásokat és elfogadd a fizetéseket egyetlen platformon belül.
+## Gyakorlati példák
 
-### WooCommerce
+- **Tengerparti apartman Spanyolországban**: A vendég kiválasztja a dátumokat, kitölti az űrlapot, majd **Redsys (kártya)** fizetéssel azonnal kiegyenlíti az előleget. A foglalás automatikusan visszaigazolódik.
+- **Kerékpárkölcsönző**: Az online foglalás végén a vendég **BIZUM**-mal fizet, mert számára ez a leggyorsabb. Te pedig látod a sikeres tranzakciót a foglalás részletei között.
+- **Szolgáltató stúdió (pl. túravezetés)**: A helyek korlátozottak, ezért csak **előrefizetéssel** fogadsz foglalást. A Redsys biztosítja a gyors, helyi fizetést, minimális lemorzsolódással.
 
-Ez az add-on kompatibilis a WooCommerce bővítménnyel is, amely az egyik legnépszerűbb e-kereskedelmi megoldás WordPress-en. Így lehetőséged van arra, hogy egy komplex online boltban is használhasd a Redsys és BIZUM fizetési opciókat.
+## Előnyök és értékajánlat
 
-## Konkrét helyzetek, ahol hasznos lehet
+- **Helyi bizalom**: A Redsys és a BIZUM a spanyol piacon elterjedt, így a vendégek magabiztosan fizetnek.
+- **Kevesebb kiesés**: A foglalás és a fizetés egy folyamatban zajlik, nincs felesleges átirányítás vagy regisztráció.
+- **Egyszerű üzembe helyezés**: Pár mező kitöltése, kapcsolók és egy dokumentált tesztkártya – gyorsan ellenőrizheted, hogy minden működik.
+- **Egységes admin**: Minden foglalás, ár, adó és visszaigazolás egy rendszerben marad.
+- **Licencben benne van**: Business/Developer licenccel jár, nem kell külön vásárlásról és kompatibilitásról gondoskodnod.
 
-### Szálláshelyek kezelése
+## Kinek ajánlott?
 
-Ha szálláshelyeket kezelsz, például apartmanokat vagy vendégházakat, ez az add-on lehetővé teszi, hogy az ügyfelek online foglaljanak és azonnal fizessenek is. A Redsys és BIZUM integrációval mind hitelkártyás, mind mobil fizetéseket elfogadhatsz.
+- **Spanyolországi szállásadók**: apartmanok, nyaralók, vendégházak, ahol a vendégek Redsys/BIZUM használatot várnak el.
+- **Bérlések és szolgáltatók**: eszközbérlés, túrák, óradíjas szolgáltatások, ahol az **azonnali online fizetés** kulcsfontosságú.
+- **Azoknak, akik WooCommerce nélkül** szeretnének kártyás és BIZUM-fizetést fogadni a WP Booking Systemen belül.
 
-### Események szervezése
+## Jó gyakorlatok és megjegyzések
 
-Események szervezésénél is hasznos lehet ez az add-on. Például konferenciák, workshopok vagy fesztiválok esetében az online jegyvásárlás során a résztvevők könnyedén tudnak fizetni.
+- **Piaci fókusz**: A Redsys/BIZUM elsődlegesen a spanyol piac. Használatához szükség van **kereskedői szerződésre** és **API-hozzáférésre**.
+- **Tesztelj élesítés előtt**: Próbáld végig a teljes folyamatot a tesztkártyával, ellenőrizd a foglalás állapotváltását és – ha használsz ilyet – a visszatérítési folyamatot.
+- **WooCommerce csak igény esetén**: Ha több fizetési módot vagy WooCommerce-specifikus átjárót szeretnél, a **WooCommerce Checkout** addon a megoldás; a Redsys Add-on önállóan nem igényli a WooCommerce-t.
 
-### Kisvállalkozások
-
-Kisvállalkozások, mint például fodrászatok, szépségszalonok vagy személyi edzők is profitálhatnak belőle. Az online időpontfoglalás és fizetés egyszerűsíti az üzleti folyamatokat és növeli az ügyfelek elégedettségét.
-
-## Legfontosabb jellemzők és képességek
-
-- **Több fizetési opció**: Hitelkártyák és mobil fizetések (BIZUM) támogatása.
-- **Biztonságos tranzakciók**: SSL titkosítás és csalásmegelőző eszközök.
-- **Zökkenőmentes integráció**: Kompatibilis a WP Booking System és WooCommerce bővítményekkel.
-- **Könnyen kezelhető**: Egyszerű beállítások és felhasználóbarát felület.
-
-## Gyakorlati példák az alkalmazására
-
-1. **Szállodák és panziók**: Az ügyfelek online foglalhatnak szobát és azonnal kifizethetik a foglalási díjat.
-2. **Rendezvényszervezők**: Események jegyértékesítése online, gyors és biztonságos fizetéssel.
-3. **Szolgáltatók**: Fodrászok, masszőrök vagy személyi edzők időpontfoglalása és előre történő fizetés.
-4. **Webáruházak**: Online boltok, amelyek különböző fizetési opciókat szeretnének kínálni ügyfeleiknek.
-
-## Szószedet
-
-- **SSL titkosítás**: Olyan technológia, amely biztosítja az internetes kommunikáció biztonságát titkosítással.
-- **Fraud prevenció**: Csalásmegelőzés különböző eszközökkel és technikákkal.
-- **BIZUM**: Spanyol mobil fizetési szolgáltatás, amely lehetővé teszi az azonnali pénzátutalást okostelefonokon keresztül.
-- **WP Booking System**: Foglalási rendszer WordPress weboldalakhoz, amely lehetővé teszi a foglalások kezelését.
-- **WooCommerce**: Népszerű e-kereskedelmi bővítmény WordPresshez.
-
-Ez a részletes bemutató segíthet megérteni, hogy miért érdemes használni a WP Booking System - Redsys Add-on-t, és milyen konkrét előnyöket nyújt különböző üzleti helyzetekben.
+Ha szeretnéd, készítek lépésről-lépésre telepítési útmutatót képernyőképekkel, és adok mintaszövegeket a fizetési opciók felirataihoz és üzeneteihez.

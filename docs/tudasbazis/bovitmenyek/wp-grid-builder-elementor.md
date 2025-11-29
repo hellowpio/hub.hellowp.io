@@ -1,82 +1,88 @@
-# WP Grid Builder - Elementor
+---
+title: "WP Grid Builder - Elementor"
+description: "Prémium rácselrendezés és facettás szűrés WordPresshez, natív Elementor-integrációval (Grid és Facet widgetek)."
+sidebar_label: "WP Grid Builder - Elementor"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A WP Grid Builder - Elementor egy olyan bővítmény, amely lehetővé teszi a WP Grid Builder és az Elementor közötti zökkenőmentes integrációt. Két új widgetet ad hozzá az Elementor szerkesztőhöz, amelyek segítségével egyszerűen adhatsz hozzá rácsokat és faceteket. Ezek a widgetek a szerkesztőben is megjelennek, ami jobb felhasználói élményt nyújt, mint a rövidkódok használata. A facetek megjelenése teljes mértékben testre szabható az Elementor szerkesztőben.
+A WP Grid Builder egy prémium WordPress bővítmény, amellyel rugalmas **grid elrendezéseket** és valódi **facettás szűrést** készíthetsz bejegyzésekhez, termékekhez, felhasználókhoz és taxonómiákhoz. Az Elementor kiegészítője két új widgetet ad (Grid és Facet), és képes közvetlenül az Elementor saját listázó elemeit szűrni. A cél: összetett, gyors, kódmentes keresés és gyönyörű kártya-alapú megjelenítés – egy helyen.
 
-## Főbb jellemzők
+## Fő funkciók
 
-### Rács és Facet widgetek hozzáadása
+### Facettás szűrés, ami tényleg skálázódik
+- Több mint 20 **facet típus**: checkbox, radio, select, gombok, hierarchia, szám- és dátumtartomány, értékelés, kereső, rendező, reset, lapozás és „Load More”.
+- **AJAX-alapú** működés, ezért valós időben frissül a találati lista.
+- **URL-paraméterek és böngésző-előzmények**: minden szűrési állapot könyvjelzőzhető és megosztható.
+- **Index tábla** gyorsítja a lekérdezéseket nagy adatállománynál is.
+- **ACF, Meta Box, Pods** és **WooCommerce/EDD** mezők natív kezelése.
 
-A bővítmény két új widgetet ad hozzá az Elementor (ingyenes és Pro) verzióihoz:
-- **Grid widget**: Rácsok hozzáadására szolgál.
-- **Facet widget**: Facetek hozzáadására és testreszabására szolgál.
+### Grid elrendezések és kártyaépítő
+- Rácsok: **Masonry**, **Justified**, **Metro**, bármelyikből **karusszel** készíthető.
+- **Beépített lightbox**, **lazy loading**, 20+ belépési és megjelenítési animáció.
+- **Drag & drop kártyaépítő**: előre gyártott kártyák, Google fontok, SVG ikonok.
+- **Dinamikus adatok és feltételes megjelenítés**: a kártya elemei az adatokhoz igazodnak, kód nélkül.
 
-### Facet megjelenés testreszabása
+### Elementor-integráció a szerkesztőben
+- Kapsz két widgetet: **Grid** és **Facet**.
+- A Facet widgettel közvetlenül szűrheted az Elementor listázó elemeit (pl. Posts, Portfolio, Loop Grid, Archive Posts, WooCommerce Products/Archive Products, JetEngine Listing Grid).
+- Az Elementor saját lapozása helyett a WPGB **Pagination** vagy **Load More** facetjét használd.
+- Működik **Popupokban** is (Facet és Grid).
 
-Az Elementor szerkesztő segítségével teljes mértékben testre szabhatod a facetek megjelenését, így azok tökéletesen illeszkednek weboldalad stílusához.
+### Teljesítmény és cache
+- A dedikált **indexelő** teszi gyorssá a szűrést.
+- **Caching add-on**: a grid/facet kérés-válaszok cache-elése, kivételek megadásával és időzített ürítéssel. (Kereső facetteket ne cache-elj.)
 
-### Gyorsabb szűrési teljesítmény
+### Hozzáférhetőség és SEO
+- **WCAG-elvű** komponensek, billentyűzet-navigáció, érthető ARIA.
+- **SEO-barát** HTML-struktúra; a facettázott URL-ek megoszthatók és visszaléphetők.
 
-A bővítmény javítja a szűrési teljesítményt azáltal, hogy csak a szűrendő elemeket tölti be és rendereli, nem pedig az egész oldalt. Ez gyorsabb betöltési időt eredményez, különösen nagy mennyiségű adat esetén.
-
-### Elementor Pro widgetek szűrése
-
-Ez a bővítmény lehetőséget nyújt az alábbi Elementor Pro widgetek szűrésére:
-- Posts
-- Portfolio
-- Loop Grid
-- Archive Posts
-- WooCommerce Products
-- WooCommerce Archive Products
-- Listing Grid (JetEngine)
-
-### Archív sablonként való használat
-
-A rácsokat archív sablonként is használhatod az Elementor Pro-val, ami még nagyobb rugalmasságot biztosít a tartalmak megjelenítésében.
-
-### Facetek használata Popupokban
-
-Lehetőséged van facetek hozzáadására az Elementor Pro popupjaiban is, ami még több lehetőséget kínál a felhasználói élmény fokozására.
-
-## Használati tippek
-
-### Widgetek hozzáadása
-
-Miután aktiváltad a bővítményt, két új widget jelenik meg az Elementor szerkesztőben. Egyszerűen húzd be őket a megfelelő helyre, és állítsd be őket igényeid szerint.
-
-### Szűrés beállítása
-
-A szűrni kívánt Elementor Pro widget kiválasztásához egyszerűen helyezz el egy Facet widgetet, majd válaszd ki a "Select a grid or widget to filter" legördülő listából a megfelelő elemet.
-
-### Facetek ID használata
-
-Ha popupban szeretnél faceteket használni, és olyan widgetet szeretnél szűrni, amely nem jelenik meg a szerkesztőben, használd a Widget ID-t. A Widget ID megtalálható a WP Grid Builder fül alatt, amikor szerkeszted a widgetet.
+### Fejlesztői bővíthetőség
+- Gazdag **hook**-készlet (actions/filters), **JS események és metódusok**.
+- Saját facet- és kártyablokkok készítése, indexelő testreszabása.
+- Shortcode, blokk, widget és REST végpontok.
 
 ## Gyakorlati példák
 
-### E-commerce weboldalak
+- **Webáruház**: Termékek szűrése kategória, ár-tartomány, szín, készlet és értékelés szerint. A találatok azonnal frissülnek, a felhasználó nem veszti el a kontextust, a lapozás „Load More”-ral történik.
+- **Ingatlan/állás katalógus**: Város, ár, alapterület, típus, dátum és egyedi mezők kombinálása. A hierarchikus facettek szépen kezelik a régió → város → kerület logikát.
+- **Tartalommagazin**: Szerző, címke, rovat, dátum és tartalomtípus szűrése egy összetett archívumban, megosztható URL-ekkel.
+- **Térképes keresés**: Helyalapú listázás **Map Facet**-tel, geolokáció, marker clustering, és „szűrés a nézetre” térképműveletekkel.
 
-Az e-commerce oldalak esetében lehetőséged van termékek kategorizálására és szűrésére anélkül, hogy az egész oldal újratöltődne. Ez különösen hasznos lehet, ha nagy mennyiségű termékkel dolgozol.
+## Gyors kezdés Elementorral
 
-### Portfolio oldalak
+1. Telepítsd és aktiváld a WP Grid Buildert és az Elementor kiegészítőjét (Elementor szükséges).
+2. Hozz létre **facetteket** (pl. kategória, ár min/max), majd futtasd az **indexelőt**.
+3. Az Elementorban helyezd el a listázó elemet (pl. **Loop Grid**, **Posts**, **Woo Products**).
+4. Adj hozzá egy **Facet** widgetet, és a legördülőben válaszd ki, melyik grid/widget legyen a célja.
+5. Kapcsold ki az Elementor beépített lapozását, és adj hozzá **Pagination** vagy **Load More** facetet (kattintás vagy görgetés aktiválásra).
+6. Teszteld a szűrést, ellenőrizd az URL-paramétereket és a visszalépést.
 
-Ha egy portfólió oldalt üzemeltetsz, könnyedén létrehozhatsz rácsokat és szűrhető galériákat, amelyek segítenek a látogatóknak gyorsan megtalálni az érdeklődésüknek megfelelő munkákat.
+Példa shortcode-os beillesztéshez (nem Elementor esetén):
+```
+[wpgb_grid id="GRID_ID"]
+[wpgb_facet id="FACET_ID"]
+[wpgb_facet id="PAGINATION_FACET_ID"]
+```
 
-### Blog oldalak
+## Fontos megjegyzések és best practice
 
-Blogoldalak esetében lehetőséged van bejegyzések kategorizálására és címkézésére, ami segíti a látogatókat abban, hogy gyorsan megtalálják az őket érdeklő tartalmat.
+- **Egy facet csak egy** tartalmat/lekérdezést szűrhet. Ha több listát akarsz egyszerre szűrni, mindegyikhez külön facetet rendelj.
+- **Archívumok szűrése**: a téma/builder saját lapozása vagy JS-alapú elrendezése ütközhet. Ilyenkor kapcsold ki a natív lapozást és használd a WPGB Pagination facetet.
+- **Cache**: ne cache-elj olyan nézetet, ahol véletlensorrend vagy erős feltételes megjelenítés van; a **Search** facetteket érdemes kizárni.
 
-### Térképes megjelenítések
+## Miért érdemes használni?
 
-Ha térképes megjelenítést használsz, lehetőséged van arra, hogy helyszínek szerint szűrd az adatokat, így könnyebbé téve a felhasználók számára a keresést és navigációt.
+- **Idő- és költségmegtakarítás**: összetett szűrés kód nélkül, vizuális beállításokkal.
+- **Gyors és skálázható**: indexelt, AJAX-os facettek, cache opcióval.
+- **Jobb UX és konverzió**: valós idejű találatfrissítés, megosztható URL-ek, hozzáférhető komponensek.
+- **Egységes ökoszisztéma**: Elementor, Bricks, Oxygen, Beaver Builder, WooCommerce, EDD, ACF, Meta Box, Pods, SearchWP, Relevanssi, WPML/Polylang, LearnDash kompatibilitás.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Grid**: Rács; egy elrendezési forma, amely több elemet tartalmaz.
-- **Facet**: Facet; szűrő, amely segítségével specifikus adatokat jeleníthetsz meg.
-- **Popup**: Felugró ablak; egy kis méretű ablak, amely további információkat vagy funkciókat kínál.
-- **Widget ID**: Egyedi azonosító; egy egyedi kód vagy szám, amely egy adott widgetet azonosít.
-- **Archive template**: Archív sablon; egy sablon, amely archívumként használható különböző típusú tartalmak megjelenítésére.
+- **Webáruházaknak**: gyors termékszűrés, skálázható teljesítmény, „Load More” lapozás.
+- **Katalógus- és könyvtár-oldalaknak**: sok szempontos keresés, hierarchiák, egyedi mezők.
+- **Tartalomportáloknak és magazinoknak**: rugalmas archívumszűrés, SEO-barát URL-ek.
+- **Ügynökségeknek és site buildereknek**: stabil integráció több builderrel, gyors szerkesztői workflow, fejlesztői hookok.
 
-Ezek az információk segítségedre lesznek abban, hogy hatékonyan használd a WP Grid Builder - Elementor bővítményt weboldalad fejlesztése során.
+Összességében a WP Grid Builder – Elementor kiegészítővel egy komplett, professzionális facettás keresési és grid-megjelenítési megoldást kapsz, amely a szerkesztőben dolgozik, gyors, hozzáférhető és könnyen testreszabható – pont azt adja, ami a WordPress alapból hiányzik, de a modern projektekhez elengedhetetlen.

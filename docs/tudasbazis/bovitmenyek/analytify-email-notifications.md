@@ -1,45 +1,95 @@
-# Analytify Email Notifications
+---
+title: "Analytify Email Notifications"
+description: "Analytify Pro kiegészítő, amely ütemezett, testreszabható GA4 e-mail jelentéseket és valós idejű riasztásokat küld több címzettnek."
+sidebar_label: "Analytify Email Notifications"
+---
 
-Az Analytify Email Notifications egy olyan funkció, amely lehetővé teszi, hogy automatikus analitikai jelentések érkezzenek közvetlenül az e-mail fiókodba heti vagy havi rendszerességgel. Ez a kiegészítő tökéletes megoldás azok számára, akik szeretnék rendszeresen nyomon követni weboldaluk teljesítményét anélkül, hogy folyamatosan be kellene lépniük az Analytify felületére.
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők
+Az **Analytify Email Notifications** az Analytify Pro prémium WordPress-analitika ökoszisztéma fizetős kiegészítője. Segítségével a legfontosabb **GA4 mutatókat** automatikus, jól olvasható **e-mail jelentésekben** kapod meg – te és a csapatod is – anélkül, hogy be kellene lépnetek a WordPress vagy a GA4 felületére. Kiváltja a manuális riportgyártást, egységesíti a kommunikációt, és **valós idejű riasztásokkal** segít gyorsan reagálni a teljesítmény-ingadozásokra.
 
-### Heti vagy havi jelentések beállítása
-Az Email Notifications Addon lehetővé teszi, hogy eldöntsd, milyen gyakran szeretnéd megkapni az analitikai jelentéseket. Beállíthatod heti vagy havi rendszerességgel, és a bővítmény automatikusan elküldi a jelentéseket az e-mail címedre.
+Előfeltételek: **Analytify Pro**, összekapcsolt **Google Analytics 4 (GA4) property**, valamint a kiegészítő licenc aktiválása.
 
-### Saját metrikák kiválasztása
-Lehetőséged van kiválasztani azokat a metrikákat, amelyek a legfontosabbak számodra. Ezek között szerepelnek általános statisztikák, legnépszerűbb oldalak, földrajzi eloszlás, rendszerstatisztikák, közösségi média és kulcsszó statisztikák. Így testreszabhatod a jelentéseket a saját igényeid szerint.
+## Fő funkciók, érthetően elmagyarázva
 
-### Gyönyörű email jelentés sablon
-Az e-mail jelentés sablon kialakítására különös figyelmet fordítottunk. Országokhoz, böngészőkhöz és közösségi médiához kapcsolódó képekkel tettük felhasználóbaráttá és látványossá a jelentéseket. Ráadásul ezek szinte minden e-mail kliensben tökéletesen jelennek meg.
+### Ütemezett e-mail jelentések
+- Állítsd be, hogy a jelentések **naponta, hetente, havonta vagy egyedi gyakorisággal** menjenek ki.
+- A rendszer az általad választott időközönként automatikusan **összeállítja és elküldi** a GA4 adatokat tartalmazó összefoglalót.
 
-### Tartalom nyomon követése, elemzése és optimalizálása
-A beállítás csupán 60 másodpercet vesz igénybe. Az analitikai adatok segítségével könnyedén nyomon követheted, elemezheted és optimalizálhatod a tartalmaidat.
+### Testreszabható metrikák és blokkok
+- Te döntöd el, mi kerüljön a riportba: **forgalom, konverziók, visszafordulási arány, Top Pages, földrajzi bontás, rendszer- és közösségi források, kulcsszavak** stb.
+- A riport e-mail-barát **HTML formában** érkezik, grafikonokkal és táblákkal, hogy a nem technikai érintettek is könnyen értelmezzék.
 
-## Integrációk és kompatibilitás
+### Valós idejű riasztások
+- Beállíthatod, hogy a rendszer **azonnal e-mailt** küldjön, ha egy kulcs-mutató (pl. hirtelen forgalomcsökkenés) kilóg a kívánt sávból.
+- Így hamar észreveszed a problémát (kampányhiba, mérési gond, technikai hiba), és gyorsan be tudsz avatkozni.
 
-Az Analytify Email Notifications zökkenőmentesen működik együtt több népszerű eszközzel és bővítménnyel:
-- **WooCommerce**: Kereskedelmi oldalak teljesítményének követése.
-- **Forms Tracking**: Űrlapok kitöltési statisztikáinak követése.
-- **Authors Tracking**: Szerzői teljesítmények elemzése több szerzős blogokon.
+### Több címzett egyszerre
+- **Több e-mail címzettet** is megadhatsz, így minden releváns kolléga/ügyfél ugyanazt a konszolidált jelentést kapja.
+- Ideális ügynökségi vagy többcsapatos vállalati környezetben.
+
+### Jelentésformátumok
+- Alapértelmezésben **HTML**, emellett választhatsz **PDF** vagy **CSV** formátumot is a megosztás céljához igazítva.
+
+### Márkázás és megjelenés
+- Személyre szabható **From Name** (feladó név), elrejthető a “**Go to Dashboard**” gomb, és adhatsz **személyes megjegyzést** a riport végéhez (pl. kommentár, teendők).
+
+## Beállítás és működés röviden
+
+### Telepítés
+1. Győződj meg róla, hogy az **Analytify Pro** aktív és a webhelyed kapcsolódik a **GA4 propertyhez**.
+2. Töltsd fel és aktiváld az Email Notifications kiegészítőt a WordPress-ben (Plugins > Add New > Upload).
+3. Aktiváld a **licenckulcsot**.
+4. Lépj az **Analytify > Settings > Email** fülre.
+
+### Konfiguráció
+- Add meg a **feladó nevét** és a **címzetteket**.
+- Válaszd ki az **ütemezést** (napi/heti/havi/egyedi).
+- Jelöld ki a **riportban szereplő metrikákat** és blokkokat.
+- Válaszd ki a **jelentésformátumot** (HTML/PDF/CSV).
+- Finomhangolás: **Go to Dashboard gomb elrejtése**, **Personal Note** hozzáadása.
+- Mentsd a beállításokat; a riportok a megadott ütemben érkeznek.
+
+### Jelentések használata
+- Az e-mailben kapott **HTML riport** azonnal olvasható a legtöbb kliensben. Ha bekapcsoltad, a “Go to Dashboard” gombbal mélyebbre ugorhatsz az Analytify felületén.
+
+```text
+Mintabeállítási checklist
+- Előfeltételek: Analytify Pro + GA4 property, licenc aktiválva
+- Címzettek: marketing@..., vezeto@..., ugyfel@...
+- Ütemezés: heti, hétfő 09:00
+- Metrikák: forgalom, konverziók, Top Pages, földrajzi bontás
+- Formátum: HTML
+- Márkázás: From Name = “Acme Analytics”, Go to Dashboard gomb elrejtve
+- Personal Note: “Fókusz a blog organikus forgalmára, lásd javaslatok a végén.”
+```
 
 ## Gyakorlati példák
 
-### Webshop tulajdonosoknak
-Ha egy webshopot üzemeltetsz, hetente vagy havonta automatikusan megkapod az eladási statisztikákat, legnépszerűbb termékeket és a látogatók földrajzi eloszlását. Ez segít abban, hogy időben reagálhass a piaci trendekre és optimalizálhasd a kínálatodat.
+- Ügynökségi riportautomatizálás: Állíts be **heti HTML jelentést** minden ügyfélhez tartozó stakeholder-listának. A végén **személyes megjegyzésben** összegzed a teendőket (pl. “A konverziók 12%-kal nőttek, folytassuk az A/B tesztet”).
+- Vezetői összefoglaló: **Havi kivonat** a C-level számára, csak a **Top Pages, forgalom, konverziók** blokkokkal. Rejtsd el a “Go to Dashboard” gombot, hogy a fókusz az e-mailben maradjon.
+- Anomáliafigyelés: Állíts be **azonnali riasztást** jelentős forgalomesés esetére. Ha gond van (pl. leállt egy kampány), az e-mail alapján azonnal riaszthatod a felelős csapatot.
 
-### Blog íróknak
-Egy több szerzővel rendelkező blog esetén könnyedén nyomon követheted az egyes szerzők teljesítményét. A jelentésekből láthatod, melyik cikkek népszerűek, melyik szerző generálja a legtöbb forgalmat, így hatékonyabban oszthatod el a feladatokat.
+## Előnyök és értékajánlat
 
-### Marketing szakembereknek
-A közösségi média statisztikák és kulcsszó adatok segítségével pontos képet kaphatsz arról, hogy mely kampányok és kulcsszavak teljesítenek a legjobban. Ezzel optimalizálhatod a marketing stratégiádat és növelheted az eléréseidet.
+- **Időmegtakarítás**: leváltja a kézi riport-összeállítást és -küldést.
+- **Következetes kommunikáció**: minden érintett ugyanazt a minőségi, márkázott riportot kapja.
+- **Gyors reakció**: a valós idejű e-mail riasztások lerövidítik a hibaészlelés idejét.
+- **Közérthető adatszolgáltatás**: a vizuális HTML-riportok a nem technikai érintetteknek is egyértelműek.
+- **Rugalmasság**: metrikák, ütemezés, formátum és megjelenés testreszabható.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Metrika**: Olyan adat vagy mérőszám, amely egy adott tevékenység teljesítményét méri.
-- **Bővítmény (Addon)**: Kiegészítő szoftverkomponens, amely további funkciókat biztosít egy alapalkalmazáshoz.
-- **Földrajzi eloszlás**: A látogatók földrajzi helyzetének elemzése.
-- **Rendszerstatisztikák**: Adatok az eszközökről és böngészőkről, amelyeket a látogatók használnak.
-- **Kulcsszó statisztikák**: Azok a keresőszavak, amelyekkel a látogatók megtalálták az oldalt.
+- **Digitális ügynökségeknek**: skálázható ügyfélriportálás több címzettel, minimális kézi munkával.
+- **Vállalati marketing- és vezetői csapatoknak**: rendszeres GA4 összefoglalók belépés nélkül.
+- **E-kereskedelmi oldalaknak**: konverzió- és forgalomfigyelés, azonnali riasztásokkal.
+- **Többoldalas vagy több piacos szervezeteknek**: egységes riportok minden érintettnek.
 
-Az Analytify Email Notifications segítségével könnyedén és hatékonyan tarthatod kézben weboldalad analitikai adatait.
+## Kompatibilitás és ökoszisztéma
+
+- Csak az **Analytify Pro** környezetében működik, GA4-kapcsolattal.
+- Az Analytify termékcsalád része (Core + Pro + kiegészítők, pl. Campaigns, Goals, WooCommerce/EDD), így **egységes analitikai ökoszisztémába** illeszkedik.
+
+## Fejlesztői háttér
+
+Az Analytify ökoszisztémát az Analytify/WPBrigade csapata gondozza; a fő bővítmény fejlesztőjeként a WordPress.org Adnant tünteti fel. A kiegészítő a Pro-val együtt biztosít teljes körű, e-mail alapú riportautomatizálást és riasztást.

@@ -1,60 +1,91 @@
-# WooCommerce Google Product Feed
+---
+title: "WooCommerce Google Product Feed"
+description: "Prémium WooCommerce bővítmény valós idejű, mezőtérképezhető termék-, értékelés-, promóció- és helyi készlet feedekhez a Google Merchant Centerhez."
+sidebar_label: "WooCommerce Google Product Feed"
+---
 
-A WooCommerce Google Product Feed egy olyan eszköz, amely lehetővé teszi a termékek egyszerű és hatékony feltöltését a Google Shopping platformra. Ez a bővítmény számos hasznos funkcióval rendelkezik, amelyek segítenek maximalizálni az online áruházad láthatóságát és elérhetőségét.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+A WooCommerce Google Product Feed egy prémium bővítmény, amellyel valós idejű termékfeedet készíthetsz a Google Merchant Center számára. A WooCommerce-termékeid adatait a Google által elvárt struktúrában adja át, így a katalógusod megjelenhet a Google felületein (free listings) és Shopping hirdetésekben. A bővítmény megoldja a tipikus elutasításokat (hiányzó GTIN/Brand, hibás kategória, rossz készlet/ár), és részletes kontrollt ad a beküldött mezők felett.
 
-### Termékadatok szinkronizálása
+## Fő funkciók, érthetően
 
-A WooCommerce Google Product Feed automatikusan szinkronizálja a termékadatokat a WooCommerce boltodból a Google Merchant Centerbe. Ez azt jelenti, hogy minden termékváltoztatás azonnal frissül a Google Shopping-ban is, így mindig naprakész adatokat biztosítasz a potenciális vásárlóknak.
+### Valós idejű feed és Scheduled fetch
+- A feed on‑demand épül fel, a Merchant Center ütemezett letöltéssel használja. Így mindig friss ár és készlet kerül be, csökkentve a „price mismatch” típusú hibákat.
+- Nagy katalógusnál bekapcsolhatod a **feed item caching** funkciót: a bővítmény háttérben előrendereli a feed-elemeket (WordPress cron), így gyors és stabil kiszolgálást kapsz.
 
-### Részletes termékadatok
+Példa feed lekérdezésre:
+```
+?woocommerce_gpf=google
+```
+Részfeed generálás (paginálás nagy katalógusnál):
+```
+?woocommerce_gpf=google&gpf_start=0&gpf_limit=1000
+```
 
-A bővítmény lehetővé teszi, hogy részletes termékinformációkat adj meg, mint például a termék neve, leírása, ára, elérhetősége, képek és egyéb releváns adatok. Ezek az információk segítenek a Google-nak pontosabb találatokat nyújtani a keresések során, növelve ezzel az értékesítési esélyeidet.
+### Mezőtérkép és adatforrások
+- Több mint 50 Google-attribútum támogatott (kötelező és ajánlott mezők). A forrásokat rugalmasan állíthatod:
+  - bolt‑szintű alapérték,
+  - kategória‑szintű beállítás,
+  - termék- és variációszintű érték,
+  - meglévő WooCommerce mezők/attribútumok előtöltése.
+- Extra Google mezőkhöz a bővítmény saját admin mezőket ad (pl. GTIN, MPN, brand, condition, age_group, gender, material, pattern, energy label, product_highlights), CSV‑importtal és REST API‑val tömegesen tölthetők.
 
-### Szabályok és szűrők
+### Feedtípusok
+- **Google Product feed**: a teljes termékadat bázisod Shoppinghez és free listingshez.
+- **Local Inventory feed**: bolt‑szintű készlet és ár megjelenítés helyi keresésekhez és Local Inventory Ads-hez.
+- **Product Reviews feed**: csillagos értékelések társítása a termékekhez.
+- **Promotions feed**: kuponok és akciók megjelenítése Shopping felületeken.
+- **Bing Product feed**: katalógus továbbítása Microsoft csatornákra.
 
-A WooCommerce Google Product Feed lehetőséget biztosít különféle szabályok és szűrők beállítására. Például kiválaszthatod, hogy mely termékeket szeretnéd feltölteni a Google Shopping-ba, vagy megadhatod, hogy bizonyos termékkategóriák csak meghatározott feltételek esetén jelenjenek meg.
+### Variációk kezelése
+- Minden variáció önálló feed‑elem, saját árral, készlettel, attribútumokkal (pl. méret, szín). Variáció‑szinten is adhatsz meg feed‑specifikus értékeket (pl. GTIN per variáció).
 
-### Automatikus frissítések
+### Szegmentálás és teljesítmény
+- **Kategória‑szűrés**: készíthetsz tematikus feedeket (pl. csak cipők).
+- **Részfeedek**: gpf_start/gpf_limit paraméterekkel paginálhatsz nagy katalógusokat.
+- **Több pénznem és ország**: többpénznem‑bővítménnyel pénznem‑specifikus feedek készíthetők, így országonként releváns ár kerül a Merchant Centerbe.
+- **Stabilitás**: a cache csökkenti a szerverterhelést és a letöltési időt.
 
-Az automatikus frissítések révén nem kell manuálisan frissítened a terméklistát. A bővítmény rendszeresen ellenőrzi a változásokat és frissíti a feedet a Google Merchant Centerben, ezzel időt és erőfeszítést spórolva.
+### Integrációk és kompatibilitás
+- Integrációk: Brands, Product Bundles, Composite Products, Cost of Goods, Min/Max Quantities, Multi‑Currency, Price By Country, Product Vendors, WooPayments többpénznem.
+- Kompatibilis a **HPOS** adattárolással és a blokk‑alapú kosár/pénztár megoldásokkal.
+- Nem a cél: előfizetéses és foglalás alapú terméktípusok (Google-szabályok miatt).
 
-## Integráció más eszközökkel
+## Gyakorlati példák
 
-### Google Analytics
+- Divatwebshop: kategória‑szinten beállítod a **Google Product Category** mezőt („Apparel & Accessories”), bolt‑szinten a **brand** alapértéket, variációnként a **size** és **color** attribútumokat. Az **age_group** és **gender** mezőket kategória‑szinten adod meg. Eredmény: magasabb adatsűrűség, jobb Shopping minősítés.
+- Elektronika: termékszinten töltöd a **GTIN/MPN** értékeket. Két fizikai bolt készletét a **Local Inventory** feedben küldöd, így a közeli felhasználók látják a helyi elérhetőséget és árat.
+- Akciók és értékelések: hétvégi kuponok a **Promotions** feeden át jelennek meg a termékek alatt; a **Product Reviews** feedből származó csillagok növelik az átkattintást.
+- Nemzetközi értékesítés: többpénznem‑bővítménnyel külön feedet készítesz EUR és GBP pénznemben, országonként érvényes árképzéssel.
 
-A WooCommerce Google Product Feed zökkenőmentesen integrálható a Google Analytics-szel. Ez lehetővé teszi, hogy nyomon kövesd a termékeid teljesítményét és részletes jelentéseket készíts a látogatottságról, konverziókról és egyéb fontos mutatókról.
+## Beállítás röviden
 
-### Facebook és Instagram Shop
+1. Hozz létre Merchant Center fiókot, állítsd be az adó‑ és szállítási szabályokat.
+2. A WooCommerce adminban (Settings > Product Feeds) másold ki a feed végpontot, és vedd fel a Merchant Centerben **Scheduled fetch** módban.
+3. Válaszd ki és engedélyezd a szükséges mezőket, állíts be bolt‑ vagy kategória‑szintű alapértékeket.
+4. Töltsd ki a hiányzó értékeket termék/variáció szinten; nagy mennyiségnél használj CSV‑importot.
+5. Szükség esetén készíts szűkített vagy pénznem‑specifikus feedet; nagy katalógusnál kapcsold be a **feed item caching** opciót (WordPress cron szükséges).
 
-A bővítmény kompatibilis más közösségi média platformokkal is, mint például a Facebook és az Instagram Shop. Ez azt jelenti, hogy ugyanazt a termékfeedet használhatod több platformon is, növelve ezzel az elérhetőségedet és az értékesítési lehetőségeidet.
+## Előnyök, értékajánlat
 
-## Konkrét helyzetek és gyakorlati példák
+- **Kevesebb elutasítás**: a Google‑elvárások komplett lefedése (GTIN, brand, kategória, állapot, elérhetőség).
+- **Magasabb adatsűrűség**: extra mezők a jobb megjelenésekért és relevanciáért.
+- **Mindig friss ár/készlet**: on‑demand feed + cache minimalizálja a mismatch hibákat.
+- **Skálázhatóság**: részfeedek, kategória‑szűrés, gyors kiszolgálás nagy katalógusnál.
+- **Ökoszisztéma‑előny**: integrációk a kulcs WooCommerce kiegészítőkkel.
+- **Teljes kontroll**: több feed, finom mezőtérképezés, ország/pénznem szerinti publikálás.
 
-### Új termékek bevezetése
+## Kinek ajánlott?
 
-Ha új termékeket vezetsz be a kínálatodba, a WooCommerce Google Product Feed segítségével gyorsan és egyszerűen feltöltheted ezeket a Google Shopping-ba. Így azonnal láthatóvá válnak a potenciális vásárlók számára.
+- Közepes és nagy WooCommerce‑boltoknak, ahol kritikus a feed minősége és a skálázhatóság.
+- Teljesítményorientált PPC‑csapatoknak, akik részletes attribútum‑szintű kontrollt akarnak.
+- Nemzetközi értékesítőknek, több pénznemmel/országgal.
+- Ügynökségeknek, több ügyfél katalógusát kezelve egységes, stabil folyamattal.
+- Ha az ingyenes alapintegráció kevés finomhangolást ad, és szükséged van promóciós/értékelés/local inventory feedekre.
 
-### Akciók és kedvezmények
+## Korlátok, megjegyzések
 
-Amikor akciókat vagy kedvezményeket hirdetsz meg, a bővítmény automatikusan frissíti az árakat a Google Shopping-ban is. Ezzel biztosítod, hogy minden promóciós ajánlatod elérhető legyen és láthatóvá váljon.
-
-### Készletkezelés
-
-A bővítmény segít nyomon követni a készleteidet is. Ha egy termék kifogyott, az automatikusan eltávolításra kerül a Google Shopping-ból, így elkerülheted a kellemetlenségeket és az esetleges negatív vásárlói visszajelzéseket.
-
-## Tippek a hatékony használathoz
-
-- **Optimalizáld a termékadataidat:** Ügyelj arra, hogy minden termékinformáció pontos és részletes legyen. Használj kulcsszavakat a termékleírásokban, hogy növeld az esélyeidet a keresési találatokban.
-- **Állíts be szabályokat:** Használj szűrőket és szabályokat annak érdekében, hogy csak a legrelevánsabb termékeid jelenjenek meg a Google Shopping-ban.
-- **Monitorozd az eredményeket:** Rendszeresen ellenőrizd a Google Analytics adatait, hogy megtudd, mely termékeid teljesítenek jól és melyeken lenne érdemes javítani.
-
-## Szószedet
-
-- **Google Merchant Center:** A Google platformja, ahol az online kereskedők feltölthetik termékeiket és kezelhetik azok megjelenését.
-- **Feed:** Egy fájlformátum (általában XML vagy CSV), amely tartalmazza a termékadatokat.
-- **Szűrők:** Olyan beállítások, amelyekkel korlátozhatod, hogy mely termékek jelenjenek meg egy adott platformon.
-- **Konverzió:** Az az esemény, amikor egy látogató vásárlóvá válik.
-
-Ezek az információk segítenek abban, hogy jobban megértsd és hatékonyan használd a WooCommerce Google Product Feed-et az online áruházad sikeres működtetéséhez.
+- A Google szabályai miatt nem listázhatsz előfizetéses vagy foglalás‑jellegű termékeket; ezekhez nincs támogatás.
+- Nagy feedek generálása erőforrás‑igényes lehet; ezt a feed‑cache és a részfeedek megoldják, de WordPress cron beállítás szükséges.
+- A többpénznemű feedek paraméterezése a használt pénznem‑bővítményed szabályait követi; érdemes országonként külön feedet fenntartani.

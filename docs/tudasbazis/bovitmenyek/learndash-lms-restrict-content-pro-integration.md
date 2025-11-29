@@ -1,63 +1,89 @@
-# LearnDash LMS - Restrict Content Pro Integration
+---
+title: "LearnDash LMS - Restrict Content Pro Integration"
+description: "Ingyenes, hivatalos LearnDash kiegészítő, amely a Restrict Content Pro tagsági szintekhez kurzus-hozzáférést rendel, és automatikusan kezeli a be- és kiiratkozást."
+sidebar_label: "LearnDash LMS - Restrict Content Pro Integration"
+---
 
-A LearnDash LMS - Restrict Content Pro Integration lehetővé teszi, hogy a felhasználók hozzáférést kapjanak LearnDash kurzusokhoz, amikor egy bizonyos tagsági szintre regisztrálnak a Restrict Content Pro (RCP) segítségével. Ez az integráció egy újabb módot kínál a kurzusok értékesítésére, valamint a tagok számára nyújtott szolgáltatások bővítésére.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók és előnyök
+A LearnDash LMS – Restrict Content Pro Integration egy hivatalos, ingyenes kiegészítő, amely összeköti a **LearnDash** kurzusaidat a **Restrict Content Pro (RCP)** tagsági szintjeivel. Segítségével egyetlen tagság megvásárlásával több kurzushoz is automatikusan hozzáférést adhatsz, majd a **tagság megszűnésekor a hozzáférést automatikusan visszavonja**. Így nem kell manuálisan be- és kiiratkoztatnod a felhasználókat, és elkerülheted a “lejárt előfizetés, de még van hozzáférés” típusú hibákat.
 
-### Automatikus hozzáférés biztosítása
+Fontos: a LearnDash önmagában is képes kurzusok védelmére/értékesítésére. Az RCP integráció akkor kell, ha **tagsági csomagokat**, **előfizetéseket**, **kuponokat**, **több fizetési kaput** és fejlettebb pénztár-élményt szeretnél.
 
-Az integrációval automatikusan hozzáférést adhatsz egy vagy több LearnDash kurzushoz, amikor valaki csatlakozik egy tagsági szinthez. Ez megkönnyíti a tagságok kezelését és biztosítja, hogy a tagok azonnal hozzáférjenek a tartalmakhoz.
+## Követelmények és kompatibilitás
 
-### Rugalmas fizetési lehetőségek
+- Szükséges aktív **LearnDash** és aktív **Restrict Content Pro**.  
+- A “Restrict Content” ingyenes változat ezzel a kiegészítővel nem működik.  
+- Az integráció opcionális; tagsági logika és előfizetések esetén hasznos.
 
-A RCP támogat számos fizetési átjárót, mint például Stripe, PayPal és Authorize.net, így több lehetőséget kínál a felhasználóknak a fizetésre. Ez különösen előnyös lehet azoknak az oldalaknak, amelyek nemzetközi közönséget céloznak meg.
+## Hogyan működik?
 
-### Kuponok és kedvezménykódok
+### Admin folyamat
+1. Hozd létre a LearnDash kurzus(oka)t.  
+2. Hozz létre egy RCP **tagsági szintet**.  
+3. A tagsági szint szerkesztőjében válaszd ki, mely **LearnDash kurzusok** tartozzanak ehhez a szinthez (egynél több is lehet), majd mentsd.
 
-Az integráció lehetővé teszi kuponok és kedvezménykódok használatát, amelyeket a felhasználók a tagsági szintek vásárlásakor alkalmazhatnak. Ez kiváló marketing eszköz lehet promóciók és akciók szervezéséhez.
+### Felhasználói életciklus
+- **Vásárlás**: a felhasználó az RCP pénztárán át tagságot vesz.  
+- **Automatikus beiratás**: a rendszer azonnal beiratja a tagsághoz rendelt kurzusokra.  
+- **Lemondás/lejárat**: a rendszer automatikusan **kiiratja** a kapcsolt kurzusokból.
 
-### Kurzuscsomagok értékesítése
+## Fő funkciók, érthetően
 
-Az integráció segítségével csomagban is értékesítheted a kurzusaidat, így egyetlen árért több kurzushoz is hozzáférést biztosíthatsz. Ez vonzóbbá teheti az ajánlataidat a potenciális vásárlók számára.
-
-### Előfizetéses modell
-
-Lehetőséged van előfizetéses alapú hozzáférést biztosítani a kurzusaidhoz, ami folyamatos bevételt generálhat számodra. Az előfizetés automatikusan megújítható, így minimalizálható az adminisztrációs munka.
-
-## Együttműködés más eszközökkel
-
-### WooCommerce
-
-Az RCP zökkenőmentesen működik együtt a WooCommerce-el, így még több lehetőséget kínál a termékek és szolgáltatások értékesítésére.
-
-### Easy Digital Downloads
-
-Az EDD integrációval digitális termékeket is értékesíthetsz, miközben biztosítod, hogy a vásárlók hozzáférjenek a megfelelő LearnDash kurzusokhoz.
-
-### Zapier
-
-A Zapier integráció lehetővé teszi, hogy különféle automatizálásokat állíts be, például email kampányokat indíts, amikor valaki új tagságot vásárol.
+- **Tagsági szint ↔ kurzus(oka)k hozzárendelése**: egy RCP szinthez tetszőleges számú LearnDash kurzust köthetsz. Így egyetlen vásárlással “kurzuscsomagot” értékesíthetsz.
+- **Automatikus beiratás**: amint a fizetés és a tagság aktív, a felhasználó az összes kapcsolt kurzushoz hozzáfér. Nincs kézi adminisztráció.
+- **Automatikus visszavonás**: lemondás, nem fizetés vagy lejárat esetén a rendszer elveszi a hozzáférést a kurzusokhoz. A kurzus-hozzáférés a tagsági státuszhoz igazodik.
+- **Előfizetés, próbaidő, kuponok, több fizetési kapu**: az RCP funkcionalitásait változtatás nélkül használhatod (pl. Stripe, PayPal, kuponkódok, free trial). Ezek közvetlenül a kurzus-hozzáférésre hatnak a tagságon keresztül.
+- **Egyszerű telepítés**: a LearnDash Add-Ons menüből vagy kézi bővítmény-feltöltéssel.
 
 ## Gyakorlati példák
 
-### Online oktatási platform
+- **Kurzuscsomag egy díjért**: “Marketing Alapok” tagság = Kezdő, Középhaladó és Haladó kurzus. Egy vásárlás, három kurzus hozzáférés.
+- **Előfizetéses akadémia**: havi díjas “Pro” tagság, amely minden új publikált kurzushoz is hozzáférést ad (csak hozzá kell rendelned a tagsági szinthez).
+- **Ingyenes próba**: 7 nap próbaidő, ezalatt automatikus beiratás történik; ha a próba lejár és nem hosszabbít, a rendszer visszavonja a hozzáférést.
+- **Vállalati hozzáférés**: céges tagsági szint, amely több munkatársnak ad kurzushozzáférést (felhasználónként tagságkezeléssel).
 
-Egy online oktatási platform könnyedén beállíthatja, hogy különböző tagsági szintekhez különböző kurzusokat rendeljen hozzá. Például, ha valaki prémium tagságot vásárol, automatikusan hozzáférést kap az összes elérhető kurzushoz.
+## Előnyök és érték
 
-### Fitness programok
+- **Időmegtakarítás**: elfelejtheted a manuális be- és kiiratkozást.  
+- **Pontosság**: a kurzus-hozzáférés mindig a tagsági státuszhoz igazodik.  
+- **Rugalmas üzleti modellek**: előfizetés, egyszeri díj, kuponok, próbaidők – mind támogatott.  
+- **Egységes pénztár**: fejlettebb checkout-élmény és több fizetési kapu.  
+- **Skálázhatóság**: új kurzusok hozzáadása egyetlen tagsági szinthez percek kérdése.
 
-Egy fitness oldal különböző edzési programokat kínálhat különböző tagsági szinteken keresztül. Például az alap tagság csak kezdő edzéseket tartalmazhat, míg a haladó tagság hozzáférést biztosít az összes edzési tervhez és étrendhez.
+## Kinek ajánlott?
 
-### Szakmai továbbképzés
+- **Online akadémiák és kurzuscsomagok**: ha több kurzust adnál el egyben.  
+- **Előfizetéses modellek**: ha havi/éves díjért folyamatos hozzáférést adsz.  
+- **Kedvezményvezérelt értékesítés**: ha kuponokkal, akciókkal dolgozol.  
+- **Több fizetési kaput igénylők**: ha nem csak egyetlen gateway-t használnál.
 
-Egy szakmai továbbképzést nyújtó intézmény különböző szakmai modulokat és képzéseket kínálhat különböző tagsági szinteken keresztül. Az előfizetők így könnyen hozzáférhetnek a számukra releváns tananyagokhoz.
+Ha klasszikus “termék + kosár” e-kereskedelmi folyamatot szeretnél, lehet, hogy egy webshop-integráció illeszkedik jobban. Ha viszont tagságokban gondolkodsz, ez az integráció a legegyszerűbb út.
 
-## Szószedet
+## Telepítés és alapbeállítás
 
-- **RCP**: Restrict Content Pro
-- **EDD**: Easy Digital Downloads
-- **LearnDash**: E-learning platform WordPress-hez
-- **Stripe**: Online fizetési rendszer
-- **PayPal**: Online fizetési rendszer
-- **Authorize.net**: Online fizetési átjáró
-- **Zapier**: Automatizálási eszköz különböző alkalmazások összekapcsolására
+1. Telepítsd és aktiváld a **LearnDash**-t és az **RCP**-t.  
+2. Telepítsd az “Restrict Content Pro for LearnDash” kiegészítőt (LearnDash LMS > Add-Ons > Install > Activate, vagy ZIP feltöltéssel).  
+3. Hozz létre vagy szerkessz egy **Membership Level**-t az RCP-ben.  
+4. A szint szerkesztőjében, a **Courses** mezőben válaszd ki a kapcsolt LearnDash kurzus(oka)t.  
+5. Mentsd a beállítást és tesztelj egy új tagságvásárlással.
+
+### Bevezetési checklist
+
+```
+[ ] LearnDash és RCP aktív
+[ ] Integrációs bővítmény telepítve, aktiválva
+[ ] Kurzus(ok) létrehozva LearnDash-ben
+[ ] RCP tagsági szint(ek) létrehozva
+[ ] Courses mezőben kurzusok hozzárendelve
+[ ] Fizetési kapu(k) és próba/kupon beállítva (opcionális)
+[ ] Tesztvásárlás → automatikus beiratás ellenőrzése
+[ ] Lemondás/lejárat → automatikus kiiratás ellenőrzése
+```
+
+## Jó gyakorlatok
+
+- **Ne keverd a hozzáférési szabályokat**: egy kurzushoz lehetőleg egyértelműen tagsági szint(ek)en keresztül adj hozzáférést.  
+- **Teszteld a teljes életciklust**: vásárlás → beiratás, lemondás → kiiratás.  
+- **Használd a tagsági logikát**: csomagok, próbaidő, kuponok – ezek adják az integráció erejét.  
+- **Tudd, mikor nem kell**: ha csak egy-egy kurzust adsz el tagsági logika nélkül, elég lehet a LearnDash alap védelme.

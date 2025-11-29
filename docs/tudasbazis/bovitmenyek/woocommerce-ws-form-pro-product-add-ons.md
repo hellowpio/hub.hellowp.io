@@ -1,53 +1,76 @@
-# WooCommerce WS Form PRO Product Add-Ons
+---
+title: "WooCommerce WS Form PRO Product Add-Ons"
+description: "WooCommerce-kiegészítő, amellyel WS Form PRO űrlapokat ágyazhatsz a termékoldalra dinamikus árazással, kosár- és rendelésintegrációval."
+sidebar_label: "WooCommerce WS Form PRO Product Add-Ons"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WooCommerce WS Form PRO Product Add-Ons egy rendkívül rugalmas eszköz, amely lehetővé teszi, hogy termékekhez különböző kiegészítő opciókat adj hozzá. Ez a bővítmény lehetővé teszi az egyedi mezők, árazási szabályok és feltételek beállítását, amelyek révén a vásárlók személyre szabhatják a termékeket. 
+A WooCommerce WS Form PRO Product Add-Ons egy bővítmény, amellyel a termékoldaladra teljes értékű WS Form PRO űrlapokat ágyazhatsz. Így bármilyen összetett termék-testreszabást, adatbekérést és dinamikus árazást megvalósíthatsz – kódolás nélkül. A vásárló által megadott adatok automatikusan bekerülnek a kosárba és a rendelésbe, az űrlap e‑kereskedelmi mezői pedig módosítják a termék árát (akár levonással is). A bővítmény képes az űrlap akcióit rendelésállapot-változáskor futtatni, ezért a folyamatok automatizálhatók.
 
-### Kiemelt jellemzők
+Röviden: akkor kell neked, ha a WooCommerce alap attribútum/variáció rendszerével már nem tudod kényelmesen lefedni a felárakat, feltételeket, többlépéses konfigurátorokat és egyedi adatbekérést.
 
-- **Egyedi mezők létrehozása**: Lehetőséged van szövegdobozok, választólisták, jelölőnégyzetek és rádiógombok hozzáadására a termékoldalakon.
-- **Árazási szabályok**: Állíthatsz be különböző árazási szabályokat a kiegészítők alapján, amelyek automatikusan hozzáadódnak a kosár végösszegéhez.
-- **Feltételek és logika**: Meghatározhatsz feltételeket és logikai szabályokat, hogy mely kiegészítők jelenjenek meg adott esetben.
-- **Integráció más eszközökkel**: Zökkenőmentesen működik együtt más WooCommerce bővítményekkel, mint például a WooCommerce Subscriptions, WooCommerce Bookings és WooCommerce Memberships.
+## Fő funkciók és hogyan működnek
 
-### Együttműködés más eszközökkel
+### Termékoldali űrlapbeágyazás
+- Bármely WS Form PRO mezőtípus használható (60+), beleértve a választókat, feltöltést, aláírást, számításokat.
+- Támogatott a többfüles/többlépéses űrlap és a feltételes logika, így csak a releváns mezőket mutathatod.
+- Ismétlődő szekciók (repeaters) segítségével tetszőleges számú tételt vehetsz fel (pl. több név, több fájl, több alkatrész).
 
-A WooCommerce WS Form PRO Product Add-Ons szorosan integrálható számos más bővítménnyel és eszközzel. Néhány példa:
+### Dinamikus árazás
+- Az űrlap e‑kereskedelmi mezői (pl. Price/Total) összeadódnak a WooCommerce termékárhoz; a végösszeg akár nulláról is indulhat (pl. adomány termék).
+- Támogatott a negatív összeg, így kedvezményt is számolhatsz (pl. kupon jellegű választás).
+- Speciális mezők: **Mennyiség (Quantity)**, **Kosárelem végösszeg (Cart Item Total)**, **Hozzáadás a kosárhoz (Add to Cart)** és **Visszaállítás (Clear)**. Ezekkel az űrlap képes a termék mennyiségét és árát vezérelni, illetve az Add to Cart gombot oda teheted, ahol a folyamatban szeretnéd (akár egy későbbi lépésre).
 
-- **WooCommerce Subscriptions**: Ideális, ha előfizetéses termékekhez szeretnél kiegészítő opciókat kínálni.
-- **WooCommerce Bookings**: Hasznos lehet a foglalásokhoz kapcsolódó kiegészítők, mint például extra szolgáltatások vagy eszközök hozzáadásához.
-- **WooCommerce Memberships**: Tagok számára exkluzív kiegészítők kínálása könnyen megvalósítható ezzel a kombinációval.
+### Kosár- és rendelésintegráció
+- A kitöltött mezők értékei megjelennek a kosárban és a rendelés részleteiben.
+- Mezőnként döntheted el, hogy bekerüljön‑e a kosárba/rendelésbe (Exclude from cart and orders), így belső számítási mezőket elrejthetsz.
+- Engedélyezheted, hogy a vevő a kosárban visszaszerkessze a testreszabást.
 
-### Specifikus előnyök
+### Oszlop‑leképezés (Column Mapping)
+- A választómezők megjelenő címkéje/értéke külön szabályozható az űrlapon, a kosárban és az akciókban. Így például a számításhoz használt “belső” érték eltérhet a vásárló felé mutatott leírástól.
 
-- **Testreszabhatóság**: A vásárlók igényei szerint személyre szabható termékek, amelyek növelhetik az elköteleződést és az elégedettséget.
-- **Automatizált árazás**: Az árazási szabályok automatikusan alkalmazkodnak a kiválasztott opciókhoz, így nincs szükség manuális beavatkozásra.
-- **Rugalmasság**: Bármilyen típusú termékhez könnyedén hozzáadhatók kiegészítő opciók, legyen szó fizikai termékekről, digitális letöltésekről vagy szolgáltatásokról.
+### Műveletek futtatása rendelésállapot alapján
+- Az űrlap akciói (pl. e‑mail, webhook/API) automatikusan futhatnak, amikor a rendelés bizonyos állapotba kerül (például Processing vagy Completed).
+- Ezzel külső rendszerekhez kapcsolhatsz (értesítés, CRM, automatizmusok), minimális manuális utómunka mellett.
 
-### Tippek a hatékony használathoz
+### Termékhozzárendelés skálázhatóan
+- Űrlapokat rendelhetsz minden termékhez, kategóriákhoz vagy címkékhez; egy terméknél végül egy űrlap érvényesül.
+- A specifikus hozzárendelések elsőbbséget élveznek, így pontosan szabályozhatod, hol melyik űrlap jelenjen meg.
 
-- **Előre tervezés**: Gondold végig előre, hogy milyen kiegészítő opciókat szeretnél kínálni, és állítsd be az árazási szabályokat ennek megfelelően.
-- **Logikai szabályok**: Használj logikai szabályokat, hogy csak releváns opciók jelenjenek meg a vásárlók számára. Például, ha egy termék több színben is elérhető, csak azok az opciók jelenjenek meg, amelyek az adott színhez kapcsolódnak.
-- **Tesztelés**: Mielőtt élesbe állítanád a bővítményt, teszteld le alaposan minden opciót és feltételt, hogy biztosan jól működjenek.
+### Kompatibilitás
+- Együttműködik több népszerű WooCommerce-bővítménnyel (pl. gyorsnézet, kívánságlista, dinamikus árazás), megőrizve a bolt megszokott élményét.
 
 ## Gyakorlati példák
 
-### Személyre szabott ajándéktárgyak
+- Name your price/adomány: a termék alapára 0, egy űrlap‑ármező adja a végösszeget; választható célok, előre beállított összegek és egyéni összeg is kezelhető.
+- Gravírozás/nyomdai rendelés: szöveg, betűtípus, elrendezés, fájlfeltöltés, aláírás; felárak a választások alapján, feltételesen megjelenő ellenőrzőlisták.
+- Konfigurálható ajándékcsomag: több lépésben termékkomponensek kiválasztása, swatchok, egymásra épülő opciók; a végár valós időben frissül.
+- Összetett méret/szín felár: kombinációk számítása, mennyiségi kedvezmény vagy tételenkénti felár ismétlődő szekciókkal.
 
-Ha egyedi ajándéktárgyakat árulsz, például pólókat vagy bögréket, a vásárlók hozzáadhatnak személyes üzeneteket vagy képeket. Ezzel a bővítménnyel könnyedén létrehozhatsz szövegdobozokat és fájlfeltöltési lehetőségeket.
+## Beállítás és működés röviden
 
-### Extra szolgáltatások foglalásokhoz
+1. Követelmények: szükséged van WooCommerce-re és WS Form PRO-ra; a témasablon termékoldalának tartalmaznia kell legalább egy Add to Cart gombot.
+2. Termék szerkesztése: a Product data blokk WS Form fülén hozd létre vagy válaszd ki az űrlapot. Az előnézet a termékoldalon látható.
+3. E‑kereskedelmi mezők: a Price/Total, Quantity és Cart Item Total mezők vezérlik az árazást és mennyiséget; az Add to Cart mezőt oda teszed, ahol a folyamat logikus.
+4. Változatos termékeknél az Add to Cart csak érvényes variációválasztás után aktív.
+5. Mezők kosár/rendelés láthatósága: ahol kell, kapcsold be az Exclude from cart and orders opciót.
+6. Automatizálás: engedélyezd a Run WS Form Actions lehetőséget, és állíts be rendelésállapotokat az akciók futtatásához.
+7. Hozzárendelés: űrlapokat termékekhez, kategóriákhoz vagy címkékhez köthetsz; ütközés esetén a célzott hozzárendelés élvez elsőbbséget.
 
-Egy szálloda vagy panzió esetében a vendégek választhatnak extra szolgáltatásokat, mint például reggeli vagy wellness kezelések. A feltételek és logikai szabályok segítségével csak azok az opciók jelennek meg, amelyek az adott időpontban elérhetők.
+## Előnyök és értékajánlat
 
-### Összeállítható ételrendelések
+- **Maximális rugalmasság**: 60+ mezőtípus, feltételes logika, repeaters – valódi konfigurátorokat építhetsz.
+- **Pontos árazás**: felárak, levonások, mennyiségi összefüggések – mind a termékárhoz adódik.
+- **Kevesebb fejlesztés**: amit korábban egyedi kóddal oldottál meg, most űrlap‑szabályokkal és mezőkkel beállítható.
+- **Jobb vásárlói élmény**: többlépéses folyamat, releváns mezők, visszaszerkeszthető kosár, átlátható összegzés.
+- **Automatizmusok**: rendelésállapot‑alapú akciók csökkentik a manuális adminisztrációt.
 
-Egy étterem számára ideális lehetőség, hogy a vásárlók saját ízlésük szerint állítsák össze az ételeket. Különböző hozzávalók választhatók ki, amelyek ára automatikusan hozzáadódik a végösszeghez.
+## Kinek ajánlott?
 
-## Szószedet
+- Olyan boltoknak, ahol a termékek **összetetten konfigurálhatók** (nyomda, egyedi ajándék, ékszer, bútor, összeszerelhető termékek).
+- **Adomány- és “name your price”** modelleket használóknak.
+- **B2B és CPQ** jellegű értékesítést folytatóknak, ahol számítások, több tétel és jóváhagyások kellenek.
+- **Ügynökségeknek/fejlesztőknek**, akik gyorsan szeretnének megbízható, rugalmas megoldást szállítani kód helyett konfigurációval.
 
-- **Árazási szabályok**: Olyan beállítások, amelyek meghatározzák, hogyan változik a termék ára a kiválasztott opciók alapján.
-- **Egyedi mezők**: Olyan űrlapmezők, amelyeket hozzáadhatsz a termékoldalhoz, például szövegdobozok, választólisták.
-- **Feltételek és logika**: Olyan szabályok, amelyek meghatározzák, hogy mely opciók jelennek meg adott esetben.
-- **Integráció**: Két vagy több bővítmény zökkenőmentes együttműködése.
+Fejlesztő: Westguard Solutions (WS Form). A bővítmény fizetős kiegészítőként érhető el, és WS Form PRO jelenlétét igényli. Ha szeretnél konkrét mintákat (gravírozás, nyomdai megrendelés, konfigurálható ajándékcsomag), szívesen adok lépésről lépésre beállítási javaslatokat.

@@ -1,61 +1,77 @@
-# MainWP Atarim Extension
+---
+title: "MainWP Atarim Extension"
+description: "Kétirányú integráció a MainWP és az Atarim között vizuális ügyfél‑visszajelzéshez, feladatkezeléshez és riportoláshoz."
+sidebar_label: "MainWP Atarim Extension"
+---
 
-## Bevezetés
+## Mi ez és milyen problémát old meg?
 
-A MainWP Atarim Extension egy innovatív eszköz, amely forradalmasítja a feladatkezelést és az ügyfélkapcsolatokat több WordPress webhely esetében. Az Atarim vizuális eszközei lehetővé teszik az ügyfelek számára, hogy pontosan meghatározzák, milyen változtatásokat szeretnének, digitális ragasztócédulákhoz hasonló módon. Ez a megoldás kiválóan alkalmas arra, hogy a visszajelzéseket egy rendezett inboxba vagy egy Kanban táblára szervezze a könnyű nyomon követés érdekében.
+A MainWP Atarim Extension egy hivatalos kiegészítő, amely összeköti a **MainWP** központi WordPress‑kezelő irányítópultot az **Atarim** vizuális együttműködési platformjával. Célja, hogy felszámolja az e‑mail/chat káoszt, és minden ügyfélkérést egy helyre tereljen: az élő weboldalra rögzített, pontos kontextussal ellátott vizuális feladatként. Közben a MainWP‑ben központi áttekintést kapsz a teljes portfóliódról, és a riportokba is be tudod húzni a ténylegesen végzett munkát.
 
-## Főbb funkciók és előnyök
+Röviden: az Atarimban létrejövő vizuális feladatok láthatók a MainWP‑ben, a MainWP „site vitals” adatai (frissítések, sérülékenységek, uptime) pedig megjelennek az Atarim ügynökségi irányítópultján. Egy kattintással oda‑vissza navigálhatsz a kontextushoz.
 
-### Központosított feladatkezelés
+## Fő funkciók részletesen
 
-Az Atarim Extension segítségével minden ügyfél visszajelzését egy helyen érheted el az összes Atarim-kapcsolt webhelyeden. Ez megszünteti annak szükségességét, hogy különböző platformok között ugrálj vagy e-mailek között kutakodj.
+- **Egykattintásos vizuális együttműködés**  
+  A MainWP „Manage Sites” nézetében egy „Collaborate” jellegű hivatkozással az adott webhely azonnal megnyílik az Atarim felületén. Itt közvetlenül az élő oldalon jelölhetsz ki elemeket, hagyhatsz kommentet, és feladatot hozhatsz létre automatikus kontextusadatokkal (képernyőkép, böngésző, felbontás).
 
-### Átlátható áttekintés
+- **Atarim feladatlista a MainWP-ben**  
+  A webhelyeiden keletkező Atarim feladatok egy összesített listában jelennek meg a MainWP‑ben. Rálátsz site‑onként és globálisan is, státuszokkal és alapvető metaadatokkal. Egy kattintással a megfelelő feladat nézetére ugrasz vissza az Atarimban – pont arra az oldalrészre, ahol a kérés keletkezett.
 
-Az összes ügyfél kérését részletesen láthatod, így hatékonyabban tudod rendezni és megoldani a feladatokat. Minden visszajelzés automatikusan tartalmazza a szükséges részleteket, például a képernyőméretet, a böngészőtípust és egy képernyőképet.
+- **Webhely‑állapot (site vitals) megjelenítés az Atarimban**  
+  A MainWP által gyűjtött állapotadatok – például hány frissítés vár, vannak‑e biztonsági jelzések, és mi az uptime státusz – megjelennek az Atarim ügynökségi irányítópultján. Így az Atarim felületén dolgozva is látod, hol van sürgős teendő.
 
-### Integrált munkafolyamat
+- **Jelentésintegráció a Pro Reports‑szal**  
+  Ha használsz Pro Reports‑ot, az Atarim feladatok és a hozzájuk rögzített időráfordítások automatikusan bekerülhetnek az ügyféljelentésekbe. Ez átláthatóvá teszi, mire ment el az idő, és mit oldottál meg.
 
-Egyetlen kattintással közvetlenül az adott kéréshez ugorhatsz az Atarimban, minden információval ellátva, amire szükséged van a munkakezdéshez. Ez jelentősen javítja a munkafolyamatot és időt takarít meg.
+- **Kétirányú összekapcsolás és API‑kulcsok**  
+  A kapcsolat mindkét irányban működik: a MainWP REST API adja az Atarimnak a site vitals információkat, az Atarim pedig a feladatokat szinkronizálja vissza a MainWP‑be. Ehhez API‑kulcsokat állítasz be mindkét oldalon, és engedélyezed a MainWP REST API‑t.
 
-## Kiemelt jellemzők
+- **Nézet testreszabása**  
+  A MainWP „Manage Sites” táblázatában megjelenő Atarim oszlopot a felületen elrejtheted, és fejlesztői szinten szűrővel végleg eltávolíthatod, ha minimalista nézetet szeretnél.
 
-### Webhely vitals
+## Telepítés és beállítás (rövid)
 
-Az Atarim Dashboard segítségével figyelemmel kísérheted webhelyeid egészségét mind a front-end, mind a back-end szempontjából. Ez biztosítja, hogy minden probléma időben fel legyen ismerve és kezelve.
+1. Telepítsd és aktiváld a kiegészítőt a MainWP Dashboardon.  
+2. A MainWP‑ben add meg az **Atarim API‑kulcsot** az Atarim beállításoknál.  
+3. Engedélyezd a **MainWP REST API‑t**, és generálj kulcsokat.  
+4. Az Atarim irányítópulton kapcsold be a **MainWP integrációt**, és add meg a MainWP REST API kulcsokat és a Dashboard URL‑jét.  
+5. Igazítsd a nézetet: döntsd el, szeretnéd‑e látni az Atarim oszlopot a Manage Sites táblázatban.
 
-### Feladatlista
+Tipp a stabil működéshez: állítsd a MainWP Dashboard permalink‑struktúráját „Post name” formára. WP‑CLI‑val például:
 
-Az összes vizuális együttműködési kérés egyetlen listában jelenik meg a MainWP Dashboardon, egyszerűsítve ezzel a projektmenedzsmentet.
+```
+wp option update permalink_structure '/%postname%/'
+```
 
-### Egykattintásos hozzáférés
-
-Minden feladathoz egyetlen kattintással hozzáférhetsz az Atarimban, javítva ezzel a munkafolyamatot és időt takarítva meg.
-
-### Jelentések
-
-A MainWP Pro Reports Extension segítségével automatikusan beillesztheted a feladatlistákat és az időbejegyzéseket az ügyféljelentésekbe, növelve ezzel az átláthatóságot és bemutatva az elért eredményeket.
+Előfeltételek: működő **MainWP Dashboard**, aktív **Atarim fiók** (fizetős csomag szükséges), érvényes API‑kulcsok.
 
 ## Gyakorlati példák
 
-### Ügyfélkommunikáció egyszerűsítése
+- **Ügyfélkérés pontosítása**  
+  Az ügyfél rámutat egy gombra az oldalon, megjegyzést hagy: „módosítsuk a feliratot”. Te a MainWP‑ben látod az új Atarim feladatot, rákattintasz, és az Atarim azonnal megnyitja a kérdéses oldalt, a gombra fókuszálva. Nincs találgatás, nincs képernyőfotó‑cserebere.
 
-Gyakran előfordul, hogy az ügyfelek nem tudják pontosan megfogalmazni, milyen változtatásokat szeretnének. Az Atarim vizuális eszközeivel közvetlenül a weboldalon jelölhetik meg a módosítási igényeiket, így elkerülhetőek a félreértések.
+- **Karbantartási nap több webhelyen**  
+  Az Atarim irányítópultján azonnal kiugrik, mely site‑okon sok a függő frissítés vagy van biztonsági jelzés – ezeket a MainWP szolgáltatja. Prioritás szerint végigmész rajtuk, miközben a MainWP‑ben egy helyen követed a kapcsolódó Atarim feladatokat.
 
-### Projektmenedzsment optimalizálása
+- **Transzparens havi riport**  
+  A Pro Reports a hónap végén automatikusan összeszedi az Atarim feladatokat és a rögzített időket. Az ügyfél egyetlen, márkázott riportban látja, milyen kéréseket oldottál meg és mennyi idő alatt.
 
-Egy digitális ügynökség számára kulcsfontosságú, hogy minden projektet hatékonyan tudjon kezelni. Az Atarim Extension lehetővé teszi, hogy minden projekt és feladat egy helyen legyen kezelhető, így gyorsabban és hatékonyabban tudsz dolgozni.
+## Előnyök és kinek ajánlott
 
-### Webhely karbantartásának egyszerűsítése
+- **Kevesebb félreértés**: a vizuális jelölések és automatikus kontextusadatok egyértelművé teszik a kéréseket.  
+- **Kisebb kontextusváltás**: a MainWP‑ből egy kattintás a feladat pontos helyszínére.  
+- **Valós idejű rálátás**: az Atarimban is látod a flotta‑állapotot, a MainWP‑ben pedig a feladatokat.  
+- **Professzionális riportolás**: az elvégzett munka és időráfordítás hitelesen kommunikálható.  
+- **Skálázhatóság**: több webhely és több ügyfél kezelése összehangolt folyamatban.
 
-A webhelyek egészségének folyamatos figyelemmel kísérése elengedhetetlen. Az Atarim Extension segítségével mindez egyetlen irányítópulton keresztül valósítható meg, így mindig naprakész lehetsz.
+Kifejezetten ajánlott **webügynökségeknek**, **karbantartást végző csapatoknak** és **freelancer webmestereknek**, akik sok WordPress oldalt kezelnek, és egységes, vizuális ügyfélkommunikációt, központi feladatkezelést, valamint átlátható riportolást szeretnének.
 
-## Szószedet
+## Megjegyzések
 
-- **API Key**: Olyan kód, amely lehetővé teszi két szoftver közötti kommunikációt.
-- **Kanban Board**: Projektmenedzsment eszköz, amely vizuálisan ábrázolja a feladatok státuszát.
-- **Dashboard**: Irányítópult, ahol összesített információk jelennek meg.
-- **Pro Reports Extension**: Kiegészítő modul a MainWP-hez, amely jelentéseket készít.
-- **REST API**: Olyan interfész, amely lehetővé teszi az alkalmazások közötti kommunikációt HTTP protokollon keresztül.
+- A kiegészítőt csak a **MainWP Dashboardra** telepíted; a child site‑okon nincs szükség külön komponensre.  
+- Ritkán előfordulhat kompatibilitási incidens más MainWP kiegészítőkkel; tartsd naprakészen az összetevőket, és ütközésnél ideiglenesen kapcsold ki a gyanús bővítményeket a hiba behatárolásához.
 
-Az Atarim Extension integrációval hatékonyabban kezelheted ügyfeleid igényeit és projektjeidet. Kezdd el használni még ma!
+## Összegzés
+
+A MainWP Atarim Extension egyesíti a vizuális ügyfél‑visszajelzést és a többwebhelyes karbantartás központi menedzselését. Az Atarimban precíz, kontextusos feladatok születnek, a MainWP‑ben pedig portfólió‑szintű áttekintés, gyors ugrás és profi riportolás segít. Ha csökkenteni szeretnéd a félreértéseket, gyorsítani a kivitelezést és jobb ügyfélélményt adni, ez az integráció neked szól.

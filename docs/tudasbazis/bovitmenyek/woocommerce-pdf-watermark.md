@@ -1,78 +1,85 @@
-# WooCommerce PDF Watermark
+---
+title: "WooCommerce PDF Watermark"
+description: "Letölthető PDF-ek automatikus vízjelezése és védelme WooCommerce-ben: szöveges/képes vízjel, jogosultságok és jelszavas védelem."
+sidebar_label: "WooCommerce PDF Watermark"
+---
 
-A WooCommerce PDF Watermark bővítmény egy kiváló eszköz a PDF dokumentumok védelmére és biztonságának növelésére. Ez a bővítmény lehetővé teszi, hogy szöveges vagy képes vízjeleket helyezz el a PDF fájljaidra, valamint jelszóval és másolásvédelemmel lásd el őket. Nézzük meg részletesen, milyen funkciókat kínál és milyen helyzetekben lehet különösen hasznos.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+A WooCommerce PDF Watermark egy olyan bővítmény, amellyel a boltodban értékesített letölthető PDF-eket (pl. e‑bookok, jegyzetek, útmutatók) automatikusan vízjelezheted és védheted. A célja, hogy visszaszorítsa a jogosulatlan megosztást, egyértelműen jelölje a tulajdonost, és vevőhöz köthető azonosítókkal követhetővé tegye a szivárgások forrását.
 
-### Szöveges vízjel hozzáadása
+Röviden: amint a vevő letölti a PDF-et, a bővítmény előkészíti a fájlt, ráhelyezi a beállított vízjelet, beállítja a jogosultságokat, és a kész, védett példányt adja át neki.
 
-A bővítmény lehetővé teszi, hogy szöveges vízjelet adj hozzá a PDF fájlokhoz. A szöveget testreszabhatod betűtípus, méret és pozíció szerint, így biztosítva, hogy a vízjel pontosan úgy nézzen ki, ahogy szeretnéd.
+## Fő funkciók, érthetően
 
-### Képes vízjel hozzáadása
+- **Szöveges vízjel**: tetszőleges szöveget helyezhetsz el a PDF egyes oldalain. Beállíthatod a pozíciót, betűtípust és betűméretet. Tipikusan vevőadatokat (név, e‑mail, rendelésazonosító) írsz ide, hogy a fájl egyedileg azonosítható legyen.
+- **Képes (logós) vízjel**: logót vagy bármilyen képet tehetsz a PDF-re. Szabályozhatod az átlátszóságot és az igazítást, így diszkrét, de látható márkajelölést kapsz.
+- **Személyre szabható címkék**: a szövegvízjelben dinamikus mezőket használhatsz (pl. vevőadatok, rendelés adatai). A címkekészlet fejleszthető hookokkal és filterekkel, így speciális adatokat is beemelhetsz.
+- **PDF-jogosultságok**: letilthatod a **másolást**, **nyomtatást** és **módosítást**, továbbá **jelszóval** védheted a letöltött fájlokat. Ezekkel megnehezíted a tartalom kinyerését és újracsomagolását.
+- **Oldalszintű megjelenítés**: eldöntheted, hogy a vízjel minden oldalon, vagy csak meghatározott oldalakon (pl. csak az elsőn vagy az utolsón) jelenjen meg.
+- **Globális és termékszintű szabályok**: állíts be bolt-szintű alapértelmezéseket, és ha kell, termékenként vagy variációnként felülírhatod. Így egy boltban többféle védelmi profil is futhat egyszerre.
+- **Fejleszthetőség**: hookokkal és filterekkel bővítheted a működést, új címkéket és egyedi logikákat vezethetsz be.
 
-Képes vízjelet is hozzáadhatsz, például a logódat vagy bármilyen más képet. Az URL megadása után a bővítmény automatikusan elhelyezi a képet a PDF fájlokon. A képek átlátszóságát, pozícióját és igazítását is könnyedén beállíthatod.
+### Példa vízjelszövegre
 
-### Másolásvédelem
+```
+Ez a PDF személyre szabott példány.
+Vevő: {billing_first_name} {billing_last_name} – {billing_email}
+Rendelés: #{order_id} | Dátum: {order_date}
+Terjesztése tilos.
+```
 
-A bővítmény megakadályozza, hogy felhasználók szöveget vagy képeket másoljanak a PDF dokumentumaidból. Ez úgy működik, hogy a képeket és szöveget egy réteggé lapítja, megnehezítve azok kinyerését.
+Megjegyzés: a ténylegesen elérhető címkék listáját a bővítmény admin felülete mutatja; szükség esetén fejlesztőként bővíthető.
 
-### Nyomtatásvédelem
+## Konkrét, gyakorlati használati esetek
 
-Lehetővé teszi, hogy blokkolja a PDF dokumentumok jogosulatlan nyomtatását. Ha ez a beállítás aktív, akkor a nyomtatási funkció nem fog működni a PDF dokumentumok megtekintésekor.
+- **E‑bookok és kurzusjegyzetek**: minden oldalra halvány, középre igazított szöveges vízjelet teszel a vevő nevével és e‑mailjével; a másolás és nyomtatás tiltva.
+- **Márkajelölés katalógusokon**: logó vízjel alacsony átlátszósággal, minden oldalon, hogy egyértelmű legyen a forrás.
+- **Belső dokumentumok limitált megosztása**: jelszóval védett letöltés, módosítás tiltása; a vízjel csak az első és utolsó oldalon jelenjen meg.
+- **Eltérő termékszabályok**: prémium jelentésekre szigorúbb tiltások és személyes vízjel, ingyenes mintákra csak logó.
 
-### Módosítás elleni védelem
+## Telepítés és beállítás, lépésről lépésre
 
-A PDF dokumentumok védelme érdekében engedélyezheted a módosítás elleni védelmet is, amely megakadályozza másokat abban, hogy szerkesszék a dokumentumokat és eltávolítsák a vízjeleket.
+1. **Telepítés**: a bővítmény ZIP fájlját töltsd fel a WordPress bővítmények közé, majd aktiváld.
+2. **Globális beállítások**: a WooCommerce beállításai között megtalálod a PDF Watermark részt. Itt megadod:
+   - vízjel típusát (szöveg vagy kép),
+   - vízjelszöveget és a használt címkéket,
+   - kép elérhetőségét és átlátszóságát,
+   - jogosultságokat (másolás/nyomtatás/módosítás),
+   - jelszavas védelmet (ha szükséges),
+   - mely oldalakon jelenjen meg a vízjel.
+3. **Termék/variáció felülírás**: a termék szerkesztőoldalán külön szabályokat adhatsz meg, vagy akár ki is kapcsolhatod a vízjelet egyes termékeknél.
+4. **Tesztelés**: hozz létre egy tesztrendelést, töltsd le a fájlt, és ellenőrizd a vízjelet és a jogosultságokat.
 
-### Vízjel elhelyezésének választása
+## Technikai követelmények és korlátozások
 
-Lehetőséged van arra, hogy csak az első vagy az utolsó oldalon jelenjen meg a vízjel. Ezzel a funkcióval pontosan meghatározhatod, hogy mely oldalakra szeretnél vízjelet elhelyezni.
+- **PDF követelmények**: a forrás PDF legyen rétegek nélküli és alacsonyabb PDF-verzióban mentett. Ha hibát látsz, „laposítsd” a dokumentumot, és mentsd régebbi formátumba.
+- **FPDF elérhetőség**: a szerveren szükség van a PDF-generálást segítő könyvtárra.
+- **Linkek eltávolítása**: a vízjelezés jelenleg eltávolíthatja a beágyazott hivatkozásokat (pl. kattintható tartalomjegyzék). Ezzel számolj a tartalom tervezésénél.
+- **Környezeti sajátosságok**: egyes hosting-beállítások ütközhetnek a feldolgozással. Ilyenkor segíthet a PDF-ek kézi (pl. FTP) feltöltése a megfelelő könyvtárba.
 
-## Előnyök
+## Előnyök és értékajánlat
 
-### Testreszabhatóság
+- **Kalózkodás visszaszorítása**: vevőspecifikus vízjellel visszakereshető a szivárgás forrása.
+- **Márkavédelem**: a logó és tulajdonosi jelölések egyértelművé teszik az eredetet.
+- **Időmegtakarítás**: automatizált vízjelezés, nincs szükség kézi szerkesztésre minden rendelésnél.
+- **Rugalmas szabályozás**: globális alapok és termékszintű kivételek egy helyen.
+- **Jogosultság-kezelés**: másolás/nyomtatás/módosítás tiltása és jelszavas védelem egy kattintással.
 
-A WooCommerce PDF Watermark nagyfokú testreszabhatóságot kínál mind a szöveges, mind a képes vízjelek esetében. Beállíthatod a betűtípust, méretet, pozíciót és átlátszóságot, így biztosítva, hogy a vízjelek pontosan megfeleljenek az igényeidnek.
+## Kinek ajánlott?
 
-### Biztonsági intézkedések
+- **Digitális kiadóknak és szerzőknek**: e‑bookok, white paperek, tananyagok védelmére.
+- **Képzésszervezőknek**: kurzusjegyzetek és vizsgaanyagok kontrollált terjesztésére.
+- **Ügynökségeknek és tanácsadóknak**: kutatási jelentések, auditok, ajánlatok márkajelölt megosztására.
+- **B2B szereplőknek**: árlisták, katalógusok és belső dokumentumok korlátozott körű terjesztésére.
 
-A másolásvédelem, nyomtatásvédelem és módosítás elleni védelem révén biztos lehetsz benne, hogy PDF dokumentumaid biztonságban maradnak. Ezek az intézkedések megakadályozzák az illetéktelen hozzáférést és manipulációt.
+## Gyakorlati tippek és buktatók
 
-### Felhasználóbarát beállítások
+- Ha a vízjelezés hibázik, elsőként **laposítsd a PDF-et** és mentsd régebbi verzióba.
+- Tervezd úgy a tartalmat, hogy a **kattintható linkek** esetleges eltűnése ne legyen kritikus.
+- Többféle termékhez többféle profil kell? Használd a **termék/variáció szintű felülírásokat**.
+- Fejlesztőként bővítenéd a címkéket? Használd a bővítmény **hookjait és filtereit**.
 
-A bővítmény könnyen használható beállítási felülettel rendelkezik, ahol gyorsan és egyszerűen elvégezheted a szükséges konfigurációkat. Nem szükséges technikai tudás ahhoz, hogy hatékonyan használd.
+## Összegzés
 
-## Integráció más eszközökkel
-
-A WooCommerce PDF Watermark zökkenőmentesen integrálható más WooCommerce bővítményekkel, például:
-
-- **WooCommerce Subscriptions**: Automatikus vízjelezés előfizetéses termékek esetén.
-- **WooCommerce Memberships**: Dokumentumok védelme tagok számára elérhető tartalmaknál.
-- **Smart Coupons**: Kuponok és promóciós anyagok védelme.
-
-## Gyakorlati példák
-
-### E-könyvek értékesítése
-
-Egy e-könyv írója vagy kiadója számára fontos lehet, hogy a digitális tartalmat védelemmel lássa el. A WooCommerce PDF Watermark segítségével könnyedén hozzáadhatsz szöveges vagy képes vízjeleket az e-könyvekhez, valamint megakadályozhatod azok másolását és nyomtatását.
-
-### Digitális termékek védelme
-
-Ha digitális oktatási anyagokat vagy sablonokat árulsz, akkor is hasznos lehet ez a bővítmény. Például oktatási anyagok esetén személyre szabott vízjelet adhatsz hozzá minden egyes vásárló számára, ezzel növelve a tartalom biztonságát.
-
-### Szerzői jogi védelem
-
-Fotósok és grafikusok számára is hasznos lehet a bővítmény, mivel egyszerűen hozzáadhatják logójukat vagy szerzői jogi információkat a PDF portfóliókhoz vagy bemutatókhoz.
-
-## Tippek hatékony használathoz
-
-- **Vízjel elhelyezése**: Gondold át alaposan, hova szeretnéd elhelyezni a vízjelet. A legtöbb esetben az alsó sarok vagy középre helyezett átlátszó vízjel nem zavarja az olvasót, de mégis védi a tartalmat.
-- **Egyedi szöveg**: Használj személyre szabott szöveget az egyes vásárlók számára (például név vagy rendelési szám), így még nehezebb lesz eltávolítani a vízjelet anélkül, hogy észrevehető lenne.
-
-## Szószedet
-
-- **Vízjel**: Egy látható vagy láthatatlan jelzés, amelyet egy dokumentumra helyeznek annak védelme érdekében.
-- **Másolásvédelem**: Technikai intézkedések a digitális tartalom másolásának megakadályozására.
-- **Nyomtatásvédelem**: Az engedély nélküli nyomtatás megakadályozása.
-- **Módosítás elleni védelem**: A dokumentumok jogosulatlan szerkesztésének megakadályozása.
-- **Testreszabhatóság**: Az alkalmazás különféle paramétereinek személyre szabása az egyedi igények szerint.
+A WooCommerce PDF Watermark célzott, professzionális megoldás a letölthető PDF-ek védelmére. Személyre szabható vízjeleivel, jogosultságkezelésével és rugalmas beállításaival egyszerre növeli a tartalom biztonságát és csökkenti az adminisztrációs terheket. Ha digitális PDF-termékeket árulsz, és fontos számodra a márkavédelem, a visszakövethetőség és az automatizáció, ez a bővítmény pontosan erre való.

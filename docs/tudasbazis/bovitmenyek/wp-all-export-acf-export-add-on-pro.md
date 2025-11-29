@@ -1,73 +1,101 @@
-# WP All Export - ACF Export Add-On Pro
+---
+title: "WP All Export - ACF Export Add-On Pro"
+description: "ACF mezők precíz és ütemezhető exportja WordPressből CSV/XLSX/XML és Google Sheets formátumba, repeater/flexible/relációs mezők teljes támogatásával."
+sidebar_label: "WP All Export - ACF Export Add-On Pro"
+---
 
-## Áttekintés
+## Mi ez és milyen problémát old meg?
 
-A WP All Export - ACF Export Add-On Pro lehetővé teszi a WordPress oldaladon található Advanced Custom Fields (ACF) adatok exportálását. Az ACF plugin segítségével komplex mezőket, különböző elrendezéseket és beállításokat hozhatsz létre. Ez a bővítmény integrálódik a WP All Export pluginhez, hogy az ilyen mezőkben tárolt információkat könnyedén exportálhasd.
+A WP All Export – ACF Export Add‑On Pro a WP All Export Pro kiegészítője, amellyel az Advanced Custom Fields (ACF) mezőidet tudod maradéktalanul kinyerni. Az ACF gyakran összetett, hierarchikus adatokat (repeater, group, flexible, relációk) tárol – ezeket kézzel táblázatba tördelni időigényes és hibásodó. Ez az add‑on automatikusan felismeri az ACF mezőket, és segít szabványos, könnyen feldolgozható CSV/XLSX/XML (vagy Google Sheets) kimenetet készíteni.
 
-## Funkciók és képességek
+## Hogyan működik röviden?
 
-### ACF szövegmezők exportálása
-Az alap szövegmezők exportálása, mint például szövegterület, szám, tartomány, email, URL, jelszó stb.
+- Mindig azt a bejegyzéstípust exportálod (post type), amelyhez az ACF mezők tartoznak (pl. bejegyzés, oldal, egyedi CPT, termék).
+- Az export varázslóban a jobb oldali “ACF” szekcióban megjelennek a mezőid; egyszerűen húzd át őket az export sablonba.
+- A bővítmény a bonyolult mezőket (repeater, group, flexible, relációk) értelmesen szétszedi oszlopokra vagy egységesen formázott cellaértékekre.
+- Az exportot futtathatod azonnal, ütemezheted, és akár bundle fájlt is készíthetsz a későbbi visszaimporthoz.
 
-### ACF választó mezők exportálása
-Választó mezők exportálása, mint a dátumválasztó, időpontválasztó és színválasztó.
+## Fő funkciók, érthetően
 
-### ACF média mezők exportálása
-Média mezők exportálása, mint kép, fájl, oEmbed, galéria vagy akár egy WYSIWYG szerkesztő.
+- Teljes ACF mezőtámogatás
+  - Kezeli a repeater, group és flexible content mezőket úgy, hogy a gyermekmezőkből oszlopokat készít, ismétlődéseknél konzisztens elválasztóval.
+  - A relációs mezőket (Relationship, Post Object, User, Page Link, Link) előre értelmezett, egységes formában adja vissza, így a hivatkozások megőrződnek.
+  - A tartalmi mezőket (Image, Gallery, File, WYSIWYG, oEmbed, dátum/idő, choice/jQuery típusok) konzisztensen formázza.
 
-### ACF választási mezők exportálása
-Választási mezők exportálása, mint a kiválasztás, jelölőnégyzet, rádiógomb, gombcsoport stb.
+- Drag & drop export szerkesztő
+  - Szabadon rendezheted az oszlopokat, átnevezheted őket, több mezőt kombinálhatsz egy oszlopba, és egyedi CSV elválasztót állíthatsz.
+  - XML‑hez tetszőleges struktúrát készíthetsz, így a kimenet illeszthető bármelyik külső rendszer sémájához.
 
-### ACF taxonómia mezők exportálása
-Taxonómia mezők egyszerű exportálása drag and drop segítségével.
+- Kódolható transzformációk (PHP)
+  - Bármelyik export oszlophoz adhatsz PHP‑alapú logikát: dátumformázás, feltételes szabályok, összefűzés, normalizálás – azonnali előnézettel.
 
-### ACF Google Térkép mezők exportálása
-Google Térkép mezők exportálása cím, szélességi és hosszúsági adatokkal.
+- Ütemezett futtatás
+  - Használhatod a beépített ütemezőt vagy saját cront. Így a riportok és feedek emberi beavatkozás nélkül frissülnek.
 
-### ACF relációs mezők exportálása
-Relációs mezők exportálása, mint link, post object, page link, relationship stb.
+- Migráció és tömeges szerkesztés
+  - Az export után letölthető “bundle” csomag tartalmazza a visszaimporthoz szükséges sablont. Ezzel elkerülöd a mezőtérképezési hibákat, és gyorsan tudsz tömegesen módosítani, majd visszaimportálni.
 
-### ACF ismétlődő és csoportos mezők exportálása
-Ismétlődő és csoportos mezők könnyed exportálása.
-
-### ACF rugalmas tartalom mezők exportálása
-Rugalmas tartalom mezők exportálása.
-
-## Használati útmutató
-
-### Új export létrehozása
-
-1. Nyisd meg az **All Export › New Export** menüpontot és válaszd ki azt a post típus, amely tartalmazza az ACF mezőket.
-2. Kattints a **Customize Export File** gombra a mezők kiválasztásához.
-
-### Mezők kiválasztása
-
-A következő képernyőn a **Drag & Drop** interfész segítségével definiálhatod az exportálandó mezőket. Az **Available Data › ACF** szekció alatt megtalálod az elérhető mezőcsoportokat és Advanced Custom Fields mezőket. Húzd át a kívánt mezőket jobbról balra. Miután beállítottad az export sablont, kattints a **Continue** gombra.
-
-### Export beállítások konfigurálása
-
-Az **Export Settings** képernyőn beállíthatod az automatikus ütemezési opciókat vagy az egyéb haladó beállításokat. Például beállíthatod, hogy csak egyszer exportálja a bejegyzéseket, vagy minden export futtatásakor új fájlt hozzon létre. Miután beállítottad az opciókat, kattints a **Confirm & Run Export** gombra.
-
-### Export fájl letöltése
-
-Amikor az export befejeződik, kattints a kék **CSV** gombra az export fájl letöltéséhez. Alternatív megoldásként választhatod a **Bundle** opciót is, amely egy .zip fájlt tölt le import sablonnal és az exportált adatokkal együtt.
+- Kimeneti formátumok
+  - CSV (alapértelmezett), Excel (XLSX), XML, valamint közvetlen Google Sheets export támogatás.
 
 ## Gyakorlati példák
 
-### Termékek adatainak migrációja
-Egy WooCommerce áruházban használhatod a termékek és azok ACF mezőinek exportálására és importálására egy másik weboldalra való költözés során.
+- Riportok és BI: A termékeid ACF mezőiből (pl. extra attribútumok, technikai adatok) készítesz XLSX riportot, amit a pénzügy vagy a marketing hetente megkap.
+- Integráció partnerekhez: Egyedi XML feedet állítasz elő ACF‑alapú ingatlanadatokból, amit a partner rendszer automatikusan beolvas.
+- Staging → production migráció: A teljes CPT + ACF struktúrát exportálod bundle formában, majd a célszerveren azonnal visszaimportálod az előre elkészített sablonnal.
+- Tömeges szerkesztés: Kinyitod az adatokat táblázatban, javítasz (pl. árak, címkék, meta információk), és a bundle‑lel visszatöltöd – minimális hibalehetőséggel.
 
-### Felhasználói adatok frissítése
-A felhasználói profilokhoz kapcsolódó ACF mezőket könnyedén exportálhatod egy CSV fájlba, majd Excelben szerkesztheted és visszaimportálhatod a változtatásokkal együtt.
+## Előnyök és értékajánlat
 
-### Adatok integrációja külső alkalmazásokkal
-Az exportált adatokat felhasználhatod más rendszerekbe való importálásra vagy integrációra Zapier segítségével.
+- Időmegtakarítás: Nem kell kézzel szétszedned repeater/group mezőket, az add‑on elvégzi helyetted.
+- Kevesebb hiba: A relációk konzisztensen megmaradnak, a bundle csökkenti a téves mezőtérképezés esélyét.
+- Rugalmasság: A PHP transzformációval az export pontosan olyan lesz, amilyet a célrendszer vár.
+- Automatizálás: Ütemezett exportokkal stabil adatcsatornát tartasz fenn minimális üzemeltetési költséggel.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **ACF (Advanced Custom Fields)**: Olyan WordPress plugin, amely lehetővé teszi egyedi mezők létrehozását.
-- **CSV (Comma-Separated Values)**: Olyan fájlformátum, amelyben az adatok vesszővel elválasztva vannak tárolva.
-- **Drag & Drop**: Olyan felhasználói interfész technika, ahol az elemek húzással és ejtéssel mozgathatók.
-- **Export**: Adatok kinyerése egy rendszerből vagy alkalmazásból egy külső fájlba.
-- **Import**: Adatok betöltése egy külső fájlból egy rendszerbe vagy alkalmazásba.
-- **WooCommerce**: Nyílt forráskódú e-kereskedelmi plugin WordPresshez.
+- Fejlesztőknek és üzemeltetőknek, akik ACF‑alapú projekteket tartanak karban.
+- Ügynökségeknek, akik rendszeresen migrálnak staging/production között.
+- Adatgazdáknak/analitikusoknak, akik ACF‑adatokat visznek BI eszközökbe.
+- Webshop‑tulajdonosoknak (pl. termékek egyedi ACF attribútumaival), akiknek partneri feed, XML katalógus vagy Sheets‑szinkron kell.
+
+## Lépésről lépésre: telepítés és első export
+
+1. Aktiváld a WP All Export Pro‑t és az ACF Export Add‑On‑t. Bizonyosodj meg róla, hogy az ACF és a kívánt mezők aktívak, a megfelelő post type‑hoz rendelve.
+2. Menj az új export varázslóhoz, válaszd ki a post type‑ot (pl. egyedi CPT).
+3. A “Available Data” panelen nyisd le az ACF szekciót, és húzd át a szükséges mezőket az export sablonba.
+4. Nevezd át az oszlopokat, adj hozzá transzformációkat (PHP), és válassz kimeneti formátumot.
+5. Futtasd az exportot, vagy állítsd be az ütemezést. Szükség esetén töltsd le a bundle csomagot a későbbi visszaimporthoz.
+
+## Haladó tippek és minták
+
+- Repeater/group elválasztó cseréje
+  - Alapértelmezés szerint az ismétlődő értékek “|” jellel vannak szeparálva. Ezt egy filterrel módosíthatod:
+  ```
+  add_filter('wp_all_export_repeater_delimiter', function ($delimiter) {
+      return '||'; // egyedi elválasztó
+  });
+  ```
+
+- PHP transzformáció példa (dátum normalizálása)
+  ```
+  // Feltételezve, hogy az oszlopodban az [acf_datum] mezőt használod:
+  // Kimenet: YYYY-MM-DD
+  date('Y-m-d', strtotime([acf_datum]))
+  ```
+
+- XML séma illesztés
+  - Az XML sablonban kézzel nevezheted el a node‑okat és hierarchiákat, így a kimenet pontosan a partner rendszer sémáját követi.
+
+- Google Sheets export
+  - Az elkészült exportot közvetlenül egy választott Google Sheets táblába tolhatod, így a csapat mindig a legfrissebb adatokkal dolgozik.
+
+## Fontos működési megjegyzések
+
+- Az ACF mezők nem önálló entitások: mindig egy post type‑hoz kapcsolódnak. Ezért exportáláskor a post type‑ot választod, és ahhoz társítod az ACF mezőket.
+- A flexible content és más összetett mezők is támogatottak; a drag & drop szerkesztővel az outputot áttekinthető táblává vagy jól strukturált XML‑lé alakíthatod.
+- Ha vissza is szeretnéd importálni az exportált adatokat, használd a bundle csomagot a WP All Import és az ACF Import Add‑On társaságában.
+
+## Összegzés
+
+Az ACF Export Add‑On Pro a hiányzó láncszem az ACF komplex, hierarchikus adatvilága és a riportálható, feedelhető, automatizálható kimenetek között. Teljes ACF támogatást, rugalmas export szerkesztést, PHP‑alapú testreszabást, ütemezést és migrációbarát bundle formát kínál. Ha ACF‑et használsz, ezzel az eszközzel gyorsan, pontosan és megbízhatóan tudod az adataidat kinyerni – és szükség esetén ugyanilyen biztonsággal vissza is tölteni.

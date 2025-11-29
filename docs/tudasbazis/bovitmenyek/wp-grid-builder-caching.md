@@ -1,48 +1,103 @@
-# WP Grid Builder - Caching
+---
+title: "WP Grid Builder - Caching"
+description: "Hivatalos WP Grid Builder kiegészítő, amely a rácsok és facettek aszinkron lekérdezéseit gyorsítótárazza a villámgyors szűréshez."
+sidebar_label: "WP Grid Builder - Caching"
+---
 
-A WP Grid Builder caching funkciója lehetővé teszi, hogy a rácsok és sablonok szűrésekor gyorsabban töltődjenek be az oldalak a tartalom és a facetek (szűrők) gyorsítótárazásával. Ez a funkció növeli a teljesítményt azáltal, hogy az adatokat egy egyedi táblában tárolja. Fontos megjegyezni, hogy a gyorsítótár nem használható feltételes vagy véletlenszerű sorrendben megjelenített tartalom esetén, mert ebben az esetben egyetlen verzió kerül tárolásra és megjelenítésre a feltételektől függetlenül.
+## Mi ez és milyen problémát old meg?
 
-## Legfontosabb jellemzők
+A WP Grid Builder – Caching egy hivatalos kiegészítő, amely a **rácsok** és **facettek** szűrésénél keletkező **aszinkron** (AJAX) lekérdezések eredményeit **gyorsítótárba** teszi. Így amikor a felhasználó újra ugyanazokat a szűréseket futtatja, a rendszer nem számol mindent elölről, hanem a mentett eredményt adja vissza. Ezzel drasztikusan csökken a válaszidő és a szerverterhelés – különösen nagy adatállományoknál és összetett facettkombinációknál.
 
-### Aszinkron kérések gyorsítótárazása
-Az összes aszinkron kérés gyorsítótárazása jelentősen csökkenti a betöltési időt, különösen akkor, ha sok szűrőt használsz az oldalon.
+## Hogyan működik?
 
-### Egyéni oldalak gyorsítótárának törlése
-Lehetőséged van egyenként törölni az egyes oldalak gyorsítótárát, ami nagyban segíti a karbantartást és a frissítéseket.
+A kiegészítő a már kiszámolt lekérdezések eredményeit (találati lista + kapcsolódó facet‑állapot) egy **egyedi adatbázis‑táblában** tárolja. A kulcs a szűrési paraméterek és a rács/facet kontextus kombinációja. Ha ugyanarra a kombinációra új kérés érkezik:
+- ha van érvényes találat a gyorsítótárban, azt adja vissza (gyors válasz),
+- ha nincs, lefuttatja a lekérdezést, majd eltárolja a kimenetet a megadott **TTL** szerint.
 
-### Globális gyorsítótár törlése
-Az összes oldal gyorsítótárának globális törlése is elérhető, amely hasznos lehet nagyobb változtatások után.
+A lejárt elemeket háttérben egy takarító folyamat (cron) és/vagy kézi ürítés távolítja el. A WP Grid Builder saját facett‑index táblája és ez a lekérdezés‑cache egymást kiegészítve ad stabil teljesítményt.
 
-### Facetek vagy rácsok kizárása a gyorsítótárból
-Bizonyos faceteket vagy rácsokat kizárhatsz a gyorsítótárazásból, hogy elkerüld az olyan helyzeteket, amikor a gyorsítótár problémákat okozhat.
+## Fő funkciók részletesen
 
-### Gyorsítótár élettartamának szabályozása
-Beállíthatod a gyorsítótár élettartamát, ami segít optimalizálni a rendszer teljesítményét és karbantartását.
+- **Aszinkron kérések gyorsítótárazása**  
+  A rácsok és facettek AJAX kéréseinek kimenetét menti. Így a gyakran ismétlődő szűrések (pl. ár + kategória + készlet) újraszámítás nélkül visszaadhatók.
+  
+- **Oldalszintű ürítés**  
+  Minden oldalhoz külön ürítheted a kapcsolódó cache‑t. Hasznos, ha egy konkrét landing módosult, és csak ott szeretnél friss eredményeket.
 
-### WP-CLI parancsok
-A WP-CLI parancsok segítségével könnyedén törölheted vagy takaríthatod a gyorsítótárat. Ez különösen hasznos lehet automatizált feladatok esetén.
+- **Globális törlés**  
+  Egy kattintással törölheted a teljes webhely gyorsítótárát – ideális nagyobb tartalomfrissítés, import vagy deploy után.
 
-## Használat
+- **Kizárások rácsra/facetre**  
+  Bizonyos **rácsokat** vagy **facetteket** kivehetsz a cache‑ből. Például a kereső facettek (szabad szöveg) elméletileg végtelen variációt generálnak, ezeket érdemes kihagyni.
 
-Amint az add-on aktiválva van, egy új "Caching" menü jelenik meg a WP Grid Builder globális beállításai között. Az adminisztrációs sávban is elérhető egy menüpont a gyorsítótár törlésére. Alapértelmezés szerint a plugin minden kérését gyorsítótárazza az összes rácsból és facetből. Azonban lehetőséged van kizárni rácsokat és faceteket a globális beállításokban.
+- **Élettartam (TTL) beállítása**  
+  Megadhatod, mennyi ideig legyen érvényes egy cache‑bejegyzés. Gyakran változó tartalomnál rövidebb, statikusabb listáknál hosszabb TTL ajánlott.
 
-**Ajánlott: Zárd ki a keresési faceteket a gyorsítótárból**, hogy elkerüld a végtelen számú eredmény kombináció gyorsítótárazását. A keresési facetek esetén ugyanis végtelen számú szűrési kombináció létezhet.
+- **WP‑CLI parancsok**  
+  Parancssorból is irányíthatod a cache‑t – automatizáláshoz, ütemezéshez ideális:
+  ```
+  wp wpgb-caching clear           # teljes cache törlése
+  wp wpgb-caching clear {ID|Név}  # adott rács/sablon cache törlése
+  wp wpgb-caching cleanup         # lejárt elemek takarítása
+  ```
+
+- **Admin eszközök és visszajelzés**  
+  Az admin sávban és a beállításokban külön **Caching** menü jelenik meg. A HTTP fejlécben a bővítmény jelzi a cache állapotát (pl. HIT/MISS), ami hibakereséshez és teljesítmény‑monitorozáshoz hasznos.
+
+- **Fejlesztői szűrők (hookok)**  
+  Finomhangolható a működés: cache megkerülése, TTL módosítás, cron időzítés.
+  - `wp_grid_builder_caching/bypass`
+  - `wp_grid_builder_caching/lifespan`
+  - `wp_grid_builder_caching/cron_interval`
+  - `wp_grid_builder_caching/cron`
+
+  Példa: cache kihagyása bejelentkezett felhasználóknál vagy véletlenszerű rendezésnél:
+  ```php
+  add_filter('wp_grid_builder_caching/bypass', function ($bypass, $ctx) {
+      if ( is_user_logged_in() ) { return true; }
+      if ( ! empty($ctx['query']['orderby']) && $ctx['query']['orderby'] === 'rand' ) { return true; }
+      return $bypass;
+  }, 10, 2);
+  ```
 
 ## Gyakorlati példák
 
-### eCommerce oldalak
-Az eCommerce oldalak esetén, ahol sok terméket és szűrőt kell kezelni, a gyorsítótárazás jelentősen csökkentheti az oldal betöltési idejét, javítva ezzel a felhasználói élményt és növelve a konverziókat.
+- **Webáruház**: A látogatók gyakran szűrnek márkára, árra, készletre. Az ismétlődő kombinációk azonnal visszajönnek a cache‑ből, így a lista és a facettek gyorsan frissülnek, a szerver terhelése csökken.
+- **Ingatlan/állás/katalógus**: Sok feltétel (város, ár, kategória, állapot) kombinálódik. A felhasználók jellemzően hasonló szűréseket futtatnak – a cache itt adja a legnagyobb nyereséget.
+- **Nagy archívum/blog**: A kategória + címke + dátum kombinációk újra és újra előkerülnek; a gyorsítótár jelentősen rövidíti a válaszidőt.
+- **Üzemeltetés**: Tartalmi import után `wp wpgb-caching clear`, éjszakai karbantartáskor `wp wpgb-caching cleanup` futtatás ütemezetten.
 
-### Portfólió oldalak
-Portfólió oldalak esetén, ahol sok kép és projekttartalom található, a gyorsítótárazás segít abban, hogy a látogatók zökkenőmentesen böngészhessenek anélkül, hogy hosszú betöltési időket tapasztalnának.
+## Előnyök és értékajánlat
 
-### Blog oldalak
-Blog oldalak esetén, ahol sok cikk és kategória található, a gyorsítótárazás lehetővé teszi, hogy az olvasók gyorsan hozzáférjenek a különböző tartalmakhoz, anélkül, hogy várakozniuk kellene az oldal betöltésére.
+- **Gyorsabb felhasználói élmény**: a facettes szűrés és rácsfrissítés látványosan felgyorsul.
+- **Alacsonyabb szerverterhelés**: kevesebb drága lekérdezés, kisebb CPU és adatbázis terhelés.
+- **Egyszerű üzemeltetés**: oldalszintű és globális ürítés, valamint WP‑CLI vezérlés.
+- **Rugalmas testreszabás**: kizárások, TTL és hookok a speciális igényekhez.
 
-## Szószedet
+## Kinek ajánlott?
 
-- **Aszinkron kérés**: Olyan kérés, amely nem blokkolja a fő folyamatot, hanem párhuzamosan fut.
-- **Facet**: Szűrőelem, amely lehetővé teszi a felhasználók számára, hogy specifikus kritériumok alapján szűrjék a tartalmat.
-- **Globális beállítások**: Az egész oldalra vonatkozó beállítások.
-- **WP-CLI**: A WordPress parancssori eszközkészlete, amely lehetővé teszi az adminisztratív feladatok végrehajtását parancssorból.
-- **Gyorsítótár**: Ideiglenes tárhely, amelyben gyakran használt adatok tárolódnak a gyorsabb hozzáférés érdekében.
+- **Webáruházak** és nagy forgalmú listázó oldalak üzemeltetőinek.
+- **Katalógusok**, **ingatlan-** és **állásportálok** készítőinek.
+- **Ügynökségeknek** és **fejlesztőknek**, akik skálázható, stabil facett‑szűrést akarnak.
+- **DevOps/üzemeltetés** számára, ahol fontos az automatizálhatóság és az átlátható cache‑kezelés.
+
+## Mikor ne használd? (Korlátozások)
+
+- **Feltételes vagy személyre szabott nézetek**: szerepkör‑, készlet‑, AB‑teszt‑függő megjelenítésnél a cache rögzíthet „egy” állapotot, ami másnak nem lesz helyes. Ilyenkor zárd ki az adott rácsot/facetet.
+- **Véletlenszerű rendezés**: random sorrendnél a cache nem kívánt ismétlődést okoz.
+- **Kereső facettek**: a szabad szavas keresés variációi miatt célszerű kizárni.
+- **Facet‑feltételek (Conditions)**: a backend‑oldali feltételkezelés miatt könnyen kerülhet hibás állapot a cache‑be – általában ne cache‑eld az ilyen nézeteket.
+
+## Telepítés és követelmények
+
+- A Caching egy **hivatalos add‑on**, a WP Grid Builder licenc része. Nem a nyilvános tárházból érhető el.
+- A letöltés és aktiválás a WP Grid Builder fiókon/bővítményen belül történik.
+- Használatához a WP Grid Builder aktuális kiadása és modern WordPress/PHP környezet ajánlott.
+- **Page cache/CDN mellett**: ügyelj rá, hogy a facettes **AJAX végpontokat** ne cache‑elje a CDN, különben elavult találatokat kaphatsz. A Caching add‑on a lekérdezés‑eredményeket tárolja, nem a teljes oldalt.
+
+## Bevált gyakorlatok
+
+- Kezdd **konzervatív kizárásokkal** (kereső facetek, random rendezés, feltételes nézetek), majd fokozatosan engedélyezd a cache‑t stabil rácsoknál.
+- Változáskor használj **oldalszintű ürítést**; nagyobb frissítésnél **globális törlést** vagy **WP‑CLI** parancsokat.
+- Állíts be **ésszerű TTL‑t**: gyorsan változó adatnál rövidebbet, statikus listáknál hosszabbat.
+- Kövesd a HTTP fejléc **HIT/MISS** jelzéseit a beállítás finomhangolásához.

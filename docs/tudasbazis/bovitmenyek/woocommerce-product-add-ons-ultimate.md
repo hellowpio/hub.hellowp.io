@@ -1,69 +1,74 @@
-# WooCommerce Product Add-Ons Ultimate
+---
+title: "WooCommerce Product Add-Ons Ultimate"
+description: "Extra mezők, feltételes logika és rugalmas árazás a WooCommerce termékoldalakon – komplex konfigurátorok egyszerűen."
+sidebar_label: "WooCommerce Product Add-Ons Ultimate"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WooCommerce Product Add-Ons Ultimate egy sokoldalú eszköz, amely lehetővé teszi, hogy bármilyen termékhez extra opciókat adj hozzá az online boltodban. Ezek az opciók lehetnek egyszerű szövegmezők, választógombok, jelölőnégyzetek, legördülő menük, fájlfeltöltések és még sok más. Az alábbiakban részletesen bemutatom a bővítmény főbb funkcióit és előnyeit.
+A WooCommerce Product Add-Ons Ultimate segítségével bármennyi **extra mezőt és opciót** adhatsz a termékoldalaidhoz (szöveg, jelölőnégyzet, rádió, legördülő, fájlfeltöltés, szín-/kép‑swatch stb.). A cél: a WooCommerce alapvariációin túlmenő, **valóban testreszabható termékkonfigurátorok** létrehozása, **dinamikus árazással** és **feltételes megjelenítési szabályokkal**. Ha a variációk már nem elég rugalmasak, ezzel a bővítménnyel gyorsan felépíthetsz személyre szabható ajánlatokat.
 
-### Különböző típusú mezők hozzáadása
+## Hogyan működik röviden?
 
-A WooCommerce Product Add-Ons Ultimate lehetőséget ad arra, hogy többféle mezőt adj hozzá a termékoldalhoz. Így a vásárlók testre szabhatják a termékeket az igényeik szerint.
+- Admin oldalon létrehozol **mezőcsoportokat** termékszinten vagy **globális add-onokat** kategória/termék szabályokkal.
+- Mezőtípusokat, **árazási módokat** és **feltételeket** állítasz be.
+- A frontenden az add-onok az „Add to cart” gomb előtt jelennek meg, a **fő termékár dinamikusan frissül** a választások alapján.
+- A kosár és a rendelés részletezi a kiválasztott opciókat; **child products** esetén az extra választások valós WooCommerce-termékként kerülnek a kosárba (SKU/készlet/szállítás kezelhető).
 
-- **Szövegmezők**: Ideálisak személyre szabott üzenetekhez vagy egyedi kérésekhez.
-- **Jelölőnégyzetek**: Lehetőséget adnak több opció kiválasztására egyszerre.
-- **Választógombok**: Könnyen kezelhetőek és jól strukturált választási lehetőségeket kínálnak.
-- **Legördülő menük**: Segítenek a választási lehetőségek rendszerezésében.
-- **Fájlfeltöltések**: Kiválóak olyan esetekben, amikor a vásárlóknak képeket vagy dokumentumokat kell feltölteniük.
+Megjegyzés: a mezők csak akkor láthatók a frontenden, ha a terméknek van alapára.
 
-### Árazási opciók
+## Fő funkciók, érthetően
 
-A bővítmény lehetőséget ad arra, hogy különböző árazási szabályokat alkalmazz a hozzáadott mezőkhöz. Például extra díjat számíthatsz fel egy speciális szolgáltatásért vagy termékopcióért.
-
-- **Fix ár**: Egy adott összeg minden egyes opcióért.
-- **Százalékos ár**: A termék alapárának meghatározott százaléka.
-- **Dinamikus ár**: Az opciók kombinációjától függően változik.
-
-### Feltételes logika
-
-A feltételes logika lehetővé teszi, hogy bizonyos mezők csak akkor jelenjenek meg, ha egy adott feltétel teljesül. Ez rendkívül hasznos lehet komplex termékopciók esetén, ahol az egyes választások befolyásolják a további lehetőségeket.
-
-## Integráció más eszközökkel
-
-A WooCommerce Product Add-Ons Ultimate zökkenőmentesen működik együtt számos más WooCommerce bővítménnyel és eszközzel. Néhány példa:
-
-- **WooCommerce Subscriptions**: Integrálható előfizetéses termékekkel, így a vásárlók testre szabhatják előfizetésüket.
-- **WooCommerce Bookings**: Használható foglalási rendszerekkel, így a vásárlók különböző szolgáltatásokat adhatnak hozzá foglalásukhoz.
-- **WooCommerce Memberships**: Támogatja a tagsági rendszereket, így exkluzív opciókat kínálhatsz tagjaidnak.
+- **Mezőtípusok (20+)**: szöveg, textarea, szám, checkbox, rádió, select, dátum- és színválasztó, kép-/színswatch, fájlfeltöltés, rejtett/információs mezők, „Name Your Price”. A Pro csomag extra mezőkkel bővül, pl. **Calculations**, **Child Products**, **Checkbox csoportok**, **Képes swatchok**.
+- **Árazási módok**: állíthatsz fix felárat, mennyiségalapú vagy **százalékos** díjat, illetve **karakterenkénti** költséget szövegmezőknél. Opciószintű árak és **vevő által megadott ár** is támogatott. A termék **ára valós időben frissül**, és megjeleníthető részár‑összesítő.
+- **Feltételes logika**: mezőket/csoportokat jelenítesz meg vagy rejtesz el más választások, variációk, **felhasználói szerepkör** vagy bejelentkezési állapot alapján. Így csak a releváns lépések látszanak, egyszerűbb a vásárlói út.
+- **Fájlfeltöltések**: drag‑and‑drop, több fájl, típus- és méretkorlátok, **PDF oldalszám** olvasása, e‑mail csatolás, automatikus átnevezés, igény szerint **külső tárhelyre offload**. Ideális nyomdai, póló- vagy gravírozási rendelésekhez.
+- **Child products (Pro)**: meglévő WooCommerce‑termékeket kínálsz fel kiegészítőként. Ezek külön SKU‑val, készlettel, akár variációkkal működnek; adhatsz **kedvezményt** a child termékre, és akár **el is rejtheted** a kosárban/számlán.
+- **Csoportok és elrendezés**: mezők rendezése **fülekbe, harmonikába, lépésekbe**, lightbox‑ba; többoszlopos rács, **progress bar**, tooltip, URL‑ből **előre kitöltés**, „Clear all”, élő validáció, kötelező mezők, kosárból visszaszerkesztés.
+- **Globális add-onok**: egy helyen felépített opciókészletet rendelsz termékekhez vagy kategóriákhoz. Ideális pl. **ajándéküzenet**, **extra garancia** vagy **gravírozás** egységes felkínálására.
+- **Integrációk és kompatibilitás**: automatikus témastílus‑öröklés; többpénznem‑kezelők támogatása; kompatibilitás előfizetéssel és dinamikus árképzéssel. A mezők a WooCommerce megfelelő hookjára illeszkednek, így jól együttműködnek népszerű témákkal és oldalépítőkkel.
+- **Licenc-szintek**: Basic (1 oldal, alapmezők), Pro (korlátlan oldalak + haladó mezők és elrendezések, pl. százalékos árazás, tabs/accordion, Calculations, Child Products).
 
 ## Gyakorlati példák
 
-### Személyre szabott ajándéktárgyak
+1. **Gravírozás órára**: szövegmező, kötelező, max. 20 karakter, **karakterenkénti díj**. Ha „Prémium betűtípus” kipipálva, +10% felár.
+2. **Pólónyomtatás**: fájlfeltöltés PNG/JPG/PDF‑re korlátozva, méretlimit, **PDF oldalszám** ellenőrzés. „Sürgősségi gyártás” opció fix felárral.
+3. **Egyedi poszter m² árképzéssel**: két számmező (szélesség, magasság), **Calculations** mező: szélesség × magasság × alap m² ár. Bizonyos anyagok kiválasztására **százalékos** felár.
+4. **Ajándékdoboz összeállító**: **Child products** listázása képes swatchokkal; a vásárló meglévő katalógustételekből válogat. A child termékek készlete és SKU‑ja pontosan követhető.
 
-Egy online boltban, amely személyre szabott ajándéktárgyakat kínál, a WooCommerce Product Add-Ons Ultimate lehetőséget ad arra, hogy a vásárlók különböző testreszabási opciókat válasszanak. Például:
+## Telepítés és alapbeállítás
 
-- Név vagy üzenet gravírozása
-- Különböző színek és anyagok kiválasztása
-- Képek feltöltése a személyre szabáshoz
+1. Telepítsd és aktiváld a bővítményt, majd a licencet a WooCommerce beállításoknál kezeld az automatikus frissítésekhez.
+2. Mezők létrehozása:
+   - Termékszinten: a termékadatok között a Product Add‑Ons fülön.
+   - Globálisan: a Product Add‑Ons menüben csoportokat hozol létre, és **szabályokat** adsz meg termékekre/kategóriákra.
+3. Árazás és feltételek beállítása, elrendezés kiválasztása (fülek, lépések, grid).
+4. Tesztelés: ellenőrizd a **dinamikus árfrissítést**, a mezők validációját és a kosár/összegzés megjelenést.
 
-### Éttermek és kávézók
+Tipp: ha egy terméknek nincs alapára, az add-onok nem látszanak a frontenden.
 
-Egy étterem vagy kávézó online rendelési rendszerében a bővítmény segítségével a vásárlók testre szabhatják rendeléseiket:
+## Előnyök és értékajánlat
 
-- Hozzávalók kiválasztása vagy kizárása
-- Speciális kérések megadása (pl. gluténmentes, laktózmentes)
-- Italok személyre szabása (pl. extra szirup, tej típus)
+- **Rugalmasság**: a variációk korlátait add-on mezőkkel hidalod át.
+- **Pontosság**: m²/mérték‑alapú kalkulációk, **child products** alapú SKU/készlet kezelés.
+- **Jobb UX**: feltételes mezők, **progress bar**, élő validáció; kevesebb hibás rendelés.
+- **Központi menedzsment**: **globális add-onokkal** gyorsan skálázod az opciókat.
+- **Idő- és költségmegtakarítás**: kevesebb egyedi fejlesztés, gyorsabb konfigurátor‑építés.
 
-### Művészeti alkotások és nyomatok
+## Kinek ajánlott?
 
-Egy művészeti boltban a WooCommerce Product Add-Ons Ultimate lehetőséget ad arra, hogy a vásárlók különböző méretű és keretezett nyomatokat válasszanak:
+- **Nyomdák, ajándék- és gravírozó webshopok**: fájlfeltöltés, karakterdíj, üzenetek.
+- **Egyedi bútor/építőipari termékek**: mérték‑alapú **kalkulációk**, anyagfelárak.
+- **Divat és kiegészítők**: szín-/kép‑swatchok, személyre szabás.
+- **Keresztselláló boltok**: **child products** alapú „complete the look” vagy ajándékcsomag összeállítás.
+- **Ügynökségek/fejlesztők**: skálázható, témakompatibilis, hookokkal bővíthető rendszer.
 
-- Méret és anyag kiválasztása (pl. vászon, poszter)
-- Keret típusának és színének kiválasztása
-- Egyedi színek vagy effektek hozzáadása
+## Fejlesztői és technikai megjegyzések
 
-## Szószedet
+- A mezők a WooCommerce „add to cart” gomb előtti hookhoz illeszkednek. Az egyedi sablonoknál és **AJAX-os hozzáadásnál** ügyelj, hogy ez a hook ne legyen eltávolítva.
+- A bővítmény számos hookot és filtert kínál programozott mező‑létrehozáshoz és viselkedés testreszabásához.
+- Kompatibilis többpénznem‑kezeléssel és népszerű árképzés/szállítás kiegészítőkkel; Pro licenccel kapsz hozzáférést a haladó mezőkhöz és elrendezésekhez.
 
-- **Szövegmezők**: Olyan mezők, ahol a felhasználó szabadon írhat be szöveget.
-- **Jelölőnégyzetek**: Olyan mezők, ahol a felhasználó több lehetőséget is kiválaszthat egyszerre.
-- **Választógombok**: Olyan mezők, ahol a felhasználó egyetlen választást tehet több lehetőség közül.
-- **Legördülő menük**: Olyan mezők, ahol a felhasználó egy listából választhatja ki a kívánt opciót.
-- **Fájlfeltöltések**: Olyan mezők, ahol a felhasználó fájlokat tölthet fel a rendszerbe.
+## Összefoglalás
+
+Ha komplex termékkonfigurátorra, **feltételes logikára**, **rugalmas árazásra**, fájlfeltöltésre vagy **child products** alapú készletkezelésre van szükséged, a WooCommerce Product Add-Ons Ultimate egy átfogó, skálázható megoldás. Gyorsan építhetsz vele professzionális, konverzióbarát termékoldalakat – fejlesztés nélkül.

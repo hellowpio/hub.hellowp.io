@@ -1,56 +1,85 @@
-# WP Grid Builder - Meta Box
+---
+title: "WP Grid Builder - Meta Box"
+description: "Hivatalos kiegészítő, amely natív Meta Box mezőtámogatást ad a WP Grid Builder rácsaihoz, kártyáihoz és facet-alapú szűrőihez."
+sidebar_label: "WP Grid Builder - Meta Box"
+---
 
-A WP Grid Builder - Meta Box egy kiegészítő, amely támogatja a Meta Box bővítményt. Ez a kiegészítő lehetővé teszi, hogy könnyen szűrj és jeleníts meg adatokat, amelyek Meta Box által létrehozott egyéni mezőkben tárolódnak. 
+## Mi ez és milyen problémát old meg?
 
-## Főbb jellemzők
+A WP Grid Builder – Meta Box egy hivatalos add-on, amely összeköti a **Meta Box** egyedi mezőit a **WP Grid Builder** rácsaival, kártyáival és facetes szűrőivel. Ha Meta Boxszal tárolsz adatokat (egyszerű, csoportosított, klónozható vagy többszörös mezőkben), ez a kiegészítő gondoskodik róla, hogy:
+- pontosan meg tudd jeleníteni a mezőértékeket a kártyákon,
+- gyorsan és relevánsan tudd szűrni ezeket facetekkel,
+- mindezt külön kódolás nélkül, natívan, a kezelőfelületről.
 
-### Bármilyen típusú mező szűrése
+A legnagyobb gond, amit megold: a Meta Box gyakran **összetett vagy sorozatosított** struktúrákban tárol adatokat. Az add-on ezeket “lefordítja” a WP Grid Builder indexelőjének, így a szűrés villámgyors és pontos marad.
 
-A WP Grid Builder - Meta Box kiegészítő lehetővé teszi, hogy bármilyen típusú mezőt szűrj, amelyet a Meta Box hoz létre. Legyen szó egyszerű szövegmezőről vagy összetett, többszörös választási lehetőséget tartalmazó mezőről, mindent könnyedén kezelhetsz és szűrhetsz.
+## Hogyan működik?
 
-### Mezőértékek megjelenítése kártyákon
+- A kiegészítő felismeri a Meta Boxban definiált **összes mezőtípust**, beleértve a csoportokat, klónozható mezőket és többszörös értékeket.
+- A WP Grid Builder saját **index-táblájába** rendezi ezeket az értékeket, és az **Ajax** alapú motorján keresztül szolgálja ki a facetes szűrést.
+- A felületen ott, ahol **mezőt választasz** (facethez vagy kártyához), egyszerűen rákereshetsz a Meta Box mezőkre, és kiválaszthatod őket – nincs kézi kulcs‑írogatás.
+- Speciális esetekre is kész: támogatottak a **Map facet marker** egyedi mezői, valamint kompatibilis a **Meta Box AIO** és **Meta Box Lite** kiadásokkal is.
 
-A kiegészítő segítségével a Meta Box mezők értékeit egyszerűen megjelenítheted a kártyákon, amelyeket a WP Grid Builder kártyakészítőjében hozol létre. Ez lehetővé teszi, hogy testreszabott és dinamikus tartalmat jeleníts meg az oldaladon.
+## Fő funkciók, érthetően
 
-### Zökkenőmentes integráció
-
-A WP Grid Builder - Meta Box zökkenőmentesen működik együtt más eszközökkel és bővítményekkel, például a WooCommerce-szel és az Advanced Custom Fields-szel (ACF). Ezáltal biztosítva van a teljes körű kompatibilitás és a maximális funkcionalitás.
-
-## Használati tippek
-
-### Szűrők beállítása
-
-Miután aktiváltad a kiegészítőt, keresd meg a Meta Box mezőket a szűrőbeállításokban és a kártyakészítőben (custom field block). Egyszerűen keresd meg a "meta box" kifejezést, és látni fogod az összes elérhető mezőt, amelyeket a Meta Box bővítmény hozott létre.
-
-### Szűrők testreszabása
-
-Használd ki a Meta Box által kínált összes mezőtípust, például dátummezőt, számmezőt vagy többszörös választási lehetőséget biztosító mezőt. Ezeket mind beállíthatod szűrőként a WP Grid Builder-ben, így pontosan olyan tartalmat jeleníthetsz meg, amilyet szeretnél.
-
-### Kártyák testreszabása
-
-A kártyák testreszabásakor használd a Meta Box mezők értékeit. Például egy terméklistában megjelenítheted a termék árát, leírását vagy bármely egyéb egyedi mezőt, amelyet a Meta Box segítségével hoztál létre.
+- **Teljes mezőtípus-támogatás**
+  - A legegyszerűbb texttől a bonyolult csoportokig minden működik. Példa: ha egy csoporton belül van egy klónozható, többértékes select, azt külön erőfeszítés nélkül tudod facettel szűrni.
+- **Közvetlen mezőválasztás a felületen**
+  - Facet létrehozásakor és a kártyaépítőben a “custom field” blokknál közvetlenül kereshetsz a Meta Box mezőid között. Gyors és hibamentes beállítás.
+- **Nagy teljesítményű, indexelt szűrés**
+  - A WP Grid Builder saját indexe és Ajax végpontjai valós idejű, facetes élményt adnak. Több mint 20 facet típust használhatsz (checkbox, radio, select, slider, dátum, rating, kereső, sorrendezés, reset, load more stb.).
+- **Rugalmas kártya-megjelenítés**
+  - A **drag‑and‑drop kártyaépítőben** bárhova elhelyezheted a Meta Box mezőid értékeit: címkék, ikonok, ár, státusz, cím, koordináták – bármi, amit a Meta Boxban tárolsz.
+- **Speciális kompatibilitások**
+  - Támogatja a Map facet marker mezőit; együttműködik a Meta Box AIO és Lite változatokkal is.
 
 ## Gyakorlati példák
 
-### E-kereskedelem
+- **Ingatlan lista**: Város, kerület, ár intervallum, alapterület, szobaszám, felszereltség – mind Meta Box mezők. Facetekkel pillanatok alatt leszűrheted a releváns találatokat, a kártyákon pedig az ár, lokáció és jellemzők jól láthatók.
+- **Autókereső**: Márka, modell, évjárat, futásteljesítmény, üzemanyag, extrák. A többértékes, klónozható mezők sem okoznak gondot; a felhasználó valós időben látja a szűkített kínálatot.
+- **Állásportál**: Pozíció, tapasztalat, foglalkoztatás típusa, lokáció, bérsáv. A kártyák a legfontosabb adatokat emelik ki, a facetes panel pedig dinamikusan kínál releváns opciókat.
+- **Térképes katalógus**: Helyek listája markerrel, cím és koordináták Meta Boxból. A Map facet marker mezői alapján szűrsz, a kártyákon pedig minden lényeges információ megjelenik.
 
-Ha WooCommerce-t használsz, és egyedi mezőket hozol létre a termékekhez (például szín, méret vagy anyag), akkor ezek alapján könnyedén szűrheted és megjelenítheted a termékeket.
+## Gyors indulás
 
-### Portfólió
+1. Telepítsd és aktiváld a WP Grid Buildert és a Meta Boxot (AIO vagy Lite is jó).
+2. Aktiváld a “Meta Box” add-ont a WP Grid Builder kiegészítők között.
+3. Hozz létre egy **Facetet**, és a mezőválasztónál keresd meg a kívánt Meta Box mezőt.
+4. Építs kártyát: a kártyaépítőben a “custom field” blokkal válaszd ki ugyanazt a mezőt a megjelenítéshez.
+5. Indexelés után teszteld a frontenden a szűrést és a kártyaadatok megjelenését.
 
-Fotósok és művészek számára kiválóan alkalmas arra, hogy különböző kategóriák vagy technikák alapján szűrjék és jelenítsék meg munkáikat. Például szűrheted a portfóliódat festmények, fotók vagy digitális művek alapján.
+Példa beállítási jegyzet:
+```
+Facet: "Ár"
+Típus: Range slider
+Forrásmező: meta_box -> property_price
 
-### Blog
+Kártya:
+Cím: post_title
+Alcím: meta_box -> property_city
+Badge: meta_box -> property_status
+```
 
-Blogírók számára lehetővé teszi, hogy különböző címkék vagy kategóriák alapján szűrjék a bejegyzéseket. Például megjelenítheted az összes technológiai bejegyzést vagy azokat, amelyek adott szerzőhöz tartoznak.
+## Előnyök és értékajánlat
 
-## Szószedet
+- **Kódmentes integráció**: Nem kell egyedi lekérdezésekkel vagy sorozatosított értékek kézi bontásával bajlódnod.
+- **Sebesség és skálázhatóság**: Indexelt, Ajaxos szűrés nagy adatbázison is gyors.
+- **Következetes szerkesztői élmény**: Kereshető mezőlista, vizuális kártyaépítő, kevesebb hibalehetőség.
+- **Rugalmasság**: Minden Meta Box mezőtípus támogatott; a speciális esetek (csoport, klón, többérték) is kezeltek.
+- **Egységes ökoszisztéma**: A rácsok, kártyák és facetek egy rendszerben dolgoznak, hivatalos és karbantartott integrációval.
 
-- **Meta Box**: Egy WordPress bővítmény, amely lehetővé teszi egyéni mezők létrehozását és kezelését.
-- **WP Grid Builder**: Egy WordPress bővítmény, amely lehetővé teszi rácsok létrehozását és tartalmak szűrését.
-- **Custom Field**: Egyéni mező, amelyet különféle adatok tárolására használnak.
-- **Facet**: Szűrő, amelyet tartalom szűrésére használnak.
-- **WooCommerce**: Egy WordPress bővítmény e-kereskedelemhez.
-- **Advanced Custom Fields (ACF)**: Egy WordPress bővítmény egyéni mezők kezeléséhez.
+## Kinek ajánlott?
 
-Ezekkel az információkkal teljes mértékben kihasználhatod a WP Grid Builder - Meta Box kiegészítő nyújtotta lehetőségeket és funkcionalitást.
+- **Ügynökségeknek és fejlesztőknek**: Ha összetett adatstruktúrából kell facetes keresőt készítened, ez a legrövidebb út a stabil megoldáshoz.
+- **Katalógus- és piactér-üzemeltetőknek**: Termékek, szolgáltatások, erőforrások gyors, releváns szűrése egyedi jellemzők szerint.
+- **Tartalomkészítőknek és szerkesztőknek**: Kód nélkül, a felületről állíthatsz be új szűrőket és kártyaelemeket.
+- **Bárkinek, aki Meta Boxot használ**: Ha már Meta Boxban tárolod a mezőidet, ezzel az add-onnal azonnal “szűrhetővé és láthatóvá” teszed őket.
+
+## Rendszerkövetelmények és licenc
+
+- Modern WordPress környezet ajánlott; minimum WordPress 6.0 és PHP 7.0, PHP 8.x javasolt.
+- A kiegészítő a WP Grid Builder licenc részét képezi; a hivatalos add-onokkal együtt érhető el, támogatással és frissítésekkel.
+
+## Összegzés
+
+A WP Grid Builder – Meta Box add-on a Meta Box mezőidet teljes értékűen integrálja a WP Grid Builder facetes ökoszisztémájába. Így bonyolult adatstruktúrákból is gyors, pontos szűrőket és letisztult kártyanézeteket építhetsz, fejlesztés nélkül. Ha Meta Boxot használsz, és szeretnél profi, valós idejű keresési élményt adni a felhasználóknak, ez az add-on a hiányzó láncszem.

@@ -1,78 +1,89 @@
-# WooCommerce WishLists
+---
+title: "WooCommerce WishLists"
+description: "Prémium WooCommerce bővítmény kívánságlistákhoz: korlátlan listák, megosztás, vendég- és regisztrált mód, rugalmas UI és admin eszközök."
+sidebar_label: "WooCommerce WishLists"
+---
 
-A WooCommerce WishLists egy olyan bővítmény, amely lehetővé teszi a vendégek és a regisztrált felhasználók számára, hogy termékeket adjanak hozzá tetszőleges számú kívánságlistához. Legyen szó születésnapokról, esküvőkről vagy bármilyen más különleges alkalomról, a WooCommerce WishLists nagyszerű kiegészítője lehet bármely WooCommerce áruháznak.
+## Mi ez és milyen problémát old meg?
 
-## Előnyök és funkciók
+A WooCommerce WishLists egy prémium bővítmény, amellyel a vásárlóid tetszőleges számú **kívánságlistára** menthetnek termékeket. Ezzel lefeded a „később megveszem” igényt, csökkented a kosárelhagyást, és növeled a visszatérő vásárlások arányát. A listák **megoszthatók** családdal, barátokkal vagy közösségi csatornákon, ami friss forgalmat és új vevőket hozhat. Vendégek is használhatják időszakosan, regisztráltaknál pedig tartósan tárolódik minden – tehát a funkció nem csak kényelmi, hanem konverziónövelő eszköz is.
 
-### Növeli az értékesítést és a konverziókat
+## Fő funkciók, érthetően
 
-Kutatások szerint az, hogy a vásárlók saját kívánságlistákat hozhatnak létre és kezelhetnek, növeli az értékesítést és a konverziókat. Ezáltal ösztönözheted a vásárlókat arra, hogy visszatérjenek az oldaladra, és később megvásárolják az általuk elmentett termékeket. A vásárlók megoszthatják a kívánságlistáikat barátaikkal és családtagjaikkal a közösségi médián keresztül, ami új vásárlók és látogatók bevonzásához vezethet.
+- **Korlátlan kívánságlista**  
+  Minden felhasználó annyi listát hozhat létre, amennyit szeretne. Például külön lista születésnapra, ünnepekre vagy személyes gyűjtéshez. A listákon belül tételeket rendszerezhetsz, tömegesen kosárba teheted, áthelyezheted másik listára, vagy törölheted.
 
-### Korlátlan számú kívánságlista
+- **Vendég- és regisztrált mód**  
+  Vendégként a lista **cookie-ban** tárolódik és **időszakos** (lejárhat, adott böngészőhöz kötött). Bejelentkezve a listák **tartósan** elérhetők a fiókon belül. A vendéglisták bejelentkezés után a fiókhoz menthetők.
 
-- **Vendégek számára**: A vendég felhasználók is létrehozhatnak saját kívánságlistákat, amelyek 30 napig tárolódnak, vagy amíg törlik a sütiket.
-- **Regisztrált vásárlók számára**: A regisztrált felhasználók korlátlan számú kívánságlistát hozhatnak létre és tárolhatnak határozatlan ideig.
+- **Láthatóság és adatvédelem**  
+  Minden listához beállíthatod a láthatóságot:  
+  - **Nyilvános**: bárki megtalálhatja a kereső oldalon.  
+  - **Megosztott**: csak az egyedi URL-lal elérhető.  
+  - **Privát**: kizárólag a tulajdonos látja.  
+  Így a saját gyűjtések maradhatnak privátak, az ajándéklisták pedig egyszerűen megoszthatók.
 
-### Teljes adatvédelmi kontroll
+- **Megosztás több csatornán**  
+  Beépített megosztás gombokkal terjesztheted a listát közösségi médiában vagy **e-mailben**. E-mailnél **egyedi üzenetet** is csatolhatsz, így kontextust adhatsz (például méret, színpreferencia, határidő).
 
-A felhasználók dönthetnek arról, hogy kívánságlistájuk nyilvános (bárki kereshet és megtalálhatja), megosztott (csak azok láthatják, akik rendelkeznek a listára mutató egyedi URL-lel), vagy privát (csak ők maguk láthatják) legyen.
+- **Széles terméktámogatás**  
+  Támogatja az **egyszerű, variálható és csoportos termékeket**, valamint kompatibilis népszerű kiegészítőkkel (pl. Product Add-ons, Gravity Forms Add-on). A variációs és egyedi beállítások a listára mentve is megmaradnak.
 
-### Közösségi média megosztás
+- **Rugalmas felhasználói felület**  
+  Az **Add to Wishlist** gomb/link szövege és megjelenése testreszabható (ikon, szín, link vagy valódi gomb). A bővítmény örökli a témád stílusait, és további CSS-sel finomhangolhatod a megjelenést.
 
-A felhasználók egyszerűen megoszthatják kívánságlistáikat Facebookon, Twitteren, Pinteresten vagy e-mailben egyedi üzenettel.
+- **Admin eszközök és tömegműveletek**  
+  Az admin felületen a **WooCommerce > Wishlists** alatt átlátod a listákat, részleteket, és szükség esetén beavatkozhatsz. A felhasználói oldalon elérhetőek **gyorstömegműveletek**: több termék kosárba tétele, mennyiségek frissítése, törlés vagy áthelyezés másik/új listára.
 
-### Terméktámogatás
-
-Támogatja az egyszerű termékeket, csoportosított termékeket és variációs termékeket is. Emellett kompatibilis a **Product Add-ons** és a **Gravity Forms Add-on** bővítményekkel.
-
-### Értesítések
-
-A vásárlók értesítést kapnak, ha egy termék már szerepel egy másik kívánságlistájukon böngészés közben.
-
-### Testreszabható „Add to Wishlist” szöveg
-
-Az „Add to Wishlist” szöveg testreszabható és átalakítható gombbá, link szöveggé csillaggal vagy ikonnal. A dizájnerek saját ikonokat is létrehozhatnak és hozzáadhatnak.
-
-### Adminisztrációs funkciók
-
-A boltkezelők megtekinthetik és kezelhetik a létrehozott kívánságlistákat az adminisztrációs felületen keresztül. Lehetőség van kívánságlisták rendezésére és szerkesztésére is.
-
-### WordPress Menü integráció
-
-A kívánságlista link hozzáadható bármely, a témában támogatott menüponthoz.
-
-### Tömeges műveletek
-
-- Több vagy minden elem hozzáadása a kosárhoz
-- Egy vagy több elem törlése azonnal
-- Mennyiségek frissítése egy vagy több elemnél
-- Egy vagy több elem áthelyezése másik listára vagy új listára
-
-## Testreszabhatóság
-
-A WooCommerce WishLists örökli az aktuális téma stílusait a gombok és más elemek esetében. Ha tervező vagy fejlesztő vagy, lehetőséged van egyéni CSS hozzáadására is, hogy a kívánságlista megjelenése illeszkedjen a weboldalad dizájnjához.
-
-## Adminisztrációs nézetek boltkezelők számára
-
-Boltkezelőként időnként áttekintheted a létrehozott kívánságlistákat, hogy megtudd, mit szeretnének igazán a vásárlók. Az adminisztrációs képernyőn különböző opciók szerint rendezheted és szerkesztheted a kívánságlistákat.
+- **Viselkedési beállítások**  
+  Opcionálisan beállíthatod, hogy egy tétel **vásárlás után automatikusan törlődjön** a listáról, illetve hogy a terméklista-mentés után **átirányítás** történjen a lista oldalára. A menübe közvetlen **Wishlist link**(ek)et is felvehetsz a WordPress Menükben.
 
 ## Gyakorlati példák
 
-### Születésnapok és ünnepek
-A vásárlók létrehozhatnak születésnapi vagy ünnepi kívánságlistákat, amelyeket megoszthatnak barátaikkal és családtagjaikkal, hogy pontosan azt kapják ajándékba, amit szeretnének.
+- **„Elmentem későbbre”**: A látogató nem akarja telepakolni a kosarat; a kedvenc termékeit egy „Saját kedvencek” listára menti, majd visszatérve egy kattintással a kosárba teszi a kiválasztott tételeket.
+- **Ajándéklista születésnapra**: Létrehoz egy nyilvános vagy megosztott listát, e-mailben elküldi a családnak. A többiek pontosan látják a kívánt típusokat/variációkat.
+- **Tematikus gyűjtések**: „Őszi gardrób” és „Konyhai upgrade” listákat építesz, hogy könnyen összehasonlíts és priorizálj. A megvett tételek automatikusan lekerülhetnek a listáról.
 
-### Esküvők
-Az esküvői ajándéklisták népszerűek a párok körében, akik így könnyebben koordinálhatják az ajándékokat a meghívottakkal.
+## Előnyök és értékajánlat
 
-### Bevezetési kampányok
-Új termékek bevezetésekor a kívánságlisták segíthetnek abban, hogy megtudd, mely termékek iránt van nagyobb érdeklődés.
+- **Konverziónövelés**: Csökkenti a kosárelhagyást, ösztönzi a visszatérést.  
+- **Szociális terjesztés**: Megosztható listákból új látogatók és vásárlók érkeznek.  
+- **Időmegtakarítás**: Tömegműveletek, gyors kosárba tétel és egyszerű lista-kezelés.  
+- **Pontos igényfelmérés**: Admin szinten láthatod, mire van tényleges kereslet.  
+- **Rugalmas integráció**: Témastílus öröklés, testreszabható UI, széles terméktípus-támogatás.
 
-### Hűségprogramok
-A hűségprogramok részeként ösztönözheted a vásárlókat arra, hogy kívánságlistákba gyűjtsenek össze termékeket, amelyeket később kedvezményesen vásárolhatnak meg.
+## Telepítés és beállítás
 
-## Szószedet
+1. Töltsd le a bővítményt, majd a WordPress-ben: **Plugins > Add New > Upload Plugin**.  
+2. Aktiváld, és ellenőrizd az automatikusan létrehozott oldalak meglétét.  
+3. A beállítások a **WooCommerce > Settings > Wishlists** fülön találhatók.  
+4. Adj Wishlist hivatkozást a menühöz a **Megjelenés > Menük** alatt.
 
-- **WooCommerce WishLists**: Olyan bővítmény, amely lehetővé teszi kívánságlisták létrehozását.
-- **Product Add-ons**: Kiegészítő bővítmény, amely lehetővé teszi extra opciók hozzáadását termékekhez.
-- **Gravity Forms Add-on**: Kiegészítő bővítmény, amely lehetővé teszi űrlapok integrálását termékekhez.
-- **Kívánságlista**: Olyan lista, amelyre a felhasználók elmenthetik azokat a termékeket, amelyeket később meg szeretnének vásárolni.
+## Oldalak és rövidkódok
+
+A bővítmény alap oldalakat hoz létre, de saját oldalakon is használhatod a rövidkódokat:
+
+```
+[wc_wishlists_my_archive]  ; Saját listák
+[wc_wishlists_create]      ; Lista létrehozása
+[wc_wishlists_edit]        ; Lista szerkesztése
+[wc_wishlists_search]      ; Nyilvános listák keresése
+[wc_wishlists_single]      ; Lista megtekintése
+```
+
+Ezeket tetszőleges oldalstruktúrába illesztheted, akár külön menüpontokként.
+
+## Korlátok és megjegyzések
+
+- Nem teljes értékű **gift registry** rendszer dobozból; összetett ajándékregiszterhez egyedi fejlesztés javasolt.  
+- Betétkezelést (deposits) igénylő folyamatokkal nincs hivatalos kompatibilitás; ez is testreszabást igényelhet.  
+- **Vendéglisták** böngészőhöz kötöttek és lejárhatnak; bejelentkezve a listák a fiókhoz menthetők.
+
+## Kinek ajánlott?
+
+- **Divat, lakberendezés, elektronika, kozmetikum** webáruházaknak, ahol a döntés jellemzően nem azonnali, és a vásárlók szeretnek gyűjteni/összehasonlítani.  
+- **Ajándék- és szezonális** boltoknak, ahol a megosztható listák organikusan hoznak új vásárlókat.  
+- **B2C márkáknak**, akik szeretnék mérni és terelni a vásárlói szándékot, és jobb vásárlói élményt adni „későbbre mentés” opcióval.  
+- Fejlesztőknek és üzemeltetőknek, akik **rugalmasan testre szabható** wishlist-megoldást keresnek admin eszközökkel és skálázható struktúrával.
+
+Összességében a WooCommerce WishLists egy kiforrott, üzletileg hasznos bővítmény: segít rendszerezni a vásárlói szándékot, megkönnyíti a visszatérést és támogatja a közösségi megosztást—vagyis közvetlenül dolgozik a konverzióidért.

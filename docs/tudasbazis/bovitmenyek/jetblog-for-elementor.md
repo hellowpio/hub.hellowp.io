@@ -1,55 +1,81 @@
-# JetBlog For Elementor
+---
+title: "JetBlog For Elementor"
+description: "Blog- és hírjellegű tartalmak látványos megjelenítésére szolgáló Elementor-kiegészítő, fejlett lekérdezésekkel és magazin-szerű elrendezésekkel, kódolás nélkül."
+sidebar_label: "JetBlog For Elementor"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Smart Posts Tiles
+A JetBlog a Crocoblock blog- és hírportálokra szabott bővítménye az Elementorhoz. Olyan látványos lista- és csempelayoutokat, hírcsíkot és videólejátszási listát kapsz, amelyekkel kód nélkül építhetsz magazin-szerű oldalakat. A fő gond, amit megold: az Elementor alap poszt‑widgetjeinek korlátait átlépi (komplex lekérdezések, gazdag elrendezések, stabil lapozás archívumokon), így gyorsabban és konzisztensen állíthatsz össze nyitó-, kategória- és archív oldalakat.
 
-A Smart Posts Tiles segítségével látványos csempéket hozhatsz létre, amelyek dinamikusan jelenítik meg a legfrissebb tartalmakat. Ez a funkció különösen hasznos, ha vizuálisan vonzó módon szeretnéd bemutatni a híreket vagy a blogbejegyzéseket.
+## Fő funkciók és hogyan működnek
 
-### Smart Posts List
+### Hat célzott Elementor‑widget
+- **Smart Posts List**: Rugalmas listanézet több oszloppal és sorral. Szabályozhatod a képméreteket, a kiemelt elemek elrendezését, a metaadatok (szerző, dátum, kategória) és kivonatok megjelenítését. Támogatja a szűrést és rendezést, valamint az offsetet, így például kihagyhatod a már kiemelt cikkeket.
+- **Smart Posts Tiles**: 9 előre kialakított **csempelayout** magazin-nyitókhoz. Állítható csempe‑méretek és arányok, beépített karusszel, lapozás és navigáció. Kiemelt „fősztori” nagy csempével, mellette kisebb blokkokkal – mindezt drag‑and‑drop.
+- **Text Ticker**: „Breaking news” típusú **hírcsík** gördülő vagy írógépes hatású címsorokkal. Beállíthatod az automatikus görgetés sebességét, ikonokat és dátumot. Friss posztokból vagy saját lekérdezésből tölti a tételeket.
+- **Video Playlist**: YouTube/Vimeo listák és egyedi videók megjelenítése egységes lejátszóban. Opcionális YouTube API‑kulccsal lekéri a videók **időtartamát**, így pontos metaadatokkal dolgozhatsz. Testreszabható bélyegképek, címek, leírások.
+- **Posts Pagination**: Számozott és előző/következő lapozás a JetBlog listákhoz/csempékhez. Az oldalad fő WordPress‑lekérdezéséhez (*main query*) illeszkedik, ezért archívumokon különösen stabil és SEO‑barát.
+- **Posts Navigation**: Előző/következő navigáció archív és bejegyzés‑listázó nézetekhez. Személyre szabható címekkel és ikonokkal, a fő lekérdezéssel összhangban.
 
-A Smart Posts List lehetővé teszi, hogy listába rendezd a bejegyzéseidet, miközben számos szűrési és rendezési lehetőséget kínál. Különösen hasznos, ha egy kategorizált vagy időrendi sorrendet szeretnél bemutatni az olvasóknak.
+### Fejlett lekérdezések és adatforrások
+- **Egyéni WordPress Query**: meta‑ és dátum‑lekérdezés, taxonómiák bevonása/kizárása, **post offset**, rendezés több szempont szerint.
+- **CPT és archívum támogatás**: egyéni bejegyzéstípusok és kategória/archív sablonok gond nélkül működnek.
+- **Egyedi mezők**: a widgetek képesek metaadatokat megjeleníteni és ezek alapján **szűrni**. JetEngine‑nel kombinálva teljes értékű dinamikus tartalomkezelést kapsz.
 
-### Text Ticker
-
-A Text Ticker widget lehetővé teszi, hogy gördülő szöveges üzeneteket adj hozzá az oldaladhoz, ami ideális hírek, frissítések vagy bármilyen dinamikus tartalom megjelenítésére. Ez a funkció különösen hatékony, ha gyorsan változó információkat szeretnél közvetíteni.
-
-### Video Playlist
-
-A Video Playlist segítségével könnyen kezelhető videó lejátszási listákat hozhatsz létre. Ez a funkció ideális video tartalmak prezentálására, legyen szó oktatóanyagokról, interjúkról vagy bármilyen multimédiás tartalomról.
-
-## Integrációk
-
-### Együttműködés más eszközökkel
-
-- **JetEngine**: Az egyedi tartalomtípusok és mezők kezelése révén lehetővé teszi a JetBlog számára, hogy még rugalmasabb és testreszabhatóbb legyen.
-- **JetElements**: További vizuális elemek hozzáadása az oldalhoz, amelyek kiegészítik a JetBlog funkcióit.
-- **JetStyleManager**: Egyszerűbbé teszi a JetBlog elemek stílusának testreszabását, így könnyen illeszkedik az oldal dizájnjához.
-- **JetSearch**: Gyors és hatékony keresési funkciók hozzáadása a JetBlog tartalmakhoz.
-- **JetSmartFilters**: Kiterjedt szűrési lehetőségeket kínál, amelyek segítenek a felhasználóknak gyorsan megtalálni a keresett tartalmat.
+### Teljesítmény és szerkesztői élmény
+- **Available Widgets**: csak azokat a JetBlog‑widgeteket kapcsold be, amelyeket használsz – ezzel csökkented a terhelést.
+- **Editor Load Level**: szabályozhatod, mennyi stílusopció töltődjön be az Elementorban (None–Full). Nagy oldalaknál érezhetően gyorsabbá teheti a szerkesztést.
 
 ## Gyakorlati példák
 
-### Hírportál
+- **Magazin nyitóoldal**: felül Smart Posts Tiles 9‑es elrendezéssel, ahol az első csempe nagyban mutatja a legfrissebb kiemelt cikket, mellette 4–6 kisebb csempe a „Top sztoriknak”. Alatta Smart Posts List két oszlopban, bekapcsolt kivonatokkal és dátummal, offsettel kizárva a fenti cikkeket.
+- **Kategória‑/archív sablon**: az archív sablonodba helyezz Smart Posts List‑et, alá **Posts Pagination**‑t. Mivel a lapozás a *main query*-re épül, az URL‑ek tiszták maradnak, és a lapozás stabil még többszáz cikkes kategóriákban is.
+- **Hírcsík a fejlécben**: Text Ticker az utolsó 10 bejegyzéssel, automatikus gördüléssel, cím előtti ikonokkal. Ideális asztali menüsor fölé vagy mobilon a hero alatt.
+- **Videós blokk**: Video Playlist „Heti ajánlók” címmel, YouTube‑videók listájával. API‑kulcs megadásával megjelenik a videók hossza, a látogatók azonnal látják a néznivaló időigényét.
 
-Egy hírportál számára a JetBlog különösen hasznos, mivel lehetővé teszi a legfrissebb hírek látványos és dinamikus megjelenítését. A Smart Posts Tiles segítségével például különböző kategóriákba sorolt híreket csempés formában mutathatsz be, míg a Text Ticker segítségével folyamatosan frissülő hírszalagot adhatsz hozzá az oldaladhoz.
+## Előnyök és értékajánlat
 
-### Személyes blog
+- **Időmegtakarítás**: kész magazin‑mintázatok, kevesebb manuális CSS és nincs szükség PHP‑kódra összetett szűréshez.
+- **Professzionális megjelenés**: látványos csempék, listák, hírcsík és videólejátszó egységes dizájnnal.
+- **Skálázhatóság**: a *main query*-hez igazodó lapozás és navigáció nagy tartalomkészleteken is stabil.
+- **Költséghatékonyság**: Elementor Pro nélkül is erős blog/hír funkciókat kapsz.
+- **Szerkesztői teljesítmény**: a widget‑kapcsolók és az Editor Load Level segítenek gyorsan dolgozni nagy projekteken.
 
-Egy személyes blog esetében a Smart Posts List segítségével könnyedén kategorizálhatod és rendezheted a bejegyzéseidet, így az olvasók könnyen navigálhatnak az oldalon. A Video Playlist pedig ideális lehet videós tartalmak bemutatására, például utazási vlogokhoz vagy oktatóvideókhoz.
+## Célközönség
 
-### Oktatási portál
+- **Online magazinok és hírportálok**: nyitók és rovatoldalak gyors összeállításához.
+- **Tartalomgazdag blogok**: kategória‑ és archív nézetek profi megjelenítéséhez.
+- **Ügynökségek és fejlesztők**: sablon‑szintű, stabil lapozással és rugalmas lekérdezésekkel.
+- **Videós alkotók**: YouTube/Vimeo blokkok rendezett, metaadatokkal támogatott megjelenítéséhez.
+- **Szerkesztők, akik nem kódolnak**: no‑code beállításokkal, vizuális kontrollal.
 
-Egy oktatási portálon a JetBlog Video Playlist funkciója lehetőséget ad arra, hogy strukturált videó lejátszási listákat hozz létre, amelyeken keresztül az oktatási anyagokat rendszerezetten és áttekinthetően prezentálhatod. A Smart Posts List pedig segít abban, hogy az egyes kurzusok vagy modulok könnyen elérhetőek legyenek.
+## Bevezetési tippek és licenc
 
-## Szószedet
+- Telepítsd az Elementort (Pro nem szükséges).  
+- Kapcsold be csak a szükséges **Available Widgets** elemeket.  
+- Archív sablonoknál használd a **Posts Pagination/Navigation** widgeteket a *main query* mellett.  
+- A **Video Playlist**‑hez érdemes YouTube API‑kulcsot megadni az időtartamokhoz.  
+- Licenc: önálló JetBlog előfizetés 1 webhelyre éves díjjal; a bővítmény a Crocoblock csomagok részeként is elérhető, akár lifetime opcióval. A fejlesztő a Crocoblock (Jetimpex Inc.).
 
-- **Smart Posts Tiles**: Dinamikus csempék, amelyek vizuálisan vonzó módon jelenítik meg a tartalmakat.
-- **Smart Posts List**: Listaformátumú bejegyzésmegjelenítés számos szűrési és rendezési lehetőséggel.
-- **Text Ticker**: Gördülő szöveges üzenetek megjelenítése.
-- **Video Playlist**: Videó lejátszási listák létrehozása és kezelése.
-- **JetEngine**: Bővítmény egyedi tartalomtípusok és mezők kezelésére.
-- **JetElements**: Vizuális elemek hozzáadása az oldalhoz.
-- **JetStyleManager**: Stíluskezelő bővítmény.
-- **JetSearch**: Keresési funkciók hozzáadása.
-- **JetSmartFilters**: Szűrési lehetőségek bővítménye.
+```text
+Gyors indulási ellenőrzőlista
+1) Elementor telepítve és aktiválva
+2) JetBlog aktiválva → csak szükséges widgetek bekapcsolva
+3) Archiv/Category template: Smart Posts List/Tiles + Posts Pagination
+4) Home: Smart Posts Tiles (kiemeltek) + Smart Posts List (friss cikkek)
+5) Header: Text Ticker (utolsó 5–10 poszt)
+6) Video: Playlist + YouTube API‑kulcs (opcionális)
+7) Editor Load Level finomhangolása nagy oldalaknál
+```
+
+## Rövid widget‑áttekintő
+
+- **Smart Posts List**: listanézet, oszlop/sor, képméretek, meta/kivonat, szűrés és rendezés.  
+- **Smart Posts Tiles**: 9 csempelayout, csempe‑méretek, karusszel, lapozás.  
+- **Text Ticker**: hírcsík írógép‑effekttel, autoplay, dátum/ikonok.  
+- **Video Playlist**: YouTube/Vimeo lista, egyedi videók, dinamikus metaadatok.  
+- **Posts Pagination**: számozott lapozás a fő lekérdezéshez illesztve.  
+- **Posts Navigation**: előző/következő navigáció archívumokhoz.
+
+Ezzel a bővítménnyel pontosan azt kapod, amire egy modern magazin‑ vagy hírsite‑nak szüksége van: gyors, látványos és stabil tartalommegjelenítést, fejlett lekérdezésekkel és no‑code szerkesztéssel.

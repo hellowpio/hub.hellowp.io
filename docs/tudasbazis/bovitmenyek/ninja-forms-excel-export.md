@@ -1,58 +1,106 @@
-# Ninja Forms - Excel Export
+---
+title: "Ninja Forms - Excel Export"
+description: "Űrlapbeküldések exportálása natív Excel (.xlsx/.xls) formátumba, célzott szűréssel és oszlopsorrendezéssel."
+sidebar_label: "Ninja Forms - Excel Export"
+---
 
-Az Ninja Forms - Excel Export egy hatékony eszköz, amely lehetővé teszi a felhasználók számára, hogy a WordPress űrlapok adatbeviteli eredményeit Microsoft Excel táblázatba exportálják. Kiválaszthatod az adatokat, amelyeket exportálni szeretnél, és meghatározhatod a dátumintervallumot is. Ez az eszköz számos előnyt kínál a felhasználók számára, különösen az adatok kezelése és elemzése terén.
+## Bevezetés: mire való és milyen problémát old meg?
 
-## Az Excel Export fő jellemzői
+A Ninja Forms – Excel Export egy hivatalos, prémium kiegészítő, amellyel a Ninja Forms űrlapbeküldéseit közvetlenül **Excel-fájlba** exportálhatod. Ahelyett, hogy CSV-vel és utólagos formázással bajlódnál, egy kattintással kapsz **.xlsx** vagy **.xls** fájlt, a szükséges mezőkkel és sorrendben. Így kevesebb az adatkonverzió, gyorsabbak a riportok, és az adatátadás is gördülékenyebb azok felé, akik Excelben dolgoznak.
 
-### Teljes irányítás az exportált adatok felett
+## Követelmények és előfeltételek
 
-Az Excel Export segítségével teljes mértékben kontrollálhatod, mely adatokat szeretnéd exportálni. Kiválaszthatod az űrlapot, a mezőket és a dátumintervallumot is. Az adatokat egyszerűen egy .xlsx vagy .xls fájlba mentheted egy gombnyomással. Nincsenek korlátozások az exportálható adatok mennyiségére vagy típusára vonatkozóan.
+- **Ninja Forms telepítve és aktív**
+- Az érintett űrlapokon a **Store Submission** (Beküldés mentése) akció legyen bekapcsolva, hogy a beküldések a WordPress adatbázisban legyenek.
+- A szerveren elérhető **PHP ZipArchive** modul (különben az export nem fut).
+- Adminisztrátori hozzáférés a WordPress vezérlőpulthoz.
 
-### Exportálás bármely űrlapból bármely dátumintervallumban
+## Telepítés és aktiválás
 
-Az Excel Export lehetővé teszi az adatok exportálását bármely WordPress űrlapból. Beállíthatod a dátumintervallumot, amelyből az adatokat szeretnéd exportálni. Legyen szó havi, negyedéves vagy éves jelentésekről, vagy bármely más időszakról, az Excel Export megkönnyíti az adatok kinyerését.
+1. Telepítsd és aktiváld a kiegészítőt a WordPress bővítménykezelőn vagy a licenckezelő felületeden keresztül.
+2. Aktiváld a licencet (ha szükséges), hogy megkapd a frissítéseket és a támogatást.
+3. Ellenőrizd, hogy az űrlapjaidon aktív a **Store Submission** akció.
 
-### Szelektív adatexportálás
+## Fő funkciók, érthetően
 
-Nem mindig van szükséged minden mező adatára minden exportnál. Az Excel Export lehetővé teszi, hogy csak azokat az adatpontokat válaszd ki, amelyekre szükséged van. Egyszerűen jelöld be a mezőket, amelyeket exportálni szeretnél, és az eszköz csak ezeket az adatokat fogja összegyűjteni. A mezőket akár át is rendezheted a műszerfal nézetből történő húzással és ejtéssel.
+- **Natív Excel-export (.xlsx és .xls)**  
+  Válaszd ki, melyik formátum a kompatibilisebb a csapatod számára. Az .xlsx modern, az .xls régebbi környezetekhez lehet hasznos.
 
-### Exportálás .xlsx vagy .xls fájlokként
+- **Mezők kiválasztása és oszlopok sorrendezése**  
+  Pipáld ki, mely mezőket exportáld, majd **drag-and-drop** módszerrel állítsd be az oszlopok sorrendjét. Így az exportált táblázat már a neked megfelelő struktúrával készül el.
 
-Az eszköz képes mindkét formátumú táblázat létrehozására, legyen szó kompatibilitási okokról vagy makrók használatáról. Ezzel elkerülheted az utólagos átalakítással járó problémákat.
+- **Dátum- és értékalapú szűrés**  
+  Szűrj egy adott időszakra, és pontosíts mezőfeltételekkel (például **CONTAINS**, **IS EMPTY**, **GREATER THAN**, **LESS THAN**). Ezzel kizárólag a releváns adatok kerülnek az Excelbe.
 
-## Gyakran ismételt kérdések
+- **Egy felületen vezérelhető export**  
+  A WordPressben a **Ninja Forms > Excel Export** menüben végzed az egész folyamatot: űrlap választása, szűrés, mező- és formátumbeállítás, letöltés.
 
-### Módosíthatom a sorokat és oszlopokat az exportált táblázatban?
+- **Nincs beépített mennyiségi limit**  
+  A korlátot a szerver erőforrásai határozzák meg. Nagy adathalmaznál érdemes időszakra vagy feltételekre szűrni.
 
-Igen, a mezők húzásával és ejtésével módosíthatod a sorrendet az export beállításainál. Minden mező egy oszlopot alkot majd, és minden űrlapbeküldés egy új sort hoz létre.
+## Hogyan működik? – Lépésről lépésre
 
-### Szűrhetem-e az adatokat specifikus értékek alapján, és csak ezeket az adatokat exportálhatom?
+1. Nyisd meg: WordPress > Ninja Forms > **Excel Export**.  
+2. Válaszd ki az űrlapot a listából.  
+3. Állíts be szűréseket: dátumtartomány és/vagy mezőfeltételek.  
+4. Jelöld ki az exportálandó mezőket, rendezd az oszlopokat.  
+5. Válaszd ki a formátumot (**.xlsx** vagy **.xls**).  
+6. Kattints a **Download Excel file** gombra.
 
-Igen, a beküldési beállítások tartalmaznak egy szűrőt. Csak a szűrt beküldéseket is tartalmazhatod az exportban.
+## Haladó szűrési példák
 
-### Milyen támogatást nyújtanak a Ninja Forms ügyfeleknek?
+- Csak a hónap beküldései: kezdő dátum a hónap első napja, záró dátum a hónap utolsó napja.  
+- VIP leadek: “Megjegyzés” CONTAINS “VIP”.  
+- Minimum rendelésérték: “Összeg” GREATER THAN 100000.  
+- Hiányos bejegyzések felkutatása: “Telefonszám” IS EMPTY.
 
-Dedikált támogatói csapatunk áll rendelkezésre minden kérdésed esetén. Hétfőtől péntekig 9:00-16:00 (EST) között elérhetőek vagyunk, és igyekszünk minden ügyfélkérést 24 órán belül megválaszolni.
+```text
+Példa szűrés:
+- Dátum: 2025-01-01 – 2025-03-31
+- Feltétel 1: Mező = "Értékesítési státusz", Operátor = CONTAINS, Érték = "nyertes"
+- Feltétel 2: Mező = "Összeg", Operátor = GREATER THAN, Érték = 250000
+```
 
-## Gyakorlati példák
+## Gyakorlati használati esetek
 
-### Éves jelentések készítése
+- **Gyors riportkészítés**: Havi marketing lead riport csak a szükséges mezőkkel és sorrenddel, azonnal Excelben.  
+- **Pénzügyi egyeztetés**: Megrendelési űrlapok exportja .xlsx-be, összegmezővel és dátummal, előkészítve a könyvelésnek.  
+- **Ügyfélszolgálati átadás**: Releváns jegyek kiszűrése (pl. “Sürgős” CONTAINS “igen”), a csapat számára érthető oszlopsorrenddel.  
+- **Kutatás/elemzés**: Adattisztítás Excelben, pivot kimutatások készítése közvetlenül a kiexportált fájlból.
 
-Az Excel Export segítségével egyszerűen készíthetsz éves jelentéseket a WordPress űrlapok adataiból. Válaszd ki az adott évre vonatkozó adatokat, és exportáld őket Excel formátumban.
+## Kapcsolódó automatizálás
 
-### Ügyféladatbázis karbantartása
+Az Excel Export manuális letöltésre optimalizált. Ha **ütemezett, e-mailben érkező jelentésekre** van szükséged, használd a Scheduled Submissions Export kiegészítőt. Az ütemezett jelentések CSV formátumban érkeznek, és a WordPress időzített feladatait (WP-Cron) használják.
 
-Ha ügyféladatokat gyűjtesz a weboldaladon keresztül, az Excel Export segítségével rendszeresen frissítheted és karbantarthatod az ügyféladatbázisodat.
+## Előnyök és értékajánlat
 
-### Rendezvény regisztrációk kezelése
+- **Időmegtakarítás**: nincs külön CSV–Excel konverzió és utóformázás.  
+- **Pontosság**: célzott szűrések és mezőválasztás – csak a számodra fontos adatok kerülnek a fájlba.  
+- **Rugalmasság**: oszlopsorrend és formátumválasztás, kompatibilitás régi és új Excel-verziókkal.  
+- **Egyszerűség**: minden lépés egyetlen WordPress felületen.
 
-Rendezvények szervezésekor az Excel Export segítségével könnyedén kezelheted a résztvevők regisztrációját és adatait. Exportáld a regisztrációs adatokat és rendezd őket tetszés szerint.
+## Kinek ajánlott?
 
-## Szószedet
+- **Marketingeseknek**: gyors lead- és kampányriportok.  
+- **Értékesítésnek és pénzügynek**: megrendelések, ajánlatkérések struktúrált exportja.  
+- **Ügyfélszolgálatnak**: eszkalációra és SLA-követésre célzott listák.  
+- **Kutatóknak és elemzőknek**: Excel-alapú kimutatásokhoz tiszta bemeneti adatok.  
+- **Kis- és középvállalkozásoknak**: adminisztráció és döntéstámogatás Excelben.
 
-- **Excel**: A Microsoft által kifejlesztett táblázatkezelő szoftver.
-- **Export**: Adatok átvitele egy másik formátumba vagy rendszerbe.
-- **Dátumintervallum**: Az időtartomány, amelyből az adatokat gyűjtöd.
-- **Mező**: Az űrlap egy adott adatpontja.
-- **Szűrő**: Egy eszköz vagy módszer, amely lehetővé teszi bizonyos adatok kiválasztását mások kizárásával.
-- **Makró**: Egy automatikus művelet vagy sorozat Excelben.
+## Hibaelhárítás
+
+- **Nem indul az export**: ellenőrizd, hogy a szerveren elérhető a **PHP ZipArchive** modul.  
+- **Üres Excel fájl**: győződj meg róla, hogy az űrlapon aktív a **Store Submission**, és valóban vannak beküldések a megadott szűrési feltételekre.  
+- **Hiányzó mezők**: a mezőlista pipálásánál jelöld be a kért mezőket, és állítsd be a kívánt sorrendet.  
+- **Nagy adathalmaz miatti időtúllépés**: szűkítsd a dátumtartományt, egyszerre kevesebb mezőt exportálj, vagy növeld a szerver erőforrásait.
+
+## Adatvédelem és megfelelőség
+
+Az Excel-fájlok gyakran **személyes adatokat** tartalmaznak.  
+- Tárold a fájlokat biztonságos helyen, korlátozott hozzáféréssel.  
+- Kövesd a szervezeti adatkezelési szabályokat és jogszabályi előírásokat.  
+- Oszd meg csak azokkal, akiknek valóban szükségük van rá.
+
+## Összegzés
+
+A Ninja Forms – Excel Export gyors, pontos és rugalmas megoldás arra, hogy a WordPress űrlapadataidat **natív Excel** formátumban töltsd le. Célzott szűrés, egyéni oszlopsorrend és kétféle formátum segít abban, hogy azonnal használható táblázatot kapj – kevesebb utómunka, több értékteremtés. Automatizált, e-mailes jelentésekhez külön kiegészítő szükséges, CSV formátummal. A működéshez elengedhetetlen a Ninja Forms, a Store Submission akció és a ZipArchive modul.

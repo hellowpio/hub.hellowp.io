@@ -1,63 +1,83 @@
-# WooCommerce Product Reviews Pro
+---
+title: "WooCommerce Product Reviews Pro"
+description: "Professzionális, Amazon‑stílusú értékelések, kérdések, fotók/videók és fejlett moderálás a WooCommerce‑hez."
+sidebar_label: "WooCommerce Product Reviews Pro"
+---
 
-## A bővítmény funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-A WooCommerce Product Reviews Pro bővítmény lehetővé teszi, hogy a vásárlók különféle módokon hagyjanak visszajelzést a termékekről, beleértve a szöveges értékeléseket, fotókat és videókat. Ezenkívül kérdéseket is feltehetnek, és válaszokat kaphatnak, amelyek mind hozzájárulnak a közösségi bizonyítékok erősítéséhez és az eladások növeléséhez.
+A WooCommerce Product Reviews Pro egy hivatalos, fizetős kiegészítő, amivel az alap WooCommerce véleményrendszert teljes értékű, Amazon‑szerű élménnyé alakíthatod. Ha kevés az alap csillagozás + szöveg, itt kapsz kérdés‑válasz felületet, fotó/videó hozzájárulásokat, “hasznos” szavazást, fejlett szűrést és központi moderálást. Ez segít több, minőségi felhasználói tartalmat gyűjteni, gyorsabban megválaszolni vásárlói kérdéseket, és növelni a konverziót.
 
-### Fotók és videók hozzáadása
+## Fő funkciók és hogyan működnek
 
-Az alapértelmezett szöveges értékelések mellett a WooCommerce Product Reviews Pro lehetővé teszi a vásárlók számára, hogy fotókat és videókat csatoljanak értékeléseikhez. Ez különösen hasznos lehet azoknak a potenciális vásárlóknak, akik vizuálisan szeretnék látni, hogy egy termék hogyan néz ki vagy hogyan működik valós környezetben.
+### Többféle hozzájárulás és média
+- Több tartalomtípus: **értékelések (csillag + szöveg)**, **kérdések**, **önálló fotók**, **önálló videók**, valamint **megjegyzések** ezekhez.
+- **Média a véleményekben**: fotókat feltölthetnek a vásárlók; videót beágyazással adhatsz meg (külső tárhelyről), közvetlen feltöltés nélkül.
+- **Egy értékelés termékenként**: ha valaki már értékelt, új beküldés helyett a rendszer a meglévő értékelés frissítését kéri (e‑mail alapján). Tisztább adatbázis, kevesebb duplikáció.
 
-### Értékelési kvalifikátorok
+### Szűrés, rendezés, szavazás
+- **Szűrés** csillagérték, hozzájárulás‑típus (értékelés/kérdés/fotó/videó) és **kvalifikátorok** szerint (pl. méret, illeszkedés).
+- **Rendezés** “leginkább hasznos”, “legkevésbé hasznos”, dátum és értékelés alapján.
+- **Hasznos/nem hasznos** szavazás és tartalomjelentés moderálásra; szavazáshoz bejelentkezés szükséges. Beállíthatsz **láthatósági küszöböt** is, hogy csak bizonyos értékelések jelenjenek meg kiemelten.
 
-Az értékelési kvalifikátorok segítségével konkrét kérdéseket tehetsz fel a termékekkel kapcsolatban. Például megkérdezheted, hogy egy ruha mérete megfelelő-e, vagy hogy egy termék mennyire kényelmes. Ezek az információk segítenek a potenciális vásárlóknak megalapozott döntést hozni.
+### Felhasználói élmény és értesítések
+- Dinamikus termékfül: a bekapcsolt típusoktól függően külön **Reviews / Questions / Photos / Videos**, vagy gyűjtő **Discussion** fül jelenik meg.
+- **Szálfigyelés**: a felhasználó feliratkozhat egy értékelésre/kérdésre, és e‑mail értesítést kap a válaszokról.
+- **Saját hozzájárulások**: a fiókban külön nézet mutatja a beküldött értékeléseket, kérdéseket és médiát.
 
-### Egyéb hozzájárulási típusok
+### Adminisztráció, kvalifikátorok, SEO és integrációk
+- Új, központi **Reviews** lista az adminban: minden típus egy helyen kezelhető, szűrhető (típus, csillag, média), tömeges műveletekkel.
+- **Riportok** a legtöbbször értékelt, legjobb/leggyengébb átlagú termékekről.
+- **Kvalifikátorok**: egyedi, választható kérdések az értékelés űrlapján (pl. “Igaz méret?”, “Kényelem”), amelyek megjelennek a frontend‑en és szűrhetők.
+- **Strukturált adatok**: kiterjesztett Schema jelölések nemcsak a véleményekhez, hanem kérdésekhez és médiához is, javítva a keresőbeli megjelenést.
+- **Integrációk**: működik vendor piacterekkel (vendor‑moderáció, jelvények), közösségi bejelentkezéssel (könnyebb szavazás/hozzászólás), és lapfül‑kezelőkkel. Saját widgetek érhetők el (pl. legutóbbi kérdések).
+- **Import**: nincs beépített importáló; használhatsz általános WP/Woo import eszközöket.
 
-A bővítmény lehetőséget biztosít arra is, hogy más típusú hozzájárulásokat is fogadj, mint például kérdéseket és különálló fotókat vagy videókat (értékelés nélkül). Ezek a hozzájárulások kommentálhatók is, így a vásárlók kérdéseikre választ kaphatnak, illetve megoszthatják tapasztalataikat.
+## Gyakorlati példák
 
-### Értékelések szűrése és rendezése
+- Divat webáruház: beállítod a kvalifikátorokat (“Igaz méret”, “Illeszkedés”). A vásárlók szűrhetik az értékeléseket a saját testalkatuknak megfelelő visszajelzésekre, fotókkal illusztrálva.
+- Elektronikai bolt: a termékoldalon kérdés‑válasz szekciót adsz. A leginkább hasznosra szavazott válaszok előre kerülnek, csökkentve az ügyfélszolgálati terhelést.
+- Piactér: vendorok saját termékeik hozzájárulásait moderálhatják, jelvényeik látszanak az értékelőnél, növelve a bizalmat.
 
-A vásárlók szűrhetik és rendezhetik az értékeléseket különböző szempontok szerint, például csillagértékelés alapján. Ez lehetővé teszi számukra, hogy könnyen megtalálják a számukra releváns információkat.
+## Telepítés és első lépések
 
-### Duplikált értékelések elkerülése
+1. Telepítsd és aktiváld a bővítményt.
+2. Lépj a beállításokhoz, engedélyezd a kívánt típusokat, állítsd be a szavazást és a láthatósági küszöböt.
+3. Hozd létre a kvalifikátorokat, majd teszteld egy termékoldalon.
 
-A bővítmény lehetőséget biztosít arra, hogy a vásárlók frissítsék meglévő értékeléseiket, ahelyett hogy újakat adnának hozzá. Ez segít elkerülni a duplikált értékeléseket és biztosítja, hogy minden vélemény naprakész maradjon.
+```
+WooCommerce > Settings > Products > Reviews
+WooCommerce > Reviews
+My Account > My Contributions
+```
 
-### Szociális bejelentkezés támogatása
+## Hasznos megjegyzések
 
-A WooCommerce Social Login bővítménnyel integrálva a vásárlók egyszerűen bejelentkezhetnek közösségi média fiókjaikkal az értékelések írása, szavazás vagy hozzászólások megtekintése érdekében.
+- A bejelentkezési követelményeket a WordPress beszélgetési beállításai is befolyásolják.
+- Videókat nem töltesz fel közvetlenül; beágyazással működik. A fotók a médiatárba kerülnek.
+- Ha több típus aktív, a termékfül neve “Discussion” lehet; feliratot fordítás‑felülírással személyre szabhatod.
 
-### Moderáció és jelölések
+## Előnyök és értékajánlat
 
-A felhasználók jelezhetik azokat az értékeléseket, amelyek moderációra szorulnak. Az adminisztrátorok pedig beállíthatják, hogy csak bizonyos számú értékelés után jelenjenek meg az új vélemények.
+- **Több és jobb UGC**: valós fotók, videók, részletes válaszok – erősebb társadalmi bizonyíték.
+- **Gyorsabb döntéstámogatás**: szűrés és “leginkább hasznos” rendezés révén a lényeget azonnal látja a vevő.
+- **Kevesebb moderációs teher**: egy felületen kezelsz mindent, okos szűrőkkel és tömeges műveletekkel.
+- **Rendezett adatbázis**: az “egy értékelés termékenként” megoldja a duplikációkat.
+- **Jobb SEO‑megjelenés**: bővített strukturált adatokkal.
 
-## Más eszközökkel való együttműködés
+## Kinek ajánlott?
 
-A WooCommerce Product Reviews Pro zökkenőmentesen működik együtt több más bővítménnyel is:
+- Olyan boltoknak, ahol az alap véleményrendszer kevés, és szükség van **kérdés‑válaszra** vagy **média‑tartalmakra**.
+- Méret/illeszkedés‑kritikus kategóriáknak (divat, sport, cipő), ahol a **kvalifikátorok** döntőek.
+- **Piactereknek** vendor‑szintű moderációval.
+- Közepes‑nagy forgalmú áruházaknak, ahol a **fejlett szűrés és riportok** valódi időt spórolnak.
 
-- **WooCommerce Social Login**: Egyszerű bejelentkezési lehetőség közösségi média fiókokkal.
-- **Product Vendors**: Lehetővé teszi a termékgyártóknak vagy eladóknak, hogy saját értékeléseiket kezeljék és moderálják.
-- **Structured Data Markup**: Javítja az SEO teljesítményt azáltal, hogy strukturált adatokat biztosít a keresőmotorok számára.
+## Rendszerkövetelmények és kompatibilitás
 
-## Gyakorlati példák az alkalmazására
+- WordPress: 5.2 vagy újabb
+- WooCommerce: 3.6 vagy újabb
+- PHP: 7.4 vagy újabb
+- Nyelvek: angol, olasz, spanyol
+- Hivatalos Marketplace bővítmény, fejlesztő: SkyVerge
 
-### Divatáruház
-
-Egy divatáruházban a vásárlók feltölthetik képeiket az általuk vásárolt ruhákról, ami segít más vásárlóknak látni, hogyan áll az adott termék különböző testalkatokon. Az értékelési kvalifikátorok segítségével pedig megkérdezheted, hogy a ruha mérete megfelelő-e vagy mennyire kényelmes.
-
-### Elektronikai áruház
-
-Egy elektronikai áruházban a vásárlók videókat tölthetnek fel arról, hogyan használják az adott terméket. Ez különösen hasznos lehet olyan komplex termékek esetében, mint például drónok vagy okostelefonok.
-
-### Kérdések és válaszok
-
-Az értékelések mellett a vásárlók kérdéseket is feltehetnek egy adott termékkel kapcsolatban. Ez hasznos lehet azoknak, akik még bizonytalanok egy vásárlás előtt és további információkra van szükségük.
-
-## Szószedet
-
-- **Értékelési kvalifikátorok**: Speciális kérdések, amelyeket a vásárlók válaszolhatnak meg egy termék értékelése során.
-- **Szociális bejelentkezés**: Bejelentkezési lehetőség közösségi média fiókokkal.
-- **Moderáció**: Az értékelések ellenőrzése és jóváhagyása az adminisztrátor által.
-- **Strukturált adat**: Adatok olyan formátumban, amelyet a keresőmotorok könnyen feldolgozhatnak.
-- **Duplikált értékelés**: Ugyanazon vásárló által írt több azonos vagy hasonló tartalmú értékelés ugyanarról a termékről.
+Összességében a Product Reviews Pro a WooCommerce véleményeket egy konverziótámogató, médiás, szűrhető és jól moderálható ökoszisztémává bővíti — pontosan azt adja, amit a modern vásárlók és a hatékony üzemeltetés elvár.

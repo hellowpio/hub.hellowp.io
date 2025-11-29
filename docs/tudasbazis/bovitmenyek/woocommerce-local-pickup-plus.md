@@ -1,53 +1,89 @@
-# WooCommerce Local Pickup Plus
+---
+title: "WooCommerce Local Pickup Plus"
+description: "Prémium WooCommerce bővítmény több átvételi hely, időpontfoglalás, termék‑ és kategóriaszintű szabályok, díjak és adózás kezelésére."
+sidebar_label: "WooCommerce Local Pickup Plus"
+---
 
-A WooCommerce Local Pickup Plus bővítmény egy átfogó megoldást kínál azon vállalkozások számára, amelyek több helyszínen, elosztó központban vagy átvételi ponton is szeretnék biztosítani az áruátvételt. Ez a bővítmény lehetővé teszi, hogy az ügyfelek online vásároljanak, majd személyesen vegyék át a termékeket.
+## Mi ez és milyen problémát old meg?
 
-## Több átvételi helyszín beállítása
+A Local Pickup Plus egy prémium kiterjesztés, amellyel a WooCommerce alap „Helyi átvétel” módját professzionális, több telephelyes, időzített átvételi folyamattá alakíthatod. Úgy teszi lehetővé a „vásárolj online, vedd át az üzletben” (BOPIS) modellt, hogy közben pontosan szabályozhatod: hol érhető el az átvétel, mely termékeknél/kategóriáknál engedélyezett vagy kötelező, mikor vehető át (nyitvatartás, ünnepnapok, előkészítési idő), és milyen díj/engedmény kapcsolódik hozzá. Ezzel leváltod a WooCommerce alap, egypontos és rugalmatlan helyi átvételét.
 
-### Több helyszín választása
-A bővítmény egyik legfontosabb funkciója, hogy lehetőséget biztosít több átvételi helyszín megadására. Az ügyfelek a rendelési folyamat során kiválaszthatják, hol szeretnék átvenni a terméket. Ez különösen hasznos azoknak a boltoknak, amelyek több fizikai bolttal vagy elosztó központtal rendelkeznek.
+## Fő funkciók és működés
 
-### Átvételi helyek kezelése
-Az átvételi helyszínek megjelennek az ügyfél fiókjában, a rendelés részleteinél és az e-mail értesítésekben. Az admin felületén pedig nyomon követhető, hogy melyik helyszínre várható az ügyfél.
+- **Több átvételi hely**: Végtelen számú helyszínt hozhatsz létre (üzlet, raktár, átvételi pont). A vevő a pénztárnál választ, az átvételi cím megjelenik a visszaigazításban, a fiókban és az admin rendelésnézetben.
 
-## Termékekhez kapcsolódó beállítások
+- **Termék‑ és kategóriaszintű szabályok**: Beállíthatod, hogy egy termék legyen „átvehető”, „nem átvételes (csak szállítás)”, vagy „kötelezően átvételes”. Ütközésnél a termékszint felülírja a kategóriaszintet, így finoman hangolhatod a kínálatot.
 
-### Termék- és kategóriaspecifikus átvétel
-A bővítmény lehetőséget biztosít arra is, hogy egyes termékeknél vagy kategóriáknál különböző átvételi szabályokat állíts be. Például egyes termékek csak bizonyos helyszíneken vehetők át, míg másoknál kötelező az átvétel.
+- **Per‑termék vagy per‑rendelés helyválasztás**: Dönthetsz, hogy a kosár átvételre jogosult tételei külön helyre kérhetők-e (pl. több boltban elérhető tételek), vagy az egész rendelésre egyetlen közös helyet engedélyezel.
 
-### Átvételi költségek és kedvezmények
-Beállíthatod, hogy bizonyos helyszíneken történő átvétel esetén külön díjat számolj fel, vagy éppen kedvezményt adj az ügyfeleknek. Ez ösztönözheti őket arra, hogy a számodra kedvezőbb átvételi módot válasszák.
+- **Helyszínhez kötött elérhetőség**: Minden helyhez megadhatod, mely termékek/kategóriák érhetők el ott. A pénztár csak a releváns helyeket mutatja, így a vevő nem választhat „rossz” üzletet.
 
-## Ütemezett átvételek
+- **Időpontfoglalás (Pickup Appointments)**: Beállíthatod a nyitvatartást és az ünnepnapokat globálisan vagy helyszínenként, a **lead time** (előkészítési idő), **deadline** (foglalási határidő), idősáv-hossz (15/30/60 perc) és a **kapacitás** (egy idősávban hány átvétel) paramétereivel. A vevő a pénztárban idősávot foglal, te pedig tervezhető kapacitást kapsz.
 
-### Átvételi időpontok beállítása
-A bővítmény lehetőséget ad arra is, hogy az ügyfelek előre ütemezzék az átvételi időpontot. Beállíthatók az üzleti órák és a hétvégi napok, valamint a szükséges előkészítési idő és a maximális ütemezési határidő.
+- **Ár és adózás**: Az átvételhez rendelhetsz **díjat** vagy **kedvezményt**. Az adó számítása történhet az átvételi hely címe alapján, így helyfüggő adózási szabályoknak is megfelelhetsz.
 
-### Ütemezési korlátok
-Lehetőség van korlátozni az egyes időpontokra foglalható átvételek számát is. Ez különösen hasznos lehet olyan esetekben, amikor nagyobb mennyiségű áruval kell egyszerre foglalkozni.
+- **Geokódolás és rendezés**: Ha megadsz Google Geocoding API kulcsot, a helyek a vevőhöz mért **távolság szerint rendezhetők** (csak rendezés, nem korlátozás).
 
-## Értesítések
+- **CSV import/export**: Átvételi helyek gyors, tömeges kezelése. Hasznos több tucat/ száz telephelynél.
 
-### Raktárak és dolgozók értesítése
-Az admin felületen megadható e-mail címek listája, amely értesítést kap, ha egy adott helyszínre érkezik rendelés. Ez segít abban, hogy minden érintett időben értesüljön az átvételről.
+- **Értesítések helyszínenként**: Minden helyhez rendelhetsz e‑mail listát, akik automatikus admin értesítést kapnak, ha az a hely érintett a rendelésben.
 
-## Google Maps Integráció
+- **Admin eszközök**: Rendelésekhez kézzel is rögzíthetsz átvételi információt, az admin rendeléslista pedig szűrhető átvételi idő szerint.
 
-### Helyszínek távolság szerinti rendezése
-A bővítmény támogatja a Google Maps Geocoding szolgáltatást, amely lehetővé teszi, hogy az ügyfelek a hozzájuk legközelebb eső átvételi pontokat válasszák ki. Ez növeli a felhasználói élményt és megkönnyíti az átvétel szervezését.
+- **Integrációk**: Export és számlázó/csomagkövető kiegészítőkkel együttműködik; az exportok tartalmazzák az átvételi metaadatokat.
 
 ## Gyakorlati példák
 
-- **Helyi üzletek**: Egy pékség több üzlettel rendelkezik a város különböző részein. Az ügyfelek online rendelhetnek és kiválaszthatják, melyik üzletben szeretnék átvenni a friss pékárut.
-- **Distribúciós központok**: Egy nagykereskedelmi cég több raktárral rendelkezik országszerte. Az ügyfelek kiválaszthatják a hozzájuk legközelebb eső raktárt az áruátvételhez.
-- **Specializált termékek**: Egy bútorbolt bizonyos nagy méretű vagy törékeny bútorokat csak személyes átvétellel ad ki. Az ügyfelek előre ütemezhetik az átvétel időpontját.
+- **Pékség, napi előrendelés**: 3 órás lead time, 15 perces idősávok, 6 rendelés/slot. A vevő csak a nyitvatartáson belül foglalhat, aznapra, megfelelő előkészítési idővel.
 
-## Szószedet
+- **Elektronikai lánc**: A nagy TV „kötelező átvétel”, kis kiegészítők szállíthatók. A vevő egyetlen helyet választhat rendelésenként. A pénztár csak azoknál a boltoknál enged választást, ahol a TV elérhető.
 
-- **Átvételi helyszín**: Az a fizikai hely, ahol az ügyfél átveheti a rendelését.
-- **Google Maps Geocoding**: Egy szolgáltatás, amely lehetővé teszi a földrajzi helyek címek alapján történő meghatározását.
-- **Ütemezett átvétel**: Az az időpont, amelyet az ügyfél előre lefoglal az áruátvételre.
-- **Előkészítési idő**: Az az időtartam, amely szükséges a rendelés összekészítéséhez.
-- **Maximális ütemezési határidő**: Az az időpont, ameddig előre lehet ütemezni az átvételt.
+- **Raktári átvétel**: Bizonyos web‑only termékek csak a disztribúciós központban vehetők át; az adó a raktár címe alapján számítódik.
 
-Ez a bővítmény tehát számos lehetőséget kínál arra, hogy a vásárlói élményt javítsd és optimalizáld az áruátvételi folyamatot.
+- **Curbside pickup**: Kültéri átvétel időpontfoglalással, slotonként 5 hely. Az érintett hely csapata automatikus e‑mailt kap a részletekkel.
+
+## Beállítás röviden
+
+1. Aktiválás után menj a WooCommerce szállítási beállításaihoz, majd nyisd meg a Local Pickup Plus oldalt.
+2. Az **Általános** fülön engedélyezd a bővítményt, add meg a megjelenített címkét, szükség esetén az API kulcsot és a loggolást.
+3. A **Pénztár megjelenítésnél** válaszd a per‑termék vagy per‑rendelés helyválasztást, állíts be alapértelmezett viselkedést (szállítás vs. átvétel) és a telephelyek rendezését.
+4. A **Helyszínek** alatt vedd fel az üzleteket: cím, megjegyzés, elérhető termékek/kategóriák, egyedi díj/kedvezmény, nyitvatartás/ünnepnapok, értesítési e‑mail címek.
+5. Az **Időpontfoglalásnál** állítsd be a módot (opcionális/kötelező), idősáv-hosszt, kapacitást, lead time‑ot, deadline‑t és a számítás módját.
+6. Az **Ár és adó** résznél add meg a díjat/kedvezményt, és kapcsold be az adó számítását az átvételi cím alapján.
+7. Teszteld a pénztárat több termékkombinációval.
+
+```
+Útvonal:
+WooCommerce > Beállítások > Szállítás > Local Pickup Plus
+
+Fő kapcsolók:
+- Helyválasztás: [Per termék] / [Per rendelés]
+- Időpontfoglalás: [Opcionális] / [Kötelező]
+- Adó az átvételi cím alapján: [Be]
+```
+
+## Előnyök és értékajánlat
+
+- **Skálázható több telephelyre**: központi szabályokkal és helyszín-specifikus finomhangolással.
+- **Pontos kapacitáskezelés**: elkerülöd a torlódást és a hibás ígéretet.
+- **Jobb vásárlói élmény**: csak releváns helyek jelennek meg, átlátható idősávokkal.
+- **Belső hatékonyság**: automatizált értesítések, exportok, admin szűrés.
+- **Adózási megfelelés**: helyfüggő adó számítása.
+- **Idő- és költségmegtakarítás**: CSV tömegműveletek, per‑termék szabályok, kevesebb manuális egyeztetés.
+
+## Kinek ajánlott?
+
+- **Több telephelyes kiskereskedőknek** (BOPIS/click‑and‑collect).
+- **Étel‑ital szektornak** (pékség, étterem, delikát) idősávos átvétellel.
+- **Nagy/érzékeny termékeket** értékesítőknek, ahol a szállítás drága vagy kockázatos.
+- **Raktári/elosztó központtal** rendelkező márkáknak.
+- **Hálózatos átvételi pontoknak**, ahol termékenként eltérő elérhetőség van.
+
+## Fontos megjegyzések és tippek
+
+- **Blokkalapú pénztár kompatibilitás**: a bővítmény blokkalapú Kosár/Pénztárral korlátozott lehet. Ha gondot tapasztalsz, válts a rövidkódos nézetre, és ellenőrizd az aktuális kompatibilitási állapotot.
+- **Kapcsold ki a WooCommerce alap „Local Pickup” módot**, hogy elkerüld az ütközéseket.
+- **Geokódolás**: a távolság szerinti rendezés csak sorrendezés; nem zár ki távoli helyeket.
+- **Lead time tipp**: ha nyitvatartási órák szerint számolsz, a lead time‑ot gyakran jobb órában megadni, hogy reális dátumok jelenjenek meg.
+- **Szabályütközés**: mindig a termékszintű beállítás érvényesül a kategóriaszinttel szemben.
+- A funkciók és kompatibilitás idővel változhatnak; beállítás előtt érdemes a legfrissebb dokumentációt áttekinteni.

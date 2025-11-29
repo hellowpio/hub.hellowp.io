@@ -1,52 +1,96 @@
-# LearnDash LMS - bbPress Integration
+---
+title: "LearnDash LMS - bbPress Integration"
+description: "Hivatalos LearnDash kiegészítő, amellyel bbPress fórumokat társíthatsz kurzusokhoz és csoportokhoz, automatikus hozzáférés-kezeléssel."
+sidebar_label: "LearnDash LMS - bbPress Integration"
+---
 
-A **LearnDash LMS - bbPress Integration** lehetővé teszi, hogy a bbPress fórumokat közvetlenül összekapcsold a LearnDash kurzusokkal. Ezáltal a kurzushoz hozzáférő diákok közvetlenül a hozzájuk rendelt fórumokon kommunikálhatnak és oszthatják meg tapasztalataikat.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A LearnDash LMS – bbPress Integration egy ingyenes, hivatalos kiegészítő, amely összeköti a LearnDash kurzusaidat és csoportjaidat a bbPress fórumrendszerrel. A legnagyobb előnye, hogy a **fórum-hozzáférést automatikusan kezeli**: ha valaki beiratkozik egy kurzusodra, azonnal beléphet a hozzá társított fórum(ok)ba, és posztolhat. Nem kell kézzel szerepköröket, jogokat állítgatnod, mégis **zárt, kurzusonként szeparált közösségeket** tudsz működtetni. Igény szerint a fórum **nyilvánosan olvasható** is lehet, így a látogatók látnak tartalmat, de írni csak a beiratkozottak tudnak.
 
-### Fórumok és kurzusok összekapcsolása
-A bbPress fórumokat egyszerűen hozzárendelheted egy vagy több LearnDash kurzushoz. Ez azt jelenti, hogy amint egy diák beiratkozik egy kurzusra, automatikusan hozzáférést kap az adott kurzushoz tartozó fórumhoz.
+## Előfeltételek és telepítés
 
-### Hozzáférési korlát beállítása
-Ha több kurzust is hozzárendelsz egy fórumhoz, kétféle hozzáférési módot állíthatsz be:
-- **All (alapértelmezett):** A felhasználónak minden hozzárendelt kurzushoz hozzáféréssel kell rendelkeznie, hogy posztolhasson a fórumon.
-- **Any:** A felhasználónak csak egy hozzárendelt kurzushoz kell hozzáféréssel rendelkeznie, hogy posztolhasson a fórumon.
+- **Előfeltételek:** aktív LearnDash LMS és bbPress bővítmény.
+- **Telepítés:**
+  - WordPress admin > LearnDash LMS > Add-Ons > bbPress for LearnDash > Install/Activate.
+  - Alternatíva: a LearnDash-fiókból letöltött .zip feltöltése a Bővítmények > Új hozzáadása > Bővítmény feltöltése menüben.
 
-### Egyéni üzenet a hozzáférés nélküli felhasználók számára
-Testreszabhatod az üzenetet, amelyet azok a felhasználók látnak, akik nem rendelkeznek hozzáféréssel a fórumhoz. Például tartalmazhatsz linket a kurzus megvásárlásához vagy egyéb információkat.
+## Hogyan működik röviden?
 
-### Fórum megtekintésének engedélyezése
-Lehetőséged van arra is, hogy a nem beiratkozott felhasználók megtekintsék a fórum témáit és hozzászólásait, de ne tudjanak posztolni vagy válaszolni.
+1. Hozz létre egy vagy több **bbPress fórumot**.
+2. A fórum szerkesztő oldalán megjelenik a LearnDash doboz, ahol **kurzus(ok)hoz és/vagy csoport(ok)hoz társíthatod** a fórumot.
+3. Beállíthatod, hogy a belépéshez **minden kiválasztott kurzusra (“All”)** vagy **bármelyikre (“Any”)** legyen szükség.
+4. Meghatározhatod, hogy a **nem beiratkozottak láthatják-e** (csak olvasás) a fórumot, illetve **egyéni “Nincs hozzáférés” üzenetet** is megadhatsz.
+5. A hozzáférést a bővítmény ezután **automatikusan kezeli** a beiratkozás alapján. A tanulók a dinamikus **Course Forum** widgeten és bbPress rövidkódokon keresztül könnyen megtalálják a fórumot.
 
-## Egyéb eszközökkel való integráció
+Megjegyzés: a bővítmény **nem hoz létre automatikusan fórumokat** – azokat bbPress-ben neked kell létrehoznod.
 
-A LearnDash és bbPress integráció zökkenőmentesen működik együtt más népszerű bővítményekkel is, mint például:
-- **WooCommerce:** Lehetővé teszi a kurzusok értékesítését.
-- **MemberPress:** Tagsági rendszerrel integrálható.
-- **Easy Digital Downloads:** Digitális termékek értékesítésére használható.
-- **Gravity Forms:** Fejlett űrlapkészítési lehetőségeket biztosít.
+## Fő funkciók részletesen
 
-## Gyakorlati példák
+- **Automatikus fórum-hozzáférés**  
+  Amint valaki beiratkozik vagy hozzáférést vásárol egy kurzushoz, automatikusan posztolhat a társított fórumon. Kilépés/lemondás esetén a jogosultság megszűnik – külön adminisztráció nélkül.
 
-### Diákok közösségének építése
-Egy nyelvtanfolyamot kínáló online iskola létrehozhat egy fórumot minden nyelvi szinthez. A diákok így megoszthatják egymással tanulási tapasztalataikat és kérdéseket tehetnek fel az oktatóknak.
+- **Nyilvános olvasás vagy teljes rejtés**  
+  Dönthetsz, hogy a fórum témái **olvasva legyenek-e publikusak** (marketing, bizalomépítés), vagy teljesen **rejtve** maradjanak a kurzuson kívüliek számára.
 
-### Technikai támogatás
-Egy szoftverfejlesztési kurzus esetében a fórum kiváló hely lehet a diákok számára, hogy technikai kérdéseket tegyenek fel és megvitassák az adott témákat.
+- **Több fórum egy kurzushoz**  
+  Egy kurzushoz **tetszőleges számú fórumot** rendelhetsz (pl. “Kérdések”, “Projekt-visszajelzés”, “Off-topic”), így fókuszált beszélgetési tereket hozhatsz létre.
 
-### Projektmunkák megbeszélése
-Egy projektalapú tanfolyamon a diákok és oktatók fórumokon keresztül oszthatják meg ötleteiket, és visszajelzéseket adhatnak egymás munkájáról.
+- **Hozzáférési logika több kurzus esetén**  
+  Beállíthatod, hogy posztolni csak akkor lehessen, ha a felhasználó **minden** kijelölt kurzushoz hozzáfér (“All”), vagy elég, ha **bármelyikhez** (“Any”). Ez ideális közös, tematikus fórumokhoz.
 
-## Legfontosabb jellemzők
+- **Testreszabható “Nincs hozzáférés” üzenet**  
+  Egyéni üzenetet adhatsz meg, például rövid magyarázattal és egy cselekvésre ösztönző szöveggel (pl. hogyan szerezhet hozzáférést).
 
-- **Közvetlen integráció a LearnDash és bbPress között:** Egyszerűen társíthatók a fórumok és kurzusok.
-- **Rugalmas hozzáférési beállítások:** Több kurzus hozzárendelése és különböző hozzáférési módok beállítása.
-- **Testreszabható üzenetek:** Egyéni üzenetek megadása a hozzáférés nélküli felhasználók számára.
-- **Megtekintési engedélyek:** Nem beiratkozott felhasználók számára is elérhetővé tehető a fórum tartalma.
+- **“Course Forum” widget**  
+  A widget **dinamikusan felismeri** az éppen megtekintett kurzust, és **közvetlen linket** ad a társított fórum(ok)hoz. A kurzus, lecke, téma és kvíz oldalakon is működik, így a tanulók egy kattintással elérnek mindent.
 
-## Szószedet
+- **Rövidkód-támogatás**  
+  A bbPress rövidkódjaival fórumlistákat és nézeteket illeszthetsz be bárhová (pl. kurzusleírás, külön oldal):
 
-- **bbPress:** Egy WordPress bővítmény, amely lehetővé teszi fórumok létrehozását és kezelését.
-- **LearnDash:** Egy LMS (Learning Management System) bővítmény, amely online kurzusok létrehozását és kezelését teszi lehetővé WordPress alapú weboldalakon.
-- **Hozzáférési korlát:** Az a beállítás, amely meghatározza, hogy milyen feltételek mellett férhetnek hozzá a felhasználók a fórumokhoz.
-- **Widget:** Egy kis alkalmazás vagy modul, amely egy adott funkciót biztosít és általában az oldalsávban jelenik meg.
+  ```
+  [bbp-forum-index]
+  ```
+
+- **Társítás csoportokkal is**  
+  Nemcsak kurzushoz, hanem **LearnDash csoportokhoz** is rendelhetsz fórumokat, így vállalati vagy osztály-alapú szervezésnél is átlátható a hozzáférés.
+
+## Konkrét, gyakorlati példák
+
+- **Zárt kurzusfórum minden tanfolyamhoz**  
+  Minden kurzusodhoz külön fórumot társítasz. A tanulók kérdezhetnek, egymásnak segíthetnek; a kívülállók a beállításodtól függően semmit nem látnak vagy csak olvashatnak.
+
+- **Közös haladó fórum több képzéshez**  
+  Egy “Haladó Python” fórumot több kurzushoz kapcsolsz. “Any” módban elég, ha bármelyik haladó kurzuson beiratkozott; “All” módban csak azok posztolhatnak, akik minden szükséges előfeltétel-kurzust elvégeztek.
+
+- **Promóció read-only nézettel**  
+  A “Forum View” opcióval a látogatók belelátnak a beszélgetésekbe, de a hozzászóláshoz be kell iratkozni. A “Nincs hozzáférés” üzenetben röviden leírod, hogyan juthatnak hozzáféréshez.
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás:** a jogosultságkezelés automatikus, nincs kézi szerepkör-állítgatás.
+- **Rendezett közösség:** kurzusonként/csoportonként szeparált témák, releváns beszélgetések.
+- **Rugalmas hozzáférés:** publikus olvasás, zárt posztolás, All/Any logika.
+- **Jobb felhasználói élmény:** a widget és a rövidkódok miatt a fórum mindig “kéz alatt van”.
+- **Konverziótámogatás:** a testreszabható üzenet segít a beiratkozás felé terelni az érdeklődőket.
+
+## Kinek ajánlott?
+
+- **Online oktatóknak és kurzuskészítőknek**, akik közösséget és Q&A felületet szeretnének kurzusonként.
+- **Vállalati L&D csapatoknak**, ahol csoportokra bontott, zárt tudásmegosztás szükséges.
+- **Képzési ügynökségeknek és membership oldalaknak**, ahol skálázható és automata hozzáférés-kezelés kell.
+- **BuddyPress/BuddyBoss felhasználóknak**, ha kifejezetten fórum alapú közösséget szeretnének; a bbPress integráció önmagában is elegendő, nem kötelező a teljes közösségi platform.
+
+## Korlátok és megjegyzések
+
+- **Fórumokat neked kell létrehozni** a bbPress-ben; a kiegészítő nem generál fórumokat.
+- **Megjelenés és moderáció**: a kinézetet és moderációs lehetőségeket a bbPress és a témád határozza meg; ez a bővítmény az összekapcsolásról és a hozzáférésről szól.
+- **Nem teljes közösségi háló**: célzott, témákra szűkített fórumélményt kapsz, nem egy teljes social platformot.
+
+## Gyors tippek beállításhoz
+
+- **Tematikus közös fórumhoz:** állítsd a hozzáférési logikát “All” vagy “Any”-ra az igény szerint.
+- **Read-only promóhoz:** engedélyezd a publikus megtekintést, és írd meg a konverziót segítő “Nincs hozzáférés” üzenetet.
+- **Widget elhelyezése:** tedd a Course Forum widgetet a kurzus oldalsávjába, hogy a tanulók minden leckéből egy kattintással elérjék a fórumot.
+
+Ezzel a kiegészítővel gyorsan és biztonságosan építesz kurzus-közösségeket, miközben a hozzáférés-kezelés teljesen automatikus marad.

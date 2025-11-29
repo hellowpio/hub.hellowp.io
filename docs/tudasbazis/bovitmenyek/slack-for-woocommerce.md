@@ -1,58 +1,81 @@
-# Slack for WooCommerce
+---
+title: "Slack for WooCommerce"
+description: "Valós idejű Slack-értesítések WooCommerce eseményekhez, testreszabható üzenetekkel és fejlesztői hookokkal."
+sidebar_label: "Slack for WooCommerce"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A Slack for WooCommerce egy integráció, amely lehetővé teszi, hogy a WooCommerce áruházad eseményeiről értesítéseket kapj közvetlenül a Slack csatornádon. Ezáltal te és a csapatod mindig naprakészek lehettek az áruházban történő eseményekről anélkül, hogy folyamatosan ellenőrizni kellene a WooCommerce irányítópultot.
+A Slack for WooCommerce egy prémium bővítmény, amellyel a boltod fontos eseményei (rendelések, készlet, értékelések, stb.) azonnal megjelennek a Slackben. Így a csapatod a saját csatornáin, valós időben látja a történéseket, kevesebb e-maillel és kevesebb wp-admin belépéssel. Készítője és hivatalos karbantartója a Kestrel.
 
-### Értesítési típusok
+## Hogyan működik röviden?
 
-A bővítmény jelenleg hét különböző értesítési eseményt támogat, amelyek mindegyike külön-külön engedélyezhető:
-- **Új bejegyzés**: Értesítés új blogbejegyzés közzétételekor.
-- **Új rendelés**: Értesítés új rendelés beérkezésekor.
-- **Hátralékos rendelés**: Értesítés, ha egy rendelés hátralékos.
-- **Alacsony készlet**: Értesítés, ha egy termék készlete alacsony.
-- **Készlethiány**: Értesítés, ha egy termék kifogyott.
-- **Új ügyfél**: Értesítés új ügyfél regisztrációjakor.
-- **Új értékelés**: Értesítés új termékértékelés érkezésekor.
+A bővítmény a Slackhez OAuth-kapcsolattal csatlakozik. Miután összekötötted a boltodat a Slack munkatereddel, az előre definiált WooCommerce eseményekhez hozzárendelsz Slack-csatornákat és üzenetsablonokat. Amikor az esemény megtörténik (pl. új rendelés érkezik), a bővítmény elküldi az üzenetet a kiválasztott csatornára vagy akár privát csoportba/DM-be (Slack oldali beállításokkal).
 
-### Egyedi értesítések
+## Fő funkciók részletesen
 
-Az értesítések testreszabhatóak:
-- **Csatorna és emoji kiválasztása**: Minden értesítési típushoz külön csatornát és emojit rendelhetsz.
-- **Értesítési üzenet testreszabása**: Minden értesítési üzenet szövegét egyedileg módosíthatod, hogy az pontosan úgy nézzen ki, ahogyan szeretnéd.
+- **Beépített értesítési események**: hét alapértelmezett trigger áll rendelkezésre: New Order, Low Stock, Out of Stock, Backorder, New Customer, New Review, New Post. Ezek igény szerint külön-külön kapcsolhatók és testreszabhatók.
+- **Eseményenkénti csatorna és emoji**: minden értesítéshez másik csatornát és emoji ikont állíthatsz be. Emellett megadhatsz globális alapértelmezett csatorná(ka)t és emojit is, amelyet az események örökölnek, ha nem definiálsz egyedit.
+- **Üzenetsablonok és formázás**: a beépített üzenetépítővel saját szöveget készíthetsz, sablonváltozókkal (pl. rendelés adatai, vevő neve, értékelés szövege). Támogatott a Slack formázás (félkövér, dőlt, kód, link-szintaxis).
+- **Extended notifications**: több eseménynél bekapcsolhatod a részletes nézetet, ami például a rendelési tételeket, mennyiségeket, összesítéseket vagy egy értékelés szövegét is beemeli az üzenetbe. Így kevesebb kattintás kell a döntéshez.
+- **Többcsatornás küldés és csatornalista-frissítés**: a bővítmény cache-eli a Slack-csatornákat. Ha a Slackben új csatornát hozol létre, a „Reload Available Channels” gombbal frissítheted a listát.
+- **Teszt értesítés és naplózás**: a beállításokból bármikor küldhetsz próbaüzenetet. A Debug mód részletes naplót ír a WooCommerce naplóiba, ami segít a bevezetésben és a hibakeresésben.
+- **Fejlesztőbarát API**: hookok és filterek (wcslack_*) segítségével mélyen testre szabhatod az üzeneteket, mezőket, prefixeket, vagy akár új, egyedi eseménylogikát is készíthetsz.
+- **Fordíthatóság**: a bővítmény lokalizálható, így a csapatod saját nyelvén kaphat üzeneteket.
 
-### Kiterjesztett értesítések
+### Példa üzenetsablon
 
-Bizonyos értesítési típusokhoz kiterjesztett értesítések is elérhetők, amelyek részletesebb információkat tartalmaznak:
-- **Rendelési tételek részletei**: Az új rendelésekről szóló értesítések tartalmazhatják a rendelési tételek részleteit.
-- **Értékelések tartalma**: Az új értékelésekről szóló értesítések tartalmazhatják az értékelések teljes szövegét.
+```
+:tada: Új rendelés – #{{order_number}} • {{order_total}}
+Vevő: {{customer_name}} ({{customer_email}})
+Tételek:
+{{items}}
+Állapot: {{order_status}} • Szállítás: {{shipping_method}}
+```
 
-## Zökkenőmentes integráció más eszközökkel
+A fenti sablonban a kapcsos zárójelek példaként jelzik a beilleszthető rendelésadatokat. A pontosan elérhető változók a bővítményben listázva vannak.
 
-A Slack for WooCommerce könnyedén integrálható más eszközökkel is:
-- **Zapier**: Automatikus munkafolyamatok létrehozása és integráció más alkalmazásokkal.
-- **Trello**: Feladatkezelés és projektmenedzsment.
-- **Google Sheets**: Adatok exportálása és elemzése.
-- **Mailchimp**: Marketing kampányok és ügyfélkapcsolat-kezelés.
+## Gyakorlati használati esetek
 
-## Gyakorlati példák
+- **Értékesítés**: minden új rendelés a #sales vagy #orders csatornára megy. Beállíthatsz külön emojit a nagy értékű rendelésekhez, vagy megjelenítheted a fizetési módot a gyors ellenőrzéshez.
+- **Üzemeltetés/logisztika**: Low/Out of Stock és Backorder riasztások a #inventory csatornára, extended üzenettel (terméknév, variáció, készletszint), hogy a beszerzés azonnal lépjen.
+- **Ügyfélszolgálat és marketing**: új vásárlók és új értékelések a #support vagy #marketing csatornára. Az értékelés szövegét is megjelenítheted, így gyors a reakció a visszajelzésekre.
+- **Tartalom**: új bejegyzések publikálásáról a #content csatorna kap értesítést, amit a csapat azonnal továbboszthat.
 
-### Rendeléskezelés
+## Telepítés és beállítás
 
-Például, ha egy új rendelés érkezik az áruházba, az értesítés azonnal megjelenik a kijelölt Slack csatornán. Így az ügyfélszolgálat vagy a rendeléskezelő csapat azonnal lépéseket tehet a rendelés feldolgozására.
+1. **Telepítés**: telepítsd és aktiváld a bővítményt a bővítménykezelőben.
+2. **Slack-kapcsolat**: hozz létre Slack Appot, add meg a bővítmény által kért átirányítási címet, majd a bővítmény beállításaiban kattints a „Connect with Slack”-re, és engedélyezd a hozzáférést.
+3. **Csatornák betöltése**: töltsd be vagy frissítsd a csatornalistát a „Reload Available Channels” gombbal. Állíts be alapértelmezett csatornákat és emojit.
+4. **Események testreszabása**: eseményenként válassz csatornát, emojit, sablont. Új rendelésnél dönthetsz arról is, hogy a teljesen ingyenes rendeléseket megjelölöd-e külön.
+5. **Tesztelés és debug**: küldj próbaüzenetet. Szükség esetén kapcsold be a Debug módot, és nézd meg a naplókat.
 
-### Készletfigyelés
+## Előnyök és értékajánlat
 
-Ha egy termék készlete alacsony vagy kifogyott, az értesítés automatikusan megjelenik a Slack-en. Ez lehetővé teszi, hogy a beszerzési csapat gyorsan reagáljon és újrarendelje a terméket, megelőzve az esetleges eladási veszteségeket.
+- **Gyorsabb reakcióidő**: a kritikus események azonnal a megfelelő csatornán jelennek meg, így nem maradnak el intézkedések.
+- **Kevesebb kontextusváltás**: nem kell állandóan a wp-adminban ellenőrizni az állapotot, a csapat a Slackben maradhat.
+- **Jobb felelősségmegosztás**: eseményenként más csatornát használhatsz, így mindenki csak a rá vonatkozó értesítéseket kapja.
+- **Kevesebb e-mail zaj**: a Slack értesítések kiváltják a rendszer-e-mailek jelentős részét.
+- **Rugalmasság fejlesztőknek**: hookokkal saját logikát, további adatok megjelenítését vagy új integrációs pontokat adhatsz.
 
-### Ügyfélkapcsolatok
+## Célközönség
 
-Az új ügyfél regisztrációja vagy új termékértékelés érkezése esetén az értesítés megjelenik a Slack csatornán. Ez segíti az ügyfélszolgálatot abban, hogy gyorsan reagáljon az új regisztrációkra vagy értékelésekre, javítva az ügyfélélményt.
+- **Kereskedők és bolttulajdonosok**, akik szeretnék a napi történéseket valós időben látni.
+- **Üzemeltetők és raktárosok**, akik készletriasztásokra építik a beszerzést.
+- **Ügyfélszolgálat és marketing**, akik a vásárlói visszajelzéseket és új regisztrációkat követik.
+- **Távoli, Slacket használó csapatok**, ahol fontos a gyors, csatornák szerinti információáramlás.
+- **Fejlesztők és ügynökségek**, akik bővíthető, hook-alapú értesítési rendszert keresnek.
 
-## Szószedet
-- **Slack**: Üzenetküldő és együttműködési platform.
-- **WooCommerce**: Nyílt forráskódú e-kereskedelmi bővítmény WordPresshez.
-- **Zapier**: Automatizálási eszköz, amely összekapcsol különböző alkalmazásokat.
-- **Trello**: Projektmenedzsment eszköz, amely táblákon alapuló feladatkezelést kínál.
-- **Google Sheets**: Online táblázatkezelő eszköz a Google-től.
-- **Mailchimp**: E-mail marketing és automatizálási platform.
+## Korlátok és megjegyzések
+
+- **Alapesemények köre**: a bővítmény hét „core” eseményt tartalmaz. További speciális eseményekhez egyedi fejlesztés vagy kiegészítő megoldás szükséges.
+- **Emoji viselkedés a Slackben**: a Slack ikonkezelése miatt gyorsan egymás után küldött, eltérő ikonú üzenetek időnként összefűzve jelenhetnek meg.
+- **Csatornák cache-elése**: új vagy törölt csatornák csak a csatornalista frissítése után láthatók.
+
+## Követelmények és kompatibilitás
+
+A bővítmény modern WordPress, WooCommerce és PHP környezetet igényel, valamint Slack-fiókot. Kompatibilis a nagy teljesítményű rendeléskezeléssel és a blokkalapú kosár/fizetés felülettel. A telepítés előtt győződj meg róla, hogy a környezeted ezeknek megfelel.
+
+## Licenc és támogatás
+
+A bővítmény fizetős, hivatalos támogatással és pénzvisszatérítési garanciával érhető el a WooCommerce Marketplace-en. A bővítményt a Kestrel fejleszti és tartja karban.

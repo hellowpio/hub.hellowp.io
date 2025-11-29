@@ -1,71 +1,89 @@
-# WooCommerce E-Mail Attachments (by Inoplugs)
+---
+title: "WooCommerce E-Mail Attachments (by Inoplugs)"
+description: "WooCommerce bővítmény, amellyel tetszőleges fájlokat csatolhatsz a bolt által küldött e‑mailekhez, nyelvfüggő mellékletekkel, CC/BCC és médiatárral integrált kezelés mellett."
+sidebar_label: "WooCommerce E-Mail Attachments (by Inoplugs)"
+---
 
-## Funkcionalitás
+## Mi ez és milyen problémát old meg?
 
-A WooCommerce E-Mail Attachments egy olyan bővítmény, amely lehetővé teszi, hogy különböző típusú mellékleteket adjunk hozzá a WooCommerce által küldött e-mailekhez. Ez különösen hasznos lehet, ha például számlákat, használati útmutatókat vagy egyéb fontos dokumentumokat szeretnél automatikusan csatolni az ügyfeleid számára kiküldött e-mailekhez.
+A WooCommerce E‑Mail Attachments egy fizetős kiegészítő, amellyel **bármely WooCommerce e‑mailhez** automatikusan **több fájlcsatolmányt** adhatsz. A bővítmény a WooCommerce **e‑mail API‑jára** épül, így a core levelek mellett képes együttműködni más kiegészítők – például előfizetés- vagy foglaláskezelők – által regisztrált értesítésekkel is. Megszünteti a kézi csatolgatást: a jogi dokumentumok, útmutatók, visszárulapok, garanciajegyek mindig a megfelelő e‑mailekkel mennek ki, következetesen és automatizáltan.
 
-### Mellékletek Típusai
+## Fő funkciók, érthetően
 
-- **PDF dokumentumok**: Ideális számlák, szerződések vagy használati útmutatók csatolására.
-- **Képek**: Termékfotók, logók vagy marketing anyagok küldéséhez.
-- **Szöveges fájlok**: Egyszerűbb, de fontos információk továbbítására.
+- **Tetszőleges számú csatolmány**: PDF, kép, doc, zip – nincs fix korlát. Minden e‑mail típusnál külön beállíthatod, mely fájlok menjenek vele. A tényleges küldési korlátokat a tárhelyed levelezőszervere határozza meg.
+- **E‑mail típusonkénti beállítás**: A WooCommerce által ismert összes e‑mailnek külön lapja van. Minden levélnél megadhatod a csatolmányokat, azok sorrendjét (drag & drop), és a plusz címzetteket.
+- **CC és BCC**: E‑mail típusonként adható **másolat** vagy **rejtett másolat** címzett. Így a pénzügy, ügyfélszolgálat vagy logisztika automatikusan értesülhet a releváns eseményekről.
+- **Értesítő fej- és lábléc**: A levélben opcionálisan megjeleníthető egy rövid **figyelmeztetés**, hogy csatolmány érkezett. Beállíthatod, hogy mindig látszódjon, vagy csak csatolmány esetén.
+- **WPML támogatás**: Többnyelvű boltban **nyelvhez kötött csatolmányokat** és **nyelvfüggő értesítő szövegeket** állíthatsz be. Ugyanannak a levélnek más fájl mehet különböző nyelveken.
+- **Médiatárral integrált fájlkezelés**: A feltöltés a **WordPress Media Uploaderrel** történik; a fájlok külön mappába kerülnek, mégis megjelennek a médiatárban és máshol is felhasználhatók.
+- **Kompatibilitás a WooCommerce e‑mail API‑val**: Ha egy kiegészítő szabványosan regisztrál leveleket, azok is testreszabhatók, mintha core e‑mailek lennének.
 
-### Automatizált E-Mail Kezelés
+## Hogyan működik? Telepítés és beállítás
 
-A bővítmény lehetőséget biztosít arra, hogy automatikusan csatolj mellékleteket bizonyos eseményekhez kötötten. Például:
-- **Rendelés visszaigazolása**: Számla vagy fizetési bizonylat csatolása.
-- **Szállítási értesítés**: Használati útmutató vagy garanciális dokumentum csatolása.
+1. Töltsd fel a megvásárolt ZIP‑et a Bővítmények menüben, majd aktiváld.
+2. Nyisd meg a WooCommerce beállításait, ott az E‑mail csatolmányok lapot.
+3. Állítsd be az általános opciókat, majd egyesével konfiguráld az e‑maileket.
 
-## Előnyök
+Példa munkafolyamat:
 
-### Időmegtakarítás
+```
+WooCommerce → Beállítások → E‑mail csatolmányok
+  - Általános:
+      • Feltöltési mappa
+      • Értesítő fej- és lábléc szöveg (nyelvenként)
+      • Beállítások megőrzése eltávolításkor
+  - E‑mailenként:
+      • Csatolmányok kiválasztása/feltöltése (Media Uploader)
+      • Sorrendezés (drag & drop)
+      • CC / BCC címzettek
+      • Nyelv hozzárendelése (WPML)
+```
 
-A mellékletek automatikus kezelése jelentős időmegtakarítást jelent, mivel nem kell manuálisan csatolni a dokumentumokat minden egyes e-mailhez.
+Fontos tudnivalók a fájlokról:
+- A csatolmányok a WordPress feltöltési könyvtárad egy kijelölt alkönyvtárába kerülnek, és látszanak a médiatárban.
+- A feltöltési mappa megváltoztatása **nem** mozgatja át automatikusan a korábban feltöltött fájlokat.
+- A bővítmény a fájlokat általában **nem törli automatikusan**. Törléshez használd a médiatárat, hogy elkerüld a törött hivatkozásokat.
+- Nagy csatolmányok helyett mérlegeld a letöltési linkeket a sikeres kézbesítés érdekében.
 
-### Professzionális Ügyfélkommunikáció
+## Gyakorlati példák
 
-Az ügyfelek számára küldött e-mailek professzionálisabbak és teljesebbek lesznek, mivel minden szükséges dokumentumot egy helyen kapnak meg.
+- **Jogi megfelelés**: A rendelés visszaigazolásához automatikusan csatolod az ÁSZF‑et, elállási nyilatkozatot és adatkezelési tájékoztatót. Többnyelvű boltban nyelvhez kötött változatok mennek ki.
+- **Terméktámogatás**: A teljesített rendelés e‑mailhez mellékeled a használati útmutatót és a garanciajegyet. Licencelt szoftvernél csomagolhatod a licencfeltételeket.
+- **Visszáru folyamat**: A rendelés állapota “visszaküldés” esetén automatikusan kapja a visszárulapot és útmutatót.
+- **Belső működés**: A “Sikertelen rendelés” és “Új rendelés” levelek BCC‑ben mennek a pénzügyre és a fraud‑ellenőrzésre.
 
-### Testreszabhatóság
+## Előnyök és értékajánlat
 
-A WooCommerce E-Mail Attachments számos testreszabási lehetőséget kínál:
-- **Különböző mellékletek különböző e-mail típusokhoz**: Például különböző mellékletek a rendelés visszaigazolásához és a szállítási értesítéshez.
-- **Nyelvi támogatás**: Különböző nyelvű mellékletek küldése az ügyfél nyelvi beállításai alapján.
+- **Időmegtakarítás**: Nincs több kézi csatolgatás; egyszer beállítod, utána automatikus.
+- **Következetesség és megfelelés**: Minden érintett levélhez ugyanaz a hivatalos dokumentum kerül, hibalehetőség nélkül.
+- **Professzionális kommunikáció**: Az értesítő fej‑/lábléc egyértelművé teszi a csatolmányok jelenlétét.
+- **Rugalmas, skálázható**: Bármennyi fájlt használhatsz, nyelvekre bontva, e‑mail típusonként eltérően.
+- **Egységes médiakezelés**: A médiatáron keresztül ugyanazokat a fájlokat máshol is felhasználhatod.
 
-## Más Eszközökkel Való Integráció
+## Kinek ajánlott?
 
-### WooCommerce PDF Invoices & Packing Slips
+- **Webshopok jogi megfelelési igénnyel**: Kötelező dokumentumok automatikus kiküldése.
+- **Műszaki vagy dokumentáció‑igényes termékek forgalmazói**: Útmutatók, driverek, garanciafeltételek kezelése.
+- **Többnyelvű boltok**: Nyelvfüggő csatolmányok és üzenetek, WPML integrációval.
+- **Operatív csapatok**: Pénzügy, ügyfélszolgálat, logisztika CC/BCC‑vel mindig képben van.
 
-Ez a bővítmény zökkenőmentesen együttműködik a WooCommerce PDF Invoices & Packing Slips bővítménnyel, lehetővé téve, hogy automatikusan generált PDF számlákat csatolj az e-mailekhez.
+## Üzemeltetési tippek és kompatibilitás
 
-### WPML
+- A bővítmény a WooCommerce **e‑mail API** által ismert összes levélhez kínál beállítást, így tipikusan együttműködik a népszerű kiegészítők e‑mailjeivel is, ha azok szabványosan regisztráltak.
+- E‑mail méretlimit: a tárhely‑/MTA‑szabályok befolyásolják. Nagy vagy több csatolmány esetén inkább linket küldj.
+- Adatkezelés: fájlmozgatás mappaváltáskor manuális; törlést a médiatárban végezd, különösen éles környezetben.
+- Nagyobb frissítések után futtathatsz beépített migrációt; érdemes **staging** környezetben ellenőrizni a beállításokat és a csatolmányok működését.
 
-A WPML (WordPress Multilingual Plugin) integrációval többnyelvű mellékleteket is kezelhetsz, így az ügyfelek a saját nyelvükön kapják meg a szükséges dokumentumokat.
+## Gyors hibaelhárítás
 
-## Konkrét Helyzetek és Gyakorlati Példák
+- **Nem érkezik csatolmány**: Ellenőrizd, hogy az adott e‑mail típushoz valóban hozzárendelted‑e a fájlt, és a fájl elérhető‑e a médiatárban.
+- **Nem látszik az e‑mail típus a listában**: Valószínűleg a kiegészítő nem a WooCommerce e‑mail API‑val regisztrálja a levelét; ekkor nem testreszabható.
+- **Nagy fájlok lepattannak**: Csökkentsd a méretet, használd a tömörítést, vagy válts csatolmányról letöltési linkre.
+- **WPML keveredés**: Állíts be nyelvet csatolmányonként, és add meg a nyelvfüggő értesítő szöveget is.
+- **Törött hivatkozás**: Ha fájlt törölsz a szerverről, frissítsd az e‑mail csatolmánylistát, vagy töltsd fel újra a megfelelő fájlt.
 
-### Rendelés Visszaigazolása
+## Megvásárlás, támogatás
 
-Amikor egy ügyfél lead egy rendelést, automatikusan csatolhatod a számlát és a fizetési bizonylatot a visszaigazoló e-mailhez. Ez segít abban, hogy az ügyfél azonnal hozzáférjen a szükséges pénzügyi dokumentumokhoz.
+A bővítmény fizetős, előfizetéses modellben érhető el, frissítésekkel és hivatalos támogatással, pénzvisszafizetési garanciával. Fejlesztője tapasztalt WooCommerce partner. Támogatás és dokumentáció a hivatalos csatornákon érhető el.
 
-### Szállítási Értesítés
-
-A szállítási értesítő e-mailhez csatolhatod a termék használati útmutatóját és a garanciális feltételeket. Ez különösen hasznos lehet műszaki termékek esetén, ahol az ügyfeleknek szükségük van részletes információkra a termék használatával kapcsolatban.
-
-### Promóciós Anyagok Küldése
-
-Az e-mailekhez csatolhatsz promóciós anyagokat is, például kuponokat vagy különleges ajánlatokat tartalmazó PDF-eket. Ez növelheti az ügyfélélményt és elősegítheti a további vásárlásokat.
-
-## Tippek a Hatékony Használathoz
-
-- **Fájlnevek megfelelő kezelése**: Ügyelj arra, hogy a csatolt fájlok nevei egyértelműek és könnyen azonosíthatóak legyenek.
-- **Fájlméret korlátozása**: Tartsd szem előtt a fájlméreteket, hogy ne terheld túl az e-mail rendszert és ne növeld túlzottan az e-mailek letöltési idejét.
-- **Rendszeres frissítés**: Győződj meg róla, hogy a legfrissebb verziót használod a bővítményből, hogy minden funkció zökkenőmentesen működjön.
-
-## Szószedet
-
-- **Automatikus csatolás**: A dokumentumok automatikus hozzáadása az e-mailekhez.
-- **PDF**: Portable Document Format, gyakran használt fájlformátum dokumentumok számára.
-- **WPML**: WordPress Multilingual Plugin, többnyelvű oldalak létrehozására szolgáló bővítmény.
-- **Számla**: Olyan dokumentum, amely tartalmazza a vásárlási tranzakció részleteit.
-- **Promóciós anyagok**: Marketing célú dokumentumok, mint például kuponok vagy ajánlatok.
+Ne keverd össze a korábban forgalmazott, hasonló nevű, már nyugdíjazott kiegészítővel; ez az InoPlugs megoldása, modern WooCommerce e‑mail munkafolyamatokra tervezve.

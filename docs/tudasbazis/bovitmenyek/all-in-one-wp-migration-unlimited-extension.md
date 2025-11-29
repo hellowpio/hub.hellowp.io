@@ -1,60 +1,95 @@
-# All-in-One WP Migration Unlimited Extension
+---
+title: "All-in-One WP Migration Unlimited Extension"
+description: "Fizetős kiegészítő az All‑in‑One WP Migration bővítményhez, amely eltávolítja a méret-, idő- és memória‑korlátokat, és WP‑CLI/Server Restore funkciókat ad a nagy méretű WordPress mentésekhez."
+sidebar_label: "All-in-One WP Migration Unlimited Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az All-in-One WP Migration Unlimited Extension kiterjeszti az alap All-in-One WP Migration bővítmény képességeit, lehetővé téve, hogy korlátlan számú webhelyen használhasd és eltávolítva az alapértelmezett feltöltési limitet. Ez a kiterjesztés különösen hasznos lehet olyan felhasználók számára, akik több webhelyet kezelnek, vagy nagy méretű webhelyeket szeretnének migrálni.
+Az All‑in‑One WP Migration Unlimited Extension egy fizetős kiegészítő, amely az alap All‑in‑One WP Migration bővítményből kihozza a maximumot: megszűnnek a hostolói és PHP‑korlátok (fájlfeltöltési limit, futásiidő‑ és memória‑limit), így gyakorlatilag bármilyen méretű `.wpress` mentést importálhatsz. Extra bónusz a parancssoros (WP‑CLI) integráció és a **Server Restore**, amely közvetlenül a szerveren lévő mentésből állít vissza – feltöltés nélkül.
 
-### Korlátlan webhely használat
-Az Unlimited Extension segítségével bármennyi webhelyen használhatod az All-in-One WP Migration bővítményt, így nincs szükség külön licenc megvásárlására minden egyes webhelyhez.
+Licencelés röviden: az Unlimited 69 USD/év, legfeljebb 50 webhelyen használhatod; a használat site‑onként számít, a helyi fejlesztői környezet nem. A Pro csomag (99 USD/év) tartalmazza az Unlimitedet, és felhő‑célokat + ütemezett mentést is ad. Multisite környezethez külön kiegészítő van, amelyben az Unlimited eleve benne van.
 
-### Feltöltési limit eltávolítása
-Az alapértelmezett feltöltési limit eltávolításra kerül, így nagyobb fájlokat is könnyedén feltölthetsz és migrálhatsz. Ez különösen hasznos lehet nagy adatbázisokkal rendelkező webhelyek esetén.
+## Fogalmak, amiket jó ismerni
 
-### Backup visszaállítás a szerverről
-Lehetővé teszi a backup fájlok közvetlen visszaállítását a szerverről, így nem szükséges manuálisan letölteni és újra feltölteni a fájlokat.
+- **.wpress**: az All‑in‑One WP Migration saját mentési formátuma (fájl + adatbázis).
+- **ai1wm‑backups mappa**: a mentések alapértelmezett helye a wp‑content alatt; innen a bővítmény közvetlenül felismeri a mentéseket.
+- **Reset Hub**: beépített „reset” eszközök fejlesztéshez/staginghez (pluginek törlése, téma‑reset, média‑takarítás, adatbázis‑reset, teljes site‑reset).
 
-### WP CLI parancsok
-Támogatja a WP CLI parancsokat, ami megkönnyíti a bővítmény használatát és integrációját különböző automatizált folyamatokba.
+## Fő funkciók, érthetően
 
-### Prémium támogatás
-A kiterjesztés megvásárlásával prémium támogatást is kapsz, amely gyors és hatékony segítséget nyújt bármilyen felmerülő problémára.
+- **Korlátok megkerülése**: Nem kell többé a `post_max_size`, `upload_max_filesize` vagy a böngészős feltöltési limit miatt aggódnod. Hosszú import közben sem futsz bele tipikus időtúllépésekbe (500/504, maximum execution time).
+- **Server Restore**: FTP/SFTP‑vel csak bemásolod a `.wpress` fájlt az `ai1wm‑backups` könyvtárba, majd a bővítmény admin felületén közvetlenül visszaállíthatod – fájlfeltöltés nélkül.
+- **WP‑CLI integráció**: Automatizáld a mentést és visszaállítást ügynökségi vagy DevOps folyamatokban, cronból/scriptből.
+- **Reset Hub**: Egy kattintással „tiszta lapot” csinálhatsz fejlesztői/staging site‑okon; választhatod célzottan csak a plugineket, csak a médiát vagy akár a teljes site‑ot.
 
-## Együttműködés más eszközökkel
+### WP‑CLI – tipikus parancsok
 
-Az Unlimited Extension zökkenőmentesen együttműködik számos más bővítménnyel és szolgáltatással. Íme néhány példa:
+```bash
+# Mentés készítése (opcionális cserékkel és kizárásokkal)
+wp ai1wm backup --replace="regi.hu" "uj.hu" --exclude-cache
 
-### Felhőalapú tárolók
-- **Google Drive Extension**: Biztonsági mentések készítése és visszaállítása közvetlenül a Google Drive-ból.
-- **Dropbox Extension**: Az adatokat közvetlenül a Dropbox fiókodból importálhatod vagy exportálhatod.
-- **Amazon S3 Extension**: Integráció az Amazon S3 szolgáltatással a hatékony adatkezelés érdekében.
+# Mentések listázása
+wp ai1wm list-backups
 
-### Egyéb tárolási megoldások
-- **FTP Extension**: FTP szerverekkel való integráció a fájlok könnyű átviteléhez.
-- **OneDrive Extension**: Microsoft OneDrive támogatás a biztonsági mentésekhez és visszaállításokhoz.
-- **WebDAV Extension**: WebDAV protokoll támogatása a fájlkezeléshez.
+# Visszaállítás (megerősítés nélkül)
+wp ai1wm restore /path/to/backup.wpress --yes
+
+# Mentés tartalmának böngészése
+wp ai1wm browse-backup /path/to/backup.wpress
+
+# Mentés kicsomagolása egy célútvonalra
+wp ai1wm extract-backup /path/to/backup.wpress --extract-path=/var/backup/extracted
+```
+
+## Telepítés és tipikus munkafolyamat
+
+### Telepítés
+1. Vásárlás után töltsd le a kiegészítő ZIP fájlt.
+2. A WordPress Vezérlőpultban: Bővítmények → Új hozzáadása → Bővítmény feltöltése → válaszd ki a ZIP‑et.
+3. Aktiváláskor az alap All‑in‑One WP Migration is feltelepül/aktiválódik (ha még nincs).
+
+### Munkafolyamat migráláshoz
+1. Forrás site-on: Export → File, készül egy `.wpress` fájl.
+2. Cél szerveren: telepítsd/aktiváld az Unlimitedet.
+3. Importálás:
+   - vagy Import → File és tallózd a `.wpress` fájlt,
+   - vagy másold a fájlt az `wp-content/ai1wm-backups` mappába, majd válaszd a Backups képernyőn a Server Restore‑t.
+4. Az import végén abba a site‑ba jelentkezz be, amelyikből a mentés készült.
+5. Beállítások → Közvetlen linkek: kattints a mentésre (újraírások frissítése).
 
 ## Gyakorlati példák
 
-### Webhely migrálása új szerverre
-Ha új szerverre szeretnéd áthelyezni a webhelyedet, az Unlimited Extension lehetővé teszi, hogy könnyedén létrehozz egy teljes biztonsági mentést, majd ezt visszaállítsd az új környezetben.
+- **Több GB‑os költöztetés**: Egy nagy WooCommerce áruházat új tárhelyre viszel. Az Unlimiteddel nem kell a feltöltési limit miatt variálnod; Server Restore‑ral a fájlt csak bemásolod és visszaállítod.
+- **Gyors helyreállítás incidens után**: Frissítés tönkreteszi az oldalt. A legutóbbi `.wpress` mentést a szerveren tartod; két kattintás és már fut is a restore.
+- **Automatizált üzemeltetés**: Ügynökségként éjszakai biztonsági mentéseket futtatsz cronból WP‑CLI‑val, és szükség esetén scriptből visszaállítasz stagingre.
+- **Staging „takarítás”**: Minden sprint végén Reset Hubbal törlöd a felesleges médiát és plugineket, vagy teljesen visszaállítod a környezetet.
 
-### Több webhely kezelése
-Az Unlimited Extension kifejezetten hasznos olyan ügynökségek vagy fejlesztők számára, akik több WordPress webhelyet kezelnek. Nincs szükség külön licenc vásárlására minden egyes webhelyhez, így időt és pénzt takaríthatsz meg.
+## Hibaelhárítás és követelmények
 
-### Nagy méretű biztonsági mentések kezelése
-Ha nagy adatbázisokkal és fájlrendszerekkel rendelkező webhelyet üzemeltetsz, az Unlimited Extension eltávolítja a feltöltési limitet, így egyszerűen kezelheted a nagy méretű biztonsági mentéseket is.
+- **Feltöltési/timeout hiba**: használd a Server Restore‑t vagy a WP‑CLI‑t a böngészős feltöltés helyett.
+- **Nagyon nagy fájlok**: 2 GB felett 64 bites PHP szükséges, különben a fájlkezelés korlátozott lehet.
+- **Fájl helye**: a `.wpress` mentések a `wp-content/ai1wm-backups` mappában jelennek meg; innen a Backups képernyő felismeri és visszaállítható.
+- **Alap bővítmény**: az Unlimited az All‑in‑One WP Migration kiegészítője; az alap plugin szükséges a működéshez.
 
-## Tippek a hatékony használathoz
+## Előnyök és értékajánlat
 
-- **Automatizált folyamatok**: Használd ki a WP CLI parancsokat az automatizált biztonsági mentésekhez és migrációkhoz.
-- **Rendszeres biztonsági mentés**: Állíts be rendszeres biztonsági mentéseket, hogy mindig legyen friss mentésed vészhelyzet esetén.
-- **Felhőalapú tárolók használata**: Használj felhőalapú tárolókat a biztonsági mentésekhez, hogy könnyen hozzáférhess és visszaállíthass adatokat bárhonnan.
+- **Időmegtakarítás**: nincs több kis darabolás, újrapróbálás, félbeszakadt feltöltés.
+- **Stabil folyamat**: nagy importoknál is megbízható, a PHP‑korlátok nem akasztanak meg.
+- **Automatizáció**: parancssorból üzemeltethető, beépíthető CI/CD‑be és cronba.
+- **Rugalmas helyreállítás**: feltöltés nélkül, szerverről, percek alatt visszaállíthatsz.
 
-## Szószedet
+## Célközönség
 
-- **WP CLI**: WordPress Command Line Interface – parancssoros eszköz a WordPress kezeléséhez.
-- **FTP**: File Transfer Protocol – fájlátviteli protokoll.
-- **WebDAV**: Web Distributed Authoring and Versioning – protokoll a fájlok interneten keresztüli kezeléséhez.
-- **S3**: Simple Storage Service – Amazon által nyújtott felhőalapú tárolási szolgáltatás.
+- **Ügynökségek és tárhelyszolgáltatók**: tömeges költöztetések, automatizált mentés/visszaállítás.
+- **Fejlesztők/DevOps**: scriptelhető folyamatok, staging reset, gyors rollback.
+- **Nagy forgalmú/e‑kereskedelmi oldalak**: több GB‑os mentések gond nélkül.
+- **Multisite üzemeltetők**: hálózatos környezetben a Multisite kiegészítő tartalmazza az Unlimitedet, így a méretkorlát itt sem akadály.
 
-Az All-in-One WP Migration Unlimited Extension tehát egy sokoldalú és rugalmas eszköz, amely jelentősen megkönnyíti a WordPress webhelyek migrálását és kezelését.
+## Csomagok röviden
+
+- **Unlimited Extension**: 69 USD/év, legfeljebb 50 site/év; a helyi (localhost) használat nem számít bele.
+- **All‑in‑One WP Migration Pro**: 99 USD/év; tartalmazza az Unlimitedet, plusz felhő‑tárhely célokat és ütemezett mentéseket.
+- **Multisite Extension**: WordPress hálózatokra; az Unlimited ebben is benne van.
+
+Összefoglalva: az Unlimited Extension „kinyitja” az All‑in‑One WP Migration teljes potenciálját, megszüntetve a méret‑, futásiidő‑ és memória‑korlátokból adódó akadályokat, és professzionális eszközt ad a kezedbe a gyors, automatizálható migráláshoz és helyreállításhoz.

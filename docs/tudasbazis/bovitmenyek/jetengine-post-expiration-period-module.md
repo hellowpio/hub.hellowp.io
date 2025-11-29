@@ -1,60 +1,97 @@
-# JetEngine Post Expiration Period Module
+---
+title: "JetEngine Post Expiration Period Module"
+description: "Ingyenes JetEngine kiegészítő, amellyel lejárati időt adhatsz a űrlappal beküldött bejegyzésekhez, és lejáratkor automatikusan Vázlatra állíthatod vagy a Lomtárba helyezheted őket."
+sidebar_label: "JetEngine Post Expiration Period Module"
+---
 
-A JetEngine Post Expiration Period Module lehetővé teszi, hogy beállítsd, mikor járjanak le a bejegyzéseid. Ez a funkció különösen hasznos lehet, ha időkorlátos tartalmakat kezelsz, például promóciókat, eseményeket vagy ajánlatokat. Nézzük meg részletesebben a modul funkcionalitását, előnyeit, és hogy mely helyzetekben lehet hasznos.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás
+A JetEngine Post Expiration Period egy ingyenes, külső modul, amely lejárati logikát ad a JetEngine vagy JetFormBuilder űrlapjaival létrehozott bejegyzésekhez. A célja egyszerű: ha valaki a frontenden küld be időérzékeny tartalmat (pl. hirdetés, akció, esemény), a megadott napok után a poszt automatikusan eltűnik a nyilvános felületről, mert Vázlatra áll vagy a Lomtárba kerül. Nem kell kézzel takarítani az elavult posztokat, a webhelyed friss és rendezett marad.
 
-### Lejárati Dátum Beállítása
-A modul lehetővé teszi, hogy minden egyes bejegyzéshez külön-külön megadhasd a lejárati dátumot. Ez lehetővé teszi, hogy a tartalom automatikusan inaktívvá váljon a megadott időpontban, ezzel elkerülve a manuális beavatkozást.
+## Hogyan működik röviden?
 
-### Automatikus Akciók
-Amikor egy bejegyzés lejár, különböző automatikus akciókat állíthatsz be. Például:
-- Áthelyezheted a bejegyzést egy másik kategóriába.
-- Megváltoztathatod a bejegyzés státuszát (pl. piszkozatba helyezés).
-- Törölheted a bejegyzést véglegesen.
+- Űrlapot hozol létre bejegyzés beküldéshez vagy frissítéshez.
+- Az űrlap Insert/Update Post műveletében bekapcsolod a lejáratot, megadod napokban az időtartamot, és kiválasztod a lejárat utáni akciót.
+- Beküldéskor a modul eltárolja a lejárati adatot a poszton.
+- A határidő elérésekor a bővítmény automatikusan módosítja a poszt állapotát (Vázlat) vagy áthelyezi a Lomtárba.
 
-### Értesítések
-Lehetőséged van arra is, hogy értesítéseket állíts be magadnak vagy más felhasználóknak, amikor egy bejegyzés lejár. Ez segít abban, hogy mindig naprakész legyél a tartalmaid állapotával kapcsolatban.
+## Fő funkciók, részletesen
 
-## Előnyök
+- **Lejárat aktiválása űrlapokon**
+  - Az Insert/Update Post műveletnél az **Enable expiration period** kapcsolóval engedélyezed. Ettől kezdve minden ezzel az űrlappal beküldött poszt kap lejárati beállítást.
 
-### Időmegtakarítás
-Az automatikus lejárati rendszer segítségével rengeteg időt takaríthatsz meg, hiszen nem kell manuálisan figyelned és frissítened a tartalmaidat.
+- **Időtartam napokban**
+  - Az **Expiration period** mezőben határozod meg, hány nap után „járjon le” a poszt. Például 30 napos apróhirdetéshez 30-at adsz meg.
 
-### Pontosság és Konzisztencia
-Biztosíthatod, hogy az időkorlátos tartalmak pontosan akkor járjanak le, amikor szükséges. Ez növeli a weboldalad professzionalizmusát és megbízhatóságát.
+- **Automatikus művelet lejáratkor**
+  - Az **Expiration action** értéke lehet:
+    - **Draft (Vázlat):** a poszt láthatatlanná válik a nyilvános oldalon, de szerkeszthető marad.
+    - **Trash (Lomtár):** a poszt a Lomtárba kerül, és onnan kezelheted (visszaállítás, végleges törlés).
 
-### Rugalmasság
-A különböző automatikus akciók és értesítések beállításának lehetősége nagy rugalmasságot biztosít számodra. Különböző típusú tartalmakhoz és kampányokhoz igazíthatod a lejárati folyamatot.
+- **Admin áttekintés oszlopban**
+  - A CPT Admin Columns felületén létrehozhatsz egy „Custom Callback” oszlopot, amely a lejárati időt mutatja. Így egy pillantással átlátod, mi mikor fog lejárni.
 
-## Kompatibilitás Más Eszközökkel
+- **Ingyenes és natív integráció**
+  - A JetEngine „External Modules” közt kapcsolhatod be, vagy külön bővítményként telepítheted. Zökkenőmentesen működik JetEngine és JetFormBuilder űrlapokkal, szerkesztheted Elementorral vagy a Block Editorral.
 
-A JetEngine Post Expiration Period Module zökkenőmentesen működik együtt a következő eszközökkel:
+## Telepítés és beállítás
 
-### JetElements
-Az Elementor oldalépítő bővítményeivel integrálva további vizuális elemeket adhatsz hozzá a bejegyzéseidhez.
+1. **Modul bekapcsolása**
+   - JetEngine > External Modules: kapcsold be a „Post expiration period” modult. Alternatívaként telepítheted külön bővítményként, majd aktiváld.
 
-### JetSmartFilters
-Lehetővé teszi, hogy szűrőket állíts be az időkorlátos tartalmaid számára, így a felhasználók könnyen megtalálhatják az aktív promóciókat vagy eseményeket.
+2. **Űrlap létrehozása**
+   - Készíts posztbeküldő űrlapot JetFormBuilderrel vagy JetEngine (legacy) Formmal.
 
-### JetBooking
-Integrálható az időalapú foglalási rendszerekkel, így automatikusan lejárhatnak az időben korlátozott ajánlatok vagy foglalási lehetőségek.
+3. **Insert/Update Post művelet beállítása**
+   - Kapcsold be az **Enable expiration period** opciót.
+   - Állítsd be az **Expiration period** napok számát.
+   - Válaszd ki az **Expiration action** értékét: **Draft** vagy **Trash**.
 
-## Gyakorlati Példák
+4. **Elhelyezés és tesztelés**
+   - Helyezd el az űrlapot (Elementor widget vagy Gutenberg blokk).
+   - Küldj be tesztposztot, és ellenőrizd, hogy lejárat után a poszt állapota a várt módon változik.
 
-### Promóciók és Akciók
-Ha egy webáruházat üzemeltetsz, időkorlátos promóciókat hozhatsz létre. A promóció lejárta után az ajánlatok automatikusan eltűnnek vagy áthelyeződnek egy másik kategóriába.
+### Opcionális: Admin oszlop a lejárati időhöz
 
-### Események
-Eseményeket szervezel? Állítsd be az események lejárati dátumát, hogy azok automatikusan inaktívvá váljanak az esemény vége után. Így mindig aktuális maradhat az eseménynaptárad.
+A CPT Admin Columns-nál adj hozzá egy „Custom Callback” oszlopot:
 
-### Időszakos Tartalmak
-Blogbejegyzések vagy hírek esetén hasznos lehet a lejárati dátum beállítása. Például időszakos hírek vagy szezonális tartalmak esetén nem kell manuálisan eltávolítanod az elavult információkat.
+```
+Callback: jet_engine_custom_cb_date
+Set field: _jet_pep_period
+```
 
-## Szószedet
+Állítsd be a kívánt dátum/idő formátumot, így könnyen átlátod a lejáratokat.
 
-- **Lejárati dátum**: Az az időpont, amikor egy bejegyzés automatikusan inaktívvá válik.
-- **Automatikus akciók**: Olyan műveletek, amelyeket a rendszer automatikusan végrehajt egy bejegyzés lejárta után.
-- **Értesítések**: Rendszerüzenetek vagy e-mailek, amelyek figyelmeztetnek egy bejegyzés lejártára.
+## Gyakorlati példák
 
-Remélhetőleg ez a leírás segít abban, hogy hatékonyan használd a JetEngine Post Expiration Period Module funkcionalitását és előnyeit!
+- **Apróhirdetések:** 30 nap után a hirdetés automatikusan Vázlatra áll, a hirdető újraaktiválhatja vagy frissítheti.
+- **Álláshirdetések:** 45 napos időkeret után Lomtárba kerülnek, csökkentve az elavult pozíciók megjelenését.
+- **Események:** A rendezvény után a bejegyzés inaktív lesz, így nem kavarja a jövőbeli listákat.
+- **Akciók/kuponok:** Lejárat napján automatikusan eltűnnek a nyilvános felületről, nincs manuális takarítás.
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás:** Nincs kézi ellenőrzés és archiválás.
+- **Tartalmi higiénia:** A nyilvános felület mindig naprakész.
+- **Kockázatcsökkentés:** Kevesebb esély elavult vagy téves információk megjelenésére.
+- **Egyszerű üzemeltetés:** Néhány kattintás az űrlap beállításainál, nincs egyedi kódolás.
+
+## Kinek ajánlott?
+
+- **Apró- és álláshirdetési oldalak** üzemeltetőinek, ahol a tartalom természeténél fogva időérzékeny.
+- **Közösségi beküldésű portáloknak**, ahol a felhasználók adják a posztokat és fontos a tartalom életciklus-kezelése.
+- **Esemény- és akciógyűjtő oldalaknak**, ahol a lejárt események/ajánlatok nem maradhatnak kint.
+- **Ügynökségeknek és fejlesztőknek**, akik skálázható, karbantartást csökkentő megoldást keresnek ügyfeleik űrlapos tartalomkezeléséhez.
+
+## Rendszerkövetelmények és korlátok
+
+- **Függőségek:** JetEngine szükséges; a logika JetEngine vagy JetFormBuilder űrlapok Insert/Update Post műveletére épül.
+- **Szerkesztők:** Elementor (Free) és WordPress Block Editor egyaránt támogatott az űrlapokhoz.
+- **Hatókör:** A modul azokra a posztokra vonatkozik, amelyeket az űrlapban lejáratra állítasz. Nem globális „lejártató” minden meglévő posztra.
+- **Akciók köre:** Lejáratkor Vázlat vagy Lomtár. Végleges törlés nem része az alapfunkciónak.
+
+## Tippek a gördülékeny használathoz
+
+- Állíts be ésszerű, üzleti igényhez igazított napértéket (pl. hirdetések: 30 nap; állások: 45–60 nap).
+- Használd az Admin oszlopot a közelgő lejáratok áttekintésére.
+- Teszteld le egy próbaposzttal, hogy a szervezeti workflow-hoz illeszkedik-e a kiválasztott lejárati akció.

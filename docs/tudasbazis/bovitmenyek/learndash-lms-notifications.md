@@ -1,93 +1,103 @@
-# LearnDash LMS - Notifications
+---
+title: "LearnDash LMS - Notifications"
+description: "Ingyenes, hivatalos LearnDash-kiegészítő eseményalapú, személyre szabott e-mail értesítésekhez tanulóknak, csoportvezetőknek és adminoknak."
+sidebar_label: "LearnDash LMS - Notifications"
+---
 
-A LearnDash LMS - Notifications bővítmény lehetővé teszi, hogy automatikus e-mail értesítéseket küldj a felhasználóknak különböző események bekövetkeztekor. Az értesítések akkor kerülnek kiküldésre, amikor a felhasználó például befejez egy kurzust, elvégez egy leckét, sikeresen vagy sikertelenül teljesít egy kvízt stb. Az értesítések időzítését, címzettjeit és tartalmát teljes mértékben testre szabhatod.
+## Mi ez és milyen problémát old meg?
 
-## Funkciók
+A LearnDash LMS – Notifications egy hivatalos, ingyenes kiegészítő, amellyel automatikus e-maileket küldhetsz a tanulói életciklus különböző pontjain. Kiváltja a kézi e-mailezést, növeli az elköteleződést (onboarding, mérföldkövek, emlékeztetők), csökkenti a lemorzsolódást (inaktivitási értesítők), és segít a jogi megfelelésben (kötelező leiratkozási link).
 
-### Értesítések létrehozása
+## Hogyan működik röviden?
 
-Az értesítések létrehozása során megadhatod:
-- **Cím:** Az értesítés tárgysora.
-- **E-mail tartalom:** Az üzenet szövege, amelyet a felhasználónak küldesz. Használhatsz formázási eszközöket, képeket illeszthetsz be, vagy saját HTML kódot is használhatsz.
-- **E-mail trigger:** Az az esemény, amely kiváltja az értesítést (pl. "A felhasználó befejez egy kurzust").
+- **Eseménytrigerek** alapján működik: amikor egy tanuló valamit megtesz (vagy épp nem tesz), a rendszer automatikusan e-mailt küld.
+- Az értesítés **globálisan**, vagy **konkrét kurzushoz/leckéhez/témához/vizsgához** köthetően is beállítható.
+- Beállíthatod a **címzetteket** (tanuló, csoportvezető, admin), az **azonnali** vagy **késleltetett** küldést, és **dinamikus shortcode-okkal** személyre szabhatod az üzenetet.
+- A küldést a WordPress/LearnDash **cron ütemező** kezeli; a külön **Status** képernyőn látod a cron állapotát, a várakozó e-mailek számát és az utolsó futást.
+- Fontos: egy értesítés **trigerje publikálás után nem módosítható**; másik eseményhez új értesítést hozz létre.
 
-### E-mail triggerek
+## Telepítés és követelmények
 
-Az értesítések kiváltó eseményei között szerepelhet:
-- Felhasználó beiratkozik egy csoportba
-- Felhasználó beiratkozik egy kurzusra
-- Felhasználó befejez egy kurzust
-- Felhasználó befejez egy leckét
-- Ütemezett lecke elérhetővé válik a felhasználó számára
-- Felhasználó befejez egy témát
-- Felhasználó befejez egy kvízt
-- Felhasználó sikeresen teljesít egy kvízt
-- Felhasználó nem teljesít sikeresen egy kvízt
-- Felhasználó beküld egy kvízt
-- Egy esszé beküldésre kerül
-- Egy esszékérdés értékelésre kerül
-- Egy feladat feltöltésre kerül
-- Egy feladat elfogadásra kerül
-- Felhasználó nem jelentkezett be "X" napja
-- "X" nappal a kurzus lejárta előtt
-- "X" nappal a kurzus lejárta után
+- Telepítés a LearnDash admin felület **Add-ons** menüjéből (ajánlott), vagy a bővítmény ZIP **kézi feltöltésével**.
+- Frissítések a WordPress Bővítmények oldalán, érvényes LearnDash licenccel.
+- A kiegészítő a LearnDash core követelményeihez igazodik. A LearnDash csak az aktuális és az azt megelőző két WordPress főverziót támogatja.
 
-### Feltételek hozzáadása
+## Fő funkciók részletesen
 
-Az értesítésekhez különböző feltételeket is megadhatsz:
-- Felhasználó beiratkozott egy csoportba
-- Felhasználó beiratkozott egy kurzusra
-- Felhasználó befejezett egy kurzust
-- Felhasználó befejezett egy leckét
-- Felhasználó befejezett egy témát
-- Felhasználó beküldött egy kvízt
+### 13 beépített eseménytrigger
+Az e-mail küldésének kiváltói többek között:
+- **Beiratkozás kurzusba**, **kurzus/lecké/téma teljesítése**
+- **Ütemezett lecke elérhetővé válása**
+- **Vizsga sikeres**, **vizsga sikertelen**, **vizsga befejezése**
+- **Beadandó feltöltése**, **beadandó jóváhagyása**
+- **Esszékérdés értékelés alatt**
+- **Inaktivitás X napja**
+- **Kurzuslejárat előtt X nappal**
 
-### Rövidkódok használata
+Minden értesítést hozzárendelhetsz globálisan vagy konkrét tananyagelemhez, így precízen célozhatsz.
 
-Az e-mail tartalmába dinamikus tartalmakat illeszthetsz be rövidkódokkal:
-- A felhasználó keresztneve: `[ld_notifications field="user" show="first_name"]`
-- A kurzus címe: `[ld_notifications field="course" show="title"]`
-- Link a kurzus oldalára: `[ld_notifications field="course" show="url"]`
+### Üzenetkésleltetés
+Választhatsz **azonnali** küldést, vagy beállíthatsz **X napos késleltetést**. Például: a „vizsga sikertelen” után 2 nappal küldött korrekciós e-mail időt hagy a tanulónak megemészteni a visszajelzést.
 
-### Címzettek meghatározása
+### Dinamikus tartalom (shortcode-ok)
+Több tucat beépített shortcode áll rendelkezésre a személyre szabáshoz (felhasználói adatok, kurzus/leckecímek, vizsgaeredmény, stb.). Így minden címzett olyan információt kap, ami rá releváns.
 
-Az értesítéseket különböző címzetteknek küldheted:
-- **Felhasználó:** Az értesítés elküldése a felhasználónak.
-- **Csoportvezető:** Az értesítés elküldése a felhasználó csoportvezetőjének.
-- **Admin:** Az értesítés elküldése az adminisztrátoroknak.
-- **További címzettek:** Egyedi e-mail címek megadása.
+Példa-sablon:
+```
+Szia [user_firstname]!
 
-### Késleltetés
+Gratulálunk a(z) [course_title] kurzus [lesson_title] leckéjének teljesítéséhez.
+Következő lépés: [next_step_link]
 
-Megadhatod, hogy az értesítés hány nappal az esemény bekövetkezte után kerüljön kiküldésre.
+Eddigi eredményed: [quiz_score]% (célszint: 80%).
+Ha elakadtál, nézd meg: [support_link]
 
-## Együttműködő eszközök
+Üdv,
+A képzésed csapata
+[unsubscribe_link]
+```
 
-A LearnDash Notifications zökkenőmentesen együttműködik más eszközökkel és bővítményekkel, mint például:
-- **WooCommerce:** Kurzusok értékesítésére.
-- **MemberPress:** Tagsági rendszerek kezelésére.
-- **Gravity Forms:** Egyedi űrlapok készítésére és feldolgozására.
-- **Zapier:** Automatizálási folyamatok létrehozására különböző alkalmazások között.
+### Címzettek és szerepkörök
+- **Tanuló**: személyes visszajelzés és iránymutatás.
+- **Csoportvezető**: valós idejű képben tartás a csoport haladásáról.
+- **Admin**: működési riasztások, beadandók, mérföldkövek nyomon követése.
+
+### Kezelőfelület és szűrés
+A LearnDash LMS > Notifications alatt **kereshetsz és szűrhetsz** (kurzus, lecke, téma, vizsga, trigger szerint), szerkeszthetsz vagy törölhetsz. Publikálás után a **trigger nem módosítható**, viszont a szöveg és a címzettek igen.
+
+### Leiratkozás és megfelelés
+Minden e-mail tartalmaz **leiratkozási linket**, amelyet jogi okokból nem lehet kikapcsolni.
+
+### Állapot és hibakeresés
+A **Status** képernyő megmutatja a cron beállítását, a várakozó e-mailek számát és az utolsó futást. A kézbesíthetőséghez javasolt megbízható SMTP és stabil cron környezet használata.
 
 ## Gyakorlati példák
 
-### Kurzus befejezésének értesítése
+- **Onboarding sorozat**: beiratkozáskor üdvözlő e-mail; 3 nap múlva tippek; az első ütemezett lecke elérhetőségekor emlékeztető.
+- **Teljesítmény-visszajelzés**: „vizsga sikeres” esetén gratuláció és haladó tartalom; „vizsga sikertelen” esetén javító útmutató és ajánlott leckelista.
+- **Drip és határidők**: üzenet, amikor egy ütemezett lecke megnyílik; **kurzuslejárat előtt X nappal** emlékeztető.
+- **Inaktivitási visszacsábítás**: ha a tanuló **X napja nem lépett be**, motiváló e-mail konkrét javaslatokkal.
+- **Oktatói tájékoztatás**: csoportvezető értesítése beadandó feltöltésekor vagy jóváhagyásakor.
 
-Amikor egy felhasználó befejez egy kurzust, automatikusan kap egy gratuláló e-mailt, amely tartalmazza a kurzus címét és egy linket a letölthető bizonyítványhoz.
+## Előnyök és értékajánlat
 
-### Inaktivitás figyelmeztetés
+- **Időmegtakarítás**: kiváltja a kézi üzenetküldést; egyszer beállítod, onnantól működik.
+- **Személyre szabás**: dinamikus változókkal releváns, egyénre szabott kommunikáció.
+- **Nagyobb elköteleződés**: a megfelelő üzenet a megfelelő időben csökkenti a lemorzsolódást.
+- **Átláthatóság**: Status nézet, cron és queue információk segítik a gyors hibakeresést.
+- **Megfelelés**: kötelező leiratkozási link minden e-mailben.
 
-Ha egy felhasználó több mint 7 napig nem jelentkezik be az oldalra, automatikusan kap egy emlékeztető e-mailt, amely ösztönzi őt a visszatérésre és a tanulás folytatására.
+Tipp: tervezd meg az e-mail mennyiséget; a túl sok értesítés ronthatja a felhasználói élményt.
 
-### Kvíz sikertelenség értesítése
+## Célközönség
 
-Amikor egy felhasználó nem teljesít sikeresen egy kvízt, kap egy e-mailt, amely tájékoztatja őt az eredményéről és javaslatokat ad a további tanuláshoz.
+- **Online akadémiák és kurzuspiacok**: skálázható onboarding és mérföldkő-értesítések.
+- **Vállalati L&D** csoportvezetőkkel: automatikus riportálás és folyamat-értesítések.
+- **Kohorsz-alapú, drip tanfolyamok**: ütemezett leckék és határidők kommunikációja.
+- **Kompliance és minősítés**: lejárat előtti figyelmeztetések, vizsga-visszajelzés.
 
-## Szószedet
+Kiegészítő megjegyzés: elérhető külön Slack integráció is, amely ugyanazon eseményekről csatornákra küldhet értesítést – ez az e-mailes Notifications kiegészítő hasznos párja lehet csapaton belüli kommunikációban.
 
-- **Trigger:** Az az esemény vagy feltétel, amely kiváltja az értesítést.
-- **Shortcode:** Rövid kódok, amelyek dinamikus tartalmakat illesztenek be az e-mailbe.
-- **SMTP:** Simple Mail Transfer Protocol, amely az e-mailek küldésére szolgáló protokoll.
-- **Cron job:** Időzített feladatok futtatására szolgáló mechanizmus.
+## Összegzés
 
-Ez a részletes bemutatás segíthet abban, hogy hatékonyan használd a LearnDash LMS - Notifications bővítményt az oktatási platformodon.
+A LearnDash Notifications a tanulói kommunikáció „autopilotja”: 13 eseménytrigger, késleltetett küldés, bőséges dinamikus shortcode-k és rugalmas címzettkezelés egyetlen, könnyen kezelhető felületen. Ha szeretnél kevesebb kézi e-mailezést, nagyobb elköteleződést és jobb átláthatóságot, ez a kiegészítő neked való.

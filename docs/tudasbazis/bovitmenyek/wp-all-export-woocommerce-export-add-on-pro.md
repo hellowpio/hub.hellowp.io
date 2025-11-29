@@ -1,51 +1,89 @@
-# WP All Export - WooCommerce Export Add-On Pro
+---
+title: "WP All Export - WooCommerce Export Add-On Pro"
+description: "Prémium kiegészítő a WP All Exporthoz, amellyel WooCommerce-termékeket, rendeléseket, vásárlókat, kuponokat és értékeléseket exportálhatsz testreszabott CSV/Excel/XML fájlokba és automatizált feedekbe."
+sidebar_label: "WP All Export - WooCommerce Export Add-On Pro"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A **WP All Export - WooCommerce Export Add-On Pro** egy átfogó megoldás, amely lehetővé teszi a WooCommerce adatainak egyszerű és rugalmas exportálását különböző formátumokba, mint például XML, CSV vagy Excel. Az alábbiakban részletesen bemutatjuk a főbb funkciókat és előnyöket, valamint a gyakorlati alkalmazási lehetőségeket.
+A WP All Export – WooCommerce Export Add‑On Pro egy olyan prémium kiegészítő, amely a WP All Export felületét kifejezetten WooCommerce-adatok exportálására optimalizálja. Akkor hasznos, ha a beépített WooCommerce export korlátos számodra: variációk, attribútumok, képgalériák, tételsorok, adók, kedvezmények, egyedi mezők vagy 3. feles bővítmények adatai kellenek jól strukturált, automatizálható formában.
 
-### Főbb jellemzők
+Lényegében mindent kézbe ad, amivel rugalmas riportokat, feedeket és integrációkat készíthetsz – kézzel vagy ütemezve, kis és nagy adathalmazokra egyaránt.
 
-#### Drag & Drop interfész
-Az intuitív drag & drop interfész lehetővé teszi, hogy könnyedén testreszabhasd az export fájlokat. Az elérhető adatmezőket egyszerűen át tudod húzni a kívánt pozícióba, ami jelentősen leegyszerűsíti az export fájlok létrehozását.
+## Előfeltételek és környezet
 
-#### Szűrők és feltételek
-A WP All Export - WooCommerce Export Add-On Pro segítségével részletes szűrőfeltételeket adhatsz meg, hogy csak a szükséges adatokat exportáld. Például szűrheted az exportált rendeléseket dátum alapján vagy az ügyfeleket vásárlási gyakoriság szerint.
+- Szükséges: **WP All Export** és **WooCommerce**. Az add‑on a Pro csomag része, önmagában nem működik.  
+- **HPOS**: használd a legfrissebb WooCommerce‑et és a hozzá illeszkedő bővítményverziókat. Élesítés előtt tesztelj staging környezetben.
 
-#### Automatikus ütemezés
-Az automatikus ütemezési funkcióval rendszeres időközönként futtathatod az exportokat. Ez különösen hasznos lehet, ha rendszeresen frissített adatokat kell külső rendszerekbe továbbítanod.
+## Fő funkciók részletesen
 
-#### PHP funkciók integrálása
-Lehetőséged van egyedi PHP kódokat futtatni az exportált adatokon, így még rugalmasabban alakíthatod az export fájlokat az igényeid szerint. Ez különösen hasznos lehet például összetett adatstruktúrák kezelésekor.
+### Célzott WooCommerce‑exportok
+- **Termékek**: variációk, attribútumok, kategóriák, készlet, árak, képgalériák és bármely egyedi meta.  
+- **Rendelések**: tételsorok, adók, szállítás, díjak/kedvezmények, visszatérítések.  
+- **Vásárlók, kuponok, értékelések**: minden lényeges mezővel, egységes lépésekkel.
 
-### Együttműködés más eszközökkel
+Mit jelent ez a gyakorlatban? Nemcsak „alap” listát kapsz, hanem pontosan azt az adatképet, amire a könyvelődnek, a hirdetési platformnak vagy az ERP‑nek szüksége van.
 
-A WP All Export - WooCommerce Export Add-On Pro zökkenőmentesen integrálható más eszközökkel és bővítményekkel, mint például:
-- **Google Sheets**: Az adatok közvetlenül Google Sheets-be való exportálása.
-- **Dropbox**: Az exportált fájlok automatikus feltöltése Dropboxba.
-- **Zapier**: Integráció Zapier-rel, amely lehetővé teszi az adatok továbbítását számos más alkalmazásba.
+### Kimeneti formátumok
+- **CSV, Excel (XLS/XLSX), XML** – beleértve a nagy fájlok darabolását és speciális kódolási/bom beállításokat.  
+- **Google Merchant Center**: dedikált feed sablonnal, a kötelező mezők vezetett kitöltésével.
 
-## Gyakorlati alkalmazási példák
+### Drag‑and‑drop mezőválasztó és számított mezők
+- Szabadon **átrendezheted**, **átnevezheted** és **kombinálhatod** az oszlopokat.  
+- **Számított (computed) mezők**: beépített PHP‑támogatás az értékek átalakításához, pl. bruttó ár számítása, szövegösszefűzés, feltételek.
 
-### Készlet és árak szinkronizálása
-Rendszeres időközönként exportálhatod a WooCommerce termékeid készlet- és áradatait, majd importálhatod őket egy külső készletkezelő rendszerbe. Ezzel biztosíthatod, hogy az online áruházad mindig naprakész információkat tartalmazzon.
+Példa egy egyszerű számított logikára:
+```
+if ($stock > 0) { return 'in_stock'; }
+return 'out_of_stock';
+```
 
-### Ügyféladatok kezelése
-Exportálhatod az ügyféladatokat egy CRM rendszerbe, ahol részletes elemzéseket végezhetsz a vásárlói viselkedésről. Például szegmentálhatod az ügyfeleket a vásárlási szokásaik alapján és célzott marketing kampányokat indíthatsz.
+### Szűrés és lekorlátozás
+- Összetett szűrés bármely mezőre, beleértve **relatív dátumokat** (pl. „utolsó 7 nap rendelései”) és kombinált feltételeket (állapot, kategória, készlet > 0 stb.).
 
-### Rendelési jelentések készítése
-Készíthetsz részletes rendelési jelentéseket, amelyeket Excel-ben vagy más analitikai eszközökben elemezhetsz. Ez segít a bevétel nyomon követésében és a legjobban teljesítő termékek azonosításában.
+### Ütemezés és kézbesítés
+- **Automatikus futtatás** beépített ütemezővel vagy saját **cron** feladattal.  
+- **Kézbesítés** e‑mailben vagy felhő‑tárhelyre, valamint valós idejű feldolgozás és **Zapier** triggerelés.
 
-### Google Merchant Center feed készítése
-A bővítmény segítségével egyszerűen készíthetsz Google Merchant Center kompatibilis termék feedeket, amelyek segítenek növelni a termékeid láthatóságát a Google Shopping-ban.
+### Nagy adathalmazok stabil kezelése
+- **Fájldarabolás**, rekordonkénti feldolgozás, „**csak új/módosult**” rekordok exportja.  
+- **Client Mode** és megszakításkezelő beállítások a megbízható futáshoz.
 
-## Szószedet
-- **Drag & Drop interfész**: Húzd és ejtsd felület.
-- **Szűrők és feltételek**: Adatszűrés és feltételmegadás.
-- **Automatikus ütemezés**: Időzített export futtatás.
-- **PHP funkciók integrálása**: Egyedi PHP kódok futtatása.
-- **Google Sheets**: Google Táblázatok.
-- **Dropbox**: Felhőtárhely szolgáltatás.
-- **Zapier**: Automatizálási platform.
-- **CRM**: Ügyfélkapcsolat-kezelő rendszer.
-- **Google Merchant Center**: Google vásárlói központ.
+## Gyakorlati példák
+
+- **Google Merchant Center feed**: válaszd a GMC feed típust, párosítsd a termékmezőket (pl. cím, leírás, ár, availability), ütemezd napi frissítésre, és add meg a feed URL‑t a Merchant Centerben.  
+- **Rendelések → könyvelés/ERP**: óránként exportáld az új vagy frissült rendeléseket tételsorokkal, adókkal és kuponokkal. Szűrj rendelésállapot szerint, és kézbesítsd a fájlt e‑mailben vagy felhőbe.  
+- **Migrálás és tömeges szerkesztés**: exportáld a termékeket, módosítsd Excelben (ár, készlet, leírás), majd importáld vissza a WP All Importtal.  
+- **BI/riporting**: részletes ügyfél‑ és rendelésadatok exportja Excel/Sheets felé elemzéshez, heti ütemezéssel.
+
+## Hogyan működik – lépésről lépésre
+
+1. Telepítsd és aktiváld a **WP All Export**, **WooCommerce** és a **WooCommerce Export Add‑On Pro** bővítményeket.  
+2. Lépj a **All Export → New Export** menübe, válaszd ki a WooCommerce adattípust (pl. Products vagy Orders).  
+3. A drag‑and‑drop felületen állítsd össze az oszlopokat; adj hozzá szükség esetén **számított mezőket**.  
+4. Állíts be **szűrőket** (pl. dátum, státusz, kategória).  
+5. Válassz **kimeneti formátumot** (CSV/Excel/XML vagy GMC feed) és fájlbeállításokat (darabolás, kódolás).  
+6. Konfiguráld az **ütemezést** és a **kézbesítést** (e‑mail, felhő, valós idejű feldolgozás).  
+7. Futtasd a tesztexportot, ellenőrizd a mezőket, majd indítsd az éles ütemezést.
+
+## Előnyök és értékajánlat
+
+- **Időmegtakarítás**: automatizált exportok, csak az új/módosult rekordok feldolgozása, kézbesítés és integrációk.  
+- **Rugalmasság**: bármely WooCommerce mező, variációk, tételsorok és egyedi meta is megcélozható.  
+- **Megbízhatóság nagy boltoknál**: darabolás, rekordonkénti feldolgozás és megszakításkezelés.  
+- **Fejlesztőbarát**: PHP‑alapú átalakítások, valós idejű export, Zapier‑triggek – gyors iteráció integrációkhoz.  
+- **Marketing‑kész**: beépített GMC sablon a gyors és szabálykövető feed‑építéshez.
+
+## Kinek ajánlott?
+
+- **Webáruház‑tulajdonosok/üzemeltetők**: riportok, feedek, könyvelési és logisztikai adatszolgáltatás automatizálása.  
+- **Ügynökségek**: hirdetési és piactéri feedek, több ügyfélre skálázható ütemezett exportok.  
+- **Fejlesztők/integrátorok**: ERP/CRM/számlázó rendszerekhez kötött exportfolyamatok, egyedi mező‑transzformációk, real‑time integrációk.
+
+## Kompatibilitás és tippek
+
+- **HPOS**: mindig friss verzióval dolgozz, és élesítés előtt tesztelj staging környezetben.  
+- **Nagy exportoknál**: használj fájldarabolást, rekordonkénti feldolgozást, és kapcsold be a megszakítások kezelésére ajánlott opciókat.  
+- **Biztonságos futtatás**: a Client Mode csökkenti a szerverkörnyezetből adódó hibák kockázatát.
+
+Ha szeretnéd, adok egy személyre szabott ellenőrzőlistát a saját exportfolyamatod felépítéséhez (mezők, szűrések, ütemezés, kézbesítés, visszaimport‑stratégia).

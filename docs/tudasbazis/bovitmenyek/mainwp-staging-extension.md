@@ -1,52 +1,77 @@
-# MainWP Staging Extension
+---
+title: "MainWP Staging Extension"
+description: "Központi staging menedzsment a MainWP Dashboardból: tesztoldalak létrehozása, frissítések próbafuttatása és kezelés a WP STAGING integrációjával."
+sidebar_label: "MainWP Staging Extension"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A MainWP Staging Extension egy hatékony eszköz, amely lehetővé teszi számodra, hogy közvetlenül a MainWP Dashboardból hozz létre és kezeld a staging oldalakat. Ezzel az eszközzel időt takaríthatsz meg és egyszerűsítheted a mindennapi feladataidat.
+A MainWP Staging Extension egy olyan kiegészítő, amellyel a MainWP Dashboardból közvetlenül hozhatsz létre és kezelhetsz staging (teszt) WordPress oldalakat az alá kapcsolt Child site-jaidon. A tényleges klónozást a WP STAGING bővítmény végzi, a MainWP pedig ehhez ad központi vezérlést és tömeges menedzsmentet. Így kockázat nélkül tesztelhetsz frissítéseket, beállításokat és új funkciókat, mielőtt az éles oldalon bármi változna.
 
-### Miért fontosak a staging oldalak?
+## Hogyan működik röviden?
 
-Képzeld el, hogy új funkciókat vagy dizájnokat szeretnél tesztelni anélkül, hogy veszélyeztetnéd az élő weboldaladat. A staging oldalak biztonságos környezetet biztosítanak a bővítmények, témák és frissítések teszteléséhez. A MainWP Staging Extension segítségével könnyedén klónozhatod az élő oldaladat, majd módosításokat végezhetsz anélkül, hogy aggódnál a lehetséges hibák miatt.
+- A Child site-okra felkerül a WP STAGING bővítmény (telepítheted egyenként vagy tömegesen a MainWP-ből).
+- Staging létrehozásakor a WP STAGING klónozza a fájlokat egy elkülönített mappába, duplikálja az adatbázist új előtaggal, és beállítja a konfigurációt.
+- A létrehozott staging példányt a MainWP automatikusan felveszi a Dashboardba, mintha egy külön Child site lenne, így külön szűrheted, frissítheted és törölheted.
+- A stagingen kipróbált frissítéseket és változtatásokat ellenőrzés után az éles oldalakon is végrehajthatod. A stagingről élesre “push” funkciót a WP STAGING Pro biztosítja, az nem része ennek az extensionnek.
 
-### Hogyan működik?
+## Fő funkciók és mit csinálnak
 
-A MainWP Staging Extension zökkenőmentesen integrálódik a WP Staging bővítménnyel. Ez lehetővé teszi, hogy ugyanúgy kezeld a staging oldalakat, mint a Child oldalakat a MainWP-ben. Állítsd be a staging oldalt, végezz el rajta szükséges módosításokat, és ha elégedett vagy az eredménnyel, egyszerűen alkalmazhatod ezeket az élő oldalon is.
-
-### Specifikus előnyök
-
-- **Biztonságos tesztkörnyezet**: A staging oldalakon végzett módosítások nem érintik az élő oldalt, így nyugodtan kísérletezhetsz.
-- **Egyszerű integráció**: A WP Staging bővítménnyel való integráció révén könnyedén kezelheted a staging oldalakat.
-- **Időtakarékosság**: A staging oldalak gyors létrehozása és kezelése időt takarít meg számodra, mivel nem kell manuálisan klónoznod az élő oldalt.
-- **Korlátlan staging oldalak**: Nincs korlátozás a létrehozható staging oldalak számában, így annyi tesztkörnyezetet hozhatsz létre, amennyire szükséged van.
-
-### Tippek a hatékony használathoz
-
-- **Rendszeres frissítések**: Gyakran frissítsd a staging oldaladat, hogy mindig naprakész másolatod legyen az élő oldalról.
-- **Tesztelj alaposan**: Mielőtt bármilyen módosítást alkalmaznál az élő oldalon, győződj meg róla, hogy minden tökéletesen működik a staging oldalon.
-- **Használj különböző környezeteket**: Hozz létre több staging oldalt különböző célokra (például egyet dizájn tesztelésre és egyet bővítmény frissítésre).
-
-## Együttműködő eszközök
-
-A MainWP Staging Extension zökkenőmentesen működik együtt a WP Staging bővítménnyel. Ez az együttműködés lehetővé teszi, hogy egyetlen felületről kezeld mind az élő, mind a staging oldalakat.
+- **Egykattintásos staging létrehozás**: A MainWP felületéről indítod a klónozást az adott Child site-ra. Nem kell belépni minden oldal adminjába.
+- **Részletes klónozási beállítások**: Megadhatod a staging nevét/útvonalát, kizárhatsz fájlokat és adatbázis-táblákat (például nagy méretű feltöltéseket vagy cache mappákat), így gyorsabb és célzottabb klónozást érhetsz el.
+- **Staging-specifikus frissítések**: A staging példányokon külön futtathatod a WordPress mag-, téma- és bővítményfrissítéseket, majd ellenőrzés után dönthetsz az éles frissítésekről.
+- **Újraduplikálás és törlés**: Ha a produkció változott, a staginget újra klónozhatod a friss állapotról, vagy biztonságosan törölheted, ha nincs rá szükség.
+- **Automatikus MainWP Child telepítés a stagingre**: A frissen létrehozott staging automatikusan bekerül a Dashboardba, így ugyanúgy kezelheted, mint bármelyik Child site-ot.
+- **WP STAGING jelenlét ellenőrzése**: A kiegészítő figyeli, hol hiányzik a WP STAGING, és tömeges telepítést is javasol/indít.
+- **Áttekintő nézet és számlálók**: A Dashboardban külön oszlop és számláló mutatja az egyes site-okhoz tartozó staging példányokat, javított visszajelzésekkel és átláthatóbb UI-val.
 
 ## Gyakorlati példák
 
-### Új bővítmény tesztelése
+- **Ügynökségi frissítési ablak**: Hetente egyszer stagingen lefuttatod a frissítéseket minden ügyféloldalnál, átnézed a kritikus funkciókat (pl. kosár, űrlapok, keresés), majd jóváhagyás után élesen is frissítesz.
+- **Új funkciók kipróbálása**: Egy nagy webáruházban új fizetési módot és témamódosítást tesztelsz stagingen. Ha minden rendben, a módosításokat dokumentálod, és az éles környezetben is végrehajtod.
+- **Hibakeresés izoláltan**: Inkompatibilis bővítmény gyanúja esetén stagingen kapcsolgatod a pluginokat és reprodukálsz hibákat, miközben az éles oldal zavartalanul működik.
 
-Egy új bővítményt szeretnél bevezetni az oldaladon, de nem vagy biztos benne, hogy hogyan fog működni. Létrehozol egy staging oldalt, ahol telepítheted és tesztelheted a bővítményt anélkül, hogy kockáztatnád az élő oldal működését.
+## Előnyök és értékajánlat
 
-### Dizájn módosítások
+- **Kockázatcsökkentés**: A változtatások nem az éles oldalon történnek, így minimális az üzleti leállás esélye.
+- **Időmegtakarítás**: Központi, tömeges menedzsmenttel nem kell minden oldalra külön belépni és manuálisan klónozni.
+- **Átláthatóság**: Külön láthatod és kezelheted a staging példányokat, tiszta workflow-val a teszt → éles lépésekhez.
+- **Skálázhatóság**: Sok site esetén is konzisztens, megismételhető folyamatokat kapsz.
 
-Új dizájn elemeket szeretnél kipróbálni? A staging oldalon biztonságosan elvégezheted a szükséges módosításokat és ellenőrizheted azok hatását. Ha elégedett vagy az eredménnyel, egyszerűen átviheted azokat az élő oldalra.
+## Célközönség
 
-### Frissítések kezelése
+- **WordPress ügynökségek** és **managed service** csapatok, akik sok ügyféloldalt üzemeltetnek.
+- **Rendszergazdák** és **DevOps** felelősök, akik strukturált frissítési- és változáskezelést keresnek.
+- **Fejlesztők**, akik biztonságos játszóteret szeretnének új funkciókhoz, anélkül hogy az éles forgalmat kockáztatnák.
 
-Mielőtt frissítenéd a WordPress verzióját vagy bármelyik bővítményét az élő oldalon, először végezd el ezeket a frissítéseket a staging oldalon. Így biztos lehetsz benne, hogy minden rendben működik, mielőtt az élő oldalon is végrehajtanád a frissítéseket.
+## Előfeltételek, kompatibilitás, korlátozások
 
-## Szószedet
+- **Szükséges**: MainWP Dashboard (Core + Pro), illetve a **WP STAGING** bővítmény minden érintett Child site-on.
+- **Push élesre**: A stagingről élesre való automatikus “push” nem része ennek a kiegészítőnek; ehhez a WP STAGING Pro szükséges.
+- **Környezet**: Nagy site-oknál számolj elegendő tárhellyel és I/O-val. Nem szabványos mappastruktúráknál (pl. egyedi wp-content elhelyezés) lehetnek extra lépések; ilyen esetekben a WP STAGING dokumentációja és támogatása az irányadó.
+- **Állapot**: A kiegészítő jelenleg “work in progress”/Beta megjelölésű. Éles bevezetés előtt mindig ellenőrizd a kiadási megjegyzéseket és tesztelj stagingen.
 
-- **Staging oldal**: Tesztkörnyezet, amely az élő oldal másolata.
-- **Child site**: A MainWP alá tartozó kezelt WordPress oldal.
-- **WP Staging**: Egy WordPress bővítmény, amely segít a staging oldalak létrehozásában és kezelésében.
+## Biztonság és bevált módszerek
 
-Ezekkel a funkciókkal és lehetőségekkel a MainWP Staging Extension egy nélkülözhetetlen eszköz minden webfejlesztő számára.
+- Tartsd naprakészen a MainWP kiegészítőket és a WP STAGING bővítményt.
+- Először mindig stagingen frissíts, és csak ellenőrzés után az élesen.
+- Zárd ki a klónozásból a feleslegesen nagy mappákat (cache, backup), hogy gyorsabb legyen a folyamat.
+- Rendszeresen töröld a már nem használt staging példányokat.
+
+## Gyors indulási ellenőrzőlista
+
+```
+1) Telepítsd a MainWP Staging Extensiont a Dashboardra.
+2) Telepítsd és aktiváld a WP STAGING bővítményt a kiválasztott Child site-okon (akár tömegesen).
+3) Szinkronizálj, majd indítsd a staging létrehozását:
+   - Adj nevet/útvonalat
+   - Állítsd be a kizárásokat (fájlok/táblák)
+4) Várd meg a klónozást; a staging automatikusan Childként jelenik meg.
+5) Futtasd a frissítéseket a stagingen, teszteld a kritikus funkciókat.
+6) Ha minden rendben, frissíts az éles site-on is.
+7) Szükség esetén újraduplikáld vagy töröld a staginget.
+```
+
+## Összegzés
+
+A MainWP Staging Extension a WP STAGING integrációjával biztonságos, központosított staging-menedzsmentet ad a kezedbe. Gyorsan hozhatsz létre tesztpéldányokat, külön futtathatod és ellenőrizheted a frissítéseket, majd kontrolláltan léphetsz tovább az éles környezetbe. Ha sok site-ot üzemeltetsz, ez a bővítmény kézzelfogható időt, költséget és kockázatot spórol meg, miközben átláthatóvá teszi a változáskezelési folyamataidat.

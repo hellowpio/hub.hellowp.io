@@ -1,68 +1,131 @@
-# API Manager for WooCommerce
+---
+title: "API Manager for WooCommerce"
+description: "Licenckezelő és frissítéskiszolgáló WooCommerce-hez. Digitális termékeidet API-kulcsokkal, előfizetésekkel és biztonságos frissítésekkel kezelheted."
+sidebar_label: "API Manager for WooCommerce"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-Az API Manager for WooCommerce számos funkcióval segíti a szoftverlicencek és előfizetések értékesítését és kezelését. Az eszköz lehetővé teszi, hogy licenckulcsokat biztosíts a vásárlóknak, és integrálható bármilyen programozási nyelvvel, hogy csak a fizető ügyfelek férhessenek hozzá a szoftveredhez.
+Az API Manager for WooCommerce egy WooCommerce-kiterjesztés, amellyel a digitális termékeidet (pluginek, témák, szoftverek, API-hozzáférések) **licenckulcsokkal** védve értékesítheted. Automatikusan ad ki kulcsokat, kezeli az **aktiválásokat és megújításokat**, és biztonságosan kézbesíti a **szoftverfrissítéseket**. Gyakorlatban ez a bővítmény lesz a saját **licenc- és frissítéskiszolgálód** a WooCommerce áruházadon belül.
 
-### Licencelés és előfizetések kezelése
+## Hogyan működik röviden?
 
-- **Licenckulcsok biztosítása**: Amikor a vásárlók megvásárolják a termékedet, automatikusan kapnak egy licenckulcsot, amelyet az API segítségével aktiválhatnak.
-- **Teljes licencelési API**: Kezelheted a licenckulcs aktiválását, deaktiválását, státuszellenőrzését, vásárolt termékek listáját, aktív API kulcs ellenőrzését, és szoftverfrissítések telepítését.
-- **Előfizetések megújítása**: Az ügyfelek manuálisan megújíthatják az előfizetéseiket, és automatikus megújítás is lehetséges a Woo Subscriptions bővítménnyel párosítva.
+- A bővítmény minden vásárláshoz **licenckulcsot** generál.
+- A kliens (pl. a WordPress bővítményed) a beépített **licenc‑API**-hoz fordul aktiválásért, ellenőrzésért, frissítésért és letöltésért.
+- Az API a WooCommerce termék‑azonosítót és a vásárló kulcsát használja a hozzáférések és jogok érvényesítéséhez.
+- A WordPress‑es **PHP SDK** “bedrótozza” a licencelést és a frissítéseket a megszokott admin felületekbe (egy kattintásos update).
+- Admin oldalon látod és kezeled az aktivációkat; a vásárló a saját fiókjában maga intézi a kulcsait és az eszközeit.
 
-### Frissítések és új funkciók
+## Fő funkciók részletesen
 
-- **Szoftverfrissítések telepítése**: Új funkciókat és hibajavításokat biztosíthatsz a felhasználóknak az API-n keresztül. Az egykattintásos és automatikus frissítések támogatottak.
-- **Amazon S3, távoli URL és helyi szerver letöltési opciók**: A szoftverfrissítéseket különböző forrásokból érheted el biztonságos URL-ekkel.
+### Licenckulcs‑kiadás és ‑kezelés
+- Vásárláskor automatikus **API kulcs** generálás.
+- **Aktivációs helyek** (slotok) szabályozása: meghatározhatod, hány eszközön használható egyszerre.
+- **Lejárat és megújítás** kezelése egyszeri vagy előfizetéses termékeknél.
 
-### Online előfizetési szolgáltatás
+### Teljes licencmenedzsment API
+- **Aktiválás/deaktiválás**: eszközhöz kötött használat nyilvántartása.
+- **Státusz‑ellenőrzés**: érvényes‑e a kulcs, hány aktiváció aktív.
+- **Frissítési metaadatok** és **biztonságos letöltési URL‑ek** kiadása a kliensnek.
 
-- **API kulcs aktiválás**: Az ügyfelek hozzáférését az API kulcs aktiválásával hitelesítheted.
-- **API kulcs státusz ellenőrzés**: Az API segítségével ellenőrizheted az API kulcs aktiválási státuszát, valamint meghatározhatod az elérhető termékeket és előfizetési szinteket.
+### Biztonságos szoftverfrissítések
+- WordPressen belüli **egy kattintásos/automatikus frissítés**.
+- Fájlok kiszolgálása saját tárhelyről, távoli forrásból vagy **S3**‑ról.
+- Minden letöltési link **időzített és lejáró**, így nem osztható tovább.
 
-## Együttműködés más eszközökkel
+### Előfizetések és megújítások
+- **WooCommerce Subscriptions** és **Constellation** integráció.
+- A licenc **csak aktív** vagy **lemondás alatt** álló előfizetés mellett érvényes.
+- Automatikus megújítások és lejárat előtti **emlékeztetők**.
 
-Az API Manager for WooCommerce zökkenőmentesen működik együtt több más WooCommerce bővítménnyel:
+### Admin és vásárlói felület
+- Adminban a rendelésnél látod az **aktív eszközöket**, resetelheted vagy deaktiválhatod őket.
+- A vásárló a **Saját fiók** felületen kezeli a kulcsait, eszközeit és letöltéseit.
 
-- **Woo Subscriptions**: Automatizált fizetési feldolgozás az előfizetések megújításához.
-- **WooCommerce Software Add-on**: Importálási eszköz a meglévő adatok átviteléhez.
+### Fejlesztői eszközök és SDK
+- Ingyenes **PHP könyvtár** gyors integrációhoz: licenc‑ellenőrzés, frissítési feed, admin UI bekötés.
+- **Postman**‑minta a végpontok teszteléséhez.
+
+### Teljesítmény, naplózás, biztonság
+- **SmartCache** a licenc‑API gyorsítására és terhelés csökkentésére.
+- WooCommerce‑be ágyazott **debug logok**.
+- **IP‑engedélyezőlista** szerver‑oldali hívásokhoz, **HTTPS**, WordPress **biztonsági kulcsok**, cache‑ és tűzfal‑irányelvek.
 
 ## Gyakorlati példák
 
-### Szoftverlicencek értékesítése
+### 1) WordPress bővítmény licencelése és frissítése
+- Beállítasz egy “API‑erőforrás” terméket aktivációs limittel.
+- Vásárlás után a vevő kap egy kulcsot; a bővítményed az SDK‑n keresztül aktivál.
+- A frissítési információkat és a csomagot az API szolgálja ki, időzített linkkel.
+- Előfizetés lejártakor a frissítések és letöltések automatikusan leállnak.
 
-Egy szoftverfejlesztő cég licencelni szeretné az alkalmazását. Az API Manager segítségével minden vásárló egyedi licenckulcsot kap, amelyet az alkalmazás aktiválásához használhat. A cég automatikus frissítéseket is biztosíthat a felhasználóknak.
+### 2) SaaS vagy REST API monetizáció
+- A bejövő kérések a licenc‑API‑n át ellenőrzik a **kulcs érvényességét** és az **aktivációs helyek** számát.
+- Belső szerverekhez **IP‑whitelist**-et állítasz, hogy gép‑gép hívások biztonságosan menjenek.
 
-### Online szolgáltatások előfizetése
+### 3) Licenckulcsos letöltések (app, kurzus, fájl)
+- A fizető ügyfél kulcsa alapján **lejáró letöltési linket** kap.
+- A hivatkozás az első kijelölt letöltési fájlhoz kötődik a terméken.
 
-Egy online szolgáltatást nyújtó vállalkozás előfizetési modellt alkalmaz. Az API Manager lehetővé teszi, hogy az ügyfelek hozzáférjenek a szolgáltatásokhoz egy API kulccsal, amely lejár, ha az előfizetés nem kerül megújításra.
+## Példa API‑hívások (paraméterek)
 
-### Mobilalkalmazások licencelése
+Aktiválás:
+```
+request=activation
+&product_id=123
+&api_key=LICENC-KULCS
+&instance=EGYEDI-ESZKOZ-ID
+```
 
-Egy mobilalkalmazás fejlesztője az API Manager segítségével biztosíthatja, hogy csak azok a felhasználók férjenek hozzá az alkalmazás prémium funkcióihoz, akik megvásárolták az előfizetést. Az API kulcsokkal könnyen nyomon követhetik az aktivációkat és biztosíthatják a frissítéseket.
+Frissítés‑ellenőrzés:
+```
+request=pluginupdate
+&product_id=123
+&api_key=LICENC-KULCS
+&instance=EGYEDI-ESZKOZ-ID
+&version=AKTUALIS_VERZIO
+```
 
-## Legfontosabb jellemzők
+Deaktiválás:
+```
+request=deactivation
+&product_id=123
+&api_key=LICENC-KULCS
+&instance=EGYEDI-ESZKOZ-ID
+```
 
-### Könnyű termékbeállítás
+## Előnyök és értékajánlat
 
-Egyszerűen kezelhető termék API űrlapok szoftver és nem szoftver termékekhez.
+- Saját, **kontrollált licencszerver** WooCommerce‑en belül.
+- Kevesebb support: a vevők **önkiszolgáló** licenckezelést kapnak.
+- **Biztonságos frissítéskiszolgálás**, lejáró linkekkel.
+- **Skálázható** API és cache, részletes naplózás.
+- Gyors fejlesztés az **SDK**‑val, kevesebb egyedi kód.
 
-### Biztonságos letöltési URL-ek
+## Kinek ajánlott?
 
-A helyi szerverről, Amazon S3-ról vagy távoli szerverről származó URL-ek biztonságosak és időkorlátosak.
+- **WordPress bővítmény‑ és témakészítőknek**, akik saját boltjukból adnak el és frissítenek.
+- **SaaS/API szolgáltatóknak**, akik licenc‑alapú hozzáférést és eszköz‑aktivációt akarnak.
+- **Ügynökségeknek**, akik ügyfeleknek szállított komponenseket szeretnének licenchez kötni.
+- **Digitális tartalom‑készítőknek**, akik időzített, védett letöltéseket keresnek.
 
-### Teljes API hozzáférés vezérlés
+## Bevezetés röviden
 
-Az üzlettulajdonosok szükség esetén letilthatják az ügyfelek API hozzáférését.
+1. Telepítsd és aktiváld a bővítményt a WooCommerce áruházadban.
+2. A terméknél jelöld be az **API erőforrás** opciót, állítsd az **aktivációs limitet**, a **lejáratot** és add meg a letöltési fájlokat vagy S3‑at.
+3. Illeszd be a **PHP SDK**‑t a szoftveredbe, add meg a termék azonosítót és teszteld a hívásokat.
+4. Előfizetéses modellhez kapcsold be a **Subscriptions/Constellation** integrációt.
 
-### Beépített API hibakeresés
+## Best practice és buktatók
 
-Különböző hibakeresési opciók állnak rendelkezésre az adatok szépen formázott naplózásához.
+- Ne töröld az **API‑ként jelölt terméket** (a meglévő aktivációk sérülhetnek).
+- Használj **HTTPS‑t**, állítsd be a WordPress **AUTH/SECURITY** kulcsokat, és kapcsold ki a **WP_DEBUG**‑ot élesben.
+- Kerüld a **query‑string cache**‑elését, a tűzfalban engedélyezd az API paramétereket.
+- Frissítéseknél ügyelj a **numerikus product_id** használatára; a frissítési csomag a termék első letöltési fájljához kötődik.
+- Migrációhoz elérhető **importőr** korábbi megoldásokból; komplex esetekhez útmutató áll rendelkezésre.
 
-## Szószedet
+## Követelmények és kompatibilitás
 
-- **API**: Alkalmazásprogramozási felület
-- **Licenckulcs**: Egyedi kód, amely a szoftver használatához szükséges
-- **Előfizetés**: Rendszeres időközönkénti fizetéssel járó szolgáltatás
-- **Amazon S3**: Amazon Simple Storage Service
-- **Woo Subscriptions**: WooCommerce bővítmény az előfizetések kezeléséhez
+Modern WordPress, WooCommerce és PHP környezet szükséges. Kompatibilis a nagy teljesítményű rendeléskezeléssel, a blokkos kosár/penztár megoldásokkal, és támogatja az S3 tárhelyet, valamint az előfizetéses bővítményekkel való együttműködést.
+
+Összességében az API Manager for WooCommerce átfogó licenc‑ és frissítéskezelő réteget ad a boltodhoz, amellyel professzionális, skálázható és biztonságos módon értékesíthetsz és frissíthetsz szoftvert vagy API‑hozzáférést.

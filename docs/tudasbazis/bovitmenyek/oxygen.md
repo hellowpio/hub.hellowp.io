@@ -1,66 +1,70 @@
-# Oxygen
+---
+title: "Oxygen"
+description: "Fejlesztőközpontú vizuális site builder WordPresshez: téma nélkül építhetsz teljes webhelyet, dinamikus adatokkal, komponensekkel és modern workflow-val."
+sidebar_label: "Oxygen"
+---
 
-## Funkcionalitás
+## Mi ez, és milyen problémát old meg?
 
-Oxygen egy vizuális weboldal építő, amely lehetővé teszi számodra, hogy kódolás nélkül hozz létre professzionális és egyedi weboldalakat. A felület drag & drop alapú, így könnyedén helyezheted el az elemeket, állíthatod be a távolságokat és méreteket. Az Oxygen főbb funkciói közé tartozik a teljeskörű témaépítés, amely magában foglalja a fejléc- és lábléc-szerkesztést is.
+Az Oxygen egy professzionális, fejlesztőközpontú vizuális site builder WordPresshez. Teljes irányítást ad a webhely felett – fejléc, tartalom, lábléc, sablonok –, külön téma nélkül. Ezzel megszünteti a téma‑lock‑int, eltünteti a felesleges kódduzzadást, és helyette tiszta, szemantikus HTML/CSS kimenetet ad. Ha összetett, dinamikus adatokat használsz (egyedi mezők, lekérdezések), vagy pixelpontos kontrollt akarsz a layout fölött, az Oxygen közvetlen, kódhű eszközt ad a kezedbe.
 
-### Vizuális szerkesztés
-Az Oxygen vizuális szerkesztője lehetővé teszi, hogy valós időben lásd a változtatásokat. A drag & drop funkcióval egyszerűen átrendezheted az elemeket, és azonnal láthatod, hogyan néznek ki a változtatások a weboldalon.
+## Hogyan működik? (architektúra)
 
-### WooCommerce integráció
-Teljeskörű vizuális kontrollt biztosít a WooCommerce áruházad minden részéhez. Egyedi termékoldalakat, kosár- és pénztár oldalakat hozhatsz létre anélkül, hogy kódolni kellene.
+- **Témafüggetlen:** Aktiváláskor az Oxygen letiltja a WordPress témarendszert, és a saját **Templates** logikájával veszi át a megjelenítést. Így minden nézet (single, archive, 404, termék, stb.) a builderben készül.
+- **Két termékvonal:** a stabil **Classic** ág és az újraírt, modern fejlesztői workflow‑t hozó ág (közismerten “Oxygen 6”). A Classic továbbra is támogatott, az új ág fejlettebb komponens‑ és interakció‑rendszert ad.
 
-### Fejléc építő
-Az Oxygen fejlécek létrehozását is egyszerűsíti. Beépített támogatást nyújt a ragadós és átfedéses fejlécekhez, így kódolás nélkül érheted el ezeket a funkciókat.
+## Fő funkciók, érthetően
 
-### Globális színek
-A globális színek funkció lehetővé teszi, hogy egyetlen helyen változtass meg színeket, és ezek a változtatások automatikusan érvényesülnek mindenhol, ahol ezt a színt használtad.
+- **Vizuális építés, CSS‑első szemlélettel:** A stíluspanel 1:1 leképezi a CSS tulajdonságokat. Használhatsz Flexboxot, CSS Gridet, abszolút pozicionálást és reszponzív töréspontokat. Amit beállítasz, abból letisztult, szemantikus kód lesz.
+- **Dinamikus adatok és lekérdezések:** Közvetlenül köthetsz be egyedi mezőket (pl. ACF, Meta Box), saját post típusokat és taxonómiákat. Vizuálisan építhetsz loopokat (Repeater/Query), feltételekkel (pl. ha mező üres, rejtsd el az elemet).
+- **Komponensek:** Bármely szekciót vagy elemet **újrahasznosítható komponenssé** emelhetsz. Ha frissíted a komponenst, a példányok követik – a szerkeszthetőséget finoman szabályozhatod (mi legyen lokálisan módosítható).
+- **Interakciók és animációk:** Hover, kattintás, görgetés alapú triggerek, belépő animációk, “scroll into view”, sticky viselkedés, időzített szekvenciák – mindez kód nélkül, mégis fejlesztőbarát módon.
+- **Globális változók:** Színek, tipográfia, térközök és más design tokenek központilag kezelhetők. Így stílusváltáskor elég a változókat cserélni.
+- **WooCommerce integráció:** Kész elemek a termék‑, archív‑, kosár‑, pénztár‑ és fiókoldalakhoz. A bolt teljes élménye vizuálisan testre szabható.
+- **Gutenberg / “Client mode”:** A végfelhasználó a tartalmat a blokk‑szerkesztőben módosíthatja, miközben a dizájn és logika az Oxygenben védett. Jogosultságokkal pontosan szabályozhatod, ki mit érhet el.
+- **Teljesítmény és fejlesztői eszközök:** Karcsú kimenet, opcionális optimalizálások (pl. fölösleges stílusok eltávolítása), billentyűparancsok, cross‑site másolás/illesztés, egyedi PHP/JS/CSS hozzáadása.
 
-### Fejlesztőbarát
-Az Oxygen támogatja a HTML elemek közvetlen szerkesztését, valamint élő PHP, CSS és JS írását. Ez nagy szabadságot ad a fejlesztőknek a testreszabásban.
-
-### Dinamikus adatok kezelése
-Rugalmas építőelemeket kínál, mint például a repeaterek és loopok. Ezek segítségével dinamikus adatokat kezelhetsz, amelyek különösen hasznosak lehetnek adatbázis-alapú alkalmazásoknál.
-
-## Előnyök
-
-### Teljeskörű témaépítés
-Az Oxygen nem csak egy oldalkészítő, hanem egy teljeskörű témaépítő. Ez azt jelenti, hogy nem csak az oldalakat, hanem az egész weboldal kinézetét és funkcionalitását meghatározhatod vele.
-
-### Kódminőség
-Az Oxygen által generált kód tiszta és hatékony, mentes a felesleges bővítményektől és bloatware-től. Ez javítja a weboldalad sebességét és keresőoptimalizálását (SEO).
-
-### Kompatibilitás más eszközökkel
-Az Oxygen zökkenőmentesen működik együtt olyan eszközökkel, mint az Advanced Custom Fields (ACF), Toolset és más népszerű WordPress bővítmények. Ez lehetővé teszi, hogy komplexebb és dinamikusabb weboldalakat hozz létre.
+Példa globális változókra:
+```
+:root {
+  --brand-primary: #0057ff;
+  --spacing-base: 1rem;
+  --font-base: "Inter", system-ui, sans-serif;
+}
+```
+Ezeket a változókat az Oxygenben állítod, majd minden komponens és oldal automatikusan átveszi.
 
 ## Gyakorlati példák
 
-### Egyedi WooCommerce áruház
-Ha egyedi WooCommerce áruházat szeretnél létrehozni, az Oxygen lehetővé teszi számodra, hogy vizuálisan szerkeszd az áruház összes oldalát, beleértve a termékoldalakat, kosár- és pénztár oldalakat is.
+- **Ügynökségi webhely:** Készíts egy “Base Template”-et fejléccel/lábléccel, majd a belső oldalakat komponensekből rakd össze. A hero, feature‑rács és CTA mind komponens, így az egész site stílusa percek alatt egységesíthető.
+- **Tudásbázis vagy címtár:** Hozz létre egyedi post típust és mezőket (pl. cím, kategória, címkék, kontakt). A listázó oldalon Query/Repeater elemmel szűrhető rácsot építesz, feltételekkel (pl. ha nincs weboldal mező, rejtsd el az ikont).
+- **WooCommerce bolt:** A termékoldal sablonba elhelyezed a galériát, árat, készletet, kosárgombot és akciós jelölést. A kosár/pénztár lépéseit is újrarendezed. Interakcióval “sticky” kosár‑összegzést adsz mobilon.
+- **Ügyfél‑átadás:** A dizájnt és logikát te kezeled az Oxygenben, a megrendelő pedig Gutenbergben frissíti a szövegeket és képeket. A “Client mode”-dal kizárod a kritikus beállításokat.
 
-### Ügynökségi munka
-Ügynökségek számára az Oxygen ideális választás lehet, mivel lehetővé teszi az ügyfelek egyedi igényeinek kielégítését anélkül, hogy rengeteg időt kellene tölteni a kódolással. Az ügyfelek számára könnyen használható adminisztrációs felületet biztosít.
+## Előnyök és értékajánlat
 
-### Blogok és tartalomközpontú oldalak
-Az Oxygen nagyszerű választás blogokhoz és más tartalomközpontú oldalakhoz is. A Gutenberg integráció segítségével a tartalomkészítők a natív WordPress szerkesztőt használhatják anélkül, hogy aggódniuk kellene az oldal felépítésének módosítása miatt.
+- **Nincs téma‑lock‑in:** Nem kell child theme‑et karbantartani, a sablonlogika egy kézben van.
+- **Tiszta kód, jobb teljesítmény:** Kevesebb “div‑bloat”, gyorsabb betöltés és stabilabb SEO‑alapok.
+- **Gyorsabb fejlesztés, kevesebb hibával:** Komponensek és globális változók miatt könnyű a skálázás és a redesign.
+- **Valódi dinamikus adatkezelés:** Összetett lekérdezések és feltételek kódolás nélkül, mégis fejlesztői kontrollal.
+- **Ügyfélbarát működés:** A tartalomszerkesztés biztonságos, a dizájn védett.
 
-## Tippek a hatékony használathoz
+## Telepítés és licencelés
 
-### Használj globális színeket
-A globális színek használata megkönnyíti az egységes megjelenés fenntartását az egész weboldalon. Ezzel időt takaríthatsz meg, ha változtatni szeretnél a színsémán.
+- **Telepítés:** A bővítményt a saját fiókodból letöltött ZIP fájl feltöltésével aktiválod a WordPressben. A telepítés után készíts alap sablon(oka)t, mert a téma megjelenítése letiltásra kerül.
+- **Licencelés:** Kereskedelmi termék, élettartam licenckonstrukcióval kommunikálva. A Classic ág támogatott, az új ág hozzáférhető a meglévő ügyfeleknek is.
 
-### Használd ki a dinamikus adatkezelést
-A repeaterek és loopok segítségével dinamikus adatokat kezelhetsz hatékonyan. Ez különösen hasznos lehet akkor, ha sok adatot kell megjelenítened struktúrált formában.
+## Kinek ajánlott?
 
-### Teszteld a mobil nézeteket
-Az Oxygen lehetőséget biztosít arra, hogy különböző eszközökön teszteld az oldalaid megjelenését. Ezzel biztosíthatod, hogy a weboldalad minden eszközön jól nézzen ki.
+- **Fejlesztőknek és ügynökségeknek:** Ha teljes kontrollt akarsz a markup és a stílus fölött, dinamikus adatmodellel dolgozol, és komponensalapú skálázhatóságot keresel.
+- **Haladó power usereknek:** Ha vizuálisan építenél, de nem akarsz felfújt kimenetet és rejtett korlátokat.
+- **WooCommerce‑üzemeltetőknek:** Ha a teljes vásárlói élményt – listázástól a pénztárig – testre szabnád.
+- **Olyan csapatoknak, akik ügyfélnek adnak át:** Gutenberg‑alapú tartalomszerkesztés, miközben a struktúra és stílus védett marad.
 
-## Szószedet
+## Fontos megjegyzések és kompatibilitás
 
-- **Drag & Drop**: Húzd és ejtsd funkció.
-- **WooCommerce**: WordPress alapú e-kereskedelmi platform.
-- **ACF (Advanced Custom Fields)**: Bővítmény egyedi mezők létrehozására.
-- **Repeaters**: Ismétlődő elemek kezelésére szolgáló eszköz.
-- **Loops**: Ciklusok dinamikus adatkezeléshez.
-- **SEO**: Keresőoptimalizálás.
-- **Gutenberg**: WordPress natív blokk alapú szerkesztője.
+- **Éles telepítés előtt tervezés:** Mivel a téma megjelenítését az Oxygen veszi át, első aktiváláskor a frontend megváltozhat. Készíts elő sablonokat és staging környezetet.
+- **Classic vs. új ág:** A Classic stabil választás éles projektekhez; az új, újraírt ág fejlettebb workflow‑t és komponensképességeket kínál. Válassz projektérettség és igény szerint.
+- **Teljesítmény:** A beépített optimalizációk mellett érdemes cache‑t és CDN‑t használni, valamint tudatosan tervezni az interakciókat és animációkat mobilon.
+
+Összességében az Oxygen fejlesztő‑első builder, amellyel témától függetlenül, tiszta kóddal és erős dinamikus eszköztárral építhetsz skálázható WordPress projekteket. Ha kontrollt, teljesítményt és karbantarthatóságot keresel, ez a megközelítés neked való.

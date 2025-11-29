@@ -1,60 +1,91 @@
-# All-in-One WP Migration FTP Extension
+---
+title: "All-in-One WP Migration FTP Extension"
+description: "Hivatalos kiegészítő az All‑in‑One WP Migration pluginhez: közvetlen FTP‑re exportálhatsz és onnan importálhatsz .wpress mentéseket, ütemezéssel és retencióval."
+sidebar_label: "All-in-One WP Migration FTP Extension"
+---
 
-## Funkcionalitás és előnyök
+## Bevezetés: mi ez és milyen problémát old meg?
 
-Az All-in-One WP Migration FTP Extension egy bővítmény, amely lehetővé teszi a WordPress weboldalak adatainak exportálását és importálását FTP, FTPS és SFTP protokollokon keresztül. Ez a kiegészítő több szempontból is hasznos, különösen a webfejlesztők és rendszergazdák számára, akiknek fontos a gyors és biztonságos adatmozgatás.
+Az All‑in‑One WP Migration FTP Extension a ServMask hivatalos, fizetős kiegészítője, amely az alap All‑in‑One WP Migration bővítményhez ad **FTP‑kapcsolatot**. A lényege, hogy a WordPress adminból, külön FTP kliens nélkül, **egyetlen felületen** exportálhatsz biztonsági mentést **közvetlenül FTP tárhelyre**, és ugyanonnan **importálhatsz**. Ezzel egyszerűvé válik az off‑site mentés, a tárhelyek közötti költöztetés, valamint az ügynökségi, központi mentési folyamatok.
 
-### Exportálás és importálás FTP, FTPS és SFTP protokollokon keresztül
+## Hogyan működik röviden?
 
-Az egyik legnagyobb előnye ennek a bővítménynek az, hogy többféle protokollt támogat, így a felhasználók könnyedén választhatnak a számukra legmegfelelőbb opciók közül. Az FTP mellett az FTPS és SFTP protokollok használata is biztosított, amelyek magasabb szintű biztonságot nyújtanak.
+- Telepíted és aktiválod az alap All‑in‑One WP Migration plugint, majd az FTP Extensiont.
+- Az FTP elérés adatait megadod az FTP Settings oldalon.
+- Exportáláskor „FTP” célpontot választasz; importáláskor „FTP” forrást.
+- Az extension az FTP‑n egy „[weblapnev]-wordpress” mappába dolgozik, ide kerülnek a **.wpress** archívumok.
 
-### Backup scheduler
+```
+Beállítás: All‑in‑One WP Migration → FTP Settings
+Export:   All‑in‑One WP Migration → Export → Export to → FTP
+Import:   All‑in‑One WP Migration → Import → Import from → FTP
+```
 
-A bővítmény tartalmaz egy backup scheduler funkciót, amely lehetővé teszi az automatikus mentések ütemezését óránkénti, napi és heti időintervallumokkal. Ez különösen hasznos azok számára, akik rendszeres mentéseket szeretnének készíteni anélkül, hogy manuálisan kellene beavatkozniuk.
+## Fő funkciók részletesen
 
-### Reset Hub
+- **FTP célpont az Export/Import nézetben**
+  - Az All‑in‑One WP Migration menüben új „FTP” opció jelenik meg. Exportnál a mentés automatikusan az FTP‑re töltődik fel; importnál az FTP‑n elérhető archívumokból választhatsz. A bővítmény az FTP‑n egy „[weblapnev]-wordpress” mappát kezel, így a mentéseid rendezettek maradnak.
 
-A Reset Hub egy új eszköz a hatékony webhelykezeléshez, amely lehetőséget biztosít a gyors visszaállításra és menedzsmentre. Ez különösen akkor hasznos, ha valami hiba történik, és gyorsan vissza kell állítani az előző állapotot.
+- **Ütemezett automatikus mentések**
+  - Óránkénti, napi, heti vagy havi futtatást állíthatsz be. A futásokról **e‑mail értesítést** kérhetsz, így azonnal látod, ha egy mentés sikeres vagy hibás. Az ütemező az FTP célra is működik: a rendszer a beállított időpontokban feltölti az új archívumot.
 
-### WP CLI parancsok
+- **Retenció és tárhelykorlátok**
+  - Meghatározhatod, hány legutóbbi mentés maradjon meg (darabszám), és beállíthatsz **összméret‑limitet** is az FTP tárolón. Ezzel megelőzöd, hogy a tárhely beteljen, és automatikusan karcsú, fenntartható mentéskészletet tartasz.
 
-A bővítmény támogatja a WP CLI parancsokat is, ami lehetővé teszi a parancssori interfészen keresztüli vezérlést. Ez nagyban megkönnyíti a fejlesztők munkáját, akik scriptelési vagy automatizálási feladatokat végeznek.
+- **Export finomhangolása**
+  - Az alapplugin összes export opciója elérhető: **Find & Replace** az adatbázisban (pl. domain csere), **kizárások** (cache könyvtárak, spam, inaktív bővítmények), valamint **jelszavas védelem** a .wpress archívumra. Így kisebb, tisztább és biztonságosabb mentést készíthetsz.
 
-## Együttműködés más eszközökkel
+- **Import előtti ellenőrzés**
+  - Importálásnál a rendszer egyértelmű figyelmeztetést ad, hogy a webhely (adatbázis, média, témák, bővítmények) **felülírásra kerül**. Csak megerősítés után indul a visszaállítás, csökkentve a véletlen overwrite kockázatát.
 
-Az All-in-One WP Migration FTP Extension zökkenőmentesen működik együtt számos más bővítménnyel és szolgáltatással, mint például:
-
-- **Unlimited Extension**: Eltávolítja a fájl feltöltési korlátokat.
-- **Google Drive Extension**: Exportálás és importálás Google Drive-ból.
-- **Dropbox Extension**: Integráció Dropbox-szal.
-- **Amazon S3 Extension**: Amazon S3 tárhely használata.
-- **URL Extension**: Importálás URL-ről.
-
-## Konkrét helyzetek, ahol hasznos lehet
-
-### Weboldal költöztetése
-
-Ha weboldaladat egyik szerverről a másikra szeretnéd költöztetni, az FTP Extension segítségével könnyedén exportálhatod az adatokat az egyik szerverről és importálhatod azokat a másikra. Ezzel időt és energiát spórolhatsz meg.
-
-### Automatikus mentések
-
-Az automatikus mentési funkció lehetővé teszi, hogy rendszeresen mentéseket készíts a weboldaladról anélkül, hogy folyamatosan figyelemmel kellene kísérned ezt a folyamatot. Így bármikor visszaállíthatod az adatokat egy korábbi állapotra.
-
-### Rendszergazdai feladatok
-
-A Reset Hub és a WP CLI parancsok nagy segítséget nyújtanak a rendszergazdai feladatokban, például gyors visszaállításokban vagy parancssori műveletek végrehajtásában.
+- **Multisite és nagy importok megjegyzések**
+  - Hálózati (network) környezetben is használható az FTP‑kezeléshez, de teljes multisite migrációhoz külön kiegészítő szükséges. Nagy méretű importoknál a szerver PHP korlátjai gondot okozhatnak; erre külön kiegészítő kínál megoldást, amely a feltöltési és időkorlátokat megkerüli.
 
 ## Gyakorlati példák
 
-1. **Webfejlesztők számára**: Ha egy webfejlesztő több weboldalon dolgozik egyszerre, az FTP Extension segítségével könnyedén át tudja mozgatni a projekteket különböző szerverek között.
-2. **Rendszeres mentések készítése**: Egy e-kereskedelmi oldal tulajdonosa automatikusan mentéseket készíthet minden nap, így biztosítva az adatbiztonságot egy esetleges rendszerhiba esetén.
-3. **Gyors visszaállítás**: Ha valami elromlik a weboldalon, a Reset Hub segítségével gyorsan visszaállítható az előző működő verzió.
+- **Off‑site biztonsági mentés saját FTP‑re**: óránkénti ütemezéssel minden változásod kikerül egy különgépre, jelszóval védett .wpress fájlokban.
+- **Költöztetés FTP‑n keresztül**: forrás tárhelyen exportálás FTP‑re, cél tárhelyen importálás ugyanarról az FTP‑ről – nincs kézi letöltés/feltöltés.
+- **Ügynökségi központi backup**: több ügyféloldal ugyanarra a központi FTP‑re ment ütemezetten, retencióval és méretlimittel.
+- **Szabályozott környezet**: amikor felhő nem használható, az on‑prem FTP a kijelölt biztonsági tár hely – a bővítmény ezt natívan kezeli.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **FTP (File Transfer Protocol)**: Fájlátviteli protokoll.
-- **FTPS (FTP Secure)**: Biztonságos FTP kapcsolat SSL/TLS használatával.
-- **SFTP (SSH File Transfer Protocol)**: Fájlátviteli protokoll SSH kapcsolaton keresztül.
-- **WP CLI (WordPress Command Line Interface)**: Parancssori interfész WordPresshez.
-- **Backup scheduler**: Automatikus mentési ütemező.
-- **Reset Hub**: Gyors visszaállító eszköz.
+- **Időmegtakarítás**: nincs külön FTP kliens, nincs kézi fájlmozgatás – minden a WP adminból megy.
+- **Kevesebb hiba**: ütemezés, e‑mail értesítés és retenció automatizálja a rutint.
+- **Tárhely‑kontroll**: darabszám és összméret limit a túlcsordulás ellen.
+- **Konzisztens formátum**: egységes **.wpress** archívumok, bárhol visszaállíthatók az ökoszisztémán belül.
+- **Biztonság**: jelszóval védett mentések, földrajzilag elkülönített tárolás.
+
+## Telepítés és első lépések
+
+1. Telepítsd és aktiváld az All‑in‑One WP Migration alap bővítményt.
+2. Töltsd fel és aktiváld az „all‑in‑one‑wp‑migration‑ftp‑extension.zip” fájlt.
+3. Menj az All‑in‑One WP Migration → FTP Settings oldalra, add meg az **FTP host**, **felhasználó**, **jelszó**, **célmappa** adatokat.
+4. Állíts be **ütemezést**, **retenciót** és **e‑mail értesítést** igény szerint.
+
+## Követelmények és kompatibilitás
+
+- Az alap All‑in‑One WP Migration plugin kötelező előfeltétel.
+- Legyen elég tárhely az FTP‑n és megfelelő fájl‑/mappajogosultság a WordPress alatt.
+- Nagy importoknál a szerver feltöltési és időkorlátjai ütközhetnek; ilyen esetekre létezik korlátokat megkerülő kiegészítő.
+- Bizonyos bővítményekkel ütközhet (pl. SSL/URL‑átíró megoldások). Export/import előtt érdemes ezeket ideiglenesen kikapcsolni.
+- Az ütemező központilag kezelhető, és a távoli tárolókra (így **FTP**‑re) is működik.
+
+## Kinek ajánlott?
+
+- **Webhelytulajdonosoknak**, akik egyszerű off‑site mentést szeretnének.
+- **Ügynökségeknek**, több ügyféloldal központi, szabályozott backupjához.
+- **Rendszergazdáknak**, kontrollált, on‑prem FTP alapú környezetekben.
+- **Fejlesztőknek/DevOps csapatoknak**, staging‑production munkafolyamatokhoz.
+
+## Tippek és jó gyakorlatok
+
+- Állíts be reális **retenciót** (pl. 7–14 nap) és **összméret‑limitet** a tárhely védelmére.
+- Használd a **kizárásokat** (cache, spam, inaktív bővítmények) a kisebb, gyorsabb mentésekért.
+- Kapcsold be a **jelszavas védelmet** az archívumokra.
+- Időnként végezz **teszt‑visszaállítást** staging környezetben.
+- Import előtt kapcsold ki az esetlegesen ütköző SSL/URL‑átíró bővítményeket; import után vissza.
+
+--- 
+
+Az All‑in‑One WP Migration FTP Extension akkor a legerősebb, ha automatizált, megbízható, FTP‑alapú mentést és visszaállítást keresel egyetlen, kézre álló WordPress felületen, kompromisszumok nélkül.

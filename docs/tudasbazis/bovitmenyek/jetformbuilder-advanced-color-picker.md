@@ -1,61 +1,84 @@
-# JetFormBuilder Advanced Color Picker
+---
+title: "JetFormBuilder Advanced Color Picker"
+description: "Pro kiegészítő a JetFormBuilderhez: rugalmas színmentés (HEX/RGB), átlátszóság és fejlett UI a Color Picker mezőhöz."
+sidebar_label: "JetFormBuilder Advanced Color Picker"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A JetFormBuilder Advanced Color Picker egy sokoldalú színválasztó eszköz, amely lehetővé teszi a felhasználók számára, hogy könnyedén kiválasszák és alkalmazzák a kívánt színeket különböző formákban és mezőkben. Ez a funkció különösen hasznos azoknak, akik testreszabott színeket szeretnének használni, legyen szó weboldalak kialakításáról, termékek bemutatásáról vagy bármilyen más színesítést igénylő projektről.
+A JetFormBuilder Advanced Color Picker egy Pro kiegészítő, amely a JetFormBuilder űrlapok beépített Color Picker mezőjét fejleszti tovább. Az alapmező csak HEX formátumban ment, míg ezzel az addonnal te döntöd el, hogy **HEX** vagy **RGB** értéket szeretnél menteni, és igény szerint bekapcsolhatod az **átlátszóság (alpha)** kezelését is. Így pontosabb, integráció-barát színadatot kapsz, amit gond nélkül felhasználhatsz profiloknál, bejegyzések megjelenítésénél, vagy bármilyen testreszabási folyamatnál.
 
-### Zökkenőmentes együttműködés más eszközökkel
+## Fő funkciók részletesen
 
-A JetFormBuilder Advanced Color Picker zökkenőmentesen működik együtt számos más eszközzel és bővítménnyel, mint például:
-- **Elementor**: Az Elementor Page Builderrel integrálva lehetőséged van színeket választani közvetlenül az oldalak tervezése során.
-- **WooCommerce**: A termékoldalakon és variációkon belüli színek meghatározására is használható.
-- **Gutenberg**: A Gutenberg blokk szerkesztővel kombinálva könnyedén hozzáadható színválasztó mezők a bejegyzésekhez és oldalakhoz.
+### Fejlett választófelület
+A bővítmény egy **palettát** és egy intuitív **picker** felületet ad a Color Picker mezőhöz. A felhasználó vizuálisan választ színt, finomhangolhat árnyalatot és fényerőt, ami gyorsabb és kevesebb hibát eredményez, mint a kézi kódbeírás.
 
-### Konkrét helyzetek, ahol hasznos lehet
+### Választható értékformátumok (HEX/RGB)
+A „**Value Format**” beállítással meghatározhatod, hogy a mező **HEX** vagy **RGB** formátumban mentse az értéket. Ez megoldja azt a korlátot, hogy az alap Color Picker csak HEX-et tárol – ha külső rendszered, sablonod vagy CSS-dinamikád RGB-t igényel, egyszerűen átállíthatod.
 
-A JetFormBuilder Advanced Color Picker számos helyzetben rendkívül hasznos lehet:
-- **Weboldal kialakítás**: Webdesignerek és fejlesztők könnyedén választhatnak egyedi színeket a weboldalak különböző elemeihez.
-- **Termék bemutatása**: Online áruházakban a termékek színvariációinak kiválasztásához.
-- **Egyedi kérdőívek**: Felhasználói kérdőívek és űrlapok esetében, ahol a válaszadóknak lehetőséget kell adniuk egyedi színek kiválasztására.
+### Átlátszóság (alpha) kezelése
+A „**Show Alpha (opacity)**” kapcsolóval a felhasználó **átlátszóságot** is állíthat. Ez különösen hasznos kiemelésekhez, háttérszínekhez vagy overlay effektekhez, ahol a teljes fedettség helyett finomabb, áttetsző megjelenés kell.
 
-## Legfontosabb jellemzők és képességek
+### Egyszerű aktiválás az űrlapmezőben
+A Color Picker mező opciói között egy „**Use Advanced Color Picker**” kapcsolóval engedélyezed az addon funkcióit. Így nem kell új mezőt felvenned, csak kibővíted a meglévő képességeit.
 
-### Színpaletta támogatás
-
-Az Advanced Color Picker támogatja az egyedi színpaletták létrehozását, így előre meghatározott színek közül is választhatsz. Ez különösen hasznos lehet márkázott weboldalak esetében, ahol fontos a konzisztens színhasználat.
-
-### RGBA színkódok kezelése
-
-A bővítmény nemcsak hexadecimális, hanem RGBA színkódokat is támogat. Ez lehetőséget biztosít az átlátszósági fokozatok beállítására, ami növeli a kreatív lehetőségeket.
-
-### Reszponzív kialakítás
-
-Az Advanced Color Picker reszponzív kialakításának köszönhetően minden eszközön jól működik, legyen szó asztali számítógépről, tabletről vagy okostelefonról. Ez biztosítja, hogy a felhasználói élmény mindig kiváló legyen.
-
-### Előnézeti funkció
-
-Az élő előnézeti funkció segítségével azonnal láthatod a választott szín alkalmazását, így nem szükséges külön frissíteni az oldalt vagy formát a változtatások megtekintéséhez.
+### Kompatibilitás és adathasználat
+- A kiegészítő **bármely WordPress témával** együttműködik.
+- A mentett színt felhasználhatod **User Meta**-ként, bejegyzésmeta-ként vagy feltételes logikában. Mélyebb meta-kezeléshez ajánlott a Crocoblock ökoszisztéma megfelelő eszközeit használni.
 
 ## Gyakorlati példák
 
-### Webshopokban
+- **Felhasználói regisztráció**: a felhasználó választ egy profil-színt, amit később a profilfejléchez, avatar-kerethez vagy kiemelésekhez használhatsz.
+- **Beküldött bejegyzés űrlap**: a szerző kiválasztja a cikk háttér-, szakasz- vagy betűszínét, te pedig az adott formátumban elmented.
+- **Szállítói/piactér jelentkezés**: a jelentkező megadja a márka alapszínét (RGB-ben, ha erre van szükség a branding rendszerben).
+- **Megrendelési űrlap**: ajándékcsomagolás színének kiválasztása, szükség esetén átlátszósággal.
+- **Design brief**: belsőépítészeti vagy arculati színek rögzítése pontos RGB és alpha értékekkel.
 
-Egy online áruház esetében a JetFormBuilder Advanced Color Picker segítségével a vásárlók könnyedén kiválaszthatják a kívánt termék színét. Például egy ruházati boltban a vásárlók kiválaszthatják a ruha vagy cipő pontos árnyalatát.
+## Telepítés és követelmények
 
-### Egyedi megrendelések kezelése
+- **Előfeltétel**: aktív JetFormBuilder bővítmény.
+- **Telepítés**: Vezérlőpult → JetFormBuilder > Addons → Advanced Color Picker → Install → Activate.
+- Az Advanced Color Picker a **Pro csomag** része. Az árak és csomagok idővel változhatnak; vásárlás előtt ellenőrizd a hivatalos oldalon.
 
-Egyedi megrendeléseket kínáló weboldalak esetében, mint például nyomtatott pólók vagy egyéb testreszabható termékek, a vásárlók választhatják ki a nyomtatáshoz kívánt színeket.
+## Beállítás és használat
 
-### Márkázott kérdőívek és űrlapok
+1. Menj a JetForms > Forms menübe, nyisd meg vagy hozd létre az űrlapod.
+2. Adj hozzá egy **Color Picker** mezőt.
+3. A jobb oldali panelen kapcsold be a **Use Advanced Color Picker** opciót.
+4. A **Value Format**-nál válaszd a kívánt mentést: **HEX** vagy **RGB**.
+5. Ha kell átlátszóság, kapcsold be a **Show Alpha (opacity)** kapcsolót.
+6. Mentsd az űrlapot és teszteld a frontenden.
 
-Vállalatok és szervezetek használhatják az Advanced Color Pickert, hogy márkázott kérdőíveket és űrlapokat hozzanak létre. Ez növeli a professzionális megjelenést és javítja a felhasználói élményt.
+Példa a mentett érték felhasználására (User Meta-ból kiolvasva):
 
-## Szószedet
+```php
+$color = get_user_meta( get_current_user_id(), 'profile_color', true );
+// $color lehet pl. "#1e90ff" vagy "rgb(30, 144, 255)" – attól függően, mit állítottál
+echo '<div class="profile-badge" style="background:' . esc_attr( $color ) . ';">&nbsp;</div>';
+```
 
-- **Elementor**: Népszerű WordPress oldalépítő bővítmény.
-- **WooCommerce**: E-commerce bővítmény WordPresshez.
-- **Gutenberg**: WordPress blokk alapú szerkesztője.
-- **RGBA**: Színkódolási rendszer, amely az átlátszóságot is figyelembe veszi.
-- **Hexadecimális**: Hat számjegyű kód, amely meghatározza a színeket a weben.
+## Előnyök és értékajánlat
 
-Az Advanced Color Picker használatával a formáidat és oldalaidat könnyedén színesítheted és testreszabhatod. Próbáld ki ezeket a funkciókat saját projektjeidben, hogy kihasználd az eszköz teljes potenciálját!
+- **Rugalmas adattárolás**: pontosan azt a formátumot adod át, amire a rendszered épül.
+- **Átlátszóság támogatás**: professzionális megjelenítések és finom vizuális részletek.
+- **Jobb UX, kevesebb hiba**: vizuális választó, kevesebb kézi kódbevitel.
+- **Idő- és költségmegtakarítás**: nincs szükség egyedi fejlesztésre a formátumváltáshoz vagy alpha támogatáshoz.
+- **Skálázható integráció**: a mentett érték könnyen köthető metaadatokhoz és sablonokhoz.
+
+## Kinek ajánlott?
+
+- **Weboldal-tulajdonosoknak és űrlapkészítőknek**, akik színadatot gyűjtenének a felhasználóktól.
+- **Designereknak és fejlesztőknek**, akik RGB/alpha értékekkel dolgoznak (branding, UI elemek, overlay-ek).
+- **Piactér- és közösségi oldalaknak**, ahol a felhasználói profilok vagy boltok egyedi színt használnak.
+- **Tartalomkészítő platformoknak**, ahol a beküldött tartalom megjelenése színnel testreszabható.
+
+## Megfontolások és korlátok
+
+- **Nem önálló bővítmény**: a JetFormBuilder szükséges hozzá.
+- Az alap Color Picker önmagában csak **HEX-ben ment**; a **HEX/RGB mentés** és az **alpha** ehhez az addonhoz kötött.
+- Metaadatok fejlettebb kezeléséhez érdemes a Crocoblock ökoszisztéma megfelelő eszközeit használni.
+- Témafüggetlen, de a mentett színt a saját sablonodban kell **célszerűen megjelenítened** (pl. inline stílus, CSS változók).
+
+---
+
+Röviden: ha űrlapban kérnél színt és fontos, hogy hogyan tárolod (HEX vagy RGB), illetve szeretnéd az átlátszóságot is kezelni, az Advanced Color Picker pontosan erre való. Egyszerre ad jobb felhasználói élményt és fejlesztőbarát, tiszta adatot.

@@ -1,61 +1,93 @@
-# WP Booking System - Authorize.Net Add-on
+---
+title: "WP Booking System - Authorize.Net Add-on"
+description: "Hivatalos kiegészítő, amellyel Authorize.Net-en keresztül közvetlen bankkártyás fizetést fogadhatsz a WP Booking System foglalási űrlapjain belül."
+sidebar_label: "WP Booking System - Authorize.Net Add-on"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-A WP Booking System - Authorize.Net Add-on lehetővé teszi a felhasználók számára, hogy egyszerűen és biztonságosan fogadjanak online fizetéseket hitelkártyával az Authorize.Net fizetési átjárón keresztül. Ez a bővítmény kifejezetten azoknak a vállalkozásoknak készült, amelyek szeretnék növelni az ügyfelek fizetési lehetőségeit, és gyorsabbá, gördülékenyebbé tenni a foglalási folyamatot.
+A WP Booking System – Authorize.Net Add-on a foglalási űrlapjaidat összeköti az Authorize.Net fizetési átjáróval, így a vendégeid közvetlenül bankkártyával fizethetnek a foglalás során. Nem kell külön webshopot vagy külső checkoutot használnod, a fizetés a foglalási folyamattal egy lépésben történik. Ez csökkenti a lemorzsolódást, egyszerűsíti az adminisztrációt, és kifejezetten hasznos, ha Authorize.Net kereskedői fiókkal rendelkezel (jellemzően USA-piaci igény).
 
-### Zökkenőmentes integráció
+Fontos: az add-on a **Business** és **Developer** licencek része; a **Personal** licenc csak offline fizetéseket kínál.
 
-Az Authorize.Net Add-on zökkenőmentesen integrálható számos más fizetési eszközzel és szolgáltatással. Az alábbiakban néhány példa:
+## Fő funkciók és működés
 
-- **PayPal**: Az ügyfelek PayPal számlájukkal vagy hitelkártyájukkal is fizethetnek.
-- **Stripe**: Hitelkártyás fizetések gyors feldolgozása a Stripe platformján keresztül.
-- **Square**: További fizetési lehetőségek biztosítása a Square használatával.
-- **Mollie**: Többféle fizetési mód támogatása, mint például banki átutalás, iDEAL és mások.
+### Online bankkártyás fizetés a foglalás részeként
+- A fizetési mód az űrlap **Payment Method** mezőjében jelenik meg, és a vendég a foglalás beküldésekor fizet.
+- A fizetendő összeg a WP Booking System **árazási moduljából** érkezik (naptár szerinti árak, plusz díjak, űrlapmezők).
 
-### Konkrét helyzetekben való hasznosság
+### Admin beállítás egy helyen
+- Útvonal: **WP Booking System → Settings → Payment Gateways → Authorize.Net**.
+- Itt állíthatod be a szükséges azonosítókat és a megjelenést:
+  - **API Login ID**, **Transaction Key**, **Public Client Key**
+  - **Active** kapcsoló (be/ki)
+  - **Fizetési mód neve és leírása** az űrlapon
+  - **Invoice Item Name**, ami a tranzakcióban látszik
 
-Ez a bővítmény különösen hasznos lehet olyan helyzetekben, ahol a gyors és megbízható online fizetési megoldás elengedhetetlen. Például:
+### Hitelesítés és biztonság
+- A Public Client Key használata arra utal, hogy a kártyaadatok a böngészőben **tokenizálva** kerülnek továbbításra. Ez csökkenti a PCI-DSS megfelelőségi terhet, mert az érzékeny kártyaadatok nem a saját szervereden mennek át.
+- **Sandbox mód** támogatott: mielőtt élesítesz, futtasd le a teljes tesztkört sikeres és visszautasított tranzakciókkal.
 
-- **Szállodák és panziók**: A vendégek azonnal fizethetnek foglalásaikért hitelkártyával.
-- **Autókölcsönző cégek**: Az ügyfelek online lefoglalhatják és kifizethetik a bérelt autót.
-- **Sportlétesítmények**: A felhasználók könnyedén lefoglalhatják és kifizethetik az edzőtermi vagy sportpálya használatát.
+### Szoros integráció a foglalási folyamattal
+- Az Authorize.Net Add-on természetesen illeszkedik a WP Booking System árazásához és űrlapjaihoz, így a fizetés pontosan azt az összeget követi, amit a foglalás meghatároz.
 
-## Legfontosabb jellemzők és képességek
+### Kompatibilitás és korlátozások
+- **Pénznem**: az Authorize.Net integráció a WP Booking Systemben **USD**-ben fogad fizetést.
+- **Multiple Currencies add-on**: nem kompatibilis ezzel az add-onnal. Több pénznemhez használj más átjárót vagy WooCommerce alapú checkoutot.
+- **Licenc**: online átjárók (így az Authorize.Net is) csak Business/Developer csomagban érhetők el.
 
-### Hitelkártyás fizetések elfogadása
+## Gyakorlati példák
 
-Az Authorize.Net Add-on lehetővé teszi a hitelkártyás fizetések egyszerű elfogadását. Az ügyfelek többféle hitelkártyával is fizethetnek, beleértve a Visa, MasterCard, American Express és Discover kártyákat.
+- **Apartmanbérlés az USA-ban**: az űrlapon kiválasztod a Payment Method mezőt és engedélyezed az Authorize.Net-et. A vendég kiválasztja a kártyás fizetést, megadja az adatokat, és a foglalás pillanatában kifizeti a rendszer által számolt összeget.
+- **Eszközbérlés extrákkal**: a naptár ára és az űrlap extradíjai egy összegbe kerülnek. Az **Invoice Item Name** mezőben beállíthatod, hogy a tranzakciónál “Equipment Rental – Booking #ID” jelenjen meg.
+- **Rendezvényhelyszín**: a teljes ár vagy előleg beszedése (a beállított űrlap- és árazási logika szerint) ugyanazon a foglalási űrlapon történik, külön átirányítás nélkül.
 
-### Biztonságos tranzakciók
+## Beállítás lépésről lépésre
 
-A bővítmény erős biztonsági protokollokat használ, hogy minden tranzakció biztonságos legyen. Az SSL titkosításnak köszönhetően az ügyfelek adatai védettek a tranzakció során.
+1. **Telepítés**
+   - WP adminban: WP Booking System → Add-ons → Authorize.Net → Install. Az add-on a licenced része, külön nem kell megvásárolni.
+2. **Engedélyezés és konfiguráció**
+   - WP Booking System → Settings → Payment Gateways → Authorize.Net.
+   - Add meg az API Login ID, Transaction Key és Public Client Key értékeket, kapcsold **Active** állapotba.
+   - Állítsd be a megjelenített nevet/leírást és az Invoice Item Name-et.
+3. **Űrlap ellenőrzése**
+   - Bizonyosodj meg róla, hogy az űrlap tartalmazza a **Payment Method** mezőt.
+4. **Tesztelés sandboxban**
+   - Futtass sikeres és visszautasított tranzakciókat, ellenőrizd a visszajelzéseket és a foglalás folyamát.
+5. **Élesítés**
+   - Válts éles (Live) módra, és indítsd a valódi fizetéseket.
 
-### Egyszerű beállítás
+Példa konfiguráció vázlata:
 
-A bővítmény beállítása egyszerű, és gyorsan integrálható a meglévő WP Booking System-be. Nem szükséges bonyolult programozási ismeretekkel rendelkezni ahhoz, hogy használni tudd.
+```
+Gateway: Authorize.Net
+Mode: Sandbox (teszt) | Live (éles)
 
-### Részletes tranzakciós jelentések
+API Login ID: ****************
+Transaction Key: ****************
+Public Client Key: ****************
 
-Az Authorize.Net Add-on részletes tranzakciós jelentéseket nyújt, amelyek segítenek nyomon követni a fizetéseket és foglalásokat. Ezek a jelentések átláthatóbbá teszik az üzleti folyamatokat és megkönnyítik az adminisztrációt.
+Payment method label: Bankkártyás fizetés (Authorize.Net)
+Payment method description: Fizess biztonságosan bankkártyával a foglalás során.
+Invoice Item Name: Booking #{reservation_id} - {calendar_name}
+```
 
-## Gyakorlati példák az alkalmazásra
+## Előnyök és értékajánlat
 
-### Szállodai foglalások kezelése
+- **Kevesebb lépés, kisebb kosárelhagyás**: a vendég a foglalási űrlapon belül fizet.
+- **Egységes adminisztráció**: árképzés, foglalás és fizetés egy ökoszisztémában.
+- **Biztonságos adattovábbítás**: kliensoldali tokenizálás és API kulcsos hitelesítés.
+- **Gyors bevezetés**: sandbox teszteléssel kockázatmentesen finomhangolhatod a folyamatot.
+- **WooCommerce nélkül**: ha nincs szükséged teljes e-kereskedelmi rendszerre, egyszerű és könnyű megoldás.
 
-Egy szálloda tulajdonosa használhatja ezt a bővítményt, hogy vendégei gyorsan és kényelmesen fizethessenek hitelkártyával a szobafoglalásokért. Az online fizetési lehetőségek növelhetik a vendégek elégedettségét és gyorsabbá tehetik a foglalási folyamatot.
+## Kinek ajánlott?
 
-### Rendezvények szervezése
+- **USA-piaci szolgáltatóknak**, akik Authorize.Net kereskedői fiókkal rendelkeznek.
+- **Szállásadóknak, eszköz- és járműbérlőknek, rendezvényhelyszíneknek**, akik azonnali kártyás fizetést szeretnének a foglalással együtt.
+- **Ügynökségeknek és fejlesztőknek** (Business/Developer licenc), akik megbízható, gyorsan bevezethető fizetési integrációt keresnek a WP Booking Systemhez.
 
-Egy rendezvényszervező cég alkalmazhatja az Authorize.Net Add-ont, hogy az ügyfelek online jegyeket vásárolhassanak és hitelkártyával fizethessenek. Ez megkönnyíti a jegyeladásokat és javítja az ügyfélélményt.
+Nem ideális, ha több pénznemet szeretnél egyetlen foglalási űrlapon belül, vagy ha csak Personal licenccel rendelkezel (ilyenkor maradnak az offline fizetések).
 
-### Sportlétesítmények bérlése
+## Összefoglalás
 
-Sportlétesítmények tulajdonosai használhatják ezt a bővítményt, hogy az ügyfelek online lefoglalhassák és kifizethessék a pályabérléseket vagy edzőtermi órákat. Ez egyszerűbbé és hatékonyabbá teszi a foglalási folyamatot.
-
-## Szószedet
-
-- **Authorize.Net**: Egy népszerű online fizetési átjáró, amely lehetővé teszi a hitelkártyás tranzakciók biztonságos feldolgozását.
-- **SSL titkosítás**: Olyan biztonsági protokoll, amely titkosítja az adatokat a tranzakció során, így védve az ügyfelek információit.
-- **Tranzakciós jelentések**: Olyan dokumentumok, amelyek részletes információkat tartalmaznak az elvégzett pénzügyi tranzakciókról.
-- **Integráció**: Különböző rendszerek vagy szoftverek összekapcsolása, hogy együttműködjenek.
+Az Authorize.Net Add-on a WP Booking System hivatalos fizetési kiegészítője, amellyel USD-alapú bankkártyás fizetést fogadhatsz közvetlenül a foglalási űrlapokon. Adminfelületen állíthatod be az API-kulcsokat, a megjelenített elnevezéseket és a tranzakcióban látható azonosítókat. Sandboxban kényelmesen tesztelhetsz, majd élesben egyszerű, biztonságos és gördülékeny fizetési élményt adhatsz a vendégeidnek. A megoldás a Business és Developer licencek része.

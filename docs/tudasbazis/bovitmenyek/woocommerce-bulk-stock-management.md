@@ -1,56 +1,87 @@
-# WooCommerce Bulk Stock Management
+---
+title: "WooCommerce Bulk Stock Management"
+description: "Hivatalos Woo-kiegészítő a termékek és variációk készletének gyors, tömeges kezeléséhez egyetlen, táblázatos felületen."
+sidebar_label: "WooCommerce Bulk Stock Management"
+---
 
-## Funkcionalitás és előnyök
+## Mi ez és milyen problémát old meg?
 
-### Tömeges készletkezelés
+A WooCommerce Bulk Stock Management egy prémium, hivatalos Woo-bővítmény, amely külön készletkezelő nézetet ad az admin felülethez. Célja, hogy ne kelljen egyesével megnyitnod a termékeket, ha készletet módosítasz: egyetlen táblázatból, szűréssel és tömeges műveletekkel tudod frissíteni a készleteket, kezelni a készletstátuszt és a backorder lehetőségeket, majd igény esetén kinyomtatni a készletjelentést. Időt, kattintásokat és hibákat spórolsz vele mindennapi készletmunkák során.
 
-A WooCommerce Bulk Stock Management lehetővé teszi a készletek egyszerű és gyors kezelését a WooCommerce áruházban. Ezzel a bővítménnyel egyetlen felületen módosíthatod több termék készletét, ami nagyban megkönnyíti az adminisztrációs feladatokat.
+## Hogyan működik? – fő funkciók
 
-### Közvetlen szerkesztés
+### Táblázatos készletnézet
+- A bővítmény a **Products > Stock Management** menüpont alatt egy áttekinthető, **táblázatos listát** jelenít meg a termékekről és variációkról.
+- **Szűrők**: terméktípus, készletkezelés státusz (kezelt/nem kezelt), illetve készletstátusz (in stock/out of stock) alapján.
+- **Rendezés**: név, azonosító, SKU vagy készletmennyiség szerint, hogy a releváns tételek a lista elejére kerüljenek.
 
-Az admin felületen keresztül közvetlenül szerkesztheted a termékek készletét, anélkül, hogy külön-külön kellene belépni minden egyes termék adatlapjára. Ez különösen hasznos, ha több száz vagy akár ezer terméket kell kezelni.
+### Gyors mennyiség-átírás
+- Minden sorban találsz egy **mennyiség** mezőt. Egyszerűen átírod a számot, és mented a módosításokat.
+- Több tételt egymás után frissíthetsz, nincs szükség termékoldalak nyitogatására.
 
-### Szűrés és keresés
+### Tömeges műveletek kijelölt tételekre
+- Kijelölés után egyszerre alkalmazhatsz **készletstátusz** változtatást: In stock vagy Out of stock.
+- **Backorder kezelés**: engedélyezheted vagy tilthatod, és választhatsz, hogy a rendszer küldjön-e értesítést a vásárlónak.
+- Ezek a műveletek egységesítik a szabályokat, így a teljes katalógusra következetesen érvényesítheted a beállításokat.
 
-A bővítmény lehetőséget biztosít a termékek szűrésére különböző paraméterek alapján, mint például kategória, SKU, vagy terméknév. Ez segít abban, hogy gyorsan megtaláld és módosítsd azokat a termékeket, amelyeknél a készletfrissítés szükséges.
+### Nyomtatható készletjelentés
+- A **View stock report** funkcióval egyben láthatod és kinyomtathatod a készletszinteket termék- és variációs bontásban.
+- Használhatod leltárhoz, csomagolási listához vagy vezetői egyeztetéshez.
 
-### CSV importálás és exportálás
+### Hivatalos minőség és kompatibilitás
+- **Developed by Woo**: hivatalos fejlesztés támogatással és pénz-visszafizetési garanciával.
+- **HPOS-kompatibilis**, és a Woo piactér minőségellenőrzésein átesett bővítmény.
+- Friss WordPress és WooCommerce környezettel, valamint korszerű PHP-verzióval használható.
 
-A bővítmény támogatja a CSV fájlok importálását és exportálását, így könnyedén frissítheted a készleteket nagy mennyiségben, illetve biztonsági mentést is készíthetsz az adataidról.
+## Tipikus munkamenet (példa)
 
-## Együttműködés más eszközökkel
+1. Nyisd meg: Products > Stock Management.
+2. Szűrés: állíts be például kategóriát + Out of stock, hogy azonnal a hiánycikkeket lásd.
+3. Kijelölés: jelöld be az érintett tételeket.
+4. Gyors frissítés: írd át a mennyiségeket a sorvégi mezőkben.
+5. Tömeges művelet: ha kell, állítsd vissza In stock-ra és kezeld a backorder szabályokat (engedélyezés/tiltás, értesítés be/ki).
+6. Jelentés: készíts egy gyors készletriportot nyomtatáshoz vagy belső megosztáshoz.
 
-### WooCommerce Subscriptions
+```
+Products > Stock Management
+  → Filter: Category = “Téli kabátok”, Stock status = “Out of stock”
+  → Select all
+  → Qty mezők frissítése
+  → Bulk action: Set “In stock” + Allow backorders (notify)
+  → View stock report → Print
+```
 
-A WooCommerce Subscriptions bővítménnyel integrálva, a Bulk Stock Management segítségével egyszerűen kezelheted az előfizetéses termékek készletét is. Ezáltal biztosíthatod, hogy mindig legyen elegendő készlet az előfizetők számára.
+## Gyakorlati használati esetek
 
-### WP All Import
+- **Új szállítmány beérkezése**: percek alatt fel tudod vezetni az érkező mennyiségeket, és azonnal visszaállítani a készletstátuszt.
+- **Leltár után**: a fizikai számlálást követően egy felületen, gyorsan korrigálod az eltéréseket.
+- **Szezonális kampány előtt**: variációk és kiemelt termékek készleteinek finomhangolása, backorder szabályok tömeges beállítása.
+- **Kiszállítás és csomagolás támogatása**: a nyomtatható készletlista alapján egyszerű a raktári ellenőrzés és az előkészítés.
 
-A WP All Import bővítménnyel kombinálva automatizálhatod a készletfrissítéseket. Például, ha rendszeresen kapsz frissített készletinformációkat egy külső rendszertől, azokat automatikusan be tudod olvasni és frissíteni tudod a WooCommerce áruházban.
+## Előnyök és értékajánlat
 
-### WooCommerce REST API
+- **Drasztikus időmegtakarítás**: tömeges műveletek és inline szerkesztés a kattintgatás helyett.
+- **Kevesebb hiba**: fókuszált, szűrhető táblázatban végzed a módosításokat.
+- **Következetes szabályok**: a backorder beállítások egységesen, pár kattintással érvényesíthetők.
+- **Azonnali átláthatóság**: kész report a csapatnak, vezetésnek vagy a raktárnak.
+- **Hivatalos támogatás**: megbízható, ellenőrzött kiegészítő, garanciával.
 
-A WooCommerce REST API segítségével programozottan is hozzáférhetsz a készletek kezeléséhez. Ez hasznos lehet olyan fejlesztők számára, akik speciális integrációkat szeretnének kialakítani saját rendszereik és a WooCommerce között.
+## Telepítés és elérés
 
-## Konkrét helyzetek és gyakorlati példák
+1. Töltsd le a bővítményt a WooCommerce-fiókodból.
+2. WordPress adminban: Plugins > Add New > Upload, majd aktiválás.
+3. Használat: a készletkezelő felület a Products > Stock Management alatt érhető el.
 
-### Nagy mennyiségű termék kezelése
+Tipp: ha HPOS-t használsz, a bővítmény kompatibilis vele, így modern rendeléskezelő adatmodellel is gond nélkül működik.
 
-Egy nagykereskedő számára, aki több ezer terméket kínál, a készletek napi szintű frissítése elengedhetetlen. A Bulk Stock Management segítségével egy CSV fájl importálásával percek alatt frissíthető az összes termék készlete.
+## Kinek ajánlott?
 
-### Szezonális készletfrissítés
+- **Közepes és nagy katalógusok** tulajdonosainak (sok SKU, sok variáció), ahol a termékenkénti szerkesztés már szűk keresztmetszet.
+- **B2B és wholesale** webáruházaknak, ahol a készletmozgás intenzív és a backorder kulcsfontosságú.
+- **Szezonális kínálatot** kezelő boltoknak, amelyek kampányok előtt/után tömeges készletmódosítást végeznek.
+- **Operációs és raktári csapatoknak**, akiknek gyors, nyomtatható készletkép kell a napi munkához.
+- **Ügynökségeknek és fejlesztőknek**, akik ügyfeleknek stabil, hivatalos készletkezelő megoldást keresnek.
 
-Egy divatáruház esetében, ahol szezonális termékek vannak, a szezon elején és végén nagy mennyiségű készletfrissítés szükséges. A bővítmény használatával egyszerűen beállíthatod az új szezonális készleteket.
+---
 
-### Promóciók kezelése
-
-Egy online áruház, amely rendszeresen tart promóciókat és akciókat, gyorsan és hatékonyan módosíthatja az akciós termékek készletét. Ez különösen fontos akkor, amikor nagyobb forgalom várható, és biztosítani kell, hogy minden promóciós termék megfelelő készlettel rendelkezzen.
-
-## Szószedet
-
-- **WooCommerce**: Egy nyílt forráskódú e-kereskedelmi platform WordPress alapokon.
-- **SKU**: Stock Keeping Unit – egyedi azonosító a termékkészlet kezeléséhez.
-- **CSV**: Comma-Separated Values – olyan fájlformátum, amelyben az adatokat vessző választja el.
-- **REST API**: Representational State Transfer Application Programming Interface – olyan programozási interfész, amely lehetővé teszi az alkalmazások közötti kommunikációt HTTP protokollon keresztül.
-
-A WooCommerce Bulk Stock Management tehát egy rendkívül hasznos eszköz mindazok számára, akik hatékonyan szeretnék kezelni áruházuk készleteit. A fent említett funkciók és integrációk lehetőséget biztosítanak arra, hogy gyorsan és egyszerűen végezd el a szükséges módosításokat, ezáltal időt és energiát takarítva meg.
+Ha szeretnéd, készíthetek egy vázlatos, képernyőképekkel illusztrált belső útmutatót is a csapatod számára a tipikus készletműveletekhez.

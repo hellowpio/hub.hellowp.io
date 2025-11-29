@@ -1,43 +1,82 @@
-# WooCommerce Points and Rewards
+---
+title: "WooCommerce Points and Rewards"
+description: "Pont alapú hűségprogram WooCommerce-hez: jutalmazd a vásárlásokat és műveleteket pontokkal, majd engedd a vevőknek kedvezményre váltani."
+sidebar_label: "WooCommerce Points and Rewards"
+---
 
-A WooCommerce Points and Rewards egy rugalmas eszköz, amely lehetővé teszi az üzlettulajdonosok számára, hogy pontokat osszanak ki vásárlóiknak különböző tevékenységekért, például vásárlásokért vagy véleményírásért. Ezek a pontok később kedvezményekre válthatók be, ami hűségprogramok kialakítását és vásárlói elköteleződés növelését szolgálja.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+A WooCommerce Points and Rewards egy hivatalos, fizetős bővítmény, amellyel teljes értékű, pont alapú hűségprogramot indíthatsz a webáruházadban. A vevők vásárlásért és meghatározott műveletekért **pontokat gyűjtenek**, majd ezeket **kedvezményre válthatják**. Segít növelni a visszatérő vásárlások számát, az átlagos kosárértéket és a vevőmegtartást, miközben **kontroll alatt tartod a kedvezmények hatását** az árrésre.
 
-### Pontok szerzése vásárlásokért és tevékenységekért
+## Hogyan működik – fő funkciók
 
-A felhasználók pontokat szerezhetnek minden egyes elköltött összeg után, például 1 pontot minden elköltött dollárért. Az alapértelmezett konverziós arány felülírható kategória vagy termék szinten is, így bizonyos termékek megvásárlása különösen ösztönözhető. A pontok száma a termékoldalon és a kosár/fizetési oldalon is megjelenik, így a vásárlók mindig tisztában vannak azzal, mennyi pontot gyűjthetnek.
+### Pontszerzés és beváltás
+- **Konverziós arányok:** beállíthatod, mennyi pont jár egy költött összeg után (pl. 1 pont minden X pénzegység után), és mennyi pont ér egy meghatározott **kosárkedvezményt** (pl. 100 pont = Y kedvezmény).
+- **Azonnali beváltás:** a vevő a pénztárnál a pontjait kedvezményre válthatja; a rendszer ezt **kuponként** alkalmazza a kosárban.
 
-### Pontok beváltása kedvezményekre
+### Szabályok globális/kategória/termék szinten
+- **Rugalmasság:** állíts be eltérő pontszorzókat kategóriákra vagy termékekre (pl. egy kategóriában dupla pont).
+- **Kedvezménykorlátok:** limitáld a pontból adható kedvezményt százalékban vagy összegben, akár termék szintjén is, így véded a **marginodat**.
+- **Kizárások:** jelöld, mely termékekre/kategóriákra nem alkalmazható pontkedvezmény.
 
-A felhasználók a megszerzett pontokat kedvezményekre válthatják be az általad meghatározott konverziós arány alapján, például 100 pont 1 dollár kedvezményt érhet. Beállíthatod a maximális kedvezmény mértékét is kosár, kategória vagy termék szinten, így korlátozhatod a kedvezmény nagyságát.
+### Pontok más műveletekért
+- Ne csak vásárlásért jutalmazz: adhatsz pontot **fiók létrehozásáért**, első **értékelésért**, és egyéb akciókért. A pontozható események bővíthetők más kiegészítőkkel.
 
-### Vásárlói pontok kezelése
+### Vevői felület és üzenetek
+- Jól látható **pontinformációk** a termék-, kosár- és pénztár oldalon: mennyi pontot szerez a vásárló, és mennyi kedvezményre válthatja be.
+- A **Saját fiók** felületen a vevő látja egyenlegét és a részletes **ponttörténetet**. A szövegek testreszabhatók.
 
-Az adminisztrációs felületen gyorsan módosíthatod a vásárlók pont egyenlegét, és minden változás naplózva van a vásárló "Saját fiók" oldalán. Ez biztosítja az átláthatóságot és a vásárlók számára követhetővé teszi pontjaik alakulását.
+### Admin és napló
+- **Központi pontkezelő:** nézd meg és módosítsd kézzel az ügyfelek pontjait.
+- **Pontnapló:** részletes idővonal, miért, mikor és mennyi pont változott; szűrhető és auditálható.
 
-### Testreszabható üzenetek
+### Visszatérítések, kupon-integráció, Subscriptions
+- **Automatikus korrekció:** beváltott pontok azonnal levonódnak; rendelés törlése vagy refund esetén a rendszer visszaállítja. Ha pontot szerző rendelést térítesz vissza, a pontok levonódnak (akár negatív egyenleg is lehet).
+- **Kupon együttműködés:** a pontbeváltás kuponként működik; külön **Points Modifier** is elérhető kuponokhoz (pl. akció idején extra pont).
+- **Előfizetések:** megújítás után járhat pont; automatikus megújításnál beváltás nem történik, manuálisnál a vevő dönt.
 
-Könnyen testreszabhatod a termékoldalon és a kosár/fizetési oldalon megjelenő üzeneteket. Emellett megváltoztathatod, hogy miként nevezzük a pontokat – például "érmék" vagy "zsetonok" lehetnek –, így teljesen személyre szabhatod a hűségprogramodat.
+### Indítás és migráció
+- **Apply Points to Previous Orders:** korábbi rendeléseidre is jóváírhatsz pontot, hogy a visszatérő vevők azonnal beválthassák.
 
-### Integráció más eszközökkel
+### Technikai tudnivalók
+- Pontadatok külön **adatbázis-táblában** tárolódnak.
+- Támogatja a modern WooCommerce technológiákat (pl. **HPOS**, **Cart & Checkout Blocks**).
+- Beállíthatod, hogy a bővítmény törlése az összes pontadatot is eltávolítsa. Elérhető teljes pont- és naplóürítés (visszavonhatatlan).
 
-A WooCommerce Points and Rewards zökkenőmentesen működik együtt több más WooCommerce bővítménnyel és funkcióval, beleértve a Cart and Checkout blokkokat is, amelyek optimalizált fizetési élményt biztosítanak.
+## Gyakorlati példák
 
-## Gyakorlati példák az alkalmazására
+- **Alap hűségprogram:** minden elköltött 1000 egység után 10 pont jár; 100 pont = 1000 egység kedvezmény. A vevő a pénztárban dönt a beváltásról.
+- **Dupla pont kategóriában:** a “Sport” kategóriában 2× pontok egy kampány idejére, de a kedvezmény maximuma termékenként 15%.
+- **Regisztrációs ösztönző:** új fiók létrehozásáért 50 pont; az első értékelésért 20 pont, ezzel bátorítod a tartalomgenerálást.
+- **Migráció induláskor:** futtasd az előző rendeléseken a pontjóváírást, így a hűséges vevők azonnal kipróbálhatják a beváltást.
 
-1. **Hűségprogram kialakítása**: Egy ruházati webáruház bevezetheti a pontgyűjtést minden vásárlás után, és az összegyűjtött pontokat kedvezményekre válthatják be a vásárlók. Ez motiválja őket a visszatérésre és további vásárlásokra.
-   
-2. **Termékértékelések ösztönzése**: Egy elektronikai áruház pontokat adhat azoknak a vásárlóknak, akik véleményt írnak a megvásárolt termékekről. Ez nemcsak növeli az elköteleződést, hanem segíti az új vásárlókat a döntéshozatalban is.
-   
-3. **Speciális ajánlatok**: Egy könyvesbolt külön promóciókat indíthat bizonyos kategóriákban úgy, hogy több pontot ad ezekért a könyvekért. Például nyári olvasmányokhoz több pont járhat, ezzel ösztönözve az adott időszakban történő vásárlásokat.
+## Előnyök és értékajánlat
 
-## Szószedet
+- **Vevőmegtartás növelése:** pontgyűjtés = visszatérésre ösztönzés.
+- **Kosárérték emelése:** célzott pontszorzókkal és korlátokkal motiválsz upsellre.
+- **Árrés-kontroll:** finomhangolható maximumok, kizárások, termék szintű szabályok.
+- **Gyors bevezetés:** kész admin felületek, kupon-integráció, minimális fejlesztési igény.
+- **Átláthatóság:** részletes pontnapló és testreszabható vevői üzenetek.
 
-- **Pontok**: A vásárlók által gyűjthető virtuális egységek, amelyek később kedvezményekre válthatók be.
-- **Konverziós arány**: A pontok és kedvezmények közötti átváltási arány.
-- **Kosár/fizetési oldal**: A webáruház azon oldala(i), ahol a vásárlók véglegesítik rendeléseiket.
-- **Adminisztrációs felület**: Az üzlettulajdonos által használt kezelőfelület a webáruház beállításainak és funkcióinak irányítására.
-- **Blokk**: A weboldal szerkesztésére szolgáló elem, amely megkönnyíti az oldal testreszabását és tartalom hozzáadását.
+## Kinek ajánlott?
 
-Ezekkel a funkciókkal és lehetőségekkel a WooCommerce Points and Rewards hatékonyan támogatja az üzlettulajdonosokat abban, hogy növeljék vásárlóik lojalitását és elköteleződését.
+- **Kereskedőknek**, akik tartós hűségprogramot szeretnének WooCommerce-ben kódolás nélkül.
+- **Márkáknak**, ahol fontos a kontrollált kedvezménypolitika és az árrés védelme.
+- **Előfizetéses modelleknek**, ahol a megújítások jutalmazása is számít.
+- **Tartalomra építő boltoknak**, akik értékeléseket és regisztrációt ösztönöznének.
+
+## Korlátok és tudnivalók
+
+- **Csak regisztrált felhasználók** kapnak pontot; vendégek nem.
+- A **kuponoknak engedélyezettnek** kell lenniük a beváltáshoz.
+- Alapértelmezetten **nincs beépített export**; ehhez külön kiegészítő javasolt.
+- Ha a kosárban kizárt termék is van, a kedvezmény csak a **jogosult tételekre** alkalmazódik.
+- Refundoknál előfordulhat **negatív pont egyenleg**, ha a vevő időközben beváltott.
+
+## Bevezetési és üzemeltetési tippek
+
+- Tervezd meg a **konverziós arányt** úgy, hogy növelje az átlagos rendelési értéket, de ne rombolja az árrést.
+- Használd a **kategória- és termékszintű limitációkat** a marginvédelemhez.
+- Kommunikálj aktívan: jelenítsd meg a **pontüzeneteket** a termék-, kosár- és pénztárlépéseknél; mérd a beváltási rátát.
+- Indítás előtt készíts **biztonsági mentést**, és a régi rendelésekre pontjóváírás futtatásakor számolj a futási idővel.
+- Időszakos kampányoknál dolgozz **kupon + Points Modifier** megoldásokkal (pl. hétvégi dupla pont).

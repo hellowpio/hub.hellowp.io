@@ -1,69 +1,97 @@
-# JetTricks
+---
+title: "JetTricks"
+description: "Prémium vizuális effekt- és mikrointerakció-bővítmény Elementorhoz: hotspotok, tooltipek, parallax, sticky oszlop, unfold/read more és részecskeháttér – kódolás nélkül."
+sidebar_label: "JetTricks"
+---
 
-## JetTricks funkcionalitása és előnyei
+## Mi ez és milyen problémát old meg?
 
-A JetTricks egy vizuális effektusokat kínáló bővítmény, amely lehetővé teszi a felhasználók számára, hogy animációkkal és interaktív elemekkel gazdagítsák weboldalaikat anélkül, hogy kódolási ismeretekkel kellene rendelkezniük. Az alábbiakban részletesen bemutatjuk a JetTricks legfontosabb jellemzőit és képességeit, valamint azt, hogy mely más eszközökkel működik együtt zökkenőmentesen.
+A JetTricks a Crocoblock által fejlesztett vizuális effektcsomag az Elementorhoz. Segítségével kódolás nélkül adhatsz a tartalmaidhoz jól irányított mikrointerakciókat és látványelemeket. Olyan tipikus gondokat old meg, mint a túl hosszú oldalak (tartalomadagolás), a képeken jelentkező információs túlterhelés (kontextuális magyarázatok), az elvesző CTA-k (ragadós oszlopok) vagy az élettelen hero szekciók (parallax és részecskeháttér).
 
-### Parallax Effektek
+## Fő funkciók és működésük
 
-A parallax effektek segítségével dinamikus háttérmozgásokat adhatsz a weboldaladhoz, amely vizuálisan kiemelkedő élményt nyújt a látogatók számára. Ez az effekt különösen hasznos lehet olyan oldalak esetében, ahol fontos a vizuális történetmesélés.
+- **HotSpots (képi hotspotok)**  
+  Kattintható jelölőket helyezhetsz képekre. Minden ponthoz leírás, link és animált megjelenés tartozhat. Ideális termékfotók és helyszín‑térképek részletezésére. A tooltipek interaktívak is lehetnek.
 
-### Hotspotok
+- **Tooltip (eszköztippek)**  
+  Bármely Elementor‑elemhez adhatsz lebegő magyarázatot. Szabadon állítható a pozíció, az eltartás, a távolság és az animáció. A tartalom akár sablonból is érkezhet, így ismétlődő mintákhoz egységes tooltipeket használhatsz.
 
-A hotspotok lehetőséget adnak arra, hogy interaktív, kattintható pontokat helyezz el a képeken. Ezek az elemek információs popup-okat jeleníthetnek meg, ami különösen hasznos lehet termékbemutatók vagy infografikák esetében.
+- **Sticky Column (ragadós oszlop)**  
+  Görgetés közben a kijelölt oszlop a nézetben marad. Beállíthatod a felső/alsó távolságot, a z‑indexet, és hogy mely eszközökön legyen aktív. Opcionálisan “scroll until end” viselkedéssel a szakasz végéig kíséri a felhasználót.
 
-### Unfold Effektek
+- **Read More (szakaszok fokozatos megjelenítése)**  
+  Elrejti az előre megjelölt szekciókat, és egy “Tovább” gombbal tárja fel őket. Választhatsz, hogy egyszerre vagy lépésenként nyíljon‑e ki a tartalom, és többféle animációból állíthatsz. Megnyitás után nem csukódik vissza (eltér az Unfoldtól).
 
-Az unfold effektek segítségével rejtett tartalmakat fedhetsz fel egy kattintással. Ez az effektus kiválóan alkalmas arra, hogy extra információkat jeleníts meg anélkül, hogy túlterhelnéd a látogatókat az oldalon található tartalommal.
+- **Unfold (összecsukható tartalom)**  
+  Hosszabb szövegeket vagy médiát húzhatsz össze egy fix zárt magasság alá. Testreszabható az elválasztó (pl. finom maszkolás), az időzítés és az easing görbe. Automatikus visszacsukás is kérhető – ez valódi toggle élményt ad.
 
-### Sticky Elemek
+- **Parallax (parallaxis‑görgetés)**  
+  Oszlopon vagy widgeten finom mélységérzetet hoz létre. Állítható a sebesség, az irány (invert) és az eszközönkénti működés, így mobilon visszafogott, desktopon látványos lehet.
 
-A sticky elemek lehetővé teszik, hogy bizonyos tartalmak mindig láthatóak maradjanak a képernyőn, miközben a felhasználók görgetik az oldalt. Ez különösen hasznos lehet CTA gombok vagy fontos információk esetében.
+- **Section Particles (részecske‑háttér)**  
+  Szekciókba animált részecskés hátteret illeszthetsz JSON beállítás alapján. A tipikus paraméterek a szerkesztőből finomhangolhatóak; a látvány könnyen márka‑színekre szabható.
 
-### Szerszámok és beállítások
-
-#### Könnyű testreszabhatóság
-
-A JetTricks beállításai könnyen elérhetők és testreszabhatók. Az egyes effektek paramétereit egyszerűen módosíthatod az Elementor szerkesztőjén belül.
-
-#### Cross-browser kompatibilitás
-
-A JetTricks által nyújtott effektek minden modern böngészőben hibátlanul működnek, így biztosítva a konzisztens megjelenést minden felhasználó számára.
-
-#### Reszponzív design
-
-Minden JetTricks effekt reszponzív módon működik, így mobil eszközökön is kiváló felhasználói élményt nyújt.
-
-## Együttműködés más eszközökkel
-
-### Elementor
-
-A JetTricks teljes mértékben kompatibilis az Elementor oldalkészítővel, amely az egyik legnépszerűbb drag-and-drop szerkesztő a WordPress világában. Az Elementorral való integráció lehetővé teszi, hogy könnyedén hozzáadj effekteket az oldaladhoz anélkül, hogy kódolni kellene.
-
-### JetEngine és JetElements
-
-A JetTricks zökkenőmentesen együttműködik más Crocoblock bővítményekkel is, mint például a JetEngine és a JetElements. Ezek a bővítmények további funkcionalitást és testreszabhatóságot kínálnak, ami még gazdagabb felhasználói élményt biztosít.
+- **Satellite (dekor “alréteg”)**  
+  Extra, rétegzett szöveget vagy képet adhatsz bármely widget elé/mögé. Címsorok és dobozok karakteres kiemelésére jó, miközben külön szabályozhatod a pozíciót, a tipográfiát és a kontrasztot.
 
 ## Gyakorlati példák
 
-### Termékbemutatók
+- **Termékbemutató**: egy sneaker fotóján HotSpotok jelölik a talpanyag, szellőzés és ár részleteit; a tooltip rövid leírást és linket ad a kosárhoz.
+- **Hosszú blogcikk**: a bevezető után Read More leplezi a fejezeteket; a cikk közepén Unfolddal rejted a mellékes táblázatot, amit szükség szerint nyit az olvasó.
+- **Konverziós landing**: Sticky Column tartja szem előtt a CTA‑t és az árkártyát, miközben a tartalom gördül.
+- **Hero szakasz**: Parallax mozgatja a háttér grafikát, míg a Section Particles finom mozgással tölti meg az üres teret.
+- **Tipográfiai kiemelés**: egy H2 mögé Satellite réteg kerül nagy, halvány márkaszóval – erős vizuális hierarchia kódolás nélkül.
 
-A hotspotok segítségével interaktív termékbemutatókat hozhatsz létre. Például egy ruházati terméknél a hotspotok használatával bemutathatod az anyagokat, méreteket és egyéb fontos információkat.
+## Telepítés és használat
 
-### Portfólió oldalak
+- **Előfeltétel**: Elementor telepítve és aktív.
+- **Hol találod?** Az Elementorban az adott szekciót/oszlopot/widgetet kijelölve az Advanced > JetTricks panelen kapcsolhatod be az effekteket.
+- **Lépések általánosan**:  
+  1. Válaszd ki az elemet.  
+  2. Nyisd meg az Advanced > JetTricks panelt.  
+  3. Kapcsold be a kívánt hatást, állítsd a viselkedést és a stílust.  
+  4. Előnézet több eszköznézetben, majd finomhangolás.
+- **JetTricks Vezérlőpult**: a bővítmény saját dashboardján egyes funkciók külön engedélyezhetők/tilthatók a jobb teljesítmény és rend érdekében.
 
-A parallax effektek és unfold effektek segítségével látványos portfólió oldalakat készíthetsz, ahol a munkáid kiemelkedően jelennek meg.
+### Példa: egyszerű részecskeháttér
 
-### Blogbejegyzések
+```json
+{
+  "particles": { "number": { "value": 60 }, "shape": { "type": "circle" }, "move": { "speed": 1.2 } },
+  "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
+}
+```
 
-Az unfold effektek alkalmazásával bővítheted a blogbejegyzéseket extra tartalommal, anélkül, hogy túlterhelnéd az olvasókat.
+Illeszd a JSON‑t a Section Particles mezőbe az érintett szekció Advanced > JetTricks paneljén.
 
-## Szószedet
+## Előnyök és értékajánlat
 
-- **Parallax Effekt**: Dinamikus háttérmozgásokat biztosító vizuális effekt.
-- **Hotspot**: Interaktív pontok képeken, amelyek információs popup-okat jelenítenek meg.
-- **Unfold Effekt**: Rejtett tartalmak felfedésére szolgáló animáció.
-- **Sticky Elem**: Olyan elem, amely mindig látható marad görgetés közben.
-- **CTA**: Call to Action (felhívás cselekvésre).
+- **Kódolás nélkül**: összetett mikrointerakciók egy‑két kattintással.  
+- **Jobb UX és fókusz**: a tartalom adagolható, a fontos elemek a látótérben maradnak.  
+- **Reszponzív kontroll**: eszközönként külön viselkedés és teljesítmény‑kiegyensúlyozás.  
+- **Időmegtakarítás**: sablonozható tooltipek és visszafogottan konfigurálható effektek.  
+- **Teljesítmény‑tudatos**: csak azt a funkciót kapcsolod, amire szükség van.
 
-A JetTricks tehát számos olyan eszközt kínál, amellyel látványos és interaktív weboldalakat készíthetsz, miközben zökkenőmentesen integrálható más népszerű eszközökkel is.
+## Célközönség
+
+- **Webdesignerek és fejlesztők**: gyors vizuális prototípusok, kevesebb egyedi kód.  
+- **Marketingesek és ügynökségek**: konverziós fókusz (Sticky Column, Read More), gyors A/B tesztek.  
+- **Webshopok**: részletes termékfotók HotSpots‑szal, tiszta információ‑átadás.  
+- **Tartalomgazda oldalak**: hosszú cikkek olvashatóbbá tétele Unfold/Read More kombinációval.
+
+## Licencelés és csomagok
+
+A JetTricks önálló előfizetéssel és teljes portfóliót tartalmazó csomagban is elérhető. Az aktuális árakat és opciókat a hivatalos felületeken találod.
+
+## Biztonság és karbantartás
+
+- A bővítményben publikált sebezhetőségeket a fejlesztő javította; mindig frissíts a legújabb stabil kiadásra.  
+- **Best practice**:  
+  - Használj mértékkel animációkat – a túlzás rontja a teljesítményt és az olvashatóságot.  
+  - Tesztelj mobilon, tablet‑ és desktop‑nézetben is; több opció eszköz‑specifikusan állítható.  
+  - Sablonizáld a tooltipeket ismétlődő információkhoz.  
+  - Kövesd a kiadási jegyzékeket, és verziófrissítés után ellenőrizd a kulcsoldalakat.
+
+## Összegzés
+
+A JetTricks célzott, szerkesztőbarát effektkészlet az Elementorhoz, amellyel a hosszú tartalmakat jól adagolhatod, a CTA‑kat fókuszban tarthatod, a statikus elrendezéseket pedig életre keltheted. Ha gyorsan, kódolás nélkül szeretnél profi mikrointerakciókat és látványt, ez a bővítmény neked való.

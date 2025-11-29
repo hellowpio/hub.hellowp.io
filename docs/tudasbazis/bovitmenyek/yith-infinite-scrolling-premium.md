@@ -1,63 +1,116 @@
-# YITH Infinite Scrolling
+---
+title: "YITH Infinite Scrolling Premium"
+description: "Végtelen görgetés, „Továbbiak” gomb vagy AJAX‑os lapozás WooCommerce és WordPress archívumokon – gyorsabb böngészés, kevesebb súrlódás, jobb mobil UX."
+sidebar_label: "YITH Infinite Scrolling Premium"
+---
 
-## Áttekintés
+## Mi ez a bővítmény és milyen problémát old meg?
 
-A YITH Infinite Scrolling egy hasznos bővítmény, amely lehetővé teszi a termékek és bejegyzések végtelen görgetését az oldaladon. Ez a funkció jelentősen javítja a felhasználói élményt azáltal, hogy az oldalak automatikusan betöltődnek görgetés közben, elkerülve a hagyományos lapozást.
+A **YITH Infinite Scrolling Premium** egy WordPress/WooCommerce bővítmény, amellyel a klasszikus lapozást **végtelen görgetésre**, **„Továbbiak” gombra** vagy **AJAX‑os lapozóra** cserélheted. Célja, hogy a látogatónak ne kelljen új oldalra kattintania, hanem gördítés közben folyamatosan érkezzenek az új termékek/bejegyzések. Ez csökkenti a lemorzsolódást, gyorsítja a felfedezést, és különösen **mobilon** ad természetes, „feed‑szerű” élményt.
 
-### Előnyök
+## Fő funkciók és működés
 
-- **Felhasználói élmény javítása**: Az oldalak automatikus betöltésével a felhasználók számára egyszerűbbé válik a navigáció, ami kevesebb kattintást igényel.
-- **Gyorsabb termékbemutatás**: Több termék jelenik meg rövidebb idő alatt, anélkül, hogy a felhasználóknak további lépéseket kellene tenniük.
-- **Mobilbarát**: Különösen hasznos mobil eszközökön, ahol a kis oldalszámokra való kattintás nehézkes lehet.
-- **Testreszabható betöltési hatások**: A felhasználók kiválaszthatják a számukra legjobban megfelelő betöltési hatást, ezzel személyre szabva a felhasználói élményt.
-- **URL automatikus frissítése**: A betöltött új elemek esetében az URL automatikusan frissül, ami megkönnyíti a visszatérést az előző pozícióhoz.
+### Többszekciós beállítás
+- Korlátlan számú **szekciót** hozhatsz létre külön oldalakon (pl. Bolt főoldal, kategória, Blog archívum, értékelések).
+- Minden szekció saját szelektorokkal és viselkedéssel működik, így finoman hangolhatod az élményt oldalanként.
 
-## Funkciók
+### Lapozási módok
+- **Végtelen görgetés**: automatikusan betöltődik a következő oldal tartalma, amikor a lista aljára érsz.
+- **„Továbbiak” gomb**: a felhasználó kézzel kérhet újabb elemeket (jobb kontroll, stabil mérhetőség).
+- **AJAX‑os lapozó**: a hagyományos lapozást modernizálja, az oldalt újratöltés nélkül vált.
 
-### Végtelen szekciók létrehozása
+### Dinamikus URL‑frissítés
+- Gördítés közben a bővítmény **módosíthatja a böngésző címsorát** (pushState).
+- Előnyei: a **Vissza** gomb megfelelően működik, a látogató visszatérve ugyanarra a helyre jut; a megoszthatóság és a **mérés** is pontosabb (oldalmegtekintések küldése lapozás közben).
 
-A YITH Infinite Scrolling lehetőséget biztosít arra, hogy bármelyik szekcióban alkalmazd a végtelen görgetést. Nincsenek korlátok, így az egész oldaladon élvezheted ezt a funkciót.
+### Betöltési élmény testreszabása
+- Választható **loader ikonok**, saját ikon feltöltése.
+- **Animációk** (pl. fade, zoom) az új elemek beszúrásakor.
+- Személyre szabható **gombfelirat** és extra **CSS‑osztály**, hogy illeszkedjen a témád arculatához.
 
-### Betöltési képek kiválasztása
+### Mobil támogatás
+- Külön opciók a **mobil nézetekhez**: be‑/kikapcsolás, módváltás, így gyors marad az oldal és nem lesz „végtelen” túltöltés.
 
-Négy különböző betöltési képből választhatsz, vagy feltöltheted a sajátodat is, hogy teljesen testreszabott élményt nyújthass.
-
-### Paginalási opciók
-
-Az infinite scrolling mellett választhatsz progresszív paginálást gombbal vagy Ajax-alapú paginálást is.
-
-### Betöltési hatások változtatása
-
-Hét különböző betöltési hatás közül választhatsz, hogy a tartalom még látványosabban jelenjen meg.
-
-### URL automatikus frissítése
-
-Az új elemek betöltésekor az URL automatikusan frissül, így a felhasználók mindig visszatérhetnek ahhoz a ponthoz, ahol abbahagyták.
-
-### WPML kompatibilitás
-
-Egyszerűen fordíthatod a bővítményt a WPML eszközzel, ami lehetővé teszi, hogy többnyelvű weboldalt hozz létre.
+### Integrációk és fejlesztői horgok
+- Kész **integráció** AJAX‑os termékszűréssel, így szűrés után is gördülékeny a betöltés.
+- **JavaScript események**:
+  - yith_infs_adding_elem: elemek beszúrása előtt
+  - yith_infs_added_elem: elemek beszúrása után
+  - yith_infs_url_changed: URL frissítésekor
+- Ezekkel egyedi logikát, mérést, animációt kapcsolhatsz az eseményekhez.
 
 ## Gyakorlati példák
 
-### Webáruházak
+- **WooCommerce kategóriaoldal**: a vásárló görget, és a következő termékoldal elemei automatikusan betöltődnek. A címsor frissül, így a „Vissza” gomb pontosan a korábbi pozícióra visz.
+- **Blog archívum**: „Továbbiak” gombbal adagolod a bejegyzéseket, hogy a lábléc elérhető maradjon, és jobban kontrolláld a teljesítményt.
+- **Szűrt terméklista**: ár- vagy színszűrés után is működik az AJAX‑os lapozás; a felhasználó nem veszti el a fókuszt, a lista folyamatos.
 
-A YITH Infinite Scrolling különösen hasznos lehet webáruházak számára, ahol sok termék található. A felhasználók így könnyedén böngészhetnek a termékek között anélkül, hogy folyamatosan lapozniuk kellene. Ez növeli az eladások esélyét és javítja a vásárlói élményt.
+## Gyorsstart (szekció beállítása)
 
-### Blogok
+1. Telepítés és aktiválás után nyisd meg a bővítmény beállításait.
+2. Hozz létre egy új **szekciót** (pl. „Shop archívum”).
+3. Válaszd ki a **Működési módot**: Infinite Scrolling, Load more vagy Ajax Pagination.
+4. Add meg a kötelező **CSS szelektorokat**:
 
-Blogok esetében is kiválóan alkalmazható a végtelen görgetés. A látogatók így folyamatosan olvashatják a bejegyzéseket anélkül, hogy megszakadna az olvasási élményük. Ez növeli az oldalon töltött időt és csökkenti a visszafordulási arányt.
+```
+Navigation selector: .woocommerce-pagination
+Next selector: .woocommerce-pagination a.next, .page-numbers .next
+Item selector: .products li.product
+Content selector: .products
+```
 
-### Portfólió oldalak
+5. Kapcsold be az **URL‑frissítést**, ha fontos a visszalépés és a mérés.
+6. Állítsd be a **loadert**, animációt és – ha kell – a „Továbbiak” gomb feliratát.
+7. Mentsd a szekciót, teszteld asztali és mobil nézetben.
 
-Portfólió oldalaknál is remek választás lehet, hiszen így a látogatók egyetlen görgetéssel végignézhetik az összes munkádat. Ez különösen hasznos lehet fotósok, grafikusok vagy más kreatív szakemberek számára.
+Fejlesztői események példák:
 
-## Szószedet
+```js
+// Új elemek beszúrása után animáció vagy mérés
+document.addEventListener('yith_infs_added_elem', function (e) {
+  // pl. lazyload frissítés, komponensek újrainicializálása
+});
 
-- **Ajax**: Asynchronous JavaScript and XML - egy technológia, amely lehetővé teszi weboldalak számára, hogy aszinkron módon töltsenek be adatokat.
-- **WPML**: WordPress MultiLingual Plugin - egy népszerű többnyelvűségi bővítmény WordPress-hez.
-- **URL**: Uniform Resource Locator - az internetes címek szabványos formája.
-- **Paginalás**: Az oldalak közötti navigáció egy weboldalon.
-- **Mobilbarát**: Olyan dizájn vagy funkció, amely jól működik mobil eszközökön is.
+// URL-váltáskor oldalletöltés küldése (GA4 / dataLayer példa)
+document.addEventListener('yith_infs_url_changed', function () {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'page_view',
+    page_location: location.href
+  });
+});
+```
 
-Ezeket figyelembe véve a YITH Infinite Scrolling egy erős eszköz lehet bármely weboldal számára, amely javítani szeretné a felhasználói élményt és növelni az eladások esélyét.
+## Előnyök és értékajánlat
+
+- **Kevesebb súrlódás**: a felhasználó nem keresgél „Következő oldal” gombot.
+- **Gyorsabb felfedezés**: több terméket látnak rövidebb idő alatt.
+- **Jobb mobil UX**: természetes, folyamatos görgetés.
+- **Mérhetőség**: URL‑frissítéssel pontosabb analitikát kapsz a listanézetben.
+- **Rugalmas testreszabás**: módok, animációk, gombszöveg, fejlesztői horgok.
+
+A bővítmény nem gyűjt személyes adatot, és együttműködik elterjedt témákkal és többnyelvű bővítményekkel.
+
+## Free vs Premium
+
+- **Free**: egyetlen szekció, alap loader, mobil támogatás, saját ikon feltöltése.
+- **Premium**: korlátlan szekció, három lapozási mód, **dinamikus URL‑frissítés**, animációk, gombtestreszabás, AJAX‑szűréssel való integráció, fejlesztői események.
+
+## Kinek ajánlott?
+
+- **WooCommerce boltoknak**, ahol fontos a termékfelfedezés sebessége és a mobil konverzió.
+- **Tartalomoldalaknak/blogoknak**, ahol a folyamatos olvasási élmény növeli az oldalon töltött időt.
+- **Ügynökségeknek/fejlesztőknek**, akik skálázható, testreszabható megoldást szeretnének különböző archívumokra.
+- **Adatvezérelt csapatoknak**, akik pontos mérésre és SEO‑barát megvalósításra törekednek.
+
+## Bevezetési megfontolások
+
+- **Teljesítmény**: végtelen görgetésnél sok elem gyűlhet össze. Használj kép‑lazyloadot, gyorsítótárat, ésszerű elemszámot és mértékletes animációt.
+- **SEO**: kapcsold be az **URL‑frissítést**, és biztosíts külön is elérhető, lapozott URL‑eket. Így az „infinite scroll” használható keresőbarát módon.
+- **Analitika**: kösd az oldalmegtekintés‑küldést az **yith_infs_url_changed** eseményhez, hogy a görgetés közben betöltött oldalak is mérve legyenek.
+- **UX döntési mátrix**:
+  - Nagy katalógus, mobil fókusz: **végtelen görgetés**.
+  - Stabil lábléc/konverziós elemek megőrzése: **„Továbbiak” gomb**.
+  - Precíz oldalankénti mérés és kontroll: **AJAX‑os lapozó**.
+
+Ezzel a bővítménnyel gyors, modern és mérhető listanézetet hozhatsz létre WordPressen és WooCommerce‑en – pontosan ott és úgy, ahol neked a legnagyobb értéket adja.

@@ -1,50 +1,102 @@
-# WP Booking System - Square Add-on
+---
+title: "WP Booking System - Square Add-on"
+description: "Square fizetési kapu integráció a WP Booking System foglalási űrlapjába, azonnali online kártyás fizetéssel, előengedélyezéssel és admin oldali visszatérítéssel."
+sidebar_label: "WP Booking System - Square Add-on"
+---
 
-A WP Booking System - Square Add-on lehetővé teszi, hogy a felhasználók online foglalásokat könnyedén és biztonságosan kezeljenek és fizetéseket fogadjanak el a Square platform segítségével. Ez az add-on különösen hasznos azok számára, akik bérbeadással vagy szolgáltatások nyújtásával foglalkoznak, mivel egyszerűsíti a fizetési folyamatokat és zökkenőmentes integrációt biztosít több különböző eszközzel.
+## Mi ez és milyen problémát old meg?
 
-## Funkcionalitás és előnyök
+A WP Booking System – Square Add‑on egy prémium kiegészítő, amellyel a foglalási űrlapodon közvetlenül, a **Square** fizetési kapun keresztül fogadhatsz **online bankkártyás fizetéseket**. Nem kell webáruházat építened vagy WooCommerce‑t használnod: a fizetés a WP Booking System saját pénztári folyamatába illeszkedik. Ezzel csökkented a no‑show‑t, automatizálod a díjbeszedést és egy helyen kezeled a foglalásokat és tranzakciókat.
 
-### Online fizetések elfogadása
+## Hogyan működik?
 
-A WP Booking System - Square Add-on segítségével online foglalások esetén azonnal elfogadhatsz fizetéseket. A Square platform biztonságos és gyors tranzakciókat biztosít, így vendégeid kényelmesen fizethetnek hitelkártyával. Ez különösen hasznos, ha gyors és megbízható fizetési megoldást keresel.
+- A vendég a foglalási űrlapon kiválasztja a **Square** fizetési módot, megadja a kártyaadatokat, amelyeket a Square biztonságosan feldolgoz.
+- Eldöntheted, hogy a foglaláskor az összeg azonnal **terhelésre** kerüljön, vagy csak **előengedélyezést** kérsz, és a végső terhelést később, az admin felületen történő elfogadáskor hajtod végre.
+- A fizetés és a foglalás adatai a WP Booking System adminban jelennek meg; innen **visszatérítést** is indíthatsz.
+- Ha **részletfizetést / előleget** kérsz, a végfizetés történhet online is egy külön **Secondary Payment Page** oldalon.
 
-### Zökkenőmentes integráció
+## Fő funkciók, érthetően
 
-A Square Add-on zökkenőmentesen működik együtt más népszerű fizetési szolgáltatásokkal, mint például PayPal, Stripe, Mollie és Authorize.Net. Ez azt jelenti, hogy többféle fizetési módot kínálhatsz a vendégeidnek, növelve ezzel a foglalási esélyeket.
+- **Square integráció a foglalási űrlapon**
+  A Square mint fizetési opció jelenik meg. A kártyaadatok a Square rendszeren keresztül kerülnek feldolgozásra, így a teljes fizetési élmény a foglalási folyamat része.
 
-### Könnyű kezelhetőség
+- **Előengedélyezés (authorize) és késleltetett terhelés (capture)**
+  Beállíthatod, hogy a foglalás pillanatában csak fedezetellenőrzés történjen. Az előengedélyezés **7 napig** érvényes; ez idő alatt az adminban egy kattintással terhelheted az összeget. Ha 7 nap eltelik, a terhelés meghiúsul, és a fedezet felszabadul.
 
-A WP Booking System kezelőfelülete felhasználóbarát, így a foglalások és fizetések menedzselése egyszerű. Az add-on beállítása és használata nem igényel technikai szakértelmet, így gyorsan és könnyen üzembe helyezhető.
+- **Sandbox/teszt üzem**
+  Válts **teszt módba**, használd a Square sandbox kártyáit, és élesítés előtt kockázat nélkül ellenőrizd a teljes folyamatot.
 
-### Naptár integráció
+- **Admin beállítások, testreszabás**
+  Kapcsolhatod a fizetési módot (Aktív/Inaktív), megadhatod a **megjelenített nevet** és **leírást**, beállíthatod az **Invoice Item Name** mezőt (ez a Square irányítópultban látszó tételnév), és külön kapcsolhatod a **késleltetett terhelést**.
 
-Az add-on lehetőséget biztosít arra, hogy a foglalásokat egy naptárban kezeljük. Ez segít átláthatóbbá tenni a szabad és foglalt időpontokat, valamint egyszerűsíti a vendégek számára a megfelelő időpont kiválasztását.
+- **API-kapcsolat Square‑hez**
+  A beállításokban rögzíted az **Application ID**, **Access token** és **Location ID** értékeket. Ezek biztosítják a biztonságos kommunikációt a Square és a weboldalad között.
 
-## Gyakorlati példák az alkalmazásra
+- **Részletfizetés és végfizetés online**
+  Kérhetsz **előleget**, a fennmaradó összeget pedig később a **Secondary Payment Page** oldalról lehet rendezni – ugyanazzal a Square kapuval.
 
-### Nyaralók és apartmanok bérbeadása
+- **Tranzakciókezelés és visszatérítés**
+  A foglalási modálban látszanak a fizetési részletek; innen indíthatsz **refundot** (teljes vagy részleges), így nem kell külön rendszerek között ugrálnod.
 
-Ha nyaralókat vagy apartmanokat adsz bérbe, a WP Booking System - Square Add-on lehetővé teszi, hogy a vendégek online foglaljanak és fizessenek. Így nem kell aggódnod a készpénzes fizetések miatt, és csökkentheted a no-show kockázatát.
+## Telepítés és konfiguráció röviden
 
-### Szolgáltatások foglalása
+Előfeltételek:
+- WP Booking System Business (vagy magasabb) licenc
+- Square fejlesztői fiók az API‑kulcsokhoz
 
-Szolgáltatásokat nyújtó vállalkozások, mint például masszázs szalonok vagy oktatási szolgáltatók, szintén nagy hasznát vehetik az add-onnak. A vendégek előre lefoglalhatják az időpontokat és online kifizethetik a szolgáltatást, ami egyszerűbbé és átláthatóbbá teszi a folyamatot mindkét fél számára.
+Lépések:
+1. Hozz létre Square alkalmazást a fejlesztői irányítópulton.
+2. Másold ki az **Application ID** és **Access token** értékeket, és rögzítsd a WP Booking System → Settings → Payments → Square felületen.
+3. Szerezd meg a **Location ID**‑t, és add meg a megfelelő Square beállításnál.
+4. Mentsd a beállításokat, majd igény szerint kapcsold be a **Sandbox módot** teszteléshez.
 
-### Esküvői helyszínek és rendezvénytermek
+Beállítás minta:
 
-Esküvői helyszínek és rendezvénytermek esetében is hasznos lehet az add-on, mivel az ügyfelek online lefoglalhatják a helyszínt és előre kifizethetik a szükséges díjakat. Ez növeli a biztonságot és csökkenti az adminisztrációs terheket.
+```
+Payments > Square
+- Status: Active
+- Display name: Bankkártya (Square)
+- Description: Biztonságos online kártyás fizetés
+- Invoice Item Name: Foglalás #{{booking_id}}
+- Capture later (authorize only): enabled
+- Mode: Sandbox / Live
+- Application ID: sq0idp_...
+- Access token: EAAA-...
+- Location ID: L123ABC...
+```
 
-## Tippek a hatékony használathoz
+## Példák a gyakorlatból
 
-- **Teszteld az integrációt**: Mielőtt élesben használnád az add-ont, győződj meg róla, hogy minden megfelelően működik. Teszteld le a fizetési folyamatot egy tesztfoglalással.
-- **Kommunikálj a vendégeiddel**: Tájékoztasd vendégeidet arról, hogy milyen fizetési lehetőségeket kínálsz. Ez növeli a biztonságérzetüket és megkönnyíti számukra a választást.
-- **Tartsd naprakészen az információkat**: Győződj meg róla, hogy minden szükséges információ naprakész és pontos, beleértve az árakat és a rendelkezésre állási adatokat is.
+- **Vendégház előfoglalás ellenőrzéssel**
+  Előengedélyezed a kártyát foglaláskor, majd a szobák végleges visszaigazolásakor, 7 napon belül terheled az összeget. Ha nem hagyod jóvá, az összeg nem kerül levonásra.
 
-## Szószedet
+- **Eszközbérlés azonnali terheléssel**
+  A bérlő foglal, az összeg azonnal terhelésre kerül. Kevesebb adminisztráció, biztos bevétel.
 
-- **Square**: Egy online fizetési platform, amely biztonságos hitelkártya-tranzakciókat biztosít.
-- **PayPal**: Egy népszerű online fizetési rendszer, amely lehetővé teszi az elektronikus pénzátutalásokat.
-- **Stripe**: Egy fejlesztők által kedvelt online fizetési rendszer, amely egyszerű integrációt kínál weboldalakkal.
-- **Mollie**: Egy európai fizetési szolgáltató, amely többféle fizetési módot támogat.
-- **Authorize.Net**: Egy jól ismert fizetési átjáró szolgáltató, amely hitelkártyás fizetések elfogadására specializálódott.
-- **No-show**: Az az eset, amikor egy vendég lefoglal egy szolgáltatást vagy terméket, de nem jelenik meg az adott időpontban.
+- **Szolgáltatás előleg + végfizetés**
+  Online előleget kérsz, a szolgáltatás előtt a vendég a Secondary Payment Page‑en rendezi a maradékot ugyanazzal a Square‑rel.
+
+- **Gyors visszatérítés problémás esetnél**
+  Lemondáskor a foglalási modálból indítod a részleges visszatérítést – nincs külön belépés más rendszerbe.
+
+## Előnyök és értékajánlat
+
+- **WooCommerce nélkül**: önálló, egyszerű pénztár a foglalási űrlapban.
+- **Kevesebb no‑show**: előleg vagy előengedélyezés már a foglalásnál.
+- **Egységes admin**: foglalások, fizetések, visszatérítések egy helyen.
+- **Biztonságos bevezetés**: sandbox és tesztkártyák.
+- **Rugalmas pénzkezelés**: azonnali terhelés vagy késleltetett capture, ami a működésedhez igazítható.
+- **Bővíthető**: együttműködik a WP Booking System árazási, adó, kupon és több pénznemes funkcióival, valamint más fizetési kapukkal is alternatívaként.
+
+## Kinek ajánlott?
+
+- **Szálláshelyeknek**: apartmanok, vendégházak, kempingek – ahol hasznos az előengedélyezés és az előleg.
+- **Eszközbérbeadóknak**: kerékpárok, sporteszközök, autók – azonnali terhelés és letétkezelés.
+- **Szolgáltatóknak és rendezvényszervezőknek**: időpont‑ és helyfoglalások online díjbeszedéssel.
+- Neked, ha **Square‑t használsz**, és WP Booking System Business (vagy magasabb) licenccel dolgozol.
+
+## Korlátok és megjegyzések
+
+- Az előengedélyezés **7 napig** érvényes. Ha később próbálod terhelni, a tranzakció meghiúsul.
+- A kiegészítő csak **Business (vagy magasabb)** licenccsomaggal érhető el.
+- A működéshez érvényes **Square API‑kulcsok** és **Location ID** szükségesek.
