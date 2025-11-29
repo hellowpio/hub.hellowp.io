@@ -14,6 +14,16 @@ WORKDIR /app
 # Install dependencies first (better layer caching)
 COPY package.json package-lock.json* yarn.lock* ./
 
+# FontAwesome Pro token (build arg)
+ARG FONTAWESOME_NPM_AUTH_TOKEN
+ENV FONTAWESOME_NPM_AUTH_TOKEN=${FONTAWESOME_NPM_AUTH_TOKEN}
+
+# Configure FontAwesome Pro registry
+RUN if [ -n "$FONTAWESOME_NPM_AUTH_TOKEN" ]; then \
+    echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc && \
+    echo "//npm.fontawesome.com/:_authToken=${FONTAWESOME_NPM_AUTH_TOKEN}" >> .npmrc; \
+    fi
+
 # Install dependencies
 RUN npm ci --legacy-peer-deps || npm install --legacy-peer-deps
 
