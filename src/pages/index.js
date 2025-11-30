@@ -192,7 +192,7 @@ const faqItems = [
     icon: "fa-duotone fa-credit-card",
     title: "Bankkártya módosítása",
     description: "Console → Fizetési módok → Új bankkártya hozzáadása.",
-    link: "/docs/sugo/szamlazas-es-elofizetesek/elofizeteshet-kapcsolodo-kartya-csereje",
+    link: "/docs/sugo/szamlazas-es-elofizetesek/elofizeteshez-kapcsolodo-kartya-csereje",
   },
   {
     icon: "fa-duotone fa-repeat",
