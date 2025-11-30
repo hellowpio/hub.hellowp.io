@@ -1,63 +1,64 @@
 ---
-title: JetEngine - JetFormbuilder CCT relations készítése 
-description: JetEngine CCT Relations - Hogyan kössünk össze egy CPT és egy CCT a JetFormbuilder segítségével
+title: JetEngine - JetFormBuilder CCT relations készítése
+description: JetEngine CCT Relations - Hogyan kössünk össze egy CPT-t és egy CCT-t a JetFormBuilder segítségével
 keywords:
   - jetengine
+  - cct
+  - relations
+  - jetformbuilder
 sidebar_label: JetEngine CCT relations
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 import WPEmbed from "@site/src/components/WPEmbed";
 import BrowserWindow from "@site/src/components/BrowserWindow";
 
-# JetEngine - JetFormbuilder - CCT+CPT relations készítése
+# JetEngine - JetFormBuilder - CCT+CPT relations készítése
 
 ## Bevezető
 
-A JetEngine szerves részét képezi a **Relations rendszer**, ami  magyarul kapcsolatokat jelent. Ennek segítségével, összekapcsolhatunk két különböző CPT(Custom Post Type-ot)
-de akár CCT(Custom Content Type), User , vagy Taxonómiát is egymással. Fontos megjegyezni, hogy a Relations nem egy olyan fejlesztés, amit a JetEngine talált ki, más fejlesztők
-és bővítmények is alkalmazzák ezt a technikát. Azt viszont jegyezzük meg, hogy a JetEngine csak a saját kapcsolat rendszerét ismeri fel alapértelmezetten.
+A JetEngine szerves részét képezi a **Relations rendszer**, ami magyarul kapcsolatokat jelent. Ennek segítségével összekapcsolhatunk két különböző CPT-t (Custom Post Type-ot),
+de akár CCT-t (Custom Content Type), Usert vagy Taxonómiát is egymással. Fontos megjegyezni, hogy a Relations nem egy olyan fejlesztés, amit a JetEngine talált ki, más fejlesztők
+és bővítmények is alkalmazzák ezt a technikát. Azt viszont jegyezzük meg, hogy a JetEngine csak a saját kapcsolatrendszerét ismeri fel alapértelmezetten.
 
-## JetFormbuilder
+## JetFormBuilder
 
-A JetFormbuilder, továbbiakban csak JFB, a Crocoblock önálló űrlap bővítménye, ami Gutenberg alapú. A JetEngine alapértelmezett Űrlap modulját hivatott leváltani.
+A JetFormBuilder, a továbbiakban csak JFB, a Crocoblock önálló űrlap bővítménye, ami Gutenberg alapú. A JetEngine alapértelmezett űrlap modulját hivatott leváltani.
 Ha eddig nem tetted meg a váltást, időszerű, ugyanis az eredeti JetEngine Form megkapta a Legacy jelzőt, ami azt jelenti, hogy már nem támogatják. A JFB segítségével
-tudunk úgynevezett **Frontend post submissionokat** készíteni, de ennél ma már sokkal többre képes. Ebben a leírásban, egy JFB kompatibilis módot fogunk végigvenni.
-A **JetFormBuilder** ingyenes, és a Wordpress Bővítmények menüpontból tudod letölteni.
+tudunk úgynevezett **Frontend Post Submissionöket** készíteni, de ennél ma már sokkal többre képes. Ebben a leírásban egy JFB-kompatibilis módot fogunk végigvenni.
+A **JetFormBuilder** ingyenes, és a WordPress Bővítmények menüpontból tudod letölteni.
 
 <WPEmbed url="jetformbuilder" />
 
 
 ## Feladat
 
-Van egy Custom Post Type, és egy Custom Content Type létrehozva. Készítünk hozzá egy **relations-t**, és a bejelentkezett felhasználók egy űrlap kitöltésével össze 
-tudják kötni a CCT a CPT egy adott posztjához. Ebben a példában a CPT lesz a Parent elem, és a CCT a Child. Az űrlapunk a Parent elem single sablonjába lesz elhelyezve
-és amikor ott töltik ki az űrlapot, létrehozunk egy CCT és egyből összekapcsolódik az adott POST-al. Bonyolult elsőre igaz? Nyugi, megoldjuk ;)
+Van egy Custom Post Type és egy Custom Content Type létrehozva. Készítünk hozzá egy **relations-t**, és a bejelentkezett felhasználók egy űrlap kitöltésével össze
+tudják kötni a CCT-t a CPT egy adott posztjához. Ebben a példában a CPT lesz a Parent elem, és a CCT a Child. Az űrlapunk a Parent elem single sablonjába lesz elhelyezve,
+és amikor ott töltik ki az űrlapot, létrehozunk egy CCT-t, és egyből összekapcsolódik az adott POST-tal. Bonyolult elsőre, igaz? Nyugi, megoldjuk ;)
 
 :::tip Nem csak regisztrált felhasználóknak
-Ez a technika nem igényli, hogy a kitöltőnek kötelezően bejelentkezve kell lenni.
-
+Ez a technika nem igényli, hogy a kitöltőnek kötelezően bejelentkezve kell lennie.
 :::
 
 ## Relations készítése
 
-Navigáljunk a **JetEngine - Relations** menüponra és kattintsunk az **Add New** gombra. A Name mezőbe adj meg egy nevet, amit szeretnél. A **Parent Object** mezőben
-válaszd ki a már létrehozott CPT-t. Ez lesz a példánkban a szülő. A **Child Object** mezőben pedig a CCT kell beállítanod. A **Relation Type** állítsd One to many-re.
+Navigáljunk a **JetEngine → Relations** menüpontra, és kattintsunk az **Add New** gombra. A Name mezőbe adj meg egy nevet, amit szeretnél. A **Parent Object** mezőben
+válaszd ki a már létrehozott CPT-t. Ez lesz a példánkban a szülő. A **Child Object** mezőben pedig a CCT-t kell beállítanod. A **Relation Type** mezőt állítsd One to many-re.
 
 :::tip Mi az a **Relation Type?**
-Ez a beállítás határozza meg, hogy mennyi elemet lehet egymással összekötni, legyen szó cpt, cct, user, vagy taxonómiáról. A **One to Many** azt jelenti
-egy parent elemhez több gyerek elemet kapcsolhatsz. 
-
+Ez a beállítás határozza meg, hogy mennyi elemet lehet egymással összekötni, legyen szó CPT-ről, CCT-ről, userről vagy taxonómiáról. A **One to Many** azt jelenti,
+hogy egy parent elemhez több gyerek elemet kapcsolhatsz.
 :::
 
-Az alábbi beállítások a *General Settings* panelen főként a Backend menedzsmentre vonatkoznak, hagyhatod alapértelmezetten. A **Register Separate DB** viszont javasolt bekapcsolni, ha 
-tudod hogy több száz vagy ezer kapcsolat lesz idővel az oldalon.
+Az alábbi beállítások a *General Settings* panelen főként a backend menedzsmentre vonatkoznak, hagyhatod alapértelmezetten. A **Register Separate DB** viszont javasolt bekapcsolni, ha
+tudod, hogy több száz vagy ezer kapcsolat lesz idővel az oldalon.
 
 ## PHP kiegészítés
 
-Jelenleg ahhoz, hogy a CCT össze tudjuk kötni kívülről, egy extra php kiegészítésre van szükségünk. Az alábbi kódot bemásolhatod a *functions.php* fájlba, 
-vagy specifikus bővítménybe amibe PHP kódokat lehet megadni, mint például az alábbi **Code Snippets:**
+Jelenleg ahhoz, hogy a CCT-t össze tudjuk kötni kívülről, egy extra PHP kiegészítésre van szükségünk. Az alábbi kódot bemásolhatod a *functions.php* fájlba, 
+vagy specifikus bővítménybe, amibe PHP kódokat lehet megadni, mint például az alábbi **Code Snippets:**
 
 <WPEmbed url="code-snippets" />
 
@@ -71,81 +72,81 @@ megkeresni, hogy belekattintasz a **JetEngine - Custom Content Type** menüpontb
   <img src="/img/jetengine-cct-slug.png" alt="JetEngine - Custom Content Type összesítő"></img>
 </BrowserWindow>
 
-A saját SLUG-od kimásolod, és kicseréled, a cookshot-al. Az utolsó rész-t nem kötelező kicserélni, de ne felejtsd el. **['inserted_cct_id']** ez a JFB-ben
+A saját SLUG-od kimásolod, és kicseréled a cookshot-tal. Az utolsó részt nem kötelező kicserélni, de ne felejtsd el. **['inserted_cct_id']** ez a JFB-ben
 egy rejtett mezőnk azonosítója lesz.
 
 :::tip Hasznos tipp!
-A már létrehozott Custom Content Typeodnál, azt javasolom készíts egy egyszerű **text meta** mezőt, hogy a kapcsolódó CPT Post nevét az űrlap automatikusan
-bemásolja. Ezt kitudod rakni a CCT oszlopba is, így a backenden láthatod, az adott CCT melyik POST hoz küldték be.
+A már létrehozott Custom Content Type-odnál azt javasolom, készíts egy egyszerű **text meta** mezőt, hogy a kapcsolódó CPT Post nevét az űrlap automatikusan
+bemásolja. Ezt ki tudod rakni a CCT oszlopba is, így a backend-en láthatod, az adott CCT-t melyik POST-hoz küldték be.
 
 :::
 
-## JetFormbuilder - Építsük meg az űrlapunkat
+## JetFormBuilder - Építsük meg az űrlapunkat
 
-:::warning Fontos! 
-Ez a példa úgy készül, hogy az űrlapot, a Custom Post Type single post sablonba fogjuk beállítani, mivel a CCT-nek nincs önálló single oldala úgy mint egy Custom Post Type-nak!
+:::warning Fontos!
+Ez a példa úgy készül, hogy az űrlapot a Custom Post Type single post sablonba fogjuk beállítani, mivel a CCT-nek nincs önálló single oldala, úgy mint egy Custom Post Type-nak!
 
 :::
 
-Navigáljunk a **JetFormbuilder** menüpontba, és kattintsunk az **Add New** gombra. Mielőtt a létrehozott CCT metáit elkezdenéd hozzáadni, először add hozzá a kötelező 
-rendszer mezőket, amik mindegyike kivétel nélkül **Hidden Field-ek** Összesen alapvetően 3ra lesz szükséged, kötelező jelleggel, de ha szeretnéd bekötni az aktuális
-cpt post címét, akkor készíts egy negyediket is.
+Navigáljunk a **JetFormBuilder** menüpontba, és kattintsunk az **Add New** gombra. Mielőtt a létrehozott CCT metáit elkezdenéd hozzáadni, először add hozzá a kötelező 
+rendszer mezőket, amik mindegyike kivétel nélkül **Hidden Field-ek**. Összesen alapvetően 3-ra lesz szükséged kötelező jelleggel, de ha szeretnéd bekötni az aktuális
+CPT post címét, akkor készíts egy negyediket is.
 
 ### current_user_id - Hidden field
-Az első rejtett meződ nevezd el **current_user_id** a field value-t pedig állítsd **Current User ID**-ra. A Render In HTML hagyd bekapcsolva.
+Az első rejtett meződet nevezd el **current_user_id**-nek, a field value-t pedig állítsd **Current User ID**-ra. A Render In HTML-t hagyd bekapcsolva.
 
 ### inserted_cct_id - Hidden field
-A soron következő rejtett meződ nevezd el **inserted_cct_id**-re, és állítsd a Field value-t **Manual Input-ra.** A Render In HTML hagyd bekapcsolva.
+A soron következő rejtett meződet nevezd el **inserted_cct_id**-re, és állítsd a Field value-t **Manual Input-ra**. A Render In HTML-t hagyd bekapcsolva.
 
 **Emlékeztető!**
-A php kódban amit fentebb átírtunk, ezt a(z) **inserted_cct_id** köti össze, így ha azt átírtad, akkor ugyan arra nevezd el ezt a rejtett meződ!
+A PHP kódban, amit fentebb átírtunk, ezt az **inserted_cct_id** köti össze, így ha azt átírtad, akkor ugyanarra nevezd el ezt a rejtett meződet!
 
 ### post_id - Hidden field
-A harmadik rejtett meződet nevezd el **post_id**-re, és állítsd a Field value-t **Current Post ID**-re. A Render In HTML hagyd bekapcsolva.
+A harmadik rejtett meződet nevezd el **post_id**-re, és állítsd a Field value-t **Current Post ID**-re. A Render In HTML-t hagyd bekapcsolva.
 
 ### post_title - Hidden field (opcionális)
-Ha szeretnéd akkor egy negyedik mezőt is hozzáadhatsz post_title néven. Itt a field value-t Current post title-re kell állítanod. A Render In HTML hagyd bekapcsolva.
+Ha szeretnéd, akkor egy negyedik mezőt is hozzáadhatsz post_title néven. Itt a field value-t Current post title-re kell állítanod. A Render In HTML-t hagyd bekapcsolva.
 
 ### CCT Meták
 A nehezén lassan túl vagyunk. Most már csak azokra a mezőkre van szükséged, amiket a CCT-nél létrehoztál.
 
 ### Post submit Actions
-Az utolsó előtti lépés, hogy meghatározzuk az űrlapnak mi történjen ha valaki rákattint a submit gombra. Először az **Insert/update Custom Content Type item** re lesz szükséged.
+Az utolsó előtti lépés, hogy meghatározzuk az űrlapnak, mi történjen, ha valaki rákattint a submit gombra. Először az **Insert/update Custom Content Type item**-re lesz szükséged.
 <BrowserWindow url="https://peldaweboldal.hu">
   <img src="/img/cct-jfb-action1.png" alt="JetEngine - JFB CCT Upload Action"></img>
 </BrowserWindow>  
 
-Itt beállítod melyik CCT, státusz, továbbá összekapcsolod a CCT metáidat. Egyetlen rejtett mezőt sem kell beállítanod, kivéve a post_title, HA csináltál egy ennek megfelelő
+Itt beállítod, melyik CCT, státusz, továbbá összekapcsolod a CCT metáidat. Egyetlen rejtett mezőt sem kell beállítanod, kivéve a post_title, HA csináltál egy ennek megfelelő
 metát a CCT-ben.
 
-Felmerül a kérdés, miért ennyire körülményes ez a feladat. A **Custom Content Type** egy másfajta sturktúrában menti az adatokat az adatbázisban, ezért
-mérföldekkel gyorsabb és hatékonyabb a Custom Post Typeokkal szemben. Míg két cpt relations összekötése a JetFormbuilder-ben kód mentesen, és könnyebben megoldható
+Felmerül a kérdés, miért ennyire körülményes ez a feladat. A **Custom Content Type** egy másfajta struktúrában menti az adatokat az adatbázisban, ezért
+mérföldekkel gyorsabb és hatékonyabb a Custom Post Type-okkal szemben. Míg két CPT relations összekötése a JetFormBuilder-ben kódmentesen és könnyebben megoldható,
 a CCT speciális kialakítást igényel.
 
 :::tip Post Submit actions - Számít a sorrend?
-Igen. Fontos a megfelelő sorrendbe állítani a műveleteket. Például egy **Redirect to page-t** javasolt hogy a legutolsó művelet legyen.
+Igen. Fontos a megfelelő sorrendbe állítani a műveleteket. Például egy **Redirect to page**-et javasolt, hogy a legutolsó művelet legyen.
 
 :::
 
-A következő művelet amit hozzá kell adnod: **Connect Relation Items**. Az összekapcsolás valójában itt fog végrehajtódni. 
+A következő művelet, amit hozzá kell adnod: **Connect Relation Items**. Az összekapcsolás valójában itt fog végrehajtódni.
 
 A **Relation mezőbe**
-válaszd ki a korábban létrehozott Relation-t. A **PARENT ITEM ID** -be a **post_id** nek elnevezett rejtett meződet válaszd ki.
-A **CHILD ITEM ID** mezőbe pedig az **inserted_cct_id** kell kiválasztanod. Az utolsó **UPDATE CONTEXT**-nél pedig a **We updating parent items for the child object** kell választanod.
+válaszd ki a korábban létrehozott Relation-t. A **PARENT ITEM ID**-be a **post_id**-nek elnevezett rejtett meződet válaszd ki.
+A **CHILD ITEM ID** mezőbe pedig az **inserted_cct_id**-t kell kiválasztanod. Az utolsó **UPDATE CONTEXT**-nél pedig a **We updating parent items for the child object**-et kell választanod.
 <BrowserWindow url="https://peldaweboldal.hu">
   <img src="/img/cct-jfb-action2.png" alt="JetEngine - JFB CCT Upload Action"></img>
 </BrowserWindow>  
 
 ### Űrlap beágyazása
-Az utolsó, amire szükséged van, hogy ezt az űrlapot beágyazd a Custom Post Type Single sablonod oldalába. Innentől kezdve amikor valaki kitölti az űrlapot 
-az adott post-on belül, létrehoz egy CCT Itemet, és hozzáköti a (cpt)post-hoz.
+Az utolsó, amire szükséged van, hogy ezt az űrlapot beágyazd a Custom Post Type Single sablonod oldalába. Innentől kezdve, amikor valaki kitölti az űrlapot
+az adott post-on belül, létrehoz egy CCT Itemet, és hozzáköti a (CPT) post-hoz.
 
 ## Query Builder
-Sok esetben szükségünk van arra, hogy ezeket a beküldött CCT itemeket megjelenítsük annál a cpt Post-nál, ahol ment a beküldés. (submit)
-Az alábbi módon tudunk lekérdezést csinálni hozzá a Query Builderben:  
+Sok esetben szükségünk van arra, hogy ezeket a beküldött CCT itemeket megjelenítsük annál a CPT Post-nál, ahol ment a beküldés (submit).
+Az alábbi módon tudunk lekérdezést csinálni hozzá a Query Builder-ben:  
 
-Mivel CCT akarsz megjeleníteni azzal kell kezdened miután az **Add new** gombra kattintottál a Query Builder menüben, hogy a **Query Type-ot** Custom content Type Query-ra állítod. A **From Content Type** itt kiválasztod a CCT amivel eddig dolgoztunk
-továbbá a Number mezőbe írj egy számot ha nem akarod, hogy végtelen számú CCT jelenjen meg egyszerre. Lejebb a Query résznél pedig az **Add new** gombra kattintunk.
+Mivel CCT-t akarsz megjeleníteni, azzal kell kezdened, miután az **Add new** gombra kattintottál a Query Builder menüben, hogy a **Query Type**-ot Custom Content Type Query-ra állítod. A **From Content Type**-nál itt kiválasztod a CCT-t, amivel eddig dolgoztunk,
+továbbá a Number mezőbe írj egy számot, ha nem akarod, hogy végtelen számú CCT jelenjen meg egyszerre. Lejebb a Query résznél pedig az **Add new** gombra kattintunk.
 
 Field - Item ID  
 Compare - Equal  
@@ -157,9 +158,9 @@ listából válaszd ki a **Related Items**
   <img src="/img/cctrelationsquery.png" alt="JetEngine - Custom Content Type összesítő"></img>
 </BrowserWindow>
 
-A következő felugró ablakban szintén kikell választani a *From Relation-t*, *From Object( - Child Object)*, *Initial Object ID From(Current Object ID)*
+A következő felugró ablakban szintén ki kell választani a *From Relation*-t, *From Object (Child Object)*-et, *Initial Object ID From (Current Object ID)*-t.
 
 :::note Eltérő Relations felépítés
-Az itt leírt beállítás csak akkor működik, ha ugyan ezt a kapcsolati felépítést, és metódusokat követted. Más esetben a **related item** beállításait igazítanod kell a te felépítésedhez.
+Az itt leírt beállítás csak akkor működik, ha ugyanezt a kapcsolati felépítést és metódusokat követted. Más esetben a **related item** beállításait igazítanod kell a te felépítésedhez.
 
 :::

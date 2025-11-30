@@ -8,7 +8,7 @@ A HelloWP! minden rendelés után számlát állít ki, amit könnyedén (és b�
 
 ### Adószám módosítása
 
-1. Lépj be a HelloWP oldalon: https://hellowp.io/hu/helloconsole/ és kattins a nevedre a jobb felső sarokban.
+1. Lépj be a HelloWP oldalon: https://hellowp.io/hu/helloconsole/ és kattints a nevedre a jobb felső sarokban.
 
 2. Kattints a Számlázási adatokra. https://hellowp.io/hu/helloconsole/edit-address/
 
@@ -24,4 +24,4 @@ Semmi probléma, ilyen esetben vedd fel a kapcsolatot a pénzügyi részleggel, 
 
 :::tip
 
-Mielőtt számlajavítást kérsz, győződj meg róla, hogy a fiókodban szereplő számlási adatok helyesek. Ezzel nagyságrendekkel gyorsabb lesz a feldolgozás. Amennyiben a fiókodban szereplő adatoktól eltérő számlázási adatokat szeretnél módosítani, akkor mindenképpen küldd el nekünk a számlázási adatokat, hogy gyorsabban tudjuk feldolgozni a kérelmedet.
+Mielőtt számlajavítást kérsz, győződj meg róla, hogy a fiókodban szereplő számlázási adatok helyesek. Ezzel nagyságrendekkel gyorsabb lesz a feldolgozás. Amennyiben a fiókodban szereplő adatoktól eltérő számlázási adatokat szeretnél módosítani, akkor mindenképpen küldd el nekünk a számlázási adatokat, hogy gyorsabban tudjuk feldolgozni a kérelmedet.

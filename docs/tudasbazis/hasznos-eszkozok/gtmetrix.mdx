@@ -1,0 +1,245 @@
+---
+title: GTmetrix - Weboldal sebességteszt
+description: GTmetrix használata weboldalak teljesítményének mérésére és optimalizálására - Core Web Vitals és Lighthouse metrikák.
+keywords:
+  - gtmetrix
+  - speed test
+  - weboldal sebesség
+  - core web vitals
+  - lighthouse
+  - teljesítmény
+sidebar_label: GTmetrix
+sidebar_position: 10
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-gauge-high text-primary" /> GTmetrix - Weboldal sebességteszt
+
+A **GTmetrix** egy ingyenes eszköz weboldalak teljesítményének tesztelésére és monitorozására. Google Lighthouse alapú mérésekkel segít azonosítani a lassulás okait és javaslatokat ad az optimalizálásra.
+
+:::tip Miért használd?
+- **Lighthouse alapú** - Google-szabványos mérések
+- **Core Web Vitals** - LCP, TBT, CLS metrikák
+- **Részletes elemzés** - Waterfall, video playback
+- **Ingyenes verzió** - Heti 30 teszt díjmentesen
+:::
+
+---
+
+## Mit mér a GTmetrix?
+
+### Core Web Vitals
+
+| Metrika | Mit mér | Jó érték |
+|---------|---------|----------|
+| **LCP** (Largest Contentful Paint) | Legnagyobb elem betöltési ideje | < 2.5s |
+| **TBT** (Total Blocking Time) | JavaScript blokkolási idő | < 200ms |
+| **CLS** (Cumulative Layout Shift) | Vizuális stabilitás | < 0.1 |
+
+### További metrikák
+
+- **Performance Score** - Összesített teljesítmény pontszám (0-100)
+- **Structure Score** - Oldal struktúra minősége
+- **Fully Loaded Time** - Teljes betöltési idő
+- **Page Size** - Oldal mérete
+- **Requests** - HTTP kérések száma
+
+---
+
+## Jó pontszámok
+
+| Metrika | Jó | Közepes | Gyenge |
+|---------|-----|---------|--------|
+| **Performance** | 90+ | 50-89 | < 50 |
+| **Structure** | 90+ | 50-89 | < 50 |
+| **LCP** | < 2.5s | 2.5-4s | > 4s |
+| **Fully Loaded** | < 3s | 3-6s | > 6s |
+
+---
+
+## Árazás
+
+### Ingyenes csomag
+
+- Heti **30 teszt**
+- Korlátozott helyszínek
+- Alapvető funkciók
+
+### PRO csomagok
+
+| Csomag | Ár | Funkciók |
+|--------|-----|----------|
+| **Solo** | $4.25/hó | Több teszt, helyszín |
+| **Starter** | $10.50/hó | Monitorozás, alertek |
+| **Growth** | $21/hó | Több oldal, API |
+| **Business** | $72.50/hó+ | Csapat funkciók |
+
+:::info Éves előfizetés
+15% kedvezmény éves számlázással.
+:::
+
+---
+
+## Használat
+
+### Teszt futtatása
+
+1. Látogass el: [gtmetrix.com](https://gtmetrix.com/)
+2. Add meg a weboldal URL-jét
+3. Kattints a **Test your site** gombra
+4. Várd meg az eredményt (15-60 másodperc)
+
+### Beállítások (regisztráció után)
+
+- **Test Location** - Tesztelési helyszín kiválasztása
+- **Browser** - Chrome Desktop vagy Mobile
+- **Connection Speed** - Sávszélesség szimuláció
+- **Adblock** - Hirdetések blokkolása
+
+### Tesztelési helyszínek
+
+65+ szerver 22 különböző lokációban:
+- Európa (London, Frankfurt, Amsterdam)
+- Észak-Amerika (USA városok, Kanada)
+- Ázsia (Szingapúr, Tokió, Sydney)
+
+---
+
+## Eredmények értelmezése
+
+### Summary
+
+Az összefoglaló oldalon láthatod:
+- **Grade** - A-F betűjegy
+- **Web Vitals** - Főbb metrikák
+- **Összehasonlítás** - Korábbi tesztekkel
+
+### Performance
+
+Részletes Lighthouse audit:
+- Opportunities (Lehetőségek) - Mi lassít?
+- Diagnostics (Diagnosztika) - Részletes elemzés
+- Passed Audits (Sikeres) - Mi van rendben?
+
+### Structure
+
+Az oldal struktúra elemzése:
+- Képoptimalizálás
+- CSS/JS minifikálás
+- Cache beállítások
+- Tömörítés
+
+### Waterfall
+
+A **Waterfall** diagram megmutatja:
+- Minden erőforrás betöltési sorrendjét
+- Kérések időzítését
+- Blokkoló erőforrásokat
+- Átirányításokat
+
+### Video
+
+Videó felvétel az oldal betöltéséről:
+- Frame-by-frame visszajátszás
+- Betöltési folyamat vizualizáció
+- Problémák azonosítása
+
+---
+
+## Monitorozás (PRO)
+
+### Ütemezett tesztek
+
+Automatikus tesztelés beállítása:
+- Óránként, naponta, hetente
+- Email értesítések teljesítménycsökkenéskor
+- Historical data - Trendek követése
+
+### Alertek
+
+Értesítés küldése, ha:
+- Performance score csökken
+- LCP túllépi a küszöböt
+- Oldal nem elérhető
+
+---
+
+## WordPress optimalizálás GTmetrix alapján
+
+### Gyakori problémák és megoldások
+
+#### 1. Render-blocking resources
+
+```
+Probléma: CSS/JS blokkolja a renderelést
+```
+
+**Megoldás:**
+- Kritikus CSS inline-ba
+- JS defer/async attribútum
+- Használj cache plugint (WP Rocket, LiteSpeed Cache)
+
+#### 2. Large images
+
+```
+Probléma: Túl nagy képfájlok
+```
+
+**Megoldás:**
+- WebP formátum használata
+- Lazy loading engedélyezése
+- HelloIMG képoptimalizálás
+
+#### 3. Excessive DOM size
+
+```
+Probléma: Túl sok DOM elem
+```
+
+**Megoldás:**
+- Page builder elemek csökkentése
+- Egyszerűbb layout használata
+- Felesleges widgetek eltávolítása
+
+#### 4. Server response time
+
+```
+Probléma: Lassú TTFB
+```
+
+**Megoldás:**
+- Jobb hosting szolgáltató
+- Object cache (Redis, Memcached)
+- CDN használata
+
+---
+
+## API használat (PRO)
+
+```bash
+# Teszt indítása API-n keresztül
+curl -X POST "https://gtmetrix.com/api/2.0/tests" \
+  -H "Authorization: Basic YOUR_API_KEY" \
+  -d "url=https://example.com"
+```
+
+---
+
+## Alternatívák
+
+| Eszköz | Előny |
+|--------|-------|
+| **PageSpeed Insights** | Google hivatalos eszköze |
+| **WebPageTest** | Részletesebb waterfall |
+| **Lighthouse** | Chrome DevTools beépített |
+| **Pingdom** | Egyszerűbb felület |
+
+---
+
+## Kapcsolódó linkek
+
+- [GTmetrix hivatalos oldal](https://gtmetrix.com/)
+- [GTmetrix PRO árak](https://gtmetrix.com/pricing.html)
+- [PageSpeed Insights](https://pagespeed.web.dev/)
+- [Web.dev - Core Web Vitals](https://web.dev/vitals/)

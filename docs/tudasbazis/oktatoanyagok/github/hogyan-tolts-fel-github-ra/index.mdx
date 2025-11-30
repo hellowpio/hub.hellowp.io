@@ -1,24 +1,373 @@
 ---
-title: Hogyan töltsd fel a GitHubra a kódot?
-description: Hogyan töltsd fel a GitHubra a kódot?
+title: Hogyan töltsd fel a kódod GitHubra?
+description: Részletes útmutató a kód feltöltéséhez GitHubra parancssorból és GitHub Desktop segítségével.
 keywords:
   - github
-sidebar_label: Hogyan töltsd fel a GitHubra a kódot?
+  - git
+  - feltöltés
+  - push
+  - repository
+sidebar_label: Kód feltöltése GitHubra
 sidebar_position: 3
 ---
 
-import DocCardList from "@theme/DocCardList";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
-# <FontAwesomeIcon icon="fa-brands fa-github text-primary" /> Hogyan töltsd fel a GitHubra a kódot?
+# <FontAwesomeIcon icon="fa-brands fa-github text-primary" /> Hogyan töltsd fel a kódod GitHubra?
 
-Ha szeretnél új repository-t feltölteni GitHubra, akkor kövesd a következő lépéseket:
+Ez az útmutató bemutatja, hogyan töltheted fel a projekted GitHubra különböző módszerekkel.
 
-1. **Regisztrálj vagy jelentkezz be** a GitHub fiókodba.
-2. Kattints a jobb felső sarokban található **"+" gombra**, majd válaszd ki az "Új Repository" lehetőséget.
-3. **Adj meg egy nevet a Repository számára**. A névnek egyedinek kell lennie, és jól leírnia kell a projekted tartalmát.
-4. Írj le egy rövid összefoglalót arról, hogy mi lesz a projekted célja. (opcionális)
-5. Döntsd el, hogy publikus vagy privát lesz-e a repo. A publikus repositoryk bárki számára elérhetőek, a privát repositorykhoz azonban fizetős előfizetésre van szükség.
-6. Válaszd ki a README fájl opciót. Ez egy alapvető fájl, amely lehetővé teszi, hogy bemutassad a projektet, és felvegyél vele kapcsolatos fontos információkat. (opcionális)
-7. **Kattints a "Create Repository"** gombra.
-8. **Ezzel elkészült a repository! **Most már hozzáadhatod a forráskódodat, dokumentációdat és egyéb fájlokat a projektjéhez. Ha szeretnéd, beállíthatod a repository beállításait, mint például az alkalmazások és szolgáltatások használatát, együttműködés hozzáadását és a webhookok beállítását.
+## Előkészületek
+
+Mielőtt elkezdenéd, győződj meg róla, hogy:
+
+- [x] Telepítve van a [Git](https://git-scm.com/downloads)
+- [x] Van GitHub fiókod ([regisztráció](https://github.com/signup))
+- [x] Be van állítva a Git konfiguráció
+
+```bash
+# Git konfiguráció ellenőrzése
+git config --global user.name
+git config --global user.email
+```
+
+## 1. módszer: Parancssori feltöltés (új projekt)
+
+### 1. lépés: Repository létrehozása GitHub-on
+
+1. Nyisd meg a [github.com/new](https://github.com/new) oldalt
+2. Töltsd ki a mezőket:
+
+| Mező | Leírás |
+|------|--------|
+| **Repository name** | Projekt neve (pl. `my-wordpress-theme`) |
+| **Description** | Rövid leírás (opcionális) |
+| **Public/Private** | Publikus vagy privát |
+
+3. **Ne** pipáld be az alábbi opciókat:
+   - Add a README file
+   - Add .gitignore
+   - Choose a license
+
+4. Kattints: **Create repository**
+
+### 2. lépés: Lokális projekt előkészítése
+
+```bash
+# Navigálj a projekt mappájába
+cd /path/to/your/project
+
+# Git inicializálása
+git init
+
+# .gitignore létrehozása (opcionális, de ajánlott)
+cat > .gitignore << 'EOF'
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build
+/dist/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# WordPress specifikus
+wp-content/uploads/
+wp-content/cache/
+wp-config.php
+EOF
+```
+
+### 3. lépés: Fájlok hozzáadása és commit
+
+```bash
+# README létrehozása
+echo "# Projekt neve" > README.md
+
+# Összes fájl hozzáadása
+git add .
+
+# Állapot ellenőrzése
+git status
+
+# Első commit
+git commit -m "Initial commit"
+```
+
+### 4. lépés: GitHub-hoz kapcsolás és feltöltés
+
+```bash
+# Remote hozzáadása (HTTPS)
+git remote add origin https://github.com/USERNAME/REPO-NAME.git
+
+# VAGY SSH-val (ajánlott)
+git remote add origin git@github.com:USERNAME/REPO-NAME.git
+
+# Feltöltés
+git push -u origin main
+```
+
+:::tip SSH vs HTTPS
+Az SSH biztonságosabb és nem kér jelszót minden push-nál. Beállításához lásd a [GitHub kezdőknek](/docs/tudasbazis/oktatoanyagok/github/github-kezdoknek#4-ssh-kulcs-beállítása-ajánlott) útmutatót.
+:::
+
+## 2. módszer: Meglévő repository klónozása
+
+Ha már létezik a repository GitHub-on:
+
+```bash
+# Repository klónozása
+git clone git@github.com:USERNAME/REPO-NAME.git
+
+# Belépés a mappába
+cd REPO-NAME
+
+# Fájlok módosítása...
+
+# Változások hozzáadása
+git add .
+
+# Commit
+git commit -m "Add: new feature"
+
+# Feltöltés
+git push
+```
+
+## 3. módszer: GitHub Desktop használata
+
+### Új repository feltöltése
+
+1. Nyisd meg a **GitHub Desktop** alkalmazást
+2. **File** → **Add Local Repository**
+3. Válaszd ki a projekt mappáját
+4. Ha nem Git repository, kattints: **Create a Repository**
+5. Töltsd ki a mezőket és kattints: **Create Repository**
+6. Kattints: **Publish repository**
+
+### Meglévő repository klónozása
+
+1. **File** → **Clone Repository**
+2. Válaszd ki a repository-t a listából
+3. Állítsd be a helyi mappát
+4. Kattints: **Clone**
+
+### Változások feltöltése
+
+1. A bal oldali panelen látod a módosított fájlokat
+2. Pipáld be a feltöltendő fájlokat
+3. Írd be a commit üzenetet
+4. Kattints: **Commit to main**
+5. Kattints: **Push origin**
+
+## 4. módszer: VS Code Git integráció
+
+### Repository inicializálása
+
+1. Nyisd meg a projektet VS Code-ban
+2. **Source Control** panel (Ctrl+Shift+G)
+3. Kattints: **Initialize Repository**
+
+### Változások commitolása
+
+1. A **Source Control** panelen látod a változásokat
+2. Kattints a **+** ikonra a fájlok hozzáadásához
+3. Írd be a commit üzenetet
+4. Kattints a ✓ ikonra (vagy Ctrl+Enter)
+
+### GitHub-ra feltöltés
+
+1. Kattints a **...** menüre
+2. Válaszd: **Push** vagy **Publish Branch**
+3. Ha még nincs remote, VS Code felajánlja a GitHub-ra publikálást
+
+## Változások frissítése (későbbi feltöltések)
+
+Miután az első push megtörtént, a későbbi változások feltöltése egyszerűbb:
+
+```bash
+# Módosított fájlok hozzáadása
+git add .
+
+# Vagy specifikus fájlok
+git add src/file.php
+
+# Commit üzenettel
+git commit -m "fix: resolve login issue"
+
+# Feltöltés
+git push
+```
+
+### Egysoros változat
+
+```bash
+git add . && git commit -m "Update: description" && git push
+```
+
+## Commit üzenet formátum
+
+Használj beszédes commit üzeneteket:
+
+```bash
+# Formátum
+<típus>: <leírás>
+
+# Típusok
+feat:     Új funkció hozzáadása
+fix:      Hibajavítás
+docs:     Dokumentáció módosítása
+style:    Formázás (nem változtat működésen)
+refactor: Kód átszervezése
+test:     Tesztek hozzáadása
+chore:    Build, konfiguráció módosítása
+
+# Példák
+git commit -m "feat: Add user registration form"
+git commit -m "fix: Resolve cart calculation bug"
+git commit -m "docs: Update installation guide"
+git commit -m "refactor: Simplify payment processing"
+```
+
+## Gyakori problémák és megoldások
+
+### "Permission denied (publickey)"
+
+```bash
+# Ellenőrizd az SSH kapcsolatot
+ssh -T git@github.com
+
+# Ha nem működik, állítsd be az SSH kulcsot
+ssh-keygen -t ed25519 -C "email@example.com"
+cat ~/.ssh/id_ed25519.pub
+# Másold be a kulcsot: GitHub → Settings → SSH Keys
+```
+
+### "Remote origin already exists"
+
+```bash
+# Remote eltávolítása
+git remote remove origin
+
+# Új remote hozzáadása
+git remote add origin git@github.com:USERNAME/REPO-NAME.git
+```
+
+### "Updates were rejected"
+
+```bash
+# Először kérd le a változásokat
+git pull origin main --rebase
+
+# Majd töltsd fel
+git push origin main
+```
+
+### "Failed to push some refs"
+
+```bash
+# Force push (CSAK ha egyedül dolgozol!)
+git push -f origin main
+
+# VAGY merge-eld a távoli változásokat
+git pull origin main
+git push origin main
+```
+
+### Rossz fájlok kerültek fel
+
+```bash
+# Ha még nem push-oltál
+git reset HEAD~1
+
+# Ha már push-oltál (új committal törölsz)
+git rm --cached sensitive-file.txt
+git commit -m "chore: Remove sensitive file"
+git push
+```
+
+## WordPress projekt feltöltése
+
+### Ajánlott .gitignore WordPress-hez
+
+```gitignore
+# WordPress core
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+
+# wp-content kivételek
+/wp-content/*
+!/wp-content/themes/
+!/wp-content/plugins/
+!/wp-content/mu-plugins/
+
+# Feltöltések és cache
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+
+# Konfigurációs fájlok
+wp-config.php
+.htaccess
+
+# Saját téma/plugin fejlesztésnél
+/wp-content/themes/your-theme/node_modules/
+/wp-content/themes/your-theme/dist/
+
+# Environment
+.env
+.env.*
+```
+
+### Csak téma/plugin feltöltése
+
+Ha csak a saját témádat vagy pluginodat akarod verziókezelni:
+
+```bash
+# Navigálj a téma/plugin mappájába
+cd wp-content/themes/my-theme
+
+# Inicializálás
+git init
+git add .
+git commit -m "Initial commit"
+
+# GitHub-ra feltöltés
+git remote add origin git@github.com:USERNAME/my-theme.git
+git push -u origin main
+```
+
+## Összefoglaló
+
+| Művelet | Parancs |
+|---------|---------|
+| Inicializálás | `git init` |
+| Fájlok hozzáadása | `git add .` |
+| Commit | `git commit -m "message"` |
+| Remote hozzáadása | `git remote add origin URL` |
+| Első feltöltés | `git push -u origin main` |
+| Későbbi feltöltés | `git push` |
+| Állapot | `git status` |
+| Történet | `git log --oneline` |
+
+## Források
+
+- [GitHub Docs - Creating a repo](https://docs.github.com/en/get-started/quickstart/create-a-repo)
+- [GitHub Docs - Pushing commits](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository)
+- [Git hivatalos dokumentáció](https://git-scm.com/doc)

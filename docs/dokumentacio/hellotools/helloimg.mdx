@@ -1,0 +1,168 @@
+---
+title: HelloIMG – Képoptimalizáló
+description: HelloIMG képoptimalizáló API - Akár 90%-os méretcsökkentés minőségromlás nélkül. WebP és AVIF támogatás.
+keywords:
+  - helloimg
+  - hellotools
+  - képoptimalizálás
+  - webp
+  - avif
+  - wordpress
+  - api
+sidebar_label: HelloIMG
+sidebar_position: 2
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import HelloImgStats from "@site/src/components/HelloImgStats";
+
+# <FontAwesomeIcon icon="fa-regular fa-bee text-helloimg" /> Hello<span className="text-helloimg">IMG</span> – Képoptimalizáló
+
+:::info Hozzáférés
+A HelloIMG jelenleg HelloPack előfizetéssel érhető el.
+:::
+
+Villámgyors képoptimalizáló API fejlesztőknek. Akár **90%-os méretcsökkentés** minőségromlás nélkül. WebP és AVIF támogatás.
+
+**Weboldal**: [https://helloimg.io](https://helloimg.io)
+
+---
+
+## Használat WordPress-ben
+
+A HelloIMG szolgáltatás a népszerű képoptimalizáló bővítményeken keresztül használható:
+
+1. Telepítsd az **Imagify** vagy **ShortPixel** bővítményt
+2. A HelloPack kliensben kapcsold be a megfelelő modult:
+   - **WordPress admin** → **HelloPack** → **Modulok**
+   - Kapcsold be az **Imagify** vagy **ShortPixel** modult
+3. A bővítmény ezután a HelloIMG szolgáltatást fogja használni a képoptimalizáláshoz
+
+:::tip Előny
+Nincs szükség külön Imagify vagy ShortPixel előfizetésre – a HelloIMG API-t használod a HelloPack előfizetéseddel, korlátlan oldalon és korlátlan képpel.
+:::
+
+:::note Próbáld ki ingyen!
+A [helloimg.io](https://helloimg.io) oldalon regisztráció nélkül tesztelheted a szolgáltatást. Töltsd fel a képeidet és győződj meg a minőségről!
+:::
+
+---
+
+## Főbb funkciók
+
+### <FontAwesomeIcon icon="fa-duotone fa-images" /> Univerzális formátum támogatás
+
+A HelloIMG minden képformátumot kezel: JPEG, PNG, GIF és WebP. Legyen szó termékfotókról, blog képekről vagy marketing anyagokról.
+
+### <FontAwesomeIcon icon="fa-duotone fa-rocket" /> Újgenerációs formátum konverzió
+
+Automatikus konverzió modern formátumokba (WebP, AVIF) a maximális tömörítésért és villámgyors betöltésért. Javítsd a Core Web Vitals mutatóidat és a Google PageSpeed pontszámod.
+
+### <FontAwesomeIcon icon="fa-duotone fa-wand-magic-sparkles" /> Intelligens tömörítés
+
+Nincs szükség beállításokra. Az intelligens tömörítő motor elemzi minden képet és automatikusan alkalmazza az optimális beállításokat. Tökéletes eredmény minden alkalommal.
+
+### <FontAwesomeIcon icon="fa-duotone fa-arrows-maximize" /> Rugalmas átméretezés
+
+Képek dinamikus átméretezése az API-n keresztül. Egyedi méretek, képarány megtartás vagy százalékos skálázás. Tökéletes reszponzív designhoz.
+
+### <FontAwesomeIcon icon="fa-duotone fa-code" /> API-First Design
+
+Egyszerű REST API átfogó dokumentációval. Adj hozzá képoptimalizálást a munkafolyamatodhoz néhány sor kóddal. Node.js, Python, PHP – mindet támogatjuk.
+
+### <FontAwesomeIcon icon="fa-duotone fa-bolt" /> Valós idejű feldolgozás
+
+Feltöltés és optimalizálás másodpercek alatt. Nincs várakozási sor. Azonnal megkapod az optimalizált képeket.
+
+---
+
+## Formátum összehasonlítás
+
+| Formátum | Méretcsökkentés | Feldolgozási idő |
+|----------|-----------------|------------------|
+| **AVIF** | ~91% | ~0.31s |
+| **WebP** | ~85% | ~0.21s |
+| **Optimalizált eredeti** | ~81% | ~0.21s |
+
+---
+
+## API integráció
+
+Kezdj el percek alatt az egyszerű REST API-val:
+
+```bash title="cURL példa"
+curl -X POST https://api.helloimg.io/api/upload \
+  -H "Authorization: token YOUR_API_KEY" \
+  -F "image=@photo.jpg" \
+  -F "data[ultra]=true" \
+  -F "data[convert]=webp"
+```
+
+### API válasz
+
+```json
+{
+  "success": true,
+  "id": "abc123",
+  "image": "https://api.helloimg.io/optimized/abc123.jpg",
+  "original_size": 815104,
+  "new_size": 104448,
+  "percent": 87.19,
+  "saving": 710656,
+  "webp": {
+    "file_url": "https://api.helloimg.io/optimized/abc123.webp",
+    "size": 89024,
+    "percent": 89.08
+  }
+}
+```
+
+---
+
+## Előnyök
+
+| Előny | Leírás |
+|-------|--------|
+| <FontAwesomeIcon icon="fa-duotone fa-gauge-high text-success" /> **Sebesség** | Villámgyors optimalizálás minőségromlás nélkül |
+| <FontAwesomeIcon icon="fa-duotone fa-code text-primary" /> **Fejlesztőbarát** | Tiszta API, egyértelmű dokumentáció, percek alatt használható |
+| <FontAwesomeIcon icon="fa-duotone fa-tag text-info" /> **Átlátható árazás** | Nincs rejtett díj, nincs meglepetés költség |
+| <FontAwesomeIcon icon="fa-duotone fa-shield-check text-success" /> **Biztonság** | A képek 24 óra után automatikusan törlődnek |
+
+---
+
+## Miért HelloIMG?
+
+A HelloIMG-et fejlesztők építették fejlesztőknek. Évekig küzdöttünk a meglévő képoptimalizáló szolgáltatásokkal:
+
+- Drágák voltak és bonyolultak
+- A forgalom növekedésével az árak az egekbe szöktek
+- Napokig tartott az integráció
+- Megbízhatatlanok voltak, amikor a legnagyobb szükség lett volna rájuk
+
+Ezért építettük a HelloIMG-et: **egyszerű, gyors, megfizethető**.
+
+---
+
+## Élő statisztikák
+
+A HelloIMG valós idejű mutatói:
+
+<HelloImgStats />
+
+---
+
+## Támogatott nyelvek és keretrendszerek
+
+- cURL
+- Node.js
+- Python
+- PHP
+- És bármilyen nyelv, ami REST API-t tud hívni
+
+---
+
+## Kapcsolódó linkek
+
+- [HelloIMG weboldal](https://helloimg.io)
+- [HelloIMG dokumentáció](https://helloimg.io/docs)
+- [API próba (nincs regisztráció)](https://helloimg.io)

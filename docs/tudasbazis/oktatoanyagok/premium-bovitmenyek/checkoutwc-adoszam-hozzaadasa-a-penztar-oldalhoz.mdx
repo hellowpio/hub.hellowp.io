@@ -2,7 +2,10 @@
 title: "CheckoutWC: Adószám hozzáadása a pénztár oldalhoz"
 description: "CheckoutWC: Adószám hozzáadása a pénztár oldalhoz"
 keywords:
-  - github
+  - checkoutwc
+  - woocommerce
+  - adószám
+  - pénztár
 sidebar_label: "CheckoutWC: Adószám hozzáadása a pénztár oldalhoz"
 sidebar_position: 3
 ---
@@ -14,7 +17,7 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 
 # <FontAwesomeIcon icon="fa-sharp fa-regular fa-code text-primary" /> CheckoutWC: Adószám hozzáadása a pénztár oldalhoz
 
-A CheckoutWC alapértelmezetten nem tudja az adószám kezelését a pénztár oldalon, mint ahogyan a WooCommerce sem, mivel kevés olyan ország van, ahol az adószám fontos lenne.
+A CheckoutWC alapértelmezetten nem kezeli az adószámot a pénztár oldalon, ahogyan a WooCommerce sem, mivel kevés olyan ország van, ahol az adószám fontos lenne.
 
 ## Megoldás
 
@@ -24,16 +27,16 @@ A CheckoutWC alapértelmezetten nem tudja az adószám kezelését a pénztár o
 
 ### 2. lépés - Aktiváld az adószám mezőt a HuCommerce-ben:
 
-Kattints ide: **WooCommerce -> HuCommerce -> HuCommerce modulok -> Adószám** megjelenítése Itt tudod bekapcsolni az adószámot.
+Navigálj ide: **WooCommerce → HuCommerce → HuCommerce modulok → Adószám megjelenítése**. Itt tudod bekapcsolni az adószámot.
 
 <BrowserWindow url="https://peldaweboldal.hu">
-  <img src="/img/hunadoszam-1.png" alt="Kép leíró szövege"></img>
-</BrowserWindow>{" "}
+  <img src="/img/hunadoszam-1.png" alt="HuCommerce adószám beállítás"></img>
+</BrowserWindow>
 
 ### 3. lépés - Aktiváld a számlázási adatokat a CheckoutWC-ben:
 
-**CheckoutWC -> Checkout -> Address Options** Itt tudod bekapcsolni a szükséges mezőket. Ne aggódj, ha nem látod az adószámot. A **Company mező bepipálásával** automatikusan megjelenik majd az Adószám mező is.
+Navigálj ide: **CheckoutWC → Checkout → Address Options**. Itt tudod bekapcsolni a szükséges mezőket. Ne aggódj, ha nem látod az adószámot. A **Company mező bepipálásával** automatikusan megjelenik majd az Adószám mező is.
 
 <BrowserWindow url="https://peldaweboldal.hu">
-  <img src="/img/hunadoszam-2.png" alt="Kép leíró szövege"></img>
-</BrowserWindow>{" "}
+  <img src="/img/hunadoszam-2.png" alt="CheckoutWC Address Options beállítás"></img>
+</BrowserWindow>

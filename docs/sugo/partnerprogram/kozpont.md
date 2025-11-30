@@ -15,7 +15,7 @@ A HelloWP! partnerprogramjában résztvevők számára külön weboldalt hoztunk
 
 ## Partnerprogram központ funkciói
 
-A Partnerprogram központban a következő funkciók érhetőek el:
+A Partnerprogram központban a következő funkciók elérhetőek:
 
 ### Vezérlőpult
 

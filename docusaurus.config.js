@@ -26,10 +26,9 @@ const config = {
   plugins: [
     "docusaurus-plugin-sass",
     [
-      "@docusaurus/plugin-google-gtag",
+      "@docusaurus/plugin-google-tag-manager",
       {
-        trackingID: "GTM-5TBMCF6",
-        anonymizeIP: true,
+        containerId: "GTM-5TBMCF6",
       },
     ],
   ],
@@ -200,7 +199,7 @@ const config = {
       },
       colorMode: {
         defaultMode: "dark",
-        disableSwitch: false,
+        disableSwitch: true,
         respectPrefersColorScheme: false,
       },
     }),

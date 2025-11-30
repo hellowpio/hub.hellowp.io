@@ -13,7 +13,7 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 
 # Elementor Flex konténer
 
-Az Elementor egy ideje már bevezette, az új Flex konter rendszerét, amely a hagyományos oszlop szakasz felállást hivatott leváltani. Az elmúlt idők során, alfa verzióként induló
+Az Elementor egy ideje már bevezette az új Flex konténer rendszerét, amely a hagyományos oszlop szakasz felállást hivatott leváltani. Az elmúlt idők során alfa verzióként induló,
 később bétába, végezetül pedig stabil állapotba került rendszernek köszönhetően sokkal hatékonyabban készíthetjük el a weboldalunk kinézetét, elrendezését és számos
 új lehetőséget nyitott meg a weboldal készítők számára. Fontos megjegyezni, hogy a legtöbb új funkció, mint a **Mega menu** készítő, vagy a **Loop rendszer** (Loop listázás) egyaránt
 az új Flex rendszerre épül. 
@@ -27,14 +27,14 @@ az új Flex rendszerre épül.
 - Új kiegészítő funkcionalitások
 
 Nagyjából így lehetne jellemezni az új technikát. Mielőtt részletesebben belemennénk, szót kell ejtenünk arról, sokan miért nem váltanak. 
-Korábban még indok volt, hogy alfa, vagy béta állapotban van, nem számít stabilnak, addig pedig éles oldalon nem használjuk. Ez egy korrekt érv volt, míg a Flex
-valóban csak kisérleti fázisban volt. Mivel ennek vége, itt az idő **a változásra, a fejlődésre.**
+Korábban még indok volt, hogy alfa vagy béta állapotban van, nem számít stabilnak, addig pedig éles oldalon nem használjuk. Ez egy korrekt érv volt, míg a Flex
+valóban csak kísérleti fázisban volt. Mivel ennek vége, itt az idő **a változásra, a fejlődésre.**
 
 Az Elementor biztosít egy **konvertálási funkciót**, amely segít a gördülékeny átváltásban. Ha a Flex-rendszert bekapcsoljuk, automatikusan nem fogja a régi Oszlop szakasz 
 elemeinket átállítani. Ez minden esetben manuálisan a konvertálási funkcióval tehetjük meg. 
 
 :::caution Konvertálás
-Ne felejtsd el, hogy a konvertálás ebben az esetben egyirányú. A konténereket nem lehet "vissza alakítani" a régi oszlop szakasz felállásba.
+Ne felejtsd el, hogy a konvertálás ebben az esetben egyirányú. A konténereket nem lehet „visszaalakítani" a régi oszlop szakasz felállásba.
 :::
 
 ## Miért félünk?
@@ -48,7 +48,7 @@ A legjobb az egészben, hogy igazából a hagyományos oszlop/szakasz-ban 1-1 ki
 
 ## Mi az a flex?
 
-A Flexbox technika még 2009 ben jelent meg, egyfajta új elrendezési rendszerként, hogy segítsen a rezponzív weboldalak készítésében.
+A Flexbox technika még 2009-ben jelent meg, egyfajta új elrendezési rendszerként, hogy segítsen a reszponzív weboldalak készítésében.
 A flex elrendezés lényege, hogy a konténer képes legyen változtatni az elemek szélességét/magasságát és sorrendjét, hogy a lehető legjobban kitöltse a rendelkezésre 
 álló helyet (főként a különböző megjelenítő eszközökhöz és képernyőméretekhez való alkalmazkodás érdekében). A konténer rugalmasságából adódóan úgy tágítja az elemeket, 
 hogy azok kitöltsék a rendelkezésre álló szabad területet, vagy csökkenti, hogy elkerülje a túlcsordulást. Ezért is kapta a Flex nevet.
@@ -85,19 +85,19 @@ zavaró problémák voltak.
 </BrowserWindow>
 
 Ahogy a képen is látható számos eltérő elrendezési struktúrákat kapunk, és ezek csak az úgynevezett **preset** opciók. Az első két mintában látható nyilak a **Flex-Direction**-t jelölik.
-Konyhanyelven a tartalom irányát, amely lehet sor,(egymás mellett) vagy oszlopos(egymás alatt).
+Konyhanyelven a tartalom irányát, amely lehet sor (egymás mellett) vagy oszlopos (egymás alatt).
 
 Míg korábban a régi rendszerben ahhoz, hogy egy oszlopon belül két widgetet egymás mellé tegyünk, át kellett állítani azok szélességeit, ami lehetett auto,
 vagy egyedileg megadott szélesség is. A Flex esetében ezt egyetlen kattintással elvégezhetjük, és kihatással van a konténeren belül minden widgetre.
 
 ### Flexbox VS CSS Grid 
 
-A kérdés, mikor mit használjunk. A legkönnyebben úgy lehet jellemezni, a **Flexbox** ideális választás egyedimenziós oszlop / sor elrendezéshez, és kifejezetten hasznos ha a belső
-elemek mérete dinamikus, továbbá a flexboxban jól konfogurálhatóak az elemek igazítása.
+A kérdés, mikor mit használjunk. A legkönnyebben úgy lehet jellemezni, a **Flexbox** ideális választás egydimenziós oszlop / sor elrendezéshez, és kifejezetten hasznos, ha a belső
+elemek mérete dinamikus, továbbá a flexboxban jól konfigurálhatóak az elemek igazítása.
 
-A **CSS Grid** - az Elementor megítélése szerint, segíti a felhasználókat a régi rendszerről való áttérésre. A CSS Grid-el egyfajta rács szerkezetet készíthetünk amit nevezhetünk két dimenziósnak is.
-Ha a sorok és oszlopok esetében is kontrollra van szükséged, a Grid jobb választás, ráadásul meghatározhatod a sorok és oszlopok számát is. Míg a flexbox esetében a flex-wrap és margó / gap közti "Konfliktust", némi spéci calc css el lehet megoldani
-addig ez a probléma a Grid esetében nem fog fennállni. A gridek celláján belül természetesen elhelyezhetünk flexbox konténer-t így sokkal precízebben rendezhetjük el a benne lévő tartalmakat.
+A **CSS Grid** – az Elementor megítélése szerint – segíti a felhasználókat a régi rendszerről való áttérésre. A CSS Grid-del egyfajta rács szerkezetet készíthetünk, amit nevezhetünk kétdimenziósnak is.
+Ha a sorok és oszlopok esetében is kontrollra van szükséged, a Grid jobb választás, ráadásul meghatározhatod a sorok és oszlopok számát is. Míg a flexbox esetében a flex-wrap és margó / gap közti „konfliktust" némi speciális calc CSS-sel lehet megoldani,
+addig ez a probléma a Grid esetében nem fog fennállni. A gridek celláján belül természetesen elhelyezhetünk flexbox konténert, így sokkal precízebben rendezhetjük el a benne lévő tartalmakat.
 <BrowserWindow url="https://peldaweboldal.hu">
   <img src="/img/cssgridgyakorlatban.png" alt="css-grid-a-gyarkolatban"></img>
 </BrowserWindow>

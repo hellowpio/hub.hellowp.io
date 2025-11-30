@@ -1,0 +1,230 @@
+---
+title: Adminer - Egyszerű adatbázis kezelő
+description: Adminer telepítése és használata - egyetlen PHP fájl az adatbázisok kezeléséhez, phpMyAdmin alternatíva.
+keywords:
+  - adminer
+  - database
+  - mysql
+  - postgresql
+  - phpmyadmin
+  - adatbázis
+sidebar_label: Adminer
+sidebar_position: 9
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-file-code text-primary" /> Adminer - Egyszerű adatbázis kezelő
+
+Az **Adminer** (korábban phpMinAdmin) egy teljes funkcionalitású adatbázis-kezelő eszköz egyetlen PHP fájlban. A phpMyAdmin legnépszerűbb alternatívája, amely egyszerűbb, gyorsabb és biztonságosabb.
+
+:::tip Miért válaszd az Adminer-t?
+- **Egyetlen fájl** - ~470 KB, nincs bonyolult telepítés
+- **Multi-database** - MySQL, PostgreSQL, SQLite, MS SQL, Oracle
+- **Biztonságosabb** - A phpMyAdmin-nál jobb biztonsági megoldások
+- **Gyorsabb** - Kevesebb erőforrásigény, jobb teljesítmény
+:::
+
+---
+
+## Adminer vs phpMyAdmin
+
+| Szempont | Adminer | phpMyAdmin |
+|----------|---------|------------|
+| **Telepítés** | 1 fájl feltöltése | Komplex telepítés |
+| **Méret** | ~470 KB | ~13 MB+ |
+| **Multi-DB** | Igen (több motor) | Csak MySQL/MariaDB |
+| **Biztonság** | Prioritás #1 | Gyakoribb sebezhetőségek |
+| **Felület** | Letisztult, modern | Zsúfolt |
+| **View szerkesztés** | Egyszerű, intuitív | Bonyolult |
+
+---
+
+## Támogatott adatbázisok
+
+| Adatbázis | Támogatás |
+|-----------|-----------|
+| **MySQL** | Natív |
+| **MariaDB** | Natív |
+| **PostgreSQL** | Natív |
+| **SQLite** | Natív |
+| **MS SQL Server** | Natív |
+| **Oracle** | Natív |
+| **Elasticsearch** | Natív |
+| **MongoDB** | Natív |
+
+---
+
+## Főbb funkciók
+
+### Adatbázis műveletek
+
+- **Táblák kezelése** - Létrehozás, módosítás, törlés
+- **Adatok szerkesztése** - Inline edit és form nézet
+- **Import/Export** - SQL, CSV, XML formátumok
+- **Indexek** - Létrehozás és kezelés
+
+### SQL funkciók
+
+- **Query futtatás** - SQL parancsok végrehajtása
+- **History** - Korábbi lekérdezések
+- **Syntax highlighting** - Színezett SQL kód
+- **Autocomplete** - Tábla és oszlopnevek
+
+### Fejlett funkciók
+
+- **View-k kezelése** - Egyszerű szerkesztés (jobb mint phpMyAdmin!)
+- **Stored procedures** - Tárolt eljárások
+- **Triggers** - Triggerek kezelése
+- **Foreign keys** - Külső kulcsok
+
+---
+
+## Újdonságok 2025-ben
+
+### Adminer 5.x (2025)
+
+- **5.1.0** (2025. március 24.) - Plugin autoloading
+- **5.0.0** (2025. március 7.) - Namespace támogatás, PHP 8+ optimalizáció
+
+---
+
+## Telepítés
+
+### Egyszerű telepítés
+
+1. Töltsd le az Adminer-t: [adminer.org](https://www.adminer.org/)
+2. Nevezd át (opcionális): `adminer.php` → `db.php`
+3. Töltsd fel a webszerveredre
+4. Nyisd meg böngészőben
+
+### Letölthető verziók
+
+| Verzió | Leírás |
+|--------|--------|
+| **adminer.php** | Teljes verzió |
+| **adminer-mysql.php** | Csak MySQL támogatás (kisebb) |
+| **adminer-en.php** | Csak angol nyelv (kisebb) |
+
+### WordPress integrációhoz
+
+Ha WordPress mellett használod, tedd a gyökérmappába és védd jelszóval:
+
+```apache
+# .htaccess
+<Files "adminer.php">
+    AuthType Basic
+    AuthName "Restricted Access"
+    AuthUserFile /path/to/.htpasswd
+    Require valid-user
+</Files>
+```
+
+---
+
+## Használat
+
+### Bejelentkezés
+
+1. Nyisd meg az Adminer URL-t a böngészőben
+2. Válaszd ki az adatbázis típusát
+3. Add meg:
+   - **Szerver** - `localhost` vagy szerver cím
+   - **Felhasználó** - Adatbázis user
+   - **Jelszó** - Jelszó
+   - **Adatbázis** - DB neve (opcionális)
+4. Kattints a **Belépés** gombra
+
+### Tábla szerkesztése
+
+1. Kattints a tábla nevére
+2. Válaszd a **Szerkezet módosítása** opciót
+3. Adj hozzá, módosíts vagy törölj oszlopokat
+4. Kattints a **Mentés** gombra
+
+### SQL futtatás
+
+1. Kattints az **SQL parancs** menüpontra
+2. Írd be a query-t:
+
+```sql
+SELECT * FROM wp_posts
+WHERE post_status = 'publish'
+ORDER BY post_date DESC
+LIMIT 10;
+```
+
+3. Kattints a **Végrehajt** gombra
+
+---
+
+## Témák és testreszabás
+
+### Beépített témák
+
+Az Adminer támogatja a CSS témákat. Tedd a téma fájlt az Adminer mellé `adminer.css` néven.
+
+### Népszerű témák
+
+- [Adminer Theme](https://github.com/vrana/adminer/tree/master/designs)
+- [Hydra Theme](https://github.com/Niyko/Hydra-Dark-Theme-for-Adminer)
+- [Material Design](https://github.com/nicnys-8/adminer-theme)
+
+---
+
+## Pluginek
+
+Az Adminer 5.x bevezette a plugin autoloading-ot:
+
+```php
+<?php
+// adminer-custom.php
+function adminer_object() {
+    // Plugin betöltése
+    include_once "./plugins/plugin.php";
+    include_once "./plugins/login-servers.php";
+
+    return new AdminerPlugin([
+        new AdminerLoginServers([
+            'localhost' => ['server' => 'localhost', 'driver' => 'mysql'],
+            'production' => ['server' => 'db.example.com', 'driver' => 'mysql'],
+        ])
+    ]);
+}
+
+include "./adminer.php";
+```
+
+---
+
+## Biztonsági tippek
+
+:::warning Fontos!
+Az Adminer közvetlen hozzáférést biztosít az adatbázishoz. Védd meg megfelelően!
+:::
+
+### Ajánlott védelmi intézkedések
+
+1. **Ne hagyd publikusan elérhető helyen** - Rejtett mappa vagy htaccess védelem
+2. **Használj erős jelszavakat** - Adatbázis és HTTP auth is
+3. **Korlátozd IP címre** - Csak megbízható IP-kről engedélyezd
+4. **HTTPS használata** - Titkosított kapcsolat
+5. **Töröld, ha nem kell** - Ne hagyd a szerveren feleslegesen
+
+```apache
+# IP korlátozás .htaccess-ben
+<Files "adminer.php">
+    Order Deny,Allow
+    Deny from all
+    Allow from 1.2.3.4
+</Files>
+```
+
+---
+
+## Kapcsolódó linkek
+
+- [Adminer hivatalos oldal](https://www.adminer.org/)
+- [Adminer GitHub](https://github.com/vrana/adminer)
+- [Adminer pluginek](https://www.adminer.org/en/plugins/)
+- [Adminer témák](https://www.adminer.org/en/designs/)
