@@ -81,10 +81,27 @@ const config = {
         },
         items: [
           {
-            to: "docs/dokumentacio/",
-            label: "Dokumentació",
+            type: "dropdown",
+            label: "Termékek",
             position: "left",
-            activeBaseRegex: "docs/(next|v8)",
+            items: [
+              {
+                label: "HelloPack",
+                to: "/docs/dokumentacio/hellopack",
+              },
+              {
+                label: "HelloTools",
+                to: "/docs/dokumentacio/hellotools",
+              },
+              {
+                label: "HelloIMG",
+                to: "/docs/dokumentacio/hellotools/helloimg",
+              },
+              {
+                label: "Üzemeltetés",
+                to: "/docs/dokumentacio/uzemeltetes-karbantartas",
+              },
+            ],
           },
           {
             to: "docs/tudasbazis/",
@@ -97,9 +114,25 @@ const config = {
             position: "left",
           },
           {
-            to: "docs/kozosseg/discord",
+            type: "dropdown",
             label: "Közösség",
             position: "left",
+            items: [
+              {
+                label: "Discord",
+                to: "/docs/kozosseg/discord",
+              },
+              {
+                label: "Facebook",
+                to: "/docs/kozosseg/facebook",
+              },
+            ],
+          },
+          {
+            href: "https://hellowp.io/hu/helloconsole/",
+            label: "Console",
+            position: "right",
+            className: "header-console-link",
           },
           {
             href: "https://github.com/hellowpio/hub.hellowp.io",
@@ -112,36 +145,23 @@ const config = {
       footer: {
         links: [
           {
-            title: "Dokumentáció",
+            title: "Termékek",
             items: [
               {
                 label: "HelloPack",
                 to: "/docs/dokumentacio/hellopack",
               },
               {
-                label: "Komplett weboldalak",
-                to: "/docs/dokumentacio/komplett-weboldalak",
+                label: "HelloTools",
+                to: "/docs/dokumentacio/hellotools",
               },
               {
-                label: "Üzemeltetés és karbantartás",
+                label: "HelloIMG",
+                to: "/docs/dokumentacio/hellotools/helloimg",
+              },
+              {
+                label: "Üzemeltetés",
                 to: "/docs/dokumentacio/uzemeltetes-karbantartas",
-              },
-            ],
-          },
-          {
-            title: "Súgó",
-            items: [
-              {
-                label: "Partnerprogram",
-                to: "/docs/sugo/partnerprogram",
-              },
-              {
-                label: "Számlázás és előfizetés",
-                to: "/docs/sugo/szamlazas-es-elofizetesek",
-              },
-              {
-                label: "Egyéb",
-                to: "/docs/sugo/egyeb",
               },
             ],
           },
@@ -149,26 +169,43 @@ const config = {
             title: "Tudásbázis",
             items: [
               {
-                label: "Hasznos eszközök",
-                to: "docs/tudasbazis/hasznos-eszkozok",
-              },
-              {
                 label: "Oktatóanyagok",
                 to: "/docs/tudasbazis/oktatoanyagok",
               },
               {
+                label: "Hasznos eszközök",
+                to: "/docs/tudasbazis/hasznos-eszkozok",
+              },
+              {
                 label: "Hibaelhárítás",
                 to: "/docs/tudasbazis/hibaelharitas",
+              },
+              {
+                label: "Fejlesztői eszközök",
+                to: "/docs/tudasbazis/fejlesztoi-eszkozok",
+              },
+            ],
+          },
+          {
+            title: "Súgó",
+            items: [
+              {
+                label: "Számlázás és előfizetés",
+                to: "/docs/sugo/szamlazas-es-elofizetesek",
+              },
+              {
+                label: "Partnerprogram",
+                to: "/docs/sugo/partnerprogram",
+              },
+              {
+                label: "Gyakori kérdések",
+                to: "/docs/sugo/egyeb",
               },
             ],
           },
           {
             title: "Közösség",
             items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
               {
                 label: "Discord",
                 to: "/docs/kozosseg/discord",
@@ -180,6 +217,23 @@ const config = {
               {
                 label: "GitHub",
                 href: "https://github.com/hellowpio/hub.hellowp.io",
+              },
+            ],
+          },
+          {
+            title: "HelloWP",
+            items: [
+              {
+                label: "Főoldal",
+                href: "https://hellowp.io",
+              },
+              {
+                label: "Console",
+                href: "https://hellowp.io/hu/helloconsole/",
+              },
+              {
+                label: "Kapcsolat",
+                href: "https://hellowp.io/hu/kapcsolat/",
               },
             ],
           },
