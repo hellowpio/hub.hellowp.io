@@ -16,15 +16,25 @@ import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 A WP-CLI egy parancssoros interfész (CLI) WordPress-hez. A WP-CLI lehetővé teszi, hogy a WordPress-t parancssorban használd, és könnyen végrehajtsd a feladatokat, amelyeket általában a WordPress adminisztrációs felületén keresztül végeznél. A WP-CLI használatával könnyen telepíthetsz, frissíthetsz, konfigurálhatsz és karbantarthatod a WordPress weboldaladat parancssoros interfész segítségével. A WP-CLI telepítése és használata több platformon is elérhető, beleértve a Windows, a macOS és a Linux rendszereket is.
 
-## HelloPack CLI parancsok konzol kódjai
+## HelloPack CLI parancsok
+
+A plugin 3 fő parancskategóriát biztosít:
+
+1. **Licenc kezelés** (`wp hellopack license`)
+2. **Plugin kezelés** (`wp hellopack plugin`)
+3. **Téma kezelés** (`wp hellopack theme`)
+
+---
+
+## Licenc kezelés (wp hellopack license)
 
 ### License aktiválása
 
 Aktiválja a HelloPack licenszét a megadott licensz-kulccsal.
 
-** Paraméterek **
+**Paraméterek**
 
-- `<license-key>` - A HelloPack licensz-kulcsa.
+- `<license-key>` - A HelloPack licensz-kulcsa (42 karakter hosszú).
 
 ```bash
 wp hellopack license activate <license-key>
@@ -46,10 +56,113 @@ Lekéri a HelloPack licenc státuszát.
 wp hellopack license status
 ```
 
-### CLI súgó
+---
 
-Listázza a HelloPack CLI parancsokat.
+## Plugin kezelés (wp hellopack plugin)
+
+### Elérhető pluginok listázása
+
+Listázza az összes elérhető plugint, amit a HelloPack-kal telepíthetsz.
 
 ```bash
+wp hellopack plugin list
+```
+
+JSON formátumban:
+
+```bash
+wp hellopack plugin list --format=json
+```
+
+### Plugin telepítése
+
+Telepíti a megadott plugint slug vagy ID alapján.
+
+**Paraméterek**
+
+- `<slug|id>` - A plugin slug neve vagy ID-ja.
+- `--activate` - (opcionális) Telepítés után aktiválja a plugint.
+
+```bash
+wp hellopack plugin install elementor-pro
+```
+
+Telepítés és aktiválás egyben:
+
+```bash
+wp hellopack plugin install 123 --activate
+```
+
+### Plugin frissítése
+
+Frissíti a megadott plugint a legújabb verzióra.
+
+**Paraméterek**
+
+- `<slug>` - A plugin slug neve.
+
+```bash
+wp hellopack plugin update elementor-pro
+```
+
+---
+
+## Téma kezelés (wp hellopack theme)
+
+### Elérhető témák listázása
+
+Listázza az összes elérhető témát, amit a HelloPack-kal telepíthetsz.
+
+```bash
+wp hellopack theme list
+```
+
+JSON formátumban:
+
+```bash
+wp hellopack theme list --format=json
+```
+
+### Téma telepítése
+
+Telepíti a megadott témát slug vagy ID alapján.
+
+**Paraméterek**
+
+- `<slug|id>` - A téma slug neve vagy ID-ja.
+- `--activate` - (opcionális) Telepítés után aktiválja a témát.
+
+```bash
+wp hellopack theme install bricks
+```
+
+Telepítés és aktiválás egyben:
+
+```bash
+wp hellopack theme install 123 --activate
+```
+
+### Téma frissítése
+
+Frissíti a megadott témát a legújabb verzióra.
+
+**Paraméterek**
+
+- `<slug>` - A téma slug neve.
+
+```bash
+wp hellopack theme update bricks
+```
+
+---
+
+## CLI súgó
+
+Listázza az összes HelloPack CLI parancsot és alparancsot.
+
+```bash
+wp hellopack --help
 wp hellopack license --help
+wp hellopack plugin --help
+wp hellopack theme --help
 ```
