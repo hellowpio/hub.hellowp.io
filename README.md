@@ -4,14 +4,26 @@ A [HelloWP.io](https://hellowp.io) hivatalos dokumentációs portálja és tudá
 
 ## Tartalom
 
-- **Dokumentáció** - HelloPack bővítménykezelő részletes útmutatói
-- **Tudásbázis** - 300+ WordPress bővítmény magyar nyelvű leírása
-- **Súgó** - Gyakori kérdések és hibaelhárítási útmutatók
+### Dokumentáció
+- **HelloTools** - Átfogó eszközkészlet WordPress fejlesztőknek
+- **HelloIMG** - Képoptimalizáló API WebP és AVIF támogatással
+- **Üzemeltetés** - WordPress karbantartás és üzemeltetés
+
+### Tudásbázis
+- **Fejlesztői eszközök** - Roots Stack, CI/CD, tesztelés, IDE-k
+- **Hasznos eszközök** - Design, adatbázis, API tesztelés, biztonság
+- **Oktatóanyagok** - Lépésről lépésre útmutatók
+- **Hibaelhárítás** - Gyakori WordPress hibák megoldása
+
+### Súgó
+- Számlázás és előfizetések
+- Partnerprogram
+- Gyakori kérdések
 
 ## Technológia
 
-- [Docusaurus 2](https://docusaurus.io/) - Modern statikus dokumentációs keretrendszer
-- [React](https://reactjs.org/) - UI komponensek
+- [Docusaurus 3](https://docusaurus.io/) - Modern statikus dokumentációs keretrendszer
+- [React 19](https://react.dev/) - UI komponensek
 - [Algolia](https://www.algolia.com/) - Keresés
 
 ## Fejlesztés
@@ -69,4 +81,7 @@ A site elérhető lesz: `http://localhost:8080`
 
 ## Licensz
 
-Copyright © [HelloWP.io](https://hellowp.io). Minden jog fenntartva.
+A forráskód [MIT](https://opensource.org/licenses/MIT) licensz alatt áll.
+A weboldal tartalma [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) licensz alatt áll.
+
+Copyright © [HelloWP.io](https://hellowp.io)
