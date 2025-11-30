@@ -71,15 +71,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "ujdonsag",
-        content:
-          '<strong>Újdonság:</strong> Elindult a HelloWP Hub oldal! <a href="/hogyan-hasznald-a-hub-oldalt">Hogyan használd a HUB oldalt?</a> 🔥',
-        backgroundColor: "#5991c7",
-        textColor: "#ffffff",
-        isCloseable: true,
-      },
-
       algolia: {
         appId: "I11ZQJ89FL",
         apiKey: "6507f02646a676db1462458b97a1cda4",
