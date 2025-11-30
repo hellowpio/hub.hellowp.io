@@ -1,55 +1,278 @@
 ---
 title: WordPress ajánlott tárhelybeállítások
-description: WordPress ajánlott tárhelybeállítások
+description: WordPress hivatalos rendszerkövetelményei és ajánlott szerver beállítások 2025-ben.
 keywords:
-  - hibaelharitas
+  - wordpress
+  - tárhelybeállítások
+  - php beállítások
+  - szerver követelmények
 sidebar_label: WordPress
-sidebar_position: 3
+sidebar_position: 1
 ---
 
-import DocCardList from "@theme/DocCardList";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-brands fa-wordpress text-primary" /> WordPress ajánlott tárhelybeállítások
 
-Ezen az oldalon megpróbáljuk összefoglalni a rendszerkövetelményeket, amelyek szükségesek a WordPress használatához. Ha nem vagy biztos benne, hogy a szerver támogatja-e ezt, kérdezd meg a szolgáltatódat.
+Ezen az oldalon összefoglaljuk a WordPress hivatalos rendszerkövetelményeit és az ajánlott szerver beállításokat. Ha nem vagy biztos benne, hogy a szervered támogatja-e ezeket, kérdezd meg a tárhelyszolgáltatódat.
 
-### A WordPress megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+## Hivatalos követelmények
 
-```bash php.ini
+A WordPress.org által meghatározott **minimum követelmények** (2025):
+
+| Követelmény | Minimum | Ajánlott |
+|-------------|---------|----------|
+| PHP | 7.4 | 8.2+ |
+| MySQL | 5.7 | 8.0+ |
+| MariaDB | 10.4 | 10.6+ |
+| HTTPS | Ajánlott | Kötelező |
+
+:::info WordPress 6.5+
+A WordPress 6.5 és újabb verziók **PHP 8.1+** verziót ajánlanak a legjobb teljesítményért és biztonságért.
+:::
+
+## PHP beállítások
+
+A WordPress megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```ini title="php.ini"
+upload_max_filesize = 128M
+post_max_size = 256M
+max_execution_time = 300
+max_input_time = 300
+max_input_vars = 5000
+memory_limit = 256M
+```
+
+### Beállítás .htaccess fájlban
+
+Ha nincs hozzáférésed a php.ini fájlhoz, a `.htaccess` fájlban is megadhatod:
+
+```apache title=".htaccess"
 php_value upload_max_filesize 128M
 php_value post_max_size 256M
 php_value max_execution_time 300
 php_value max_input_time 300
-php_value max_input_vars 10000
+php_value max_input_vars 5000
 php_value memory_limit 256M
 ```
 
-### Bizonytalan vagy? Nem tudod, hogy ezt hogy kell beállítani a tárhelyeden?
+### Bizonytalan vagy? Nem tudod, hogy ezt hogyan kell beállítani?
 
-Semmi gond, a szolgáltatód tud segíteni neked. Küldd el nekik az alábbi levelet:
+Semmi gond, a szolgáltatód tud segíteni. Küldd el nekik az alábbi levelet:
 
 > Tisztelt Szolgáltatóm,
 >
-> Legyenek kedvesek a domain.hu (írd át a sajátodra) tárhelyhez vonatkozó PHP limiteket az alábbiakra állítani nekem:<br/><br/>
-> php_value upload_max_filesize 128M <br/>
-> php_value post_max_size 256M<br/>
-> php_value max_execution_time 300<br/>
-> php_value max_input_time 300<br/>
-> php_value max_input_vars 10000<br/>
-> php_value memory_limit 256M<br/>
+> Kérem, állítsák be a domain.hu *(írd át a sajátodra)* tárhelyhez tartozó PHP limiteket az alábbiakra:
 >
-> Indoklás: a WordPress CMS megfelelő működéséhez a fenti beállításokra van szükségem.
+> - upload_max_filesize: 128M
+> - post_max_size: 256M
+> - max_execution_time: 300
+> - max_input_time: 300
+> - max_input_vars: 5000
+> - memory_limit: 256M
 >
-> Köszönöm!<br/>
+> Indoklás: A WordPress CMS megfelelő működéséhez ezekre a beállításokra van szükségem.
+>
+> Köszönöm!
 > Üdvözlettel: XY
 
 ## PHP verzió
 
-**PHP 7.4 vagy újabb verzióval kell rendelkezni, kivéve a PHP 8.1-et**
+**PHP 8.2 vagy újabb** verzió ajánlott.
 
-Azt javasoljuk, hogy minimum PHP 7.4-en fusson az oldal. Az újabb verziók alatt is tökéletesen működik, kivéve az “új” 8.1-et, amit jelenleg még nem támogat 100%-osan.
+| PHP verzió | Támogatás | Megjegyzés |
+|------------|-----------|------------|
+| PHP 8.3 | Teljes támogatás | Legújabb, gyors |
+| PHP 8.2 | Teljes támogatás | Ajánlott |
+| PHP 8.1 | Teljes támogatás | Stabil |
+| PHP 8.0 | Támogatott | Biztonsági támogatás lejárt |
+| PHP 7.4 | Minimum | Erősen elavult |
+
+:::warning PHP 7.4 elavult
+A PHP 7.4 biztonsági támogatása **2022 novemberében megszűnt**. Bár a WordPress még támogatja, erősen javasolt a frissítés PHP 8.1+ verzióra a biztonság és teljesítmény érdekében.
+:::
 
 ## Adatbázis
 
-MySQL 5.6 verzió vagy újabb, ill. MariaDB 10.0 verzió vagy újabb szükséges a megfelelő futáshoz. Ez igazából “alapértelmezett”, maga a WordPress futásához is erre van szükség, szóval a tárhelyek 99%-ban tökélet lesz.
+### MySQL
+
+- **MySQL 8.0** - Ajánlott
+- **MySQL 5.7** - Minimum
+
+### MariaDB
+
+- **MariaDB 10.6+** - Ajánlott
+- **MariaDB 10.4** - Minimum
+
+:::tip Adatbázis karakter kódolás
+Használj `utf8mb4` karakterkódolást a teljes emoji és speciális karakter támogatáshoz:
+```sql
+ALTER DATABASE adatbazis_neve CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+:::
+
+## Webszerver
+
+A WordPress az alábbi webszervereken működik:
+
+| Webszerver | Támogatás | Megjegyzés |
+|------------|-----------|------------|
+| Apache 2.4 | Teljes | mod_rewrite szükséges |
+| Nginx | Teljes | Ajánlott nagy forgalomhoz |
+| LiteSpeed | Teljes | Kiváló teljesítmény |
+
+### Apache mod_rewrite
+
+A szép URL-ekhez (permalinks) szükséges az Apache `mod_rewrite` modul:
+
+```apache title=".htaccess"
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+```
+
+## Memória követelmények
+
+| Oldal típusa | Minimum memória | Ajánlott memória |
+|--------------|-----------------|------------------|
+| Egyszerű blog | 128 MB | 256 MB |
+| Vállalati oldal | 256 MB | 384 MB |
+| WooCommerce áruház | 384 MB | 512 MB |
+| Komplex oldal (page builder) | 512 MB | 768 MB+ |
+
+### Memória beállítása wp-config.php-ban
+
+```php title="wp-config.php"
+// WordPress memória limit
+define('WP_MEMORY_LIMIT', '256M');
+
+// Admin felület memória limit (nagyobb lehet)
+define('WP_MAX_MEMORY_LIMIT', '512M');
+```
+
+## PHP bővítmények
+
+### Kötelező bővítmények
+
+- **json** - WordPress API-hoz
+- **mysqli** vagy **mysqlnd** - Adatbázis kapcsolat
+
+### Erősen ajánlott bővítmények
+
+- curl
+- dom
+- exif
+- fileinfo
+- gd vagy imagick
+- hash
+- igbinary
+- mbstring
+- openssl
+- pcre
+- xml
+- zip
+
+### Teljesítmény bővítmények
+
+- **opcache** - PHP kód gyorsítótárazás
+- **redis** vagy **memcached** - Object cache
+
+:::info Site Health
+A WordPress beépített Site Health eszköze ellenőrzi a szerver beállításokat. Menj az **Eszközök → Site Health** menüpontra az állapot megtekintéséhez.
+:::
+
+## HTTPS / SSL
+
+:::caution Ajánlott
+A WordPress.org **erősen ajánlja** a HTTPS használatát. Modern böngészők figyelmeztetnek a nem biztonságos oldalakra.
+:::
+
+- Telepíts érvényes SSL tanúsítványt
+- Állítsd be a HTTPS átirányítást
+- Frissítsd az oldal URL-jeit
+
+```php title="wp-config.php"
+define('FORCE_SSL_ADMIN', true);
+```
+
+## Fájlrendszer jogosultságok
+
+| Elem | Jogosultság |
+|------|-------------|
+| Mappák | 755 |
+| Fájlok | 644 |
+| wp-config.php | 600 vagy 640 |
+
+```bash
+# Mappák
+find /path/to/wordpress -type d -exec chmod 755 {} \;
+
+# Fájlok
+find /path/to/wordpress -type f -exec chmod 644 {} \;
+
+# wp-config.php
+chmod 600 wp-config.php
+```
+
+## Ajánlott wp-config.php beállítások
+
+```php title="wp-config.php"
+// Memória limit
+define('WP_MEMORY_LIMIT', '256M');
+define('WP_MAX_MEMORY_LIMIT', '512M');
+
+// Automatikus frissítések
+define('WP_AUTO_UPDATE_CORE', 'minor');
+
+// Debug mód (csak fejlesztéshez)
+define('WP_DEBUG', false);
+define('WP_DEBUG_LOG', false);
+define('WP_DEBUG_DISPLAY', false);
+
+// Fájlszerkesztés tiltása
+define('DISALLOW_FILE_EDIT', true);
+
+// HTTPS
+define('FORCE_SSL_ADMIN', true);
+
+// Revíziók korlátozása
+define('WP_POST_REVISIONS', 5);
+
+// Lomtár ürítés (napok)
+define('EMPTY_TRASH_DAYS', 14);
+```
+
+## Cron beállítások
+
+A WordPress WP-Cron rendszere oldalbetöltéskor fut. Nagy forgalmú oldalaknál használj szerver oldali cront:
+
+```php title="wp-config.php"
+define('DISABLE_WP_CRON', true);
+```
+
+```bash title="Crontab"
+*/5 * * * * curl -s https://example.com/wp-cron.php?doing_wp_cron >/dev/null 2>&1
+```
+
+## Gyorsítótár
+
+Ajánlott cache megoldások:
+
+| Típus | Megoldás |
+|-------|----------|
+| Page cache | WP Rocket, LiteSpeed Cache, W3TC |
+| Object cache | Redis, Memcached |
+| Opcode cache | PHP OPcache |
+| CDN | Cloudflare, BunnyCDN |
+
+## Források
+
+- [WordPress.org követelmények](https://wordpress.org/about/requirements/)
+- [WordPress fejlesztői dokumentáció](https://developer.wordpress.org/)
+- [WordPress Codex](https://codex.wordpress.org/)

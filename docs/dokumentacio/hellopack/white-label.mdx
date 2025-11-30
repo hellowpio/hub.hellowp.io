@@ -1,13 +1,15 @@
 ---
 title: White-label
-description: HelloPack csomagkezelő CLI parancsok
+description: HelloPack white-label funkció használata saját márkaidentitáshoz.
 keywords:
   - hellopack
+  - white-label
+  - testreszabás
+  - branding
 sidebar_label: Csomagkezelő White-label
-sidebar_position: 5
+sidebar_position: 11
 ---
 
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-tags text-primary" /> HelloPack white-label
@@ -24,7 +26,7 @@ Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a
 define('HELLOPACK_WHITELABEL', true);
 ```
 
-sort a /_ That’s all, stop editing! Happy publishing. _/ sor fölé. Ezzel a HelloPack vizuális megjelenése módosíthatóvá válik.
+sort a `/* That's all, stop editing! Happy publishing. */` sor fölé. Ezzel a HelloPack vizuális megjelenése módosíthatóvá válik.
 
 ## HelloPack megjelenésének módosítása
 
@@ -40,11 +42,10 @@ Miután a HELLOPACK_WHITELABEL konstans bekerült a wp-config.php-ba, a HelloPac
 
 ### Szöveg átírása manuálisan
 
-A wp-content/plugins/hellopack/languages mappából másold le a gépedre a nyelvi fájlokat. Módosítsd a szöveget például POEdit segítségével és másold vissza a wp-content/languages/plugins/ mappába a hellopack-hu-HU.po (magyar esetén) fájlt.
+A wp-content/plugins/hellopack-client/languages mappából másold le a gépedre a nyelvi fájlokat. Módosítsd a szöveget például POEdit segítségével és másold vissza a wp-content/languages/plugins/ mappába a hellopack-client-hu_HU.po (magyar esetén) fájlt.
 
 :::caution Figyelem
 Annak érdekében, hogy a HelloPack frissítése ne írja felül a módosításokat, győződj meg róla, hogy a fordítás a `wp-content/languages/plugins` – mappában van. LOCO: Áthelyezés fül (fordítási nézetben)
 :::
 
-**A LOCO bővítményre csak a szöveg módosításáig van szükség, a későbbiekben nincs.
-**
+**A LOCO bővítményre csak a szöveg módosításáig van szükség, a későbbiekben nincs.**

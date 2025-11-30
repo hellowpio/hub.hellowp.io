@@ -236,11 +236,11 @@ Első körben a korábban beállított transition-t ki kell bővítenünk:
 ```
 
 Majd jQuery segítségével fogjuk elkészíteni az animációt. Az Alább látható kód a görgetésre fog reagálni. A **lastScrollTop** változót arra használjjuk hogy meghatározzuk
-a görgetés irányát. Az alapértelmezett érték 0 hiszen amikor betölt az oldal nincs még scroll. a **$(window).scroll(function() {** egy görgetési eseményfigyelő, amely 
+a görgetés irányát. Az alapértelmezett érték 0 hiszen amikor betölt az oldal nincs még scroll. a `$(window).scroll(function() {` egy görgetési eseményfigyelő, amely
 a scroll-ra fog reagálni. A .scroll minden görgetést észlel.
-**var currentScrollTop = $(this).scrollTop();** Itt lekérjük az aktuális görgetési poziciót pixelben. **if (currentScrollTop > lastScrollTop && currentScrollTop > 50){** itt pedig
+`var currentScrollTop = $(this).scrollTop();` Itt lekérjük az aktuális görgetési poziciót pixelben. `if (currentScrollTop > lastScrollTop && currentScrollTop > 50){` itt pedig
 azt ellenőrizzük hogy az oldalt lefelé görgetik-e (azaz az aktuális görgetési érték nagyobb-e, mint az utolsó), és hogy az oldalt legalább 50px-re legörgették-e. Ha mindkét feltétel teljesül, akkor lefut a kód ezen része:
-**$('#header--tp').css('top', '-100px');** ha nem akkor az else ágban lévő akkor ez: **  $('#header--tp').css('top', '0');**
+`$('#header--tp').css('top', '-100px');` ha nem akkor az else ágban lévő akkor ez: `$('#header--tp').css('top', '0');`
 
 
 ```js

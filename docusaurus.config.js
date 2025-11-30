@@ -1,9 +1,6 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
-const path = require("path");
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+import { themes } from "prism-react-renderer";
+const prismThemes = themes;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -29,14 +26,14 @@ const config = {
   plugins: [
     "docusaurus-plugin-sass",
     [
-      '@docusaurus/plugin-google-gtag',
+      "@docusaurus/plugin-google-gtag",
       {
-        trackingID: 'GTM-5TBMCF6',
+        trackingID: "GTM-5TBMCF6",
         anonymizeIP: true,
       },
     ],
   ],
-  
+
   scripts: [
     {
       src: "https://kit.fontawesome.com/11cbb0ec24.js",
@@ -50,8 +47,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-
+          sidebarPath: "./sidebars.js",
           editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
@@ -61,9 +57,8 @@ const config = {
           editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: "./src/css/custom.css",
         },
-  
       }),
     ],
   ],
@@ -199,11 +194,16 @@ const config = {
         copyright: `© ${new Date().getFullYear()} TooEarlyBird, LLC <br> A forráskód <a href="/mit-licensz">MIT</a>, a weboldal tartalma <a href="/cc-by-nc-sa-4.0">CC BY NC SA 4.0 license</a> alatt áll.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-        additionalLanguages: ["php", "css"],
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
+        additionalLanguages: ["php", "css", "bash", "json"],
+      },
+      colorMode: {
+        defaultMode: "dark",
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
       },
     }),
 };
 
-module.exports = config;
+export default config;

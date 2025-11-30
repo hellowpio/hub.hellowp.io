@@ -1,0 +1,375 @@
+---
+title: Debug Bar
+description: WordPress fejlesztői debug panel a Debug Bar bővítménnyel.
+keywords:
+  - debug bar
+  - debug
+  - wordpress
+  - fejlesztés
+sidebar_label: Debug Bar
+sidebar_position: 6
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-bug text-primary" /> Debug Bar - WordPress Debug Panel
+
+A [Debug Bar](https://wordpress.org/plugins/debug-bar/) egy egyszerű, de hasznos debug eszköz WordPress-hez. Az admin bar-hoz ad egy debug menüt, amely megmutatja a lekérdezések számát, a cache állapotát, a PHP figyelmeztetéseket és sok más hasznos információt.
+
+:::tip Ajánlás
+Modern projektekhez inkább a [Query Monitor](/docs/tudasbazis/fejlesztoi-eszkozok/query-monitor) ajánlott, amely több funkcióval és jobb felhasználói élménnyel rendelkezik. A Debug Bar azonban továbbra is hasznos a számos kiegészítő add-on miatt.
+:::
+
+## Főbb funkciók
+
+- **WP Query információk** - Lekérdezések részletei
+- **Objektum cache** - Cache találatok és hiányok
+- **PHP hibák** - Notice, warning, error üzenetek
+- **Deprecated funkciók** - Elavult függvényhívások
+- **Egyszerű felület** - Könnyen áttekinthető panel
+
+## Telepítés
+
+### WordPress admin felületen
+
+1. **Bővítmények** > **Új hozzáadása**
+2. Keress rá: "Debug Bar"
+3. Kattints a **Telepítés most** gombra
+4. **Aktiváld** a bővítményt
+
+### WP-CLI-vel
+
+```bash
+wp plugin install debug-bar --activate
+```
+
+### Composer-rel
+
+```bash
+composer require wpackagist-plugin/debug-bar --dev
+wp plugin activate debug-bar
+```
+
+## WP_DEBUG beállítása
+
+A Debug Bar teljes funkcionalitásához engedélyezd a debug módot:
+
+```php
+// wp-config.php
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+define( 'SAVEQUERIES', true );
+```
+
+| Konstans | Leírás |
+|----------|--------|
+| `WP_DEBUG` | Debug mód engedélyezése |
+| `WP_DEBUG_LOG` | Hibák naplózása (wp-content/debug.log) |
+| `WP_DEBUG_DISPLAY` | Hibák megjelenítése (élesben false!) |
+| `SAVEQUERIES` | SQL lekérdezések mentése |
+
+## Használat
+
+### Debug menü
+
+Az admin bar-on megjelenik egy **Debug** menü. Kattints rá a panel megnyitásához.
+
+### Főbb panelek
+
+#### WP Query
+
+Az aktuális oldal lekérdezési információi:
+
+- **Query type** - Lekérdezés típusa
+- **Query string** - URL paraméterek
+- **Queried object** - Lekérdezett objektum (post, term, stb.)
+
+#### Request
+
+HTTP kérés részletei:
+
+- **Request URI** - Kért URL
+- **Matched rewrite rule** - Illeszkedő permalink szabály
+- **Query string** - Paraméterek
+
+#### Object Cache
+
+Cache statisztikák:
+
+- **Cache hits** - Találatok
+- **Cache misses** - Hiányok
+- **Cache ratio** - Hatékonyság
+
+#### Deprecated
+
+Elavult függvényhívások listája:
+
+```
+Function get_usermeta is deprecated since version 3.0.0!
+Use get_user_meta() instead.
+Called from: /wp-content/plugins/old-plugin/plugin.php:123
+```
+
+#### PHP Errors
+
+PHP hibák és figyelmeztetések:
+
+- Notice
+- Warning
+- Error
+
+## Debug Bar Add-on-ok
+
+A Debug Bar számos kiegészítő add-on-nal bővíthető:
+
+### Hivatalos és népszerű add-on-ok
+
+| Add-on | Funkció |
+|--------|---------|
+| **Debug Bar Console** | PHP és MySQL konzol |
+| **Debug Bar Cron** | WP Cron feladatok |
+| **Debug Bar Transients** | Transients kezelés |
+| **Debug Bar Actions and Filters** | Hook-ok listája |
+| **Debug Bar Post Types** | Egyedi post típusok |
+| **Debug Bar Taxonomies** | Taxonómiák |
+| **Debug Bar Shortcodes** | Shortcode-ok |
+| **Debug Bar Constants** | WP konstansok |
+| **Debug Bar List Script & Style Dependencies** | JS/CSS függőségek |
+| **Debug Bar Remote Requests** | HTTP kérések |
+
+### Telepítés
+
+```bash
+# Több add-on telepítése
+wp plugin install debug-bar-console debug-bar-cron debug-bar-transients --activate
+```
+
+## Debug Bar Console
+
+Interaktív PHP és MySQL konzol:
+
+### Telepítés
+
+```bash
+wp plugin install debug-bar-console --activate
+```
+
+### Használat
+
+1. Nyisd meg a Debug Bar-t
+2. Válaszd a **Console** fület
+3. Írj PHP vagy MySQL kódot
+4. Kattints **Run**-ra
+
+### PHP példák
+
+```php
+// Post lekérdezése
+$post = get_post( 1 );
+print_r( $post );
+
+// Opcióslekérdezése
+$options = get_option( 'siteurl' );
+echo $options;
+
+// Felhasználó adatai
+$user = wp_get_current_user();
+print_r( $user->roles );
+```
+
+### MySQL példák
+
+```sql
+-- Bejegyzések száma
+SELECT COUNT(*) FROM wp_posts WHERE post_status = 'publish';
+
+-- Legnagyobb táblák
+SELECT table_name,
+       ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = DATABASE()
+ORDER BY (data_length + index_length) DESC;
+```
+
+## Debug Bar Cron
+
+WP Cron feladatok kezelése:
+
+### Telepítés
+
+```bash
+wp plugin install debug-bar-cron --activate
+```
+
+### Funkciók
+
+- **Ütemezett események** - Összes cron esemény listája
+- **Következő futás** - Mikor fut legközelebb
+- **Ütemezés típusa** - hourly, daily, stb.
+- **Hook** - Melyik action fut
+
+### Hasznos információk
+
+| Mező | Leírás |
+|------|--------|
+| **Hook** | A futtatandó action neve |
+| **Arguments** | Átadott paraméterek |
+| **Next Run** | Következő futás ideje |
+| **Schedule** | Ismétlődés típusa |
+
+## Debug Bar Transients
+
+Transients kezelése és elemzése:
+
+### Telepítés
+
+```bash
+wp plugin install debug-bar-transients --activate
+```
+
+### Funkciók
+
+- **Site transients** - Site szintű transient-ek
+- **Network transients** - Hálózati transient-ek (multisite)
+- **Lejárat** - Mikor jár le
+- **Érték** - Tárolt adat
+
+### Transient törlése
+
+A panelből közvetlenül törölheted a transient-eket teszteléshez.
+
+## Debug Bar Actions and Filters
+
+Hook-ok listázása:
+
+### Telepítés
+
+```bash
+wp plugin install debug-bar-actions-and-filters-addon --activate
+```
+
+### Funkciók
+
+- **Actions** - Lefutott action-ök
+- **Filters** - Lefutott filter-ek
+- **Priority** - Futási sorrend
+- **Callback** - Regisztrált függvények
+
+## Hibaelhárítás
+
+### Debug Bar nem jelenik meg
+
+1. Ellenőrizd, hogy be vagy-e jelentkezve admin felhasználóként
+2. Ellenőrizd a `WP_DEBUG` beállítást
+3. Töröld a cache-t
+
+```php
+// wp-config.php
+define( 'WP_DEBUG', true );
+```
+
+### Admin bar nem látszik
+
+```php
+// functions.php - Admin bar engedélyezése
+add_filter( 'show_admin_bar', '__return_true' );
+```
+
+### Konfliktus más bővítményekkel
+
+Próbáld ki Query Monitor helyett, ami modernebb és kevesebb konfliktussal jár.
+
+## Fejlesztői használat
+
+### Egyedi panel hozzáadása
+
+```php
+/**
+ * Egyedi Debug Bar panel
+ */
+class My_Debug_Bar_Panel extends Debug_Bar_Panel {
+
+    public function init() {
+        $this->title( 'My Panel' );
+    }
+
+    public function prerender() {
+        $this->set_visible( true );
+    }
+
+    public function render() {
+        echo '<h3>Custom Debug Information</h3>';
+        echo '<pre>';
+        print_r( $GLOBALS['wp_query']->query_vars );
+        echo '</pre>';
+    }
+}
+
+add_filter( 'debug_bar_panels', function( $panels ) {
+    $panels[] = new My_Debug_Bar_Panel();
+    return $panels;
+} );
+```
+
+### Debug információ hozzáadása
+
+```php
+// Saját debug információ
+function my_debug_info() {
+    if ( ! class_exists( 'Debug_Bar' ) ) {
+        return;
+    }
+
+    global $wpdb;
+
+    error_log( 'Total queries: ' . $wpdb->num_queries );
+    error_log( 'Memory usage: ' . memory_get_peak_usage( true ) / 1024 / 1024 . ' MB' );
+}
+add_action( 'shutdown', 'my_debug_info' );
+```
+
+## Debug Bar vs Query Monitor
+
+| Funkció | Debug Bar | Query Monitor |
+|---------|-----------|---------------|
+| SQL lekérdezések | Alap | Részletes |
+| PHP hibák | Igen | Igen |
+| Hook-ok | Add-on-nal | Beépített |
+| HTTP kérések | Add-on-nal | Beépített |
+| Blokkok | Nem | Igen |
+| Feltételes függvények | Nem | Igen |
+| Aktív fejlesztés | Mérsékelt | Aktív |
+| Bővíthetőség | Sok add-on | Kevesebb |
+
+## Biztonság
+
+:::caution Figyelmeztetés
+**Soha** ne használd éles környezetben a Debug Bar-t aktiválva!
+:::
+
+```php
+// Csak fejlesztői környezetben aktiválás
+if ( defined( 'WP_DEBUG' ) && WP_DEBUG && is_admin() ) {
+    // Debug Bar aktív
+} else {
+    // Deaktiválás
+    add_filter( 'debug_bar_enable', '__return_false' );
+}
+```
+
+### Hozzáférés korlátozása
+
+```php
+// Csak adminoknak
+add_filter( 'debug_bar_enable', function() {
+    return current_user_can( 'manage_options' );
+} );
+```
+
+## Források
+
+- [Debug Bar WordPress.org](https://wordpress.org/plugins/debug-bar/)
+- [Debug Bar GitHub](https://github.com/WordPress/developer-plugins)
+- [Debug Bar Console](https://wordpress.org/plugins/debug-bar-console/)
+- [Debug Bar Cron](https://wordpress.org/plugins/debug-bar-cron/)

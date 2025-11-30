@@ -1,13 +1,15 @@
 ---
 title: Csomagkezelő hibaelhárítása
-description: HelloPack csomagkezelő CLI parancsok
+description: HelloPack csomagkezelő gyakori hibák és megoldásaik.
 keywords:
   - hellopack
+  - hibaelhárítás
+  - troubleshooting
+  - hiba
 sidebar_label: Csomagkezelő hibaelhárítása
-sidebar_position: 5.5
+sidebar_position: 7
 ---
 
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-screwdriver-wrench text-primary" /> Csomagkezelő hibaelhárítása
@@ -25,7 +27,7 @@ Ez akkor lehetséges, ha
 
 1. Nem él az előfizetésed. Itt ellenőrizheted: https://hellowp.io/hu/helloconsole/subscriptions/
 2. Nem aktiváltad a csomagkezelőt. [Csomagkezelő aktiválása](/docs/dokumentacio/hellopack/aktivalas)
-3. A csomagkezelő nem a `wp-content/plugins/hellopack` mappában van. Ezt FTP-n keresztül tudod ellenőrizni. Egyszerűbb megoldás: töltsd le újra a csomagkezelőt, és telepítsd fel újra. [Csomagkezelő letöltése](/docs/dokumentacio/hellopack/letoltes-telepites)
+3. A csomagkezelő nem a `wp-content/plugins/hellopack-client` mappában van. Ezt FTP-n keresztül tudod ellenőrizni. Egyszerűbb megoldás: töltsd le újra a csomagkezelőt, és telepítsd fel újra. [Csomagkezelő letöltése](/docs/dokumentacio/hellopack/letoltes-telepites)
 4. Ellenőrizd a HelloPack tesztelőt: **WordPress admin -> Eszközök -> HelloPack tesztelő** Amennyiben itt hibát látsz, akkor ezen indulj el. [A tesztelőről részletesebben](/docs/dokumentacio/hellopack/tesztelo)
 
 ## Nem kapnak frissítést a bővítmények
@@ -38,7 +40,7 @@ Ez akkor lehetséges, ha
 
 :::tip
 
-Gyakori probléma **Mac felhasználók körében**, hogy Safari böngésző automatikusan kitömöríti a ZIP fájlokat és ha már korábban letöltötted a hellopack.zip-et, akkor az újabb verziókból készít egy hellopack-1, hellopack-2 stb... nevű mappát. Amennyiben ezt tömöríted be, vagy ezt másolod fel a szerverre, akkor mindig győződj meg róla, hogy a hellopack a hellopack mappába kerüljön. Tehát így: `wp-content/plugins/hellopack/` Erre azért van szükség, mert így fog zavartalanul működni a bővítmény.
+Gyakori probléma **Mac felhasználók körében**, hogy Safari böngésző automatikusan kitömöríti a ZIP fájlokat és ha már korábban letöltötted a hellopack-client.zip-et, akkor az újabb verziókból készít egy hellopack-client-1, hellopack-client-2 stb... nevű mappát. Amennyiben ezt tömöríted be, vagy ezt másolod fel a szerverre, akkor mindig győződj meg róla, hogy a hellopack-client a hellopack-client mappába kerüljön. Tehát így: `wp-content/plugins/hellopack-client/` Erre azért van szükség, mert így fog zavartalanul működni a bővítmény.
 
 :::
 

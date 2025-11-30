@@ -72,7 +72,7 @@ Köszönjük a rendelésed!
 ```
 %generate_pdf_{action_id}_url%
 ```
-Az {action_id} helyére a „Generate PDF” akció azonosítója kerül. Ezt használhatod átirányításhoz vagy gomb/link megjelenítéséhez.
+Az `{action_id}` helyére a „Generate PDF" akció azonosítója kerül. Ezt használhatod átirányításhoz vagy gomb/link megjelenítéséhez.
 
 ## Gyors bevezetés (lépésről lépésre)
 

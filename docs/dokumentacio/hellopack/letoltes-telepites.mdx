@@ -1,13 +1,15 @@
 ---
-title: Letöltés
-description: HelloPack csomagkezelő letöltése
+title: Letöltés és telepítés
+description: HelloPack csomagkezelő letöltése és telepítése WordPress weboldalra.
 keywords:
   - hellopack
+  - letöltés
+  - telepítés
+  - install
 sidebar_label: Csomagkezelő letöltése és telepítése
 sidebar_position: 1
 ---
 
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-download text-primary" /> HelloPack letöltése és telepítése
@@ -30,13 +32,13 @@ Lépj be a HelloWP.io felületére:
 ### 3. Csomagkezelő letöltése
 
 - Kattints a **„Csomagkezelő letöltése"** gombra
-- A böngésző letölti a `hellopack.zip` fájlt
+- A böngésző letölti a `hellopack-client.zip` fájlt
 
 :::warning Safari felhasználóknak (macOS)
 A Safari böngésző alapértelmezetten automatikusan kitömöríti a ZIP fájlokat letöltés után. Ez problémát okozhat:
 
 **Probléma:**
-- Ha korábban már letöltötted a HelloPack-et, a Safari `hellopack-1`, `hellopack-2`, stb. nevű mappákat hoz létre
+- Ha korábban már letöltötted a HelloPack-et, a Safari `hellopack-client-1`, `hellopack-client-2`, stb. nevű mappákat hoz létre
 - Ezeket a mappákat **nem szabad** újra becsomagolni és feltölteni
 
 **Megoldás:**
@@ -48,7 +50,7 @@ A Safari böngésző alapértelmezetten automatikusan kitömöríti a ZIP fájlo
 
 **Fontos:** A bővítmény csak akkor működik megfelelően, ha a könyvtárstruktúra így néz ki:
 ```
-wp-content/plugins/hellopack/
+wp-content/plugins/hellopack-client/
 ```
 :::
 
@@ -62,7 +64,7 @@ wp-content/plugins/hellopack/
 2. **Töltsd fel a ZIP fájlt**
    - Kattints a **„Feltöltés"** fülre
    - Kattints a **„Fájl kiválasztása"** gombra
-   - Válaszd ki a letöltött `hellopack.zip` fájlt
+   - Válaszd ki a letöltött `hellopack-client.zip` fájlt
    - Kattints a **„Telepítés most"** gombra
 
 3. **Aktiválás**
@@ -75,9 +77,9 @@ Ha a WordPress admin feltöltés nem működik (korlátozott fájlméret):
 
 1. **Tömörítsd ki a ZIP fájlt** a számítógépeden
 2. **Csatlakozz FTP/SFTP-vel** a szerverhez
-3. **Töltsd fel a `hellopack` mappát** ide:
+3. **Töltsd fel a `hellopack-client` mappát** ide:
    ```
-   /wp-content/plugins/hellopack/
+   /wp-content/plugins/hellopack-client/
    ```
 4. **Aktiváld** a WordPress adminban: **Bővítmények** → HelloPack → **Aktiválás**
 
@@ -87,10 +89,10 @@ Ha terminál hozzáférésed van:
 
 ```bash
 # Feltöltés a szerverre
-wp plugin install /path/to/hellopack.zip --activate
+wp plugin install /path/to/hellopack-client.zip --activate
 
 # Vagy közvetlenül a mappából
-wp plugin activate hellopack
+wp plugin activate hellopack-client
 ```
 
 ## <FontAwesomeIcon icon="fa-duotone fa-key" /> Következő lépés: Aktiválás
@@ -124,20 +126,20 @@ A telepítés után **aktiválnod kell a HelloPack licencet** a bővítmények h
 **Ellenőrzés:**
 ```bash
 # SSH-n keresztül:
-ls -la wp-content/plugins/hellopack/
+ls -la wp-content/plugins/hellopack-client/
 
-# Lennie kell egy hellopack.php fájlnak
+# Lennie kell egy hellopack-client.php fájlnak
 ```
 
-**Megoldás:** Győződj meg róla, hogy a `hellopack.php` közvetlenül a `plugins/hellopack/` mappában van.
+**Megoldás:** Győződj meg róla, hogy a `hellopack-client.php` közvetlenül a `plugins/hellopack-client/` mappában van.
 
 ## Technikai követelmények
 
 Telepítés előtt győződj meg róla, hogy a szervered megfelel az alábbi követelményeknek:
 
-- **WordPress**: 5.8 vagy újabb
-- **PHP**: 7.4 vagy újabb (8.0+ ajánlott)
-- **MySQL**: 5.6 vagy újabb / MariaDB 10.1+
+- **WordPress**: 5.8 vagy újabb (6.4+ ajánlott)
+- **PHP**: 7.4 vagy újabb (8.1+ ajánlott)
+- **MySQL**: 8.0 vagy újabb / MariaDB 10.4+
 - **Lemezterület**: Min. 50 MB szabad hely
 - **PHP kiterjesztések**: curl, zip, json, mbstring
 

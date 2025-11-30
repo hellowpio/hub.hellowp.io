@@ -21,7 +21,7 @@ A WP Booking System – Contracts egy prémium kiegészítő, amely minden beér
 - **Automatikus PDF-generálás foglalásonként**: Minden új foglaláskor létrejön egy PDF, így minden ügyfélhez kapcsolódik egy archiválható megállapodás.
 - **E-mail csatolás (automatikus és manuális)**: Az értesítő e-mailekhez egy kapcsolóval csatolhatod a „Contract” dokumentumot. Ütemezett e-maileknél is működik. A foglalás adatlapjáról manuális leveledhez is mellékelheted.
 - **Márkázható megjelenés**: Beállíthatsz **logót** vagy **szöveges fejlécet**, alcímeket. A szerződésszám alapja a **Booking ID**, amihez **offset** adható (például 100, így 101-től indul).
-- **Szerződés sablonozása dinamikus tagekkel**: A szerződéstörzsben használhatsz sablonváltozókat (pl. dátumok, vendégadatok, foglalási azonosító). Elérhető a speciális **{Signature}** tag az aláírás képének beillesztéséhez.
+- **Szerződés sablonozása dinamikus tagekkel**: A szerződéstörzsben használhatsz sablonváltozókat (pl. dátumok, vendégadatok, foglalási azonosító). Elérhető a speciális `{Signature}` tag az aláírás képének beillesztéséhez.
 - **Elektronikus aláírás mező**: Az add-on űrlapmezőt ad a foglalási űrlaphoz. Az ügyfél a beküldéskor aláírhat, az aláírás képe a PDF-be automatikusan bekerül.
 - **Megtekintés, módosítás, újragenerálás**: A foglalás kezelőfelületén megnyithatod, szerkesztheted a szöveget, letöltheted a PDF-et, és szükség esetén visszaállíthatod az eredeti sablon alapján („Regenerate Contract”).
 - **Többszintű konfiguráció**:
@@ -79,7 +79,7 @@ Dátum: {Today}
 ## Beállítási tippek és megfontolások
 
 - **Sablonozás**: Használd a standard dinamikus tageket (pl. `{Start Date}`, `{End Date}`, `{Booking ID}`) és a form-mező tageket (pl. `{2:Name}`), hogy a dokumentum mindig személyre szabott legyen.
-- **Aláírás**: Építsd be a `{Signature}` taget a szerződés aljára; az aláírás az űrlap „Signature" mezőjéből kerül a PDF-be.
+- **Aláírás**: Építsd be a `{Signature}` tag-et a szerződés aljára; az aláírás az űrlap „Signature" mezőjéből kerül a PDF-be.
 - **E-mail csatolás**: Kapcsold be a „Contract” mellékletet az értesítőknél; manuális küldéshez a foglalás adatlapján mellékeld.
 - **Változatok kezelése**: Egyedi eseteknél módosítsd a foglalás-szintű szöveget, majd szükség esetén regeneráld az eredeti sablonból.
 - **Jogi megjegyzés**: Az aláírás képalapú. A joghatás területenként eltérhet; igazítsd a folyamatot a helyi előírásokhoz.

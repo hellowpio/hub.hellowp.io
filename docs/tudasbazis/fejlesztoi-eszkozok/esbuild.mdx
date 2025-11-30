@@ -1,0 +1,640 @@
+---
+title: esbuild
+description: Ultra-gyors JavaScript és CSS bundler WordPress projektekhez.
+keywords:
+  - esbuild
+  - bundler
+  - javascript
+  - css
+  - wordpress
+sidebar_label: esbuild
+sidebar_position: 9
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-rocket text-primary" /> esbuild - Ultra-gyors Bundler
+
+Az [esbuild](https://esbuild.github.io/) egy rendkívül gyors JavaScript és CSS bundler, amelyet Go nyelven írtak. 10-100x gyorsabb a hagyományos bundler-eknél (webpack, rollup), így ideális választás WordPress témák és bővítmények fejlesztéséhez.
+
+## Miért esbuild?
+
+- **Extrém gyors** - Go nyelven írt, párhuzamos feldolgozás
+- **Egyszerű** - Minimális konfiguráció
+- **Modern** - ES6+, TypeScript, JSX natív támogatás
+- **Tree shaking** - Automatikus dead code eltávolítás
+- **Source maps** - Debug támogatás
+- **Watch mode** - Automatikus újraépítés
+
+## Telepítés
+
+```bash
+npm install -D esbuild
+```
+
+## Alapvető használat
+
+### CLI parancsok
+
+```bash
+# Egy fájl build-elése
+npx esbuild src/js/main.js --bundle --outfile=dist/main.js
+
+# Minifikálással
+npx esbuild src/js/main.js --bundle --minify --outfile=dist/main.min.js
+
+# Source map-pel
+npx esbuild src/js/main.js --bundle --sourcemap --outfile=dist/main.js
+
+# Watch mode
+npx esbuild src/js/main.js --bundle --watch --outfile=dist/main.js
+```
+
+### package.json scripts
+
+```json
+{
+  "scripts": {
+    "build": "esbuild src/js/main.js --bundle --minify --sourcemap --outfile=dist/js/main.js",
+    "build:css": "esbuild src/css/style.css --bundle --minify --outfile=dist/css/style.css",
+    "dev": "esbuild src/js/main.js --bundle --watch --outfile=dist/js/main.js",
+    "build:all": "npm run build && npm run build:css"
+  }
+}
+```
+
+## JavaScript API
+
+### build.js
+
+```javascript
+import * as esbuild from 'esbuild';
+
+await esbuild.build({
+  entryPoints: ['src/js/main.js'],
+  bundle: true,
+  minify: true,
+  sourcemap: true,
+  outfile: 'dist/js/main.js',
+  target: ['es2020', 'chrome80', 'firefox80', 'safari14'],
+});
+
+console.log('Build complete!');
+```
+
+### Több entry point
+
+```javascript
+import * as esbuild from 'esbuild';
+
+await esbuild.build({
+  entryPoints: {
+    main: 'src/js/main.js',
+    admin: 'src/js/admin.js',
+    'block-editor': 'src/js/block-editor.js',
+  },
+  bundle: true,
+  minify: process.env.NODE_ENV === 'production',
+  sourcemap: true,
+  outdir: 'dist/js',
+});
+```
+
+### Watch mode (API)
+
+```javascript
+import * as esbuild from 'esbuild';
+
+const ctx = await esbuild.context({
+  entryPoints: ['src/js/main.js'],
+  bundle: true,
+  outfile: 'dist/js/main.js',
+});
+
+// Watch indítása
+await ctx.watch();
+console.log('Watching for changes...');
+
+// Build és kilépés
+// await ctx.dispose();
+```
+
+## WordPress téma integráció
+
+### Projekt struktúra
+
+```
+my-theme/
+├── src/
+│   ├── js/
+│   │   ├── main.js
+│   │   └── admin.js
+│   └── css/
+│       └── style.css
+├── dist/
+├── build.js
+├── package.json
+├── functions.php
+└── style.css
+```
+
+### build.js (teljes konfiguráció)
+
+```javascript
+import * as esbuild from 'esbuild';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { dirname } from 'path';
+
+const isProduction = process.env.NODE_ENV === 'production';
+const isWatch = process.argv.includes('--watch');
+
+// Manifest generálás
+const manifestPlugin = {
+  name: 'manifest',
+  setup(build) {
+    build.onEnd((result) => {
+      if (result.errors.length > 0) return;
+
+      const manifest = {};
+      const outputs = result.metafile?.outputs || {};
+
+      for (const [file, data] of Object.entries(outputs)) {
+        if (data.entryPoint) {
+          const entry = data.entryPoint;
+          const outputFile = file.replace('dist/', '');
+          manifest[entry] = {
+            file: outputFile,
+          };
+        }
+      }
+
+      const manifestDir = 'dist';
+      if (!existsSync(manifestDir)) {
+        mkdirSync(manifestDir, { recursive: true });
+      }
+
+      writeFileSync(
+        `${manifestDir}/manifest.json`,
+        JSON.stringify(manifest, null, 2)
+      );
+    });
+  },
+};
+
+// JavaScript build
+const jsBuildOptions = {
+  entryPoints: {
+    main: 'src/js/main.js',
+    admin: 'src/js/admin.js',
+  },
+  bundle: true,
+  minify: isProduction,
+  sourcemap: !isProduction,
+  outdir: 'dist/js',
+  target: ['es2020'],
+  format: 'esm',
+  splitting: true,
+  metafile: true,
+  plugins: [manifestPlugin],
+};
+
+// CSS build
+const cssBuildOptions = {
+  entryPoints: ['src/css/style.css'],
+  bundle: true,
+  minify: isProduction,
+  outdir: 'dist/css',
+};
+
+async function build() {
+  try {
+    if (isWatch) {
+      const jsCtx = await esbuild.context(jsBuildOptions);
+      const cssCtx = await esbuild.context(cssBuildOptions);
+
+      await Promise.all([jsCtx.watch(), cssCtx.watch()]);
+
+      console.log('👀 Watching for changes...');
+    } else {
+      await Promise.all([
+        esbuild.build(jsBuildOptions),
+        esbuild.build(cssBuildOptions),
+      ]);
+
+      console.log('✅ Build complete!');
+    }
+  } catch (error) {
+    console.error('❌ Build failed:', error);
+    process.exit(1);
+  }
+}
+
+build();
+```
+
+### functions.php
+
+```php
+<?php
+/**
+ * Enqueue theme assets
+ */
+function my_theme_enqueue_assets() {
+    $manifest_path = get_template_directory() . '/dist/manifest.json';
+
+    if ( file_exists( $manifest_path ) ) {
+        $manifest = json_decode( file_get_contents( $manifest_path ), true );
+
+        // Main JS
+        if ( isset( $manifest['src/js/main.js'] ) ) {
+            wp_enqueue_script(
+                'theme-main',
+                get_template_directory_uri() . '/dist/' . $manifest['src/js/main.js']['file'],
+                [],
+                null,
+                true
+            );
+        }
+
+        // Admin JS
+        if ( is_admin() && isset( $manifest['src/js/admin.js'] ) ) {
+            wp_enqueue_script(
+                'theme-admin',
+                get_template_directory_uri() . '/dist/' . $manifest['src/js/admin.js']['file'],
+                [],
+                null,
+                true
+            );
+        }
+    }
+
+    // CSS
+    wp_enqueue_style(
+        'theme-style',
+        get_template_directory_uri() . '/dist/css/style.css',
+        [],
+        filemtime( get_template_directory() . '/dist/css/style.css' )
+    );
+}
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_assets' );
+```
+
+## CSS kezelés
+
+### CSS bundle
+
+```javascript
+await esbuild.build({
+  entryPoints: ['src/css/style.css'],
+  bundle: true,
+  minify: true,
+  outfile: 'dist/css/style.css',
+});
+```
+
+### CSS import
+
+```css
+/* src/css/style.css */
+@import './variables.css';
+@import './base.css';
+@import './components/buttons.css';
+@import './components/forms.css';
+```
+
+### Sass támogatás
+
+```bash
+npm install -D esbuild-sass-plugin
+```
+
+```javascript
+import * as esbuild from 'esbuild';
+import { sassPlugin } from 'esbuild-sass-plugin';
+
+await esbuild.build({
+  entryPoints: ['src/scss/style.scss'],
+  bundle: true,
+  minify: true,
+  outfile: 'dist/css/style.css',
+  plugins: [sassPlugin()],
+});
+```
+
+## TypeScript
+
+esbuild natívan támogatja a TypeScript-et, nincs szükség külön konfigurációra:
+
+```javascript
+await esbuild.build({
+  entryPoints: ['src/ts/main.ts'],
+  bundle: true,
+  outfile: 'dist/js/main.js',
+});
+```
+
+### tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src"]
+}
+```
+
+:::caution Megjegyzés
+esbuild csak transzpilálja a TypeScript-et, nem ellenőrzi a típusokat. Típusellenőrzéshez használj külön `tsc --noEmit` parancsot.
+:::
+
+## React és JSX
+
+```javascript
+await esbuild.build({
+  entryPoints: ['src/jsx/app.jsx'],
+  bundle: true,
+  outfile: 'dist/js/app.js',
+  jsx: 'automatic', // React 17+ automatic runtime
+});
+```
+
+### React telepítése
+
+```bash
+npm install react react-dom
+```
+
+### WordPress block fejlesztés
+
+```jsx
+// src/jsx/blocks/my-block/index.jsx
+import { registerBlockType } from '@wordpress/blocks';
+
+registerBlockType('my-plugin/my-block', {
+  title: 'My Block',
+  icon: 'smiley',
+  category: 'common',
+  edit: () => <div>Edit view</div>,
+  save: () => <div>Saved content</div>,
+});
+```
+
+```javascript
+// build.js
+await esbuild.build({
+  entryPoints: ['src/jsx/blocks/my-block/index.jsx'],
+  bundle: true,
+  outfile: 'dist/js/blocks/my-block.js',
+  jsx: 'automatic',
+  external: ['@wordpress/*', 'react', 'react-dom'],
+});
+```
+
+## Pluginek
+
+### PostCSS plugin
+
+```bash
+npm install -D esbuild-postcss postcss autoprefixer
+```
+
+```javascript
+import * as esbuild from 'esbuild';
+import postcss from 'esbuild-postcss';
+
+await esbuild.build({
+  entryPoints: ['src/css/style.css'],
+  bundle: true,
+  outfile: 'dist/css/style.css',
+  plugins: [postcss()],
+});
+```
+
+### postcss.config.js
+
+```javascript
+export default {
+  plugins: {
+    autoprefixer: {},
+  },
+};
+```
+
+### Copy plugin
+
+```bash
+npm install -D esbuild-plugin-copy
+```
+
+```javascript
+import * as esbuild from 'esbuild';
+import { copy } from 'esbuild-plugin-copy';
+
+await esbuild.build({
+  entryPoints: ['src/js/main.js'],
+  bundle: true,
+  outfile: 'dist/js/main.js',
+  plugins: [
+    copy({
+      assets: {
+        from: ['./src/images/*'],
+        to: ['./images'],
+      },
+    }),
+  ],
+});
+```
+
+## WordPress plugin fejlesztés
+
+### Projekt struktúra
+
+```
+my-plugin/
+├── assets/
+│   ├── src/
+│   │   ├── js/
+│   │   │   ├── frontend.js
+│   │   │   └── admin.js
+│   │   └── css/
+│   │       ├── frontend.css
+│   │       └── admin.css
+│   └── dist/
+├── includes/
+├── build.js
+├── package.json
+└── my-plugin.php
+```
+
+### build.js
+
+```javascript
+import * as esbuild from 'esbuild';
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+const buildConfigs = [
+  // Frontend JS
+  {
+    entryPoints: ['assets/src/js/frontend.js'],
+    bundle: true,
+    minify: isProduction,
+    sourcemap: !isProduction,
+    outfile: 'assets/dist/js/frontend.js',
+  },
+  // Admin JS
+  {
+    entryPoints: ['assets/src/js/admin.js'],
+    bundle: true,
+    minify: isProduction,
+    sourcemap: !isProduction,
+    outfile: 'assets/dist/js/admin.js',
+  },
+  // Frontend CSS
+  {
+    entryPoints: ['assets/src/css/frontend.css'],
+    bundle: true,
+    minify: isProduction,
+    outfile: 'assets/dist/css/frontend.css',
+  },
+  // Admin CSS
+  {
+    entryPoints: ['assets/src/css/admin.css'],
+    bundle: true,
+    minify: isProduction,
+    outfile: 'assets/dist/css/admin.css',
+  },
+];
+
+await Promise.all(buildConfigs.map((config) => esbuild.build(config)));
+
+console.log('✅ Plugin assets built!');
+```
+
+### Plugin asset betöltés
+
+```php
+<?php
+class My_Plugin_Assets {
+
+    public static function init() {
+        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_frontend' ] );
+        add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_admin' ] );
+    }
+
+    public static function enqueue_frontend() {
+        wp_enqueue_style(
+            'my-plugin-frontend',
+            plugins_url( 'assets/dist/css/frontend.css', __FILE__ ),
+            [],
+            self::get_version( 'assets/dist/css/frontend.css' )
+        );
+
+        wp_enqueue_script(
+            'my-plugin-frontend',
+            plugins_url( 'assets/dist/js/frontend.js', __FILE__ ),
+            [],
+            self::get_version( 'assets/dist/js/frontend.js' ),
+            true
+        );
+    }
+
+    public static function enqueue_admin( $hook ) {
+        // Csak a plugin oldalain
+        if ( strpos( $hook, 'my-plugin' ) === false ) {
+            return;
+        }
+
+        wp_enqueue_style(
+            'my-plugin-admin',
+            plugins_url( 'assets/dist/css/admin.css', __FILE__ ),
+            [],
+            self::get_version( 'assets/dist/css/admin.css' )
+        );
+
+        wp_enqueue_script(
+            'my-plugin-admin',
+            plugins_url( 'assets/dist/js/admin.js', __FILE__ ),
+            [],
+            self::get_version( 'assets/dist/js/admin.js' ),
+            true
+        );
+    }
+
+    private static function get_version( $file ) {
+        $path = plugin_dir_path( __FILE__ ) . $file;
+        return file_exists( $path ) ? filemtime( $path ) : '1.0.0';
+    }
+}
+
+My_Plugin_Assets::init();
+```
+
+## Környezeti változók
+
+### Define plugin
+
+```javascript
+await esbuild.build({
+  entryPoints: ['src/js/main.js'],
+  bundle: true,
+  outfile: 'dist/js/main.js',
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'API_URL': JSON.stringify('https://api.example.com'),
+  },
+});
+```
+
+### Használat JavaScript-ben
+
+```javascript
+if (process.env.NODE_ENV === 'development') {
+  console.log('Development mode');
+}
+
+fetch(API_URL + '/endpoint');
+```
+
+## Development server
+
+esbuild beépített dev server-rel rendelkezik:
+
+```javascript
+import * as esbuild from 'esbuild';
+
+const ctx = await esbuild.context({
+  entryPoints: ['src/js/main.js'],
+  bundle: true,
+  outdir: 'dist',
+});
+
+const { host, port } = await ctx.serve({
+  servedir: 'dist',
+  port: 8000,
+});
+
+console.log(`Server running at http://${host}:${port}`);
+```
+
+## Teljesítmény összehasonlítás
+
+| Bundler | 1000 modulos projekt build ideje |
+|---------|----------------------------------|
+| **esbuild** | ~0.3s |
+| Vite (esbuild) | ~0.5s |
+| Rollup | ~4s |
+| Webpack | ~15s |
+
+## Források
+
+- [esbuild hivatalos oldal](https://esbuild.github.io/)
+- [esbuild dokumentáció](https://esbuild.github.io/api/)
+- [esbuild GitHub](https://github.com/evanw/esbuild)
+- [esbuild plugin lista](https://github.com/esbuild/community-plugins)
