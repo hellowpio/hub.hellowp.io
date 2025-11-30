@@ -2,7 +2,10 @@
 title: WordPress telepítése egy fájl segítségével
 description: WordPress telepítése könnyedén, egy telepítő fájl segítségével
 keywords:
-  - github
+  - wordpress
+  - telepítés
+  - php
+  - tárhely
 sidebar_label: WordPress telepítése egy fájl segítségével
 sidebar_position: 3
 ---
@@ -14,17 +17,46 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 
 # <FontAwesomeIcon icon="fa-duotone fa-star text-primary" /> WordPress telepítése könnyedén, egy telepítő fájl segítségével
 
-Ezzel a módszerrel a WordPress telepítése, illetve a fájlok másolásának az ideje a töredékére csökken, szemben a hagyományos “FTP-re másolásos” móddal. Ott ajánlott használni, ahol nincs más megoldás WordPress telepítésre.
+Ezzel a módszerrel a WordPress telepítése, illetve a fájlok másolásának ideje a töredékére csökken, szemben a hagyományos „FTP-re másolásos" móddal. Ott ajánlott használni, ahol nincs más megoldás WordPress telepítésére.
 
-## Mire lesz szükséged?
+## WP-CLI alternatíva (ajánlott)
+
+Ha van SSH hozzáférésed és WP-CLI elérhető a szerveren, akkor egyszerűbben és biztonságosabban is telepítheted a WordPress-t:
+
+```bash
+# Navigálj a célkönyvtárba
+cd /var/www/html
+
+# WordPress letöltése és kicsomagolása magyar nyelvvel
+wp core download --locale=hu_HU
+
+# wp-config.php létrehozása
+wp config create --dbname=adatbazis_neve --dbuser=felhasznalo --dbpass=jelszo --dbhost=localhost
+
+# WordPress telepítése
+wp core install --url="https://oldaladneve.hu" --title="Oldal neve" --admin_user=admin --admin_password=biztonsagos_jelszo --admin_email=email@example.com
+```
+
+:::tip Egysoros megoldás
+Ha csak a fájlokat szeretnéd letölteni és kicsomagolni:
+```bash
+wp core download --locale=hu_HU --path=/var/www/html
+```
+:::
+
+## PHP telepítő szkript
+
+Ha nincs WP-CLI a szerveren, használd az alábbi PHP szkriptet.
+
+### Mire lesz szükséged?
 
 A telepítőprogram használatához FTP/sFTP/SSH hozzáférésre van szükség a tárhelyhez, ahová telepíteni szeretnéd a WordPress-t.
 
-Amint ez megvan, nincs más dolgod, mint felmásolni az alábbi fájlt oda, ahová a WordPress-t szeretnéd telepíteni és megnyitni a fájlt a böngészőben.
+Amint ez megvan, nincs más dolgod, mint felmásolni az alábbi fájlt oda, ahová a WordPress-t szeretnéd telepíteni, és megnyitni a fájlt a böngészőben.
 
 Például: https://oldaladneve.hu/wptelepito.php
 
-## A fájl
+### A fájl
 
 ```php
 <?php

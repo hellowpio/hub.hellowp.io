@@ -34,7 +34,7 @@ Minden restrikció tartalmaz:
 
 ### Üzenetek és UX
 
-- **Show Excluded**: a tiltott opció megjelenhet magyarázó üzenettel (validációs vagy statikus). Az üzenetszöveg testreszabható, helyettesítő címkékkel is, például {excluded_gateway}. Megjegyzés: statikus üzenetek a Checkout Blockban nem jelennek meg.
+- **Show Excluded**: a tiltott opció megjelenhet magyarázó üzenettel (validációs vagy statikus). Az üzenetszöveg testreszabható, helyettesítő címkékkel is, például `{excluded_gateway}`. Megjegyzés: statikus üzenetek a Checkout Blockban nem jelennek meg.
 
 ### Teljesítmény és kompatibilitás
 

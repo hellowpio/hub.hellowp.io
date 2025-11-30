@@ -22,7 +22,7 @@ Az import folyamatban – a beállításaidtól függően – a bővítmény vé
 Mindhárom mód az import varázslóban választható, így pontosan szabályozhatod, hol történjen beavatkozás.
 
 ### Testreszabható prefix
-Az álca­zott útvonal elé beállíthatsz egy **opcionális prefixet** (legfeljebb egy “/” jelet tartalmazhat), például: “go/”. Így egységes minta alakítható ki, például: “/go/{azonosító}”. Prefix nélkül is működik, ekkor az útvonal formája “/{azonosító}”.
+Az álca­zott útvonal elé beállíthatsz egy **opcionális prefixet** (legfeljebb egy "/" jelet tartalmazhat), például: "go/". Így egységes minta alakítható ki, például: `/go/{azonosító}`. Prefix nélkül is működik, ekkor az útvonal formája `/{azonosító}`.
 
 ### Érintett mezők
 Ha a “minden link cloakolása” opciót használod, a bővítmény a **tartalom**, az **excerpt** és az **egyedi mezők** linkjeit is kezeli. Ez különösen hasznos, ha forrásfájlodban sok vegyes helyen előforduló külső hivatkozás van.

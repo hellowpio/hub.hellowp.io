@@ -1,35 +1,70 @@
 ---
 title: Levelezés beállítása
-description: Levelezés beállítása
+description: Email fiók beállítása különböző levelezőprogramokban - POP3, IMAP és SMTP konfiguráció.
 keywords:
-  - hellopack
-  - elementor
+  - email beállítás
+  - levelezés
+  - pop3
+  - imap
+  - smtp
 sidebar_label: Levelezés beállítása
-sidebar_position: 2
+sidebar_position: 4
 ---
 
-import BrowserWindow from "@site/src/components/BrowserWindow";
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-sharp fa-solid fa-envelopes-bulk text-primary" /> Levelezés beállítása
 
-Biztonságos (SSL/TLS) levelezés beállítása
+## Fiók adatok
 
-**Felhasználónév:** Az email címed
+| Beállítás | Érték |
+|-----------|-------|
+| **Felhasználónév** | Az email címed |
+| **Jelszó** | Email-ben küldtük, vagy amit megadtál |
 
-**Jelszó:** Email-ben küldtük, vagy amit megadtál (ha módosítottad)
+## Szerver beállítások
 
-**Bejövő kiszolgáló (szerver):** mail.webmi.io | **POP3 Port:** 995
+### POP3 (bejövő levelek)
 
-**Kimenő kiszolgáló (szerver):** mail.webmi.io | **SMTP Port:** 465
+| Beállítás | Érték |
+|-----------|-------|
+| **Szerver** | mail.webmi.io |
+| **Port** | 995 |
+| **Titkosítás** | SSL/TLS |
+| **Hitelesítés** | Normál jelszó |
 
-**Kapcsolat biztonsága:** SSL/TLS
+### IMAP (bejövő levelek - ajánlott)
 
-**Hitelesítési módszer:** Normál jelszó
+| Beállítás | Érték |
+|-----------|-------|
+| **Szerver** | mail.webmi.io |
+| **Port** | 993 |
+| **Titkosítás** | SSL/TLS |
+| **Hitelesítés** | Normál jelszó |
 
-POP3 és SMTP hitelesítés szükséges
+### SMTP (kimenő levelek)
+
+| Beállítás | Érték |
+|-----------|-------|
+| **Szerver** | mail.webmi.io |
+| **Port** | 465 |
+| **Titkosítás** | SSL/TLS |
+| **Hitelesítés** | Szükséges |
+
+:::tip IMAP vs POP3
+Az **IMAP** használatát javasoljuk, mert a levelek a szerveren maradnak és több eszközről is elérheted őket. A POP3 letölti a leveleket az eszközre és (alapértelmezetten) törli a szerverről.
+:::
+
+## Ajánlott levelezőprogramok
+
+| Platform | Ajánlott kliens |
+|----------|-----------------|
+| Windows | Outlook, Thunderbird |
+| macOS | Apple Mail, Thunderbird |
+| iOS | Apple Mail |
+| Android | Gmail app, Outlook |
+| Web | Roundcube (webmail) |
 
 :::warning Figyelem!
-A HelloWP! levelezőszervere **nem használható hírlevélküldésre**, vagy más tömeges kiküldésre. Erre is van kész megoldásunk, ha ilyet szeretnél, akkor vedd fel az ügyfélszolgálattal a kapcsolatot és segítünk neked ebben.
+A HelloWP levelezőszervere **nem használható hírlevélküldésre** vagy más tömeges kiküldésre. Erre is van kész megoldásunk - vedd fel velünk a kapcsolatot.
 :::

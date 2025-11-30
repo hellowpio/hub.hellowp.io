@@ -32,7 +32,7 @@ A Yoast saját Import/Export eszközével kinyert konfigurációt feltöltöd a 
 Új bejegyzést vagy oldalt hozol létre a MainWP-ben? Ugyanott megkapod a **Yoast metaboxot**: megadhatod a SEO címet, meta leírást, canonical URL-t, noindex/no-follow beállításokat, sőt a haladó opciókat is. Amikor publikálsz, a tartalom és a SEO-meta **együtt** kerül ki a kiválasztott site-okra – nincs több „elfelejtett meta”.
 
 ### Integráció a MainWP Boilerplate-tel
-Használj tokeneket (pl. {SITE_NAME}, {CITY}) sablon tartalmakban, és rendelj hozzájuk Yoast beállításokat is. Így egyszerre kapsz **következetes**, mégis **személyre szabott** megjelenést sok site-on, egyetlen folyamatban.
+Használj tokeneket (pl. `{SITE_NAME}`, `{CITY}`) sablon tartalmakban, és rendelj hozzájuk Yoast beállításokat is. Így egyszerre kapsz **következetes**, mégis **személyre szabott** megjelenést sok site-on, egyetlen folyamatban.
 
 ### Állapot- és frissítésfigyelés
 A panel jelzi, ha a Yoast inaktív valamelyik site-on, vagy teendő van. Ezzel időben észreveszed a „kilógó” konfigurációkat, csökkented a hibákat és az SEO-inkonzisztenciát.

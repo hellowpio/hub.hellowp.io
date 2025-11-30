@@ -1,5 +1,5 @@
 {
-  "name": "support",
+  "name": "hub.hellowp.io",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,26 +15,24 @@
     "merge": "cp -r -f ./build/. ./build_live/"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/plugin-content-docs": "^2.4.0",
-    "@docusaurus/plugin-google-analytics": "^2.4.0",
-    "@docusaurus/plugin-google-gtag": "^2.4.0",
-    "@docusaurus/preset-classic": "^2.4.0",
-    "@docusaurus/theme-search-algolia": "^2.4.0",
-    "@fortawesome/fontawesome-svg-core": "^6.3.0",
-    "@mdx-js/react": "^1.6.22",
-    "clsx": "^1.2.1",
-    "docusaurus-plugin-sass": "^0.2.3",
-    "docusaurus-plugin-segment": "^1.0.4",
-    "prism-react-renderer": "^1.3.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@docusaurus/core": "^3.9.2",
+    "@docusaurus/plugin-content-docs": "^3.9.2",
+    "@docusaurus/plugin-google-gtag": "^3.9.2",
+    "@docusaurus/preset-classic": "^3.9.2",
+    "@docusaurus/theme-search-algolia": "^3.9.2",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@mdx-js/react": "^3.1.0",
+    "clsx": "^2.1.1",
+    "docusaurus-plugin-sass": "^0.2.6",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-transition-group": "^4.4.5",
-    "sass": "^1.58.2"
+    "sass": "^1.83.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.4.0",
-    "webpack": "^5.75.0"
+    "@docusaurus/module-type-aliases": "^3.9.2",
+    "@docusaurus/types": "^3.9.2"
   },
   "browserslist": {
     "production": [
@@ -49,6 +47,6 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.0"
   }
 }

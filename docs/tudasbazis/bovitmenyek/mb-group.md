@@ -23,7 +23,7 @@ Tipikus helyzet: több, azonos szerkezetű adategységet kezelsz (pl. több szer
 
 - **Könyv adatlap**: Több szerző (név, szerep, weboldal), kiadó adatai, kiadási év. A „Szerzők” egy klónozható csoport.
 - **Zenei album**: Dalszámok listája (cím, hossz, közreműködők – ez utóbbi akár al‑csoport). Drag‑and‑drop sorrend.
-- **Csapatoldal**: Tagok (név, pozíció, portré, közösségi linkek). A csoport címe lehet „{name}”.
+- **Csapatoldal**: Tagok (név, pozíció, portré, közösségi linkek). A csoport címe lehet „`{name}`".
 - **Telephelyek**: Cím, nyitvatartás, kapcsolattartó. Több telephely? Új klón.
 - **Gyakori kérdések (FAQ)**: Kérdés–válasz párok, összecsukható csoportokkal, mentett nyitottsággal.
 

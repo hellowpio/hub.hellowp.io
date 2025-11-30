@@ -16,7 +16,7 @@ Aktiválás után azonnal sorszámoz: üres boltban 1-től indul, meglévő bolt
 
 - **Folyamatos sorszámozás:** Minden új rendelés egy egyértelműen növekvő sorszámot kap. Ez megszünteti a poszt-ID miatt tapasztalt kihagyásokat.
 - **Kezdő sorszám:** Beállíthatod, honnan induljon a számozás. Fontos: mindig a legnagyobb meglévő szám fölé állítsd, visszamenőleg nem módosít.
-- **Előtag/utótag + dátumminták:** Adj könnyen érthető kontextust (pl. év, csatorna, régió). Használható minták: például {YYYY}{MM}{DD}, {HH}{N}{S}. A sorszám a prefix és suffix között helyezkedik el.
+- **Előtag/utótag + dátumminták:** Adj könnyen érthető kontextust (pl. év, csatorna, régió). Használható minták: például `{YYYY}{MM}{DD}`, `{HH}{N}{S}`. A sorszám a prefix és suffix között helyezkedik el.
 - **Fix hossz és nullázás:** Meghatározhatod a sorszám számjegyhosszát; a rendszer balról nullákkal tölti fel (pl. 000123).
 - **Ingyenes rendelések külön számozása:** A 0 összegű rendelések kivehetők a “fizetett” sorozatból, és kaphatnak külön előtagot (pl. FREE-) és saját számozást.
 - **Kompatibilitás a modern WooCommerce-funkciókkal:** Használható a Cart & Checkout Blocks és a High-Performance Order Storage mellett.
@@ -31,7 +31,7 @@ Aktiválás után azonnal sorszámoz: üres boltban 1-től indul, meglévő bolt
 ## Beállítás minták
 
 - Prefix példák:
-  - Éves bontás: `ORD-{YYYY}-`
+  - Éves bontás: `ORD-{YYYY}-` (a `{YYYY}` helyére az év kerül)
   - Csatorna jelölés: `WEB-` vagy `POS-`
   - Régió: `EU-` vagy `HU-`
 

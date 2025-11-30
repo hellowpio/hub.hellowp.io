@@ -1,8 +1,11 @@
 ---
 title: GitHub kezdőknek
-description: Új vagy a GitHubon? Itt találsz egy gyors bevezetést a GitHub használatába.
+description: Átfogó útmutató a Git és GitHub használatához WordPress fejlesztőknek.
 keywords:
   - github
+  - git
+  - verziókezelés
+  - wordpress
 sidebar_label: GitHub kezdőknek
 sidebar_position: 0
 ---
@@ -12,222 +15,419 @@ import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-brands fa-github text-primary" /> GitHub kezdőknek
 
-A Git és a GitHub olyan népszerű eszközök, amelyeket a programozásban használnak. Segítenek abban, hogy különböző verzióit kezeld a kódodnak és együtt tudj dolgozni más fejlesztőkkel.
+A Git és a GitHub a modern szoftverfejlesztés alapvető eszközei. Segítenek a kód verziókezelésében, csapatmunkában és a projektek biztonságos tárolásában.
 
-A projektek építése a programozók munkájának alapvető része. A Git és a GitHub pedig elengedhetetlen eszközök, amelyeket a projektek építése során használsz másokkal együttműködve.
+## Mi az a Git és GitHub?
 
-De ha még nem használtad őket korábban, bonyolultnak tűnhetnek. Ezért készítettünk egy anyagot arról, hogyan működik a Git és a GitHub.
+### Git
 
-### Mi az a Git és a GitHub?
+A **Git** egy elosztott verziókezelő rendszer, amelyet Linus Torvalds fejlesztett 2005-ben. Lehetővé teszi:
 
-A Git-et 2005-ben Linus Torvalds fejlesztette ki nyílt forráskódú szoftverként, hogy nyomon követhesse a változásokat egy elosztott verziókezelő rendszerben.
+- Kódváltozások nyomon követését
+- Korábbi verziókhoz való visszatérést
+- Párhuzamos fejlesztést branch-eken
+- Offline munkát a teljes projekt történetével
 
-A Git a változásokat egy elosztott verziókezelő rendszeren keresztül követi. Ez azt jelenti, hogy a Git követni tudja a projekt különböző verzióinak állapotát, amíg fejleszted őket. Elosztott, mert hozzáférhetsz a kód fájljaidhoz egy másik számítógépről - és ugyanígy más fejlesztők is hozzáférhetnek.
+### GitHub
 
-Ha nyílt forráskódú projektet építesz, szükséged lesz egy módra, hogy dokumentáld vagy nyomon kövesd a kódodat. Ez segít abban, hogy rendezetten tudj dolgozni, és nyomon tudd követni a végrehajtott változtatásokat. Ezt teszi lehetővé a Git.
+A **GitHub** egy felhőalapú platform Git repository-k tárolására és kezelésére. Funkciói:
 
-Azonban szükséged van egy helyre is, ahol hostolhatod a kódodat - ami lehetővé teszi, hogy minden projekt verzióját könnyebb és gyorsabb kontrollálni. Ebben segít a GitHub.
+- Repository hosting
+- Együttműködési eszközök (Issues, Pull Requests)
+- CI/CD integráció (GitHub Actions)
+- Projektmenedzsment (Projects, Milestones)
+- Kód review és biztonság
 
-A GitHub egy "hub" (egy hely vagy platform), ahol a Git felhasználók együtt építenek szoftvert. A GitHub emellett egy hosting szolgáltató és verziókezelő platform, amelyen nyílt forráskódú projekteken tudsz együttműködni és fájlokat megosztani. Amikor a GitHub-ot használod, a Git-et használod az alapoknál.
+:::tip Összefoglalva
+**Git** = verziókezelő eszköz a gépeden
+**GitHub** = online platform a Git repository-k tárolására
+:::
 
-### Miért érdemes megtanulni a Git-et és a GitHub-ot?
+## Miért érdemes megtanulni?
 
-2022-ben 20.5 millió új fejlesztő csatlakozott a GitHubhoz és több mint 85 millió új project indult szintén ebben az évben. [Forrás](https://octoverse.github.com/2022/global-tech-talent)
+| Szempont | Előny |
+|----------|-------|
+| **Csapatmunka** | Több fejlesztő dolgozhat ugyanazon a projekten |
+| **Biztonság** | A kód biztonságosan tárolva, nem vész el |
+| **Történet** | Minden változás visszakövethető |
+| **Visszaállítás** | Bármikor visszatérhetsz korábbi verzióhoz |
+| **Iparági standard** | A legtöbb cég elvárja a Git ismeretét |
 
-Láthatjuk tehát, hogy milliók használják ezeket az eszközöket szerte a világon, és a számok csak növekednek.
+A GitHub 2024-ben már több mint **100 millió** fejlesztőt számlál, és a legtöbb nyílt forráskódú projekt itt található.
 
-Ennek következtében egyre több vállalat követeli meg a Git és a GitHub használatát az új munkatársak részéről. Tehát ha fejlesztői munkára készülsz, ezek az alapvető készségek, amelyekkel rendelkezned kell.
+## Telepítés és beállítás
 
-**Ha még nem használod a Git-et és a GitHub-ot, az egyértelmű - használnod kellene!**
+### 1. Git telepítése
 
-### A Git és a GitHub közti különbségek
-
-A Git egy verziókezelő rendszer, amely kezeli és nyomon követi a kódodat. A GitHub viszont egy szolgáltatás, amely lehetővé teszi a kód fájljainak hostolását, megosztását és kezelését az interneten.
-
-A GitHub-nak a Git az alapja, és lehetővé teszi, hogy könnyen kezeld a Git repositoryaidat vagy mappáidat a platformján.
-
-Tehát a Git az effektív verziókezelő rendszer, és a GitHub a platform, ahol hostolod a kódodat.
-
-## Hogyan kezdj el használni a Git-et és a GitHub-ot?
-
-Amennyiben untatnak a technikai részletek és csak gyorsan el szeretnéd kezdeni a Git-et és a GitHub-ot használni, akkor ugorj a [GitHub Desktop](https://desktop.github.com/) részhez. Ez egy grafikus felület, amely lehetővé teszi, hogy könnyen kezeld a Git-et és a GitHub-ot.
-
-### 1. lépés - Telepítsd a Git-et
-
-A Git előre telepített a macOS újabb verzióin és a Linux alapú rendszereken, de bármikor ellenőrizheted, hogy telepítve van-e a Git a gépeden a terminálban.
-
-Ellenőrizd, hogy telepítve van-e a gépeden a Git az alábbi parancs segítségével:
+#### macOS
 
 ```bash
-git version
+# Homebrew-val (ajánlott)
+brew install git
+
+# Vagy Xcode Command Line Tools-zal
+xcode-select --install
 ```
 
-Amennyiben telepítve van a Git, akkor ki fogja írni például ezt: git version 2.37.1 (Apple Git-137.1)
+#### Windows
 
-Ha nincs telepítve, akkor könnyedén letöltheted és telepítheted innen: https://git-scm.com/download
+Töltsd le a telepítőt: [git-scm.com/download/win](https://git-scm.com/download/win)
 
-<BrowserWindow url="https://git-scm.com/">
-  <img src="/img/git-scm-com.png" alt="git-scm.com"></img>
-</BrowserWindow>{" "}
-
-Kövesd az szükséges telepítési útmutatót az oldalon, amíg a telepítés be nem fejeződik. Nyisd meg a parancssort, majd írd be a `git version` parancsot annak ellenőrzésére, hogy a Git sikeresen telepítve lett-e.
-
-### 2. lépés - Hozz létre egy saját GitHub fiókot
-
-A GitHub fiók létrehozásához szükséges néhány személyes adatot megadni, például a nevedet, e-mail címedet megerősíteni, felhasználónevet és jelszót beállítani, és a fiókod néhány perc alatt elkészül.
-
-[A GitHub.com-on itt tudsz fiókot létrehozni.](https://github.com/signup)
-
-<BrowserWindow url="https://github.com/">
-  <img src="/img/github-com.png" alt="github.com"></img>
-</BrowserWindow>{" "}
-
-Természetesen, ha már van GitHub fiókod, akkor lépj be és ugorj a következő lépésre.
-
-### 3. lépés - Csatlakoztasd a GitHub fiókodat a Git fiókodhoz.
-
-Ezt parancssorból fogod elvégezni. **Az egyszerűbb hitelesítés érdekében azonos email címet és felhasználónevet adj meg a fenti git beállítás és a GitHub-os regisztráció során.**
-
-Git felhasználóneved beállításához írd be a következő parancsot a terminálban:
-
-```bash
-git config --global user.name "FELHASZNÁLÓNEVED"
+Vagy használd a winget-et:
+```powershell
+winget install Git.Git
 ```
 
-Annak ellenőrzéséhez, hogy megfelelően beállítottad-e a Git felhasználóneved, írd be ezt:
+#### Linux (Ubuntu/Debian)
 
 ```bash
-git config --global user.name
+sudo apt update
+sudo apt install git
 ```
 
-Az eredménynek "FELHASZNÁLÓNEVED"-nek kell lennie.
-
-Git e-mail címed beállításához írd be a következő parancsot a terminálban:
+#### Ellenőrzés
 
 ```bash
-git config --global user.email "azemailcimed@gmail.com"
+git --version
+# Kimenet: git version 2.43.0
 ```
 
-Annak ellenőrzéséhez, hogy megfelelően beállítottad-e a Git e-mail címed, írd be ezt:
+### 2. GitHub fiók létrehozása
+
+1. Látogass el a [github.com/signup](https://github.com/signup) oldalra
+2. Add meg az email címed
+3. Válassz felhasználónevet és jelszót
+4. Erősítsd meg az email címed
+
+### 3. Git konfiguráció
+
+A GitHub fiókod összekapcsolása a Git-tel:
 
 ```bash
-git config --global user.email
+# Felhasználónév beállítása
+git config --global user.name "Felhasználóneved"
+
+# Email beállítása (ugyanaz, mint a GitHub-on)
+git config --global user.email "email@example.com"
+
+# Alapértelmezett branch neve
+git config --global init.defaultBranch main
+
+# Beállítások ellenőrzése
+git config --list
 ```
 
-Az eredménynek "azemailcimed@gmail.com"-nak kell lennie.
+### 4. SSH kulcs beállítása (ajánlott)
 
-### 4. lépés - Készíts egy kódot a számítógépeden
-
-![Készíts egy kódot a számítógépeden](/img/pelda-konyvtar.png)
-
-### 5. lépés - Hozz létre egy GitHub repository-t
-
-Kattints a jobb felső sarokban található + jelre, hogy létrehozz egy új repository-t. A repository-k olyanok, mint a kód mappáid az interneten.
-
-<BrowserWindow url="https://github.com/">
-  <img src="/img/uj-repo.png" alt="github.com"></img>
-</BrowserWindow>{" "}
-
-Ezután az alábbi oldalra kerülsz:
-
-<BrowserWindow url="https://github.com/new">
-  <img src="/img/uj-repo-oldal.png" alt="github.com"></img>
-</BrowserWindow>{" "}
-
-Add meg a repository nevét, és adj hozzá egy leírást (ez opcionális).
-
-Kattints a "**Create repository**" gombra a repository létrehozásához. Ezután az alábbi oldalra kerülsz:
-
-<BrowserWindow url="https://github.com/new">
-  <img src="/img/uj-repo-oldal-kesz.png" alt="github.com"></img>
-</BrowserWindow>{" "}
-
-### 6. lépés - Készíts egy új repository-t a számítógépeden
-
-A beépített kódszerkesztő terminálját használhatod a Git használatához, hogy feltöltsd a kódodat a GitHub-ra. A VSCode-ban a terminál megnyitásához használd a ctrl + shift + ' billentyűkombinációt.
-
-Írd be a következő parancsokat egyenként a terminálban. Nyomd meg az Enter billentyűt a folytatáshoz minden parancs után.
+Az SSH kulcs biztonságosabb és kényelmesebb, mint a jelszó használata.
 
 ```bash
-echo "# pelda" >> README.md
+# SSH kulcs generálása
+ssh-keygen -t ed25519 -C "email@example.com"
+
+# Kulcs hozzáadása az SSH agent-hez
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+# Publikus kulcs megjelenítése
+cat ~/.ssh/id_ed25519.pub
+```
+
+A megjelenő kulcsot másold ki, majd:
+
+1. GitHub → **Settings** → **SSH and GPG keys**
+2. Kattints a **New SSH key** gombra
+3. Illeszd be a kulcsot és mentsd
+
+Ellenőrzés:
+```bash
+ssh -T git@github.com
+# Kimenet: Hi username! You've successfully authenticated...
+```
+
+## Alapvető Git parancsok
+
+### Repository létrehozása
+
+```bash
+# Új repository inicializálása
 git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/trueqap/pelda.git
+
+# Meglévő repository klónozása
+git clone https://github.com/user/repo.git
+
+# SSH-val klónozás
+git clone git@github.com:user/repo.git
+```
+
+### Alapvető workflow
+
+```bash
+# 1. Állapot ellenőrzése
+git status
+
+# 2. Fájlok hozzáadása a staging area-hoz
+git add .                    # Minden fájl
+git add filename.php         # Egy fájl
+git add src/                 # Egy mappa
+
+# 3. Változások commitolása
+git commit -m "Add: új funkció leírása"
+
+# 4. Feltöltés GitHub-ra
+git push origin main
+```
+
+### Branch kezelés
+
+```bash
+# Branch-ek listázása
+git branch
+
+# Új branch létrehozása és váltás
+git checkout -b feature/new-feature
+
+# Branch váltás
+git checkout main
+
+# Branch törlése
+git branch -d feature/new-feature
+
+# Branch merge-elése
+git checkout main
+git merge feature/new-feature
+```
+
+### Távoli repository kezelés
+
+```bash
+# Remote hozzáadása
+git remote add origin git@github.com:user/repo.git
+
+# Remote-ok listázása
+git remote -v
+
+# Változások lekérése
+git pull origin main
+
+# Változások feltöltése
+git push origin main
+```
+
+### Hasznos parancsok
+
+```bash
+# Változások megtekintése
+git diff
+
+# Commit történet
+git log --oneline
+
+# Utolsó commit visszavonása (lokálisan)
+git reset --soft HEAD~1
+
+# Fájl visszaállítása
+git checkout -- filename.php
+
+# Stash (változások ideiglenes félretétele)
+git stash
+git stash pop
+```
+
+## Első projekt feltöltése GitHub-ra
+
+### 1. Hozz létre egy repository-t GitHub-on
+
+1. Kattints a **+** ikonra → **New repository**
+2. Add meg a repository nevét
+3. Válaszd ki: **Public** vagy **Private**
+4. **Ne** pipáld be a "Add a README file" opciót
+5. Kattints: **Create repository**
+
+### 2. Töltsd fel a projekted
+
+```bash
+# Navigálj a projekt mappájába
+cd /path/to/your/project
+
+# Git inicializálása
+git init
+
+# README létrehozása
+echo "# Projekt neve" >> README.md
+
+# Fájlok hozzáadása
+git add .
+
+# Első commit
+git commit -m "Initial commit"
+
+# GitHub remote hozzáadása
+git remote add origin git@github.com:username/repo-name.git
+
+# Feltöltés
 git push -u origin main
 ```
 
-:::note Megjegyzés
-A `git remote add origin https://github.com/trueqap/pelda.git` parancs a saját repositoryd linkjét fogja tartalmazni, és a neve a GitHub fiókod neve lesz.
-:::
-
-## A Git gyakran használt parancsai
-
-A Git több 100 paranccsal rendelkezik, amit szerencsére most nem fogok felsorolni. Most csak a leggyakoriabb parancsokat fogom bemutatni.
-
-### git init
-
-A **git init** parancs létrehoz egy új Git repositoryt a jelenlegi mappában. A Git segítségével nyomon követheted és kezelheted a mappában található fájlok változásait és verzióit.
-
-### git add
-
-A **git add** parancs hozzáadja a módosított fájlokat a következő commit-hoz. Ezután azok készen állnak a commit-ra.
-
-### git commit
-
-A git commit parancs elmenti a fájlok aktuális állapotát a helyi repositoryba, és hozzárendel egy egyedi azonosítót a változtatásokhoz. Ezenkívül lehetőséget ad arra, hogy egy üzenetet is adjunk a commit-hoz, amely részletesen leírja a változtatásokat.
-
-### git branch
-
-A git branch parancs létrehoz egy új ágat a projektben. Az ág lehetővé teszi, hogy párhuzamosan dolgozhassunk több funkcióval, majd ezeket a változtatásokat a fő ágba egyesítsük.
-
-### git remote add origin
-
-A git remote add origin parancs hozzáadja az upstream repository hivatkozását a lokális repository-hoz. Az "origin" nevet általában az upstream repository-hoz adott hivatkozásra használják.
-
-### git push
-
-A git push parancs feltölti a lokális repository-ban található változtatásokat az upstream repository-ba, így megoszthatjuk a munkánkat a csapat többi tagjával.
-
 ## GitHub Desktop
 
-A GitHub Desktop egy olyan alkalmazás, amely lehetővé teszi, hogy az GitHub-on egy grafikus felületen keresztül dolgozz, nem pedig a parancssor vagy a webböngésző segítségével. A GitHub Desktop arra ösztönz téged és csapatodat, hogy a Git és a GitHub legjobb gyakorlatait használva dolgozzatok együtt. Használhatod a GitHub Desktop-ot a legtöbb Git parancs végrehajtására, és vizuális megerősítést kaphatsz a változásokról. A GitHub Desktop segítségével push-olhatsz, pull-olhatsz és klónozhatsz távoli repositorykat, és használhatsz együttműködési eszközöket, mint például az attribúcióhoz tartozó kötelezettségvállalások és a pull requestek létrehozása.
+A [GitHub Desktop](https://desktop.github.com/) egy grafikus alkalmazás, amely megkönnyíti a Git használatát.
 
-![GitHub Desktop](/img/github-0.png)
+### Telepítés
 
-Ez az útmutató segít neked abban, hogy elkezd használni a GitHub Desktop alkalmazást. Az útmutató bemutatja, hogyan kell telepíteni és beállítani a programot, hogyan kell hitelesíteni a fiókodat, és hogyan lehet alapvető beállításokat végezni. Emellett megtudhatod, hogyan kell kezelni projekteket a GitHub Desktop segítségével, és hogyan lehet kapcsolódni a távoli tárolókhoz. Ha végigcsinálod az útmutatót, akkor már képes leszel együttműködni projekteken másokkal.
+1. Töltsd le: [desktop.github.com](https://desktop.github.com/)
+2. Telepítsd az alkalmazást
+3. Jelentkezz be a GitHub fiókod
 
-:::tip Tudtad?
-A GitHub Desktop egy nyílt forrású alkalmazás, amelyet a GitHub fejleszt. A GitHub Desktop egy Electron alapú alkalmazás, amely a Node.js és a Chromium technológiákat használja. Itt találod a forráskódját: https://github.com/desktop/desktop
-:::
+### Főbb funkciók
 
-### 1. lépés - Letöltés
+| Funkció | Leírás |
+|---------|--------|
+| **Clone** | Repository letöltése |
+| **Commit** | Változások mentése |
+| **Push/Pull** | Szinkronizálás GitHub-bal |
+| **Branch** | Branch-ek kezelése |
+| **History** | Commit történet megtekintése |
+| **Diff** | Változások vizuális összehasonlítása |
 
-A GitHub Desktop letöltéséhez kattints a [https://desktop.github.com/](https://desktop.github.com/) linkre.
+### Használat
 
-### 2. lépés - Telepítés és hitelesítés
+1. **Repository klónozása**: File → Clone repository
+2. **Változások commitolása**: Írj commit üzenetet és kattints a Commit gombra
+3. **Push**: Kattints a Push origin gombra
+4. **Pull**: Kattints a Fetch origin, majd Pull gombra
 
-A GitHub Desktop telepíthető bármelyik támogatott operációs rendszerre. Például: macOS, Windows.
+## Commit üzenet konvenciók
 
-Miután telepítetted a GitHub Desktop-ot, hitelesítened kell az alkalmazást a GitHub fiókoddal. A hitelesítés lehetővé teszi a távoli tárolókhoz való csatlakozást a GitHub platformon.
+Használj tiszta, leíró commit üzeneteket:
 
-Mielőtt hitelesíthetnéd magad a GitHub felületen, szükséged lesz egy fiókra. További információkért a fiók létrehozásáról lásd a "[Hozz létre egy saját GitHub fiókot](#2-lépés---hozz-létre-egy-saját-github-fiókot)" című részt.
+```bash
+# Formátum
+<típus>: <rövid leírás>
 
-#### Hitelesítés
+# Típusok
+feat:     Új funkció
+fix:      Hibajavítás
+docs:     Dokumentáció
+style:    Formázás (nem változtat kódon)
+refactor: Refaktorálás
+test:     Tesztek
+chore:    Build, konfiguráció
 
-Indítsd el a GitHub Desktop alkalmazást, és kattints a **Sign in to GitHub.com** gombra.
+# Példák
+git commit -m "feat: Add user authentication"
+git commit -m "fix: Resolve login page redirect issue"
+git commit -m "docs: Update README with installation steps"
+```
 
-![Sign in to GitHub.com](/img/github-1.png)
+## .gitignore
 
-Ezután átugrik a GitHub felületére, ahol hitelesítened kell magad. Kattints az **Authorize desktop** gombra.
+A `.gitignore` fájl meghatározza, mely fájlokat ne kövesse a Git.
 
-![Hitelesítés a GitHub felületén](/img/github-2.png)
+### WordPress projekt .gitignore
 
-### 3. lépés - Kész
+```gitignore
+# WordPress core (ha Composer-rel kezeled)
+/wp/
 
-Ha sikeresen hitelesítetted magad, akkor a GitHub Desktop alkalmazás megjeleníti a **Welcome to GitHub Desktop** ablakot.
+# Uploads
+wp-content/uploads/
 
-![Elkészültél](/img/github-3.png)
+# Cache
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
 
-Innentől kezdve már képes vagy a GitHub Desktop alkalmazással dolgozni, és csatlakozni a távoli repositorykhoz.
+# Konfigurációs fájlok
+wp-config.php
+.env
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Build
+/dist/
+*.min.js
+*.min.css
+
+# Logs
+*.log
+debug.log
+```
+
+## Gyakori hibák és megoldások
+
+### "Permission denied (publickey)"
+
+```bash
+# SSH kulcs ellenőrzése
+ssh -T git@github.com
+
+# Ha nincs kulcs, generálj újat
+ssh-keygen -t ed25519 -C "email@example.com"
+```
+
+### "Updates were rejected"
+
+```bash
+# Először pull-olj
+git pull origin main --rebase
+
+# Majd push
+git push origin main
+```
+
+### "Merge conflict"
+
+```bash
+# 1. Nyisd meg a konfliktusok fájlokat
+# 2. Keresd meg a <<<<<<< és >>>>>>> jelöléseket
+# 3. Szerkeszd manuálisan
+# 4. Add hozzá és commitold
+
+git add .
+git commit -m "fix: Resolve merge conflicts"
+```
+
+### Rossz commit visszavonása
+
+```bash
+# Utolsó commit visszavonása (változások megmaradnak)
+git reset --soft HEAD~1
+
+# Utolsó commit törlése (változások is törlődnek!)
+git reset --hard HEAD~1
+```
+
+## VS Code integráció
+
+A VS Code beépített Git támogatással rendelkezik:
+
+1. **Source Control panel** (Ctrl+Shift+G)
+2. **Git Graph** extension a vizuális történethez
+3. **GitLens** extension haladó funkciókhoz
+
+### Hasznos VS Code Git műveletek
+
+- **Stage Changes**: + ikon a fájl mellett
+- **Commit**: ✓ ikon a tetején
+- **Push/Pull**: ... menü → Push/Pull
+- **Branch váltás**: Bal alsó sarokban
+
+## Források
+
+- [Git hivatalos dokumentáció](https://git-scm.com/doc)
+- [GitHub Docs](https://docs.github.com)
+- [GitHub Skills](https://skills.github.com/) - Interaktív tanulás
+- [Pro Git könyv](https://git-scm.com/book/en/v2) - Ingyenes
+- [GitHub Desktop](https://desktop.github.com/)

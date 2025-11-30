@@ -11,4 +11,4 @@ Amennyiben minden rendben van és az adatok helyesek, vedd fel a kapcsolatot a p
 
 :::tip
 
-Mielőtt számlajavítást kérsz, győződj meg róla, hogy a fiókodban szereplő számlási adatok helyesek. Ezzel nagyságrendekkel gyorsabb lesz a feldolgozás. Amennyiben a fiókodban szereplő adatoktól eltérő számlázási adatokat szeretnél módosítani, akkor mindenképpen küldd el nekünk a számlázási adatokat, hogy gyorsabban tudjuk feldolgozni a kérelmedet.
+Mielőtt számlajavítást kérsz, győződj meg róla, hogy a fiókodban szereplő számlázási adatok helyesek. Ezzel nagyságrendekkel gyorsabb lesz a feldolgozás. Amennyiben a fiókodban szereplő adatoktól eltérő számlázási adatokat szeretnél módosítani, akkor mindenképpen küldd el nekünk a számlázási adatokat, hogy gyorsabban tudjuk feldolgozni a kérelmedet.

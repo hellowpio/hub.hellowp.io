@@ -1,59 +1,228 @@
 ---
 title: WooCommerce ajánlott tárhelybeállítások
-description: WooCommerce ajánlott tárhelybeállítások
+description: WooCommerce webáruház rendszerkövetelményei és ajánlott szerver beállítások 2025-ben.
 keywords:
-  - hibaelharitas
+  - woocommerce
+  - webáruház
+  - tárhelybeállítások
+  - php beállítások
+  - e-commerce
 sidebar_label: WooCommerce
 sidebar_position: 3
 ---
 
-import DocCardList from "@theme/DocCardList";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-shop text-primary" /> WooCommerce ajánlott tárhelybeállítások
 
-Ezen az oldalon megpróbáljuk összefoglalni a rendszerkövetelményeket, amelyek szükségesek a WooCommerce használatához. Ha nem vagy biztos benne, hogy a szerver támogatja-e ezt, kérdezd meg a szolgáltatódat.
+Ezen az oldalon összefoglaljuk a rendszerkövetelményeket, amelyek szükségesek a WooCommerce webáruház megfelelő működéséhez. Ha nem vagy biztos benne, hogy a szervered támogatja-e ezeket, kérdezd meg a tárhelyszolgáltatódat.
 
-### A WooCommerce megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+## PHP beállítások
 
-```bash php.ini
+A WooCommerce megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```ini title="php.ini"
+upload_max_filesize = 128M
+post_max_size = 256M
+max_execution_time = 300
+max_input_time = 300
+max_input_vars = 10000
+memory_limit = 512M
+```
+
+### Beállítás .htaccess fájlban
+
+Ha nincs hozzáférésed a php.ini fájlhoz, a `.htaccess` fájlban is megadhatod:
+
+```apache title=".htaccess"
 php_value upload_max_filesize 128M
 php_value post_max_size 256M
 php_value max_execution_time 300
 php_value max_input_time 300
 php_value max_input_vars 10000
-php_value memory_limit 256M
+php_value memory_limit 512M
 ```
 
-### Bizonytalan vagy? Nem tudod, hogy ezt hogy kell beállítani a tárhelyeden?
+:::tip Tipp
+Nagy termékkatalógus (1000+ termék) vagy sok variáció esetén növeld a `max_input_vars` értékét 20000-re.
+:::
 
-Semmi gond, a szolgáltatód tud segíteni neked. Küldd el nekik az alábbi levelet:
+### Bizonytalan vagy? Nem tudod, hogy ezt hogyan kell beállítani?
+
+Semmi gond, a szolgáltatód tud segíteni. Küldd el nekik az alábbi levelet:
 
 > Tisztelt Szolgáltatóm,
 >
-> Legyenek kedvesek a domain.hu (írd át a sajátodra) tárhelyhez vonatkozó PHP limiteket az alábbiakra állítani nekem:<br/><br/>
-> php_value upload_max_filesize 128M <br/>
-> php_value post_max_size 256M<br/>
-> php_value max_execution_time 300<br/>
-> php_value max_input_time 300<br/>
-> php_value max_input_vars 10000<br/>
-> php_value memory_limit 256M<br/>
+> Kérem, állítsák be a domain.hu *(írd át a sajátodra)* tárhelyhez tartozó PHP limiteket az alábbiakra:
 >
-> Indoklás: a WooCommerce webáruházrendszer megfelelő működéséhez a fenti beállításokra van szükségem.
+> - upload_max_filesize: 128M
+> - post_max_size: 256M
+> - max_execution_time: 300
+> - max_input_time: 300
+> - max_input_vars: 10000
+> - memory_limit: 512M
 >
-> Köszönöm!<br/>
+> Indoklás: A WooCommerce webáruház megfelelő működéséhez ezekre a beállításokra van szükségem.
+>
+> Köszönöm!
 > Üdvözlettel: XY
 
 ## WordPress verzió
 
-WordPress 6.0 vagy újabb verzióval fog működni a WooCommerce megfelelően.
+**WordPress 6.4 vagy újabb** verzió szükséges a WooCommerce legújabb verziójához.
+
+:::info WooCommerce 9.x
+A WooCommerce 9.0+ verzió WordPress 6.4 vagy újabb verziót igényel. A régebbi WooCommerce verziók támogatása korlátozott.
+:::
 
 ## PHP verzió
 
-**PHP 7.4 vagy újabb verzióval kell rendelkezni, kivéve a PHP 8.1-et**
+**PHP 8.1 vagy újabb** verzió ajánlott.
 
-Azt javasoljuk, hogy minimum PHP 7.4-en fusson az oldal. Az újabb verziók alatt is tökéletesen működik, kivéve az “új” 8.1-et, amit jelenleg még nem támogat 100%-osan.
+| PHP verzió | Támogatás |
+|------------|-----------|
+| PHP 8.3 | Teljes támogatás |
+| PHP 8.2 | Teljes támogatás (ajánlott) |
+| PHP 8.1 | Teljes támogatás |
+| PHP 8.0 | Támogatott, de nem ajánlott |
+| PHP 7.4 | Nem támogatott |
+
+:::warning Fontos
+A WooCommerce 8.3+ verzió **minimum PHP 7.4**-et igényel, de a **PHP 8.2** használata ajánlott a legjobb teljesítményért és biztonságért.
+:::
 
 ## Adatbázis
 
-MySQL 5.6 verzió vagy újabb, ill. MariaDB 10.0 verzió vagy újabb szükséges a megfelelő futáshoz. Ez igazából “alapértelmezett”, maga a WordPress futásához is erre van szükség, szóval a tárhelyek 99%-ban tökélet lesz.
+- **MySQL 8.0** vagy újabb (ajánlott)
+- **MySQL 5.7** minimum
+- **MariaDB 10.4** vagy újabb
+
+:::tip Adatbázis optimalizálás
+Nagy webáruházaknál fontos az adatbázis optimalizálás:
+- Használj InnoDB táblakezelőt
+- Állíts be megfelelő `innodb_buffer_pool_size` értéket
+- Rendszeresen optimalizáld a táblákat
+:::
+
+## Webszerver
+
+A WooCommerce az alábbi webszervereken működik:
+
+- **Apache 2.4** (mod_rewrite szükséges)
+- **Nginx** (ajánlott nagy forgalmú áruházakhoz)
+- **LiteSpeed** (kiváló teljesítmény)
+
+## Memória követelmények
+
+| Áruház mérete | Minimum memória | Ajánlott memória |
+|---------------|-----------------|------------------|
+| Kis (< 100 termék) | 256 MB | 384 MB |
+| Közepes (100-1000 termék) | 384 MB | 512 MB |
+| Nagy (1000+ termék) | 512 MB | 768 MB |
+| Enterprise (10000+ termék) | 768 MB | 1024 MB+ |
+
+### Memória beállítása wp-config.php-ban
+
+```php title="wp-config.php"
+define('WP_MEMORY_LIMIT', '512M');
+```
+
+## PHP bővítmények
+
+A WooCommerce működéséhez szükséges PHP bővítmények:
+
+**Kötelező:**
+- curl
+- gd vagy imagick
+- intl
+- json
+- mbstring
+- openssl
+- xml
+- zip
+
+**Ajánlott:**
+- opcache (teljesítmény)
+- sodium (biztonság)
+- iconv
+
+## HTTPS / SSL
+
+:::caution Kötelező
+A WooCommerce webáruházaknak **kötelező** HTTPS-t használniuk! Ez a PCI-DSS megfelelőséghez és a vásárlói bizalom építéséhez szükséges.
+:::
+
+Győződj meg róla, hogy:
+- Érvényes SSL tanúsítvány van telepítve
+- Az oldal HTTPS-re van átirányítva
+- A "Force Secure Checkout" opció be van kapcsolva
+
+## Cron beállítások
+
+A WooCommerce rendszeres háttérfeladatokat futtat (email küldés, készlet frissítés, stb.). Az alapértelmezett WP-Cron helyett használj szerver oldali cront:
+
+```php title="wp-config.php"
+define('DISABLE_WP_CRON', true);
+```
+
+```bash title="Crontab bejegyzés"
+*/5 * * * * wget -q -O - https://example.com/wp-cron.php?doing_wp_cron >/dev/null 2>&1
+```
+
+## WooCommerce rendszerállapot
+
+A WooCommerce beépített rendszerállapot oldallal rendelkezik:
+
+1. Menj a **WooCommerce → Állapot** menüpontra
+2. Ellenőrizd a piros és narancssárga jelzéseket
+3. A "Rendszerállapot jelentés másolása" gombbal kimásolhatod az információkat
+
+## Gyorsítótár beállítások
+
+A WooCommerce kompatibilis cache megoldások:
+
+- **WP Rocket** (WooCommerce integráció)
+- **LiteSpeed Cache** (WooCommerce támogatás)
+- **W3 Total Cache**
+- **Redis Object Cache** (adatbázis cache)
+
+:::caution Fontos cache beállítások
+- Kapcsold ki a cache-t a kosár, pénztár és fiók oldalakon
+- Ne cache-elj a bejelentkezett felhasználóknak
+- Ajax kérések kizárása a cache-ből
+- Cookie-alapú kizárások beállítása (`woocommerce_*`, `wp_woocommerce_*`)
+:::
+
+## Fizetési átjárók
+
+Győződj meg róla, hogy a szervered támogatja a fizetési szolgáltatók követelményeit:
+
+| Szolgáltató | Követelmény |
+|-------------|-------------|
+| Stripe | TLS 1.2+, curl |
+| PayPal | TLS 1.2+, curl |
+| SimplePay | TLS 1.2+, curl |
+| Barion | TLS 1.2+, curl |
+| OTP | TLS 1.2+, SOAP |
+
+## Ajánlott tárhely típusok
+
+| Áruház típusa | Ajánlott tárhely |
+|---------------|------------------|
+| Induló áruház | Minőségi osztott tárhely |
+| Növekvő áruház | VPS vagy Cloud hosting |
+| Nagy forgalmú | Dedikált szerver vagy Managed WooCommerce |
+
+:::tip WooCommerce optimalizált tárhely
+Keress olyan szolgáltatót, aki WooCommerce-re optimalizált tárhelyet kínál. Ezek általában tartalmazzák:
+- Előre beállított PHP limiteket
+- Redis vagy Memcached cache-t
+- Automatikus biztonsági mentést
+- Staging környezetet
+:::
+
+## Források
+
+- [WooCommerce rendszerkövetelmények](https://woocommerce.com/document/server-requirements/)
+- [WooCommerce dokumentáció](https://woocommerce.com/documentation/)
+- [WooCommerce GitHub](https://github.com/woocommerce/woocommerce)

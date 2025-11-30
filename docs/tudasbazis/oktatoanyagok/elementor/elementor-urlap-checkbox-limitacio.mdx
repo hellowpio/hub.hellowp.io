@@ -2,7 +2,10 @@
 title: Elementor űrlap - Checkbox limitáció
 description: Elementor űrlap - hogyan állítsuk be, hogy csak limitált számban tudjanak a látogatók bejelölni Checkboxokat
 keywords:
-  - github
+  - elementor
+  - űrlap
+  - checkbox
+  - jQuery
 sidebar_label: Elementor űrlap 
 sidebar_position: 3
 ---
@@ -16,10 +19,10 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 Előfordul, hogy arra van szükségünk, limitáljuk a checkbox (avagy jelölőnégyzet)-ben, hogy maximum mennyit tud a felhasználó bejelölni.
 
 ## Előkészületek
-Először is, az Elementor űrlap, egy Pro funkció, ami azt jelenti, hogy az ingyenes verzióban nem elérhető. Ahhoz hogy ezt a feladatot eltudjuk készíteni
-egy kiegészítő kódra, jQuery-re lesz szükségünk. Mivel Elementor Pro-ról van szó, szerencsére van egy kifejezetten hasznos kiegészítés, amit 
-Custom Code nak hívnak. Ezt a **WordPress Admin - Elementor - Custom Code** menüpontban találod meg. Az előkészület első lépése, hogy a Custom Code  menüpontban
-létrehozunk egy új "Kódot".
+Először is, az Elementor űrlap, egy Pro funkció, ami azt jelenti, hogy az ingyenes verzióban nem elérhető. Ahhoz, hogy ezt a feladatot el tudjuk készíteni,
+egy kiegészítő kódra, jQuery-re lesz szükségünk. Mivel Elementor Pro-ról van szó, szerencsére van egy kifejezetten hasznos kiegészítés, amit
+Custom Code-nak hívnak. Ezt a **WordPress Admin → Elementor → Custom Code** menüpontban találod meg. Az előkészület első lépése, hogy a Custom Code menüpontban
+létrehozunk egy új „Kódot".
 
 ## Új Custom Code létrehozása
 
@@ -32,7 +35,7 @@ Minél kisebb számot írsz be, úgy sorolja előrébb a kódunk futását.
 
 :::
 
-Ide később visszatérünk, mivel maga a kódot ide kell bemásolnunk. Mindenképpen hagyd nyitva, hogy könnyedén áttudj ide navigálni, hogy bemásold a kódot.
+Ide később visszatérünk, mivel maga a kódot ide kell bemásolnunk. Mindenképpen hagyd nyitva, hogy könnyedén át tudj ide navigálni, hogy bemásold a kódot.
 
 ## Űrlap létrehozása
 *Ha már meglévő űrlappal akarsz dolgozni, nem kell újat használnod*  
@@ -45,13 +48,13 @@ fülre. Ott látni fogsz egy ID és egy rövidkód mezőt. Az ID mezőbe másold
   <img src="/img/elementor-urlapkep.png" alt="Elementor Űrlap"></img>
 </BrowserWindow>
 
-Mielőtt rátérnénk a kódra, az Űrlapodnak megkell adnod, egy egyedi azonosítót. Erre azért lesz szükség, hogy a kód csak akkor fusson végig, 
-ha a DOM ban valóban egyezést talál. Ezt megtudod tenni az **Űrlap Widget - Tartalom - További lehetőségek** résznél. A Form ID részbe másold be az alábbit:
+Mielőtt rátérnénk a kódra, az űrlapodnak meg kell adnod egy egyedi azonosítót. Erre azért lesz szükség, hogy a kód csak akkor fusson végig,
+ha a DOM-ban valóban egyezést talál. Ezt meg tudod tenni az **Űrlap Widget → Tartalom → További lehetőségek** résznél. A Form ID részbe másold be az alábbit:
 **myform1**
 
 ## Kód alkalmazása
-Másold be az alábbi kódot a Custom Code-ba amit korábban létrehoztunk, majd kattints a **Közzététel** gombra. Itt egy hasonló ablak fog megjelenni
-mint amikor egy sablonrészt készítesz. Az itt megadott kondíció megegyezik azzal, mintha egy fejlécet készítenél, vagy Láblécet-t. Ha az űrlapod egyetlen
+Másold be az alábbi kódot a Custom Code-ba, amit korábban létrehoztunk, majd kattints a **Közzététel** gombra. Itt egy hasonló ablak fog megjelenni
+mint amikor egy sablonrészt készítesz. Az itt megadott kondíció megegyezik azzal, mintha egy fejlécet készítenél, vagy láblécet. Ha az űrlapod egyetlen
 oldalon lesz elérhető, megadhatod azt, de választhatod az Egész Oldal opciót is, amit alapértelmezetten felajánl.
 
 ```js {2,6,25}
@@ -91,8 +94,8 @@ jQuery(document).ready(function($) {
 
 ```
 
-**A var maxChecked = 2;** résznél tudod átírni, mennyi legyen a maximális checkbox amit betudnak jelölni. A kód lentebbi részében pedig átírhatod, hogy milyen
-üzenet jelenjen meg, ha elérik a limitet. Mivel ez a szöveg egy egyedi azonosítót is kap mellé **#warning-text**  Hivatkozhatsz rá CSS segítségével 
+**A var maxChecked = 2;** résznél tudod átírni, mennyi legyen a maximális checkbox, amit be tudnak jelölni. A kód lentebbi részében pedig átírhatod, hogy milyen
+üzenet jelenjen meg, ha elérik a limitet. Mivel ez a szöveg egy egyedi azonosítót is kap mellé **#warning-text**, hivatkozhatsz rá CSS segítségével 
 és formázhatod a szöveg megjelenését.
 
 ```js

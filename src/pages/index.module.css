@@ -1,24 +1,641 @@
 /**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
+ * HelloWP Hub - Modern Homepage Styles
  */
 
-.heroBanner {
-  padding: 4rem 0;
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+  padding: 4rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1d21 0%, #22313e 50%, #1a2530 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(35, 209, 96, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(50, 115, 220, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.heroText {
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.heroTitleAccent {
+  background: linear-gradient(135deg, #23d160 0%, #20c997 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: #a1a1a8;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #23d160 0%, #1db954 100%);
+  border: none;
+  color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(35, 209, 96, 0.3);
+}
+
+.primaryButton:hover {
+  background: linear-gradient(135deg, #1db954 0%, #1aa34a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(35, 209, 96, 0.4);
+  color: #fff !important;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  color: #fff !important;
+}
+
+/* Hero Card (Terminal Style) */
+.heroVisual {
+  display: flex;
+  justify-content: center;
+}
+
+/* Hero HelloIMG Highlight Card */
+.heroHighlight {
+  background: linear-gradient(135deg, #2a2a2e 0%, #1e1e22 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 380px;
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  border: 2px solid rgba(255, 212, 59, 0.2);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroHighlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd43b 0%, #ffb800 100%);
 }
 
-.buttons {
+.heroHighlight:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 212, 59, 0.5);
+  box-shadow: 0 20px 50px rgba(255, 212, 59, 0.15);
+}
+
+.heroHighlightBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #ffd43b 0%, #ffb800 100%);
+  color: #1a1a1a;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.heroHighlightIcon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 212, 59, 0.1);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2rem;
+  color: #ffd43b;
+  margin-bottom: 1rem;
 }
 
+.heroHighlightTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.25rem 0;
+}
+
+.heroHighlightDesc {
+  font-size: 0.95rem;
+  color: #a1a1a8;
+  margin: 0 0 1.25rem 0;
+}
+
+.heroHighlightList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  text-align: left;
+  width: 100%;
+}
+
+.heroHighlightList li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #c9c9c9;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.heroHighlightList li:last-child {
+  border-bottom: none;
+}
+
+.heroHighlightList li svg {
+  color: #23d160;
+  font-size: 0.8rem;
+}
+
+.heroHighlightAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffd43b;
+  transition: gap 0.2s ease;
+}
+
+.heroHighlight:hover .heroHighlightAction {
+  gap: 0.75rem;
+}
+
+/* ============================================
+   FEATURES SECTION
+   ============================================ */
+
+.features {
+  padding: 5rem 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.featureCard {
+  background: var(--ifm-card-background-color);
+  border-radius: 12px;
+  padding: 2rem;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--ifm-color-primary);
+}
+
+.featureIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.featureDescription {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.featureLink {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.2s ease;
+}
+
+.featureCard:hover .featureLink {
+  gap: 0.75rem;
+}
+
+/* ============================================
+   RESOURCES SECTION
+   ============================================ */
+
+.resources {
+  padding: 5rem 0;
+  background: var(--ifm-color-emphasis-100);
+}
+
+html[data-theme="dark"] .resources {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.resourcesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.resourceCard {
+  background: var(--ifm-card-background-color);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.resourceCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.resourceIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #3273dc 0%, #209cee 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.resourceContent {
+  flex: 1;
+}
+
+.resourceTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.resourceDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+}
+
+.resourceArrow {
+  color: var(--ifm-color-emphasis-400);
+  transition: all 0.3s ease;
+}
+
+.resourceCard:hover .resourceArrow {
+  color: var(--ifm-color-primary);
+  transform: translateX(4px);
+}
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+
+.faq {
+  padding: 5rem 0;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.faqCard {
+  background: var(--ifm-card-background-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.faqCard:hover {
+  transform: translateY(-4px);
+  border-color: #23d160;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.faqIcon {
+  width: 44px;
+  height: 44px;
+  background: rgba(35, 209, 96, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #23d160;
+  margin-bottom: 1rem;
+}
+
+.faqTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.faqDescription {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.cta {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #5865f2 0%, #7289da 100%);
+  text-align: center;
+}
+
+.ctaContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  background: #fff !important;
+  color: #5865f2 !important;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  color: #5865f2 !important;
+}
+
+.ctaButtonSecondary {
+  background: transparent !important;
+  color: #fff !important;
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ctaButtonSecondary:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #fff !important;
+  transform: translateY(-2px);
+  color: #fff !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media screen and (max-width: 1200px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .hero {
+    padding: 3rem 0 4rem;
+  }
+
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .heroText {
+    max-width: 100%;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroButtons {
+    justify-content: center;
+  }
+
+  .heroHighlight {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faqGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resourcesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resourceCard {
+    padding: 1.25rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.75rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+
+  .heroTitle {
+    font-size: 1.75rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .heroHighlight {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .heroHighlightIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+  }
+
+  .heroHighlightTitle {
+    font-size: 1.25rem;
+  }
+
+  .features,
+  .resources,
+  .faq,
+  .cta {
+    padding: 3rem 0;
+  }
+}

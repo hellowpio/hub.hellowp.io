@@ -1,22 +1,39 @@
 ---
 title: Kadence ajánlott tárhelybeállítások
-description: Kadence ajánlott tárhelybeállítások
+description: Kadence téma és Kadence Blocks rendszerkövetelményei és ajánlott szerver beállítások 2025-ben.
 keywords:
-  - hibaelharitas
+  - kadence
+  - kadence blocks
+  - tárhelybeállítások
+  - php beállítások
 sidebar_label: Kadence
 sidebar_position: 3
 ---
 
-import DocCardList from "@theme/DocCardList";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-wind text-primary" /> Kadence ajánlott tárhelybeállítások
 
-Ezen az oldalon megpróbáljuk összefoglalni a rendszerkövetelményeket, amelyek szükségesek az Kadence használatához. Ha nem vagy biztos benne, hogy a szerver támogatja-e ezt, kérdezd meg a szolgáltatódat.
+Ezen az oldalon összefoglaljuk a rendszerkövetelményeket, amelyek szükségesek a Kadence téma és Kadence Blocks megfelelő működéséhez. Ha nem vagy biztos benne, hogy a szervered támogatja-e ezeket, kérdezd meg a tárhelyszolgáltatódat.
 
-### Az Kadence megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+## PHP beállítások
 
-```bash php.ini
+A Kadence megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```ini title="php.ini"
+upload_max_filesize = 128M
+post_max_size = 128M
+max_execution_time = 300
+max_input_time = 300
+max_input_vars = 10000
+memory_limit = 256M
+```
+
+### Beállítás .htaccess fájlban
+
+Ha nincs hozzáférésed a php.ini fájlhoz, a `.htaccess` fájlban is megadhatod:
+
+```apache title=".htaccess"
 php_value upload_max_filesize 128M
 php_value post_max_size 128M
 php_value max_execution_time 300
@@ -25,35 +42,140 @@ php_value max_input_vars 10000
 php_value memory_limit 256M
 ```
 
-### Bizonytalan vagy? Nem tudod, hogy ezt hogy kell beállítani a tárhelyeden?
+:::tip Tipp
+A Kadence Blocks könnyű és optimalizált, így alacsonyabb erőforrásigényű, mint más page builderek. A fenti beállítások a legtöbb esetben elegendőek.
+:::
 
-Semmi gond, a szolgáltatód tud segíteni neked. Küldd el nekik az alábbi levelet:
+### Bizonytalan vagy? Nem tudod, hogy ezt hogyan kell beállítani?
+
+Semmi gond, a szolgáltatód tud segíteni. Küldd el nekik az alábbi levelet:
 
 > Tisztelt Szolgáltatóm,
 >
-> Legyenek kedvesek a domain.hu (írd át a sajátodra) tárhelyhez vonatkozó PHP limiteket az alábbiakra állítani nekem:<br/><br/>
-> php_value upload_max_filesize 128M <br/>
-> php_value post_max_size 128M<br/>
-> php_value max_execution_time 300<br/>
-> php_value max_input_time 300<br/>
-> php_value max_input_vars 10000<br/>
-> php_value memory_limit 256M<br/>
+> Kérem, állítsák be a domain.hu *(írd át a sajátodra)* tárhelyhez tartozó PHP limiteket az alábbiakra:
 >
-> Indoklás: a WordPress/Kadence megfelelő működéséhez a fenti beállításokra van szükségem.
+> - upload_max_filesize: 128M
+> - post_max_size: 128M
+> - max_execution_time: 300
+> - max_input_time: 300
+> - max_input_vars: 10000
+> - memory_limit: 256M
 >
-> Köszönöm!<br/>
+> Indoklás: A WordPress és Kadence megfelelő működéséhez ezekre a beállításokra van szükségem.
+>
+> Köszönöm!
 > Üdvözlettel: XY
 
 ## WordPress verzió
 
-WordPress 6.0 vagy újabb verzióval fog működni az Kadence megfelelően.
+**WordPress 6.4 vagy újabb** verzió szükséges a Kadence legújabb verziójához.
+
+:::info Blokk szerkesztő
+A Kadence Blocks a WordPress natív blokk szerkesztőjét (Gutenberg) bővíti ki. A legjobb élményért mindig a legújabb WordPress verziót használd.
+:::
 
 ## PHP verzió
 
-**PHP 7.4 vagy újabb verzióval kell rendelkezni, kivéve a PHP 8.1-et**
+**PHP 8.1 vagy újabb** verzió ajánlott.
 
-Azt javasoljuk, hogy minimum PHP 7.4-en fusson az oldal. Az újabb verziók alatt is tökéletesen működik, kivéve az “új” 8.1-et, amit jelenleg még nem támogat 100%-osan.
+| PHP verzió | Támogatás |
+|------------|-----------|
+| PHP 8.3 | Teljes támogatás |
+| PHP 8.2 | Teljes támogatás |
+| PHP 8.1 | Teljes támogatás |
+| PHP 8.0 | Támogatott |
+| PHP 7.4 | Elavult, frissítés szükséges |
+
+:::warning Fontos
+A PHP 7.4 biztonsági támogatása 2022 novemberében megszűnt. Erősen javasolt a PHP 8.1 vagy újabb verzióra való frissítés.
+:::
 
 ## Adatbázis
 
-MySQL 5.6 verzió vagy újabb, ill. MariaDB 10.0 verzió vagy újabb szükséges a megfelelő futáshoz. Ez igazából “alapértelmezett”, maga a WordPress futásához is erre van szükség, szóval a tárhelyek 99%-ban tökélet lesz.
+- **MySQL 8.0** vagy újabb (ajánlott)
+- **MySQL 5.7** minimum
+- **MariaDB 10.4** vagy újabb
+
+## Webszerver
+
+A Kadence az alábbi webszervereken működik:
+
+- **Apache 2.4** (mod_rewrite szükséges)
+- **Nginx**
+- **LiteSpeed**
+
+## Kadence termékek
+
+A Kadence ökoszisztéma több terméket tartalmaz:
+
+| Termék | Leírás |
+|--------|--------|
+| **Kadence Theme** | Gyors, könnyű WordPress téma |
+| **Kadence Blocks** | Gutenberg blokk bővítmény |
+| **Kadence Starter Templates** | Előre elkészített sablonok |
+| **Kadence WooCommerce Email Designer** | WooCommerce email testreszabás |
+| **Kadence Conversions** | Popup és banner készítő |
+
+## Memória követelmények
+
+| Konfiguráció | Ajánlott memória |
+|--------------|------------------|
+| Kadence Theme + Blocks | 256 MB |
+| + WooCommerce | 384 MB |
+| + Kadence Shop Kit | 512 MB |
+
+### Memória beállítása wp-config.php-ban
+
+```php title="wp-config.php"
+define('WP_MEMORY_LIMIT', '256M');
+```
+
+## PHP bővítmények
+
+Az alábbi PHP bővítmények szükségesek:
+
+- curl
+- dom
+- gd vagy imagick
+- json
+- mbstring
+- xml
+- zip
+
+## Teljesítmény optimalizálás
+
+A Kadence téma és blokkok teljesítményorientáltak:
+
+- **Dinamikus CSS betöltés** - Csak a használt stílusok töltődnek be
+- **Dinamikus blokk betöltés** - Csak a használt blokkok JavaScript-je töltődik
+- **Natív lazy loading** - Képek késleltetett betöltése
+- **Preload támogatás** - Kritikus erőforrások előtöltése
+
+:::tip Gyorsítótár
+A Kadence kiválóan működik cache pluginokkal:
+- WP Rocket
+- LiteSpeed Cache
+- W3 Total Cache
+- FlyingPress
+:::
+
+## Starter Templates importálás
+
+A Kadence Starter Templates importálásához:
+
+- Stabil internetkapcsolat szükséges
+- `max_execution_time` legalább 300 másodperc
+- `memory_limit` legalább 256 MB
+
+:::caution Importálási problémák
+Ha a sablon importálás sikertelen, próbáld meg:
+1. Növeld a `max_execution_time` értékét 600-ra
+2. Kapcsold ki ideiglenesen a cache pluginokat
+3. Használj másik böngészőt
+:::
+
+## Források
+
+- [Kadence dokumentáció](https://www.kadencewp.com/help-center/)
+- [Kadence támogatás](https://www.kadencewp.com/support/)
+- [Kadence GitHub](https://github.com/flavor developerwp/flavor developer-blocks)

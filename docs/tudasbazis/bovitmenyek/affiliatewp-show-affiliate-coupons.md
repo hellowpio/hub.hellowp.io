@@ -46,7 +46,7 @@ A dinamikus kuponok automatizálása WooCommerce mellett érhető el.
 A dinamikus kuponok automatizálják az affiliát-kuponok létrehozását és kezelését:
 - Egy kijelölt **sablonkupon** beállításait öröklik (kedvezmény mértéke, érvényesség, korlátozások).
 - Automatikus generálás új affiliátoknak; elérhető tömeges generálás és felülírás.
-- Testreszabható kuponkód-formátum (pl. {user_name}, {coupon_amount}), így emlékezetes kódokat hozhatsz létre.
+- Testreszabható kuponkód-formátum (pl. `{user_name}`, `{coupon_amount}`), így emlékezetes kódokat hozhatsz létre.
 - E-mailbe illeszthető tag a regisztrációkor létrejött kupon kommunikálásához: `{registration_coupon}`.
 
 ### Testreszabhatóság fejlesztőknek
