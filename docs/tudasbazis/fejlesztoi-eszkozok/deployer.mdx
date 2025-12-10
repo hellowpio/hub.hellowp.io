@@ -1,0 +1,626 @@
+---
+title: Deployer
+description: Automatizált WordPress deployment Deployer PHP segítségével.
+keywords:
+  - deployer
+  - deployment
+  - automatizálás
+  - wordpress
+  - php
+sidebar_label: Deployer
+sidebar_position: 7
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-rocket-launch text-primary" /> Deployer - PHP Deployment Eszköz
+
+A [Deployer](https://deployer.org/) egy PHP alapú deployment automatizálási eszköz. Zero-downtime deployment-et biztosít, támogatja a rollback-et, és speciális WordPress receptekkel rendelkezik.
+
+## Miért Deployer?
+
+- **Zero-downtime** - Nincs leállás deployment közben
+- **Atomic deploy** - Sikertelen deploy nem töri el a site-ot
+- **Rollback** - Egyszerű visszaállás korábbi verzióra
+- **Parallel** - Több szerverre párhuzamos deploy
+- **WordPress recept** - Előre konfigurált WordPress támogatás
+- **PHP alapú** - Könnyű testreszabás
+
+## Telepítés
+
+### Composer (ajánlott)
+
+```bash
+# Projekt szintű
+composer require deployer/deployer --dev
+
+# Globális
+composer global require deployer/deployer
+```
+
+### Phar
+
+```bash
+curl -LO https://deployer.org/deployer.phar
+chmod +x deployer.phar
+sudo mv deployer.phar /usr/local/bin/dep
+```
+
+## Alapkonfiguráció
+
+### Inicializálás
+
+```bash
+dep init
+```
+
+### deploy.php (WordPress)
+
+```php
+<?php
+
+namespace Deployer;
+
+require 'recipe/wordpress.php';
+
+// Projekt konfiguráció
+set('application', 'my-wordpress-site');
+set('repository', 'git@github.com:user/repo.git');
+
+// Megosztott fájlok és mappák (deploy-ok között megmaradnak)
+add('shared_files', [
+    'wp-config.php',
+    '.htaccess',
+]);
+
+add('shared_dirs', [
+    'wp-content/uploads',
+    'wp-content/cache',
+]);
+
+// Írható mappák
+add('writable_dirs', [
+    'wp-content/uploads',
+    'wp-content/cache',
+]);
+
+// Host konfiguráció
+host('production')
+    ->set('hostname', 'server.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/html')
+    ->set('branch', 'main');
+
+host('staging')
+    ->set('hostname', 'staging.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/staging')
+    ->set('branch', 'develop');
+
+// Egyedi feladatok
+task('deploy:wp-cli', function () {
+    run('cd {{release_path}} && wp cache flush');
+    run('cd {{release_path}} && wp rewrite flush');
+});
+
+// Deploy után WP-CLI parancsok
+after('deploy:symlink', 'deploy:wp-cli');
+```
+
+## Deployment folyamat
+
+### Mappa struktúra
+
+```
+/var/www/html/
+├── current -> releases/5      # Symlink az aktuális release-re
+├── releases/
+│   ├── 1/
+│   ├── 2/
+│   ├── 3/
+│   ├── 4/
+│   └── 5/                     # Legújabb release
+└── shared/
+    ├── wp-config.php
+    ├── .htaccess
+    └── wp-content/
+        └── uploads/
+```
+
+### Deploy parancsok
+
+```bash
+# Deploy production-re
+dep deploy production
+
+# Deploy staging-re
+dep deploy staging
+
+# Deploy verbose kimenettel
+dep deploy production -vvv
+
+# Dry run
+dep deploy production --dry-run
+```
+
+## Rollback
+
+```bash
+# Visszaállás előző verzióra
+dep rollback production
+
+# Adott számú lépés visszaállítása
+dep rollback production --revision=3
+```
+
+## WordPress specifikus beállítások
+
+### Composer alapú WordPress
+
+```php
+<?php
+
+namespace Deployer;
+
+require 'recipe/common.php';
+
+set('application', 'my-wordpress-site');
+set('repository', 'git@github.com:user/repo.git');
+
+// Composer alapú WP struktúra
+set('shared_files', [
+    '.env',
+    'web/.htaccess',
+]);
+
+set('shared_dirs', [
+    'web/app/uploads',
+]);
+
+set('writable_dirs', [
+    'web/app/uploads',
+]);
+
+// Composer telepítés
+task('deploy:vendors', function () {
+    run('cd {{release_path}} && composer install --no-dev --optimize-autoloader');
+});
+
+// Asset build
+task('deploy:build', function () {
+    run('cd {{release_path}} && npm ci && npm run build');
+});
+
+// WP-CLI cache flush
+task('deploy:cache', function () {
+    run('cd {{release_path}}/web && wp cache flush');
+});
+
+task('deploy', [
+    'deploy:prepare',
+    'deploy:vendors',
+    'deploy:build',
+    'deploy:publish',
+    'deploy:cache',
+]);
+
+host('production')
+    ->set('hostname', 'server.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/html');
+```
+
+### Bedrock WordPress
+
+```php
+<?php
+
+namespace Deployer;
+
+require 'recipe/common.php';
+
+set('application', 'bedrock-site');
+set('repository', 'git@github.com:user/bedrock-site.git');
+
+// Bedrock struktúra
+set('shared_files', [
+    '.env',
+]);
+
+set('shared_dirs', [
+    'web/app/uploads',
+]);
+
+set('writable_dirs', [
+    'web/app/uploads',
+]);
+
+// Bedrock deploy
+task('deploy:vendors', function () {
+    run('cd {{release_path}} && composer install --no-dev --prefer-dist --optimize-autoloader');
+});
+
+task('deploy', [
+    'deploy:prepare',
+    'deploy:vendors',
+    'deploy:publish',
+]);
+
+after('deploy:failed', 'deploy:unlock');
+
+host('production')
+    ->set('hostname', 'server.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/bedrock');
+```
+
+## Téma és plugin fejlesztés
+
+### Csak téma deployment
+
+```php
+<?php
+
+namespace Deployer;
+
+require 'recipe/common.php';
+
+set('application', 'my-theme');
+set('repository', 'git@github.com:user/my-theme.git');
+
+// Téma deployment
+set('theme_path', '/var/www/html/wp-content/themes/my-theme');
+
+task('deploy:theme', function () {
+    $source = get('release_path');
+    $target = get('theme_path');
+
+    run("rsync -avz --delete {$source}/ {$target}/");
+});
+
+task('deploy:build', function () {
+    run('cd {{release_path}} && npm ci && npm run build');
+});
+
+task('deploy:cache', function () {
+    run('cd /var/www/html && wp cache flush');
+});
+
+task('deploy', [
+    'deploy:prepare',
+    'deploy:build',
+    'deploy:theme',
+    'deploy:cache',
+    'deploy:cleanup',
+]);
+
+host('production')
+    ->set('hostname', 'server.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/home/deploy/theme-releases');
+```
+
+### Plugin deployment
+
+```php
+<?php
+
+namespace Deployer;
+
+require 'recipe/common.php';
+
+set('application', 'my-plugin');
+set('repository', 'git@github.com:user/my-plugin.git');
+
+set('plugin_path', '/var/www/html/wp-content/plugins/my-plugin');
+
+task('deploy:composer', function () {
+    run('cd {{release_path}} && composer install --no-dev --optimize-autoloader');
+});
+
+task('deploy:build', function () {
+    run('cd {{release_path}} && npm ci && npm run build');
+});
+
+task('deploy:plugin', function () {
+    $source = get('release_path');
+    $target = get('plugin_path');
+
+    // Dist fájlok másolása
+    run("rsync -avz --delete \
+        --exclude='.git' \
+        --exclude='node_modules' \
+        --exclude='tests' \
+        --exclude='src' \
+        {$source}/ {$target}/");
+});
+
+task('deploy:activate', function () {
+    run('cd /var/www/html && wp plugin activate my-plugin');
+});
+
+task('deploy', [
+    'deploy:prepare',
+    'deploy:composer',
+    'deploy:build',
+    'deploy:plugin',
+    'deploy:activate',
+    'deploy:cleanup',
+]);
+
+host('production')
+    ->set('hostname', 'server.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/home/deploy/plugin-releases');
+```
+
+## Egyedi task-ok
+
+### Adatbázis backup
+
+```php
+task('db:backup', function () {
+    $date = date('Y-m-d_H-i-s');
+    run("cd {{deploy_path}}/current && wp db export ~/backups/db_{$date}.sql");
+})->desc('Backup database');
+
+// Deploy előtt automatikus backup
+before('deploy:symlink', 'db:backup');
+```
+
+### Maintenance mode
+
+```php
+task('maintenance:enable', function () {
+    run('cd {{deploy_path}}/current && wp maintenance-mode activate');
+})->desc('Enable maintenance mode');
+
+task('maintenance:disable', function () {
+    run('cd {{deploy_path}}/current && wp maintenance-mode deactivate');
+})->desc('Disable maintenance mode');
+
+// Deploy közben maintenance mode
+before('deploy:symlink', 'maintenance:enable');
+after('deploy:symlink', 'maintenance:disable');
+```
+
+### Cache törés
+
+```php
+task('cache:clear', function () {
+    run('cd {{deploy_path}}/current && wp cache flush');
+    run('cd {{deploy_path}}/current && wp transient delete --all');
+    run('cd {{deploy_path}}/current && wp rewrite flush');
+})->desc('Clear all caches');
+
+after('deploy:symlink', 'cache:clear');
+```
+
+### Opcache reset
+
+```php
+task('opcache:reset', function () {
+    run('cd {{deploy_path}}/current && wp eval "opcache_reset();"');
+})->desc('Reset OPcache');
+
+after('deploy:symlink', 'opcache:reset');
+```
+
+## Több környezet
+
+### Host konfigurációk
+
+```php
+// Production
+host('production')
+    ->set('hostname', 'prod.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/html')
+    ->set('branch', 'main')
+    ->set('http_user', 'www-data')
+    ->set('keep_releases', 5);
+
+// Staging
+host('staging')
+    ->set('hostname', 'staging.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/staging')
+    ->set('branch', 'develop')
+    ->set('http_user', 'www-data')
+    ->set('keep_releases', 3);
+
+// Development
+host('dev')
+    ->set('hostname', 'dev.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/dev')
+    ->set('branch', 'develop')
+    ->set('keep_releases', 2);
+```
+
+### Környezet specifikus beállítások
+
+```php
+// Production specifikus
+host('production')
+    ->set('hostname', 'prod.example.com')
+    ->set('deploy_path', '/var/www/html')
+    ->set('env', [
+        'APP_ENV' => 'production',
+        'WP_ENV' => 'production',
+    ]);
+
+// Staging
+host('staging')
+    ->set('hostname', 'staging.example.com')
+    ->set('deploy_path', '/var/www/staging')
+    ->set('env', [
+        'APP_ENV' => 'staging',
+        'WP_ENV' => 'staging',
+    ]);
+```
+
+## SSH konfiguráció
+
+### SSH kulcs
+
+```php
+host('production')
+    ->set('hostname', 'server.example.com')
+    ->set('remote_user', 'deploy')
+    ->set('identity_file', '~/.ssh/deploy_key')
+    ->set('deploy_path', '/var/www/html');
+```
+
+### SSH proxy/jump host
+
+```php
+host('production')
+    ->set('hostname', 'internal-server.local')
+    ->set('remote_user', 'deploy')
+    ->set('proxy_host', 'jumpbox.example.com')
+    ->set('proxy_user', 'proxy-user')
+    ->set('deploy_path', '/var/www/html');
+```
+
+## CI/CD integráció
+
+### GitHub Actions
+
+`.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to production
+        run: vendor/bin/dep deploy production
+```
+
+### GitLab CI
+
+`.gitlab-ci.yml`:
+
+```yaml
+stages:
+  - deploy
+
+deploy_production:
+  stage: deploy
+  image: php:8.2-cli
+  before_script:
+    - apt-get update && apt-get install -y git openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - composer install --no-dev
+  script:
+    - vendor/bin/dep deploy production
+  only:
+    - main
+```
+
+## Hibaelhárítás
+
+### Deploy unlock
+
+```bash
+# Ha a deploy elakad
+dep deploy:unlock production
+```
+
+### Részletes output
+
+```bash
+dep deploy production -vvv
+```
+
+### SSH teszt
+
+```bash
+dep ssh production
+```
+
+### Task lista
+
+```bash
+dep list
+```
+
+## Best Practices
+
+### 1. Mindig készíts backup-ot
+
+```php
+before('deploy:symlink', 'db:backup');
+```
+
+### 2. Használj .env fájlt
+
+```php
+set('shared_files', ['.env']);
+```
+
+### 3. Tartsd meg több release-t
+
+```php
+set('keep_releases', 5);
+```
+
+### 4. Logold a deploy-okat
+
+```php
+task('deploy:log', function () {
+    $date = date('Y-m-d H:i:s');
+    $user = run('whoami');
+    $branch = get('branch');
+    run("echo '{$date} - {$user} deployed {$branch}' >> {{deploy_path}}/deploy.log");
+});
+
+after('deploy:symlink', 'deploy:log');
+```
+
+### 5. Értesítések
+
+```php
+task('notify:slack', function () {
+    $webhook = 'https://hooks.slack.com/services/xxx';
+    $message = json_encode([
+        'text' => '🚀 ' . get('application') . ' deployed to ' . get('hostname'),
+    ]);
+    run("curl -X POST -H 'Content-type: application/json' --data '{$message}' {$webhook}");
+});
+
+after('deploy:success', 'notify:slack');
+```
+
+## Források
+
+- [Deployer hivatalos oldal](https://deployer.org/)
+- [Deployer dokumentáció](https://deployer.org/docs/7.x/getting-started)
+- [Deployer GitHub](https://github.com/deployphp/deployer)
+- [Deployer receptek](https://deployer.org/docs/7.x/recipe)

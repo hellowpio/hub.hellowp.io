@@ -1,0 +1,408 @@
+---
+title: Query Monitor
+description: WordPress teljesítmény és debug elemzés Query Monitor bővítménnyel.
+keywords:
+  - query monitor
+  - debug
+  - performance
+  - wordpress
+  - adatbázis
+sidebar_label: Query Monitor
+sidebar_position: 19
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-magnifying-glass-chart text-primary" /> Query Monitor - WordPress Debug Eszköz
+
+A [Query Monitor](https://querymonitor.com/) a legátfogóbb ingyenes debug és teljesítményelemző bővítmény WordPress-hez. Valós időben mutatja az adatbázis lekérdezéseket, hook-okat, feltételes függvényeket, HTTP kéréseket és sok mást.
+
+## Főbb funkciók
+
+- **Adatbázis lekérdezések** - Minden SQL query részletei, ideje, hívója
+- **PHP hibák** - Notice, warning, error üzenetek
+- **Hook-ok** - Actions és filters listája
+- **HTTP API hívások** - Külső API kérések elemzése
+- **Feltételes függvények** - is_single(), is_admin() stb.
+- **Szkriptek és stílusok** - Betöltött JS/CSS fájlok
+- **Blokkok** - Gutenberg blokk információk
+- **Környezet** - PHP, MySQL, WordPress verzió adatok
+
+## Telepítés
+
+### WordPress admin felületen
+
+1. **Bővítmények** > **Új hozzáadása**
+2. Keress rá: "Query Monitor"
+3. Kattints a **Telepítés most** gombra
+4. **Aktiváld** a bővítményt
+
+### WP-CLI-vel
+
+```bash
+wp plugin install query-monitor --activate
+```
+
+### Composer-rel
+
+```bash
+composer require wpackagist-plugin/query-monitor --dev
+wp plugin activate query-monitor
+```
+
+## Használat
+
+A Query Monitor panel az admin bar-on található. Kattints a megjelenő információkra (pl. "0.05s 12q") a részletes panel megnyitásához.
+
+### Admin Bar jelzések
+
+| Jelzés | Jelentés |
+|--------|----------|
+| **Zöld** | Minden rendben |
+| **Sárga** | Figyelmeztetés (lassú query-k) |
+| **Piros** | Hiba (PHP error, kritikus lassulás) |
+
+## Adatbázis lekérdezések
+
+### Queries panel
+
+Minden SQL lekérdezés részletei:
+
+- **Query** - A teljes SQL utasítás
+- **Time** - Végrehajtási idő (ms)
+- **Rows** - Érintett sorok száma
+- **Caller** - Melyik függvény/fájl indította
+- **Component** - Plugin/téma/core
+
+### Lassú lekérdezések szűrése
+
+```php
+// wp-config.php - Lassú query küszöb beállítása
+define( 'QM_DB_EXPENSIVE', 0.05 ); // 50ms felett lassú
+```
+
+### Duplicate queries
+
+A Query Monitor automatikusan jelzi az ismétlődő lekérdezéseket. Ezek optimalizálása jelentős teljesítményjavulást eredményezhet.
+
+### Queries by Caller
+
+Csoportosított nézet a hívó függvények szerint - gyorsan megtalálod, melyik kód generálja a legtöbb lekérdezést.
+
+### Queries by Component
+
+Plugin/téma szerinti csoportosítás - azonnal látod, melyik bővítmény okoz terhelést.
+
+## PHP hibák
+
+### Errors panel
+
+Minden PHP hiba megjelenik:
+
+- **Fatal errors** - Piros háttér
+- **Warnings** - Narancssárga
+- **Notices** - Sárga
+- **Deprecated** - Szürke
+
+### Stack trace
+
+Minden hibánál látod a teljes hívási láncot, így könnyen megtalálod a forrást.
+
+### Hibák szűrése
+
+A `wp-config.php`-ban beállíthatod:
+
+```php
+// Csak saját kód hibáinak megjelenítése
+define( 'QM_HIDE_CORE_WARNINGS', true );
+define( 'QM_HIDE_SELF', true );
+```
+
+## Hook-ok
+
+### Hooks panel
+
+Az összes futtatott action és filter:
+
+- **Hook név** - pl. `init`, `wp_head`
+- **Priority** - Futási sorrend
+- **Callback** - Melyik függvény fut
+- **Component** - Plugin/téma
+
+### Hook keresése
+
+Használd a keresőt egy adott hook megtalálásához:
+
+```
+the_content
+wp_enqueue_scripts
+admin_init
+```
+
+### Actions vs Filters
+
+Külön füleken láthatod az action-öket és filter-eket.
+
+## HTTP API hívások
+
+### HTTP Requests panel
+
+Minden külső HTTP kérés részletei:
+
+- **URL** - Cél URL
+- **Method** - GET, POST, stb.
+- **Response** - Válasz kód és idő
+- **Caller** - Ki indította
+
+### Lassú API hívások
+
+A piros jelzésű kérések jelentős késleltetést okoznak. Ezeket érdemes:
+- Cache-elni (Transients API)
+- Aszinkronná tenni (WP Cron)
+- Optimalizálni vagy eltávolítani
+
+## Szkriptek és stílusok
+
+### Scripts panel
+
+Minden betöltött JavaScript:
+
+- **Handle** - wp_enqueue_scripts azonosító
+- **Source** - Fájl URL
+- **Dependencies** - Függőségek
+- **Dependents** - Mi függ tőle
+- **Size** - Fájlméret
+
+### Styles panel
+
+CSS fájlok hasonló részletekkel.
+
+### Nem használt szkriptek
+
+Keresd azokat a szkripteket, amelyek:
+- Minden oldalon betöltődnek, de nem kellenek
+- Duplikálva vannak
+- Elavult jQuery függőségekkel rendelkeznek
+
+## Blokkok (Gutenberg)
+
+### Blocks panel
+
+Block editor használatakor:
+
+- **Block típusok** - Használt blokkok listája
+- **Block szám** - Hány darab van belőlük
+- **Render callback** - Dinamikus blokkok
+
+## Feltételes függvények
+
+### Conditionals panel
+
+Az aktuális oldal jellemzői:
+
+| Függvény | Érték |
+|----------|-------|
+| `is_single()` | true/false |
+| `is_page()` | true/false |
+| `is_archive()` | true/false |
+| `is_admin()` | true/false |
+| `is_front_page()` | true/false |
+
+Hasznos téma és plugin fejlesztéskor a feltételek teszteléséhez.
+
+## Környezet
+
+### Environment panel
+
+Részletes rendszerinformációk:
+
+- **PHP** - Verzió, memória limit, max execution time
+- **MySQL/MariaDB** - Verzió, változók
+- **WordPress** - Verzió, debug mód, multisite
+- **Server** - OS, webszerver
+
+### PHP változók
+
+```php
+memory_limit: 256M
+max_execution_time: 300
+upload_max_filesize: 64M
+post_max_size: 64M
+```
+
+## Haladó beállítások
+
+### wp-config.php opciók
+
+```php
+// Query Monitor engedélyezése
+define( 'QM_ENABLE_CAPS_PANEL', true ); // Capabilities panel
+
+// Lassú query küszöb (másodpercben)
+define( 'QM_DB_EXPENSIVE', 0.05 );
+
+// Hide self (QM saját query-jeit elrejti)
+define( 'QM_HIDE_SELF', true );
+
+// Core warnings elrejtése
+define( 'QM_HIDE_CORE_WARNINGS', true );
+
+// Symlinked plugin path
+define( 'QM_SYMLINKED_PLUGINS_PATH', '/real/path/to/plugins' );
+```
+
+### Capabilities panel engedélyezése
+
+```php
+// wp-config.php
+define( 'QM_ENABLE_CAPS_PANEL', true );
+```
+
+Ez egy új panelt ad, ami az aktuális felhasználó jogosultságait mutatja.
+
+## Query Monitor Add-on-ok
+
+### Hivatalos add-on-ok
+
+| Add-on | Funkció |
+|--------|---------|
+| **Debug Bar** | Debug Bar integráció |
+| **Memcache** | Memcached object cache monitoring |
+| **Redis** | Redis object cache monitoring |
+
+### Harmadik féltől
+
+| Add-on | Funkció |
+|--------|---------|
+| **Query Monitor Extend** | További panelek |
+| **QM CLI** | CLI parancsok |
+
+## Teljesítmény optimalizálás Query Monitor-ral
+
+### 1. Lassú lekérdezések azonosítása
+
+1. Nyisd meg a **Queries** panelt
+2. Rendezd **Time** szerint csökkenő sorrendbe
+3. Vizsgáld meg a leglassabb query-ket
+4. Ellenőrizd az indexeket a táblákban
+
+### 2. N+1 problémák felismerése
+
+Keress ismétlődő lekérdezéseket:
+
+```sql
+SELECT * FROM wp_postmeta WHERE post_id = 1
+SELECT * FROM wp_postmeta WHERE post_id = 2
+SELECT * FROM wp_postmeta WHERE post_id = 3
+...
+```
+
+Megoldás: `update_meta_cache()` vagy egy nagy query.
+
+### 3. Plugin teljesítmény elemzése
+
+1. **Queries by Component** nézet
+2. Rendezd **Time** szerint
+3. Azonosítsd a legtöbb időt használó pluginokat
+4. Fontold meg az alternatívákat vagy optimalizálást
+
+### 4. HTTP hívások optimalizálása
+
+1. **HTTP Requests** panel
+2. Keress lassú vagy felesleges hívásokat
+3. Implementálj cache-elést:
+
+```php
+function get_external_data() {
+    $cache_key = 'external_api_data';
+    $data = get_transient( $cache_key );
+
+    if ( false === $data ) {
+        $response = wp_remote_get( 'https://api.example.com/data' );
+        $data = wp_remote_retrieve_body( $response );
+        set_transient( $cache_key, $data, HOUR_IN_SECONDS );
+    }
+
+    return $data;
+}
+```
+
+## Frontend megjelenítés
+
+### Bejelentkezés nélküli használat
+
+Az autentikációs cookie lehetővé teszi a frontend debug-ot bejelentkezés nélkül:
+
+```php
+// Cookie beállítása (egyszer futtatva)
+setcookie( 'wp-query_monitor_' . COOKIEHASH, wp_hash( 'query-monitor' ), 0, '/' );
+```
+
+### Admin bar elrejtése
+
+Ha nem akarod az admin bar-t megjeleníteni:
+
+```php
+add_filter( 'qm/dispatch/html', '__return_false' );
+```
+
+## REST API és AJAX
+
+### AJAX debug
+
+Query Monitor automatikusan naplózza az AJAX hívásokat. Az admin bar jelzi az AJAX kérések számát és idejét.
+
+### REST API debug
+
+REST API végpontok lekérdezéseit is elemzi:
+
+1. Nyisd meg a fejlesztői eszközöket (F12)
+2. Network fül
+3. Keresd a `X-QM-*` header-öket
+
+## Biztonság
+
+### Hozzáférés korlátozása
+
+Alapértelmezetten csak adminisztrátorok látják a Query Monitor panelt.
+
+```php
+// Szerkesztők is láthassák
+add_filter( 'qm/capability', function() {
+    return 'edit_posts';
+} );
+```
+
+### Éles oldalon
+
+:::caution Figyelmeztetés
+**NE** használd éles környezetben Query Monitor-t aktiválva! Biztonsági kockázat és teljesítménycsökkenés.
+:::
+
+```php
+// Csak development környezetben aktiválás
+if ( 'development' !== wp_get_environment_type() ) {
+    add_filter( 'qm/dispatch/html', '__return_false' );
+}
+```
+
+## Integráció más eszközökkel
+
+### Xdebug
+
+Query Monitor és Xdebug együtt használható mélyebb elemzéshez.
+
+### New Relic
+
+A Query Monitor adatai exportálhatók New Relic-be egyedi instrumentációval.
+
+### Debug Bar
+
+Ha Debug Bar is telepítve van, Query Monitor annak paneljeit is integrálja.
+
+## Források
+
+- [Query Monitor hivatalos oldal](https://querymonitor.com/)
+- [Query Monitor GitHub](https://github.com/johnbillion/query-monitor)
+- [Query Monitor dokumentáció](https://querymonitor.com/docs/)
+- [WordPress.org plugin oldal](https://wordpress.org/plugins/query-monitor/)

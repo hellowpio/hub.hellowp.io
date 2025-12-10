@@ -1,24 +1,52 @@
 ---
 title: Rendszerkövetelmények
-description: HelloPack csomegkezelő rendszerkövetelményei
+description: HelloPack csomagkezelő rendszerkövetelményei - PHP, MySQL, webszerver.
 keywords:
   - hellopack
+  - rendszerkövetelmények
+  - php
+  - mysql
+  - szerver
 sidebar_label: Rendszerkövetelmények
-sidebar_position: 9
+sidebar_position: 10
 ---
 
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-server text-primary" /> Rendszerkövetelmények
 
-A HelloPack követelményei 100%-ban megyeznek a [WordPress követelményeivel](https://wordpress.org/about/requirements/):
+A HelloPack követelményei megegyeznek a [WordPress követelményeivel](https://wordpress.org/about/requirements/).
 
-1. PHP verzió 7.4 vagy újabb.
-2. MySQL verzió 5.7 vagy újabb | MariaDB verzió 10.3 vagy újabb.
-3. HTTPS támogatás
-4. Webszerver: Apache | Nginx | LiteSpeed
+## Szoftverkövetelmények
 
-:::note LiteSpeed
-LiteSpeed-et csak akkor ajánljuk, ha jól be van állítva. Gyakori hiba, hogy a rosszul beállított LiteSpeed cache alatt tartja az admin felületet, így pl. az Elementor nem fut megfelelően.
+| Komponens | Minimum | Ajánlott |
+|-----------|---------|----------|
+| **PHP** | 7.4 | 8.1+ |
+| **MySQL** | 8.0 | 8.0+ |
+| **MariaDB** | 10.4 | 10.6+ |
+| **WordPress** | 5.8 | 6.4+ |
+
+## Webszerver
+
+A HelloPack az alábbi webszerverekkel működik:
+
+- **Apache** (ajánlott)
+- **Nginx**
+- **LiteSpeed**
+
+:::note LiteSpeed beállítások
+LiteSpeed-et csak akkor ajánljuk, ha jól be van állítva. Gyakori hiba, hogy a rosszul beállított LiteSpeed cache alatt tartja az admin felületet, így pl. az Elementor nem fut megfelelően. Győződj meg róla, hogy az admin felület ki van zárva a cache-ből.
 :::
+
+## PHP kiterjesztések
+
+A következő PHP kiterjesztések szükségesek:
+
+- `curl`
+- `zip` (ZipArchive)
+- `json`
+- `mbstring`
+
+## HTTPS
+
+A HelloPack használatához **HTTPS kapcsolat szükséges**. Győződj meg róla, hogy a weboldalad SSL tanúsítvánnyal rendelkezik.

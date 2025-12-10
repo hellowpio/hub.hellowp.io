@@ -1,0 +1,255 @@
+---
+title: Warp - Modern terminál AI-val
+description: Warp terminál használata - a modern fejlesztői terminál AI asszisztenssel, Windows, macOS és Linux támogatással.
+keywords:
+  - warp
+  - terminal
+  - terminál
+  - ai
+  - command line
+sidebar_label: Warp
+sidebar_position: 16
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-terminal text-primary" /> Warp - Modern terminál AI-val
+
+A **Warp** egy új generációs terminál, amely a hagyományos parancssort modern szövegszerkesztő élménnyel és AI asszisztenssel kombinálja. Gyors, szép és fejlesztőbarát.
+
+:::tip Miért válaszd a Warp-ot?
+- **AI asszisztens** - Parancsok generálása természetes nyelvből
+- **Modern szerkesztő** - Többkurzoros szerkesztés, autocomplete
+- **Block-alapú output** - Parancsok és kimenetek csoportosítva
+- **Cross-platform** - Windows, macOS és Linux
+:::
+
+---
+
+## Árazás
+
+| Csomag | Ár | AI kreditek |
+|--------|-----|-------------|
+| **Free** | $0 | 75/hó (első 2 hónapban 150) |
+| **Build** | $20/hó | 1500/hó + BYOK |
+| **Business** | $55/felhasználó/hó | Zero Data Retention, SSO |
+| **Lightspeed** | $200/hó | 50 000 request, top modellek |
+
+### Fontos tudnivalók
+
+- **Terminál funkciók ingyenesek** - AI nélkül is használható
+- **BYOK** (Bring Your Own Key) - Saját API kulcs használata a Build csomagban
+- **Reload credits** - Fel nem használt kreditek 12 hónapig megmaradnak
+
+:::info AI kreditek
+Az AI kreditek különböző funkciókhoz használhatók: kódgenerálás, debugging, multi-agent workflow-k.
+:::
+
+---
+
+## Főbb funkciók
+
+### Modern szerkesztő
+
+- **Multi-cursor** - Több kurzor egyszerre
+- **Syntax highlighting** - Színezett kód
+- **Autocomplete** - Parancsok és fájlnevek kiegészítése
+- **History search** - Korábbi parancsok keresése
+
+### Block-alapú terminál
+
+A Warp "block"-okba szervezi a parancsokat és kimeneteket:
+- Minden parancs külön block
+- Könnyű másolás és megosztás
+- Parancsok közötti navigáció
+
+### AI funkciók
+
+#### Természetes nyelv → parancs
+
+Írd be `#` karakterrel, hogy mit szeretnél csinálni:
+
+```
+# find all png files larger than 1MB
+```
+
+A Warp automatikusan generálja a megfelelő parancsot.
+
+#### Hiba magyarázat
+
+Ha egy parancs hibával végződik, az AI:
+- Elmagyarázza a hibát
+- Javasol megoldást
+- Végigvezet a javításon
+
+#### Workflow támogatás
+
+Komplex feladatok lépésről lépésre vezetése.
+
+### Warp Drive
+
+Parancsok és workflow-k megosztása:
+- **Commands** - Gyakran használt parancsok tárolása
+- **Workflows** - Többlépéses folyamatok
+- **Snippets** - Kódrészletek
+- **Team sharing** - Csapaton belüli megosztás
+
+---
+
+## Telepítés
+
+### macOS
+
+```bash
+# Homebrew-val
+brew install --cask warp
+
+# Vagy közvetlen letöltés
+# https://www.warp.dev/
+```
+
+### Windows
+
+Letöltés: [warp.dev](https://www.warp.dev/)
+
+### Linux
+
+```bash
+# Debian/Ubuntu
+wget https://releases.warp.dev/stable/v0.2024.xxx/warp-terminal_xxx_amd64.deb
+sudo dpkg -i warp-terminal_xxx_amd64.deb
+
+# Fedora/RHEL
+wget https://releases.warp.dev/stable/v0.2024.xxx/warp-terminal-xxx.x86_64.rpm
+sudo rpm -i warp-terminal-xxx.x86_64.rpm
+```
+
+---
+
+## Első lépések
+
+### 1. Regisztráció
+
+1. Indítsd el a Warp-ot
+2. Regisztrálj email-lel, Google-lel vagy GitHub-bal
+3. Kövesd a beállítási varázslót
+
+### 2. Alapvető használat
+
+| Gyorsbillentyű | Funkció |
+|----------------|---------|
+| `Cmd/Ctrl + K` | Command palette |
+| `Cmd/Ctrl + R` | History keresés |
+| `Cmd/Ctrl + Shift + C` | Block másolása |
+| `Cmd/Ctrl + Enter` | AI kérés küldése |
+| `#` + szöveg | Natural language command |
+
+### 3. AI használata
+
+1. Írd be `#` karaktert
+2. Írd le, mit szeretnél csinálni (angolul vagy magyarul)
+3. Nyomj Enter-t
+4. A Warp generálja a parancsot
+5. Ellenőrizd és futtasd
+
+**Példa:**
+```
+# list all docker containers with their sizes
+```
+
+Eredmény:
+```bash
+docker ps -as
+```
+
+---
+
+## Testreszabás
+
+### Témák
+
+Beépített és egyedi témák támogatása:
+1. Menj a **Settings** → **Appearance** → **Theme**
+2. Válassz a beépített témákból
+3. Vagy importálj egyedi témát
+
+### Prompt testreszabás
+
+Támogatott prompt keretrendszerek:
+- Starship
+- Oh My Zsh
+- Powerlevel10k
+- Pure
+
+### Shell integráció
+
+Támogatott shell-ek:
+- Zsh
+- Bash
+- Fish
+- PowerShell (Windows)
+
+---
+
+## Biztonság
+
+### SOC 2 Compliant
+
+A Warp megfelel a SOC 2 biztonsági követelményeknek.
+
+### Zero Data Retention
+
+- LLM szolgáltatók nem tárolják az adatokat
+- Nincs AI training a te adataidból
+- "Hands off" megközelítés
+
+### Privacy
+
+- Terminál input/output nincs tárolva a Warp szerverein
+- Lokális adatok titkosítva
+- Opcionális telemetria
+
+---
+
+## WordPress fejlesztéshez
+
+### Hasznos parancsok gyűjteménye
+
+Mentsd el a Warp Drive-ba:
+
+```bash
+# WordPress cache ürítése
+wp cache flush
+
+# Összes plugin frissítése
+wp plugin update --all
+
+# Adatbázis optimalizálás
+wp db optimize
+
+# Keresés és csere az adatbázisban
+wp search-replace 'old-domain.com' 'new-domain.com'
+
+# Debug log megtekintése
+tail -f wp-content/debug.log
+```
+
+---
+
+## Alternatívák
+
+| Eszköz | Előny |
+|--------|-------|
+| **iTerm2** | Ingyenes, stabil, kipróbált |
+| **Alacritty** | GPU-gyorsított, minimális |
+| **Kitty** | GPU-gyorsított, sok funkció |
+| **Hyper** | Electron alapú, testreszabható |
+
+---
+
+## Kapcsolódó linkek
+
+- [Warp hivatalos oldal](https://www.warp.dev/)
+- [Warp dokumentáció](https://docs.warp.dev/)
+- [Warp árak](https://www.warp.dev/pricing)
+- [Warp AI funkciók](https://www.warp.dev/warp-ai)

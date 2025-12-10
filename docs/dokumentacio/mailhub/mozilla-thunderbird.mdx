@@ -1,0 +1,58 @@
+---
+title: Levelezés beállítása Mozilla Thunderbird-ben
+description: MailHub email fiók beállítása Mozilla Thunderbird levelezőprogramban.
+keywords:
+  - mailhub
+  - thunderbird
+  - mozilla
+  - email beállítás
+sidebar_label: Mozilla Thunderbird
+sidebar_position: 5
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-sharp fa-solid fa-envelopes-bulk text-primary" /> Levelezés beállítása Mozilla Thunderbird-ben
+
+A Thunderbird egy ingyenes, nyílt forráskódú levelezőprogram, amely automatikusan felismeri a MailHub szerver beállításait.
+
+## Fiók hozzáadása
+
+1. Indítsd el a **Thunderbird**-öt
+2. Ha először indítod, megjelenik az üdvözlő képernyő. Kattints a **Meglévő email cím használata** gombra. Ha már van fiókod, menj a **Fájl → Új → Meglévő email fiók** menüpontra
+3. Töltsd ki az űrlapot:
+   - **Név**: A neved (ez jelenik meg a kimenő leveleken)
+   - **Email cím**: A MailHub email címed
+   - **Jelszó**: Az email fiókod jelszava
+4. Jelöld be a **Jelszó megjegyzése** opciót
+5. Kattints a **Folytatás** gombra
+6. Várd meg az automatikus konfiguráció befejezését, majd győződj meg róla, hogy az **IMAP** van kiválasztva
+7. Kattints a **Kész** gombra
+
+:::tip IMAP ajánlott
+Az IMAP protokoll használatát javasoljuk, mert így a leveleid a szerveren maradnak és több eszközről is elérheted őket.
+:::
+
+## Naptár és névjegyek szinkronizálása (opcionális)
+
+A Thunderbird támogatja a CalDAV és CardDAV protokollokat, így szinkronizálhatod a naptáraidat és névjegyeidet is.
+
+### Névjegyek hozzáadása
+
+1. A fiók beállítása után kattints a **Címtárak** melletti nyílra
+2. Kattints a **Csatlakozás** gombra minden olyan címtárnál, amit szinkronizálni szeretnél
+
+### Naptárak hozzáadása
+
+1. Kattints a **Naptárak** melletti nyílra
+2. Kattints a **Csatlakozás** gombra minden naptárnál, amit használni szeretnél
+
+## Összes mappa szinkronizálása
+
+Alapértelmezetten a Thunderbird csak a feliratkozott mappákat jeleníti meg. Ha az összes mappát látni szeretnéd:
+
+1. Jobb kattintás a fiókra → **Beállítások**
+2. Válaszd a **Szerver beállítások** fület
+3. Kattints a **Speciális** gombra
+4. Töröld a pipát a **Csak a feliratkozott mappák megjelenítése** opcióról
+5. Kattints az **OK** gombra a mentéshez

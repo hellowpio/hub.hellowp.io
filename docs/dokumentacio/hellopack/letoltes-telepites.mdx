@@ -1,37 +1,146 @@
 ---
-title: Letöltés
-description: HelloPack csomegkezelő letöltése
+title: Letöltés és telepítés
+description: HelloPack csomagkezelő letöltése és telepítése WordPress weboldalra.
 keywords:
   - hellopack
+  - letöltés
+  - telepítés
+  - install
 sidebar_label: Csomagkezelő letöltése és telepítése
 sidebar_position: 1
 ---
 
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
-# <FontAwesomeIcon icon="fa-duotone fa-download text-primary" /> HelloPack csomagkezelő letöltése és telepítése
+# <FontAwesomeIcon icon="fa-duotone fa-download text-primary" /> HelloPack letöltése és telepítése
 
-## HelloPack csomagkezelő letöltése
+A HelloPack csomagkezelő segítségével egyszerűen kezelheted a prémium WordPress bővítményeket és témákat. Ez az útmutató végigvezet a letöltés és telepítés lépésein.
 
-**A HelloPack csomagkezelő letöltése egészen egyszerű:**
+## <FontAwesomeIcon icon="fa-duotone fa-cloud-arrow-down" /> Letöltés
 
-1. Lépj be a HelloWP.io console felületére: https://hellowp.io/hu/helloconsole/
-2. Kattints a HelloPack boxra vagy a HelloPack központ gombra. https://hellowp.io/hu/helloconsole/hellopack-kozpont/
-3. Kattints a **Csomagkezelő letöltése** gombra.
+### 1. Bejelentkezés a HelloConsole-ba
 
-:::tip
+Lépj be a HelloWP.io felületére:
+- **URL**: [https://hellowp.io/hu/helloconsole/](https://hellowp.io/hu/helloconsole/)
+- Jelentkezz be a HelloWP fiókodba
 
-Gyakori probléma **Mac felhasználók körében**, hogy Safari böngésző automatikusan kitömöríti a ZIP fájlokat és ha már korábban letölötted a hellopack.zip-et, akkor az újabb verziókból készít egy hellopack-1, hellopack-2 stb... nevű mappát. Amennyiben ezt tömöríted be, vagy ezt másolod fel a szerverre, akkor mindig győződj meg róla, hogy a hellopack a hellopack mappába kerüljön. Tehát így: `wp-content/plugins/hellopack/` Erre azért van szükség, mert így fog zavartalanul működni a bővítmény.
+### 2. HelloPack központ megnyitása
 
+- Kattints a **HelloPack** kártyára a dashboardon
+- Vagy menj közvetlenül: [HelloPack központ](https://hellowp.io/hu/helloconsole/hellopack-kozpont/)
+
+### 3. Csomagkezelő letöltése
+
+- Kattints a **„Csomagkezelő letöltése"** gombra
+- A böngésző letölti a `hellopack-client.zip` fájlt
+
+:::warning Safari felhasználóknak (macOS)
+A Safari böngésző alapértelmezetten automatikusan kitömöríti a ZIP fájlokat letöltés után. Ez problémát okozhat:
+
+**Probléma:**
+- Ha korábban már letöltötted a HelloPack-et, a Safari `hellopack-client-1`, `hellopack-client-2`, stb. nevű mappákat hoz létre
+- Ezeket a mappákat **nem szabad** újra becsomagolni és feltölteni
+
+**Megoldás:**
+1. **Kapcsold ki az automatikus kitömörítést** a Safariban:
+   - Safari → Beállítások → Általános
+   - Vedd ki a pipát: "Biztonságos fájlok megnyitása letöltés után"
+
+2. **Vagy használj másik böngészőt** (Chrome, Firefox, Edge)
+
+**Fontos:** A bővítmény csak akkor működik megfelelően, ha a könyvtárstruktúra így néz ki:
+```
+wp-content/plugins/hellopack-client/
+```
 :::
 
-## HelloPack csomagkezelő telepítése
+## <FontAwesomeIcon icon="fa-duotone fa-plug" /> Telepítés
 
-**A HelloPack csomagkezelő telepítése a szokásos módon történik:**
+### Módszer 1: WordPress admin felület (Ajánlott)
 
-1. **Töltsd le** a csomagkezelő bővítményt .zip formátumban.
-2. Menj a WordPress admin felületére **"Bővítmények" -> "Új bővítmény telepítése"** oldalra, és kattints a **"Feltöltés"** gombra. Itt tudod feltölteni a letöltött .zip fájlt.
-3. Miután feltöltötted a fájlt, kattints a **"Telepítés most" **gombra. A WordPress most telepíteni fogja a bővítményt, és megjelenik egy üzenet a sikeres telepítésről. Végül aktiválni kell a bővítményt a "Bővítmények" oldalon.
+1. **Navigálj a bővítmények oldalra**
+   - WordPress admin → **Bővítmények** → **Új bővítmény telepítése**
 
-A telepítés után aktiváld a HelloPack-ot! [HelloPack Aktiválása](/docs/dokumentacio/hellopack/aktivalas)
+2. **Töltsd fel a ZIP fájlt**
+   - Kattints a **„Feltöltés"** fülre
+   - Kattints a **„Fájl kiválasztása"** gombra
+   - Válaszd ki a letöltött `hellopack-client.zip` fájlt
+   - Kattints a **„Telepítés most"** gombra
+
+3. **Aktiválás**
+   - A telepítés után kattints az **„Aktiválás"** gombra
+   - Vagy később: **Bővítmények** → HelloPack → **Aktiválás**
+
+### Módszer 2: FTP/SFTP feltöltés
+
+Ha a WordPress admin feltöltés nem működik (korlátozott fájlméret):
+
+1. **Tömörítsd ki a ZIP fájlt** a számítógépeden
+2. **Csatlakozz FTP/SFTP-vel** a szerverhez
+3. **Töltsd fel a `hellopack-client` mappát** ide:
+   ```
+   /wp-content/plugins/hellopack-client/
+   ```
+4. **Aktiváld** a WordPress adminban: **Bővítmények** → HelloPack → **Aktiválás**
+
+### Módszer 3: WP-CLI
+
+Ha terminál hozzáférésed van:
+
+```bash
+# Feltöltés a szerverre
+wp plugin install /path/to/hellopack-client.zip --activate
+
+# Vagy közvetlenül a mappából
+wp plugin activate hellopack-client
+```
+
+## <FontAwesomeIcon icon="fa-duotone fa-key" /> Következő lépés: Aktiválás
+
+A telepítés után **aktiválnod kell a HelloPack licencet** a bővítmények használatához.
+
+👉 **[HelloPack aktiválása →](/docs/dokumentacio/hellopack/aktivalas)**
+
+## <FontAwesomeIcon icon="fa-duotone fa-circle-question" /> Hibaelhárítás
+
+### "A könyvtár már létezik" hiba
+
+**Ok:** Korábban már telepítetted a HelloPack-et.
+
+**Megoldás:**
+1. Töröld a régi verziót: **Bővítmények** → HelloPack → **Törlés**
+2. Telepítsd újra a fenti módszerek valamelyikével
+
+### "Nem lehet feltölteni a fájlt" hiba
+
+**Ok:** A feltölthető fájl mérete túl kicsi a szerver beállításaiban.
+
+**Megoldás:**
+1. Használd az **FTP/SFTP feltöltést** (lásd fent)
+2. Vagy növeld meg a `upload_max_filesize` értéket a `php.ini`-ben
+
+### A bővítmény nem jelenik meg
+
+**Ok:** Helytelen könyvtárstruktúra.
+
+**Ellenőrzés:**
+```bash
+# SSH-n keresztül:
+ls -la wp-content/plugins/hellopack-client/
+
+# Lennie kell egy hellopack-client.php fájlnak
+```
+
+**Megoldás:** Győződj meg róla, hogy a `hellopack-client.php` közvetlenül a `plugins/hellopack-client/` mappában van.
+
+## Technikai követelmények
+
+Telepítés előtt győződj meg róla, hogy a szervered megfelel az alábbi követelményeknek:
+
+- **WordPress**: 5.8 vagy újabb (6.4+ ajánlott)
+- **PHP**: 7.4 vagy újabb (8.1+ ajánlott)
+- **MySQL**: 8.0 vagy újabb / MariaDB 10.4+
+- **Lemezterület**: Min. 50 MB szabad hely
+- **PHP kiterjesztések**: curl, zip, json, mbstring
+
+👉 **[Részletes követelmények →](/docs/dokumentacio/hellopack/kovetelmenyek)**

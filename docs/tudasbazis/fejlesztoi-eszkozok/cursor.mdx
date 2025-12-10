@@ -1,0 +1,298 @@
+---
+title: Cursor - AI-natív kódszerkesztő
+description: Cursor AI kódszerkesztő használata - VS Code alapú IDE beépített AI asszisztenssel fejlesztőknek.
+keywords:
+  - cursor
+  - ai
+  - code editor
+  - ide
+  - artificial intelligence
+sidebar_label: Cursor
+sidebar_position: 4
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-wand-magic-sparkles text-primary" /> Cursor - AI-natív kódszerkesztő
+
+A **Cursor** egy AI-natív kódszerkesztő, amely a VS Code-ra épül, de az AI-t a fejlesztési élmény középpontjába helyezi. Nem csak kiegészítéseket javasol, hanem teljes kódrészleteket ír, refaktorál és magyaráz.
+
+:::tip Miért válaszd a Cursor-t?
+- **VS Code alapú** - Ismerős felület, extension kompatibilitás
+- **Beépített AI** - Nincs szükség külön extension-re
+- **Multi-file edit** - Több fájl módosítása egyszerre
+- **Codebase context** - Érti a teljes projekted
+:::
+
+---
+
+## Főbb funkciók
+
+### AI Chat
+
+Beépített chat az IDE-ben:
+- Kérdezz bármit a kódodról
+- Kérj magyarázatot
+- Generáltass kódot
+- Debugolj hibákat
+
+**Megnyitás:** `Cmd/Ctrl + L`
+
+### Composer
+
+Több fájl egyidejű szerkesztése AI-val:
+- Új feature implementálása
+- Refaktorálás több fájlban
+- Kód generálás kontextussal
+
+**Megnyitás:** `Cmd/Ctrl + I`
+
+### Tab completion
+
+Intelligens kódkiegészítés:
+- Egész sorok javaslata
+- Kontextus-alapú predikció
+- Multi-line completion
+
+### Codebase indexing
+
+A Cursor indexeli a teljes projektet:
+- `@codebase` - Keresés az egész kódbázisban
+- `@file` - Specifikus fájl kontextus
+- `@folder` - Mappa kontextus
+- `@docs` - Dokumentáció hivatkozás
+
+---
+
+## Árazás
+
+| Csomag | Ár | Funkciók |
+|--------|-----|----------|
+| **Hobby** | Ingyenes | 2000 completion, 50 slow request/hó |
+| **Pro** | $20/hó | Unlimited completion, 500 fast request |
+| **Business** | $40/felhasználó/hó | Csapat funkciók, admin kontroll |
+
+### Request típusok
+
+- **Fast request** - GPT-4, Claude 3.5 Sonnet gyors válasz
+- **Slow request** - Ugyanazok a modellek, de sorban állással
+
+---
+
+## Támogatott AI modellek
+
+| Modell | Típus |
+|--------|-------|
+| **GPT-4o** | OpenAI |
+| **GPT-4** | OpenAI |
+| **Claude 3.5 Sonnet** | Anthropic |
+| **Claude 3 Opus** | Anthropic |
+| **Cursor Small** | Cursor saját (gyors) |
+
+### Saját API kulcs
+
+Használhatod a saját OpenAI vagy Anthropic API kulcsodat is a beállításokban.
+
+---
+
+## Telepítés
+
+### Letöltés
+
+1. Látogass el: [cursor.com](https://cursor.com/)
+2. Töltsd le a platformodnak megfelelő verziót
+3. Telepítsd és indítsd el
+
+### Támogatott platformok
+
+- **macOS** - Intel és Apple Silicon
+- **Windows** - 64-bit
+- **Linux** - AppImage
+
+### VS Code migráció
+
+A Cursor automatikusan importálhatja:
+- VS Code beállításokat
+- Extension-öket
+- Keybinding-okat
+- Témákat
+
+---
+
+## Használat
+
+### Chat (`Cmd/Ctrl + L`)
+
+```
+User: Hogyan működik ez a függvény?
+Cursor: [Részletes magyarázat a kijelölt kódról]
+
+User: Írj unit tesztet ehhez
+Cursor: [Generált teszt kód]
+```
+
+### Inline edit (`Cmd/Ctrl + K`)
+
+1. Jelöld ki a kódot
+2. Nyomd meg `Cmd/Ctrl + K`
+3. Írd le, mit szeretnél
+4. Fogadd el vagy utasítsd el a változtatást
+
+**Példa:**
+```
+"Add error handling for null values"
+"Convert this to async/await"
+"Optimize this loop"
+```
+
+### Composer (`Cmd/Ctrl + I`)
+
+Nagyobb változtatásokhoz:
+
+1. Nyomd meg `Cmd/Ctrl + I`
+2. Írd le a feladatot részletesen
+3. A Cursor több fájlt is módosíthat
+4. Review-zd és fogadd el a változtatásokat
+
+### @ mentions
+
+Kontextus hozzáadása:
+
+| Mention | Funkció |
+|---------|---------|
+| `@file` | Fájl hozzáadása kontextushoz |
+| `@folder` | Mappa hozzáadása |
+| `@codebase` | Teljes projekt keresés |
+| `@web` | Web keresés |
+| `@docs` | Dokumentáció hivatkozás |
+| `@git` | Git history kontextus |
+
+---
+
+## Beállítások
+
+### Rules for AI
+
+Egyedi szabályok az AI viselkedéséhez:
+
+**Settings → Cursor Settings → Rules for AI**
+
+```
+Always use TypeScript strict mode
+Prefer functional components in React
+Use WordPress coding standards for PHP
+Add PHPDoc comments to all functions
+```
+
+### .cursorrules fájl
+
+Projekt-szintű szabályok a gyökérmappában:
+
+```
+# .cursorrules
+
+You are a WordPress developer.
+Use WordPress coding standards.
+Prefer WP functions over raw PHP.
+Always escape output with esc_html(), esc_attr(), etc.
+Use wp_nonce for form security.
+```
+
+---
+
+## WordPress fejlesztéshez
+
+### Hasznos promptok
+
+**Plugin fejlesztés:**
+```
+Create a WordPress plugin that adds a custom post type
+called "portfolio" with title, editor, and thumbnail support
+```
+
+**Gutenberg block:**
+```
+Create a custom Gutenberg block for testimonials with
+name, quote, and image attributes
+```
+
+**WooCommerce:**
+```
+Add a custom discount field to WooCommerce checkout
+that applies percentage discount
+```
+
+### .cursorrules WordPress-hez
+
+```
+# WordPress Development Rules
+
+You are an expert WordPress developer.
+
+## Coding Standards
+- Follow WordPress PHP Coding Standards
+- Use WordPress hooks and filters
+- Escape all output (esc_html, esc_attr, esc_url, wp_kses)
+- Sanitize all input (sanitize_text_field, absint, etc.)
+
+## Security
+- Always use nonces for forms
+- Check capabilities before actions
+- Prepare SQL queries with $wpdb->prepare()
+
+## Best Practices
+- Prefix all functions and classes
+- Use WordPress transients for caching
+- Enqueue scripts and styles properly
+- Support internationalization with __() and _e()
+```
+
+---
+
+## Billentyűkombinációk
+
+| Kombináció | Funkció |
+|------------|---------|
+| `Cmd/Ctrl + L` | AI Chat megnyitása |
+| `Cmd/Ctrl + K` | Inline edit |
+| `Cmd/Ctrl + I` | Composer |
+| `Cmd/Ctrl + Shift + L` | Chat with selection |
+| `Tab` | Javaslat elfogadása |
+| `Esc` | Javaslat elutasítása |
+
+---
+
+## Privacy
+
+### Adatkezelés
+
+- **Privacy Mode** - Kód nem kerül tárolásra
+- **Codebase indexing** - Lokálisan tárolva
+- **SOC 2** - Biztonsági tanúsítvány
+
+### Business csomag
+
+- Zero data retention policy
+- Admin kontroll az AI használat felett
+- Audit log
+
+---
+
+## Cursor vs GitHub Copilot
+
+| Funkció | Cursor | GitHub Copilot |
+|---------|--------|----------------|
+| Multi-file edit | ✓ (Composer) | ✓ (Copilot Edits) |
+| Codebase context | ✓ | ✓ (@workspace) |
+| Chat | ✓ | ✓ |
+| VS Code alapú | ✓ | Extension |
+| Saját IDE | ✓ | - |
+| Ár (Pro) | $20/hó | $10/hó |
+
+---
+
+## Kapcsolódó linkek
+
+- [Cursor hivatalos oldal](https://cursor.com/)
+- [Cursor dokumentáció](https://docs.cursor.com/)
+- [Cursor changelog](https://changelog.cursor.com/)

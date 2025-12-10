@@ -1,0 +1,317 @@
+---
+title: PhpStorm - Professzionális PHP IDE
+description: PhpStorm IDE használata WordPress fejlesztéshez - a JetBrains prémium PHP fejlesztői környezete.
+keywords:
+  - phpstorm
+  - ide
+  - php
+  - jetbrains
+  - wordpress
+sidebar_label: PhpStorm
+sidebar_position: 16
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-lightbulb text-primary" /> PhpStorm - Professzionális PHP IDE
+
+A **PhpStorm** a JetBrains prémium PHP fejlesztői környezete, amely nem csak kódszerkesztő, hanem teljes értékű IDE. Beépített debugger, tesztelési eszközök és WordPress támogatás teszi a professzionális fejlesztők kedvencévé.
+
+:::tip Miért válaszd a PhpStorm-ot?
+- **Intelligens kódkiegészítés** - Érti a PHP-t és a WordPress-t
+- **Beépített debugger** - Xdebug integráció
+- **Refaktorálás** - Biztonságos kód átszervezés
+- **WordPress támogatás** - Hooks, filters, coding standards
+:::
+
+---
+
+## Főbb funkciók
+
+### Intelligens kódszerkesztés
+
+- **Smart autocomplete** - Kontextus-alapú javaslatok
+- **Code inspection** - Hibák és figyelmeztetések valós időben
+- **Quick fixes** - Automatikus javítási javaslatok
+- **Code generation** - Getterek, setterek, konstruktorok
+
+### Navigáció
+
+- **Go to definition** - Ugrás a definícióhoz
+- **Find usages** - Összes használat megkeresése
+- **File structure** - Fájl struktúra áttekintése
+- **Search everywhere** - Bármi keresése (`Shift + Shift`)
+
+### Refaktorálás
+
+- **Rename** - Biztonságos átnevezés mindenhol
+- **Extract method** - Kód kiemelése függvénybe
+- **Extract variable** - Változó kiemelése
+- **Move** - Fájlok és osztályok mozgatása
+
+### Debugger
+
+- **Xdebug integráció** - Breakpoint-ok, step through
+- **Variable inspection** - Változók vizsgálata
+- **Call stack** - Hívási verem
+- **Watches** - Kifejezések figyelése
+
+### Tesztelés
+
+- **PHPUnit** - Unit tesztek futtatása
+- **Pest** - Pest framework támogatás
+- **Code coverage** - Lefedettség vizualizáció
+- **Test generation** - Tesztek generálása
+
+---
+
+## WordPress támogatás
+
+### WordPress plugin
+
+A PhpStorm beépített WordPress támogatással rendelkezik:
+
+1. **Settings → PHP → Frameworks → WordPress**
+2. Add meg a WordPress telepítés útvonalát
+3. Engedélyezd a WordPress integrációt
+
+### Funkciók
+
+- **Hook completion** - `add_action`, `add_filter` autocomplete
+- **Function navigation** - WordPress core függvények
+- **Coding standards** - WPCS integráció
+- **Template tags** - Template függvények támogatása
+
+### wp-cli.phar integráció
+
+```
+Settings → Tools → Command Line Tool Support → Add → WP-CLI
+```
+
+---
+
+## Árazás
+
+| Csomag | Ár | Leírás |
+|--------|-----|--------|
+| **Individual** | €199/év (első év) | Személyes használatra |
+| **Business** | €299/év (első év) | Vállalati használatra |
+| **All Products Pack** | €289/év | Összes JetBrains IDE |
+
+### Kedvezmények
+
+- **Második év**: 20% kedvezmény
+- **Harmadik évtől**: 40% kedvezmény
+- **Diákok**: Ingyenes (érvényes igazolással)
+- **Open Source**: Ingyenes (elfogadott projektekhez)
+- **Startupok**: 50% kedvezmény
+
+### 30 napos próba
+
+Teljes funkcionalitású próbaverzió regisztráció után.
+
+---
+
+## Telepítés
+
+### JetBrains Toolbox (ajánlott)
+
+1. Töltsd le: [jetbrains.com/toolbox-app](https://www.jetbrains.com/toolbox-app/)
+2. Telepítsd a Toolbox-ot
+3. Keresd meg és telepítsd a PhpStorm-ot
+
+### Közvetlen letöltés
+
+1. Látogass el: [jetbrains.com/phpstorm/download](https://www.jetbrains.com/phpstorm/download/)
+2. Válaszd ki a platformodat
+3. Telepítsd
+
+### Rendszerkövetelmények
+
+| Követelmény | Minimum |
+|-------------|---------|
+| **RAM** | 4 GB (8 GB ajánlott) |
+| **Tárhely** | 3.5 GB + 1 GB cache |
+| **Kijelző** | 1024x768 |
+
+---
+
+## Beállítás WordPress-hez
+
+### 1. PHP interpreter
+
+```
+Settings → PHP → CLI Interpreter → Add
+```
+
+Válaszd ki a PHP verziót (Local, Docker, vagy Remote).
+
+### 2. WordPress coding standards
+
+```bash
+# Telepítsd a WPCS-t
+composer global require squizlabs/php_codesniffer
+composer global require wp-coding-standards/wpcs
+phpcs --config-set installed_paths ~/.composer/vendor/wp-coding-standards/wpcs
+```
+
+```
+Settings → PHP → Quality Tools → PHP_CodeSniffer
+Path: ~/.composer/vendor/bin/phpcs
+```
+
+### 3. Xdebug
+
+```
+Settings → PHP → Debug → Xdebug
+Port: 9003 (alapértelmezett)
+```
+
+**php.ini beállítások:**
+```ini
+[xdebug]
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_port=9003
+xdebug.client_host=localhost
+```
+
+### 4. Database integráció
+
+```
+View → Tool Windows → Database → Add → MySQL
+```
+
+Kapcsolódj a WordPress adatbázishoz közvetlen lekérdezésekhez.
+
+---
+
+## Hasznos billentyűkombinációk
+
+### Navigáció
+
+| Kombináció | Funkció |
+|------------|---------|
+| `Shift + Shift` | Search everywhere |
+| `Cmd/Ctrl + Click` | Go to definition |
+| `Cmd/Ctrl + B` | Go to declaration |
+| `Cmd/Ctrl + E` | Recent files |
+| `Cmd/Ctrl + Shift + F` | Find in path |
+
+### Szerkesztés
+
+| Kombináció | Funkció |
+|------------|---------|
+| `Cmd/Ctrl + D` | Duplicate line |
+| `Cmd/Ctrl + /` | Comment line |
+| `Cmd/Ctrl + Shift + /` | Block comment |
+| `Alt + Enter` | Show intentions |
+| `Cmd/Ctrl + Alt + L` | Reformat code |
+
+### Refaktorálás
+
+| Kombináció | Funkció |
+|------------|---------|
+| `Shift + F6` | Rename |
+| `Cmd/Ctrl + Alt + M` | Extract method |
+| `Cmd/Ctrl + Alt + V` | Extract variable |
+| `F6` | Move |
+
+### Debug
+
+| Kombináció | Funkció |
+|------------|---------|
+| `Shift + F9` | Debug |
+| `F8` | Step over |
+| `F7` | Step into |
+| `Shift + F8` | Step out |
+| `Cmd/Ctrl + F8` | Toggle breakpoint |
+
+---
+
+## Plugin ajánlások
+
+### Fejlesztői pluginok
+
+| Plugin | Funkció |
+|--------|---------|
+| **.env files support** | .env fájlok kezelése |
+| **Laravel Idea** | Laravel támogatás |
+| **Symfony Support** | Symfony támogatás |
+| **PHP Annotations** | Annotation támogatás |
+
+### Produktivitás
+
+| Plugin | Funkció |
+|--------|---------|
+| **Key Promoter X** | Billentyűkombináció tanulás |
+| **Rainbow Brackets** | Színes zárójelek |
+| **GitToolBox** | Git kiegészítések |
+| **String Manipulation** | String műveletek |
+
+### AI
+
+| Plugin | Funkció |
+|--------|---------|
+| **GitHub Copilot** | AI kódkiegészítés |
+| **AI Assistant** | JetBrains AI |
+| **Tabnine** | AI autocomplete |
+
+---
+
+## Live Templates
+
+### WordPress live templates
+
+Hozz létre saját sablonokat:
+
+**Settings → Editor → Live Templates → Add**
+
+**Példa - WordPress action:**
+```
+Abbreviation: wpa
+Template text:
+add_action( '$HOOK$', '$CALLBACK$' );
+$END$
+```
+
+**Példa - Plugin header:**
+```
+Abbreviation: wpph
+Template text:
+/**
+ * Plugin Name: $NAME$
+ * Plugin URI: $URI$
+ * Description: $DESCRIPTION$
+ * Version: $VERSION$
+ * Author: $AUTHOR$
+ * Author URI: $AUTHOR_URI$
+ * License: GPL-2.0-or-later
+ * Text Domain: $TEXT_DOMAIN$
+ */
+$END$
+```
+
+---
+
+## PhpStorm vs VS Code
+
+| Funkció | PhpStorm | VS Code |
+|---------|----------|---------|
+| Típus | Full IDE | Szerkesztő |
+| PHP támogatás | Natív, teljes | Extension-ök |
+| Autocomplete | Kiváló | Jó (Intelephense) |
+| Debugger | Beépített | Extension |
+| Refaktorálás | Fejlett | Alap |
+| Ár | Fizetős | Ingyenes |
+| Sebesség | Lassabb indulás | Gyors |
+| RAM használat | Magasabb | Alacsonyabb |
+
+---
+
+## Kapcsolódó linkek
+
+- [PhpStorm hivatalos oldal](https://www.jetbrains.com/phpstorm/)
+- [PhpStorm dokumentáció](https://www.jetbrains.com/help/phpstorm/)
+- [PhpStorm letöltés](https://www.jetbrains.com/phpstorm/download/)
+- [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)

@@ -1,0 +1,256 @@
+---
+title: Bitwarden - Nyílt forráskódú jelszókezelő
+description: Bitwarden jelszókezelő használata - ingyenes, biztonságos és nyílt forráskódú megoldás jelszavak tárolására.
+keywords:
+  - bitwarden
+  - password manager
+  - jelszókezelő
+  - biztonság
+  - security
+sidebar_label: Bitwarden
+sidebar_position: 4
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-shield-halved text-primary" /> Bitwarden - Nyílt forráskódú jelszókezelő
+
+A **Bitwarden** egy ingyenes, nyílt forráskódú jelszókezelő, amely az iparági legjobb értéket kínálja. A G2 Enterprise Grid Report 11 egymást követő negyedévben az első helyen végzett a felhasználói elégedettség kategóriában.
+
+:::tip Miért válaszd a Bitwarden-t?
+- **Ingyenes** - Minden alapfunkció díjmentes
+- **Nyílt forráskódú** - Teljes átláthatóság
+- **Self-hosting** - Saját szerveren futtatható
+- **$10/év Premium** - A legolcsóbb prémium opció
+:::
+
+---
+
+## Főbb funkciók
+
+### Jelszókezelés
+
+- **Korlátlan jelszavak** - Minden tervben
+- **Automatikus kitöltés** - Böngésző és mobil
+- **Jelszó generátor** - Erős, egyedi jelszavak
+- **Megjegyzések és kártyák** - Nem csak jelszavak
+
+### Biztonság
+
+- **256-bit AES titkosítás** - Iparági szabvány
+- **Zero-knowledge** - Csak te férsz hozzá az adataidhoz
+- **2FA támogatás** - Kétfaktoros hitelesítés
+- **TOTP generátor** - Beépített authenticator (Premium)
+
+### Szinkronizálás
+
+- **Cross-platform** - Minden eszközön elérhető
+- **Azonnali sync** - Módosítások azonnal szinkronizálódnak
+- **Offline hozzáférés** - Internet nélkül is működik
+
+### Megosztás
+
+- **Biztonságos küldés** - Fájlok és szövegek megosztása
+- **Szervezetek** - Csapatoknak és családoknak
+- **Collection-ök** - Jelszavak csoportosítása
+
+---
+
+## Árazás
+
+### Személyes csomagok
+
+| Csomag | Ár | Funkciók |
+|--------|-----|----------|
+| **Free** | $0 | Korlátlan jelszavak, sync, 2FA |
+| **Premium** | $10/év | TOTP, 1GB tárhely, sürgősségi hozzáférés |
+| **Families** | $40/év | 6 felhasználó, minden prémium funkció |
+
+### Üzleti csomagok
+
+| Csomag | Ár | Funkciók |
+|--------|-----|----------|
+| **Teams** | $4/felhasználó/hó | Korlátlan felhasználók |
+| **Enterprise** | $6/felhasználó/hó | SSO, SCIM, policies |
+
+:::info Legjobb érték
+A Bitwarden Premium mindössze $10/év - ez a legolcsóbb prémium jelszókezelő a piacon.
+:::
+
+---
+
+## Telepítés
+
+### Böngésző extension
+
+- [Chrome](https://chrome.google.com/webstore/detail/bitwarden)
+- [Firefox](https://addons.mozilla.org/firefox/addon/bitwarden-password-manager/)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/bitwarden)
+- [Safari](https://apps.apple.com/app/bitwarden/id1352778147)
+
+### Desktop alkalmazás
+
+- [Windows letöltés](https://bitwarden.com/download/)
+- [macOS letöltés](https://bitwarden.com/download/)
+- [Linux letöltés](https://bitwarden.com/download/)
+
+### Mobil alkalmazás
+
+- [iOS App Store](https://apps.apple.com/app/bitwarden-password-manager/id1137397744)
+- [Android Play Store](https://play.google.com/store/apps/details?id=com.x8bit.bitwarden)
+
+### Web Vault
+
+Böngészőből elérhető: [vault.bitwarden.com](https://vault.bitwarden.com/)
+
+---
+
+## Első lépések
+
+### 1. Fiók létrehozása
+
+1. Látogass el: [bitwarden.com](https://bitwarden.com/)
+2. Kattints a **Get Started** gombra
+3. Add meg az email címed
+4. Hozz létre egy **erős master jelszót**
+
+:::warning Master jelszó
+A master jelszót **SOHA** nem lehet visszaállítani. Válassz olyat, amit megjegyzel, de más nem tudja kitalálni!
+:::
+
+### 2. Böngésző extension telepítése
+
+1. Telepítsd a megfelelő extension-t
+2. Jelentkezz be a Bitwarden fiókodba
+3. Engedélyezd az automatikus kitöltést
+
+### 3. Jelszavak importálása
+
+1. Menj a **Web Vault** → **Tools** → **Import Data**
+2. Válaszd ki a forrást (Chrome, LastPass, 1Password, stb.)
+3. Töltsd fel az export fájlt
+4. Ellenőrizd az importált adatokat
+
+### 4. Jelszó generálás
+
+1. Kattints a Bitwarden ikonra
+2. Válaszd a **Generator** fület
+3. Állítsd be a paramétereket:
+   - Hossz (ajánlott: 16+)
+   - Kis/nagybetűk
+   - Számok
+   - Speciális karakterek
+4. Kattints a **Regenerate** gombra
+5. Másold ki és használd
+
+---
+
+## Biztonsági funkciók
+
+### Kétfaktoros hitelesítés (2FA)
+
+A Bitwarden fiók védelméhez beállítható:
+- **Authenticator app** (TOTP)
+- **Email kód**
+- **YubiKey** (Premium)
+- **FIDO2 WebAuthn** (Premium)
+
+### Vault timeout
+
+Beállítható, hogy mikor zárja le automatikusan a vault-ot:
+- Böngésző bezárásakor
+- Adott idő után (1 perc - 4 óra)
+- Rendszer zároláskor
+
+### Emergency Access (Premium)
+
+Megbízható személy hozzáférhet a vault-odhoz vészhelyzet esetén, beállított várakozási idő után.
+
+---
+
+## Self-hosting
+
+A Bitwarden teljesen self-hostolható:
+
+### Rendszerkövetelmények
+
+- Docker és Docker Compose
+- 2GB RAM minimum
+- 10GB tárhely
+- HTTPS tanúsítvány
+
+### Telepítés
+
+```bash
+# Bitwarden telepítő letöltése
+curl -Lso bitwarden.sh "https://func.bitwarden.com/api/dl/?app=self-host&platform=linux"
+chmod +x bitwarden.sh
+
+# Telepítés
+./bitwarden.sh install
+
+# Indítás
+./bitwarden.sh start
+```
+
+---
+
+## Üzleti funkciók
+
+### SSO integráció
+
+Támogatott identity provider-ek:
+- Azure AD
+- Okta
+- LDAP
+- Google Workspace
+
+### SCIM provisioning
+
+Automatikus felhasználókezelés:
+- Azure AD
+- Okta
+- OneLogin
+
+### Audit log
+
+50+ eseménytípus részletes naplózása:
+- Bejelentkezések
+- Jelszó módosítások
+- Megosztások
+- Admin műveletek
+
+### Policies
+
+Szervezeti szabályok beállítása:
+- Master jelszó erősség
+- 2FA kötelezővé tétele
+- Personal vault tiltása
+
+---
+
+## Elismerések
+
+- **#1 G2 Enterprise User Satisfaction** - 11 egymást követő negyedévben
+- **Info-Tech Research Group** - 9.1 composite score, 9.4 customer experience
+- **99% megújítási arány** - A felhasználók 99%-a megújítja előfizetését
+
+---
+
+## Alternatívák
+
+| Eszköz | Előny |
+|--------|-------|
+| **1Password** | Szebb felület, több funkció |
+| **LastPass** | Ismertebb név |
+| **Dashlane** | VPN is jár hozzá |
+| **KeePass** | Teljesen offline |
+
+---
+
+## Kapcsolódó linkek
+
+- [Bitwarden hivatalos oldal](https://bitwarden.com/)
+- [Bitwarden árak](https://bitwarden.com/pricing/)
+- [Bitwarden Help Center](https://bitwarden.com/help/)
+- [Bitwarden GitHub](https://github.com/bitwarden)

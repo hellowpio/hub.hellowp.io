@@ -1,0 +1,450 @@
+---
+title: PHPStan - Statikus kódelemzés
+description: PHPStan használata WordPress projektekhez - PHP hibák és biztonsági problémák felderítése futtatás nélkül.
+keywords:
+  - phpstan
+  - static analysis
+  - php
+  - code quality
+  - wordpress
+sidebar_label: PHPStan
+sidebar_position: 15
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-microscope text-primary" /> PHPStan - Statikus kódelemzés
+
+A **PHPStan** egy statikus elemző eszköz PHP-hoz, amely futtatás nélkül találja meg a hibákat a kódban. A WordPress fejlesztéshez a `phpstan-wordpress` extension biztosít teljes támogatást.
+
+:::tip Miért használd?
+- **Hibák futtatás előtt** - Típushibák, undefined változók
+- **Biztonsági problémák** - Potenciális sebezhetőségek
+- **Kódminőség** - Jobb, karbantarthatóbb kód
+- **CI/CD integráció** - Automatikus ellenőrzés
+:::
+
+---
+
+## Telepítés
+
+### Composer-rel (ajánlott)
+
+```bash
+# PHPStan
+composer require --dev phpstan/phpstan
+
+# WordPress extension
+composer require --dev szepeviktor/phpstan-wordpress
+```
+
+### Globálisan
+
+```bash
+composer global require phpstan/phpstan
+```
+
+---
+
+## Alapvető használat
+
+### Parancssorból
+
+```bash
+# Egyetlen fájl elemzése
+vendor/bin/phpstan analyse src/plugin.php
+
+# Mappa elemzése
+vendor/bin/phpstan analyse src/
+
+# Megadott szinttel
+vendor/bin/phpstan analyse src/ --level=5
+
+# Konfiguráció fájllal
+vendor/bin/phpstan analyse -c phpstan.neon
+```
+
+### Szintek
+
+| Szint | Mit ellenőriz |
+|-------|---------------|
+| **0** | Alap hibák, ismeretlen osztályok |
+| **1** | + Valószínűleg undefined változók |
+| **2** | + Ismeretlen metódusok, tulajdonságok |
+| **3** | + Return típusok |
+| **4** | + Alap dead code |
+| **5** | + Argumentum típusok (ajánlott kezdéshez) |
+| **6** | + Hiányzó type hints |
+| **7** | + Union típusok |
+| **8** | + Nullable típusok |
+| **9** | + Mixed típus szigorúan |
+
+---
+
+## WordPress konfiguráció
+
+### phpstan.neon
+
+```neon
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - plugin.php
+        - includes/
+        - src/
+
+    # WordPress specifikus beállítások
+    bootstrapFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+
+    # Ignorált hibák
+    ignoreErrors:
+        - '#^Function apply_filters invoked with .* parameters, 2 required\.$#'
+
+    # Kizárt mappák
+    excludePaths:
+        - vendor/
+        - node_modules/
+        - tests/
+
+    # WordPress globális változók
+    scanDirectories:
+        - /path/to/wordpress/
+```
+
+### Minimális konfiguráció
+
+```neon
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - .
+    excludePaths:
+        - vendor
+```
+
+---
+
+## WordPress stubs
+
+A WordPress függvények és osztályok típus definíciói:
+
+```bash
+# WordPress stubs telepítése
+composer require --dev php-stubs/wordpress-stubs
+
+# WooCommerce stubs
+composer require --dev php-stubs/woocommerce-stubs
+
+# ACF stubs
+composer require --dev php-stubs/acf-pro-stubs
+```
+
+### phpstan.neon kiegészítés
+
+```neon
+parameters:
+    bootstrapFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+```
+
+---
+
+## Gyakori hibák és javítások
+
+### 1. Undefined variable
+
+```php
+// Hiba: Variable $post might not be defined
+function my_function() {
+    global $post;
+    echo $post->ID;
+}
+
+// Javítás:
+function my_function() {
+    global $post;
+    if ($post instanceof WP_Post) {
+        echo $post->ID;
+    }
+}
+```
+
+### 2. Return type mismatch
+
+```php
+// Hiba: Function should return string but returns string|false
+function get_data(): string {
+    return get_option('my_option');
+}
+
+// Javítás:
+function get_data(): string {
+    $value = get_option('my_option', '');
+    return is_string($value) ? $value : '';
+}
+```
+
+### 3. Parameter type
+
+```php
+// Hiba: Parameter #1 expects int, string given
+$post = get_post($_GET['id']);
+
+// Javítás:
+$post_id = isset($_GET['id']) ? absint($_GET['id']) : 0;
+$post = get_post($post_id);
+```
+
+### 4. Array access on mixed
+
+```php
+// Hiba: Cannot access offset on mixed
+$data = get_option('my_data');
+echo $data['key'];
+
+// Javítás:
+$data = get_option('my_data', []);
+if (is_array($data) && isset($data['key'])) {
+    echo $data['key'];
+}
+```
+
+---
+
+## PHPDoc annotációk
+
+### Típus megadása
+
+```php
+/**
+ * @param int    $post_id Post ID.
+ * @param string $meta_key Meta key.
+ * @return string|null Meta value or null.
+ */
+function get_custom_meta(int $post_id, string $meta_key): ?string {
+    $value = get_post_meta($post_id, $meta_key, true);
+    return is_string($value) ? $value : null;
+}
+```
+
+### Array típusok
+
+```php
+/**
+ * @param array<string, mixed> $args Arguments.
+ * @return array<int, WP_Post> Posts.
+ */
+function get_custom_posts(array $args): array {
+    return get_posts($args);
+}
+```
+
+### @var annotáció
+
+```php
+/** @var WP_Post|null $post */
+$post = get_post($id);
+
+if ($post !== null) {
+    echo $post->post_title;
+}
+```
+
+### @phpstan annotációk
+
+```php
+/**
+ * @phpstan-param array{
+ *     title: string,
+ *     content: string,
+ *     status?: string
+ * } $data
+ */
+function create_post(array $data): int {
+    // ...
+}
+
+/** @phpstan-ignore-next-line */
+$result = some_legacy_function();
+```
+
+---
+
+## CI/CD integráció
+
+### GitHub Actions
+
+```yaml
+name: PHPStan
+
+on: [push, pull_request]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --error-format=github
+```
+
+### Baseline használata
+
+Ha sok hiba van a meglévő kódban:
+
+```bash
+# Baseline generálása
+vendor/bin/phpstan analyse --generate-baseline
+
+# Használat
+vendor/bin/phpstan analyse --baseline=phpstan-baseline.neon
+```
+
+A `phpstan-baseline.neon` tartalmazza a meglévő hibákat, így csak az új hibák jelennek meg.
+
+---
+
+## VS Code integráció
+
+### Extension telepítése
+
+1. Telepítsd: "PHP Sniffer & Beautifier" vagy "phpstan" extension
+2. Konfiguráld a settings.json-ban:
+
+```json
+{
+    "phpstan.enabled": true,
+    "phpstan.configFile": "phpstan.neon",
+    "phpstan.level": "5"
+}
+```
+
+### PhpStorm integráció
+
+1. **Settings → PHP → Quality Tools → PHPStan**
+2. Add meg a phpstan executable útvonalát
+3. Állítsd be a configuration file-t
+
+---
+
+## Strict mode
+
+### declare(strict_types=1)
+
+```php
+<?php
+declare(strict_types=1);
+
+// Most a PHP is ellenőrzi a típusokat
+function add(int $a, int $b): int {
+    return $a + $b;
+}
+
+add('1', '2'); // TypeError!
+```
+
+### PHPStan strict rules
+
+```bash
+composer require --dev phpstan/phpstan-strict-rules
+```
+
+```neon
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+```
+
+---
+
+## Hibák ignorálása
+
+### Egy sor ignorálása
+
+```php
+/** @phpstan-ignore-next-line */
+$result = risky_function();
+
+$result = risky_function(); // @phpstan-ignore-line
+```
+
+### Hiba pattern ignorálása
+
+```neon
+parameters:
+    ignoreErrors:
+        # Regex pattern
+        - '#Call to an undefined method WP_Query::.*#'
+
+        # Specifikus üzenet
+        - message: '#Parameter .* of function esc_attr expects string#'
+          path: includes/
+
+        # Teljes fájl
+        - message: '#.*#'
+          path: legacy-code.php
+```
+
+---
+
+## Teljesítmény tippek
+
+### Cache használata
+
+```bash
+vendor/bin/phpstan analyse --memory-limit=512M
+```
+
+### Parallel futtatás
+
+```neon
+parameters:
+    parallel:
+        maximumNumberOfProcesses: 4
+```
+
+### Csak változott fájlok
+
+```bash
+# Git diff alapján
+vendor/bin/phpstan analyse $(git diff --name-only HEAD~1 -- '*.php')
+```
+
+---
+
+## PHPStan vs PHPCS
+
+| Szempont | PHPStan | PHPCS |
+|----------|---------|-------|
+| Típus | Statikus elemzés | Coding standard |
+| Mit vizsgál | Típusok, hibák | Formázás, stílus |
+| WordPress | Extension | WPCS ruleset |
+| Javítás | Kézi | Automatikus (phpcbf) |
+
+**Mindkettőt használd együtt!**
+
+---
+
+## Kapcsolódó linkek
+
+- [PHPStan hivatalos oldal](https://phpstan.org/)
+- [PHPStan dokumentáció](https://phpstan.org/user-guide/getting-started)
+- [PHPStan WordPress extension](https://github.com/szepeviktor/phpstan-wordpress)
+- [WordPress stubs](https://github.com/php-stubs/wordpress-stubs)
+- [PHPStan Playground](https://phpstan.org/try)

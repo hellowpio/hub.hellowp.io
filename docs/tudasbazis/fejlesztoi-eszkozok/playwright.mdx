@@ -1,0 +1,674 @@
+---
+title: Playwright
+description: End-to-end tesztelés WordPress oldalakhoz Playwright segítségével.
+keywords:
+  - playwright
+  - e2e
+  - testing
+  - wordpress
+  - böngésző tesztelés
+sidebar_label: Playwright
+sidebar_position: 18
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-browser text-primary" /> Playwright - E2E Tesztelés
+
+A [Playwright](https://playwright.dev/) a Microsoft által fejlesztett modern end-to-end tesztelési keretrendszer. Támogatja a Chromium, Firefox és WebKit böngészőket, és kiválóan alkalmas WordPress oldalak és admin felületek automatizált tesztelésére.
+
+## Miért Playwright?
+
+- **Több böngésző** - Chromium, Firefox, WebKit támogatás
+- **Auto-wait** - Automatikus várakozás elemekre
+- **Gyors** - Párhuzamos teszt futtatás
+- **Megbízható** - Stabil szelektorok és retry logika
+- **Trace viewer** - Vizuális debug eszköz
+- **WordPress kompatibilis** - Gutenberg teszteléshez is használják
+
+## Telepítés
+
+### npm
+
+```bash
+npm init playwright@latest
+```
+
+### Meglévő projektbe
+
+```bash
+npm install -D @playwright/test
+npx playwright install
+```
+
+### Projekt struktúra
+
+```
+my-project/
+├── tests/
+│   └── e2e/
+│       ├── login.spec.ts
+│       └── checkout.spec.ts
+├── playwright.config.ts
+└── package.json
+```
+
+## Konfiguráció
+
+### playwright.config.ts
+
+```typescript
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/e2e',
+
+  // Timeout beállítások
+  timeout: 30000,
+  expect: {
+    timeout: 5000,
+  },
+
+  // Párhuzamos futtatás
+  fullyParallel: true,
+  workers: process.env.CI ? 1 : undefined,
+
+  // Reporter
+  reporter: [
+    ['html', { open: 'never' }],
+    ['list'],
+  ],
+
+  // Globális beállítások
+  use: {
+    baseURL: 'http://localhost:8080',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+  },
+
+  // Böngésző konfigurációk
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+    // Mobil tesztelés
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 5'] },
+    },
+    {
+      name: 'mobile-safari',
+      use: { ...devices['iPhone 12'] },
+    },
+  ],
+
+  // Dev server indítása tesztek előtt
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:8080',
+    reuseExistingServer: !process.env.CI,
+  },
+});
+```
+
+## Alapvető tesztek
+
+### Első teszt
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('homepage has title', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle(/WordPress/);
+});
+
+test('homepage has main content', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('main')).toBeVisible();
+});
+```
+
+### Navigáció és kattintás
+
+```typescript
+test('navigation works', async ({ page }) => {
+  await page.goto('/');
+
+  // Link kattintás
+  await page.click('text=Blog');
+
+  // URL ellenőrzés
+  await expect(page).toHaveURL(/.*blog/);
+
+  // Tartalom ellenőrzés
+  await expect(page.locator('h1')).toContainText('Blog');
+});
+```
+
+## WordPress Admin tesztelés
+
+### Login teszt
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('admin login', async ({ page }) => {
+  await page.goto('/wp-admin');
+
+  // Login form kitöltése
+  await page.fill('#user_login', 'admin');
+  await page.fill('#user_pass', 'password');
+  await page.click('#wp-submit');
+
+  // Dashboard ellenőrzése
+  await expect(page).toHaveURL(/.*wp-admin/);
+  await expect(page.locator('#wpbody-content h1')).toContainText('Dashboard');
+});
+```
+
+### Auth state mentése
+
+`playwright.config.ts`:
+
+```typescript
+export default defineConfig({
+  projects: [
+    // Setup projekt - bejelentkezés
+    {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+    },
+    // Tesztek setup után
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+    },
+  ],
+});
+```
+
+`tests/auth.setup.ts`:
+
+```typescript
+import { test as setup, expect } from '@playwright/test';
+
+const authFile = 'playwright/.auth/user.json';
+
+setup('authenticate', async ({ page }) => {
+  await page.goto('/wp-login.php');
+  await page.fill('#user_login', 'admin');
+  await page.fill('#user_pass', 'password');
+  await page.click('#wp-submit');
+
+  // Várakozás a dashboard-ra
+  await page.waitForURL('**/wp-admin/**');
+
+  // Auth state mentése
+  await page.context().storageState({ path: authFile });
+});
+```
+
+### Dashboard teszt (bejelentkezett állapotban)
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('can access dashboard', async ({ page }) => {
+  // Már bejelentkezve van (auth state)
+  await page.goto('/wp-admin');
+
+  await expect(page.locator('#wpbody-content h1')).toContainText('Dashboard');
+});
+
+test('can create new post', async ({ page }) => {
+  await page.goto('/wp-admin/post-new.php');
+
+  // Gutenberg editor betöltésének várakozása
+  await page.waitForSelector('.block-editor');
+
+  // Cím megadása
+  await page.click('.editor-post-title__input');
+  await page.keyboard.type('Test Post Title');
+
+  // Tartalom hozzáadása
+  await page.click('.block-editor-default-block-appender__content');
+  await page.keyboard.type('This is test content.');
+
+  // Publish
+  await page.click('button:has-text("Publish")');
+  await page.click('.editor-post-publish-panel button:has-text("Publish")');
+
+  // Ellenőrzés
+  await expect(page.locator('.components-snackbar')).toContainText('published');
+});
+```
+
+## Szelektorok
+
+### Szöveges szelektorok
+
+```typescript
+// Pontos szöveg
+await page.click('text=Bejelentkezés');
+
+// Részleges szöveg
+await page.click('text=/belép/i');
+
+// Szöveget tartalmazó elem
+await page.locator('button', { hasText: 'Submit' }).click();
+```
+
+### CSS szelektorok
+
+```typescript
+// ID
+await page.click('#submit-button');
+
+// Class
+await page.click('.btn-primary');
+
+// Attribútum
+await page.click('[data-testid="login-button"]');
+
+// Kombinált
+await page.click('button.btn-primary[type="submit"]');
+```
+
+### XPath
+
+```typescript
+await page.click('//button[@type="submit"]');
+await page.click('xpath=//div[@class="content"]//a');
+```
+
+### Pseudo szelektorok
+
+```typescript
+// nth element
+await page.click('.item >> nth=0');
+
+// has text
+await page.click('div:has-text("Hello")');
+
+// has child
+await page.click('article:has(img)');
+
+// visible
+await page.click('button:visible');
+```
+
+## Form kezelés
+
+### Input kitöltése
+
+```typescript
+test('form submission', async ({ page }) => {
+  await page.goto('/contact');
+
+  // Text input
+  await page.fill('input[name="name"]', 'John Doe');
+  await page.fill('input[name="email"]', 'john@example.com');
+
+  // Textarea
+  await page.fill('textarea[name="message"]', 'Hello World!');
+
+  // Select
+  await page.selectOption('select[name="subject"]', 'support');
+
+  // Checkbox
+  await page.check('input[name="newsletter"]');
+
+  // Radio
+  await page.check('input[value="option1"]');
+
+  // Submit
+  await page.click('button[type="submit"]');
+
+  // Sikeres küldés ellenőrzése
+  await expect(page.locator('.success-message')).toBeVisible();
+});
+```
+
+### File feltöltés
+
+```typescript
+test('file upload', async ({ page }) => {
+  await page.goto('/wp-admin/upload.php?page=media-new');
+
+  // File input
+  await page.setInputFiles('input[type="file"]', 'tests/fixtures/image.jpg');
+
+  // Többszörös fájl
+  await page.setInputFiles('input[type="file"]', [
+    'tests/fixtures/image1.jpg',
+    'tests/fixtures/image2.jpg',
+  ]);
+
+  // Várakozás a feltöltésre
+  await expect(page.locator('.media-item')).toBeVisible();
+});
+```
+
+## Assertions
+
+### Page assertions
+
+```typescript
+await expect(page).toHaveTitle('My Site');
+await expect(page).toHaveURL(/.*\/blog/);
+await expect(page).toHaveURL('http://localhost/blog');
+```
+
+### Element assertions
+
+```typescript
+const element = page.locator('.my-element');
+
+await expect(element).toBeVisible();
+await expect(element).toBeHidden();
+await expect(element).toBeEnabled();
+await expect(element).toBeDisabled();
+await expect(element).toBeChecked();
+await expect(element).toHaveText('Hello');
+await expect(element).toContainText('Hello');
+await expect(element).toHaveAttribute('href', '/about');
+await expect(element).toHaveClass(/active/);
+await expect(element).toHaveCount(3);
+await expect(element).toHaveValue('John');
+```
+
+### Soft assertions
+
+```typescript
+test('soft assertions', async ({ page }) => {
+  await page.goto('/');
+
+  // Nem áll le hiba esetén
+  await expect.soft(page.locator('.hero')).toBeVisible();
+  await expect.soft(page.locator('.sidebar')).toBeVisible();
+
+  // Összesített eredmény
+  expect(test.info().errors).toHaveLength(0);
+});
+```
+
+## Várakozások
+
+### Explicit várakozások
+
+```typescript
+// Elem megjelenésére
+await page.waitForSelector('.loaded');
+
+// Elem eltűnésére
+await page.waitForSelector('.spinner', { state: 'hidden' });
+
+// URL-re
+await page.waitForURL('**/success');
+
+// Hálózati idle-re
+await page.waitForLoadState('networkidle');
+
+// Timeout
+await page.waitForTimeout(1000);
+```
+
+### Response várakozás
+
+```typescript
+test('wait for API', async ({ page }) => {
+  await page.goto('/');
+
+  // API válaszra várakozás
+  const responsePromise = page.waitForResponse('**/api/data');
+  await page.click('button.load-data');
+  const response = await responsePromise;
+
+  expect(response.status()).toBe(200);
+});
+```
+
+## WooCommerce tesztelés
+
+### Termék vásárlás
+
+```typescript
+test('complete checkout', async ({ page }) => {
+  // Termék oldal
+  await page.goto('/product/test-product');
+  await page.click('button.add_to_cart_button');
+
+  // Kosár
+  await page.goto('/cart');
+  await expect(page.locator('.cart_item')).toHaveCount(1);
+
+  // Checkout
+  await page.click('a.checkout-button');
+
+  // Billing adatok
+  await page.fill('#billing_first_name', 'John');
+  await page.fill('#billing_last_name', 'Doe');
+  await page.fill('#billing_address_1', '123 Main St');
+  await page.fill('#billing_city', 'Budapest');
+  await page.fill('#billing_postcode', '1234');
+  await page.fill('#billing_phone', '+36301234567');
+  await page.fill('#billing_email', 'john@example.com');
+
+  // Fizetési mód
+  await page.check('#payment_method_cod');
+
+  // Rendelés elküldése
+  await page.click('#place_order');
+
+  // Sikeres rendelés
+  await expect(page.locator('.woocommerce-order-received')).toBeVisible();
+});
+```
+
+## Page Object Model
+
+### Page objektum
+
+```typescript
+// tests/pages/LoginPage.ts
+import { Page, Locator } from '@playwright/test';
+
+export class LoginPage {
+  readonly page: Page;
+  readonly usernameInput: Locator;
+  readonly passwordInput: Locator;
+  readonly submitButton: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.usernameInput = page.locator('#user_login');
+    this.passwordInput = page.locator('#user_pass');
+    this.submitButton = page.locator('#wp-submit');
+  }
+
+  async goto() {
+    await this.page.goto('/wp-login.php');
+  }
+
+  async login(username: string, password: string) {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.submitButton.click();
+  }
+}
+```
+
+### Page objektum használata
+
+```typescript
+// tests/e2e/login.spec.ts
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+
+test('can login', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
+  await loginPage.goto();
+  await loginPage.login('admin', 'password');
+
+  await expect(page).toHaveURL(/.*wp-admin/);
+});
+```
+
+## Screenshots és videók
+
+### Screenshot készítése
+
+```typescript
+test('visual test', async ({ page }) => {
+  await page.goto('/');
+
+  // Teljes oldal screenshot
+  await page.screenshot({ path: 'screenshots/homepage.png', fullPage: true });
+
+  // Elem screenshot
+  await page.locator('.hero').screenshot({ path: 'screenshots/hero.png' });
+});
+```
+
+### Visual regression testing
+
+```typescript
+test('visual comparison', async ({ page }) => {
+  await page.goto('/');
+
+  // Összehasonlítás mentett screenshot-tal
+  await expect(page).toHaveScreenshot('homepage.png');
+
+  // Elem összehasonlítás
+  await expect(page.locator('.hero')).toHaveScreenshot('hero.png');
+});
+```
+
+## Debug és Trace
+
+### Debug mód
+
+```bash
+# Debug UI megnyitása
+npx playwright test --debug
+
+# Egy teszt debug-olása
+npx playwright test login.spec.ts --debug
+```
+
+### Trace viewer
+
+```bash
+# Trace engedélyezése
+npx playwright test --trace on
+
+# Trace megtekintése
+npx playwright show-trace trace.zip
+```
+
+### Console logok
+
+```typescript
+test('debug logs', async ({ page }) => {
+  // Console logok figyelése
+  page.on('console', (msg) => {
+    console.log(`Browser log: ${msg.text()}`);
+  });
+
+  await page.goto('/');
+});
+```
+
+## CI/CD integráció
+
+### GitHub Actions
+
+```yaml
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Start WordPress
+        run: |
+          docker-compose up -d
+          npm run wait-for-wordpress
+
+      - name: Run tests
+        run: npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+```
+
+## Hasznos parancsok
+
+```bash
+# Összes teszt futtatása
+npx playwright test
+
+# Specifikus fájl
+npx playwright test login.spec.ts
+
+# Specifikus teszt
+npx playwright test -g "can login"
+
+# Böngésző megadása
+npx playwright test --project=chromium
+
+# Headed mód (böngésző látszik)
+npx playwright test --headed
+
+# UI mód
+npx playwright test --ui
+
+# Report megnyitása
+npx playwright show-report
+```
+
+## Források
+
+- [Playwright hivatalos oldal](https://playwright.dev/)
+- [Playwright dokumentáció](https://playwright.dev/docs/intro)
+- [Playwright GitHub](https://github.com/microsoft/playwright)
+- [WordPress Gutenberg Playwright tesztek](https://github.com/WordPress/gutenberg/tree/trunk/test/e2e)

@@ -1,0 +1,159 @@
+---
+title: Postman - API fejlesztői platform
+description: Postman API platform használata - API-k tervezése, tesztelése és dokumentálása egyszerűen.
+keywords:
+  - postman
+  - api
+  - api testing
+  - rest api
+  - graphql
+sidebar_label: Postman
+sidebar_position: 13
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-paper-plane text-primary" /> Postman - API fejlesztői platform
+
+A **Postman** a világ vezető API platformja, amelyet több mint 40 millió fejlesztő és 500 000 szervezet használ világszerte. A Fortune 500 vállalatok 98%-a használja az API-k fejlesztésére és tesztelésére.
+
+:::tip Miért használd?
+- **Teljes API életciklus** - Tervezés, tesztelés, dokumentáció
+- **Együttműködés** - Csapatok számára real-time kollaboráció
+- **Automatizálás** - CI/CD integráció és monitorozás
+- **Ingyenes verzió** - Gazdag funkciókészlet díjmentesen
+:::
+
+---
+
+## Főbb funkciók
+
+### API kliens
+
+- **Request küldés** - GET, POST, PUT, DELETE és egyéb HTTP metódusok
+- **Response vizsgálat** - Válaszok elemzése és debug
+- **Autentikáció** - OAuth, API Key, Bearer Token támogatás
+- **Environment változók** - Különböző környezetek kezelése
+
+### Collections
+
+- **Rendszerezés** - API hívások csoportosítása
+- **Verziókezelés** - Beépített verziózás
+- **Megosztás** - Csapattagokkal való együttműködés
+- **Import/Export** - OpenAPI, Swagger támogatás
+
+### API tervezés és dokumentáció
+
+- **Schema editor** - OpenAPI specifikációk szerkesztése
+- **Automatikus dokumentáció** - API docs generálás
+- **Mock szerverek** - API szimulálás fejlesztés előtt
+- **Code generation** - Kliens kód generálás
+
+### Tesztelés és monitorozás
+
+- **Automatikus tesztek** - JavaScript alapú teszt szkriptek
+- **Collection runner** - Tesztek futtatása sorozatban
+- **Monitors** - Ütemezett API ellenőrzés
+- **Performance tesztek** - Terhelés és válaszidő mérés
+
+---
+
+## Árazás
+
+| Csomag | Ár | Funkciók |
+|--------|-----|----------|
+| **Free** | $0 | Alapfunkciók, kis csapatoknak |
+| **Basic** | $14/felhasználó/hó | Több együttműködési funkció |
+| **Professional** | $29/felhasználó/hó | Haladó funkciók, API governance |
+| **Enterprise** | Egyedi | SSO, audit log, dedikált támogatás |
+
+### Használat alapú díjak
+
+- **Monitor hívások**: $20 / 50 000 request
+- **Mock hívások**: ~$0.75 / 1000 hívás
+- **Custom domain**: $10 / domain / hó
+
+:::info Ingyenes verzió
+A Free csomag tartalmazza a Collections, Documentation, Mock Servers funkciókat, és elegendő egyéni fejlesztőknek és kis projektekhez.
+:::
+
+---
+
+## Telepítés
+
+### Desktop alkalmazás
+
+1. Látogass el: [postman.com/downloads](https://www.postman.com/downloads/)
+2. Töltsd le a platformodnak megfelelő verziót
+3. Telepítsd és jelentkezz be
+
+### Támogatott platformok
+
+- **macOS** - Intel és Apple Silicon
+- **Windows** - 64-bit
+- **Linux** - Debian/Ubuntu, Fedora
+
+### Web verzió
+
+A Postman böngészőből is elérhető: [go.postman.co](https://go.postman.co/)
+
+---
+
+## Első lépések
+
+### 1. Request küldése
+
+1. Kattints a **New** → **HTTP Request**
+2. Válaszd ki a metódust (GET, POST, stb.)
+3. Add meg az URL-t
+4. Kattints a **Send** gombra
+
+### 2. Collection létrehozása
+
+1. Kattints a **Collections** → **Create Collection**
+2. Adj nevet a collection-nek
+3. Húzd bele a request-eket
+4. Rendezd mappákba
+
+### 3. Environment beállítása
+
+1. Kattints az **Environments** → **Create Environment**
+2. Adj hozzá változókat (pl. `base_url`, `api_key`)
+3. Használd a változókat: `{{base_url}}/api/users`
+
+### 4. Teszt írása
+
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response has data", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property("data");
+});
+```
+
+---
+
+## Integráció
+
+### CI/CD
+
+- **Newman** - Postman CLI collection runner
+- **GitHub Actions** - Automatikus tesztelés
+- **Jenkins** - Pipeline integráció
+
+### Verziókezelés
+
+- Git integráció a collection-ök verziókezeléséhez
+- Forking és pull request workflow
+
+---
+
+## Kapcsolódó linkek
+
+- [Postman hivatalos oldal](https://www.postman.com/)
+- [Postman Learning Center](https://learning.postman.com/)
+- [Postman API Network](https://www.postman.com/explore)
+- [Newman CLI](https://www.npmjs.com/package/newman)

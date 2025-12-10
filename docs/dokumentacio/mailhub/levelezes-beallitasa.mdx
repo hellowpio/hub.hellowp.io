@@ -1,0 +1,60 @@
+---
+title: Levelezés manuális beállítása
+description: MailHub email fiók manuális beállítása - IMAP, POP3 és SMTP szerver adatok.
+keywords:
+  - mailhub
+  - email beállítás
+  - imap
+  - pop3
+  - smtp
+sidebar_label: Manuális beállítás
+sidebar_position: 1
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-sharp fa-solid fa-envelopes-bulk text-primary" /> Levelezés manuális beállítása
+
+## Fiók adatok
+
+| Beállítás | Érték |
+|-----------|-------|
+| **Felhasználónév** | Az email címed |
+| **Jelszó** | A jelszó, amit az email címhez megadtál |
+
+## Szerver beállítások
+
+### IMAP (bejövő levelek - ajánlott)
+
+| Beállítás | Érték |
+|-----------|-------|
+| **Szerver** | mailhub.hellowp.cloud |
+| **Port** | 993 |
+| **Titkosítás** | SSL/TLS |
+| **Hitelesítés** | Normál jelszó |
+
+### POP3 (bejövő levelek)
+
+| Beállítás | Érték |
+|-----------|-------|
+| **Szerver** | mailhub.hellowp.cloud |
+| **Port** | 995 |
+| **Titkosítás** | SSL/TLS |
+| **Hitelesítés** | Normál jelszó |
+
+### SMTP (kimenő levelek)
+
+| Beállítás | Érték |
+|-----------|-------|
+| **Szerver** | mailhub.hellowp.cloud |
+| **Port** | 465 |
+| **Titkosítás** | SSL/TLS |
+| **Hitelesítés** | Szükséges |
+
+:::tip IMAP vs POP3
+Az **IMAP** használatát javasoljuk, mert a levelek a szerveren maradnak és több eszközről is elérheted őket.
+:::
+
+:::warning Figyelem!
+A MailHub levelezőszervere **nem használható hírlevélküldésre** vagy más tömeges kiküldésre. Erre is van kész megoldásunk - vedd fel velünk a kapcsolatot.
+:::

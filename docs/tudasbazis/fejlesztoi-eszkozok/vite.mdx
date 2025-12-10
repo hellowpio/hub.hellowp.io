@@ -1,0 +1,670 @@
+---
+title: Vite
+description: Modern és gyors frontend build eszköz WordPress témákhoz és bővítményekhez.
+keywords:
+  - vite
+  - build tool
+  - javascript
+  - css
+  - wordpress
+sidebar_label: Vite
+sidebar_position: 22
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-bolt text-primary" /> Vite - Modern Frontend Build Eszköz
+
+A [Vite](https://vitejs.dev/) egy modern, rendkívül gyors frontend build eszköz, amely natív ES modulokat használ fejlesztés közben. WordPress témákhoz és bővítményekhez ideális választás a gyors HMR (Hot Module Replacement) és az optimalizált production build miatt.
+
+## Miért Vite?
+
+- **Villámgyors** - Native ES modules fejlesztéshez
+- **HMR** - Azonnali módosítások böngészőben
+- **Modern** - ES6+, TypeScript, JSX támogatás
+- **Optimalizált build** - Rollup alapú production build
+- **Plugin rendszer** - Bővíthető funkcionalitás
+- **CSS kezelés** - PostCSS, Sass, Less támogatás
+
+## Telepítés
+
+### Új projekt
+
+```bash
+# npm
+npm create vite@latest my-wordpress-theme
+
+# yarn
+yarn create vite my-wordpress-theme
+
+# pnpm
+pnpm create vite my-wordpress-theme
+```
+
+### Meglévő projektbe
+
+```bash
+cd my-wordpress-plugin
+npm init -y
+npm install -D vite
+```
+
+## WordPress téma integráció
+
+### Projekt struktúra
+
+```
+my-theme/
+├── src/
+│   ├── js/
+│   │   └── main.js
+│   ├── css/
+│   │   └── style.css
+│   └── images/
+├── dist/                 # Build output
+├── vite.config.js
+├── package.json
+├── functions.php
+└── style.css
+```
+
+### vite.config.js
+
+```javascript
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+export default defineConfig({
+  build: {
+    // Output könyvtár
+    outDir: 'dist',
+
+    // Manifest fájl generálása (PHP integrációhoz)
+    manifest: true,
+
+    // Rollup beállítások
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'src/js/main.js'),
+        admin: resolve(__dirname, 'src/js/admin.js'),
+      },
+      output: {
+        entryFileNames: 'js/[name].[hash].js',
+        chunkFileNames: 'js/[name].[hash].js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.css')) {
+            return 'css/[name].[hash][extname]';
+          }
+          return 'assets/[name].[hash][extname]';
+        },
+      },
+    },
+  },
+
+  // Development server
+  server: {
+    // CORS engedélyezése WordPress-hez
+    cors: true,
+    // Port
+    port: 5173,
+    // Strict port (ne váltson másikra)
+    strictPort: true,
+    // HMR beállítások
+    hmr: {
+      host: 'localhost',
+    },
+  },
+});
+```
+
+### package.json scripts
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
+```
+
+## PHP integráció
+
+### Vite helper függvények
+
+`inc/vite.php`:
+
+```php
+<?php
+/**
+ * Vite integration for WordPress
+ */
+
+namespace MyTheme\Vite;
+
+/**
+ * Get Vite dev server status
+ */
+function is_dev_server_running(): bool {
+    if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+        return false;
+    }
+
+    $dev_server_url = 'http://localhost:5173';
+
+    $response = @file_get_contents( $dev_server_url );
+    return $response !== false;
+}
+
+/**
+ * Get asset URL from manifest
+ */
+function get_asset_url( string $entry ): string {
+    $manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
+
+    if ( ! file_exists( $manifest_path ) ) {
+        return '';
+    }
+
+    $manifest = json_decode( file_get_contents( $manifest_path ), true );
+
+    if ( ! isset( $manifest[ $entry ] ) ) {
+        return '';
+    }
+
+    return get_template_directory_uri() . '/dist/' . $manifest[ $entry ]['file'];
+}
+
+/**
+ * Get CSS files from manifest entry
+ */
+function get_css_files( string $entry ): array {
+    $manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
+
+    if ( ! file_exists( $manifest_path ) ) {
+        return [];
+    }
+
+    $manifest = json_decode( file_get_contents( $manifest_path ), true );
+
+    if ( ! isset( $manifest[ $entry ]['css'] ) ) {
+        return [];
+    }
+
+    return array_map( function( $css ) {
+        return get_template_directory_uri() . '/dist/' . $css;
+    }, $manifest[ $entry ]['css'] );
+}
+
+/**
+ * Enqueue Vite assets
+ */
+function enqueue_assets(): void {
+    if ( is_dev_server_running() ) {
+        // Development mode - Vite dev server
+        wp_enqueue_script(
+            'vite-client',
+            'http://localhost:5173/@vite/client',
+            [],
+            null,
+            false
+        );
+
+        wp_enqueue_script(
+            'theme-main',
+            'http://localhost:5173/src/js/main.js',
+            [],
+            null,
+            true
+        );
+
+        // Module típus beállítása
+        add_filter( 'script_loader_tag', function( $tag, $handle ) {
+            if ( in_array( $handle, [ 'vite-client', 'theme-main' ], true ) ) {
+                return str_replace( '<script ', '<script type="module" ', $tag );
+            }
+            return $tag;
+        }, 10, 2 );
+    } else {
+        // Production mode - built assets
+        $js_url = get_asset_url( 'src/js/main.js' );
+
+        if ( $js_url ) {
+            wp_enqueue_script(
+                'theme-main',
+                $js_url,
+                [],
+                null,
+                true
+            );
+        }
+
+        // CSS betöltése
+        foreach ( get_css_files( 'src/js/main.js' ) as $index => $css_url ) {
+            wp_enqueue_style(
+                'theme-style-' . $index,
+                $css_url,
+                [],
+                null
+            );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
+```
+
+### functions.php
+
+```php
+<?php
+// Vite helper betöltése
+require_once get_template_directory() . '/inc/vite.php';
+```
+
+## JavaScript és CSS
+
+### Entry point (src/js/main.js)
+
+```javascript
+// CSS importálása
+import '../css/style.css';
+
+// JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Theme loaded!');
+
+  // WordPress REST API példa
+  fetch('/wp-json/wp/v2/posts')
+    .then(response => response.json())
+    .then(posts => {
+      console.log('Posts:', posts);
+    });
+});
+
+// HMR támogatás
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
+```
+
+### CSS (src/css/style.css)
+
+```css
+/* Modern CSS */
+:root {
+  --color-primary: #0073aa;
+  --color-secondary: #23282d;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: var(--color-secondary);
+}
+
+.button {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-primary) 80%, black);
+  }
+}
+```
+
+## Sass támogatás
+
+### Telepítés
+
+```bash
+npm install -D sass
+```
+
+### Használat
+
+```javascript
+// main.js
+import '../scss/style.scss';
+```
+
+```scss
+// style.scss
+@use 'variables';
+@use 'mixins';
+
+body {
+  font-family: variables.$font-family;
+}
+```
+
+## PostCSS
+
+### Telepítés
+
+```bash
+npm install -D postcss autoprefixer postcss-preset-env
+```
+
+### postcss.config.js
+
+```javascript
+export default {
+  plugins: {
+    'postcss-preset-env': {
+      stage: 2,
+      features: {
+        'nesting-rules': true,
+      },
+    },
+    autoprefixer: {},
+  },
+};
+```
+
+## Tailwind CSS integráció
+
+### Telepítés
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### tailwind.config.js
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    './**/*.php',
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+### CSS
+
+```css
+/* style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## React támogatás
+
+### Telepítés
+
+```bash
+npm install react react-dom
+npm install -D @vitejs/plugin-react
+```
+
+### vite.config.js
+
+```javascript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  // ... többi konfiguráció
+});
+```
+
+### React komponens
+
+```jsx
+// src/js/components/App.jsx
+import { useState } from 'react';
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="my-app">
+      <h1>WordPress + Vite + React</h1>
+      <button onClick={() => setCount(count + 1)}>
+        Count: {count}
+      </button>
+    </div>
+  );
+}
+```
+
+### WordPress block integráció
+
+```jsx
+// src/js/blocks/my-block/index.jsx
+import { registerBlockType } from '@wordpress/blocks';
+import Edit from './edit';
+import Save from './save';
+
+registerBlockType('my-theme/my-block', {
+  edit: Edit,
+  save: Save,
+});
+```
+
+## TypeScript támogatás
+
+### Telepítés
+
+```bash
+npm install -D typescript
+```
+
+### tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+```
+
+### TypeScript használata
+
+```typescript
+// src/js/main.ts
+interface Post {
+  id: number;
+  title: { rendered: string };
+  content: { rendered: string };
+}
+
+async function fetchPosts(): Promise<Post[]> {
+  const response = await fetch('/wp-json/wp/v2/posts');
+  return response.json();
+}
+
+fetchPosts().then(posts => {
+  posts.forEach(post => {
+    console.log(post.title.rendered);
+  });
+});
+```
+
+## Plugin fejlesztés
+
+### vite.config.js (plugin)
+
+```javascript
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+export default defineConfig({
+  build: {
+    outDir: 'assets/dist',
+    manifest: true,
+    rollupOptions: {
+      input: {
+        frontend: resolve(__dirname, 'assets/src/js/frontend.js'),
+        admin: resolve(__dirname, 'assets/src/js/admin.js'),
+        'block-editor': resolve(__dirname, 'assets/src/js/block-editor.js'),
+      },
+    },
+  },
+});
+```
+
+### Plugin asset betöltés
+
+```php
+<?php
+class My_Plugin_Assets {
+    private static $manifest = null;
+
+    public static function init() {
+        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_frontend' ] );
+        add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_admin' ] );
+        add_action( 'enqueue_block_editor_assets', [ __CLASS__, 'enqueue_block_editor' ] );
+    }
+
+    private static function get_manifest() {
+        if ( self::$manifest === null ) {
+            $manifest_path = plugin_dir_path( __FILE__ ) . 'assets/dist/.vite/manifest.json';
+            if ( file_exists( $manifest_path ) ) {
+                self::$manifest = json_decode( file_get_contents( $manifest_path ), true );
+            } else {
+                self::$manifest = [];
+            }
+        }
+        return self::$manifest;
+    }
+
+    private static function get_asset_url( $entry ) {
+        $manifest = self::get_manifest();
+        if ( isset( $manifest[ $entry ] ) ) {
+            return plugins_url( 'assets/dist/' . $manifest[ $entry ]['file'], __FILE__ );
+        }
+        return '';
+    }
+
+    public static function enqueue_frontend() {
+        $url = self::get_asset_url( 'assets/src/js/frontend.js' );
+        if ( $url ) {
+            wp_enqueue_script( 'my-plugin-frontend', $url, [], null, true );
+        }
+    }
+
+    public static function enqueue_admin( $hook ) {
+        if ( 'toplevel_page_my-plugin' !== $hook ) {
+            return;
+        }
+
+        $url = self::get_asset_url( 'assets/src/js/admin.js' );
+        if ( $url ) {
+            wp_enqueue_script( 'my-plugin-admin', $url, [], null, true );
+        }
+    }
+
+    public static function enqueue_block_editor() {
+        $url = self::get_asset_url( 'assets/src/js/block-editor.js' );
+        if ( $url ) {
+            wp_enqueue_script( 'my-plugin-blocks', $url, [ 'wp-blocks', 'wp-element' ], null, true );
+        }
+    }
+}
+
+My_Plugin_Assets::init();
+```
+
+## Hasznos pluginek
+
+### vite-plugin-static-copy
+
+```bash
+npm install -D vite-plugin-static-copy
+```
+
+```javascript
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/images/*',
+          dest: 'images',
+        },
+      ],
+    }),
+  ],
+});
+```
+
+### vite-plugin-compression
+
+```bash
+npm install -D vite-plugin-compression
+```
+
+```javascript
+import viteCompression from 'vite-plugin-compression';
+
+export default defineConfig({
+  plugins: [
+    viteCompression({
+      algorithm: 'gzip',
+    }),
+  ],
+});
+```
+
+## Production build
+
+```bash
+# Build
+npm run build
+
+# Output ellenőrzése
+ls -la dist/
+```
+
+### Build output
+
+```
+dist/
+├── .vite/
+│   └── manifest.json
+├── js/
+│   └── main.[hash].js
+├── css/
+│   └── style.[hash].css
+└── assets/
+    └── images/
+```
+
+## Források
+
+- [Vite hivatalos oldal](https://vitejs.dev/)
+- [Vite dokumentáció](https://vitejs.dev/guide/)
+- [Vite plugin lista](https://vitejs.dev/plugins/)
+- [Vite GitHub](https://github.com/vitejs/vite)

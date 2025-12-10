@@ -1,0 +1,374 @@
+---
+title: WordPress Playground - Böngészőben futó WordPress
+description: WordPress Playground használata - WordPress telepítés nélkül, közvetlenül a böngészőben futtatva.
+keywords:
+  - wordpress playground
+  - browser
+  - testing
+  - wasm
+  - sandbox
+sidebar_label: WordPress Playground
+sidebar_position: 24
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-browser text-primary" /> WordPress Playground - Böngészőben futó WordPress
+
+A **WordPress Playground** egy hivatalos WordPress projekt, amely lehetővé teszi a WordPress futtatását közvetlenül a böngészőben - telepítés, szerver vagy adatbázis nélkül. WebAssembly (WASM) technológiát használ.
+
+:::tip Miért használd?
+- **Telepítés nélkül** - Azonnal használható
+- **Izolált környezet** - Nem befolyásol semmit
+- **Plugin/theme tesztelés** - Kipróbálás vásárlás előtt
+- **Oktatás** - WordPress tanuláshoz ideális
+:::
+
+---
+
+## Mi az a WordPress Playground?
+
+A WordPress Playground egy teljes WordPress telepítés, amely:
+
+- **Böngészőben fut** - Chrome, Firefox, Edge, Safari
+- **WASM alapú** - PHP és SQLite WebAssembly-ben
+- **Ideiglenes** - Tab bezárásával törlődik (vagy exportálható)
+- **Offline képes** - Egyszer betöltve net nélkül is működik
+
+---
+
+## Használati módok
+
+### 1. Azonnali kipróbálás
+
+Látogass el: [playground.wordpress.net](https://playground.wordpress.net/)
+
+Azonnal betölt egy friss WordPress telepítés.
+
+### 2. WordPress.org plugin/téma demó
+
+A WordPress.org-on minden plugin és téma oldalán:
+
+1. Kattints a **Live Preview** gombra
+2. A Playground betölti a WordPress-t a kiválasztott bővítménnyel
+3. Teszteld a funkciókat
+
+### 3. Egyedi konfiguráció
+
+URL paraméterekkel:
+
+```
+https://playground.wordpress.net/?php=8.2&wp=6.4&plugin=query-monitor
+```
+
+### 4. Blueprint-ek
+
+JSON konfigurációval előre beállított környezet:
+
+```json
+{
+  "landingPage": "/wp-admin/",
+  "phpVersion": "8.2",
+  "wordPressVersion": "latest",
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "query-monitor"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "installTheme",
+      "themeZipFile": {
+        "resource": "wordpress.org/themes",
+        "slug": "developer"
+      }
+    },
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    }
+  ]
+}
+```
+
+---
+
+## Főbb funkciók
+
+### PHP és WordPress verziók
+
+| PHP verziók | WordPress verziók |
+|-------------|-------------------|
+| 7.4 | 5.9+ |
+| 8.0 | 6.0+ |
+| 8.1 | 6.1+ |
+| 8.2 | 6.2+ |
+| 8.3 | latest |
+
+### Bővítmények telepítése
+
+1. Playground-ban: **Plugins → Add New**
+2. Keress és telepíts (WordPress.org-ról)
+3. Vagy tölts fel .zip fájlt
+
+### Témák telepítése
+
+1. **Appearance → Themes → Add New**
+2. Válassz és aktiválj
+
+### Adatok exportálása
+
+1. Kattints az **Export** gombra
+2. Letöltődik egy .zip fájl
+3. Tartalmazza:
+   - wp-content mappa
+   - Adatbázis
+   - Beállítások
+
+### Adatok importálása
+
+1. Kattints az **Import** gombra
+2. Válaszd ki a korábban exportált .zip-et
+3. A Playground betölti az állapotot
+
+---
+
+## URL paraméterek
+
+### Alapvető paraméterek
+
+| Paraméter | Példa | Leírás |
+|-----------|-------|--------|
+| `php` | `?php=8.2` | PHP verzió |
+| `wp` | `?wp=6.4` | WordPress verzió |
+| `plugin` | `?plugin=woocommerce` | Plugin telepítése |
+| `theme` | `?theme=developer` | Téma telepítése |
+| `url` | `?url=/wp-admin/` | Kezdő URL |
+
+### Kombinált példák
+
+```
+# WooCommerce tesztelés
+https://playground.wordpress.net/?plugin=woocommerce&url=/wp-admin/admin.php?page=wc-admin
+
+# Gutenberg fejlesztés
+https://playground.wordpress.net/?plugin=developer&url=/wp-admin/post-new.php
+
+# Multisite
+https://playground.wordpress.net/?networking=yes
+```
+
+---
+
+## Blueprint példák
+
+### Developer környezet
+
+```json
+{
+  "phpVersion": "8.2",
+  "wordPressVersion": "latest",
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "query-monitor"
+      },
+      "options": { "activate": true }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "developer"
+      },
+      "options": { "activate": true }
+    },
+    {
+      "step": "defineWpConfigConsts",
+      "consts": {
+        "WP_DEBUG": true,
+        "WP_DEBUG_LOG": true,
+        "SCRIPT_DEBUG": true
+      }
+    },
+    {
+      "step": "login"
+    }
+  ]
+}
+```
+
+### WooCommerce demo
+
+```json
+{
+  "landingPage": "/shop/",
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "woocommerce"
+      },
+      "options": { "activate": true }
+    },
+    {
+      "step": "importFile",
+      "file": {
+        "resource": "url",
+        "url": "https://example.com/woo-sample-data.xml"
+      }
+    }
+  ]
+}
+```
+
+---
+
+## Fejlesztői használat
+
+### Lokális Playground
+
+```bash
+# npm-mel
+npm install -g @wp-playground/cli
+wp-playground start
+
+# Vagy Docker-rel
+docker run -p 8000:80 playground
+```
+
+### VS Code integráció
+
+A WordPress Playground VS Code extension:
+
+1. Telepítsd a "WordPress Playground" extensiont
+2. `Cmd/Ctrl + Shift + P` → "WordPress Playground: Start"
+3. Nyílik egy WordPress a VS Code-ban
+
+### Programozási használat
+
+```javascript
+import { startPlayground } from '@wp-playground/client';
+
+const client = await startPlayground({
+  iframe: document.getElementById('wp-playground'),
+  remoteUrl: 'https://playground.wordpress.net/remote.html',
+  blueprint: {
+    phpVersion: '8.2',
+    steps: [
+      { step: 'login' }
+    ]
+  }
+});
+
+// WP-CLI parancs futtatása
+await client.run({
+  code: `<?php
+    require '/wordpress/wp-load.php';
+    echo get_bloginfo('name');
+  ?>`
+});
+```
+
+---
+
+## Korlátozások
+
+### Ami nem működik
+
+| Funkció | Ok |
+|---------|-----|
+| **Email küldés** | Nincs mail szerver |
+| **Külső API hívások** | CORS korlátozások |
+| **Cron jobs** | Nincs háttérfolyamat |
+| **Perzisztencia** | Tab bezárásakor törlődik* |
+| **Nagy fájlok** | Memória korlát |
+
+*Export/Import funkcióval menthető
+
+### Teljesítmény
+
+- Böngésző memória korlátja érvényes
+- Lassabb mint natív PHP
+- Nem production használatra való
+
+---
+
+## Felhasználási területek
+
+### Plugin/téma tesztelés
+
+1. Töltsd fel a .zip fájlt
+2. Aktiváld
+3. Teszteld a funkciókat
+4. Ha tetszik, vásárolj
+
+### Hibajelentés reprodukálás
+
+1. Készíts blueprint-et a problémával
+2. Oszd meg a linket a fejlesztővel
+3. Ő azonnal látja ugyanazt
+
+### Oktatás
+
+- WordPress tanfolyamokhoz
+- Dokumentációs példákhoz
+- Videós tutorialokhoz
+
+### Prototípusok
+
+- Gyors ötlet kipróbálás
+- Koncepció bemutatás
+- MVP tesztelés
+
+---
+
+## Beágyazás weboldalba
+
+```html
+<iframe
+  src="https://playground.wordpress.net/?plugin=developer&url=/wp-admin/"
+  style="width: 100%; height: 600px; border: none;">
+</iframe>
+```
+
+### Blueprint beágyazással
+
+```html
+<iframe
+  src="https://playground.wordpress.net/#blueprint-url:https://example.com/my-blueprint.json"
+  style="width: 100%; height: 600px;">
+</iframe>
+```
+
+---
+
+## Playground vs Local Development
+
+| Szempont | Playground | Local WP/DDEV |
+|----------|------------|---------------|
+| Telepítés | Nincs | Szükséges |
+| Sebesség | Közepes | Gyors |
+| Perzisztencia | Nem* | Igen |
+| Email | Nem | Igen |
+| Cron | Nem | Igen |
+| Debugging | Korlátozott | Teljes |
+| Offline | Részben | Igen |
+
+---
+
+## Kapcsolódó linkek
+
+- [WordPress Playground](https://playground.wordpress.net/)
+- [Playground GitHub](https://github.com/WordPress/wordpress-playground)
+- [Playground dokumentáció](https://wordpress.github.io/wordpress-playground/)
+- [Blueprint Builder](https://playground.wordpress.net/builder/)

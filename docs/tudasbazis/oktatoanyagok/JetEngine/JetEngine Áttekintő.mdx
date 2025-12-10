@@ -1,10 +1,13 @@
 ---
 title: JetEngine - Áttekintés
-description: Mi az a JetEngine, milyen funckióat tartalmaz, milyen típusú oldalakat és rendszereket késízhetünk vele.
+description: Mi az a JetEngine, milyen funkciókat tartalmaz, milyen típusú oldalakat és rendszereket készíthetünk vele.
 keywords:
-  - jetengine, cpt, cct, elementor
+  - jetengine
+  - cpt
+  - cct
+  - elementor
 sidebar_label: Áttekintés
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
@@ -13,65 +16,65 @@ import BrowserWindow from "@site/src/components/BrowserWindow";
 
 ## Bevezető
 
-A JetEngine egy All-in-One bővítmény, mivel több funkciót, és modult is tartalmaz. Alapvetően hasonlóan az ACF vagy Toolset-hez, itt is készíthetünk egyedi metaboxokat, melyeket
-hozzáadhatunk különböző post típusokhoz (például bejegyzések, oldalak stb..). Ereje abban rejlik, hogy alapjaiban könnyen kezelhető, és tartalmaz **CPT (Custom post Type)**, **Taxonómia**
-valamint **Options page** készítő modulokat is, így ezeket nem kell egyedileg php-ba megírni, vagy más bővítménmyeket telepíteni. A másik szintén kiemelten fontos funkciója, az 
-úgynevezett **Listing**, aminek segítségével egyszerűen és könnyedén elkészíthetjük a listázásokat, legyen szó CPT posztokról vagy taxonómiákról sőt, ennél többet is támogat. A 
-listing rendelkezik saját lekérdezési beállítási panellel, de ezt a részt már nyugalmazta a fejlesztő csapat, és helyette megalkotta a **Query Builder** modult, ami felváltja
-a Listing Grid lekérdezési beállításait, és egy gyorsabb, komplexebb, flexibilisebb rendszert állított a helyére. A főbb modulokhoz tartozik még a **Relations** kapcsolati rendszer, 
-amely lehetőséget ad arra, hogy egyszerű, vagy komplex kapcsolati rendszert alakítsunk ki a CPT, USER, TAXONÓMIA valamint CCT között. A JetEngine ennél 
-még sokkal többre képest, de első körben beszéljük át milyen projektekben vehetjük a leginkább hasznát, és persze mi az amire nem ajánlott eszköz. 
+A JetEngine egy All-in-One bővítmény, mivel több funkciót és modult is tartalmaz. Alapvetően hasonlóan az ACF vagy Toolset-hez, itt is készíthetünk egyedi metaboxokat, melyeket
+hozzáadhatunk különböző post típusokhoz (például bejegyzések, oldalak stb.). Ereje abban rejlik, hogy alapjaiban könnyen kezelhető, és tartalmaz **CPT (Custom Post Type)**, **Taxonómia**
+valamint **Options Page** készítő modulokat is, így ezeket nem kell egyedileg PHP-ban megírni, vagy más bővítményeket telepíteni. A másik szintén kiemelten fontos funkciója az
+úgynevezett **Listing**, aminek segítségével egyszerűen és könnyedén elkészíthetjük a listázásokat, legyen szó CPT posztokról vagy taxonómiákról, sőt ennél többet is támogat. A
+Listing rendelkezik saját lekérdezési beállítási panellel, de ezt a részt már nyugalmazta a fejlesztő csapat, és helyette megalkotta a **Query Builder** modult, ami felváltja
+a Listing Grid lekérdezési beállításait, és egy gyorsabb, komplexebb, flexibilisebb rendszert állított a helyére. A főbb modulokhoz tartozik még a **Relations** kapcsolati rendszer,
+amely lehetőséget ad arra, hogy egyszerű vagy komplex kapcsolati rendszert alakítsunk ki a CPT, USER, TAXONÓMIA valamint CCT között. A JetEngine ennél
+még sokkal többre képes, de első körben beszéljük át, milyen projektekben vehetjük a leginkább hasznát, és persze mi az, amire nem ajánlott eszköz. 
 
 
 ### Mire használhatjuk
-A JetEngine-t a leginkább olyan projekteben tudjuk hasznosítani, ahol eleve szegmentáltan kellene megjelenítetnünk egyes adatokat. Kiválóan alkalmazható például ha receptes
-odalt szeretnék készíteni, vagy Ingatlan listázókat. De ha apartmanok bemutatása, és foglalási rendszer kialakítsa lenne a feladat ugyan úgy megállja a helyét.
-itt viszont figyelembe kell venni hogy szükség lesz a JetBooking kiegészítőre, és a JetFormBuilder(ingyenes) űrlapkészítőre. 
+A JetEngine-t a leginkább olyan projektekben tudjuk hasznosítani, ahol eleve szegmentáltan kellene megjelenítenünk egyes adatokat. Kiválóan alkalmazható például, ha receptes
+oldalt szeretnénk készíteni, vagy ingatlan listázókat. De ha apartmanok bemutatása és foglalási rendszer kialakítása lenne a feladat, ugyanúgy megállja a helyét.
+Itt viszont figyelembe kell venni, hogy szükség lesz a JetBooking kiegészítőre és a JetFormBuilder (ingyenes) űrlapkészítőre. 
 
-Ha gyűjtő fogalommal kellene élnem, akkor a JetEngine úgynevezett **Listing**, és **Directory** alapú oldalak készítésénél a leghasznosabb, de az idők során, a fejlesztéseknek és kiegészítő
-moduloknak köszönhetően ennél sokkal többre képes. 
+Ha gyűjtőfogalommal kellene élnem, akkor a JetEngine úgynevezett **Listing** és **Directory** alapú oldalak készítésénél a leghasznosabb, de az idők során a fejlesztéseknek és kiegészítő
+moduloknak köszönhetően ennél sokkal többre képes.
 
-Jól kombinálható **Webshopokkal** is, így akár egyedi termék listázók kialakítására egyaránt alkalmazható, itt persze fontos megjegyezni, hogy nem vált ki egy WooCommerce-re szakosodott
-bővítményt, ugyanis nincsenek webshop-specifikus widgetek. 
+Jól kombinálható **webshopokkal** is, így akár egyedi terméklistázók kialakítására egyaránt alkalmazható. Itt persze fontos megjegyezni, hogy nem vált ki egy WooCommerce-re szakosodott
+bővítményt, ugyanis nincsenek webshop-specifikus widgetek.
 
-**Portál**, vagy **Membership Directory** projektek esetében szintén bevethető, de akár **adománygyűjtő** oldalt is összeállíthatunk vele. 
+**Portál** vagy **Membership Directory** projektek esetében szintén bevethető, de akár **adománygyűjtő** oldalt is összeállíthatunk vele.
 
-A JetEngine felhasználásának esetében az a legnagyobb probléma, hogy nehéz röviden leírni azt, hogy mire képes, mivel rengeteg modul, funkció, és kombináció áll rendelkezésre, 
-ebből adódóan csak általános értelemben beszélhetünk a projekt tematikákról. Attól, hogy a te weboldalat nem tartozik a felsorolt kategóriák egyikében sem, nem ekvivalens
-azzal, hogy nem megolható a JetEngine használatával. 
+A JetEngine felhasználásának esetében az a legnagyobb probléma, hogy nehéz röviden leírni azt, hogy mire képes, mivel rengeteg modul, funkció és kombináció áll rendelkezésre,
+ebből adódóan csak általános értelemben beszélhetünk a projekttematikákról. Attól, hogy a te weboldalad nem tartozik a felsorolt kategóriák egyikébe sem, nem jelenti azt,
+hogy nem megoldható a JetEngine használatával.
 
-Mivel portál szintű projektekre is sűrűn alkalmazzák, ez egy további fontos elemmel bővíti, az így is széles palettát, ami nem más
-mint a **Profile Builder**, és a **front end Submission** kombók. Ez pedig pontosan azt jelenti, amire most gondolsz. Készíthetsz saját menüt, Vezérlőpultot, és komplett profil rendszert
-a felhasználóid számára, akik feltölthetik, és szerkeszthetik a fiók adatait (aminek mezőit természetesen te állíthatod be), továbbá akármilyen posztot beküldhetnek.
+Mivel portál szintű projektekre is sűrűn alkalmazzák, ez egy további fontos elemmel bővíti az így is széles palettát, ami nem más,
+mint a **Profile Builder** és a **Frontend Submission** kombók. Ez pedig pontosan azt jelenti, amire most gondolsz. Készíthetsz saját menüt, vezérlőpultot és komplett profilrendszert
+a felhasználóid számára, akik feltölthetik és szerkeszthetik a fiókadataikat (aminek mezőit természetesen te állíthatod be), továbbá akármilyen posztot beküldhetnek.
 
 
 ### Előnyök
-A JetEngine egyik előnye a modularitás. Nem csak azt oldja meg, hogy egyedi mezőket készíthetsz, hanem listázhatod, és a lekérdezéseket is összeállíthatod vele, ráadásul **Elementor / Gutenberg**
-valamint részben már **Brick kompatibilis.** Alapvetően nem igényel programozói tudást, hiszen mindenhez kapsz egy drag n Drop felületet, és millió egy
-beállítást. A legtöbb Listing és Directory-hoz kapcsolódó nélkülözhetetlen funkciót már tartalmazza, a fejlesztés pedig folyamatos. Egyes kiegészítők önnállóak, mint a :
-JetAppointment, JetBooking, vagy JetFormBuilder illetve JetSmartFilter és JetPopup. Ezen bővítmények közül a két foglaló rendszer az, ami nem működik a JetEngine nélkül. A többi viszont
-opcionálisan kombinálható önnálló bővítmény.
+A JetEngine egyik előnye a modularitás. Nem csak azt oldja meg, hogy egyedi mezőket készíthetsz, hanem listázhatod, és a lekérdezéseket is összeállíthatod vele, ráadásul **Elementor / Gutenberg**,
+valamint részben már **Bricks kompatibilis**. Alapvetően nem igényel programozói tudást, hiszen mindenhez kapsz egy drag and drop felületet és rengeteg
+beállítást. A legtöbb Listing és Directory-hoz kapcsolódó nélkülözhetetlen funkciót már tartalmazza, a fejlesztés pedig folyamatos. Egyes kiegészítők önállóak, mint a
+JetAppointment, JetBooking vagy JetFormBuilder, illetve JetSmartFilter és JetPopup. Ezen bővítmények közül a két foglalórendszer az, ami nem működik a JetEngine nélkül. A többi viszont
+opcionálisan kombinálható önálló bővítmény.
 
 
 ### Hátrányok
-A JetEngine egyik hátránya hogy túl sokat tud. Ez önmagában nem lenne probléma, de olyan sok kombinációs lehetőség van, hogy megtanulni időigényes, viszont kifizetődő.
-A másik, és talán ezt emelnénk ki, mint legnagyobb hátrány, az az optimalizálatlanság. Egy alacsonyabb erőforrású szerveren a JetEngine használata kevésbé ajánlatos. Mivel alapvetően 
-Elementorra épül, önmagában tudjuk, hogy teljesítménybeli problémákkal küzd, persze ez nem a fő indok. A legnagyobb lassulást a tárolási rendszer, és azok közötti keresés és szűrés okozza.
+A JetEngine egyik hátránya, hogy túl sokat tud. Ez önmagában nem lenne probléma, de olyan sok kombinációs lehetőség van, hogy megtanulni időigényes, viszont kifizetődő.
+A másik, és talán ezt emelnénk ki, mint legnagyobb hátrány, az optimalizálatlanság. Egy alacsonyabb erőforrású szerveren a JetEngine használata kevésbé ajánlatos. Mivel alapvetően
+Elementorra épül, önmagában tudjuk, hogy teljesítménybeli problémákkal küzd, persze ez nem a fő indok. A legnagyobb lassulást a tárolási rendszer és azok közötti keresés és szűrés okozza.
 
-A JetEngine egyik megoldása a hatékonyabb adatbázis használatra, az úgynevezett **Custom Content Type** rendszer, ami a CPT-el ellentétben egy eltérő tárolási struktúrát alkalmaz.
-Ez azt eredményezi, hogy 10, 100 vagy 10.000 CCT elem szűrése(JetSMartFilter) ugyan úgy töredék idő alatt elvégzi a rendszer, viszont szöges ellentéte a Custom post Type-oknak.
+A JetEngine egyik megoldása a hatékonyabb adatbázis-használatra az úgynevezett **Custom Content Type** rendszer, ami a CPT-vel ellentétben egy eltérő tárolási struktúrát alkalmaz.
+Ez azt eredményezi, hogy 10, 100 vagy 10.000 CCT elem szűrése (JetSmartFilter) ugyanúgy töredék idő alatt elvégzi a rendszer, viszont szöges ellentéte a Custom Post Type-oknak.
 
-A meták tárolása továbbra is a hagyományos módon történik, ennek köszönhetően egyéb harmadik féltől származó bővítményekkel egyaránt kompatibilis, viszont masszívabb tartalmú oldalak esetében 
-szignifikánsan csökken a teljesítménye. (kiemelnénk kifejezetten a szűrést).
+A meták tárolása továbbra is a hagyományos módon történik, ennek köszönhetően egyéb harmadik féltől származó bővítményekkel egyaránt kompatibilis, viszont masszívabb tartalmú oldalak esetében
+szignifikánsan csökken a teljesítménye (kiemelnénk kifejezetten a szűrést).
 
 
 ### Kompatibilitás
-A JetEngine kifejezetten Elementorhoz készítették, de az idők során a legtöbb funkciója kompatibilis lett a Gutenberg-el is, valamint egyes főbb részek már a Brick Builderrel
+A JetEngine-t kifejezetten Elementorhoz készítették, de az idők során a legtöbb funkciója kompatibilis lett a Gutenberggel is, valamint egyes főbb részek már a Bricks Builderrel
 is működnek.
 
 
 ## Összegezve
 
-Összességében elmondható, hogy a JetEngine számtalan projekt típusban alkalmazható, fontos figyelembe venni viszont, hogy a bővítmény megtanulása időigényes, és fontos hogy 
-mielőtt belevágunk, tervezzük meg megfelelően az oldal adatstruktúrákat. vegyük figyelembe ha szűrések, és felhasználói menedzsment is szerepel a feladatlistán, és ogyekezzünk
-ennek megfelelően dolgozni.
+Összességében elmondható, hogy a JetEngine számtalan projekttípusban alkalmazható. Fontos figyelembe venni viszont, hogy a bővítmény megtanulása időigényes, és fontos, hogy
+mielőtt belevágunk, tervezzük meg megfelelően az oldal adatstruktúráit. Vegyük figyelembe, ha szűrések és felhasználói menedzsment is szerepel a feladatlistán, és igyekezzünk
+ennek megfelelően tervezni.

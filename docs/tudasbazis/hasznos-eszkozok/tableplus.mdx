@@ -1,0 +1,206 @@
+---
+title: TablePlus - Modern adatbázis kezelő
+description: TablePlus telepítése és használata - natív, gyors adatbázis kliens MySQL, PostgreSQL, SQLite és más adatbázisokhoz.
+keywords:
+  - tableplus
+  - database
+  - mysql
+  - postgresql
+  - sqlite
+  - adatbázis
+sidebar_label: TablePlus
+sidebar_position: 14
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-database text-primary" /> TablePlus - Modern adatbázis kezelő
+
+A **TablePlus** egy modern, natív adatbázis-kezelő alkalmazás intuitív GUI felülettel. Gyors, megbízható és támogatja a legnépszerűbb adatbázis-motorokat.
+
+:::tip Miért válaszd a TablePlus-t?
+- **Natív alkalmazás** - Gyors és megbízható minden platformon
+- **Szép felület** - Modern, letisztult design
+- **Multi-database** - Egy eszközzel több adatbázis típus
+- **Ingyenes verzió** - Korlátozott, de nem lejáró próba
+:::
+
+---
+
+## Támogatott adatbázisok
+
+### Natív támogatás
+
+| Adatbázis | Típus |
+|-----------|-------|
+| **MySQL** | Relációs |
+| **PostgreSQL** | Relációs |
+| **SQLite** | Beágyazott |
+| **Microsoft SQL Server** | Relációs |
+| **MariaDB** | Relációs |
+| **Amazon Redshift** | Data warehouse |
+| **CockroachDB** | Elosztott SQL |
+| **Vertica** | Analitikus |
+| **Redis** | Key-value |
+
+### További támogatás
+
+- **Oracle** - Relációs
+- **Snowflake** - Cloud data warehouse
+- **Cassandra** - NoSQL
+- **MongoDB** (Beta) - Document DB
+
+---
+
+## Főbb funkciók
+
+### Adatkezelés
+
+- **Táblák böngészése** - Adatok gyors megtekintése és szerkesztése
+- **Inline szerkesztés** - Közvetlen módosítás a táblázatban
+- **Szűrés és rendezés** - Adatok gyors keresése
+- **Import/Export** - CSV, JSON, SQL formátumok
+
+### SQL szerkesztő
+
+- **Syntax highlighting** - Színezett SQL kód
+- **Autocomplete** - Tábla és oszlopnevek kiegészítése
+- **Multi-tab** - Több query egyszerre
+- **Split results** - Eredmények külön panelekben
+
+### Verziókezelés
+
+- **Snapshot** - Adatbázis állapot mentése
+- **Code review** - Változások nyomon követése
+- **Diff view** - Különbségek vizuális megjelenítése
+
+### Biztonság
+
+- **SSH tunnel** - Biztonságos kapcsolat távoli szerverhez
+- **SSL kapcsolat** - Titkosított kommunikáció
+- **Jelszókezelés** - macOS Keychain integráció
+
+---
+
+## Árazás
+
+### Licenc típusok
+
+| Típus | Ár | Eszközök |
+|-------|-----|----------|
+| **Free** | $0 | 2 aktív tab limit |
+| **Basic License** | $79 | 1 eszköz |
+| **Standard License** | $79+ | 2 eszköz + iOS |
+| **Team License** | ~$510/év átlag | Csapatok számára |
+
+### Fontos tudnivalók
+
+- **Egyszeri vásárlás** - Nincs előfizetés
+- **1 év frissítés** - A vásárlás után
+- **Megújítás** - $59/eszköz további frissítésekért
+- **7 napos pénzvisszafizetés** - Elégedettségi garancia
+
+:::info Lejárat után
+1 év után továbbra is használhatod az alkalmazást korlátozás nélkül, csak az új frissítéseket nem kapod meg.
+:::
+
+---
+
+## Telepítés
+
+### Letöltés
+
+1. Látogass el: [tableplus.com](https://tableplus.com/)
+2. Válaszd ki a platformodat
+3. Telepítsd az alkalmazást
+
+### Támogatott platformok
+
+- **macOS** - Natív alkalmazás
+- **Windows** - Natív alkalmazás
+- **Linux** - AppImage, Debian
+- **iOS** - iPhone és iPad (ingyenes PC licenccel)
+
+---
+
+## Első lépések
+
+### 1. Kapcsolat létrehozása
+
+1. Kattints a **Create a new connection** gombra
+2. Válaszd ki az adatbázis típusát
+3. Add meg a kapcsolódási adatokat:
+   - **Host** - pl. `localhost` vagy `127.0.0.1`
+   - **Port** - pl. `3306` MySQL-hez
+   - **User** - Felhasználónév
+   - **Password** - Jelszó
+   - **Database** - Adatbázis neve
+4. Kattints a **Test** gombra az ellenőrzéshez
+5. Ha sikeres, kattints a **Connect** gombra
+
+### 2. SSH tunnel beállítása
+
+Távoli szerverhez SSH tunnelen keresztül:
+
+1. Kattints az **SSH** fülre a kapcsolat ablakban
+2. Pipáld be az **Over SSH** opciót
+3. Add meg az SSH adatokat:
+   - **SSH Host** - Szerver címe
+   - **SSH User** - SSH felhasználó
+   - **SSH Password** vagy **SSH Key** - Hitelesítés
+
+### 3. Query futtatása
+
+1. Nyisd meg a SQL szerkesztőt: `Cmd/Ctrl + E`
+2. Írd be a query-t:
+
+```sql
+SELECT * FROM users WHERE active = 1 LIMIT 10;
+```
+
+3. Futtasd: `Cmd/Ctrl + Enter`
+
+---
+
+## Hasznos billentyűkombinációk
+
+| Kombináció | Művelet |
+|------------|---------|
+| `Cmd/Ctrl + E` | SQL szerkesztő megnyitása |
+| `Cmd/Ctrl + Enter` | Query futtatása |
+| `Cmd/Ctrl + K` | Kapcsolat keresése |
+| `Cmd/Ctrl + T` | Új tab |
+| `Cmd/Ctrl + N` | Új ablak |
+| `Cmd/Ctrl + S` | Változások mentése |
+
+---
+
+## WordPress fejlesztéshez
+
+A TablePlus kiválóan használható WordPress adatbázisok kezeléséhez:
+
+### Hasznos lekérdezések
+
+```sql
+-- Összes bejegyzés listázása
+SELECT ID, post_title, post_status, post_date
+FROM wp_posts
+WHERE post_type = 'post'
+ORDER BY post_date DESC;
+
+-- Felhasználók keresése
+SELECT ID, user_login, user_email, user_registered
+FROM wp_users;
+
+-- Options keresése
+SELECT * FROM wp_options
+WHERE option_name LIKE '%siteurl%';
+```
+
+---
+
+## Kapcsolódó linkek
+
+- [TablePlus hivatalos oldal](https://tableplus.com/)
+- [TablePlus dokumentáció](https://docs.tableplus.com/)
+- [TablePlus GitHub](https://github.com/TablePlus/TablePlus)

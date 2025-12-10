@@ -1,0 +1,166 @@
+---
+title: Insomnia - API kliens fejlesztőknek
+description: Kong Insomnia API kliens használata - REST, GraphQL, gRPC és WebSocket API-k tesztelése.
+keywords:
+  - insomnia
+  - api client
+  - rest api
+  - graphql
+  - grpc
+  - kong
+sidebar_label: Insomnia
+sidebar_position: 11
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-bolt text-primary" /> Insomnia - API kliens fejlesztőknek
+
+Az **Insomnia** egy nyílt forráskódú, cross-platform API kliens a Kong-tól. Könnyű, gyors és fejlesztőbarát alternatíva a Postman-hez, amely támogatja a REST, GraphQL, gRPC, WebSocket és Server-Sent Events protokollokat.
+
+:::tip Miért válaszd az Insomnia-t?
+- **Nyílt forráskódú** - Teljes átláthatóság, közösségi fejlesztés
+- **Könnyű és gyors** - Minimalista, de erőteljes
+- **Multi-protokoll** - REST, GraphQL, gRPC, WebSocket, SSE
+- **Lokális tárolás** - Adataid a te gépeden maradnak
+:::
+
+---
+
+## Főbb funkciók
+
+### Protokoll támogatás
+
+| Protokoll | Leírás |
+|-----------|--------|
+| **REST** | HTTP/HTTPS API-k teljes támogatása |
+| **GraphQL** | Schema explorer, query builder |
+| **gRPC** | Protocol Buffers támogatás |
+| **WebSocket** | Valós idejű kapcsolatok |
+| **Server-Sent Events** | Streaming API-k |
+| **Socket.IO** | Real-time kommunikáció |
+| **SOAP** | Legacy webszolgáltatások |
+
+### Tárolási opciók
+
+- **Local Vault** - 100% lokális tárolás
+- **Git Sync** - Bármely 3rd party Git repository (felhő nélkül)
+- **Cloud Sync** - Felhő kollaboráció, opcionális E2E titkosítással
+
+### Fejlesztői funkciók
+
+- **Environment változók** - Több környezet kezelése
+- **Code generation** - Kliens kód generálás több nyelven
+- **Request chaining** - Request-ek összekapcsolása
+- **Response history** - Előző válaszok megtekintése
+
+### Plugin ökoszisztéma
+
+350+ közösségi plugin a platform bővítéséhez.
+
+---
+
+## Árazás
+
+| Csomag | Ár | Funkciók |
+|--------|-----|----------|
+| **Free** | $0 | 75 AI kredit/hó, alap funkciók |
+| **Essentials** | $0 | 3 felhasználóig Git Sync ingyen |
+| **Build** | $20/hó | 1500 AI kredit, BYOK, 100K fájl kontextus |
+| **Business** | $55/felhasználó/hó | Zero Data Retention, SSO, max 50 seat |
+| **Enterprise** | Egyedi | Teljes körű vállalati funkciók |
+
+:::info Korlátlan lokális futtatás
+A lokális collection futtatások korlátlanok - nincs throttling, nincs usage cap.
+:::
+
+---
+
+## Telepítés
+
+### Letöltés
+
+1. Látogass el: [insomnia.rest/download](https://insomnia.rest/download)
+2. Válaszd ki a platformodat
+3. Telepítsd az alkalmazást
+
+### Támogatott platformok
+
+- **macOS** - Intel és Apple Silicon
+- **Windows** - 64-bit
+- **Linux** - AppImage, Debian, Snap
+
+### Rendszerkövetelmények
+
+Electron alapú alkalmazás, hasonló követelményekkel mint a VS Code.
+
+---
+
+## Első lépések
+
+### 1. Request létrehozása
+
+1. Kattints a **New Request** gombra
+2. Válaszd ki a metódust és protokollt
+3. Add meg az URL-t
+4. Kattints a **Send** gombra
+
+### 2. Environment beállítása
+
+1. Kattints az **Environment** → **Manage Environments**
+2. Hozz létre Base Environment-et
+3. Adj hozzá változókat:
+
+```json
+{
+  "base_url": "https://api.example.com",
+  "api_key": "your-api-key"
+}
+```
+
+4. Használd: `{{ _.base_url }}/users`
+
+### 3. Git Sync beállítása
+
+1. Menj a **Project Settings** → **Git Sync**
+2. Add meg a repository URL-t
+3. Állítsd be az autentikációt
+4. Szinkronizálj a csapatoddal
+
+---
+
+## Inso CLI
+
+Az **Inso CLI** automatizálja a validációt és linting-et CI/CD pipeline-okban:
+
+```bash
+# Telepítés
+npm install -g insomnia-inso
+
+# OpenAPI spec validálás
+inso lint spec openapi.yaml
+
+# Tesztek futtatása
+inso run test "My Test Suite"
+
+# Export collection
+inso export spec "My API" -o output.yaml
+```
+
+---
+
+## Biztonság
+
+- **SOC 2 compliant** - Vállalati szintű biztonság
+- **Zero Data Retention** - LLM szolgáltatók nem tárolják az adatokat
+- **E2E titkosítás** - Opcionális végponttól végpontig titkosítás
+- **Nincs training** - Az adataid nem kerülnek AI training-be
+
+---
+
+## Kapcsolódó linkek
+
+- [Insomnia hivatalos oldal](https://insomnia.rest/)
+- [Kong Insomnia GitHub](https://github.com/Kong/insomnia)
+- [Insomnia dokumentáció](https://docs.insomnia.rest/)
+- [Insomnia Plugin Hub](https://insomnia.rest/plugins)

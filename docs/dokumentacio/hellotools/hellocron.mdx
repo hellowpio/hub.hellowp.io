@@ -1,0 +1,206 @@
+---
+title: HelloCron – Felhőalapú cron-kezelő
+description: HelloCron - Időzített HTTP kérések egyszerűen. Hozz létre időzített CRON kéréseket webhook-okhoz, API-khoz és automatizáláshoz.
+keywords:
+  - hellocron
+  - hellotools
+  - cron
+  - ütemezés
+  - wordpress
+  - http kérés
+  - webhook
+sidebar_label: HelloCron
+sidebar_position: 4
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-duotone fa-clock-rotate-left text-info" /> HelloCron – Időzített HTTP kérések egyszerűen
+
+:::info BETA
+A HelloCron jelenleg béta verzióban érhető el HelloPack előfizetéssel.
+:::
+
+Hozz létre időzített CRON kéréseket webhook-okhoz, API-khoz és automatizáláshoz.
+
+A HelloCron segítségével egyszerűen időzíthetsz ismétlődő HTTP kéréseket külső szerver vagy cron beállítások nélkül. Ideális minden olyan feladathoz, amelyet rendszeresen automatizálni szeretnél, például adatfrissítéshez, szinkronizáláshoz, riportok készítéséhez vagy webhookok meghívásához. Egy megbízható és könnyen kezelhető megoldást ad, amely leveszi a terhet a háttérfolyamatok futtatásáról.
+
+<BrowserWindow url="https://hellowp.io/hu/helloconsole/hellocron/">
+  <img src="/img/hellocron.png" alt="HelloCron felület" />
+</BrowserWindow>
+
+## Hozzáférés
+
+A HelloCron a HelloConsole-ban érhető el:
+- **URL**: [https://hellowp.io/hu/helloconsole/hellocron/](https://hellowp.io/hu/helloconsole/hellocron/)
+- **Követelmény**: Aktív HelloPack előfizetés
+
+---
+
+## Feladat létrehozása
+
+Új időzített HTTP kérés létrehozásához kattints az **„Új feladat létrehozása"** gombra.
+
+### Alapbeállítások
+
+| Mező | Leírás |
+|------|--------|
+| **Feladat neve** | Egyedi, beszédes elnevezés (pl. "Minden óra 15. percében") |
+| **URL** | A meghívandó végpont címe (kötelező mező) |
+
+### Gyakoriság beállítása
+
+Válaszd ki a legördülő menüből, milyen gyakran fusson a feladat:
+
+| Gyakoriság | Leírás |
+|------------|--------|
+| Percenként | Minden percben |
+| 5 percenként | 5 percenként |
+| 10 percenként | 10 percenként |
+| 15 percenként | 15 percenként |
+| 30 percenként | 30 percenként |
+| Óránként | Minden óra elején |
+| 2 óránként | 2 óránként |
+| 6 óránként | 6 óránként |
+| 12 óránként | 12 óránként |
+| Naponta (éjfélkor) | Minden nap 0:00-kor |
+| Naponta (reggel 9-kor) | Minden nap 9:00-kor |
+| Hetente (hétfőn éjfélkor) | Minden hétfőn 0:00-kor |
+| Havonta (hónap 1. napján) | Minden hónap első napján |
+| **Egyedi minta** | Saját cron kifejezés megadása |
+
+### Egyedi Cron Pattern
+
+Ha az **Egyedi minta** opciót választod, megadhatsz saját cron kifejezést 6 mezővel:
+
+```
+másodperc perc óra nap hónap hét_napja
+```
+
+**Példák:**
+
+| Pattern | Jelentés |
+|---------|----------|
+| `0 * * * * *` | Percenként |
+| `0 */5 * * * *` | 5 percenként |
+| `0 0 * * * *` | Óránként |
+| `0 15 * * * *` | Minden óra 15. percében |
+
+---
+
+## Haladó beállítások
+
+A haladó beállítások kibontásával további opciókat érhetsz el:
+
+### HTTP Method
+
+Válaszd ki a HTTP kérés típusát:
+- **GET** (alapértelmezett)
+- **POST**
+- **PUT**
+- **DELETE**
+- **PATCH**
+
+### Timeout (ms)
+
+A kérés időtúllépési értéke milliszekundumban.
+- **Alapértelmezett**: 10000 (10 másodperc)
+- Állítsd magasabbra, ha a végpont lassabban válaszol
+
+### Authentikáció típusa
+
+Ha a végpont hitelesítést igényel:
+- **Nincs** (alapértelmezett)
+- **Basic Auth** – Felhasználónév és jelszó
+- **Bearer Token** – API token
+
+### Egyedi HTTP fejlécek (JSON)
+
+Egyedi fejlécek megadása JSON formátumban:
+
+```json
+{"Content-Type": "application/json"}
+```
+
+Több fejléc esetén:
+
+```json
+{
+  "Content-Type": "application/json",
+  "X-Custom-Header": "érték",
+  "Authorization": "Bearer token123"
+}
+```
+
+---
+
+## Dashboard áttekintés
+
+A főoldalon azonnal láthatod:
+
+| Statisztika | Leírás |
+|-------------|--------|
+| **Összes feladat** | Az összes létrehozott időzített kérés száma |
+| **Aktív** | Jelenleg futó feladatok |
+| **Szüneteltetett** | Ideiglenesen leállított feladatok |
+
+### Feladat lista
+
+Minden feladatnál megjelenik:
+- **Feladat neve** és ütemezés
+- **URL** és HTTP metódus
+- **Státusz**: Aktív / Szüneteltetett
+- **Utolsó futás**: Sikeres / Sikertelen / Még nem futott
+
+### Műveletek
+
+| Gomb | Funkció |
+|------|---------|
+| <FontAwesomeIcon icon="fa-solid fa-pause" /> | Feladat szüneteltetése |
+| <FontAwesomeIcon icon="fa-solid fa-play" /> | Szüneteltetett feladat indítása |
+| <FontAwesomeIcon icon="fa-solid fa-rotate" /> | Azonnali futtatás (teszt) |
+| <FontAwesomeIcon icon="fa-solid fa-pen" /> | Feladat szerkesztése |
+| <FontAwesomeIcon icon="fa-solid fa-trash" /> | Feladat törlése |
+
+---
+
+## Tipikus felhasználási esetek
+
+- **WordPress WP-Cron kiváltása** – Megbízhatóbb ütemezés
+- **Webhook hívások** – Külső szolgáltatások értesítése
+- **API szinkronizáció** – Rendszeres adatfrissítés
+- **Backup indítás** – Ütemezett mentések triggerelése
+- **Cache ürítés** – Automatikus cache frissítés
+- **Riport generálás** – Napi/heti jelentések készítése
+- **WooCommerce feladatok** – Készletfrissítés, árfolyam szinkron
+
+---
+
+## Miért jobb a WP-Cron-nál?
+
+A WordPress beépített WP-Cron rendszere csak akkor fut, ha valaki meglátogatja az oldalt:
+
+| WP-Cron | HelloCron |
+|---------|-----------|
+| Látogatófüggő | Független működés |
+| Pontatlan időzítés | Másodpercre pontos |
+| Nincs monitorozás | Státusz és futási előzmények |
+| Lassíthatja az oldalt | Nem terheli a szervert |
+| Csak WordPress | Bármilyen URL-re |
+
+---
+
+## Első lépések
+
+1. Jelentkezz be a [HelloConsole](https://hellowp.io/hu/helloconsole/)-ba
+2. Navigálj a **HelloCron** menüpontra
+3. Kattints az **„Új feladat létrehozása"** gombra
+4. Add meg a feladat nevét és az URL-t
+5. Válaszd ki a gyakoriságot vagy adj meg egyedi cron mintát
+6. Szükség esetén állítsd be a haladó opciókat
+7. Kattints a **„Mentés"** gombra
+
+:::tip Tipp
+Használd a keresőt a feladatok gyors megtalálásához, ha sok időzített kérésed van.
+:::

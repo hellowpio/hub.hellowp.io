@@ -1,0 +1,490 @@
+---
+title: GitHub Actions - CI/CD automatizálás
+description: GitHub Actions használata WordPress projektekhez - automatikus tesztelés, build és deployment GitHub-on.
+keywords:
+  - github actions
+  - ci/cd
+  - continuous integration
+  - deployment
+  - automation
+sidebar_label: GitHub Actions
+sidebar_position: 11
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-github text-primary" /> GitHub Actions - CI/CD automatizálás
+
+A **GitHub Actions** a GitHub beépített CI/CD platformja, amely lehetővé teszi a fejlesztési workflow-k automatizálását. WordPress projektekhez ideális tesztelésre, build-elésre és deployment-re.
+
+:::tip Miért használd?
+- **Beépített GitHub-ba** - Nincs külső szolgáltatás
+- **Ingyenes** - Public repokhoz korlátlan, private-hoz 2000 perc/hó
+- **YAML konfiguráció** - Verziókezelt workflow-k
+- **Marketplace** - Kész action-ök ezrei
+:::
+
+---
+
+## Alapfogalmak
+
+### Workflow
+
+Automatizált folyamat, amely eseményekre reagál.
+
+```yaml
+# .github/workflows/main.yml
+name: My Workflow
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Hello World"
+```
+
+### Trigger (on)
+
+Mikor fusson a workflow:
+
+| Trigger | Mikor |
+|---------|-------|
+| `push` | Kód push-olásakor |
+| `pull_request` | PR nyitáskor/frissítéskor |
+| `schedule` | Ütemezve (cron) |
+| `workflow_dispatch` | Manuális indítás |
+| `release` | Release létrehozásakor |
+
+### Job
+
+Egy végrehajtási egység a workflow-ban.
+
+### Step
+
+Egyetlen parancs vagy action a job-ban.
+
+### Runner
+
+A virtuális gép, ahol a job fut:
+- `ubuntu-latest`
+- `windows-latest`
+- `macos-latest`
+
+---
+
+## WordPress workflow-k
+
+### PHP linting és PHPCS
+
+```yaml
+name: PHP Quality
+
+on: [push, pull_request]
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer, cs2pr
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPCS
+        run: vendor/bin/phpcs --report=checkstyle | cs2pr
+```
+
+### PHPUnit tesztek
+
+```yaml
+name: PHPUnit Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install WordPress test suite
+        run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest
+
+      - name: Run tests
+        run: vendor/bin/phpunit --coverage-text
+```
+
+### JavaScript build
+
+```yaml
+name: Build Assets
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist/
+```
+
+---
+
+## Deployment workflow-k
+
+### FTP/SFTP deploy
+
+```yaml
+name: Deploy to Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /public_html/wp-content/themes/my-theme/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .env
+```
+
+### SSH deploy
+
+```yaml
+name: Deploy via SSH
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/html
+            git pull origin main
+            composer install --no-dev
+            wp cache flush
+```
+
+### WP Engine deploy
+
+```yaml
+name: Deploy to WP Engine
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to WP Engine
+        uses: wpengine/github-action-wpe-site-deploy@v3
+        with:
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+          WPE_ENV: production
+          SRC_PATH: wp-content/themes/my-theme/
+          REMOTE_PATH: wp-content/themes/my-theme/
+```
+
+---
+
+## Matrix tesztelés
+
+Több PHP/WordPress verzió tesztelése:
+
+```yaml
+name: PHP Compatibility
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
+        wordpress: ['6.2', '6.3', '6.4', 'latest']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install WP ${{ matrix.wordpress }}
+        run: |
+          bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 ${{ matrix.wordpress }}
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+```
+
+---
+
+## Secrets kezelés
+
+### Secret létrehozása
+
+1. Repository → Settings → Secrets and variables → Actions
+2. New repository secret
+3. Add meg a nevet és értéket
+
+### Használat workflow-ban
+
+```yaml
+env:
+  API_KEY: ${{ secrets.API_KEY }}
+
+steps:
+  - run: curl -H "Authorization: $API_KEY" https://api.example.com
+```
+
+### Gyakori secrets
+
+| Secret | Mire |
+|--------|------|
+| `FTP_SERVER` | FTP szerver cím |
+| `FTP_USERNAME` | FTP felhasználó |
+| `FTP_PASSWORD` | FTP jelszó |
+| `SSH_PRIVATE_KEY` | SSH kulcs |
+| `COMPOSER_AUTH` | Private package auth |
+
+---
+
+## Hasznos action-ök
+
+### PHP
+
+| Action | Funkció |
+|--------|---------|
+| `shivammathur/setup-php` | PHP telepítés |
+| `ramsey/composer-install` | Composer install |
+| `php-actions/phpunit` | PHPUnit futtatás |
+
+### JavaScript
+
+| Action | Funkció |
+|--------|---------|
+| `actions/setup-node` | Node.js telepítés |
+| `actions/cache` | npm cache |
+
+### Deployment
+
+| Action | Funkció |
+|--------|---------|
+| `SamKirkland/FTP-Deploy-Action` | FTP deploy |
+| `appleboy/ssh-action` | SSH parancsok |
+| `wpengine/github-action-wpe-site-deploy` | WP Engine |
+
+### Utility
+
+| Action | Funkció |
+|--------|---------|
+| `actions/checkout` | Repo checkout |
+| `actions/upload-artifact` | Fájlok mentése |
+| `actions/download-artifact` | Fájlok letöltése |
+
+---
+
+## WordPress.org plugin deploy
+
+```yaml
+name: Deploy to WordPress.org
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: WordPress Plugin Deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: my-plugin
+```
+
+---
+
+## Caching
+
+### Composer cache
+
+```yaml
+- name: Get Composer Cache Directory
+  id: composer-cache
+  run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+- uses: actions/cache@v4
+  with:
+    path: ${{ steps.composer-cache.outputs.dir }}
+    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+    restore-keys: ${{ runner.os }}-composer-
+```
+
+### npm cache
+
+```yaml
+- uses: actions/setup-node@v4
+  with:
+    node-version: '20'
+    cache: 'npm'
+```
+
+---
+
+## Feltételes futtatás
+
+### Branch alapján
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+    branches-ignore:
+      - 'feature/**'
+```
+
+### Fájl változás alapján
+
+```yaml
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'package.json'
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+```
+
+### Job feltételek
+
+```yaml
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+```
+
+---
+
+## Költségek
+
+### Ingyenes keretben
+
+| Repo típus | Percek/hó |
+|------------|-----------|
+| **Public** | Korlátlan |
+| **Private** | 2000 perc |
+
+### Túllépés
+
+- Linux: $0.008/perc
+- Windows: $0.016/perc
+- macOS: $0.08/perc
+
+---
+
+## Kapcsolódó linkek
+
+- [GitHub Actions dokumentáció](https://docs.github.com/en/actions)
+- [GitHub Actions Marketplace](https://github.com/marketplace?type=actions)
+- [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)
+- [Starter workflows](https://github.com/actions/starter-workflows)

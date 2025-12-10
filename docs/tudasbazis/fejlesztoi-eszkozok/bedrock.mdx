@@ -1,0 +1,324 @@
+---
+title: Bedrock
+description: Modern WordPress fejlesztési környezet Composer alapokon a Roots csapattól.
+keywords:
+  - bedrock
+  - roots
+  - composer
+  - wordpress
+  - boilerplate
+sidebar_label: Bedrock
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-layer-group text-primary" /> Bedrock - Modern WordPress Stack
+
+A [Bedrock](https://roots.io/bedrock/) egy modern WordPress boilerplate, amely továbbfejlesztett mappastruktúrával, Composer alapú függőségkezeléssel és egyszerű konfigurációval rendelkezik. A [Roots](https://roots.io) csapat fejleszti és tartja karban.
+
+## Miért Bedrock?
+
+A Bedrock a WordPress fejlesztés legjobb gyakorlatait követi:
+
+- **Composer alapú függőségkezelés** - WordPress core, pluginok és témák kezelése Composerrel
+- **Továbbfejlesztett mappastruktúra** - A `wp-content` mappa elkülönítve az alkalmazás gyökérkönyvtárától
+- **Környezeti változók** - `.env` fájl alapú konfiguráció (dotenv)
+- **Biztonságosabb** - A webroot csak a publikus fájlokat tartalmazza
+- **Egyszerű deploy** - Alkalmas modern deployment workflow-khoz
+
+## Mappastruktúra
+
+```
+site/
+├── composer.json             # Függőségek definíciója
+├── config/
+│   ├── application.php       # Fő WordPress konfiguráció
+│   └── environments/
+│       ├── development.php   # Fejlesztői környezet beállítások
+│       ├── staging.php       # Staging környezet beállítások
+│       └── production.php    # Éles környezet beállítások
+├── vendor/                   # Composer függőségek
+├── web/                      # Webroot (document root)
+│   ├── app/                  # wp-content megfelelője
+│   │   ├── mu-plugins/       # Must-use pluginok
+│   │   ├── plugins/          # Pluginok
+│   │   ├── themes/           # Témák
+│   │   └── uploads/          # Feltöltések
+│   ├── wp-config.php         # WordPress betöltő
+│   ├── index.php             # WordPress belépési pont
+│   └── wp/                   # WordPress core (Composer által kezelt)
+└── .env                      # Környezeti változók
+```
+
+## Telepítés
+
+### Előfeltételek
+
+- PHP >= 8.0
+- Composer
+
+### Új projekt létrehozása
+
+```bash
+composer create-project roots/bedrock projekt-neve
+```
+
+### Környezeti változók beállítása
+
+Másold le a `.env.example` fájlt `.env` néven és töltsd ki:
+
+```bash
+cd projekt-neve
+cp .env.example .env
+```
+
+Szerkeszd a `.env` fájlt:
+
+```env
+DB_NAME='adatbazis_neve'
+DB_USER='adatbazis_felhasznalo'
+DB_PASSWORD='adatbazis_jelszo'
+DB_HOST='localhost'
+
+WP_ENV='development'
+WP_HOME='https://example.com'
+WP_SITEURL="${WP_HOME}/wp"
+
+# Generálj egyedi kulcsokat: https://roots.io/salts.html
+AUTH_KEY='generalt-kulcs'
+SECURE_AUTH_KEY='generalt-kulcs'
+LOGGED_IN_KEY='generalt-kulcs'
+NONCE_KEY='generalt-kulcs'
+AUTH_SALT='generalt-kulcs'
+SECURE_AUTH_SALT='generalt-kulcs'
+LOGGED_IN_SALT='generalt-kulcs'
+NONCE_SALT='generalt-kulcs'
+```
+
+:::tip Salt kulcsok generálása
+A [roots.io/salts.html](https://roots.io/salts.html) oldalon egyszerűen generálhatsz Bedrock-kompatibilis salt kulcsokat.
+:::
+
+## Pluginok és témák kezelése
+
+A Bedrock alapértelmezetten a [WPackagist](./wpackagist.mdx) repository-t használja.
+
+### Plugin telepítése
+
+```bash
+# WordPress.org pluginok
+composer require wpackagist-plugin/wordpress-seo
+
+# Prémium pluginok (ha van Composer repository-juk)
+composer require developer/premium-plugin
+```
+
+### Téma telepítése
+
+```bash
+composer require wpackagist-theme/flavor
+```
+
+### WordPress core frissítése
+
+```bash
+composer update roots/wordpress
+```
+
+## Környezetek kezelése
+
+A Bedrock támogatja a különböző környezeteket a `WP_ENV` változó segítségével:
+
+- `development` - Fejlesztői környezet
+- `staging` - Tesztkörnyezet
+- `production` - Éles környezet
+
+### Környezet-specifikus beállítások
+
+A `config/environments/` mappában külön fájlokban definiálhatod az egyes környezetek beállításait:
+
+**config/environments/development.php:**
+```php
+<?php
+
+use Roots\WPConfig\Config;
+
+Config::define('SAVEQUERIES', true);
+Config::define('WP_DEBUG', true);
+Config::define('WP_DEBUG_DISPLAY', true);
+Config::define('WP_DEBUG_LOG', true);
+Config::define('SCRIPT_DEBUG', true);
+
+ini_set('display_errors', '1');
+```
+
+**config/environments/production.php:**
+```php
+<?php
+
+use Roots\WPConfig\Config;
+
+Config::define('WP_DEBUG', false);
+Config::define('WP_DEBUG_DISPLAY', false);
+Config::define('DISALLOW_FILE_EDIT', true);
+Config::define('DISALLOW_FILE_MODS', true);
+```
+
+## Must-Use pluginok
+
+A must-use pluginokat a `web/app/mu-plugins/` mappába helyezd. Ezek automatikusan betöltődnek és nem lehet őket kikapcsolni az admin felületen.
+
+Composer csomagként:
+
+```json
+{
+    "extra": {
+        "installer-paths": {
+            "web/app/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ]
+        }
+    }
+}
+```
+
+## Deployment
+
+### Git-alapú deployment
+
+A Bedrock tökéletesen alkalmas Git-alapú deployment-re:
+
+```bash
+# .gitignore már megfelelően van beállítva
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+### Composer install a szerveren
+
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
+### Webszerver konfiguráció
+
+A document root a `web/` mappára kell mutasson:
+
+**Apache (.htaccess a web/ mappában):**
+```apache
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
+```
+
+**Nginx:**
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+    root /srv/www/example.com/web;
+
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+```
+
+## Bedrock + Sage téma
+
+A Roots csapat [Sage](https://roots.io/sage/) témáját kifejezetten Bedrock-kal való használatra tervezték:
+
+```bash
+# Sage téma telepítése
+composer require roots/sage
+
+# Vagy közvetlenül a themes mappába
+cd web/app/themes
+composer create-project roots/sage tema-neve
+```
+
+## Prémium pluginok kezelése
+
+Prémium pluginokhoz, amelyek nem érhetők el WPackagist-en, több lehetőséged van:
+
+### 1. Privát Composer repository
+
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://connect.developer.com"
+        }
+    ]
+}
+```
+
+### 2. Közvetlen ZIP letöltés
+
+```json
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "developer/premium-plugin",
+                "version": "1.0.0",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "url": "https://example.com/plugin.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ]
+}
+```
+
+### 3. Satispress
+
+A [SatisPress](https://github.com/cedaro/satispress) WordPress plugin segítségével saját Composer repository-t hozhatsz létre a prémium pluginjaidból.
+
+## Hasznos parancsok
+
+```bash
+# Projekt létrehozása
+composer create-project roots/bedrock
+
+# Függőségek telepítése
+composer install
+
+# Plugin hozzáadása
+composer require wpackagist-plugin/plugin-neve
+
+# Plugin eltávolítása
+composer remove wpackagist-plugin/plugin-neve
+
+# Frissítések keresése
+composer outdated
+
+# Minden frissítése
+composer update
+```
+
+## Források
+
+- [Bedrock dokumentáció](https://roots.io/bedrock/docs/)
+- [Roots Discourse közösség](https://discourse.roots.io/)
+- [Bedrock GitHub](https://github.com/roots/bedrock)
+- [WPackagist](https://wpackagist.org)

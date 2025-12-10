@@ -1,0 +1,474 @@
+---
+title: Trellis
+description: Automatizált WordPress LEMP stack szerverkonfiguráció és deployment Ansible segítségével.
+keywords:
+  - trellis
+  - roots
+  - ansible
+  - wordpress
+  - devops
+  - deployment
+sidebar_label: Trellis
+sidebar_position: 21
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-server text-primary" /> Trellis - WordPress DevOps
+
+A [Trellis](https://roots.io/trellis/) egy Ansible-alapú eszköz, amely automatizálja a WordPress szerverek konfigurálását és a deployment folyamatot. A [Roots](https://roots.io) csapat fejleszti, és tökéletesen működik együtt a [Bedrock](./bedrock.mdx)-kal.
+
+## Mi a Trellis?
+
+A Trellis egy teljes értékű WordPress szerver megoldás:
+
+- **LEMP Stack** - Linux, Nginx, MariaDB, PHP
+- **Automatizált konfiguráció** - Ansible playbook-ok
+- **Zero-downtime deployment** - Leállás nélküli frissítések
+- **SSL tanúsítványok** - Let's Encrypt integráció
+- **Fejlesztői környezet** - Vagrant alapú lokális szerver
+- **Több site támogatás** - Egy szerveren több WordPress
+- **Biztonság** - Automatikus biztonsági beállítások
+
+## Előfeltételek
+
+### Lokális fejlesztéshez
+
+- Vagrant >= 2.1.0
+- VirtualBox >= 4.3.10
+- Ansible (automatikusan települ)
+
+### Éles szerverre
+
+- Ubuntu 22.04 vagy 24.04 LTS
+- Python 3
+- Ansible >= 2.10
+
+### Telepítés (macOS)
+
+```bash
+# Homebrew-vel
+brew install ansible
+brew install --cask vagrant virtualbox
+```
+
+### Telepítés (Windows - WSL2)
+
+```bash
+# WSL2-ben
+sudo apt update
+sudo apt install ansible python3-pip
+pip3 install ansible
+```
+
+## Projekt struktúra
+
+A Trellis-t a Bedrock mellé kell telepíteni:
+
+```
+projekt/
+├── trellis/              # Trellis (szerver konfiguráció)
+│   ├── ansible.cfg
+│   ├── bin/
+│   ├── deploy-hooks/
+│   ├── group_vars/
+│   │   ├── all/
+│   │   ├── development/
+│   │   ├── staging/
+│   │   └── production/
+│   ├── hosts/
+│   ├── roles/
+│   ├── Vagrantfile
+│   └── requirements.yml
+└── site/                 # Bedrock (WordPress)
+    ├── composer.json
+    ├── config/
+    ├── web/
+    └── ...
+```
+
+## Telepítés
+
+### 1. Trellis CLI telepítése
+
+```bash
+brew install roots/tap/trellis-cli
+```
+
+### 2. Új projekt létrehozása
+
+```bash
+trellis new projekt-neve
+cd projekt-neve
+```
+
+Ez létrehozza a teljes struktúrát Trellis-szel és Bedrock-kal.
+
+### 3. Meglévő projekthez hozzáadás
+
+```bash
+cd projekt-mappa
+trellis init
+```
+
+## Konfiguráció
+
+### Site beállítások
+
+**group_vars/development/wordpress_sites.yml:**
+
+```yaml
+wordpress_sites:
+  example.com:
+    site_hosts:
+      - canonical: example.test
+        redirects:
+          - www.example.test
+    local_path: ../site
+    admin_email: admin@example.test
+    multisite:
+      enabled: false
+    ssl:
+      enabled: false
+      provider: self-signed
+    cache:
+      enabled: false
+```
+
+**group_vars/production/wordpress_sites.yml:**
+
+```yaml
+wordpress_sites:
+  example.com:
+    site_hosts:
+      - canonical: example.com
+        redirects:
+          - www.example.com
+    local_path: ../site
+    repo: git@github.com:user/repo.git
+    repo_subtree_path: site
+    branch: main
+    multisite:
+      enabled: false
+    ssl:
+      enabled: true
+      provider: letsencrypt
+    cache:
+      enabled: true
+```
+
+### Vault (titkosított jelszavak)
+
+A Trellis Ansible Vault-ot használ az érzékeny adatok titkosítására.
+
+**group_vars/production/vault.yml:**
+
+```yaml
+vault_mysql_root_password: "szupertitkos_jelszo"
+
+vault_wordpress_sites:
+  example.com:
+    admin_password: "admin_jelszo"
+    env:
+      db_password: "adatbazis_jelszo"
+      auth_key: "generalt_kulcs"
+      secure_auth_key: "generalt_kulcs"
+      logged_in_key: "generalt_kulcs"
+      nonce_key: "generalt_kulcs"
+      auth_salt: "generalt_kulcs"
+      secure_auth_salt: "generalt_kulcs"
+      logged_in_salt: "generalt_kulcs"
+      nonce_salt: "generalt_kulcs"
+```
+
+### Vault titkosítása
+
+```bash
+# Titkosítás
+trellis vault encrypt production
+
+# Visszafejtés szerkesztéshez
+trellis vault decrypt production
+
+# Szerkesztés titkosítva
+trellis vault edit production
+```
+
+## Lokális fejlesztés (Vagrant)
+
+### Virtuális gép indítása
+
+```bash
+cd trellis
+trellis vm start
+```
+
+Vagy hagyományosan:
+
+```bash
+vagrant up
+```
+
+### Hosts fájl beállítása
+
+A Trellis automatikusan beállítja a hosts fájlt, de manuálisan is hozzáadhatod:
+
+```
+192.168.56.5  example.test
+```
+
+### Vagrant parancsok
+
+```bash
+# VM indítása
+trellis vm start
+
+# VM leállítása
+trellis vm stop
+
+# VM újraindítása
+trellis vm restart
+
+# VM törlése
+trellis vm delete
+
+# SSH belépés
+trellis vm shell
+```
+
+## Éles szerver provisionálás
+
+### 1. Szerver előkészítése
+
+Szükséges egy friss Ubuntu 22.04/24.04 szerver root SSH hozzáféréssel.
+
+### 2. Hosts fájl beállítása
+
+**hosts/production:**
+
+```ini
+[production]
+example.com ansible_host=123.45.67.89
+
+[web]
+example.com
+```
+
+### 3. Provisionálás futtatása
+
+```bash
+trellis provision production
+```
+
+Ez telepíti és konfigurálja:
+- Nginx webszervert
+- MariaDB adatbázist
+- PHP-FPM-et
+- Let's Encrypt SSL-t
+- Fail2ban-t
+- Tűzfalat (UFW)
+- Automatikus frissítéseket
+
+## Deployment
+
+### Zero-downtime deploy
+
+```bash
+trellis deploy production
+```
+
+A deployment folyamat:
+
+1. Git clone a legújabb kódból
+2. Composer install
+3. Shared fájlok linkelése (uploads, .env)
+4. Nginx reload
+5. Régi release-ek törlése
+
+### Deploy hooks
+
+Egyedi szkriptek futtatása deployment közben:
+
+**deploy-hooks/build-before.yml:**
+
+```yaml
+- name: Install npm dependencies
+  command: npm ci
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}"
+
+- name: Build assets
+  command: npm run build
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}"
+```
+
+### Rollback
+
+Probléma esetén visszaállás az előző verzióra:
+
+```bash
+trellis rollback production
+```
+
+## SSL tanúsítványok
+
+### Let's Encrypt (ajánlott)
+
+```yaml
+ssl:
+  enabled: true
+  provider: letsencrypt
+```
+
+### Manuális tanúsítvány
+
+```yaml
+ssl:
+  enabled: true
+  provider: manual
+  cert: ~/certs/example.com.crt
+  key: ~/certs/example.com.key
+```
+
+### Self-signed (fejlesztéshez)
+
+```yaml
+ssl:
+  enabled: true
+  provider: self-signed
+```
+
+## Több site egy szerveren
+
+```yaml
+wordpress_sites:
+  site1.com:
+    site_hosts:
+      - canonical: site1.com
+    # ...
+
+  site2.com:
+    site_hosts:
+      - canonical: site2.com
+    # ...
+```
+
+## PHP konfiguráció
+
+**group_vars/all/php.yml:**
+
+```yaml
+php_version: "8.2"
+php_memory_limit: "256M"
+php_max_execution_time: "300"
+php_upload_max_filesize: "64M"
+php_post_max_size: "64M"
+```
+
+## Nginx konfiguráció
+
+**group_vars/all/nginx.yml:**
+
+```yaml
+nginx_worker_processes: auto
+nginx_worker_connections: 8192
+nginx_client_max_body_size: "64m"
+```
+
+### Egyedi Nginx szabályok
+
+**roles/wordpress-setup/templates/nginx-includes.d/*.conf.j2:**
+
+```nginx
+# Egyedi szabályok
+location /custom-endpoint {
+    # ...
+}
+```
+
+## Mail küldés
+
+### Mailhog (fejlesztéshez)
+
+Alapértelmezetten a development környezetben Mailhog fut, amely elkapja az összes kimenő emailt.
+
+Elérhető: `http://example.test:8025`
+
+### SMTP (éles)
+
+```yaml
+mail_smtp_server: smtp.mailgun.org:587
+mail_hostname: example.com
+mail_user: postmaster@example.com
+mail_password: "{{ vault_mail_password }}"
+```
+
+## Biztonsági funkciók
+
+A Trellis automatikusan konfigurálja:
+
+- **Fail2ban** - Brute force védelem
+- **UFW tűzfal** - Csak szükséges portok nyitva
+- **SSH hardening** - Kulcs alapú belépés, root letiltva
+- **Automatikus frissítések** - Biztonsági patchek
+- **Nginx hardening** - Biztonsági headerek
+
+## Hasznos parancsok
+
+```bash
+# Projekt létrehozása
+trellis new projekt-neve
+
+# Lokális VM
+trellis vm start
+trellis vm stop
+trellis vm shell
+
+# Provisionálás
+trellis provision development
+trellis provision staging
+trellis provision production
+
+# Deployment
+trellis deploy staging
+trellis deploy production
+
+# Rollback
+trellis rollback production
+
+# Vault kezelés
+trellis vault encrypt production
+trellis vault decrypt production
+trellis vault edit production
+
+# Galaxy roles frissítése
+trellis galaxy install
+
+# SSH belépés szerverre
+trellis ssh production
+```
+
+## Roots Stack együtt
+
+A teljes Roots stack együttes használata:
+
+```
+projekt/
+├── trellis/          # Szerver konfiguráció és deployment
+└── site/             # Bedrock + Sage
+    ├── composer.json
+    ├── web/
+    │   └── app/
+    │       └── themes/
+    │           └── sage/    # Sage téma Acorn-nal
+    └── ...
+```
+
+## Források
+
+- [Trellis dokumentáció](https://roots.io/trellis/docs/)
+- [Trellis CLI dokumentáció](https://roots.io/trellis/docs/cli/)
+- [Ansible dokumentáció](https://docs.ansible.com/)
+- [Roots Discourse közösség](https://discourse.roots.io/)
+- [Trellis GitHub](https://github.com/roots/trellis)

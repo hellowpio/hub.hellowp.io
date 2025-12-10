@@ -1,0 +1,115 @@
+---
+title: AutomateWoo - Workflow készítése
+description: Workflow, azaz Folyamat készítése
+keywords:
+  - automatewoo, workflow
+sidebar_label: Workflow készítése 
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+## Mi az a Workflow?
+
+Az AutomateWoo lényege, hogy folyamatokat készítsünk, amik bizonyos triggerek, és szabályok alapján fognak futni. A szabályokhoz műveleteket tudunk társítani, 
+ami nem csak emailek küldéséből állhat. Mielőtt készítünk egy saját workflowot nézzük át milyen lehetőségeink vannak. Kattintsunk a Workflows - Folyamatok menüpontra.
+Az AutomateWoo rendelkezik számos előre gyártott sablonnal (preset), melyeket az alábbi képen is láthatsz:
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/automatewoo-presets.png" alt="Automatewoo presets"></img>
+</BrowserWindow>
+
+Azt javaslom, amíg nem vagyunk járatosak egy folyamat felépítésében először készítsünk egy sajátot.
+
+## Folyamat felépítése
+
+Kattintsunk az Add new - Folyamat készítése gombra. 
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/workflow-attekintes.png" alt="Automatewoo uj workflow"></img>
+</BrowserWindow>
+
+Először beszéljük át az itt látható paneleket. Minden folyamatnak megadhatsz nevet, amelyt kizárólag belső azonosításra fogsz használni. Célszerű 
+olyan nevet megadni, amilyen feladatot ellát, így ha később térsz vissza, akkor is könnyedén tudni fogod pontosan ezt a folyamatot mire használod.
+A jobb oldali oszlopban az első panelnek nincs megnevezése, viszont két opciót tartalmaz:
+
+**Típus**  
+**Státusz**
+
+Alapvetően az Automatewoo lényege az automatizálás, viszont lehetőségünk van manuális futtatásra is, amit kézzel tudunk indítani. A manuális futtatás egyelőre erősen
+korlátozott és csak a rendelés, és előfizetés*(Subscriptions bővítmény),* esetében alkalmazható, de ezt a későbbiekben a fejlesztők bővíteni kívánják.
+
+A **státusz** segítségével állíthatjuk be, hogy az adott folyamatunk, aktív, vagy kikapcsolt állapotban legyen. A workflow csak akkor fog futni, ha a **státusz**
+aktívra van állítva. 
+
+:::tip Alapértelmezett beállítások
+Ne felejtsd el, hogy közvetlenül egy folyamat létrehozásakor a workflow státusza **alapértelmezetten aktív,** így elsőként állítsd kikapcsoltra, és ha kész vagy, ne felejtsd el
+aktív állapotra állítani!
+:::
+
+### Beállítások
+A következő oszlop, a **Beállítások.** Itt egyből ki is emelnénk a tranzakciós beállítást. Mivel alapvetően a felhasználónak bele kell egyeznie
+abba, hogy marketing célzatú emaileket küldjünk nekik, természetesen előfordulhat, hogy tájékoztató jellegű üzenetet szeretnénk megosztani a felhasználókkal. 
+Ezért, ha az adott folyamat, email vagy sms műveletet tartalmaz, és szeretnénk ha az opt állapotától függetlenül megkapja a felhasználó, jelöljük be a **Tranzakciós jellegű** 
+jelölő négyzetet.
+
+**Nyomonkövetés engedélyezése / Enable tracking**  
+A konverzió követés fontos szerepet töltenek be az Emailek és SMS-ek esetében. Ahhoz hogy ez a beállítás megfelelően működjön
+nem elég csak a *Nyomonkövetés engedélyezése* bekapcsolni, engedélyezni kell hozzá a konverziókövetést is. Ez az opció akkor jelenik meg, ha bekapcsoltuk a 
+Nyomonkövetést előtte. Fontos tudni, hogy ezek csak a jövőben futásokat mérik, visszamenőlegesen nem, továbbá a méréshez, az adott email-t amely műveletként lett
+a folyamathoz hozzáadva megnyitják.
+
+:::tip SMS konverzió
+Az Email-el ellentétben az SMS-nél nincs megnyitás követés.
+:::
+
+### Triggerek
+A Trigger az elsődleges és legfontosabb amit egy folyamat létrehozásakor be kell állítanunk. A szabályokkal, és műveletekkel ellentétben, egy folyamatnak csak egy 
+triggert lehet beállítani. Alapvetően ezzel határozzuk meg milyen esemény váltja ki a folyamatunkat, tehát, mi indítja el.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/folyamat-trigger.png" alt="Automatewoo triggerek"></img>
+</BrowserWindow>
+
+A legtöbb trigger esetében kapcsolódó beállítások is megjelennek, és egy rövid leírás, amely körbeírja a funkció működését.
+Válasszuk ki az alábbi triggert:   
+**Rendelés teljesítve / Order Completed**. A *Recheck status before run - Futtatás előtt ellenőrizze újra az állapotot* hagyjuk engedélyezve.
+
+### Szabályok / Rules
+A szabályok segítségével különböző feltételes kondíciókat adhatunk meg, tehát paraméterezhetjük a kapcsolódó triggerünket egy, vagy több kritérium megadásával.
+Fontos megjegyezni, hogy a *szabályok* megadása nem kötelező, de egyes triggerek esetében, például amit az előbb mi is kiválasztottunk: **Rendelés teljesítve**,
+szabályozhatjuk, hogy a teljesített rendelés milyen termékek esetében fusson csak le, ugyanis enélkül minden *teljesített rendeléskor* lefut.
+
+A szabályok esetében két operátor van, **és** / **vagy** ezek segítségével beállíthatjuk, hogy az adott triggerünk egyszerre legalább két szabálynak
+meg kell hogy feleljen, vagy egy-egy-nek, tehát nem kötelező, hogy mindkét feltétel teljesüljön, elég csak az egyiknek a több közül. Mikor kiválasztjuk az első szabályt, 
+a legszélén megjelenik az **és / and** valamint egy törlés ikon. Fontos, hogy ha az **and / és**-re kattintunk egy következő szabályt adhatunk meg. Ha ismét a
+**Új szabálycsoport / + Add rule Group** gombra kattintunk, akkor lép életbe a **vagy / or** operátor.
+
+A példánkban az első szabály az, hogy meghatározzuk mely termékek esetében futhat le a folyamat. Kattintsunk az **Új szabálycsoport** gombra, és keressük ki a listából
+a **Rendelés - tételek / Order Items**. Sok szabály esetében miután meghatároztuk a feltételt, további operátorok állnak rendelkezésre, hogy pontosítani tudjuk a szabályunkat.
+Több típusú operátorral fogsz találkozni a későbbiekben. A korábban kiválasztott szabályunk esetében kettőt tudsz használni: **Tartalmazza, nem tartalmazza - Includes, does not includes**. 
+Ezek segítségével pontosíthatjuk a szabályunkat. Állíthatjuk úgy is, hogy nem tartalmazza, tehát kizárunk termékeket. Ideális választás, ha a legtöbb termék esetében
+a folyamatnak le kell futnia, és csak egy-két kivétel van, ilyenkor elég a szabályt beállítani *nem tartalmazza*-ra majd kiválasztani hozzá a terméket. Az eredmény
+hogy a kiválasztott termék esetében a folyamat egyáltalán nem fog lefutni, de minden más termék esetében igen.
+
+:::tip Termékkategóriák és címkék
+Rengeteg szabály van, a fentihez kapcsolódóan akár termékkategóriák és címkékre is korlátozhatjuk a folyamat futását.
+:::
+
+Az operátor melletti választó mezőben pedig kiválaszthatjuk a termékeket. Ezen szabály esetében némi ellentmondásba keveredhetünk ugyanis többesszám jelzéssel van, 
+de valójában csak egy terméket lehet kiválasztani. Ha többet szeretnénk, célszerűbb a **Rendelés - tétel neve szöveges egyezést / Order Item name  text match** szabályt kiválasztani, 
+vagy használjunk további szabálycsoportot (VAGY / OR) metódussal.
+
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/multilpletermektrigger.png" alt="Automatewoo triggerek"></img>
+</BrowserWindow>
+
+
+### Műveletek
+
+Elérkeztünk a folyamat utolsó lépéséhez, a műveletekhez. Itt tudjuk megadni, hogy a folyamat milyen művelet, vagy műveleteket hajtson végre.
+Természetesen többet is beállíthatunk, kezdve az Email küldésen át, egészen a saját egyedi funkciókig. Egyes bővítmények, mint például a **WooCommerce Membership**
+további műveleteket ad hozzá az AutomateWoo-hoz.
+
+Miután elkészültünk minden beállítással, mentsük el a folyamatot, és ne felejtsük el a státuszt Aktívra állítani, valamint ha email küldést használunk, akkor 
+a **tranzakciós jellegű** jelölőnégyzetet is kapcsoljuk be!

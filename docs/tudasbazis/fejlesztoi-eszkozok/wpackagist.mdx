@@ -1,0 +1,233 @@
+---
+title: WPackagist
+description: WordPress pluginok és témák kezelése Composer segítségével a WPackagist repository használatával.
+keywords:
+  - wpackagist
+  - composer
+  - wordpress
+  - csomagkezelés
+sidebar_label: WPackagist
+sidebar_position: 26
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-box-open text-primary" /> WPackagist - WordPress Composer Repository
+
+A [WPackagist](https://wpackagist.org) egy Composer repository, amely tükrözi a WordPress® plugin és téma könyvtárat. Segítségével a WordPress bővítményeket és témákat ugyanúgy kezelheted, mint bármely más PHP függőséget.
+
+## Mi az a Composer?
+
+> "A Composer egy függőségkezelő eszköz PHP-hoz. Lehetővé teszi, hogy deklaráld a projekted által igényelt függvénykönyvtárakat, és telepíti azokat a projektedbe." — [getcomposer.org](https://getcomposer.org)
+
+## Miért használj Composert WordPress-hez?
+
+- **Verziókezelés tisztasága** - Elkerülheted, hogy a pluginokat és témákat a forráskódkezelőbe (git) commitold
+- **Nincs szükség git submodule-okra** - A függőségek egyszerűbben kezelhetők
+- **Egységes eszközök** - WordPress és nem WordPress könyvtárakat ugyanazzal az eszközzel kezelheted
+- **Függőségek kezelése** - Hosszú távon a pluginok közötti függőségek kezelésére is használható
+
+## Hogyan használd?
+
+### 1. Repository hozzáadása
+
+Add hozzá a WPackagist repository-t a `composer.json` fájlodhoz:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ]
+}
+```
+
+### 2. Pluginok és témák hozzáadása
+
+Add hozzá a kívánt pluginokat és témákat a `require` szekcióhoz:
+
+- **Pluginok**: `wpackagist-plugin/` vendor prefix
+- **Témák**: `wpackagist-theme/` vendor prefix
+
+### 3. Telepítés
+
+Futtasd a következő parancsot:
+
+```bash
+composer update
+```
+
+### 4. Telepítési hely
+
+A csomagok alapértelmezetten a következő helyekre kerülnek:
+
+- Pluginok: `wp-content/plugins/`
+- Témák: `wp-content/themes/`
+
+Az `installer-paths` opcióval ez testre szabható.
+
+## Teljes példa
+
+```json
+{
+    "name": "acme/brilliant-wordpress-site",
+    "description": "My brilliant WordPress site",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "require": {
+        "aws/aws-sdk-php": "*",
+        "wpackagist-plugin/akismet": "dev-trunk",
+        "wpackagist-plugin/wordpress-seo": ">=7.0.2",
+        "wpackagist-theme/flavor": "*"
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/mu-plugins/{$name}/": [
+                "wpackagist-plugin/akismet"
+            ],
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
+    }
+}
+```
+
+Ez a példa:
+- Hozzáadja a WPackagist repository-t
+- Telepíti az **Akismet** legújabb verzióját (must-use pluginként)
+- Telepíti a **Yoast SEO**-t (minimum 7.0.2 verzió)
+- Telepíti a **flavor** témát (legújabb verzió)
+- Az **Amazon Web Services SDK**-t a fő Packagist repository-ból tölti le
+
+## Verziókezelés
+
+### Pluginok
+
+```json
+{
+    "require": {
+        "wpackagist-plugin/akismet": "dev-trunk",
+        "wpackagist-plugin/wordpress-seo": ">=7.0.2",
+        "wpackagist-plugin/contact-form-7": "5.7.*",
+        "wpackagist-plugin/woocommerce": "^8.0"
+    }
+}
+```
+
+- `dev-trunk` - A legújabb fejlesztői verzió
+- `>=7.0.2` - Minimum verzió megadása
+- `5.7.*` - Adott főverzión belül a legújabb
+- `^8.0` - Szemantikus verziókezelés (8.x.x de nem 9.0)
+- `*` - Bármely verzió (legújabb)
+
+### Témák
+
+A témáknak nincs `trunk` verziójuk, ezért ajánlott a `*` használata:
+
+```json
+{
+    "require": {
+        "wpackagist-theme/flavor": "*"
+    }
+}
+```
+
+## Must-Use pluginok telepítése
+
+A must-use pluginok a `wp-content/mu-plugins/` mappába kerülnek és automatikusan aktiválódnak:
+
+```json
+{
+    "extra": {
+        "installer-paths": {
+            "wp-content/mu-plugins/{$name}/": [
+                "wpackagist-plugin/akismet",
+                "wpackagist-plugin/redis-cache"
+            ]
+        }
+    }
+}
+```
+
+## WordPress Core telepítése
+
+A WordPress core telepítéséhez használhatod a következő csomagokat:
+
+- [roots/wordpress](https://github.com/roots/wordpress) - A Roots csapat által karbantartott csomag
+- [johnpbloch/wordpress](https://github.com/johnpbloch/wordpress-core) - Népszerű alternatíva
+
+Példa:
+
+```json
+{
+    "require": {
+        "johnpbloch/wordpress": "^6.4"
+    },
+    "extra": {
+        "wordpress-install-dir": "wp"
+    }
+}
+```
+
+## Ismert korlátozások
+
+:::caution Fontos tudnivalók
+
+- **Composer verzió**: Minimum Composer 1.0.0-alpha7 szükséges
+- **Verzió stringek**: A Composer által nem értelmezhető verzió stringek figyelmen kívül maradnak. Minden pluginnak van legalább `trunk` verziója.
+- **Témák**: A témáknak nincs `trunk` verziójuk, ezért ajánlott a `*` használata.
+- **Közzétett csomagok**: A csomagok csak akkor érhetők el, ha a wordpress.org-on publikálva vannak, még akkor is, ha az SVN-en megtalálhatók.
+
+:::
+
+## Hasznos parancsok
+
+```bash
+# Függőségek telepítése
+composer install
+
+# Függőségek frissítése
+composer update
+
+# Egy adott csomag frissítése
+composer update wpackagist-plugin/wordpress-seo
+
+# Új csomag hozzáadása
+composer require wpackagist-plugin/contact-form-7
+
+# Csomag eltávolítása
+composer remove wpackagist-plugin/contact-form-7
+
+# Elérhető frissítések listázása
+composer outdated
+
+# Autoloader újragenerálása
+composer dump-autoload
+
+# Optimalizált autoloader (production)
+composer dump-autoload --optimize
+```
+
+## Források
+
+- [WPackagist hivatalos oldal](https://wpackagist.org)
+- [Composer dokumentáció](https://getcomposer.org/doc/)
+- [WPackagist GitHub](https://github.com/outlandishideas/wpackagist)

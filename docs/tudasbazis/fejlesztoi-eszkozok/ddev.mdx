@@ -1,0 +1,494 @@
+---
+title: DDEV
+description: Docker-alapú lokális WordPress fejlesztői környezet DDEV segítségével.
+keywords:
+  - ddev
+  - docker
+  - lokális fejlesztés
+  - wordpress
+  - php
+sidebar_label: DDEV
+sidebar_position: 5
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-whale text-primary" /> DDEV - Docker-alapú Fejlesztői Környezet
+
+A [DDEV](https://ddev.com) egy nyílt forráskódú, Docker-alapú lokális fejlesztői eszköz PHP projektekhez, beleértve a WordPress-t is. Gyors, megbízható és könnyen konfigurálható.
+
+## Miért DDEV?
+
+- **Docker-alapú** - Izolált, reprodukálható környezetek
+- **Gyors** - Másodpercek alatt induló konténerek
+- **Rugalmas** - Bármilyen PHP verzió és konfiguráció
+- **WordPress-barát** - Beépített WP-CLI és Composer támogatás
+- **Multisite támogatás** - WordPress Multisite is működik
+- **Add-on rendszer** - Bővíthető funkcionalitás
+
+## Telepítés
+
+### macOS
+
+```bash
+# Homebrew-val
+brew install ddev/ddev/ddev
+
+# Docker Desktop szükséges
+brew install --cask docker
+```
+
+### Windows
+
+```powershell
+# Chocolatey-vel
+choco install ddev
+
+# Vagy winget-tel
+winget install ddev
+```
+
+### Linux
+
+```bash
+# Hivatalos telepítő script
+curl -fsSL https://ddev.com/install.sh | bash
+```
+
+## WordPress projekt létrehozása
+
+### 1. Projekt mappa létrehozása
+
+```bash
+mkdir my-wordpress-site
+cd my-wordpress-site
+```
+
+### 2. DDEV konfiguráció
+
+```bash
+ddev config --project-type=wordpress
+```
+
+### 3. WordPress letöltése és indítás
+
+```bash
+ddev start
+ddev wp core download --locale=hu_HU
+```
+
+### 4. WordPress telepítése
+
+```bash
+ddev wp core install \
+  --url='$DDEV_PRIMARY_URL' \
+  --title='My WordPress Site' \
+  --admin_user=admin \
+  --admin_password=admin \
+  --admin_email=admin@example.com
+```
+
+## Konfiguráció
+
+A `.ddev/config.yaml` fájl tartalmazza a projekt beállításait:
+
+```yaml
+name: my-wordpress-site
+type: wordpress
+docroot: ""
+php_version: "8.2"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.6"
+router_http_port: "80"
+router_https_port: "443"
+```
+
+### PHP verzió váltás
+
+```bash
+ddev config --php-version=8.3
+ddev restart
+```
+
+### Elérhető PHP verziók
+
+| Verzió | Státusz |
+|--------|---------|
+| 7.4 | Támogatott |
+| 8.0 | Támogatott |
+| 8.1 | Támogatott |
+| 8.2 | Ajánlott |
+| 8.3 | Legújabb |
+
+### Adatbázis típus váltás
+
+```bash
+# MariaDB-ről MySQL-re
+ddev config --database=mysql:8.0
+ddev restart
+```
+
+## Alapvető parancsok
+
+### Projekt kezelés
+
+```bash
+# Projekt indítása
+ddev start
+
+# Projekt leállítása
+ddev stop
+
+# Projekt újraindítása
+ddev restart
+
+# Projekt törlése (adatokkal együtt)
+ddev delete --omit-snapshot
+
+# Projekt állapot
+ddev describe
+```
+
+### WP-CLI használata
+
+```bash
+# Bármilyen WP-CLI parancs
+ddev wp plugin list
+ddev wp theme list
+ddev wp user list
+ddev wp cache flush
+
+# Importálás/exportálás
+ddev wp db export backup.sql
+ddev wp db import backup.sql
+```
+
+### Composer
+
+```bash
+# Composer parancsok
+ddev composer install
+ddev composer require wpackagist-plugin/akismet
+ddev composer update
+```
+
+### SSH a konténerbe
+
+```bash
+# Web konténer
+ddev ssh
+
+# Adatbázis konténer
+ddev ssh -s db
+```
+
+## Adatbázis kezelés
+
+### phpMyAdmin
+
+```bash
+# phpMyAdmin indítása
+ddev launch -p
+```
+
+### Adminer
+
+```bash
+# Adminer add-on telepítése
+ddev get ddev/ddev-adminer
+
+# Adminer indítása
+ddev adminer
+```
+
+### Közvetlen adatbázis kapcsolat
+
+```bash
+# MySQL kliens
+ddev mysql
+
+# Adatbázis export
+ddev export-db > backup.sql
+
+# Adatbázis import
+ddev import-db < backup.sql
+```
+
+### Adatbázis kapcsolati adatok
+
+```yaml
+Host: db (konténeren belül) / 127.0.0.1 (kívülről)
+Port: 3306 (konténeren belül) / ddev describe mutatja (kívülről)
+Database: db
+Username: db
+Password: db
+```
+
+## SSL tanúsítványok
+
+DDEV automatikusan kezeli az SSL tanúsítványokat:
+
+```bash
+# mkcert telepítése (egyszer)
+mkcert -install
+
+# Ezután minden projekt HTTPS-en érhető el
+# https://my-wordpress-site.ddev.site
+```
+
+## Mailhog - Email tesztelés
+
+DDEV beépített Mailhog szolgáltatással rendelkezik:
+
+```bash
+# Mailhog megnyitása
+ddev launch -m
+
+# Minden elküldött email itt jelenik meg
+# https://my-wordpress-site.ddev.site:8026
+```
+
+## Xdebug beállítása
+
+```bash
+# Xdebug engedélyezése
+ddev xdebug on
+
+# Xdebug letiltása
+ddev xdebug off
+
+# Xdebug státusz
+ddev xdebug status
+```
+
+### VS Code konfiguráció
+
+`.vscode/launch.json`:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/var/www/html": "${workspaceFolder}"
+      }
+    }
+  ]
+}
+```
+
+### PhpStorm konfiguráció
+
+1. **Preferences** > **PHP** > **Servers**
+2. Add server: `my-wordpress-site.ddev.site`
+3. Port: `443`, Debugger: `Xdebug`
+4. Use path mappings: `/var/www/html` → projekt mappa
+
+## Hasznos Add-on-ok
+
+### Telepítés
+
+```bash
+# Add-on telepítése
+ddev get <add-on-name>
+
+# Add-on eltávolítása
+ddev get --remove <add-on-name>
+```
+
+### Népszerű add-on-ok
+
+| Add-on | Parancs | Funkció |
+|--------|---------|---------|
+| **Redis** | `ddev get ddev/ddev-redis` | Object cache |
+| **Elasticsearch** | `ddev get ddev/ddev-elasticsearch` | Keresés |
+| **Memcached** | `ddev get ddev/ddev-memcached` | Cache |
+| **Adminer** | `ddev get ddev/ddev-adminer` | DB kezelő |
+| **phpMyAdmin** | `ddev get ddev/ddev-phpmyadmin` | DB kezelő |
+
+### Redis beállítása WordPress-hez
+
+```bash
+# Redis add-on
+ddev get ddev/ddev-redis
+ddev restart
+
+# Redis Object Cache plugin
+ddev wp plugin install redis-cache --activate
+ddev wp redis enable
+```
+
+## Több projekt kezelése
+
+```bash
+# Összes projekt listázása
+ddev list
+
+# Összes projekt leállítása
+ddev poweroff
+
+# Adott projekt indítása
+ddev start -s my-wordpress-site
+```
+
+## Meglévő WordPress importálása
+
+### 1. Fájlok másolása
+
+```bash
+mkdir existing-site
+cd existing-site
+cp -r /path/to/wordpress/* .
+```
+
+### 2. DDEV konfiguráció
+
+```bash
+ddev config --project-type=wordpress
+ddev start
+```
+
+### 3. Adatbázis importálása
+
+```bash
+ddev import-db < database-backup.sql
+```
+
+### 4. URL-ek frissítése
+
+```bash
+ddev wp search-replace 'https://old-domain.com' 'https://existing-site.ddev.site'
+```
+
+## Egyedi szolgáltatások
+
+### docker-compose.*.yaml
+
+Egyedi szolgáltatások a `.ddev/` mappában:
+
+`.ddev/docker-compose.custom.yaml`:
+
+```yaml
+version: '3.6'
+services:
+  web:
+    environment:
+      - CUSTOM_VAR=value
+```
+
+### Egyedi nginx konfiguráció
+
+`.ddev/nginx_full/nginx-site.conf`:
+
+```nginx
+server {
+    # Egyedi nginx beállítások
+    client_max_body_size 100M;
+}
+```
+
+### Egyedi PHP beállítások
+
+`.ddev/php/custom.ini`:
+
+```ini
+upload_max_filesize = 100M
+post_max_size = 100M
+memory_limit = 512M
+max_execution_time = 300
+```
+
+## Hibaelhárítás
+
+### Port konfliktus
+
+```bash
+# Ha a portok foglaltak
+ddev config --router-http-port=8080 --router-https-port=8443
+ddev restart
+```
+
+### Docker problémák
+
+```bash
+# Docker újraindítása
+ddev poweroff
+# Indítsd újra a Docker Desktop-ot
+ddev start
+```
+
+### Lassú fájlrendszer (macOS)
+
+```bash
+# Mutagen engedélyezése a gyorsabb szinkronizáláshoz
+ddev config --mutagen-enabled
+ddev restart
+```
+
+### Adatbázis problémák
+
+```bash
+# Adatbázis snapshot
+ddev snapshot
+
+# Snapshot visszaállítása
+ddev snapshot restore
+
+# Adatbázis újraépítése
+ddev delete --omit-snapshot
+ddev start
+ddev import-db < backup.sql
+```
+
+## Hasznos tippek
+
+### Gyors megnyitás
+
+```bash
+# Site megnyitása böngészőben
+ddev launch
+
+# Admin megnyitása
+ddev launch wp-admin
+```
+
+### Alias-ok
+
+Add hozzá a `~/.bashrc` vagy `~/.zshrc` fájlhoz:
+
+```bash
+alias dstart="ddev start"
+alias dstop="ddev stop"
+alias dwp="ddev wp"
+alias dcomposer="ddev composer"
+```
+
+### Globális konfiguráció
+
+`~/.ddev/global_config.yaml`:
+
+```yaml
+router_http_port: "80"
+router_https_port: "443"
+use_letsencrypt: false
+letsencrypt_email: ""
+internet_detection_timeout_ms: 3000
+disable_http2: false
+use_docker_compose_from_path: false
+table_style: default
+simple_formatting: false
+```
+
+## Források
+
+- [DDEV hivatalos oldal](https://ddev.com)
+- [DDEV dokumentáció](https://ddev.readthedocs.io)
+- [DDEV GitHub](https://github.com/ddev/ddev)
+- [DDEV Discord közösség](https://discord.gg/kDvSFBSZfs)

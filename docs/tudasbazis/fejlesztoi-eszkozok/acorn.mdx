@@ -1,0 +1,412 @@
+---
+title: Acorn
+description: Laravel komponensek WordPress témákban és pluginokban a Roots Acorn segítségével.
+keywords:
+  - acorn
+  - roots
+  - laravel
+  - wordpress
+  - blade
+sidebar_label: Acorn
+sidebar_position: 1
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-seedling text-primary" /> Acorn - Laravel a WordPress-ben
+
+Az [Acorn](https://roots.io/acorn/) egy keretrendszer, amely Laravel komponenseket biztosít WordPress témákhoz és pluginokhoz. A [Roots](https://roots.io) csapat fejleszti, és ez képezi a [Sage](https://roots.io/sage/) téma alapját.
+
+## Mi az Acorn?
+
+Az Acorn lehetővé teszi, hogy a Laravel ökoszisztéma legjobb részeit használd WordPress projektjeidben:
+
+- **Blade templating** - Laravel Blade template motor
+- **Service Container** - Laravel IoC container
+- **Service Providers** - Moduláris szolgáltatások regisztrálása
+- **View Composers** - Adatok automatikus átadása view-knak
+- **Configuration** - Laravel-stílusú konfiguráció
+- **Caching** - View és konfiguráció cache
+- **Console Commands** - Artisan-szerű CLI parancsok
+
+## Előfeltételek
+
+- PHP >= 8.1
+- WordPress >= 5.9
+- Composer
+
+## Telepítés
+
+### Composer-rel
+
+```bash
+composer require roots/acorn
+```
+
+### WordPress pluginként
+
+Az Acorn elérhető WordPress pluginként is, amely letölthető a [roots.io/acorn](https://roots.io/acorn/) oldalról.
+
+### Acorn bootolása
+
+Az Acorn-t be kell tölteni a témádban vagy pluginodban. A `functions.php` fájlban:
+
+```php
+<?php
+
+if (! function_exists('\Roots\bootloader')) {
+    wp_die(
+        __('You need to install Acorn to use this theme.', 'sage'),
+        '',
+        [
+            'link_url' => 'https://roots.io/acorn/docs/installation/',
+            'link_text' => __('Acorn Docs: Installation', 'sage'),
+        ]
+    );
+}
+
+\Roots\bootloader()->boot();
+```
+
+## Blade Templates
+
+A Blade a Laravel template motorja, amely tiszta és kifejező szintaxist biztosít.
+
+### Alapvető szintaxis
+
+```blade
+{{-- resources/views/partials/header.blade.php --}}
+
+<header class="site-header">
+    <nav>
+        @if (has_nav_menu('primary_navigation'))
+            {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'echo' => false]) !!}
+        @endif
+    </nav>
+</header>
+```
+
+### Feltételes megjelenítés
+
+```blade
+@if ($post->post_type === 'product')
+    <span class="badge">Termék</span>
+@elseif ($post->post_type === 'post')
+    <span class="badge">Bejegyzés</span>
+@else
+    <span class="badge">Oldal</span>
+@endif
+```
+
+### Ciklusok
+
+```blade
+@foreach ($posts as $post)
+    <article>
+        <h2>{{ $post->post_title }}</h2>
+        <p>{{ $post->post_excerpt }}</p>
+    </article>
+@empty
+    <p>Nincs megjeleníthető bejegyzés.</p>
+@endforeach
+```
+
+### WordPress Loop Blade-del
+
+```blade
+@while (have_posts())
+    @php(the_post())
+
+    <article @php(post_class())>
+        <h2>{{ get_the_title() }}</h2>
+        {!! get_the_content() !!}
+    </article>
+@endwhile
+```
+
+### Komponensek
+
+```blade
+{{-- resources/views/components/button.blade.php --}}
+
+@props(['type' => 'primary', 'url' => '#'])
+
+<a href="{{ $url }}" class="btn btn-{{ $type }}">
+    {{ $slot }}
+</a>
+```
+
+Használata:
+
+```blade
+<x-button type="secondary" url="/contact">
+    Kapcsolat
+</x-button>
+```
+
+## View Composers
+
+A View Composers lehetővé teszi, hogy adatokat automatikusan adj át a view-knak.
+
+### Composer létrehozása
+
+```php
+<?php
+// app/View/Composers/Post.php
+
+namespace App\View\Composers;
+
+use Roots\Acorn\View\Composer;
+
+class Post extends Composer
+{
+    /**
+     * Mely view-kra vonatkozzon
+     */
+    protected static $views = [
+        'partials.content',
+        'partials.content-*',
+    ];
+
+    /**
+     * Adatok átadása a view-nak
+     */
+    public function with()
+    {
+        return [
+            'title' => $this->title(),
+            'excerpt' => $this->excerpt(),
+            'categories' => $this->categories(),
+        ];
+    }
+
+    public function title()
+    {
+        return get_the_title();
+    }
+
+    public function excerpt()
+    {
+        return has_excerpt()
+            ? get_the_excerpt()
+            : wp_trim_words(get_the_content(), 40);
+    }
+
+    public function categories()
+    {
+        return get_the_category();
+    }
+}
+```
+
+### Composer regisztrálása
+
+```php
+<?php
+// app/Providers/ThemeServiceProvider.php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class ThemeServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        // Composers automatikus betöltése
+    }
+}
+```
+
+## Konfiguráció
+
+Az Acorn Laravel-stílusú konfigurációs fájlokat használ a `config/` mappában.
+
+### Példa konfiguráció
+
+```php
+<?php
+// config/theme.php
+
+return [
+    'name' => 'My Theme',
+    'version' => '1.0.0',
+
+    'support' => [
+        'post-thumbnails',
+        'title-tag',
+        'html5' => [
+            'caption',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'search-form',
+        ],
+    ],
+
+    'menus' => [
+        'primary_navigation' => __('Primary Navigation', 'theme'),
+        'footer_navigation' => __('Footer Navigation', 'theme'),
+    ],
+];
+```
+
+### Konfiguráció elérése
+
+```php
+$themeName = config('theme.name');
+$menus = config('theme.menus');
+```
+
+## Console Commands (WP-CLI)
+
+Az Acorn WP-CLI parancsokat biztosít:
+
+```bash
+# View cache törlése
+wp acorn view:clear
+
+# View cache létrehozása
+wp acorn view:cache
+
+# Konfiguráció cache
+wp acorn config:cache
+wp acorn config:clear
+
+# Elérhető parancsok listája
+wp acorn list
+```
+
+## Service Providers
+
+Saját szolgáltatásokat regisztrálhatsz Service Provider-ekkel:
+
+```php
+<?php
+// app/Providers/CustomServiceProvider.php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class CustomServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+        $this->app->singleton('custom.service', function () {
+            return new \App\Services\CustomService();
+        });
+    }
+
+    public function boot()
+    {
+        // Inicializáció a boot után
+    }
+}
+```
+
+Regisztráció a `config/app.php` fájlban:
+
+```php
+'providers' => [
+    // ...
+    App\Providers\CustomServiceProvider::class,
+],
+```
+
+## Mappastruktúra
+
+Egy tipikus Acorn-alapú téma struktúrája:
+
+```
+theme/
+├── app/
+│   ├── Providers/           # Service Providers
+│   ├── View/
+│   │   └── Composers/       # View Composers
+│   └── helpers.php          # Helper függvények
+├── config/
+│   ├── app.php              # Alkalmazás konfiguráció
+│   ├── theme.php            # Téma konfiguráció
+│   └── view.php             # View konfiguráció
+├── resources/
+│   ├── views/               # Blade templates
+│   │   ├── layouts/
+│   │   ├── partials/
+│   │   └── components/
+│   ├── scripts/             # JavaScript
+│   └── styles/              # CSS/SCSS
+├── storage/
+│   └── framework/
+│       ├── cache/
+│       └── views/           # Compiled views
+├── composer.json
+├── functions.php
+└── style.css
+```
+
+## Acorn + Sage
+
+A [Sage](https://roots.io/sage/) téma az Acorn-ra épül, és egy teljes értékű modern WordPress téma fejlesztési környezetet biztosít:
+
+```bash
+# Sage téma létrehozása
+composer create-project roots/sage tema-neve
+
+cd tema-neve
+
+# Függőségek telepítése
+composer install
+npm install
+
+# Fejlesztés
+npm run dev
+
+# Build
+npm run build
+```
+
+## Cache kezelés
+
+Éles környezetben érdemes cache-elni a view-kat és konfigurációt:
+
+```bash
+# View cache (Blade templates előfordítása)
+wp acorn view:cache
+
+# Konfiguráció cache
+wp acorn config:cache
+
+# Minden cache törlése
+wp acorn optimize:clear
+```
+
+## Hibakeresés
+
+### Debug mód
+
+A `config/app.php` fájlban:
+
+```php
+'debug' => WP_DEBUG,
+```
+
+### Logolás
+
+```php
+use Illuminate\Support\Facades\Log;
+
+Log::info('Információ');
+Log::warning('Figyelmeztetés');
+Log::error('Hiba', ['context' => $data]);
+```
+
+A logok a `storage/logs/` mappában találhatók.
+
+## Források
+
+- [Acorn dokumentáció](https://roots.io/acorn/docs/)
+- [Blade dokumentáció](https://laravel.com/docs/blade)
+- [Sage dokumentáció](https://roots.io/sage/docs/)
+- [Roots Discourse közösség](https://discourse.roots.io/)
+- [Acorn GitHub](https://github.com/roots/acorn)

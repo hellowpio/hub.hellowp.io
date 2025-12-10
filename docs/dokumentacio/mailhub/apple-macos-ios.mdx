@@ -1,0 +1,82 @@
+---
+title: Levelezés beállítása Apple eszközökön
+description: MailHub email fiók beállítása iPhone, iPad és Mac eszközökön.
+keywords:
+  - mailhub
+  - apple
+  - iphone
+  - mac
+  - ios
+sidebar_label: Apple macOS / iOS
+sidebar_position: 2
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-mobile text-primary" /> Levelezés beállítása Apple eszközökön
+
+Az Apple eszközökön többféleképpen is beállíthatod a MailHub fiókodat. A legegyszerűbb módszer az automatikus profil telepítése.
+
+## Automatikus beállítás (ajánlott)
+
+A MailHub konfigurációs profil automatikusan beállítja az email, naptár és névjegy szinkronizálást.
+
+### Teljes konfiguráció (email + naptár + névjegyek)
+
+1. Jelentkezz be a [MailHub adminisztrációs felületre](https://mailhub.hellowp.cloud)
+2. Töltsd le a konfigurációs profilt: [mobileconfig.php](https://mailhub.hellowp.cloud/mobileconfig.php)
+3. Nyisd meg a letöltött fájlt
+4. **iPhone/iPad**: Menj a **Beállítások → Profil letöltve** menüpontra és telepítsd
+5. **Mac**: A Rendszerbeállításokban nyílik meg, kattints a **Telepítés** gombra
+6. Add meg az eszköz jelszavát vagy használd a Face ID / Touch ID hitelesítést
+7. Amikor kéri, add meg az email fiókod jelszavát
+
+### Csak email (naptár és névjegyek nélkül)
+
+1. Töltsd le a konfigurációs profilt: [mobileconfig.php?only_email](https://mailhub.hellowp.cloud/mobileconfig.php?only_email)
+2. Kövesd a fenti telepítési lépéseket
+
+:::tip Automatikus konfiguráció előnyei
+A profil telepítésével minden beállítás automatikusan megtörténik, így nem kell manuálisan megadnod a szerver címeket és portokat.
+:::
+
+## Manuális beállítás iPhone / iPad eszközön
+
+Ha az automatikus konfiguráció nem működik, használd a manuális beállítást:
+
+1. Nyisd meg a **Beállítások** alkalmazást
+2. Koppints a **Mail** → **Fiókok** → **Fiók hozzáadása** opcióra
+3. Válaszd az **Egyéb** lehetőséget
+4. Koppints a **Mail-fiók hozzáadása** opcióra
+5. Töltsd ki az adatokat:
+   - **Név**: A neved
+   - **E-mail**: A MailHub email címed
+   - **Jelszó**: Az email fiókod jelszava
+   - **Leírás**: MailHub (vagy tetszőleges név)
+6. Koppints a **Tovább** gombra
+7. Válaszd az **IMAP** fület és add meg a szerver beállításokat a [manuális beállítás](./levelezes-beallitasa) útmutató alapján
+
+## Manuális beállítás Mac-en
+
+1. Nyisd meg a **Mail** alkalmazást
+2. Menj a **Mail → Beállítások → Fiókok** menüpontra
+3. Kattints a **+** gombra
+4. Válaszd az **Egyéb Mail-fiók** lehetőséget
+5. Add meg a neved, email címed és jelszavad
+6. Ha a rendszer kéri, add meg a szerver beállításokat a [manuális beállítás](./levelezes-beallitasa) útmutató alapján
+
+## Exchange ActiveSync (alternatív)
+
+Az Exchange ActiveSync protokoll is használható, ami támogatja a push értesítéseket.
+
+1. Nyisd meg a **Beállítások** alkalmazást
+2. Koppints a **Mail** → **Fiókok** → **Fiók hozzáadása** opcióra
+3. Válaszd a **Microsoft Exchange** lehetőséget
+4. Add meg az email címedet és koppints a **Tovább** gombra
+5. Válaszd a **Bejelentkezés** opciót
+6. Add meg a jelszavadat és koppints a **Tovább** gombra
+7. Koppints a **Mentés** gombra
+
+:::info Exchange korlátozások
+Az Exchange ActiveSync nem támogat névjegyenként 3-nál több email címet. Ha ennél több email címet használsz a névjegyeidnél, válaszd az automatikus vagy manuális IMAP beállítást.
+:::

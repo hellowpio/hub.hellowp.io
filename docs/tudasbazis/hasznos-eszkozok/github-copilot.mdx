@@ -1,0 +1,287 @@
+---
+title: GitHub Copilot - AI kódkiegészítés
+description: GitHub Copilot használata - AI-alapú kódkiegészítés és chat asszisztens fejlesztőknek VS Code-ban és más IDE-kben.
+keywords:
+  - github copilot
+  - ai
+  - kódkiegészítés
+  - code completion
+  - artificial intelligence
+sidebar_label: GitHub Copilot
+sidebar_position: 8
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-robot text-primary" /> GitHub Copilot - AI kódkiegészítés
+
+A **GitHub Copilot** egy AI-alapú programozó asszisztens, amely valós időben javasol kódrészleteket és teljes függvényeket. Az OpenAI Codex modelljére épül és a legnépszerűbb IDE-kben elérhető.
+
+:::tip Miért használd?
+- **Valós idejű javaslatok** - Kód írása közben
+- **Több nyelv támogatás** - Python, JavaScript, TypeScript, Go és még sok más
+- **Context-aware** - Érti a kódod kontextusát
+- **Chat funkció** - Kérdezz bármit a kódról
+:::
+
+---
+
+## Árazás
+
+A GitHub Copilot több szinten érhető el:
+
+### Egyéni csomagok
+
+| Csomag | Leírás |
+|--------|--------|
+| **Free** | Korlátozott completion és chat |
+| **Pro** | Unlimited használat |
+| **Pro+** | Összes modell és prémium funkciók |
+
+### Üzleti csomagok
+
+| Csomag | Leírás |
+|--------|--------|
+| **Business** | IP indemnity, audit log |
+| **Enterprise** | Custom models, dedikált support |
+
+### Speciális kedvezmények
+
+- **Diákok** - Ingyenes Pro hozzáférés (GitHub Student Developer Pack)
+- **Open source maintainerek** - Ingyenes Pro hozzáférés
+
+Az aktuális árakért látogass el a [hivatalos oldalra](https://github.com/features/copilot/plans).
+
+---
+
+## Főbb funkciók
+
+### Code Completion
+
+Valós idejű kódkiegészítés:
+- Egész sorok javaslata
+- Teljes függvények generálása
+- Kommentek alapján kód
+- Tesztek automatikus generálása
+
+### Copilot Chat
+
+Beépített AI chat az IDE-ben:
+- Kód magyarázata
+- Bug-ok keresése
+- Refaktorálási javaslatok
+- Dokumentáció generálása
+
+### Copilot Edits
+
+Nagyobb kódbázis módosítások:
+- Több fájl egyszerre
+- Strukturált átszervezés
+- Guided refactoring
+
+### Copilot Coding Agent (Pro+, Enterprise)
+
+Autonóm kódoló ágens:
+- Issue-k automatikus megoldása
+- PR-ek létrehozása
+- Code review
+
+---
+
+## Támogatott IDE-k
+
+| IDE | Extension |
+|-----|-----------|
+| **VS Code** | GitHub Copilot extension |
+| **Visual Studio** | Beépített támogatás |
+| **JetBrains IDEs** | IntelliJ, PyCharm, WebStorm, stb. |
+| **Neovim** | copilot.vim plugin |
+| **GitHub.com** | Beépített Copilot Chat |
+
+---
+
+## Telepítés VS Code-ban
+
+### 1. Extension telepítése
+
+1. Nyisd meg a VS Code-ot
+2. Menj az **Extensions** panelre (`Cmd/Ctrl + Shift + X`)
+3. Keress rá: "GitHub Copilot"
+4. Telepítsd a **GitHub Copilot** és **GitHub Copilot Chat** extension-öket
+
+### 2. Bejelentkezés
+
+1. Kattints a Copilot ikonra az alsó sávban
+2. Jelentkezz be GitHub fiókoddal
+3. Engedélyezd a hozzáférést
+
+### 3. Használat elkezdése
+
+- **Kód írása** - Copilot automatikusan javasol
+- **Tab** - Javaslat elfogadása
+- **Esc** - Javaslat elutasítása
+- **Alt + [** / **Alt + ]** - Alternatív javaslatok
+
+---
+
+## Copilot Chat használata
+
+### Megnyitás
+
+- **VS Code**: `Cmd/Ctrl + Shift + I` vagy kattints a chat ikonra
+- **Inline chat**: `Cmd/Ctrl + I` (kijelölt kódon)
+
+### Slash parancsok
+
+| Parancs | Funkció |
+|---------|---------|
+| `/explain` | Kód magyarázata |
+| `/fix` | Hiba javítása |
+| `/tests` | Tesztek generálása |
+| `/doc` | Dokumentáció generálása |
+| `/optimize` | Kód optimalizálása |
+
+### Chat variables
+
+| Változó | Jelentés |
+|---------|----------|
+| `@workspace` | Teljes workspace kontextus |
+| `@terminal` | Terminál tartalom |
+| `#file` | Specifikus fájl |
+| `#selection` | Kijelölt kód |
+
+**Példa:**
+```
+@workspace Hol van definiálva a User model?
+```
+
+---
+
+## Tippek a hatékony használathoz
+
+### 1. Jó kommentek írása
+
+Írj leíró kommenteket, mielőtt kódot írnál:
+
+```javascript
+// Function that validates email format
+// Returns true if valid, false otherwise
+function validateEmail(email) {
+  // Copilot automatikusan kiegészíti
+}
+```
+
+### 2. Kontextus biztosítása
+
+Nyisd meg a releváns fájlokat, hogy Copilot lássa:
+- Típus definíciókat
+- Kapcsolódó függvényeket
+- Import-okat
+
+### 3. Iterálás a javaslaton
+
+- `Alt + [` / `Alt + ]` - Következő/előző javaslat
+- Módosítsd a kommentet pontosabb eredményért
+- Használd a Chat-et finomhangoláshoz
+
+### 4. Tesztek generálása
+
+Írj egy teszt kommentet és engedd Copilot-nak:
+
+```javascript
+// Test cases for validateEmail function
+describe('validateEmail', () => {
+  // Copilot generálja a teszteket
+});
+```
+
+---
+
+## WordPress fejlesztéshez
+
+### PHP és WordPress specifikus javaslatok
+
+```php
+<?php
+// WordPress hook to add custom post type "portfolio"
+// with title, editor, thumbnail support
+// Copilot generálja a teljes register_post_type hívást
+
+// WooCommerce custom discount for orders over 10000 HUF
+// Copilot érti a WooCommerce hook-okat és API-t
+```
+
+### JavaScript/React tippek
+
+```javascript
+// React component for WordPress Gutenberg block
+// with InspectorControls and RichText
+// Copilot ismeri a Gutenberg API-t
+```
+
+---
+
+## Beállítások
+
+### VS Code Settings
+
+```json
+{
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "yaml": true
+  },
+  "github.copilot.advanced": {
+    "inlineSuggestCount": 3
+  }
+}
+```
+
+### Telemetria kikapcsolása
+
+Ha nem szeretnéd, hogy a kódod training-re kerüljön:
+
+**Settings** → **Copilot** → **Allow GitHub to use my code snippets** → **Off**
+
+:::info Business és Enterprise
+Business és Enterprise csomagoknál alapból nincs code snippet gyűjtés.
+:::
+
+---
+
+## Korlátozások
+
+### Amit nem tud (jól)
+
+- Nagyon specifikus, ritkán használt API-k
+- Komplex algoritmusok helyessége nem garantált
+- Friss (2024+ után megjelent) library-k
+- Titkos/privát API-k
+
+### Biztonsági figyelmeztetések
+
+- Mindig ellenőrizd a generált kódot
+- Ne fogadj el érzékeny adatokat tartalmazó javaslatokat
+- API kulcsok, jelszavak ne kerüljenek a kódba
+
+---
+
+## Alternatívák
+
+| Eszköz | Előny |
+|--------|-------|
+| **Cursor** | Natív AI IDE |
+| **Codeium** | Ingyenes |
+| **Amazon CodeWhisperer** | AWS integráció |
+| **Tabnine** | On-premise opció |
+
+---
+
+## Kapcsolódó linkek
+
+- [GitHub Copilot hivatalos oldal](https://github.com/features/copilot)
+- [GitHub Copilot árak](https://github.com/features/copilot/plans)
+- [GitHub Copilot dokumentáció](https://docs.github.com/en/copilot)
+- [VS Code Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)

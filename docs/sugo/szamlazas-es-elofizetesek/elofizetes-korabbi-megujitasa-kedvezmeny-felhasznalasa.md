@@ -13,6 +13,6 @@ Az összes HelloWP-s előfizetést bármikor megújíthatod, és ezzel a kedvezm
 3. Válaszd ki, hogy melyik előfizetést szeretnéd megújítani, majd **Megtekintés gomb**
 4. Kattints a **Megújítás most** gombra és vidd végig a megújítás folyamatát.
 
-### Kedvezmények felhasználasa
+### Kedvezmények felhasználása
 
-Amennyiben kuponkódot szeretnél felhasználni, akkor az **Előfiztetés korábbi megújítás** folyamatának végén kattints a **Kuponkód felhasználása** gombra és add meg a kódot.
+Amennyiben kuponkódot szeretnél felhasználni, akkor az **Előfizetés korábbi megújítás** folyamatának végén kattints a **Kuponkód felhasználása** gombra és add meg a kódot.

@@ -1,0 +1,525 @@
+---
+title: Xdebug
+description: PHP debug és profiling Xdebug segítségével WordPress fejlesztéshez.
+keywords:
+  - xdebug
+  - debug
+  - php
+  - profiling
+  - wordpress
+sidebar_label: Xdebug
+sidebar_position: 27
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-bug-slash text-primary" /> Xdebug - PHP Debug és Profiling
+
+Az [Xdebug](https://xdebug.org/) a PHP legátfogóbb debug és profiling eszköze. Lehetővé teszi a kód lépésenkénti végrehajtását, breakpoint-ok használatát, változók vizsgálatát és teljesítményelemzést.
+
+## Főbb funkciók
+
+- **Step debugging** - Kód lépésenkénti végrehajtása
+- **Breakpoints** - Megállási pontok beállítása
+- **Stack traces** - Hívási lánc megjelenítése
+- **Profiling** - Teljesítmény elemzés
+- **Code coverage** - Lefedettség mérés
+- **Var dump javítás** - Olvashatóbb változó kiíratás
+
+## Telepítés
+
+### PECL-lel (általános)
+
+```bash
+pecl install xdebug
+```
+
+### macOS (Homebrew)
+
+```bash
+# PHP Homebrew-val telepítve
+pecl install xdebug
+
+# Vagy brew-val
+brew install php@8.2
+# Xdebug már tartalmazza
+```
+
+### Ubuntu/Debian
+
+```bash
+sudo apt install php-xdebug
+```
+
+### Windows
+
+1. Látogass el az [Xdebug wizard](https://xdebug.org/wizard) oldalra
+2. Másold be a `phpinfo()` kimenetét
+3. Kövesd a generált utasításokat
+
+### Docker
+
+```dockerfile
+FROM php:8.2-fpm
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+```
+
+### DDEV
+
+```bash
+# Xdebug már alapból telepítve van
+ddev xdebug on
+ddev xdebug off
+```
+
+### LocalWP
+
+1. Válaszd ki a site-ot
+2. **Utilities** > **PHP**
+3. Engedélyezd az Xdebug-ot
+
+## Konfiguráció
+
+### php.ini beállítások
+
+```ini
+[xdebug]
+zend_extension=xdebug
+
+; Mód beállítása (Xdebug 3+)
+xdebug.mode=debug,develop,coverage
+
+; IDE kapcsolat
+xdebug.client_host=127.0.0.1
+xdebug.client_port=9003
+
+; Automatikus indítás
+xdebug.start_with_request=yes
+
+; IDE kulcs
+xdebug.idekey=VSCODE
+
+; Log fájl (hibakereséshez)
+xdebug.log=/tmp/xdebug.log
+
+; Var dump beállítások
+xdebug.var_display_max_depth=10
+xdebug.var_display_max_data=512
+xdebug.var_display_max_children=128
+```
+
+### Xdebug módok (3.x)
+
+| Mód | Leírás |
+|-----|--------|
+| `off` | Kikapcsolva |
+| `develop` | Fejlesztői segédletek (var_dump javítás) |
+| `debug` | Step debugging |
+| `coverage` | Code coverage |
+| `profile` | Profiling |
+| `trace` | Function trace |
+
+Több mód kombinálása:
+```ini
+xdebug.mode=debug,develop,coverage
+```
+
+### Xdebug 2.x vs 3.x
+
+| Beállítás | Xdebug 2.x | Xdebug 3.x |
+|-----------|------------|------------|
+| Port | `xdebug.remote_port=9000` | `xdebug.client_port=9003` |
+| Host | `xdebug.remote_host` | `xdebug.client_host` |
+| Engedélyezés | `xdebug.remote_enable=1` | `xdebug.mode=debug` |
+| Auto start | `xdebug.remote_autostart=1` | `xdebug.start_with_request=yes` |
+
+## VS Code beállítása
+
+### 1. PHP Debug bővítmény telepítése
+
+1. VS Code Extensions (Ctrl+Shift+X)
+2. Keress rá: "PHP Debug" (Felix Becker)
+3. Telepítsd
+
+### 2. launch.json konfiguráció
+
+`.vscode/launch.json`:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Launch current file",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9003
+        }
+    ]
+}
+```
+
+### 3. Docker/DDEV path mapping
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug (DDEV)",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}"
+            },
+            "hostname": "0.0.0.0"
+        }
+    ]
+}
+```
+
+## PhpStorm beállítása
+
+### 1. Xdebug konfiguráció
+
+1. **Settings** > **PHP** > **Debug**
+2. Debug port: `9003`
+3. Engedélyezd: "Can accept external connections"
+
+### 2. Server konfiguráció
+
+1. **Settings** > **PHP** > **Servers**
+2. Add új server:
+   - Name: `localhost`
+   - Host: `localhost`
+   - Port: `80` vagy a megfelelő
+   - Debugger: `Xdebug`
+3. Use path mappings (Docker esetén)
+
+### 3. Debug indítása
+
+1. Kattints a "Listen for PHP Debug Connections" ikonra
+2. Állíts be breakpoint-ot
+3. Töltsd be az oldalt böngészőben
+
+## Breakpoint-ok használata
+
+### Breakpoint típusok
+
+| Típus | Leírás |
+|-------|--------|
+| **Line** | Adott sorra állás |
+| **Conditional** | Feltételhez kötött |
+| **Exception** | Kivétel dobáskor |
+| **Function** | Függvény hívásakor |
+
+### Conditional breakpoint
+
+```php
+// VS Code: jobb klikk a breakpoint-on > "Edit Breakpoint"
+// Feltétel: $user_id === 5
+$user = get_user_by( 'id', $user_id );
+```
+
+### Exception breakpoint
+
+VS Code-ban:
+1. Debug panel > BREAKPOINTS szekció
+2. Kattints a "+" gombra
+3. Add meg az exception típusát (pl. `Exception`)
+
+## Step debugging
+
+### Debug parancsok
+
+| Gomb | Parancs | Leírás |
+|------|---------|--------|
+| F5 | Continue | Folytatás következő breakpoint-ig |
+| F10 | Step Over | Következő sor (függvénybe nem lép be) |
+| F11 | Step Into | Következő sor (függvénybe belép) |
+| Shift+F11 | Step Out | Kilépés aktuális függvényből |
+| Ctrl+Shift+F5 | Restart | Debug újraindítása |
+| Shift+F5 | Stop | Debug leállítása |
+
+### Változók vizsgálata
+
+Debug közben elérhető:
+- **Variables** panel - Lokális és globális változók
+- **Watch** panel - Egyedi kifejezések figyelése
+- **Call Stack** - Hívási lánc
+- **Debug Console** - Kifejezések kiértékelése
+
+### Watch expressions
+
+```php
+// Hasznos watch kifejezések WordPress-hez
+$_POST
+$_GET
+$wpdb->last_query
+get_current_user_id()
+current_filter()
+```
+
+## Profiling
+
+### Profiling engedélyezése
+
+```ini
+xdebug.mode=profile
+xdebug.output_dir=/tmp/xdebug
+xdebug.profiler_output_name=cachegrind.out.%p.%t
+```
+
+### Profiling indítása
+
+```bash
+# URL paraméterrel
+curl "http://localhost/?XDEBUG_PROFILE=1"
+
+# Vagy trigger beállítással
+xdebug.start_with_request=trigger
+```
+
+### Profiling eredmények elemzése
+
+#### KCacheGrind (Linux)
+
+```bash
+sudo apt install kcachegrind
+kcachegrind /tmp/xdebug/cachegrind.out.*
+```
+
+#### QCacheGrind (macOS)
+
+```bash
+brew install qcachegrind
+qcachegrind /tmp/xdebug/cachegrind.out.*
+```
+
+#### Webgrind (webes)
+
+```bash
+# Docker-rel
+docker run -v /tmp/xdebug:/tmp -p 8080:80 jokkedk/webgrind
+```
+
+### Profiling értelmezése
+
+| Metrika | Leírás |
+|---------|--------|
+| **Time** | Eltöltött idő |
+| **Calls** | Hívások száma |
+| **Time (incl)** | Idő alhívásokkal együtt |
+| **Time (self)** | Csak a függvény saját ideje |
+
+## Code Coverage
+
+### Coverage engedélyezése
+
+```ini
+xdebug.mode=coverage
+```
+
+### PHPUnit-tal
+
+```xml
+<!-- phpunit.xml -->
+<phpunit>
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <report>
+            <html outputDirectory="coverage"/>
+        </report>
+    </coverage>
+</phpunit>
+```
+
+```bash
+phpunit --coverage-html coverage/
+```
+
+### Pest-tel
+
+```bash
+pest --coverage --coverage-html coverage/
+```
+
+## WordPress specifikus debug
+
+### wp-config.php beállítások
+
+```php
+// Debug mód
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+
+// Script debug (minify kikapcsolása)
+define( 'SCRIPT_DEBUG', true );
+
+// Query log
+define( 'SAVEQUERIES', true );
+```
+
+### Hasznos breakpoint helyek
+
+```php
+// Plugin/téma aktiválás
+wp-includes/plugin.php: do_action( 'activated_plugin' )
+
+// Hook futtatás
+wp-includes/plugin.php: do_action()
+wp-includes/plugin.php: apply_filters()
+
+// Post mentés
+wp-includes/post.php: wp_insert_post()
+
+// Felhasználó bejelentkezés
+wp-includes/user.php: wp_authenticate()
+
+// REST API
+wp-includes/rest-api/class-wp-rest-server.php: dispatch()
+```
+
+### AJAX debug
+
+```php
+// Állíts breakpoint-ot az AJAX kezelőbe
+add_action( 'wp_ajax_my_action', function() {
+    // Breakpoint itt
+    $data = $_POST['data'];
+    wp_send_json_success( $data );
+} );
+```
+
+## Hibaelhárítás
+
+### Xdebug nem csatlakozik
+
+1. **Ellenőrizd a portot**
+```bash
+# Port figyelés ellenőrzése
+lsof -i :9003
+```
+
+2. **Tűzfal beállítások**
+```bash
+# macOS
+sudo pfctl -d  # Tűzfal kikapcsolása teszteléshez
+```
+
+3. **Log ellenőrzése**
+```ini
+xdebug.log=/tmp/xdebug.log
+```
+
+### Docker kapcsolat
+
+```ini
+# Docker desktop (Mac/Windows)
+xdebug.client_host=host.docker.internal
+
+# Linux Docker
+xdebug.client_host=172.17.0.1
+```
+
+### IDE key problémák
+
+```ini
+; Pontos IDE key beállítása
+xdebug.idekey=VSCODE
+; vagy
+xdebug.idekey=PHPSTORM
+```
+
+### Xdebug telepítés ellenőrzése
+
+```php
+<?php
+phpinfo();
+// Keress rá: "xdebug"
+```
+
+```bash
+php -v
+# Xdebug verziója látható kell legyen
+```
+
+## Teljesítmény tippek
+
+### Xdebug kikapcsolása éles környezetben
+
+```ini
+; production.ini
+xdebug.mode=off
+```
+
+### Szelektív engedélyezés
+
+```ini
+; Csak trigger-rel induljon
+xdebug.mode=debug
+xdebug.start_with_request=trigger
+```
+
+Böngésző bővítmény használata:
+- [Xdebug Helper for Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc)
+- [Xdebug Helper for Firefox](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/)
+
+### IDE beállítások
+
+```json
+// VS Code - max_children növelése nagy tömbökhoz
+{
+    "xdebug.maxDepth": 5,
+    "xdebug.maxChildren": 100
+}
+```
+
+## Alternatívák
+
+| Eszköz | Használat |
+|--------|-----------|
+| **var_dump()** | Gyors debug |
+| **error_log()** | Log fájlba írás |
+| **Query Monitor** | WordPress specifikus debug |
+| **Ray** | Modern debug eszköz |
+| **Clockwork** | PHP dev tools |
+
+### Ray használata (alternatíva)
+
+```php
+// Ray telepítése
+composer require spatie/ray --dev
+
+// Használat
+ray($variable);
+ray()->showQueries();
+ray()->measure(function() {
+    // Kód mérése
+});
+```
+
+## Források
+
+- [Xdebug hivatalos oldal](https://xdebug.org/)
+- [Xdebug dokumentáció](https://xdebug.org/docs/)
+- [VS Code PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug)
+- [PhpStorm Xdebug útmutató](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html)
+- [Xdebug wizard](https://xdebug.org/wizard)

@@ -1,0 +1,212 @@
+---
+title: LocalWP
+description: Egyszerű és gyors lokális WordPress fejlesztői környezet LocalWP segítségével.
+keywords:
+  - localwp
+  - local by flywheel
+  - lokális fejlesztés
+  - wordpress
+sidebar_label: LocalWP
+sidebar_position: 12
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-laptop-code text-primary" /> LocalWP - Lokális WordPress Fejlesztés
+
+A [LocalWP](https://localwp.com) (korábban Local by Flywheel) egy ingyenes, felhasználóbarát alkalmazás lokális WordPress oldalak létrehozásához és kezeléséhez Windows, macOS és Linux rendszereken.
+
+## Főbb jellemzők
+
+- **Egyszerű telepítés** - Néhány kattintással működő WordPress
+- **SSL támogatás** - Automatikus HTTPS lokálisan
+- **Live Links** - Megosztható linkek teszteléshez
+- **Blueprint-ek** - Előre konfigurált site sablonok
+- **MagicSync** - Flywheel hosting szinkronizálás
+- **Add-on rendszer** - Bővíthető funkcionalitás
+
+## Telepítés
+
+1. Töltsd le a LocalWP-t a [hivatalos oldalról](https://localwp.com)
+2. Telepítsd az alkalmazást
+3. Indítsd el és hozz létre egy új site-ot
+
+## Új WordPress site létrehozása
+
+### 1. Site név megadása
+
+Kattints a **Create a new site** gombra és add meg a site nevét.
+
+### 2. Környezet kiválasztása
+
+Válassz a két opció közül:
+
+| Opció | PHP | Web Server | MySQL |
+|-------|-----|------------|-------|
+| **Preferred** | Legújabb | nginx | 8.x |
+| **Custom** | Választható | nginx/Apache | 5.7/8.x |
+
+### 3. WordPress beállítások
+
+- WordPress felhasználónév
+- Jelszó
+- Email cím
+- Multisite opció (ha szükséges)
+
+## Site kezelés
+
+### Indítás és leállítás
+
+```bash
+# A site indításához/leállításához használd a UI-t
+# vagy a jobb klikk menüt
+```
+
+### Site mappa elérése
+
+A site fájljai a következő helyen találhatók:
+
+- **macOS**: `~/Local Sites/{site-name}/`
+- **Windows**: `C:\Users\{user}\Local Sites\{site-name}\`
+- **Linux**: `~/Local Sites/{site-name}/`
+
+Mappa struktúra:
+```
+{site-name}/
+├── app/
+│   └── public/          # WordPress gyökér
+├── conf/                # Szerver konfigurációk
+└── logs/                # Log fájlok
+```
+
+## SSL beállítása
+
+1. Válaszd ki a site-ot
+2. Kattints az **SSL** fülre
+3. Kattints a **Trust** gombra
+4. A site elérhető lesz HTTPS-en
+
+## Live Links használata
+
+A Live Links lehetővé teszi, hogy a lokális site-ot megoszd másokkal:
+
+1. Kattints a **Live Link** gombra
+2. Engedélyezd a Live Link-et
+3. Másold ki a generált URL-t
+4. Oszd meg a linket
+
+:::caution Fontos
+A Live Links csak akkor működik, ha a LocalWP fut és a site aktív.
+:::
+
+## WP-CLI használata
+
+LocalWP beépített WP-CLI támogatással rendelkezik:
+
+1. Jobb klikk a site-on
+2. Válaszd az **Open Site Shell** opciót
+3. Használd a WP-CLI parancsokat
+
+```bash
+# Példa parancsok
+wp plugin list
+wp user list
+wp cache flush
+```
+
+## Adatbázis kezelés
+
+### Adminer elérése
+
+1. Válaszd ki a site-ot
+2. Kattints a **Database** fülre
+3. Kattints az **Open Adminer** gombra
+
+### phpMyAdmin telepítése (opcionális)
+
+1. Menj az **Add-ons** menübe
+2. Telepítsd a phpMyAdmin add-on-t
+
+## Blueprint-ek
+
+A Blueprint-ek előre konfigurált site sablonok:
+
+### Blueprint létrehozása
+
+1. Jobb klikk egy meglévő site-on
+2. Válaszd a **Save as Blueprint** opciót
+3. Add meg a Blueprint nevét
+
+### Blueprint használata
+
+1. Új site létrehozásakor válaszd a **Create from Blueprint** opciót
+2. Válaszd ki a kívánt Blueprint-et
+
+## Hasznos Add-on-ok
+
+| Add-on | Funkció |
+|--------|---------|
+| **Image Optimizer** | Képek optimalizálása |
+| **Link Checker** | Törött linkek keresése |
+| **Instant Reload** | Automatikus frissítés fejlesztéskor |
+| **Atlas** | Headless WordPress |
+
+## Hibaelhárítás
+
+### Site nem indul
+
+```bash
+# Ellenőrizd a portokat
+# Alapértelmezett portok: 80, 443, 3306
+
+# Ha a portok foglaltak, változtasd meg őket:
+# Preferences > Advanced > Router Mode
+```
+
+### Adatbázis hiba
+
+1. Állítsd le a site-ot
+2. Indítsd újra
+3. Ha nem segít, próbáld meg újraimportálni az adatbázist
+
+### SSL problémák
+
+1. Távolítsd el a meglévő tanúsítványt
+2. Generálj újat a **Trust** gombbal
+
+## Importálás és exportálás
+
+### Site exportálása
+
+1. Jobb klikk a site-on
+2. **Export** > válaszd a formátumot (ZIP)
+
+### Site importálása
+
+1. **File** > **Import Site**
+2. Válaszd ki a ZIP fájlt
+3. Kövesd a varázslót
+
+## Integráció más eszközökkel
+
+### VS Code
+
+```bash
+# Nyisd meg a site mappáját VS Code-ban
+code ~/Local\ Sites/{site-name}/app/public
+```
+
+### Git verziókezelés
+
+```bash
+cd ~/Local\ Sites/{site-name}/app/public
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+## Források
+
+- [LocalWP hivatalos oldal](https://localwp.com)
+- [LocalWP dokumentáció](https://localwp.com/help-docs/)
+- [LocalWP Community](https://community.localwp.com/)

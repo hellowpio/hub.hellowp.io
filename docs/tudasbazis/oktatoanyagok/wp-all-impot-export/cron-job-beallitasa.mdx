@@ -1,0 +1,59 @@
+---
+title: "Cron job beállítása"
+description: "Cron job beállítása"
+keywords:
+  - github
+sidebar_label: "Cron job beállítása"
+sidebar_position: 2
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import WPEmbed from "@site/src/components/WPEmbed";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+
+# Cron job beállítása
+
+A Cron jobok segítenek automatizálni feladatokat egy időzített ütemezés szerint. Időt spórolnak meg azáltal, hogy automatizálják az ismétlődő feladatokat.
+Minden alkalommal, amikor egy cron job fut, a WP All Import/Export letölti az XML vagy CSV fájlt a megadott forrásról, majd frissíti, törli és létrehozza a bejegyzéseket a webhelyeden a beállításaidnak megfelelően.
+
+**A Cron job beállításához kövesd a következő lépéseket:**
+
+1. A WordPress vezérlőpultban a bal oldali menüsávban vidd az egeret a WP All Import vagy Export menüpontra (attól függően, hogy importról vagy exportról van szó) és válaszd ki a **Manage Imports** vagy **Manage Exports** menüpontot. 
+
+2. Válaszd ki azt az importot/exportot, amelyre cron jobot szeretnél futtatni és kattints a **Scheduling Options** szövegre. 
+
+![Scheduling Options](/img/scheduling_options.png)
+
+3. Másold ki egy jegyzettömbbe (vagy bárhova, csak legyen meg) a **Trigger URL** mezőben lévő linket, illetve a **Processing URL** mezőben lévő linket. 
+
+![Scheduling Options URL](/img/cron_link.png)
+
+4. Lépj be a cPanel felületére, majd keresd meg a **Cron-feladatok** menüpontot. 
+
+![cpanel cron feladatok](/img/cron-feladatok.png)
+
+5. Tételezzük fel, hogy azt szeretnénk, hogy az import naponta 1 alkalommal fusson le. Ehhez az **Általános beállítások** lenyíló menüben válasszuk ki a **Naponta egyszer** opciót. 
+
+![cpanel cron feladatok idozites](/img/cron-idozites.jpg)
+
+6. A parancs mezőbe írjuk be a következőt: 	
+
+      wget "ide másold be a korábban elmentett Trigger URL-t" >/dev/null 2>&1
+
+  Ezután kattints az **Új cron-feladat hozzáadása** gombra. 
+
+![cpanel cron feladatok idozites](/img/cron-idozites-3.png)
+
+  Ezzel beállítottuk, hogy az importot naponta egyszer elindítja a cron job. A következő lépés a processing url-re létrehozni egy cron jobot, ami 3 percenként fut le.
+
+7. A **Perc** mezőbe írjuk be a következőt: */3
+
+8. A parancs mezőbe írjuk be a következőt: 	
+
+        wget "ide másold be a korábban elmentett Processing URL-t" >/dev/null 2>&1
+
+![cpanel cron feladatok idozites](/img/cron-idozites-4.png)
+
+Készen is vagyunk, a cron job naponta 1 alkalommal fogja elindítani az importot, a processing url-t pedig 3 percenként fogja futtatni. 

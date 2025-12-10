@@ -1,0 +1,500 @@
+---
+title: PHP_CodeSniffer + WPCS
+description: WordPress kódolási szabványok betartása PHP_CodeSniffer és WordPress Coding Standards segítségével.
+keywords:
+  - phpcs
+  - wpcs
+  - coding standards
+  - wordpress
+  - kódminőség
+sidebar_label: PHP_CodeSniffer + WPCS
+sidebar_position: 14
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-spell-check text-primary" /> PHP_CodeSniffer + WordPress Coding Standards
+
+A [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) (PHPCS) egy kódelemző eszköz, amely ellenőrzi a PHP kód megfelelőségét különböző kódolási szabványoknak. A [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards) (WPCS) a hivatalos WordPress kódolási szabványokat tartalmazza.
+
+## Miért fontos?
+
+- **Konzisztens kód** - Egységes kódstílus a teljes projektben
+- **Hibamegelőzés** - Potenciális problémák korai felismerése
+- **WordPress kompatibilitás** - Hivatalos WP szabványok betartása
+- **Automatikus javítás** - PHPCBF automatikusan javítja a hibákat
+- **CI/CD integráció** - Automatikus ellenőrzés a build folyamatban
+
+## Telepítés
+
+### Composer-rel (ajánlott)
+
+```bash
+# Projekt szintű telepítés
+composer require --dev squizlabs/php_codesniffer
+composer require --dev wp-coding-standards/wpcs
+composer require --dev phpcompatibility/phpcompatibility-wp
+
+# WPCS regisztrálása
+./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/phpcompatibility/phpcompatibility-wp
+```
+
+### Globális telepítés
+
+```bash
+composer global require squizlabs/php_codesniffer
+composer global require wp-coding-standards/wpcs
+composer global require phpcompatibility/phpcompatibility-wp
+
+# Globális Composer bin hozzáadása a PATH-hoz
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# WPCS regisztrálása
+phpcs --config-set installed_paths ~/.composer/vendor/wp-coding-standards/wpcs,~/.composer/vendor/phpcompatibility/phpcompatibility-wp
+```
+
+### Elérhető szabványok ellenőrzése
+
+```bash
+phpcs -i
+```
+
+Kimenet:
+```
+The installed coding standards are: MySource, PEAR, PSR1, PSR2, PSR12,
+Squiz, Zend, PHPCompatibility, PHPCompatibilityWP, WordPress,
+WordPress-Core, WordPress-Docs, WordPress-Extra
+```
+
+## WordPress szabványok
+
+| Szabvány | Leírás |
+|----------|--------|
+| **WordPress** | Teljes szabványkészlet (Core + Docs + Extra) |
+| **WordPress-Core** | Alapvető kódolási szabványok |
+| **WordPress-Docs** | Dokumentációs szabványok (PHPDoc) |
+| **WordPress-Extra** | További best practice szabályok |
+
+## Alapvető használat
+
+### Kód ellenőrzése
+
+```bash
+# Egy fájl ellenőrzése
+phpcs --standard=WordPress path/to/file.php
+
+# Mappa ellenőrzése
+phpcs --standard=WordPress path/to/plugin/
+
+# Csak hibák megjelenítése (figyelmeztetések nélkül)
+phpcs --standard=WordPress --error-severity=1 --warning-severity=8 path/to/plugin/
+```
+
+### Automatikus javítás (PHPCBF)
+
+```bash
+# Egy fájl javítása
+phpcbf --standard=WordPress path/to/file.php
+
+# Mappa javítása
+phpcbf --standard=WordPress path/to/plugin/
+```
+
+### Kimenet formátumok
+
+```bash
+# Alapértelmezett (full)
+phpcs --standard=WordPress --report=full file.php
+
+# Összefoglaló
+phpcs --standard=WordPress --report=summary path/to/plugin/
+
+# JSON kimenet
+phpcs --standard=WordPress --report=json file.php
+
+# Diff formátum
+phpcs --standard=WordPress --report=diff file.php
+```
+
+## Konfiguráció
+
+### phpcs.xml.dist
+
+Hozz létre egy `phpcs.xml.dist` fájlt a projekt gyökerében:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="My WordPress Project">
+    <description>Custom ruleset for WordPress development.</description>
+
+    <!-- Ellenőrizendő fájlok/mappák -->
+    <file>./</file>
+
+    <!-- Kizárt mappák -->
+    <exclude-pattern>/vendor/*</exclude-pattern>
+    <exclude-pattern>/node_modules/*</exclude-pattern>
+    <exclude-pattern>/tests/*</exclude-pattern>
+    <exclude-pattern>/assets/*</exclude-pattern>
+    <exclude-pattern>*.min.js</exclude-pattern>
+    <exclude-pattern>*.min.css</exclude-pattern>
+
+    <!-- Csak PHP fájlok -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Színes kimenet -->
+    <arg name="colors"/>
+
+    <!-- Párhuzamos feldolgozás -->
+    <arg name="parallel" value="8"/>
+
+    <!-- Progress megjelenítése -->
+    <arg value="ps"/>
+
+    <!-- WordPress szabvány használata -->
+    <rule ref="WordPress">
+        <!-- Opcionális: szabályok kizárása -->
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    </rule>
+
+    <!-- PHP kompatibilitás ellenőrzése -->
+    <rule ref="PHPCompatibilityWP"/>
+
+    <!-- Minimum PHP verzió -->
+    <config name="testVersion" value="7.4-"/>
+
+    <!-- Text domain a fordításokhoz -->
+    <config name="text_domain" value="my-plugin"/>
+
+    <!-- Minimum WordPress verzió -->
+    <config name="minimum_wp_version" value="6.0"/>
+
+    <!-- Prefix az egyedi függvényekhez -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="my_plugin"/>
+                <element value="MY_PLUGIN"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
+```
+
+### Gyakori szabály konfigurációk
+
+#### Fájlnév szabályok lazítása
+
+```xml
+<!-- PSR-4 autoload kompatibilitás -->
+<rule ref="WordPress.Files.FileName">
+    <properties>
+        <property name="strict_class_file_names" value="false"/>
+    </properties>
+</rule>
+```
+
+#### Escape szabályok testreszabása
+
+```xml
+<!-- Saját escape függvények engedélyezése -->
+<rule ref="WordPress.Security.EscapeOutput">
+    <properties>
+        <property name="customEscapingFunctions" type="array">
+            <element value="my_custom_escape"/>
+        </property>
+    </properties>
+</rule>
+```
+
+#### Nonce ellenőrzés kihagyása
+
+```xml
+<!-- AJAX kezelőknél, ahol már ellenőriztük -->
+<rule ref="WordPress.Security.NonceVerification">
+    <exclude-pattern>*/ajax-handlers/*</exclude-pattern>
+</rule>
+```
+
+## composer.json scripts
+
+```json
+{
+    "scripts": {
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "lint": "phpcs --standard=WordPress .",
+        "lint:fix": "phpcbf --standard=WordPress .",
+        "lint:summary": "phpcs --standard=WordPress --report=summary ."
+    }
+}
+```
+
+Használat:
+
+```bash
+composer lint
+composer lint:fix
+composer lint:summary
+```
+
+## IDE integráció
+
+### VS Code
+
+1. Telepítsd a [PHP Sniffer & Beautifier](https://marketplace.visualstudio.com/items?itemName=ValeryanM.vscode-phpsab) bővítményt
+
+2. `.vscode/settings.json`:
+
+```json
+{
+    "phpsab.executablePathCS": "./vendor/bin/phpcs",
+    "phpsab.executablePathCBF": "./vendor/bin/phpcbf",
+    "phpsab.standard": "WordPress",
+    "phpsab.autoRulesetSearch": true,
+    "phpsab.fixerEnable": true,
+    "phpsab.snifferEnable": true,
+    "phpsab.snifferShowSources": true,
+    "editor.formatOnSave": false,
+    "[php]": {
+        "editor.defaultFormatter": "ValeryanM.vscode-phpsab"
+    }
+}
+```
+
+### PhpStorm
+
+1. **Settings** > **PHP** > **Quality Tools** > **PHP_CodeSniffer**
+2. Configuration: válaszd a `Local` opciót
+3. PHP_CodeSniffer path: `./vendor/bin/phpcs`
+4. **Settings** > **Editor** > **Inspections** > **PHP** > **Quality Tools**
+5. Engedélyezd a `PHP_CodeSniffer validation`-t
+6. Coding standard: `WordPress` vagy `Custom` (phpcs.xml.dist)
+
+### Sublime Text
+
+1. Telepítsd a [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) és [SublimeLinter-phpcs](https://github.com/SublimeLinter/SublimeLinter-phpcs) csomagokat
+
+2. User settings:
+
+```json
+{
+    "linters": {
+        "phpcs": {
+            "args": ["--standard=WordPress"]
+        }
+    }
+}
+```
+
+## CI/CD integráció
+
+### GitHub Actions
+
+`.github/workflows/phpcs.yml`:
+
+```yaml
+name: PHP CodeSniffer
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer, cs2pr
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPCS
+        run: ./vendor/bin/phpcs --report=checkstyle | cs2pr
+```
+
+### GitLab CI
+
+`.gitlab-ci.yml`:
+
+```yaml
+phpcs:
+  image: php:8.2-cli
+  before_script:
+    - apt-get update && apt-get install -y git unzip
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer install
+  script:
+    - ./vendor/bin/phpcs
+  only:
+    - merge_requests
+    - main
+```
+
+## Pre-commit hook
+
+### Husky + lint-staged (npm)
+
+`package.json`:
+
+```json
+{
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.php": [
+            "phpcs --standard=WordPress",
+            "phpcbf --standard=WordPress"
+        ]
+    }
+}
+```
+
+### Natív Git hook
+
+`.git/hooks/pre-commit`:
+
+```bash
+#!/bin/bash
+
+# Módosított PHP fájlok ellenőrzése
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.php$')
+
+if [ -n "$FILES" ]; then
+    echo "Running PHPCS..."
+    ./vendor/bin/phpcs --standard=WordPress $FILES
+
+    if [ $? -ne 0 ]; then
+        echo "PHPCS found errors. Please fix them before committing."
+        exit 1
+    fi
+fi
+
+exit 0
+```
+
+```bash
+chmod +x .git/hooks/pre-commit
+```
+
+## Gyakori hibák és megoldások
+
+### Missing text domain
+
+```php
+// Hibás
+_e( 'Hello World' );
+
+// Helyes
+_e( 'Hello World', 'my-plugin' );
+```
+
+### Missing nonce verification
+
+```php
+// Hibás
+if ( isset( $_POST['action'] ) ) {
+    // Process form
+}
+
+// Helyes
+if ( isset( $_POST['action'] ) &&
+     wp_verify_nonce( $_POST['_wpnonce'], 'my_action' ) ) {
+    // Process form
+}
+```
+
+### Direct database query
+
+```php
+// Hibás
+$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE ID = 1" );
+
+// Helyes - cache törlés
+$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE ID = 1" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+clean_post_cache( 1 );
+```
+
+### Escaping output
+
+```php
+// Hibás
+echo $user_input;
+echo '<a href="' . $url . '">';
+
+// Helyes
+echo esc_html( $user_input );
+echo '<a href="' . esc_url( $url ) . '">';
+```
+
+### Late escaping
+
+```php
+// Hibás
+$output = esc_html( $text );
+// ... sok kód ...
+echo $output;
+
+// Helyes - késői escape
+echo esc_html( $output );
+```
+
+## Szabályok figyelmen kívül hagyása
+
+### Egy sor
+
+```php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $trusted_html;
+```
+
+### Kódrészlet
+
+```php
+// phpcs:disable WordPress.Security.NonceVerification.Recommended
+if ( isset( $_GET['page'] ) ) {
+    // ...
+}
+// phpcs:enable
+```
+
+### Egész fájl
+
+```php
+<?php
+// phpcs:ignoreFile
+
+// Ez a fájl nem lesz ellenőrizve
+```
+
+## PHPCompatibility használata
+
+A PHPCompatibility segít ellenőrizni, hogy a kódod kompatibilis-e adott PHP verziókkal:
+
+```bash
+# PHP 7.4+ kompatibilitás ellenőrzése
+phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 7.4- path/to/plugin/
+
+# PHP 8.0-8.2 közötti kompatibilitás
+phpcs --standard=PHPCompatibilityWP --runtime-set testVersion 8.0-8.2 path/to/plugin/
+```
+
+## Források
+
+- [PHP_CodeSniffer GitHub](https://github.com/squizlabs/PHP_CodeSniffer)
+- [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards)
+- [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/)
+- [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility)
+- [WPCS Wiki](https://github.com/WordPress/WordPress-Coding-Standards/wiki)

@@ -1,42 +1,124 @@
 ---
 title: Bővítmények kezelésének kikapcsolása
-description: Bővítmények kezelésének kikapcsolása
+description: HelloPack bővítmények és modulok kezelésének kikapcsolása wp-config.php konstansokkal.
 keywords:
   - hellopack
+  - bővítmények
+  - kikapcsolás
+  - modulok
 sidebar_label: Bővítmények kezelésének kikapcsolása
-
-sidebar_position: 5
+sidebar_position: 8
 ---
 
-import MemberCounter from "@site/src/components/MemberCounter";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-tags text-primary" /> HelloPack bővítmények kezelésének kikapcsolása
 
-Szeretnéd beállítani, hogy a HelloPack ne kezeljen egy bővítményt a csomagkezelővel?
+Szeretnéd beállítani, hogy a HelloPack ne kezeljen egy bővítményt a csomagkezelővel vagy kikapcsolni egy speciális modult?
 
-A HelloPack kikapcsolja azoknak a bővítményeknek a figyelését, amiket a `HP_DISABLE_PLUGINS` konstansban definiálunk.
+A HelloPack két módot kínál a bővítménykezelés kikapcsolására: alapvető csomagkezelés letiltása és modulrendszer kezelése.
 
-## Használata
+## Módszer 1: Bővítmény csomagkezelés kikapcsolása (Alapértelmezett)
 
-Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a
+A HelloPack kikapcsolja azoknak a bővítményeknek az alapvető csomagkezelését, amiket a `HP_DISABLE_PLUGINS` konstansban definiálunk.
+
+### Használata
+
+Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a következő sort:
 
 ```php title="wp-config.php"
 define( 'HP_DISABLE_PLUGINS', 'cartflow-pro, elementor-pro' );
 ```
 
-sort a /_ That’s all, stop editing! Happy publishing. _/ sor fölé.
+a `/* That's all, stop editing! Happy publishing. */` sor fölé.
 
-Fel kell sorolnod azoknak a bővítményeknek a **mappa neveit**, amit szeretnél kizárni. A fenti példa kizárja az Cartflow PRO és az Elementor PRO kezelését. Amennyiben több bővítményt szeretnél felvinni a listába, akkor vesszővel kell elválasztani őket. (A példában szereplő cartflow-pro-t és elementor-pro -t nyugodtan kitörölheted és írd a helyére azokat a bővítményeket, amelyeknek a kezelését ki szeretnéd kapcsolni.)
+Fel kell sorolnod azoknak a bővítményeknek a **mappa neveit**, amit szeretnél kizárni. A fenti példa kizárja a Cartflow PRO és az Elementor PRO alapvető csomagkezelését. Amennyiben több bővítményt szeretnél felvinni a listába, akkor vesszővel kell elválasztani őket.
 
-**Hogyan szerkesztheted a wp-config.php-t?
-**
+:::tip
+Ez a módszer csak az alapvető frissítéskezelést kapcsolja ki, de nem érinti a speciális modulokat (lásd alább).
+:::
 
-1. FTP-n lépj be a szerverére
-2. Nyisd meg a wp-config.php fájlt
-3. Keresd meg a /_ That's all, stop editing! Happy publishing. _/ részt a fájl végén és másold be a kódot.
-4. Mentsd el a módosításokat
+## Módszer 2: Speciális modulok kikapcsolása (Új rendszer)
 
-:::note
-A bővítmények kezelésének kikapcsolásához minimum HelloPack 1.2.5 -ös verzióra van szükség.
+A HelloPack 2.1.0 verziótól kezdve moduláris architektúrát használ bizonyos prémium bővítményekhez (pl. Elementor Pro, WP Rocket, ACF Pro, TutorLMS Pro stb.). Ezek a modulok speciális funkciókat biztosítanak, mint licenckezelés, fordítások, és egyedi frissítési logika.
+
+### Modulok kikapcsolása
+
+Ha ki szeretnéd kapcsolni egy adott modul működését, használd a `HP_DISABLE_MODULES` konstanst:
+
+```php title="wp-config.php"
+define( 'HP_DISABLE_MODULES', 'elementor-pro, wp-rocket, acf-pro' );
+```
+
+### Elérhető modul azonosítók
+
+A következő modulok kapcsolhatók ki:
+
+- `elementor-pro` - Elementor Pro speciális kezelés
+- `wp-rocket` - WP Rocket licenc és gyorsítótár kezelés
+- `acf-pro` - Advanced Custom Fields Pro
+- `fluentform-pro` - Fluent Forms Pro
+- `fluent-crm` - FluentCRM
+- `fluent-cart-pro` - FluentCart Pro
+- `tutorlms` - TutorLMS Pro
+- `perfmatters` - Perfmatters
+- És további prémium bővítmények...
+
+### Példák
+
+**Csak az Elementor Pro modul kikapcsolása:**
+```php title="wp-config.php"
+define( 'HP_DISABLE_MODULES', 'elementor-pro' );
+```
+
+**Több modul kikapcsolása:**
+```php title="wp-config.php"
+define( 'HP_DISABLE_MODULES', 'elementor-pro, wp-rocket, fluent-crm' );
+```
+
+**Kombinált használat (csomagkezelés + modulok):**
+```php title="wp-config.php"
+// Alapvető csomagkezelés kikapcsolása
+define( 'HP_DISABLE_PLUGINS', 'some-plugin' );
+
+// Speciális modulok kikapcsolása
+define( 'HP_DISABLE_MODULES', 'elementor-pro, wp-rocket' );
+```
+
+## A két módszer közötti különbség
+
+| Funkció | HP_DISABLE_PLUGINS | HP_DISABLE_MODULES |
+|---------|-------------------|-------------------|
+| Alapvető frissítéskezelés | ❌ Kikapcsolva | ✅ Aktív marad |
+| Speciális licenckezelés | ✅ Aktív marad | ❌ Kikapcsolva |
+| Fordítások kezelése | ✅ Aktív marad | ❌ Kikapcsolva |
+| Egyedi frissítési logika | ✅ Aktív marad | ❌ Kikapcsolva |
+
+:::warning Fontos
+Ha egy bővítményt mind a két konstansban megadsz, akkor teljesen kikapcsolódik a HelloPack kezelése.
+:::
+
+## Hogyan szerkesztheted a wp-config.php-t?
+
+1. FTP-n vagy fájlkezelőn keresztül lépj be a szerverre
+2. Nyisd meg a `wp-config.php` fájlt a WordPress gyökérkönyvtárában
+3. Keresd meg a `/* That's all, stop editing! Happy publishing. */` részt a fájl végén
+4. Másold be a kívánt konstansokat ez a sor **fölé**
+5. Mentsd el a módosításokat
+
+**Példa a helyes elhelyezésre:**
+
+```php title="wp-config.php"
+// ... egyéb WordPress beállítások ...
+
+// HelloPack beállítások
+define( 'HP_DISABLE_PLUGINS', 'some-plugin' );
+define( 'HP_DISABLE_MODULES', 'elementor-pro' );
+
+/* That's all, stop editing! Happy publishing. */
+```
+
+:::note Verziók
+- **HP_DISABLE_PLUGINS**: Minimum HelloPack 1.2.5 verzió szükséges
+- **HP_DISABLE_MODULES**: Minimum HelloPack 2.1.0 verzió szükséges
 :::

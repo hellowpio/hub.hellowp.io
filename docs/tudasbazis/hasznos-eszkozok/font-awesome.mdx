@@ -1,0 +1,313 @@
+---
+title: Font Awesome - Ikonkészlet
+description: Font Awesome ikonkészlet használata weboldalakhoz - több mint 30 000 ikon 16+ stílusban.
+keywords:
+  - font awesome
+  - icons
+  - ikonok
+  - webfont
+  - svg icons
+sidebar_label: Font Awesome
+sidebar_position: 7
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-font-awesome text-primary" /> Font Awesome - Ikonkészlet
+
+A **Font Awesome** az internet legnépszerűbb ikon könyvtára és toolkit-je. Milliók használják weboldalakhoz, alkalmazásokhoz és dokumentumokhoz.
+
+:::tip Miért válaszd a Font Awesome-ot?
+- **30 000+ ikon** - A legnagyobb választék
+- **16+ stílus** - Solid, Regular, Light, Duotone, stb.
+- **Ingyenes verzió** - Több mint 2000 ingyenes ikon
+- **Könnyű integráció** - CDN, npm, vagy self-hosted
+:::
+
+---
+
+## Árazás
+
+| Csomag | Leírás |
+|--------|--------|
+| **Free** | 2000+ ikon, 1 stílus, ingyenes |
+| **Pro Lite** | Több stílus, fizetős |
+| **Pro** | Összes ikon és stílus |
+| **Pro Max** | Kit-ek, egyedi ikonok feltöltése |
+
+Az aktuális árakért látogass el a [hivatalos oldalra](https://fontawesome.com/plans).
+
+### Mit tartalmaz a Pro?
+
+- 30 000+ ikon
+- 16+ stílus (Solid, Regular, Light, Thin, Duotone, Sharp variánsok)
+- 66 kategória
+- Styling eszközök
+- Hivatalos support
+
+---
+
+## Stílusok
+
+| Stílus | Prefix | Leírás |
+|--------|--------|--------|
+| **Solid** | `fa-solid` | Kitöltött ikonok |
+| **Regular** | `fa-regular` | Körvonal stílus |
+| **Light** | `fa-light` | Vékony vonalak (Pro) |
+| **Thin** | `fa-thin` | Nagyon vékony (Pro) |
+| **Duotone** | `fa-duotone` | Kétszínű (Pro) |
+| **Sharp** | `fa-sharp` | Éles sarkok (Pro) |
+| **Brands** | `fa-brands` | Márka logók |
+
+---
+
+## Telepítés
+
+### CDN (legegyszerűbb)
+
+```html
+<!-- Head-ben -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+```
+
+### npm
+
+```bash
+# Free verzió
+npm install @fortawesome/fontawesome-free
+
+# Pro verzió (npm token szükséges)
+npm install @fortawesome/fontawesome-pro
+```
+
+### Kits (ajánlott Pro-hoz)
+
+1. Hozz létre Kit-et a [fontawesome.com/kits](https://fontawesome.com/kits)-en
+2. Másold be a script tag-et:
+
+```html
+<script src="https://kit.fontawesome.com/XXXXXXX.js" crossorigin="anonymous"></script>
+```
+
+---
+
+## Használat
+
+### HTML
+
+```html
+<!-- Solid ikon -->
+<i class="fa-solid fa-house"></i>
+
+<!-- Regular ikon -->
+<i class="fa-regular fa-heart"></i>
+
+<!-- Brand ikon -->
+<i class="fa-brands fa-github"></i>
+
+<!-- Duotone ikon (Pro) -->
+<i class="fa-duotone fa-coffee"></i>
+```
+
+### Méretezés
+
+```html
+<i class="fa-solid fa-camera fa-xs"></i>    <!-- 0.75em -->
+<i class="fa-solid fa-camera fa-sm"></i>    <!-- 0.875em -->
+<i class="fa-solid fa-camera fa-lg"></i>    <!-- 1.33em -->
+<i class="fa-solid fa-camera fa-xl"></i>    <!-- 1.5em -->
+<i class="fa-solid fa-camera fa-2xl"></i>   <!-- 2em -->
+
+<!-- Numerikus méretek -->
+<i class="fa-solid fa-camera fa-2x"></i>    <!-- 2em -->
+<i class="fa-solid fa-camera fa-3x"></i>    <!-- 3em -->
+<i class="fa-solid fa-camera fa-10x"></i>   <!-- 10em -->
+```
+
+### Forgatás és tükrözés
+
+```html
+<!-- Forgatás -->
+<i class="fa-solid fa-shield fa-rotate-90"></i>
+<i class="fa-solid fa-shield fa-rotate-180"></i>
+<i class="fa-solid fa-shield fa-rotate-270"></i>
+
+<!-- Tükrözés -->
+<i class="fa-solid fa-shield fa-flip-horizontal"></i>
+<i class="fa-solid fa-shield fa-flip-vertical"></i>
+<i class="fa-solid fa-shield fa-flip-both"></i>
+```
+
+### Animáció
+
+```html
+<!-- Pörgés -->
+<i class="fa-solid fa-spinner fa-spin"></i>
+
+<!-- Pulzálás -->
+<i class="fa-solid fa-spinner fa-spin-pulse"></i>
+
+<!-- Ugrálás -->
+<i class="fa-solid fa-heart fa-beat"></i>
+
+<!-- Fade -->
+<i class="fa-solid fa-triangle-exclamation fa-fade"></i>
+
+<!-- Bounce -->
+<i class="fa-solid fa-bell fa-bounce"></i>
+
+<!-- Shake -->
+<i class="fa-solid fa-bell fa-shake"></i>
+```
+
+### Fixed width
+
+Egyenletes szélességű ikonok (listákhoz hasznos):
+
+```html
+<div><i class="fa-solid fa-house fa-fw"></i> Home</div>
+<div><i class="fa-solid fa-cog fa-fw"></i> Settings</div>
+<div><i class="fa-solid fa-user fa-fw"></i> Profile</div>
+```
+
+### Stacking (egymásra helyezés)
+
+```html
+<span class="fa-stack fa-2x">
+  <i class="fa-solid fa-square fa-stack-2x"></i>
+  <i class="fa-solid fa-twitter fa-stack-1x fa-inverse"></i>
+</span>
+```
+
+---
+
+## React használat
+
+### Telepítés
+
+```bash
+npm install @fortawesome/react-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+```
+
+### Használat
+
+```jsx
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
+function App() {
+  return (
+    <div>
+      <FontAwesomeIcon icon={faCoffee} />
+      <FontAwesomeIcon icon={faCoffee} size="2x" />
+      <FontAwesomeIcon icon={faCoffee} spin />
+    </div>
+  );
+}
+```
+
+### Library megközelítés
+
+```jsx
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas, fab);
+
+// Használat string-gel
+<FontAwesomeIcon icon={['fas', 'coffee']} />
+<FontAwesomeIcon icon={['fab', 'github']} />
+```
+
+---
+
+## WordPress használat
+
+### Plugin
+
+Használd a [Font Awesome plugin-t](https://wordpress.org/plugins/font-awesome/):
+
+1. Telepítsd a plugin-t
+2. Aktiváld
+3. Használd az ikonokat a content-ben
+
+### Gutenberg block
+
+```jsx
+// Gutenberg block-ban
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
+registerBlockType('my-plugin/my-block', {
+  edit: () => <FontAwesomeIcon icon={faHeart} />,
+  save: () => <i className="fa-solid fa-heart"></i>,
+});
+```
+
+### Manuális hozzáadás
+
+```php
+// functions.php
+function enqueue_font_awesome() {
+    wp_enqueue_style(
+        'font-awesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+        [],
+        '6.5.1'
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
+```
+
+---
+
+## Népszerű ikonok
+
+### Navigáció
+
+| Ikon | Kód |
+|------|-----|
+| <FontAwesomeIcon icon="fa-solid fa-house" /> | `fa-solid fa-house` |
+| <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> | `fa-solid fa-magnifying-glass` |
+| <FontAwesomeIcon icon="fa-solid fa-bars" /> | `fa-solid fa-bars` |
+| <FontAwesomeIcon icon="fa-solid fa-user" /> | `fa-solid fa-user` |
+
+### Social
+
+| Ikon | Kód |
+|------|-----|
+| <FontAwesomeIcon icon="fa-brands fa-facebook" /> | `fa-brands fa-facebook` |
+| <FontAwesomeIcon icon="fa-brands fa-twitter" /> | `fa-brands fa-twitter` |
+| <FontAwesomeIcon icon="fa-brands fa-instagram" /> | `fa-brands fa-instagram` |
+| <FontAwesomeIcon icon="fa-brands fa-github" /> | `fa-brands fa-github` |
+
+### E-commerce
+
+| Ikon | Kód |
+|------|-----|
+| <FontAwesomeIcon icon="fa-solid fa-cart-shopping" /> | `fa-solid fa-cart-shopping` |
+| <FontAwesomeIcon icon="fa-solid fa-credit-card" /> | `fa-solid fa-credit-card` |
+| <FontAwesomeIcon icon="fa-solid fa-truck" /> | `fa-solid fa-truck` |
+| <FontAwesomeIcon icon="fa-solid fa-receipt" /> | `fa-solid fa-receipt` |
+
+---
+
+## Alternatívák
+
+| Eszköz | Előny |
+|--------|-------|
+| **Heroicons** | Tailwind-hez tervezve |
+| **Lucide** | Feather alapú, könnyű |
+| **Phosphor** | Sok stílus |
+| **Bootstrap Icons** | Bootstrap-hez |
+| **Iconify** | Több könyvtár egyben |
+
+---
+
+## Kapcsolódó linkek
+
+- [Font Awesome hivatalos oldal](https://fontawesome.com/)
+- [Ikon keresés](https://fontawesome.com/search)
+- [Font Awesome dokumentáció](https://fontawesome.com/docs)
+- [Font Awesome GitHub](https://github.com/FortAwesome/Font-Awesome)

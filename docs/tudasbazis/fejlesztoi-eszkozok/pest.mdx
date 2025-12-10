@@ -1,0 +1,628 @@
+---
+title: Pest
+description: Modern és elegáns PHP tesztelési keretrendszer WordPress fejlesztéshez.
+keywords:
+  - pest
+  - testing
+  - php
+  - wordpress
+  - unit test
+sidebar_label: Pest
+sidebar_position: 13
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-vial text-primary" /> Pest - Modern PHP Tesztelés
+
+A [Pest](https://pestphp.com/) egy modern, elegáns PHP tesztelési keretrendszer, amely a PHPUnit-ra épül. Tiszta, olvasható szintaxist és kiváló fejlesztői élményt biztosít WordPress bővítmények és témák teszteléséhez.
+
+## Miért Pest?
+
+- **Elegáns szintaxis** - Olvasható, kifejező tesztek
+- **PHPUnit kompatibilis** - Meglévő tesztek működnek
+- **Gyors** - Párhuzamos teszt futtatás
+- **Modern** - PHP 8+ funkciók támogatása
+- **Plugin rendszer** - Bővíthető funkcionalitás
+- **Kiváló DX** - Watch mode, coverage, snapshot tesztek
+
+## Telepítés
+
+### Composer
+
+```bash
+composer require pestphp/pest --dev --with-all-dependencies
+```
+
+### Inicializálás
+
+```bash
+./vendor/bin/pest --init
+```
+
+Ez létrehozza a `tests/` mappát és a szükséges konfigurációs fájlokat.
+
+## Alapvető szintaxis
+
+### Első teszt
+
+```php
+<?php
+// tests/Unit/ExampleTest.php
+
+test('example', function () {
+    expect(true)->toBeTrue();
+});
+
+test('addition works', function () {
+    expect(1 + 1)->toBe(2);
+});
+```
+
+### it() szintaxis
+
+```php
+it('can add numbers', function () {
+    $result = 1 + 1;
+    expect($result)->toBe(2);
+});
+
+it('can concatenate strings', function () {
+    $result = 'Hello' . ' ' . 'World';
+    expect($result)->toBe('Hello World');
+});
+```
+
+### describe() csoportok
+
+```php
+describe('Calculator', function () {
+    it('can add', function () {
+        expect(add(1, 2))->toBe(3);
+    });
+
+    it('can subtract', function () {
+        expect(subtract(5, 3))->toBe(2);
+    });
+
+    it('can multiply', function () {
+        expect(multiply(3, 4))->toBe(12);
+    });
+});
+```
+
+## Expectations (elvárások)
+
+### Alapvető assertions
+
+```php
+// Egyenlőség
+expect($value)->toBe(5);           // Strict (===)
+expect($value)->toEqual(5);        // Loose (==)
+
+// Típus ellenőrzés
+expect($value)->toBeString();
+expect($value)->toBeInt();
+expect($value)->toBeFloat();
+expect($value)->toBeBool();
+expect($value)->toBeArray();
+expect($value)->toBeObject();
+expect($value)->toBeNull();
+
+// Logikai értékek
+expect($value)->toBeTrue();
+expect($value)->toBeFalse();
+expect($value)->toBeTruthy();
+expect($value)->toBeFalsy();
+
+// Üresség
+expect($value)->toBeEmpty();
+expect($value)->not->toBeEmpty();
+```
+
+### Tömbök
+
+```php
+// Tömb tartalom
+expect($array)->toContain('apple');
+expect($array)->toContainEqual(['name' => 'John']);
+expect($array)->toHaveKey('name');
+expect($array)->toHaveKeys(['name', 'email']);
+expect($array)->toHaveCount(3);
+
+// Tömb struktúra
+expect($array)->toMatchArray([
+    'name' => 'John',
+    'email' => 'john@example.com',
+]);
+```
+
+### Stringek
+
+```php
+expect($string)->toContain('hello');
+expect($string)->toStartWith('Hello');
+expect($string)->toEndWith('World');
+expect($string)->toMatch('/^Hello/');
+expect($string)->toHaveLength(11);
+```
+
+### Objektumok
+
+```php
+expect($object)->toBeInstanceOf(User::class);
+expect($object)->toHaveProperty('name');
+expect($object)->toHaveProperty('name', 'John');
+expect($object)->toHaveMethod('save');
+```
+
+### Exceptions
+
+```php
+expect(fn() => throwException())
+    ->toThrow(Exception::class);
+
+expect(fn() => throwException())
+    ->toThrow(Exception::class, 'Error message');
+
+expect(fn() => throwException())
+    ->toThrow(InvalidArgumentException::class);
+```
+
+### JSON
+
+```php
+expect($json)->toBeJson();
+expect($json)->json()->toHaveKey('data');
+expect($json)->json()->data->toBeArray();
+```
+
+## WordPress tesztelés
+
+### WordPress test bootstrap
+
+`tests/Pest.php`:
+
+```php
+<?php
+
+// WordPress test bootstrap betöltése
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+// WordPress test library
+define('WP_TESTS_DIR', '/tmp/wordpress-tests-lib');
+require_once WP_TESTS_DIR . '/includes/functions.php';
+
+// Plugin aktiválása teszteléshez
+tests_add_filter('muplugins_loaded', function () {
+    require dirname(__DIR__) . '/my-plugin.php';
+});
+
+require_once WP_TESTS_DIR . '/includes/bootstrap.php';
+```
+
+### Plugin funkcionalitás tesztelése
+
+```php
+<?php
+// tests/Unit/PluginTest.php
+
+test('plugin is active', function () {
+    expect(is_plugin_active('my-plugin/my-plugin.php'))->toBeTrue();
+});
+
+test('shortcode is registered', function () {
+    expect(shortcode_exists('my_shortcode'))->toBeTrue();
+});
+
+test('custom post type is registered', function () {
+    expect(post_type_exists('book'))->toBeTrue();
+});
+```
+
+### Post tesztelése
+
+```php
+test('can create post', function () {
+    $post_id = wp_insert_post([
+        'post_title' => 'Test Post',
+        'post_content' => 'Test content',
+        'post_status' => 'publish',
+    ]);
+
+    expect($post_id)->toBeInt();
+    expect($post_id)->toBeGreaterThan(0);
+
+    $post = get_post($post_id);
+    expect($post->post_title)->toBe('Test Post');
+});
+
+test('can update post meta', function () {
+    $post_id = wp_insert_post([
+        'post_title' => 'Test Post',
+        'post_status' => 'publish',
+    ]);
+
+    update_post_meta($post_id, 'custom_field', 'custom_value');
+
+    expect(get_post_meta($post_id, 'custom_field', true))
+        ->toBe('custom_value');
+});
+```
+
+### User tesztelése
+
+```php
+test('can create user', function () {
+    $user_id = wp_create_user('testuser', 'password', 'test@example.com');
+
+    expect($user_id)->toBeInt();
+    expect($user_id)->toBeGreaterThan(0);
+
+    $user = get_user_by('id', $user_id);
+    expect($user->user_email)->toBe('test@example.com');
+});
+
+test('user has correct role', function () {
+    $user_id = wp_create_user('editor', 'password', 'editor@example.com');
+    $user = new WP_User($user_id);
+    $user->set_role('editor');
+
+    expect($user->has_cap('edit_posts'))->toBeTrue();
+    expect($user->has_cap('manage_options'))->toBeFalse();
+});
+```
+
+### REST API tesztelése
+
+```php
+test('REST endpoint returns posts', function () {
+    // Post létrehozása
+    wp_insert_post([
+        'post_title' => 'Test Post',
+        'post_status' => 'publish',
+    ]);
+
+    // REST request
+    $request = new WP_REST_Request('GET', '/wp/v2/posts');
+    $response = rest_do_request($request);
+
+    expect($response->get_status())->toBe(200);
+    expect($response->get_data())->toBeArray();
+    expect($response->get_data())->not->toBeEmpty();
+});
+
+test('custom REST endpoint works', function () {
+    $request = new WP_REST_Request('GET', '/my-plugin/v1/data');
+    $response = rest_do_request($request);
+
+    expect($response->get_status())->toBe(200);
+    expect($response->get_data())->toHaveKey('success');
+});
+```
+
+## Hooks és Filters tesztelése
+
+```php
+test('filter modifies content', function () {
+    // Filter callback hozzáadása a pluginban
+    add_filter('the_content', function ($content) {
+        return $content . '<p>Added by plugin</p>';
+    });
+
+    $result = apply_filters('the_content', 'Original content');
+
+    expect($result)->toContain('Added by plugin');
+});
+
+test('action is triggered', function () {
+    $triggered = false;
+
+    add_action('my_plugin_action', function () use (&$triggered) {
+        $triggered = true;
+    });
+
+    do_action('my_plugin_action');
+
+    expect($triggered)->toBeTrue();
+});
+```
+
+## Datasets (adatkészletek)
+
+### Egyszerű dataset
+
+```php
+test('validates email', function (string $email, bool $expected) {
+    expect(is_email($email))->toBe($expected);
+})->with([
+    ['test@example.com', true],
+    ['invalid-email', false],
+    ['another@test.org', true],
+    ['', false],
+]);
+```
+
+### Nevesített dataset
+
+```php
+dataset('valid emails', [
+    'simple' => ['test@example.com'],
+    'with subdomain' => ['test@sub.example.com'],
+    'with plus' => ['test+alias@example.com'],
+]);
+
+dataset('invalid emails', [
+    'no at' => ['testexample.com'],
+    'no domain' => ['test@'],
+    'empty' => [''],
+]);
+
+test('accepts valid email', function (string $email) {
+    expect(is_email($email))->toBeTruthy();
+})->with('valid emails');
+
+test('rejects invalid email', function (string $email) {
+    expect(is_email($email))->toBeFalsy();
+})->with('invalid emails');
+```
+
+### Kombinált datasets
+
+```php
+test('multiplication', function (int $a, int $b, int $expected) {
+    expect($a * $b)->toBe($expected);
+})->with([
+    [2, 3, 6],
+    [4, 5, 20],
+    [0, 10, 0],
+    [-2, 3, -6],
+]);
+```
+
+## Mocking
+
+### Mock objektumok
+
+```php
+test('service calls repository', function () {
+    $repository = mock(UserRepository::class)
+        ->expect(
+            find: fn($id) => new User(['id' => $id, 'name' => 'John'])
+        );
+
+    $service = new UserService($repository);
+    $user = $service->getUser(1);
+
+    expect($user->name)->toBe('John');
+});
+```
+
+### Függvény mocking
+
+```php
+test('function is called', function () {
+    $mock = mock('wp_mail')
+        ->andReturn(true);
+
+    $result = send_notification('test@example.com', 'Subject', 'Body');
+
+    $mock->shouldHaveBeenCalled();
+    expect($result)->toBeTrue();
+});
+```
+
+### Partial mock
+
+```php
+test('partial mock', function () {
+    $user = mock(User::class)->makePartial();
+    $user->shouldReceive('save')->andReturn(true);
+
+    $user->name = 'John';
+    $result = $user->save();
+
+    expect($user->name)->toBe('John');
+    expect($result)->toBeTrue();
+});
+```
+
+## Fixtures és Factories
+
+### beforeEach / afterEach
+
+```php
+beforeEach(function () {
+    $this->user = wp_create_user('testuser', 'password', 'test@example.com');
+});
+
+afterEach(function () {
+    wp_delete_user($this->user);
+});
+
+test('user exists', function () {
+    expect(get_user_by('id', $this->user))->not->toBeFalse();
+});
+```
+
+### Factory pattern
+
+```php
+// tests/Factories/PostFactory.php
+function createPost(array $attributes = []): int {
+    return wp_insert_post(array_merge([
+        'post_title' => 'Test Post',
+        'post_content' => 'Test content',
+        'post_status' => 'publish',
+    ], $attributes));
+}
+
+// Teszt
+test('post factory creates post', function () {
+    $post_id = createPost(['post_title' => 'Custom Title']);
+
+    expect(get_post($post_id)->post_title)->toBe('Custom Title');
+});
+```
+
+## Coverage (lefedettség)
+
+### Coverage futtatás
+
+```bash
+# HTML report
+./vendor/bin/pest --coverage --coverage-html coverage
+
+# Text output
+./vendor/bin/pest --coverage
+
+# Minimum coverage ellenőrzés
+./vendor/bin/pest --coverage --min=80
+```
+
+### Coverage konfiguráció
+
+`phpunit.xml`:
+
+```xml
+<phpunit>
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <directory>./src/views</directory>
+        </exclude>
+    </coverage>
+</phpunit>
+```
+
+## Watch mode
+
+```bash
+# Fájl változások figyelése
+./vendor/bin/pest --watch
+
+# Specifikus mappa figyelése
+./vendor/bin/pest --watch --filter=Unit
+```
+
+## Parallel tesztelés
+
+```bash
+# Párhuzamos futtatás
+./vendor/bin/pest --parallel
+
+# CPU szálak megadása
+./vendor/bin/pest --parallel --processes=4
+```
+
+## Snapshot tesztelés
+
+```bash
+# Plugin telepítése
+composer require spatie/pest-plugin-snapshots --dev
+```
+
+```php
+test('json output matches snapshot', function () {
+    $data = get_plugin_settings();
+
+    expect($data)->toMatchJsonSnapshot();
+});
+
+test('html output matches snapshot', function () {
+    $html = render_template('widget');
+
+    expect($html)->toMatchSnapshot();
+});
+```
+
+## Konfigurációs fájlok
+
+### pest.php
+
+```php
+<?php
+// tests/Pest.php
+
+uses(Tests\TestCase::class)->in('Feature');
+uses(Tests\Unit\TestCase::class)->in('Unit');
+
+// Globális függvények
+function createUser(array $attributes = []): WP_User {
+    $user_id = wp_create_user(
+        $attributes['login'] ?? 'testuser' . uniqid(),
+        $attributes['password'] ?? 'password',
+        $attributes['email'] ?? 'test' . uniqid() . '@example.com'
+    );
+    return new WP_User($user_id);
+}
+
+// Globális expect kiegészítések
+expect()->extend('toBePublished', function () {
+    return $this->toHaveProperty('post_status', 'publish');
+});
+```
+
+### phpunit.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </coverage>
+</phpunit>
+```
+
+## CI/CD integráció
+
+### GitHub Actions
+
+```yaml
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run tests
+        run: ./vendor/bin/pest --coverage --min=80
+```
+
+## Források
+
+- [Pest hivatalos oldal](https://pestphp.com/)
+- [Pest dokumentáció](https://pestphp.com/docs/installation)
+- [Pest GitHub](https://github.com/pestphp/pest)
+- [Pest pluginek](https://pestphp.com/docs/plugins)

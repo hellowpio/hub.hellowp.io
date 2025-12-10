@@ -1,0 +1,234 @@
+---
+title: Firefox Developer Edition
+description: A webfejlesztők számára készült Firefox böngésző fejlett eszközökkel és funkciókkal.
+keywords:
+  - firefox
+  - developer
+  - böngésző
+  - devtools
+  - webfejlesztés
+sidebar_label: Firefox Developer Edition
+sidebar_position: 10
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-brands fa-firefox-browser text-primary" /> Firefox Developer Edition
+
+A [Firefox Developer Edition](https://www.mozilla.org/hu/firefox/developer/) egy speciális böngésző, amelyet kifejezetten webfejlesztőknek terveztek. Beépített fejlesztői eszközökkel és a legújabb webes technológiák korai támogatásával segíti a munkádat.
+
+## Miért Firefox Developer Edition?
+
+- **Fejlesztőknek készült** - Alapértelmezetten fejlesztői beállításokkal érkezik
+- **Korai hozzáférés** - Az új funkciók 12 héttel hamarabb elérhetők, mint a stabil verzióban
+- **Külön profil** - Elkülönített profilt használ, így párhuzamosan futtatható a normál Firefox-szal
+- **Sötét téma** - Fejlesztőbarát sötét felület alapértelmezetten
+- **Fejlett DevTools** - Kibővített fejlesztői eszköztár
+
+## Telepítés
+
+### Letöltés
+
+Töltsd le a böngészőt a hivatalos oldalról: [mozilla.org/firefox/developer](https://www.mozilla.org/hu/firefox/developer/)
+
+Elérhető Windows, macOS és Linux rendszerekre.
+
+### Telepítés parancssorból (macOS)
+
+```bash
+brew install --cask firefox-developer-edition
+```
+
+### Telepítés parancssorból (Linux)
+
+```bash
+# Snap használatával
+sudo snap install firefox --channel=latest/beta
+```
+
+## Beépített fejlesztői eszközök
+
+### Inspector (Vizsgáló)
+
+A DOM fa vizsgálatára és szerkesztésére szolgál. Lehetővé teszi:
+
+- HTML elemek vizsgálata és módosítása
+- CSS szabályok megtekintése és szerkesztése élőben
+- Box model vizualizáció
+- Computed styles megtekintése
+- Grid és Flexbox vizualizáció
+
+**Billentyűparancs:** `Ctrl+Shift+C` (Windows/Linux) vagy `Cmd+Option+C` (macOS)
+
+### Console (Konzol)
+
+JavaScript hibák és üzenetek megjelenítése, kód futtatása:
+
+- JavaScript hibák és figyelmeztetések
+- `console.log()` üzenetek
+- JavaScript kifejezések futtatása
+- Hálózati kérések hibái
+
+**Billentyűparancs:** `Ctrl+Shift+K` (Windows/Linux) vagy `Cmd+Option+K` (macOS)
+
+### Debugger (Hibakereső)
+
+JavaScript kód lépésenkénti végrehajtása:
+
+- Breakpoint-ok elhelyezése
+- Változók értékeinek vizsgálata
+- Call stack megtekintése
+- Conditional breakpoint-ok
+
+**Billentyűparancs:** `Ctrl+Shift+Z` (Windows/Linux) vagy `Cmd+Option+Z` (macOS)
+
+### Network (Hálózat)
+
+HTTP kérések és válaszok monitorozása:
+
+- Minden hálózati kérés listázása
+- Kérés/válasz headerek és body
+- Időzítési információk (TTFB, letöltési idő)
+- Szűrés típus szerint (XHR, JS, CSS, stb.)
+- HAR exportálás
+
+**Billentyűparancs:** `Ctrl+Shift+E` (Windows/Linux) vagy `Cmd+Option+E` (macOS)
+
+### Performance (Teljesítmény)
+
+Weboldal teljesítményének elemzése:
+
+- JavaScript végrehajtási idő
+- Renderelési teljesítmény
+- Memory usage
+- Frame rate monitorozás
+
+### Storage (Tárolás)
+
+Böngésző tárolók vizsgálata:
+
+- Cookies
+- Local Storage
+- Session Storage
+- IndexedDB
+- Cache Storage
+
+### Responsive Design Mode
+
+Reszponzív dizájn tesztelése különböző képernyőméreteken:
+
+- Előre definiált eszközméretek
+- Egyéni méretek beállítása
+- Touch szimuláció
+- Képernyőkép készítése
+
+**Billentyűparancs:** `Ctrl+Shift+M` (Windows/Linux) vagy `Cmd+Option+M` (macOS)
+
+## WordPress fejlesztéshez hasznos funkciók
+
+### CSS Grid Inspector
+
+A WordPress blokk témák gyakran használnak CSS Grid-et. A Firefox Developer Edition vizuálisan megjeleníti a grid vonalakat és cellákat:
+
+1. Nyisd meg az Inspector-t
+2. Keresd meg a grid konténert
+3. Kattints a "grid" badge-re az elem mellett
+
+### Flexbox Inspector
+
+Hasonlóan a Grid-hez, a Flexbox elrendezések is vizualizálhatók:
+
+1. Inspector megnyitása
+2. Flexbox konténer kiválasztása
+3. A "flex" badge-re kattintva láthatóvá válik az elrendezés
+
+### Font Editor
+
+Betűtípusok vizuális szerkesztése:
+
+- Font family választás
+- Font size, weight, style állítása
+- Line height és letter spacing
+- Variable fonts támogatás
+
+### Accessibility Inspector
+
+Akadálymentesség ellenőrzése:
+
+- Accessibility tree megtekintése
+- Kontraszt ellenőrzés
+- ARIA attribútumok vizsgálata
+- Tab order vizualizáció
+
+## Hasznos billentyűparancsok
+
+| Funkció | Windows/Linux | macOS |
+|---------|---------------|-------|
+| DevTools megnyitása | `F12` | `F12` |
+| Inspector | `Ctrl+Shift+C` | `Cmd+Option+C` |
+| Console | `Ctrl+Shift+K` | `Cmd+Option+K` |
+| Network | `Ctrl+Shift+E` | `Cmd+Option+E` |
+| Debugger | `Ctrl+Shift+Z` | `Cmd+Option+Z` |
+| Responsive Design Mode | `Ctrl+Shift+M` | `Cmd+Option+M` |
+| Képernyőkép | `Ctrl+Shift+S` | `Cmd+Shift+S` |
+| Oldal újratöltése (cache nélkül) | `Ctrl+Shift+R` | `Cmd+Shift+R` |
+
+## Ajánlott bővítmények
+
+### React Developer Tools
+
+React komponensek vizsgálata és hibakeresése.
+
+### Vue.js devtools
+
+Vue.js alkalmazások fejlesztéséhez.
+
+### Web Developer
+
+Hasznos webfejlesztői eszközök gyűjteménye.
+
+### ColorZilla
+
+Színek kiválasztása az oldalról (color picker).
+
+### Wappalyzer
+
+Weboldalak technológiáinak azonosítása (WordPress verzió, használt pluginok, stb.).
+
+## about:config beállítások fejlesztőknek
+
+Írd be a címsorba: `about:config`
+
+Hasznos beállítások:
+
+```
+# Service Worker-ek engedélyezése HTTP-n (csak fejlesztéshez)
+devtools.serviceWorkers.testing.enabled = true
+
+# CSS Grid Inspector vonalak megjelenítése
+devtools.gridinspector.showGridLineNumbers = true
+
+# Színes konzol üzenetek
+devtools.webconsole.timestampMessages = true
+```
+
+:::warning Figyelem
+Az `about:config` beállítások módosítása befolyásolhatja a böngésző működését. Csak akkor módosíts, ha tudod mit csinálsz.
+:::
+
+## Firefox vs Chrome DevTools
+
+| Funkció | Firefox | Chrome |
+|---------|---------|--------|
+| CSS Grid Inspector | Fejlettebb vizualizáció | Alapszintű |
+| Flexbox Inspector | Beépített | Bővítmény kell |
+| Font Editor | Vizuális szerkesztő | Nincs |
+| Accessibility | Részletes | Alapszintű |
+| Performance | Jó | Részletesebb |
+| Memory | Alapszintű | Fejlettebb |
+
+## Források
+
+- [Firefox Developer Edition](https://www.mozilla.org/hu/firefox/developer/)
+- [Firefox DevTools dokumentáció](https://firefox-source-docs.mozilla.org/devtools-user/)
+- [MDN Web Docs - Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools)

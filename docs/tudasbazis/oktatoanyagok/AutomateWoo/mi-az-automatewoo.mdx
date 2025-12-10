@@ -1,0 +1,125 @@
+---
+title: AutomateWoo - Áttekintés
+description: Áttekintés és működés
+keywords:
+  - automatewoo
+sidebar_label: Áttekintés 
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+## Bevezető
+
+Az AutomateWoo az egyik legnépszerűbb marketing automatizációs eszköz WooCommerce webáruházak számára. A bővítmény a legtöbb populáris marketing stratégiára 
+alkalmazható, legyen szó Follow-up Emailekről, vagy vásárlás utáni értékelés ösztönzésére, de az elhagyott kosarak, és egyedi kuponok készítésére 
+egyaránt alkalmazható. Ez persze csak a jéghegy csúcsa.
+
+:::tip Magyarosítás
+A bővítmény magyarosítása jelenleg folyamatban van.
+
+:::
+
+## Kompatibilitás
+
+Az AutomateWoo több népszerű WooCommerce bővítménnyel is kompatibilis: 
+- WooCommerce - Subscriptions 
+- WooCommerce - Points and Rewards
+- WooCommerce - Memberships
+- WooCommerce - Wishlist
+- WooCommerce - Bookings
+- Yith Wishlist 
+- Mailchimp
+- Twilio(SMS) 
+- Agile(CRM)
+- ActiveCampaign
+- Campaign Monitor
+
+A **YayMail** szintén rendelkezik AutomateWoo Email Customization kiegészítővel.
+
+## Addons
+
+További 3 hivatalos kiegészítő is elérhető:
+- Birthdays
+- Refer a friend
+- AGileCRM Integration
+
+## Hogyan működik?
+
+Ez a bővítmény dedikált felületet biztosít a folyamatok, jelentések, naplózások valamint a kosár elhagyók monitorozására egyaránt.
+<BrowserWindow url="https://peldaweboldal.hu">
+  <img src="/img/automatewoo-report.png" alt="Automatewoo Reports"></img>
+</BrowserWindow>
+
+## Menüpontok
+
+### Dashboard - Vezérlőpult
+Itt nyomon követheted a folyamatokat, eléréseket, konverziókat, vagy hogy melyek a legtöbbet futó folyamataid. Lényegében egy teljes körű áttekintő felületet
+biztosít.
+  
+### Workflows - Folyamatok 
+Ebben a menüpontban tudsz folyamatokat készíteni, és áttekinteni a már létrehozottakat. 
+  
+### Logs - Napló
+Minden egyes folyamat futásakor naplóbejegyzés jön létre. Ez fontos, ugyanis vannak olyan *triggerek* amik ezt fogják felhasználni, 
+ezért nem javasolt a logok törlése.
+
+### Queue - Várakozó folyamatok 
+Ebben a menüpontban azokat a folyamatokat fogod látni, amik nem azonnali futásra vannak beállítva. A rendszer ezeket két percenként fogja ellenőrizni.
+
+### Carts - Kosarak
+
+:::note Carts / Kosarak - Nem látom ezt a menüpontot
+Ez a funkció csak akkor lép működésbe, ha az AutomateWoo - Settings / Beállítások - Carts / Kosarak panelban engedélyezted az **Enable Cart Tracking - Kosár követés engedélyezése** beállítást.
+
+:::
+
+Ebben a menüpontban olyan aktív kosarakat fogsz látni amit a vásárláskor nem ürítettek ki, tehát elhagyták azt. A **Beállításokban** paraméterezhető ez a funkció
+így megadhatjuk hogy mikortól számít egy kosár elhagyottnak, és hány nap után törölje a rendszer az inaktívakat (ez alapértelmezetten 60 nap). Ezen kívül
+engedélyezhetjük, hogy a *sikertelen,* *törölt,* és *függőben lévő* megrendelések is elhagyott kosárnak minősüljenek-e.
+
+### Guests - Vendégek
+Ebben a menüpontban olyan vendégadatok kerülnek tárolásra, akik a rendelést befejezték, de nem regisztráltak fiókot, vagy ha engedélyezve lett a beállításokban a 
+*pre-submit capturing - Session tracking - Elküldés előtti rögzítés - Munkamenet követés / Előzetes adatrögzítés engedélyezése - Pre-submit data capture*
+
+:::caution pre-submit capturing / Előzetes adatrögzítés
+Javasolt ezt a beállítást nem használni a GDPR végett. Ennek a beállításnak a segítségével, úgy is menthetünk adatokat, hogy a vásárló előzetesen kitöltötte az adatokat, de még nem küldte el,
+például a pénztár oldalon.
+
+:::
+
+### Opt-ins 
+
+Az AutomateWoo lehet opt-in vagy opt-out módban. Az **opt-in** azt jelenti, hogy a vásárlóknak be kell jelentkezniük, mielőtt e-mailt és SMS-t küldhetünk nekik. 
+Az **opt-out** mód azt jelenti, hogy az e-mail és az SMS automatikusan elküldésre kerül, amíg a vásárló nem dönt a leiratkozásról. Minden tranzakciós folyamat ki van zárva ebből.
+Az **Opt-ins** menüpontban azokat a vásárlókat láthatod, akik opt-in "állapotban vannak", és azt engedélyezték a pénztár oldalon, vagy regisztrációkor.
+
+:::tip Opt-in szöveg és elhelyezés
+A Beállítások menüpont általános fül legtetején megtalálod a Marketing Opt-in beállításokat. Itt megadhatod a jelölőnégyzet szövegét, és hogy hol helyezkedjen el.  
+
+:::
+
+Fontos megjegyezni, hogy az opt funkció az sms és e-mail küldéskor fontos. A folyamatok minden esetben lefutnak.
+
+:::tip Tranzakciós folyamat
+Folyamat készítésekor, a jobb oldali Beállítások modulban tudod bekapcsolni, hogy az adott folyamat **tranzakciós jellegű.** Ezt azt jelenti, hogy az OPT állapotától függetlenül
+küldhetünk a vásárlónak email, vagy sms-t. 
+:::
+
+### Reports - Jelentések
+
+Ebben a menüpontban tudod nyomon követni diagramok és naptár szűrők segítségével a folyamataidat, Email és sms követést, valamint a konverziót és konverziós listád.
+
+### Tools - Eszközök
+Itt 3 funkciót fogsz látni. Importálhatsz emaileket direkt optin állapotba, adattörlés vendég vásárlók esetében akik nem adtak le rendelést, továbbá folyamat naplózás törlő funkció, amely maga a folyamatot nem törli,
+de az összes kapcsolódó logot, konverziót, és eseményt igen.
+
+### Settings - Beállítások
+A Beállítások oldalon számos fontos opciót tudsz beállítani. A Korábban említett opt rendszert is, de a kosárelhagyás engedélyezését is. Egyes integrációk
+mint a *Mailchimp* *ActiveCampaign* és *Twilio* api kulcsokat szintén itt tudod megadni.
+
+
+:::tip Communication preferences page / Kommunikációs beállítások oldal
+Ez hasonlatos a hírlevél kezelő rendszerekhez, ahol lehetőséget adhatunk a felhasználók számára, hogy be és kijelentkezhetnek a folyamatokból.
+:::

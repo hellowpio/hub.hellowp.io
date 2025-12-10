@@ -1,9 +1,6 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
-const path = require("path");
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+import { themes } from "prism-react-renderer";
+const prismThemes = themes;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -29,14 +26,13 @@ const config = {
   plugins: [
     "docusaurus-plugin-sass",
     [
-      '@docusaurus/plugin-google-gtag',
+      "@docusaurus/plugin-google-tag-manager",
       {
-        trackingID: 'GTM-5TBMCF6',
-        anonymizeIP: true,
+        containerId: "GTM-5TBMCF6",
       },
     ],
   ],
-  
+
   scripts: [
     {
       src: "https://kit.fontawesome.com/11cbb0ec24.js",
@@ -50,8 +46,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-
+          sidebarPath: "./sidebars.js",
           editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
@@ -61,9 +56,8 @@ const config = {
           editUrl: "https://github.com/hellowpio/hub.hellowp.io/blob/main/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: "./src/css/custom.css",
         },
-  
       }),
     ],
   ],
@@ -71,22 +65,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "ujdonsag",
-        content:
-          '<strong>Újdonság:</strong> Elindult a HelloWP Hub oldal! <a href="/hogyan-hasznald-a-hub-oldalt">Hogyan használd a HUB oldalt?</a> 🔥',
-        backgroundColor: "#5991c7",
-        textColor: "#ffffff",
-        isCloseable: true,
-      },
-
       algolia: {
-        // The application ID provided by Algolia
-        appId: "PEGF6C8Q8Y",
-        // Public API key: it is safe to commit it
-        apiKey: "44dbebc8d658be083a2adf5913fa8119",
-        indexName: "hellolol",
-        // Optional: see doc section below
+        appId: "I11ZQJ89FL",
+        apiKey: "6507f02646a676db1462458b97a1cda4",
+        indexName: "HelloWP HUB",
         contextualSearch: false,
       },
 
@@ -99,10 +81,27 @@ const config = {
         },
         items: [
           {
-            to: "docs/dokumentacio/",
-            label: "Dokumentació",
+            type: "dropdown",
+            label: "Termékek",
             position: "left",
-            activeBaseRegex: "docs/(next|v8)",
+            items: [
+              {
+                label: "HelloPack",
+                to: "/docs/dokumentacio/hellopack",
+              },
+              {
+                label: "HelloTools",
+                to: "/docs/dokumentacio/hellotools",
+              },
+              {
+                label: "HelloIMG",
+                to: "/docs/dokumentacio/hellotools/helloimg",
+              },
+              {
+                label: "Üzemeltetés",
+                to: "/docs/dokumentacio/uzemeltetes-karbantartas",
+              },
+            ],
           },
           {
             to: "docs/tudasbazis/",
@@ -115,9 +114,25 @@ const config = {
             position: "left",
           },
           {
-            to: "docs/kozosseg/discord",
+            type: "dropdown",
             label: "Közösség",
             position: "left",
+            items: [
+              {
+                label: "Discord",
+                to: "/docs/kozosseg/discord",
+              },
+              {
+                label: "Facebook",
+                to: "/docs/kozosseg/facebook",
+              },
+            ],
+          },
+          {
+            href: "https://hellowp.io/hu/helloconsole/",
+            label: "Console",
+            position: "right",
+            className: "header-console-link",
           },
           {
             href: "https://github.com/hellowpio/hub.hellowp.io",
@@ -130,36 +145,23 @@ const config = {
       footer: {
         links: [
           {
-            title: "Dokumentáció",
+            title: "Termékek",
             items: [
               {
                 label: "HelloPack",
                 to: "/docs/dokumentacio/hellopack",
               },
               {
-                label: "Komplett weboldalak",
-                to: "/docs/dokumentacio/komplett-weboldalak",
+                label: "HelloTools",
+                to: "/docs/dokumentacio/hellotools",
               },
               {
-                label: "Üzemeltetés és karbantartás",
+                label: "HelloIMG",
+                to: "/docs/dokumentacio/hellotools/helloimg",
+              },
+              {
+                label: "Üzemeltetés",
                 to: "/docs/dokumentacio/uzemeltetes-karbantartas",
-              },
-            ],
-          },
-          {
-            title: "Súgó",
-            items: [
-              {
-                label: "Partnerprogram",
-                to: "/docs/sugo/partnerprogram",
-              },
-              {
-                label: "Számlázás és előfizetés",
-                to: "/docs/sugo/szamlazas-es-elofizetesek",
-              },
-              {
-                label: "Egyéb",
-                to: "/docs/sugo/egyeb",
               },
             ],
           },
@@ -167,26 +169,43 @@ const config = {
             title: "Tudásbázis",
             items: [
               {
-                label: "Hasznos eszközök",
-                to: "docs/tudasbazis/hasznos-eszkozok",
-              },
-              {
                 label: "Oktatóanyagok",
                 to: "/docs/tudasbazis/oktatoanyagok",
               },
               {
+                label: "Hasznos eszközök",
+                to: "/docs/tudasbazis/hasznos-eszkozok",
+              },
+              {
                 label: "Hibaelhárítás",
                 to: "/docs/tudasbazis/hibaelharitas",
+              },
+              {
+                label: "Fejlesztői eszközök",
+                to: "/docs/tudasbazis/fejlesztoi-eszkozok",
+              },
+            ],
+          },
+          {
+            title: "Súgó",
+            items: [
+              {
+                label: "Számlázás és előfizetés",
+                to: "/docs/sugo/szamlazas-es-elofizetesek",
+              },
+              {
+                label: "Partnerprogram",
+                to: "/docs/sugo/partnerprogram",
+              },
+              {
+                label: "Gyakori kérdések",
+                to: "/docs/sugo/egyeb",
               },
             ],
           },
           {
             title: "Közösség",
             items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
               {
                 label: "Discord",
                 to: "/docs/kozosseg/discord",
@@ -201,6 +220,23 @@ const config = {
               },
             ],
           },
+          {
+            title: "HelloWP",
+            items: [
+              {
+                label: "Főoldal",
+                href: "https://hellowp.io",
+              },
+              {
+                label: "Console",
+                href: "https://hellowp.io/hu/helloconsole/",
+              },
+              {
+                label: "Kapcsolat",
+                href: "https://hellowp.io/hu/kapcsolat/",
+              },
+            ],
+          },
         ],
         logo: {
           alt: "HelloWP!",
@@ -211,11 +247,16 @@ const config = {
         copyright: `© ${new Date().getFullYear()} TooEarlyBird, LLC <br> A forráskód <a href="/mit-licensz">MIT</a>, a weboldal tartalma <a href="/cc-by-nc-sa-4.0">CC BY NC SA 4.0 license</a> alatt áll.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-        additionalLanguages: ["php", "css"],
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
+        additionalLanguages: ["php", "css", "bash", "json"],
+      },
+      colorMode: {
+        defaultMode: "dark",
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
       },
     }),
 };
 
-module.exports = config;
+export default config;

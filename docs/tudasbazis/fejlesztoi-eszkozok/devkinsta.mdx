@@ -1,0 +1,326 @@
+---
+title: DevKinsta - Helyi WordPress fejlesztés
+description: DevKinsta használata helyi WordPress fejlesztéshez - ingyenes, Docker-alapú környezet a Kinsta-tól.
+keywords:
+  - devkinsta
+  - local development
+  - docker
+  - wordpress
+  - kinsta
+sidebar_label: DevKinsta
+sidebar_position: 8
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-container-storage text-primary" /> DevKinsta - Helyi WordPress fejlesztés
+
+A **DevKinsta** a Kinsta ingyenes helyi WordPress fejlesztői eszköze. Docker-alapú, így izolált környezetben futtatja a WordPress site-okat, és egy kattintással létrehozhatsz új telepítéseket.
+
+:::tip Miért válaszd a DevKinsta-t?
+- **Teljesen ingyenes** - Nincs rejtett költség
+- **Docker alapú** - Izolált, tiszta környezetek
+- **Egy kattintásos telepítés** - WordPress másodpercek alatt
+- **Kinsta integráció** - Szinkronizálás Kinsta hosting-gal
+:::
+
+---
+
+## Főbb funkciók
+
+### Gyors site létrehozás
+
+- **Egy kattintás** - Új WordPress site percek alatt
+- **Custom site** - Saját beállításokkal
+- **Clone site** - Meglévő site másolása
+- **Import** - Backup importálása
+
+### Környezet beállítások
+
+Minden site-hoz külön konfigurálható:
+
+| Beállítás | Opciók |
+|-----------|--------|
+| **PHP verzió** | 7.4, 8.0, 8.1, 8.2, 8.3 |
+| **Webszerver** | Nginx |
+| **Adatbázis** | MariaDB |
+| **HTTPS** | Automatikus SSL |
+
+### Beépített eszközök
+
+- **Adminer** - Adatbázis kezelés
+- **Email inbox** - Lokális email tesztelés
+- **WP-CLI** - Parancssori hozzáférés
+- **phpMyAdmin** - Alternatív DB kezelés
+
+### Kinsta integráció
+
+Ha Kinsta hostingot használsz:
+- **Push to staging** - Lokális site feltöltése staging-re
+- **Pull from staging** - Staging letöltése lokálisan
+- **Szinkronizálás** - Fájlok és adatbázis
+
+---
+
+## Rendszerkövetelmények
+
+### macOS
+
+| Követelmény | Minimum |
+|-------------|---------|
+| **macOS verzió** | 10.14+ (Mojave) |
+| **RAM** | 4 GB (8 GB ajánlott) |
+| **Tárhely** | 5 GB szabad hely |
+| **Docker Desktop** | Automatikusan települ |
+
+### Windows
+
+| Követelmény | Minimum |
+|-------------|---------|
+| **Windows verzió** | 10/11 64-bit |
+| **RAM** | 4 GB (8 GB ajánlott) |
+| **Tárhely** | 5 GB szabad hely |
+| **Virtualization** | Engedélyezve BIOS-ban |
+
+### Linux
+
+| Követelmény | Minimum |
+|-------------|---------|
+| **Disztribúció** | Ubuntu 20.04+, Debian 10+ |
+| **RAM** | 4 GB (8 GB ajánlott) |
+| **Docker** | Telepítve és futva |
+
+---
+
+## Telepítés
+
+### 1. Letöltés
+
+1. Látogass el: [kinsta.com/devkinsta](https://kinsta.com/devkinsta/)
+2. Kattints a **Download** gombra
+3. Válaszd ki a platformodat
+
+### 2. Telepítés
+
+**macOS:**
+1. Nyisd meg a .dmg fájlt
+2. Húzd a DevKinsta-t az Applications mappába
+3. Indítsd el
+
+**Windows:**
+1. Futtasd a telepítőt
+2. Engedélyezd a virtualizációt ha kéri
+3. Várd meg a Docker telepítését
+
+### 3. Első indítás
+
+1. A DevKinsta telepíti a Docker-t (ha szükséges)
+2. Hozz létre Kinsta fiókot (ingyenes) vagy jelentkezz be
+3. Kész a használatra!
+
+---
+
+## Site létrehozása
+
+### Új WordPress site
+
+1. Kattints a **Create new site** gombra
+2. Válaszd: **New WordPress site**
+3. Add meg:
+   - **Site name** - Projekt neve
+   - **WordPress admin email**
+   - **WordPress admin username**
+   - **WordPress admin password**
+4. Kattints a **Create site** gombra
+
+### Egyedi beállításokkal
+
+1. Válaszd: **Custom site**
+2. Állítsd be:
+   - PHP verzió
+   - Adatbázis név
+   - Multisite (opcionális)
+3. Hozd létre
+
+### Import backup-ból
+
+1. Válaszd: **Import backup**
+2. Húzd be a .zip fájlt (WordPress backup)
+3. Várd meg az importálást
+
+---
+
+## Site kezelés
+
+### Dashboard
+
+Minden site-nak saját dashboard-ja van:
+
+- **Site info** - URL, admin belépés, mappák
+- **Database** - Adminer hozzáférés
+- **WP Admin** - Egy kattintásos admin belépés
+- **Email** - Lokális inbox
+
+### Elérési útvonalak
+
+| Platform | Útvonal |
+|----------|---------|
+| **macOS** | `~/DevKinsta/public/{site-name}` |
+| **Windows** | `C:\Users\{user}\DevKinsta\public\{site-name}` |
+| **Linux** | `~/DevKinsta/public/{site-name}` |
+
+### WP-CLI használata
+
+```bash
+# DevKinsta beépített WP-CLI
+# A site mappájában:
+
+# Plugin telepítése
+wp plugin install query-monitor --activate
+
+# Felhasználó létrehozása
+wp user create editor editor@example.com --role=editor
+
+# Adatbázis export
+wp db export backup.sql
+```
+
+---
+
+## Adatbázis kezelés
+
+### Adminer
+
+1. Site dashboard-on kattints a **Database manager** gombra
+2. Adminer megnyílik böngészőben
+3. Futtass lekérdezéseket, exportálj, importálj
+
+### Külső eszközzel
+
+Csatlakozás TablePlus, Sequel Pro vagy más eszközzel:
+
+| Beállítás | Érték |
+|-----------|-------|
+| **Host** | `localhost` vagy `127.0.0.1` |
+| **Port** | Egyedi (lásd dashboard) |
+| **Database** | Site neve |
+| **User** | `root` |
+| **Password** | Nincs |
+
+---
+
+## Email tesztelés
+
+A DevKinsta elkapja az összes kimenő emailt:
+
+1. WordPress küld egy emailt
+2. Az email a lokális inbox-ba kerül
+3. Site dashboard → **Open email inbox**
+4. Megtekintheted a HTML és plain text verziót
+
+:::info Nincs valós küldés
+A lokális emailek sosem hagyják el a gépedet - biztonságos tesztelés.
+:::
+
+---
+
+## HTTPS és SSL
+
+Minden site automatikusan kap:
+- `.local` domain (pl. `mysite.local`)
+- Érvényes SSL tanúsítvány
+- HTTPS kapcsolat
+
+A böngésző megbízik a tanúsítványban, nincs security warning.
+
+---
+
+## Multisite beállítás
+
+### Új multisite létrehozása
+
+1. **Create new site** → **Custom site**
+2. Pipáld be: **WordPress multisite**
+3. Válassz típust:
+   - **Subdirectory** - `site.local/blog1`
+   - **Subdomain** - `blog1.site.local`
+
+### Meglévő site konvertálása
+
+```php
+// wp-config.php
+define( 'WP_ALLOW_MULTISITE', true );
+```
+
+Majd: **Tools → Network Setup**
+
+---
+
+## Kinsta szinkronizálás
+
+Ha Kinsta ügyfél vagy:
+
+### Push lokálisról
+
+1. Site dashboard → **Push to Kinsta**
+2. Válaszd ki a Kinsta environment-et (staging/production)
+3. Válaszd ki mit töltesz fel:
+   - Fájlok
+   - Adatbázis
+   - Mindkettő
+4. Push
+
+### Pull Kinsta-ról
+
+1. Site dashboard → **Pull from Kinsta**
+2. Válaszd ki a forrás environment-et
+3. Válaszd ki mit töltesz le
+4. Pull
+
+---
+
+## Hibakeresés
+
+### Docker problémák
+
+```bash
+# Docker újraindítása
+# DevKinsta → Settings → Reset DevKinsta
+```
+
+### Site nem indul
+
+1. Ellenőrizd, hogy a Docker fut-e
+2. Próbáld újraindítani a site-ot
+3. Töröld és hozd létre újra
+
+### Port konfliktus
+
+Ha a 80-as vagy 443-as port foglalt:
+1. Állítsd le a konfliktáló szolgáltatást (Apache, MAMP, stb.)
+2. Indítsd újra a DevKinsta-t
+
+---
+
+## DevKinsta vs LocalWP
+
+| Funkció | DevKinsta | LocalWP |
+|---------|-----------|---------|
+| Ár | Ingyenes | Ingyenes |
+| Technológia | Docker | Custom VM |
+| Hosting integráció | Kinsta | Flywheel/WP Engine |
+| PHP verziók | 7.4-8.3 | 7.3-8.3 |
+| Email tesztelés | ✓ | ✓ |
+| SSL | ✓ | ✓ |
+| Multisite | ✓ | ✓ |
+| Blueprint-ek | - | ✓ |
+| Erőforrás használat | Közepes | Alacsony |
+
+---
+
+## Kapcsolódó linkek
+
+- [DevKinsta hivatalos oldal](https://kinsta.com/devkinsta/)
+- [DevKinsta dokumentáció](https://kinsta.com/knowledgebase/devkinsta/)
+- [DevKinsta letöltés](https://kinsta.com/devkinsta/download/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)

@@ -1,22 +1,39 @@
 ---
 title: Divi ajánlott tárhelybeállítások
-description: Divi ajánlott tárhelybeállítások
+description: Divi téma rendszerkövetelményei és ajánlott szerver beállítások 2025-ben.
 keywords:
-  - hibaelharitas
+  - divi
+  - tárhelybeállítások
+  - php beállítások
+  - elegant themes
 sidebar_label: Divi
 sidebar_position: 3
 ---
 
-import DocCardList from "@theme/DocCardList";
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 # <FontAwesomeIcon icon="fa-duotone fa-inboxes text-primary" /> Divi ajánlott tárhelybeállítások
 
-Ezen az oldalon megpróbáljuk összefoglalni a rendszerkövetelményeket, amelyek szükségesek az Divi használatához. Ha nem vagy biztos benne, hogy a szerver támogatja-e ezt, kérdezd meg a szolgáltatódat.
+Ezen az oldalon összefoglaljuk a rendszerkövetelményeket, amelyek szükségesek a Divi téma megfelelő működéséhez. Ha nem vagy biztos benne, hogy a szervered támogatja-e ezeket, kérdezd meg a tárhelyszolgáltatódat.
 
-### Az Divi megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+## PHP beállítások
 
-```bash php.ini
+A Divi megfelelő működéséhez az alábbi PHP beállításokat javasoljuk:
+
+```ini title="php.ini"
+upload_max_filesize = 128M
+post_max_size = 128M
+max_execution_time = 300
+max_input_time = 300
+max_input_vars = 10000
+memory_limit = 256M
+```
+
+### Beállítás .htaccess fájlban
+
+Ha nincs hozzáférésed a php.ini fájlhoz, a `.htaccess` fájlban is megadhatod:
+
+```apache title=".htaccess"
 php_value upload_max_filesize 128M
 php_value post_max_size 128M
 php_value max_execution_time 300
@@ -25,35 +42,102 @@ php_value max_input_vars 10000
 php_value memory_limit 256M
 ```
 
-### Bizonytalan vagy? Nem tudod, hogy ezt hogy kell beállítani a tárhelyeden?
+:::tip Tipp
+A Divi Builder komplex oldalak esetén több erőforrást igényelhet. Ha "504 Gateway Timeout" vagy "Maximum execution time exceeded" hibákat kapsz, növeld a `max_execution_time` értékét 600-ra.
+:::
 
-Semmi gond, a szolgáltatód tud segíteni neked. Küldd el nekik az alábbi levelet:
+### Bizonytalan vagy? Nem tudod, hogy ezt hogyan kell beállítani?
+
+Semmi gond, a szolgáltatód tud segíteni. Küldd el nekik az alábbi levelet:
 
 > Tisztelt Szolgáltatóm,
 >
-> Legyenek kedvesek a domain.hu (írd át a sajátodra) tárhelyhez vonatkozó PHP limiteket az alábbiakra állítani nekem:<br/><br/>
-> php_value upload_max_filesize 128M <br/>
-> php_value post_max_size 128M<br/>
-> php_value max_execution_time 300<br/>
-> php_value max_input_time 300<br/>
-> php_value max_input_vars 10000<br/>
-> php_value memory_limit 256M<br/>
+> Kérem, állítsák be a domain.hu *(írd át a sajátodra)* tárhelyhez tartozó PHP limiteket az alábbiakra:
 >
-> Indoklás: a WordPress/Divi megfelelő működéséhez a fenti beállításokra van szükségem.
+> - upload_max_filesize: 128M
+> - post_max_size: 128M
+> - max_execution_time: 300
+> - max_input_time: 300
+> - max_input_vars: 10000
+> - memory_limit: 256M
 >
-> Köszönöm!<br/>
+> Indoklás: A WordPress és Divi megfelelő működéséhez ezekre a beállításokra van szükségem.
+>
+> Köszönöm!
 > Üdvözlettel: XY
 
 ## WordPress verzió
 
-WordPress 6.0 vagy újabb verzióval fog működni az Divi megfelelően.
+**WordPress 6.4 vagy újabb** verzió szükséges a Divi legújabb verziójához.
+
+:::info Ajánlás
+Mindig a legújabb WordPress verziót használd a legjobb kompatibilitás és biztonság érdekében.
+:::
 
 ## PHP verzió
 
-**PHP 7.4 vagy újabb verzióval kell rendelkezni, kivéve a PHP 8.1-et**
+**PHP 8.1 vagy újabb** verzió ajánlott.
 
-Azt javasoljuk, hogy minimum PHP 7.4-en fusson az oldal. Az újabb verziók alatt is tökéletesen működik, kivéve az “új” 8.1-et, amit jelenleg még nem támogat 100%-osan.
+| PHP verzió | Támogatás |
+|------------|-----------|
+| PHP 8.3 | Teljes támogatás |
+| PHP 8.2 | Teljes támogatás |
+| PHP 8.1 | Teljes támogatás |
+| PHP 8.0 | Támogatott, de nem ajánlott |
+| PHP 7.4 | Elavult, frissítés szükséges |
+
+:::warning Fontos
+A PHP 7.4 biztonsági támogatása 2022 novemberében megszűnt. Erősen javasolt a PHP 8.1 vagy újabb verzióra való frissítés.
+:::
 
 ## Adatbázis
 
-MySQL 5.6 verzió vagy újabb, ill. MariaDB 10.0 verzió vagy újabb szükséges a megfelelő futáshoz. Ez igazából “alapértelmezett”, maga a WordPress futásához is erre van szükség, szóval a tárhelyek 99%-ban tökélet lesz.
+- **MySQL 8.0** vagy újabb (ajánlott)
+- **MySQL 5.7** minimum
+- **MariaDB 10.4** vagy újabb
+
+## Webszerver
+
+A Divi az alábbi webszervereken működik:
+
+- **Apache 2.4** (mod_rewrite szükséges)
+- **Nginx**
+- **LiteSpeed**
+
+## További ajánlások
+
+### HTTPS
+
+A Divi és a WordPress is HTTPS használatát javasolja. Győződj meg róla, hogy SSL tanúsítvány telepítve van.
+
+### PHP bővítmények
+
+Az alábbi PHP bővítmények szükségesek:
+
+- curl
+- dom
+- exif
+- fileinfo
+- gd vagy imagick
+- json
+- mbstring
+- openssl
+- xml
+- zip
+
+### Gyorsítótár
+
+A Divi jól működik az alábbi cache megoldásokkal:
+
+- WP Rocket
+- W3 Total Cache
+- LiteSpeed Cache
+
+:::caution Figyelem
+A Divi Builder szerkesztési módban kikapcsolt cache-sel működik a legjobban. Győződj meg róla, hogy a cache plugin kizárja a bejelentkezett felhasználókat.
+:::
+
+## Források
+
+- [Divi dokumentáció](https://www.elegantthemes.com/documentation/divi/)
+- [Elegant Themes támogatás](https://www.elegantthemes.com/members-area/)

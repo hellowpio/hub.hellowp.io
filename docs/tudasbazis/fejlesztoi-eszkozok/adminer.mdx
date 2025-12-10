@@ -1,0 +1,748 @@
+---
+title: Adminer - Adatbázis kezelő
+description: Adminer telepítése és részletes használati útmutató - egyetlen PHP fájl az adatbázisok kezeléséhez, phpMyAdmin alternatíva WordPress fejlesztőknek.
+keywords:
+  - adminer
+  - database
+  - mysql
+  - postgresql
+  - phpmyadmin
+  - adatbázis
+  - wordpress
+sidebar_label: Adminer
+sidebar_position: 2
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-duotone fa-database text-primary" /> Adminer - Adatbázis kezelő
+
+Az **Adminer** (korábban phpMinAdmin) egy teljes funkcionalitású adatbázis-kezelő eszköz egyetlen PHP fájlban. A phpMyAdmin legnépszerűbb alternatívája, amely egyszerűbb, gyorsabb és biztonságosabb.
+
+:::tip Miért válaszd az Adminer-t?
+- **Egyetlen fájl** - ~470 KB, nincs bonyolult telepítés
+- **Multi-database** - MySQL, PostgreSQL, SQLite, MS SQL, Oracle, MongoDB
+- **Biztonságosabb** - A phpMyAdmin-nál jobb biztonsági megoldások
+- **Gyorsabb** - Kevesebb erőforrásigény, jobb teljesítmény
+- **Magyar nyelv** - Teljes magyar fordítás elérhető
+:::
+
+---
+
+## Adminer vs phpMyAdmin
+
+| Szempont | Adminer | phpMyAdmin |
+|----------|---------|------------|
+| **Telepítés** | 1 fájl feltöltése | Komplex telepítés |
+| **Méret** | ~470 KB | ~13 MB+ |
+| **Multi-DB** | Igen (8+ motor) | Csak MySQL/MariaDB |
+| **Biztonság** | Prioritás #1 | Gyakoribb sebezhetőségek |
+| **Felület** | Letisztult, modern | Zsúfolt |
+| **View szerkesztés** | Egyszerű, intuitív | Bonyolult |
+| **Sebesség** | Gyorsabb | Lassabb |
+
+---
+
+## Támogatott adatbázisok
+
+| Adatbázis | Támogatás |
+|-----------|-----------|
+| **MySQL** | Natív |
+| **MariaDB** | Natív |
+| **PostgreSQL** | Natív |
+| **SQLite** | Natív |
+| **MS SQL Server** | Natív |
+| **Oracle** | Natív |
+| **Elasticsearch** | Natív |
+| **MongoDB** | Natív |
+
+---
+
+## Telepítés
+
+### Egyszerű telepítés
+
+1. Töltsd le az Adminer-t: [adminer.org](https://www.adminer.org/)
+2. Nevezd át (ajánlott biztonsági okokból): `adminer.php` → `db-manager.php`
+3. Töltsd fel a webszerveredre
+4. Nyisd meg böngészőben: `https://example.com/db-manager.php`
+
+### Letölthető verziók
+
+| Verzió | Leírás | Méret |
+|--------|--------|-------|
+| **adminer.php** | Teljes verzió (minden DB) | ~470 KB |
+| **adminer-mysql.php** | Csak MySQL/MariaDB | ~380 KB |
+| **adminer-en.php** | Csak angol nyelv | ~400 KB |
+| **adminer-mysql-en.php** | MySQL + angol | ~320 KB |
+
+### WordPress mellé telepítés
+
+Ha WordPress mellett használod, a legbiztonságosabb megoldás egy külön, védett mappába helyezni:
+
+```bash
+# Mappa struktúra
+public_html/
+├── wp-content/
+├── wp-admin/
+├── db-tools/          # Külön mappa az Adminer-nek
+│   ├── adminer.php
+│   └── .htaccess      # Védelem
+└── wp-config.php
+```
+
+**.htaccess védelem:**
+
+```apache
+# db-tools/.htaccess
+AuthType Basic
+AuthName "Database Tools - Restricted Access"
+AuthUserFile /home/user/.htpasswd
+Require valid-user
+
+# Csak bizonyos IP-ről engedélyezés (opcionális)
+# Order Deny,Allow
+# Deny from all
+# Allow from 192.168.1.100
+```
+
+**.htpasswd generálás:**
+
+```bash
+# Online generátor vagy parancssorból:
+htpasswd -c /home/user/.htpasswd admin
+```
+
+---
+
+## Használat részletesen
+
+### Bejelentkezés
+
+1. Nyisd meg az Adminer URL-t a böngészőben
+2. A bejelentkezési képernyőn töltsd ki:
+
+| Mező | Leírás | Példa |
+|------|--------|-------|
+| **Rendszer** | Adatbázis típusa | MySQL |
+| **Szerver** | Adatbázis szerver címe | `localhost` vagy `127.0.0.1` |
+| **Felhasználó** | DB felhasználónév | `wp_user` |
+| **Jelszó** | DB jelszó | `********` |
+| **Adatbázis** | Adatbázis neve (opcionális) | `wordpress_db` |
+
+3. Kattints a **Belépés** gombra
+
+:::tip WordPress adatbázis adatok
+A WordPress adatbázis adatait a `wp-config.php` fájlban találod:
+```php
+define('DB_NAME', 'adatbazis_neve');
+define('DB_USER', 'felhasznalo');
+define('DB_PASSWORD', 'jelszo');
+define('DB_HOST', 'localhost');
+```
+:::
+
+---
+
+## Adatbázis műveletek
+
+### Adatbázis kiválasztása
+
+Bejelentkezés után látod az összes elérhető adatbázist. Kattints a kívánt adatbázis nevére a megnyitáshoz.
+
+### Új adatbázis létrehozása
+
+1. A bal oldali menüben kattints az **Adatbázis létrehozása** linkre
+2. Add meg az adatbázis nevét
+3. Válaszd ki a **karakterkészletet** (ajánlott: `utf8mb4_unicode_ci`)
+4. Kattints a **Mentés** gombra
+
+### Adatbázis törlése
+
+1. Válaszd ki az adatbázist
+2. Kattints az **Adatbázis eldobása** linkre
+3. Erősítsd meg a törlést
+
+:::warning Figyelem!
+Az adatbázis törlése visszafordíthatatlan művelet! Mindig készíts biztonsági mentést előtte.
+:::
+
+---
+
+## Táblák kezelése
+
+### Táblák listázása
+
+Az adatbázis kiválasztása után látod az összes táblát:
+
+- **Tábla neve** - Kattintható, megnyitja a tábla tartalmát
+- **Motor** - InnoDB, MyISAM stb.
+- **Sorok** - Rekordok száma
+- **Méret** - Tábla mérete
+
+### Új tábla létrehozása
+
+1. Kattints a **Tábla létrehozása** linkre
+2. Add meg a tábla nevét
+3. Definiáld az oszlopokat:
+
+| Beállítás | Leírás |
+|-----------|--------|
+| **Oszlop** | Oszlop neve (pl. `id`, `name`) |
+| **Típus** | Adattípus (`INT`, `VARCHAR`, `TEXT`, `DATETIME` stb.) |
+| **Hossz** | Maximális hossz (VARCHAR esetén) |
+| **NULL** | Engedélyezett-e a NULL érték |
+| **AI** | Auto Increment (automatikus növelés) |
+| **Alapértelmezett** | Default érték |
+
+4. Állítsd be az **elsődleges kulcsot** (Primary Key)
+5. Kattints a **Mentés** gombra
+
+**Példa WordPress-szerű tábla:**
+
+| Oszlop | Típus | Hossz | NULL | AI | Megjegyzés |
+|--------|-------|-------|------|----|-----------|
+| `id` | BIGINT | 20 | Nem | Igen | Elsődleges kulcs |
+| `title` | VARCHAR | 255 | Nem | - | Cím |
+| `content` | LONGTEXT | - | Igen | - | Tartalom |
+| `status` | VARCHAR | 20 | Nem | - | Állapot |
+| `created_at` | DATETIME | - | Nem | - | Létrehozás dátuma |
+
+### Tábla szerkezetének módosítása
+
+1. Kattints a tábla nevére
+2. Kattints a **Szerkezet módosítása** linkre
+3. Itt tudsz:
+   - Új oszlopot hozzáadni
+   - Meglévő oszlopot módosítani
+   - Oszlopot törölni
+   - Oszlopok sorrendjét változtatni
+4. Kattints a **Mentés** gombra
+
+### Tábla átnevezése
+
+1. Kattints a **Szerkezet módosítása** linkre
+2. Írd át a tábla nevét a felső mezőben
+3. Kattints a **Mentés** gombra
+
+### Tábla törlése
+
+1. Válaszd ki a táblát
+2. Kattints a **Tábla eldobása** linkre
+3. Erősítsd meg
+
+### Tábla ürítése (TRUNCATE)
+
+1. Válaszd ki a táblát
+2. Kattints a **Tábla kiürítése** linkre
+3. Erősítsd meg
+
+:::info Különbség a törlés és ürítés között
+- **Eldobás (DROP)** - Törli a táblát és annak szerkezetét is
+- **Kiürítés (TRUNCATE)** - Csak az adatokat törli, a szerkezet megmarad, az AUTO_INCREMENT nullázódik
+:::
+
+---
+
+## Adatok kezelése
+
+### Adatok megtekintése
+
+1. Kattints a tábla nevére
+2. Megjelenik az összes rekord táblázatos formában
+3. Használd a lapozást nagy táblák esetén
+
+### Adatok szűrése
+
+A tábla megtekintésekor a **Szűrés** gombbal tudsz keresni:
+
+1. Válaszd ki az oszlopot
+2. Válaszd ki az operátort (`=`, `LIKE`, `>`, `<`, `IN` stb.)
+3. Add meg az értéket
+4. Kattints a **Szűrés** gombra
+
+**Gyakori szűrési példák:**
+
+| Cél | Oszlop | Operátor | Érték |
+|-----|--------|----------|-------|
+| Publikált bejegyzések | `post_status` | `=` | `publish` |
+| Cím tartalmazza | `post_title` | `LIKE` | `%wordpress%` |
+| 2024 után létrehozott | `post_date` | `>` | `2024-01-01` |
+| Adott szerző | `post_author` | `=` | `1` |
+
+### Adatok rendezése
+
+Kattints az oszlop fejlécére a rendezéshez:
+- Első kattintás: növekvő sorrend (ASC)
+- Második kattintás: csökkenő sorrend (DESC)
+
+### Új rekord hozzáadása
+
+1. Kattints az **Új elem** linkre
+2. Töltsd ki a mezőket
+3. Kattints a **Mentés** gombra
+
+### Rekord szerkesztése
+
+1. Kattints a rekord mellett a **szerkesztés** linkre
+2. Módosítsd a mezőket
+3. Kattints a **Mentés** gombra
+
+### Inline szerkesztés
+
+Az Adminer támogatja a gyors, helyben történő szerkesztést:
+1. Dupla kattintás a cellára
+2. Módosítsd az értéket
+3. Enter a mentéshez, Escape a megszakításhoz
+
+### Rekordok törlése
+
+**Egyetlen rekord:**
+1. Kattints a rekord mellett a **törlés** linkre
+2. Erősítsd meg
+
+**Több rekord egyszerre:**
+1. Jelöld be a rekordokat a checkbox-szal
+2. Válaszd a **Törlés** műveletet
+3. Kattints a **Végrehajt** gombra
+
+---
+
+## SQL lekérdezések futtatása
+
+### SQL parancs ablak
+
+1. Kattints az **SQL parancs** menüpontra
+2. Írd be a query-t a szövegmezőbe
+3. Kattints a **Végrehajt** gombra
+
+### Gyakori WordPress SQL lekérdezések
+
+**Publikált bejegyzések listázása:**
+
+```sql
+SELECT ID, post_title, post_date, post_author
+FROM wp_posts
+WHERE post_type = 'post'
+  AND post_status = 'publish'
+ORDER BY post_date DESC
+LIMIT 20;
+```
+
+**Felhasználók listázása:**
+
+```sql
+SELECT u.ID, u.user_login, u.user_email, u.display_name,
+       m.meta_value as capabilities
+FROM wp_users u
+LEFT JOIN wp_usermeta m ON u.ID = m.user_id
+  AND m.meta_key = 'wp_capabilities'
+ORDER BY u.ID;
+```
+
+**Bejegyzések száma kategóriánként:**
+
+```sql
+SELECT t.name as category, COUNT(*) as post_count
+FROM wp_posts p
+JOIN wp_term_relationships tr ON p.ID = tr.object_id
+JOIN wp_term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+JOIN wp_terms t ON tt.term_id = t.term_id
+WHERE tt.taxonomy = 'category'
+  AND p.post_status = 'publish'
+GROUP BY t.term_id
+ORDER BY post_count DESC;
+```
+
+**Opciók keresése:**
+
+```sql
+SELECT option_name, option_value
+FROM wp_options
+WHERE option_name LIKE '%siteurl%'
+   OR option_name LIKE '%home%';
+```
+
+**Revíziók törlése (óvatosan!):**
+
+```sql
+DELETE FROM wp_posts
+WHERE post_type = 'revision';
+```
+
+**Spam kommentek törlése:**
+
+```sql
+DELETE FROM wp_comments
+WHERE comment_approved = 'spam';
+```
+
+**Tranziens adatok törlése:**
+
+```sql
+DELETE FROM wp_options
+WHERE option_name LIKE '%_transient_%';
+```
+
+### SQL history
+
+Az Adminer megjegyzi a korábban futtatott lekérdezéseket. A **History** linkre kattintva visszanézheted és újrafuttathatod őket.
+
+### Többsoros lekérdezések
+
+Több SQL utasítást is futtathatsz egyszerre, pontosvesszővel elválasztva:
+
+```sql
+-- Először lekérdezés
+SELECT COUNT(*) FROM wp_posts WHERE post_status = 'draft';
+
+-- Aztán törlés
+DELETE FROM wp_posts WHERE post_status = 'draft' AND post_date < '2023-01-01';
+```
+
+---
+
+## Import és Export
+
+### Adatbázis exportálása
+
+1. Válaszd ki az adatbázist
+2. Kattints az **Exportálás** linkre
+3. Állítsd be az opciókat:
+
+| Beállítás | Ajánlott érték |
+|-----------|----------------|
+| **Kimenet** | mentés (fájlba) |
+| **Formátum** | SQL |
+| **Adatbázis** | CREATE DATABASE + USE |
+| **Táblák** | DROP + CREATE |
+| **Adatok** | INSERT |
+
+4. Válaszd ki az exportálandó táblákat (vagy az összeset)
+5. Kattints az **Exportálás** gombra
+
+### Csak bizonyos táblák exportálása
+
+1. Jelöld be csak a kívánt táblákat
+2. Futtasd az exportot
+
+### Tábla exportálása CSV formátumban
+
+1. Nyisd meg a táblát
+2. Kattints az **Exportálás** linkre
+3. Válaszd a **CSV** formátumot
+4. Kattints az **Exportálás** gombra
+
+### Adatbázis importálása
+
+1. Kattints az **Importálás** linkre
+2. Válaszd ki az SQL fájlt
+3. Kattints a **Végrehajt** gombra
+
+:::tip Nagy fájlok importálása
+Ha a fájl túl nagy, növeld a PHP beállításokat:
+```ini
+upload_max_filesize = 256M
+post_max_size = 256M
+max_execution_time = 300
+memory_limit = 512M
+```
+Vagy használd a **Fájl futtatása** opciót, ami a szerveren lévő fájlt importálja.
+:::
+
+### CSV importálása
+
+1. Válaszd ki a céltáblát
+2. Kattints az **Importálás** linkre
+3. Válaszd ki a CSV fájlt
+4. Állítsd be az oszlop megfeleltetéseket
+5. Kattints a **Végrehajt** gombra
+
+---
+
+## Indexek kezelése
+
+### Indexek megtekintése
+
+1. Nyisd meg a táblát
+2. Kattints a **Szerkezet módosítása** linkre
+3. Az indexek a tábla alatt láthatók
+
+### Új index létrehozása
+
+1. A **Szerkezet módosítása** oldalon
+2. Az **Indexek** szekcióban kattints az **Index hozzáadása** linkre
+3. Válaszd ki:
+   - **Típus**: INDEX, UNIQUE, PRIMARY, FULLTEXT
+   - **Oszlopok**: melyik oszlop(ok)ra
+4. Kattints a **Mentés** gombra
+
+### Index típusok
+
+| Típus | Használat |
+|-------|-----------|
+| **PRIMARY** | Elsődleges kulcs, egyedi, nem NULL |
+| **UNIQUE** | Egyedi értékek, de lehet NULL |
+| **INDEX** | Gyorsítja a keresést |
+| **FULLTEXT** | Szöveges kereséshez (TEXT oszlopokra) |
+
+---
+
+## View-k kezelése
+
+### View létrehozása
+
+1. Kattints a **View létrehozása** linkre
+2. Add meg a view nevét
+3. Írd be a SELECT lekérdezést:
+
+```sql
+SELECT p.ID, p.post_title, u.display_name as author
+FROM wp_posts p
+JOIN wp_users u ON p.post_author = u.ID
+WHERE p.post_status = 'publish'
+```
+
+4. Kattints a **Mentés** gombra
+
+### View szerkesztése
+
+1. Kattints a view nevére
+2. Kattints a **Szerkezet módosítása** linkre
+3. Módosítsd a lekérdezést
+4. Mentsd el
+
+---
+
+## Stored Procedures és Triggers
+
+### Tárolt eljárás létrehozása
+
+1. Kattints az **Eljárás létrehozása** linkre
+2. Add meg a nevet és a paramétereket
+3. Írd be az SQL kódot:
+
+```sql
+CREATE PROCEDURE GetPublishedPosts(IN limit_count INT)
+BEGIN
+    SELECT ID, post_title, post_date
+    FROM wp_posts
+    WHERE post_status = 'publish'
+    ORDER BY post_date DESC
+    LIMIT limit_count;
+END
+```
+
+### Trigger létrehozása
+
+1. Válaszd ki a táblát
+2. Kattints a **Trigger létrehozása** linkre
+3. Állítsd be:
+   - **Név**: trigger neve
+   - **Időzítés**: BEFORE vagy AFTER
+   - **Esemény**: INSERT, UPDATE, DELETE
+4. Írd be a trigger kódját
+
+---
+
+## Felhasználók és jogosultságok
+
+### Felhasználók listázása
+
+1. Kattints a **Jogosultságok** linkre
+2. Látod az összes adatbázis felhasználót
+
+### Új felhasználó létrehozása
+
+1. Kattints a **Felhasználó létrehozása** linkre
+2. Add meg:
+   - Felhasználónév
+   - Host (`localhost` vagy `%`)
+   - Jelszó
+3. Állítsd be a jogosultságokat
+4. Mentsd el
+
+### Jogosultságok beállítása
+
+Elérhető jogosultságok:
+
+| Jogosultság | Leírás |
+|-------------|--------|
+| **SELECT** | Adatok olvasása |
+| **INSERT** | Új rekordok |
+| **UPDATE** | Módosítás |
+| **DELETE** | Törlés |
+| **CREATE** | Táblák létrehozása |
+| **DROP** | Táblák törlése |
+| **ALL PRIVILEGES** | Minden jog |
+
+---
+
+## Témák és testreszabás
+
+### CSS téma használata
+
+1. Töltsd le a kívánt témát
+2. Nevezd el `adminer.css`-nek
+3. Tedd az `adminer.php` mellé
+
+### Népszerű témák
+
+| Téma | Leírás |
+|------|--------|
+| [Hydra Dark](https://github.com/Niyko/Hydra-Dark-Theme-for-Adminer) | Sötét téma |
+| [Material Design](https://github.com/nicnys-8/adminer-theme) | Material stílus |
+| [Dracula](https://draculatheme.com/adminer) | Dracula színséma |
+| [One Dark](https://github.com/nicnys-8/adminer-theme) | Atom One Dark |
+
+### Hivatalos témák
+
+Az Adminer hivatalos témái: [adminer.org/designs](https://www.adminer.org/#designs)
+
+---
+
+## Pluginek
+
+### Plugin rendszer
+
+Az Adminer bővíthető pluginekkel. Használathoz készíts egy wrapper fájlt:
+
+```php
+<?php
+// db-manager.php
+
+function adminer_object() {
+    // Pluginek betöltése
+    include_once "./plugins/plugin.php";
+
+    // Login szerverek plugin
+    include_once "./plugins/login-servers.php";
+
+    return new AdminerPlugin([
+        new AdminerLoginServers([
+            'Localhost' => [
+                'server' => 'localhost',
+                'driver' => 'mysql'
+            ],
+            'Production' => [
+                'server' => 'db.example.com',
+                'driver' => 'mysql'
+            ],
+        ])
+    ]);
+}
+
+include "./adminer.php";
+```
+
+### Hasznos pluginek
+
+| Plugin | Funkció |
+|--------|---------|
+| **login-servers** | Előre definiált szerverek |
+| **designs** | Téma választó |
+| **dump-alter** | ALTER utasítások exportálása |
+| **edit-calendar** | Dátum választó |
+| **enum-option** | ENUM értékek legördülő listában |
+| **foreign-system** | Külső kulcs megjelenítés |
+| **tables-filter** | Tábla szűrő |
+
+---
+
+## Biztonsági tippek
+
+:::warning Fontos!
+Az Adminer közvetlen hozzáférést biztosít az adatbázishoz. Védd meg megfelelően!
+:::
+
+### Ajánlott védelmi intézkedések
+
+1. **Használj nehezen kitalálható fájlnevet**
+   ```
+   ❌ adminer.php
+   ✅ db-xyz123-manager.php
+   ```
+
+2. **Tedd védett mappába**
+   ```
+   /db-tools/adminer.php + .htaccess védelem
+   ```
+
+3. **HTTP Basic Authentication**
+   ```apache
+   AuthType Basic
+   AuthName "Restricted"
+   AuthUserFile /path/.htpasswd
+   Require valid-user
+   ```
+
+4. **IP korlátozás**
+   ```apache
+   <Files "adminer.php">
+       Order Deny,Allow
+       Deny from all
+       Allow from 192.168.1.100
+   </Files>
+   ```
+
+5. **HTTPS kötelező használata**
+
+6. **Töröld, ha nem használod**
+   - Ne hagyd a szerveren, ha befejeztél
+
+7. **Erős adatbázis jelszavak**
+   - Legalább 16 karakter
+   - Vegyes karakterek
+
+### Automatikus törlés
+
+Készíts egy cron job-ot, ami törli az Adminer-t egy idő után:
+
+```bash
+# 1 óra múlva törlés
+echo "rm /var/www/html/db-tools/adminer.php" | at now + 1 hour
+```
+
+---
+
+## Hibakeresés
+
+### Gyakori hibák
+
+**"Login without password is forbidden"**
+- Az Adminer nem enged üres jelszót
+- Megoldás: állíts be jelszót az adatbázis usernek
+
+**"Access denied for user"**
+- Hibás felhasználónév vagy jelszó
+- Ellenőrizd a `wp-config.php` fájlt
+
+**"Connection refused"**
+- A szerver nem érhető el
+- Ellenőrizd a host nevet (`localhost` vs `127.0.0.1`)
+
+**"Maximum execution time exceeded"**
+- Nagy művelet időtúllépés
+- Növeld a `max_execution_time` értéket
+
+**Karakter kódolási problémák**
+- Használj `utf8mb4` karakterkészletet
+- Ellenőrizd az export/import beállításokat
+
+---
+
+## Kapcsolódó eszközök
+
+- [Query Monitor](/docs/tudasbazis/fejlesztoi-eszkozok/query-monitor) - WordPress debug
+- [WP-CLI](/docs/tudasbazis/fejlesztoi-eszkozok/wp-cli) - Parancssoros WordPress kezelés
+- [Debug Bar](/docs/tudasbazis/fejlesztoi-eszkozok/debug-bar) - Debug információk
+
+---
+
+## Kapcsolódó linkek
+
+- [Adminer hivatalos oldal](https://www.adminer.org/)
+- [Adminer GitHub](https://github.com/vrana/adminer)
+- [Adminer pluginek](https://www.adminer.org/en/plugins/)
+- [Adminer témák](https://www.adminer.org/#designs)

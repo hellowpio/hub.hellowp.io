@@ -1,0 +1,681 @@
+---
+title: Sage
+description: Modern WordPress téma fejlesztési keretrendszer Laravel Blade templating-gel és modern frontend tooling-gal.
+keywords:
+  - sage
+  - roots
+  - wordpress
+  - tema
+  - blade
+  - vite
+sidebar_label: Sage
+sidebar_position: 20
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-leaf text-primary" /> Sage - Modern WordPress Téma
+
+A [Sage](https://roots.io/sage/) egy modern WordPress téma fejlesztési keretrendszer, amely Laravel Blade templating-et, modern JavaScript tooling-ot és az [Acorn](./acorn.mdx) keretrendszert használja. A [Roots](https://roots.io) csapat fejleszti.
+
+## Mi a Sage?
+
+A Sage a WordPress témafejlesztés legjobb gyakorlatait ötvözi:
+
+- **Laravel Blade** - Tiszta, kifejező template szintaxis
+- **Vite** - Villámgyors fejlesztői szerver és build tool
+- **Tailwind CSS** - Utility-first CSS keretrendszer (opcionális)
+- **Modern JavaScript** - ES6+, modulok támogatása
+- **View Composers** - Adatok és logika szétválasztása
+- **Acorn** - Laravel komponensek WordPress-ben
+
+## Előfeltételek
+
+- PHP >= 8.1
+- Composer
+- Node.js >= 18.0.0
+- Yarn vagy npm
+
+## Telepítés
+
+### Új Sage téma létrehozása
+
+```bash
+# A themes mappában
+cd wp-content/themes
+
+# Sage telepítése
+composer create-project roots/sage tema-neve
+```
+
+### Függőségek telepítése
+
+```bash
+cd tema-neve
+
+# PHP függőségek
+composer install
+
+# Node függőségek
+yarn install
+# vagy
+npm install
+```
+
+### Acorn telepítése
+
+A Sage-nek szüksége van az Acorn-ra. Telepítheted plugin-ként vagy Composer-rel:
+
+```bash
+# Bedrock használata esetén (ajánlott)
+composer require roots/acorn
+
+# Vagy WordPress pluginként
+# Töltsd le: https://roots.io/acorn/
+```
+
+## Fejlesztés
+
+### Fejlesztői szerver indítása
+
+```bash
+yarn dev
+# vagy
+npm run dev
+```
+
+Ez elindítja a Vite fejlesztői szervert HMR (Hot Module Replacement) támogatással.
+
+### Build készítése
+
+```bash
+yarn build
+# vagy
+npm run build
+```
+
+## Mappastruktúra
+
+```
+sage/
+├── app/
+│   ├── Providers/           # Service Providers
+│   ├── View/
+│   │   └── Composers/       # View Composers
+│   ├── filters.php          # WordPress filterek
+│   ├── setup.php            # Téma beállítások
+│   └── helpers.php          # Helper függvények
+├── config/
+│   ├── app.php              # Alkalmazás konfiguráció
+│   ├── theme.php            # Téma konfiguráció
+│   └── view.php             # View konfiguráció
+├── public/                  # Build output (ne szerkeszd)
+├── resources/
+│   ├── views/               # Blade templates
+│   │   ├── layouts/
+│   │   ├── partials/
+│   │   ├── sections/
+│   │   └── components/
+│   ├── scripts/             # JavaScript
+│   │   └── app.js
+│   └── styles/              # CSS/SCSS
+│       └── app.css
+├── storage/
+│   └── framework/
+│       └── views/           # Compiled Blade views
+├── bud.config.js            # Bud build konfiguráció
+├── composer.json
+├── package.json
+├── functions.php
+├── index.php
+└── style.css
+```
+
+## Blade Templates
+
+### Alap layout
+
+**resources/views/layouts/app.blade.php:**
+
+```blade
+<!doctype html>
+<html @php(language_attributes())>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @php(wp_head())
+</head>
+
+<body @php(body_class())>
+    @php(wp_body_open())
+
+    <div id="app">
+        @include('partials.header')
+
+        <main class="main">
+            @yield('content')
+        </main>
+
+        @include('partials.footer')
+    </div>
+
+    @php(wp_footer())
+</body>
+</html>
+```
+
+### Oldal template
+
+**resources/views/page.blade.php:**
+
+```blade
+@extends('layouts.app')
+
+@section('content')
+    @while(have_posts()) @php(the_post())
+        @includeFirst(['partials.content-page', 'partials.content'])
+    @endwhile
+@endsection
+```
+
+### Bejegyzés tartalom
+
+**resources/views/partials/content.blade.php:**
+
+```blade
+<article @php(post_class())>
+    <header>
+        <h1 class="entry-title">
+            {!! $title !!}
+        </h1>
+
+        @include('partials.entry-meta')
+    </header>
+
+    <div class="entry-content">
+        @php(the_content())
+    </div>
+</article>
+```
+
+### Header
+
+**resources/views/partials/header.blade.php:**
+
+```blade
+<header class="site-header">
+    <a class="brand" href="{{ home_url('/') }}">
+        {!! $siteName !!}
+    </a>
+
+    @if (has_nav_menu('primary_navigation'))
+        <nav class="nav-primary" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+            {!! wp_nav_menu([
+                'theme_location' => 'primary_navigation',
+                'container' => false,
+                'echo' => false
+            ]) !!}
+        </nav>
+    @endif
+</header>
+```
+
+## View Composers
+
+A View Composers lehetővé teszi az adatok és a megjelenítés szétválasztását.
+
+### App Composer (globális)
+
+**app/View/Composers/App.php:**
+
+```php
+<?php
+
+namespace App\View\Composers;
+
+use Roots\Acorn\View\Composer;
+
+class App extends Composer
+{
+    protected static $views = ['*'];
+
+    public function with()
+    {
+        return [
+            'siteName' => $this->siteName(),
+        ];
+    }
+
+    public function siteName()
+    {
+        return get_bloginfo('name', 'display');
+    }
+}
+```
+
+### Post Composer
+
+**app/View/Composers/Post.php:**
+
+```php
+<?php
+
+namespace App\View\Composers;
+
+use Roots\Acorn\View\Composer;
+
+class Post extends Composer
+{
+    protected static $views = [
+        'partials.content',
+        'partials.content-*',
+    ];
+
+    public function with()
+    {
+        return [
+            'title' => $this->title(),
+            'permalink' => $this->permalink(),
+            'thumbnail' => $this->thumbnail(),
+            'excerpt' => $this->excerpt(),
+            'date' => $this->date(),
+            'author' => $this->author(),
+            'categories' => $this->categories(),
+        ];
+    }
+
+    public function title()
+    {
+        if ($this->view->name() === 'partials.content-single') {
+            return get_the_title();
+        }
+
+        return sprintf(
+            '<a href="%s">%s</a>',
+            get_permalink(),
+            get_the_title()
+        );
+    }
+
+    public function permalink()
+    {
+        return get_permalink();
+    }
+
+    public function thumbnail()
+    {
+        return get_the_post_thumbnail(null, 'large');
+    }
+
+    public function excerpt()
+    {
+        return has_excerpt()
+            ? get_the_excerpt()
+            : wp_trim_words(get_the_content(), 40);
+    }
+
+    public function date()
+    {
+        return get_the_date();
+    }
+
+    public function author()
+    {
+        return get_the_author();
+    }
+
+    public function categories()
+    {
+        return get_the_category();
+    }
+}
+```
+
+## Blade Komponensek
+
+### Komponens létrehozása
+
+**resources/views/components/button.blade.php:**
+
+```blade
+@props([
+    'type' => 'primary',
+    'url' => '#',
+    'size' => 'md'
+])
+
+<a
+    href="{{ $url }}"
+    {{ $attributes->merge(['class' => "btn btn-{$type} btn-{$size}"]) }}
+>
+    {{ $slot }}
+</a>
+```
+
+### Komponens használata
+
+```blade
+<x-button type="secondary" url="/contact">
+    Kapcsolat
+</x-button>
+
+<x-button type="primary" url="/shop" class="mt-4">
+    Vásárlás
+</x-button>
+```
+
+### Komponens slot-okkal
+
+**resources/views/components/card.blade.php:**
+
+```blade
+@props(['title' => null])
+
+<div {{ $attributes->merge(['class' => 'card']) }}>
+    @if ($title)
+        <div class="card-header">
+            <h3>{{ $title }}</h3>
+        </div>
+    @endif
+
+    <div class="card-body">
+        {{ $slot }}
+    </div>
+
+    @if (isset($footer))
+        <div class="card-footer">
+            {{ $footer }}
+        </div>
+    @endif
+</div>
+```
+
+Használata:
+
+```blade
+<x-card title="Termék neve">
+    <p>Termék leírása...</p>
+
+    <x-slot:footer>
+        <x-button url="/buy">Megveszem</x-button>
+    </x-slot:footer>
+</x-card>
+```
+
+## Téma beállítások
+
+**app/setup.php:**
+
+```php
+<?php
+
+namespace App;
+
+use Roots\Acorn\Assets\Asset;
+
+/**
+ * Téma támogatások regisztrálása
+ */
+add_action('after_setup_theme', function () {
+    // Post thumbnails
+    add_theme_support('post-thumbnails');
+
+    // Title tag
+    add_theme_support('title-tag');
+
+    // HTML5 támogatás
+    add_theme_support('html5', [
+        'caption',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'search-form',
+        'script',
+        'style',
+    ]);
+
+    // Egyedi logo
+    add_theme_support('custom-logo', [
+        'height' => 100,
+        'width' => 400,
+        'flex-height' => true,
+        'flex-width' => true,
+    ]);
+
+    // Editor stílusok
+    add_theme_support('editor-styles');
+    add_editor_style('public/app.css');
+
+    // Responsive embeds
+    add_theme_support('responsive-embeds');
+
+    // Menük regisztrálása
+    register_nav_menus([
+        'primary_navigation' => __('Primary Navigation', 'sage'),
+        'footer_navigation' => __('Footer Navigation', 'sage'),
+    ]);
+
+    // Képméretek
+    add_image_size('hero', 1920, 1080, true);
+    add_image_size('card', 600, 400, true);
+});
+
+/**
+ * Sidebar regisztrálása
+ */
+add_action('widgets_init', function () {
+    register_sidebar([
+        'name' => __('Primary Sidebar', 'sage'),
+        'id' => 'sidebar-primary',
+        'before_widget' => '<section class="widget %1$s %2$s">',
+        'after_widget' => '</section>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>',
+    ]);
+
+    register_sidebar([
+        'name' => __('Footer', 'sage'),
+        'id' => 'sidebar-footer',
+        'before_widget' => '<section class="widget %1$s %2$s">',
+        'after_widget' => '</section>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>',
+    ]);
+});
+```
+
+## Vite konfiguráció
+
+**vite.config.js:**
+
+```javascript
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: [
+                'resources/styles/app.css',
+                'resources/scripts/app.js',
+            ],
+            refresh: true,
+        }),
+    ],
+});
+```
+
+## Tailwind CSS
+
+A Sage alapértelmezetten Tailwind CSS-t használ.
+
+**tailwind.config.js:**
+
+```javascript
+export default {
+    content: [
+        './app/**/*.php',
+        './resources/**/*.{php,vue,js,blade.php}',
+    ],
+    theme: {
+        extend: {
+            colors: {
+                primary: '#3490dc',
+                secondary: '#ffed4a',
+                danger: '#e3342f',
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+        },
+    },
+    plugins: [],
+};
+```
+
+## JavaScript
+
+**resources/scripts/app.js:**
+
+```javascript
+// Alpine.js (opcionális)
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
+
+// Egyedi kód
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.nav-primary');
+
+    menuToggle?.addEventListener('click', () => {
+        navigation?.classList.toggle('is-open');
+    });
+});
+```
+
+## WooCommerce támogatás
+
+### WooCommerce template-ek
+
+Hozz létre egy `woocommerce` mappát a `resources/views` alatt:
+
+```
+resources/views/woocommerce/
+├── single-product.blade.php
+├── archive-product.blade.php
+└── partials/
+    └── product-card.blade.php
+```
+
+**resources/views/woocommerce/archive-product.blade.php:**
+
+```blade
+@extends('layouts.app')
+
+@section('content')
+    <div class="woocommerce">
+        @php(woocommerce_content())
+    </div>
+@endsection
+```
+
+### WooCommerce támogatás regisztrálása
+
+**app/setup.php:**
+
+```php
+add_action('after_setup_theme', function () {
+    add_theme_support('woocommerce');
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+});
+```
+
+## WP-CLI parancsok
+
+```bash
+# View cache törlése
+wp acorn view:clear
+
+# View cache létrehozása
+wp acorn view:cache
+
+# Konfiguráció cache
+wp acorn config:cache
+wp acorn config:clear
+
+# Komponens generálása
+wp acorn make:component Button
+
+# View Composer generálása
+wp acorn make:composer Post
+```
+
+## Sage + Bedrock + Trellis
+
+A teljes Roots stack:
+
+```
+projekt/
+├── trellis/              # Szerver és deployment
+└── site/                 # Bedrock
+    ├── composer.json
+    ├── web/
+    │   └── app/
+    │       └── themes/
+    │           └── sage/ # Sage téma
+    └── ...
+```
+
+## Gyakori műveletek
+
+### Egyedi oldal template
+
+**resources/views/template-custom.blade.php:**
+
+```blade
+{{--
+  Template Name: Egyedi Sablon
+--}}
+
+@extends('layouts.app')
+
+@section('content')
+    <div class="custom-template">
+        @while(have_posts()) @php(the_post())
+            <h1>{!! get_the_title() !!}</h1>
+            {!! get_the_content() !!}
+        @endwhile
+    </div>
+@endsection
+```
+
+### Shortcode létrehozása
+
+**app/filters.php:**
+
+```php
+add_shortcode('custom_button', function ($atts) {
+    $atts = shortcode_atts([
+        'url' => '#',
+        'text' => 'Kattints ide',
+    ], $atts);
+
+    return view('components.button', [
+        'url' => $atts['url'],
+        'slot' => $atts['text'],
+    ])->render();
+});
+```
+
+## Források
+
+- [Sage dokumentáció](https://roots.io/sage/docs/)
+- [Blade dokumentáció](https://laravel.com/docs/blade)
+- [Acorn dokumentáció](https://roots.io/acorn/docs/)
+- [Tailwind CSS dokumentáció](https://tailwindcss.com/docs)
+- [Roots Discourse közösség](https://discourse.roots.io/)
+- [Sage GitHub](https://github.com/roots/sage)

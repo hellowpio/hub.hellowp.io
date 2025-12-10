@@ -435,3 +435,46 @@ code:not([class]) {
   background-color: unset !important;
   border: none !important;
 }
+
+/* API checker */
+
+
+.api-key-checker input{
+  
+  background-color: #ebedf0;
+  border: 0px;
+  border-radius: 20px;
+  height: 40px;
+  padding: 20px;
+  font-size: 18px;
+  width: 100%;
+}
+
+
+
+
+.api-nem-ok{
+  color: var(--bs-red);
+  font-weight: 700;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.api-ok{
+  color: var(--bs-success);
+  font-weight: 700;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+/* HelloIMG brand color */
+.text-helloimg {
+  color: rgb(255, 212, 59) !important;
+}
+
+/* Footer logo size */
+.footer__logo {
+  max-width: 900px;
+  height: auto;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,686 @@
+---
+title: PHPUnit
+description: PHP unit tesztelés WordPress bővítményekhez és témákhoz PHPUnit-tal.
+keywords:
+  - phpunit
+  - testing
+  - php
+  - wordpress
+  - unit test
+sidebar_label: PHPUnit
+sidebar_position: 17
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-flask-vial text-primary" /> PHPUnit - PHP Unit Tesztelés
+
+A [PHPUnit](https://phpunit.de/) a de facto standard PHP unit tesztelési keretrendszer. A WordPress hivatalos teszt keretrendszere is erre épül, így ideális választás bővítmények és témák teszteléséhez.
+
+## Miért PHPUnit?
+
+- **Standard** - A legelterjedtebb PHP tesztelési keretrendszer
+- **WordPress integráció** - Hivatalos WP tesztelési könyvtár
+- **Részletes assertions** - Széles választék ellenőrzési metódusokból
+- **Mocking** - Beépített mock és stub támogatás
+- **Coverage** - Kód lefedettség mérés
+- **CI/CD** - Kiváló integráció
+
+## Telepítés
+
+### Composer
+
+```bash
+composer require --dev phpunit/phpunit
+```
+
+### WordPress Test Library
+
+```bash
+# WP-CLI-vel
+wp scaffold plugin-tests my-plugin
+
+# Vagy manuálisan
+bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+```
+
+## WordPress tesztelési környezet
+
+### Telepítési script
+
+Hozz létre egy `bin/install-wp-tests.sh` fájlt:
+
+```bash
+#!/usr/bin/env bash
+
+if [ $# -lt 3 ]; then
+    echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version]"
+    exit 1
+fi
+
+DB_NAME=$1
+DB_USER=$2
+DB_PASS=$3
+DB_HOST=${4-localhost}
+WP_VERSION=${5-latest}
+WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
+WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress}
+
+download() {
+    if [ `which curl` ]; then
+        curl -s "$1" > "$2";
+    elif [ `which wget` ]; then
+        wget -nv -O "$2" "$1"
+    fi
+}
+
+# WordPress letöltése
+if [ ! -d $WP_CORE_DIR ]; then
+    mkdir -p $WP_CORE_DIR
+    download https://wordpress.org/latest.tar.gz /tmp/wordpress.tar.gz
+    tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
+fi
+
+# Test library letöltése
+if [ ! -d $WP_TESTS_DIR ]; then
+    mkdir -p $WP_TESTS_DIR
+    svn co --quiet https://develop.svn.wordpress.org/trunk/tests/phpunit/includes/ $WP_TESTS_DIR/includes
+    svn co --quiet https://develop.svn.wordpress.org/trunk/tests/phpunit/data/ $WP_TESTS_DIR/data
+fi
+
+# wp-tests-config.php létrehozása
+cat > $WP_TESTS_DIR/wp-tests-config.php <<EOF
+<?php
+define( 'ABSPATH', '$WP_CORE_DIR/' );
+define( 'DB_NAME', '$DB_NAME' );
+define( 'DB_USER', '$DB_USER' );
+define( 'DB_PASSWORD', '$DB_PASS' );
+define( 'DB_HOST', '$DB_HOST' );
+define( 'DB_CHARSET', 'utf8' );
+define( 'DB_COLLATE', '' );
+\$table_prefix = 'wptests_';
+define( 'WP_TESTS_DOMAIN', 'example.org' );
+define( 'WP_TESTS_EMAIL', 'admin@example.org' );
+define( 'WP_TESTS_TITLE', 'Test Blog' );
+define( 'WP_PHP_BINARY', 'php' );
+define( 'WPLANG', '' );
+EOF
+
+# Adatbázis létrehozása
+mysql -u$DB_USER -p$DB_PASS -h$DB_HOST -e "CREATE DATABASE IF NOT EXISTS $DB_NAME"
+```
+
+### Bootstrap fájl
+
+`tests/bootstrap.php`:
+
+```php
+<?php
+/**
+ * PHPUnit bootstrap file
+ */
+
+$_tests_dir = getenv( 'WP_TESTS_DIR' ) ?: '/tmp/wordpress-tests-lib';
+
+// WordPress test functions betöltése
+require_once $_tests_dir . '/includes/functions.php';
+
+/**
+ * Plugin betöltése
+ */
+function _manually_load_plugin() {
+    require dirname( __DIR__ ) . '/my-plugin.php';
+}
+tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
+
+// WordPress test bootstrap
+require $_tests_dir . '/includes/bootstrap.php';
+```
+
+## Konfigurációs fájl
+
+### phpunit.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+            <directory suffix=".php">./includes</directory>
+        </include>
+        <exclude>
+            <directory>./vendor</directory>
+            <directory>./tests</directory>
+        </exclude>
+    </coverage>
+</phpunit>
+```
+
+## Alapvető tesztelés
+
+### Első teszt
+
+```php
+<?php
+// tests/Unit/ExampleTest.php
+
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase {
+
+    public function test_addition() {
+        $this->assertEquals( 4, 2 + 2 );
+    }
+
+    public function test_string_contains() {
+        $this->assertStringContainsString( 'Hello', 'Hello World' );
+    }
+}
+```
+
+### WordPress Test Case
+
+```php
+<?php
+// tests/Integration/PluginTest.php
+
+class PluginTest extends WP_UnitTestCase {
+
+    public function test_plugin_is_active() {
+        $this->assertTrue( is_plugin_active( 'my-plugin/my-plugin.php' ) );
+    }
+
+    public function test_shortcode_exists() {
+        $this->assertTrue( shortcode_exists( 'my_shortcode' ) );
+    }
+}
+```
+
+## Assertions
+
+### Alapvető assertions
+
+```php
+// Egyenlőség
+$this->assertEquals( $expected, $actual );
+$this->assertSame( $expected, $actual ); // Strict
+
+// Típus
+$this->assertIsString( $value );
+$this->assertIsInt( $value );
+$this->assertIsArray( $value );
+$this->assertIsBool( $value );
+$this->assertIsObject( $value );
+$this->assertNull( $value );
+
+// Logikai
+$this->assertTrue( $value );
+$this->assertFalse( $value );
+
+// Üresség
+$this->assertEmpty( $value );
+$this->assertNotEmpty( $value );
+```
+
+### Tömb assertions
+
+```php
+// Tömb tartalom
+$this->assertContains( 'apple', $array );
+$this->assertNotContains( 'banana', $array );
+$this->assertCount( 3, $array );
+$this->assertArrayHasKey( 'name', $array );
+
+// Tömb egyenlőség
+$this->assertEqualsCanonicalizing( $expected, $actual ); // Sorrend nem számít
+```
+
+### String assertions
+
+```php
+$this->assertStringContainsString( 'hello', $string );
+$this->assertStringStartsWith( 'Hello', $string );
+$this->assertStringEndsWith( 'World', $string );
+$this->assertMatchesRegularExpression( '/^Hello/', $string );
+```
+
+### Objektum assertions
+
+```php
+$this->assertInstanceOf( User::class, $object );
+$this->assertObjectHasProperty( 'name', $object );
+```
+
+### Exception assertions
+
+```php
+public function test_exception_is_thrown() {
+    $this->expectException( InvalidArgumentException::class );
+    $this->expectExceptionMessage( 'Invalid value' );
+
+    throw new InvalidArgumentException( 'Invalid value' );
+}
+```
+
+## WordPress specifikus tesztek
+
+### Post tesztelés
+
+```php
+class PostTest extends WP_UnitTestCase {
+
+    public function test_can_create_post() {
+        $post_id = $this->factory->post->create( [
+            'post_title'   => 'Test Post',
+            'post_content' => 'Test content',
+            'post_status'  => 'publish',
+        ] );
+
+        $this->assertIsInt( $post_id );
+        $this->assertGreaterThan( 0, $post_id );
+
+        $post = get_post( $post_id );
+        $this->assertEquals( 'Test Post', $post->post_title );
+    }
+
+    public function test_can_update_post_meta() {
+        $post_id = $this->factory->post->create();
+
+        update_post_meta( $post_id, 'custom_field', 'custom_value' );
+
+        $this->assertEquals(
+            'custom_value',
+            get_post_meta( $post_id, 'custom_field', true )
+        );
+    }
+}
+```
+
+### User tesztelés
+
+```php
+class UserTest extends WP_UnitTestCase {
+
+    public function test_can_create_user() {
+        $user_id = $this->factory->user->create( [
+            'user_login' => 'testuser',
+            'user_email' => 'test@example.com',
+            'role'       => 'editor',
+        ] );
+
+        $user = get_user_by( 'id', $user_id );
+
+        $this->assertEquals( 'testuser', $user->user_login );
+        $this->assertTrue( in_array( 'editor', $user->roles, true ) );
+    }
+
+    public function test_user_capabilities() {
+        $user_id = $this->factory->user->create( [ 'role' => 'editor' ] );
+        $user    = new WP_User( $user_id );
+
+        $this->assertTrue( $user->has_cap( 'edit_posts' ) );
+        $this->assertFalse( $user->has_cap( 'manage_options' ) );
+    }
+}
+```
+
+### Taxonomy tesztelés
+
+```php
+class TaxonomyTest extends WP_UnitTestCase {
+
+    public function test_can_create_term() {
+        $term = $this->factory->term->create_and_get( [
+            'taxonomy' => 'category',
+            'name'     => 'Test Category',
+        ] );
+
+        $this->assertInstanceOf( WP_Term::class, $term );
+        $this->assertEquals( 'Test Category', $term->name );
+    }
+}
+```
+
+### AJAX tesztelés
+
+```php
+class AjaxTest extends WP_Ajax_UnitTestCase {
+
+    public function test_ajax_handler() {
+        // Admin bejelentkeztetése
+        $this->_setRole( 'administrator' );
+
+        // POST adatok beállítása
+        $_POST['action'] = 'my_ajax_action';
+        $_POST['data']   = 'test';
+        $_POST['nonce']  = wp_create_nonce( 'my_nonce' );
+
+        // AJAX hívás
+        try {
+            $this->_handleAjax( 'my_ajax_action' );
+        } catch ( WPAjaxDieContinueException $e ) {
+            // Normális viselkedés
+        }
+
+        // Válasz ellenőrzése
+        $response = json_decode( $this->_last_response );
+        $this->assertTrue( $response->success );
+    }
+}
+```
+
+### REST API tesztelés
+
+```php
+class RestApiTest extends WP_UnitTestCase {
+
+    public function test_rest_endpoint() {
+        // Post létrehozása
+        $post_id = $this->factory->post->create( [
+            'post_status' => 'publish',
+        ] );
+
+        // REST request
+        $request  = new WP_REST_Request( 'GET', '/wp/v2/posts/' . $post_id );
+        $response = rest_do_request( $request );
+
+        $this->assertEquals( 200, $response->get_status() );
+
+        $data = $response->get_data();
+        $this->assertEquals( $post_id, $data['id'] );
+    }
+
+    public function test_custom_endpoint() {
+        $request  = new WP_REST_Request( 'GET', '/my-plugin/v1/data' );
+        $response = rest_do_request( $request );
+
+        $this->assertEquals( 200, $response->get_status() );
+        $this->assertArrayHasKey( 'success', $response->get_data() );
+    }
+}
+```
+
+## Fixtures és Setup
+
+### setUp és tearDown
+
+```php
+class MyPluginTest extends WP_UnitTestCase {
+
+    private $post_id;
+
+    public function setUp(): void {
+        parent::setUp();
+
+        // Teszt előkészítés
+        $this->post_id = $this->factory->post->create();
+    }
+
+    public function tearDown(): void {
+        // Takarítás
+        wp_delete_post( $this->post_id, true );
+
+        parent::tearDown();
+    }
+
+    public function test_post_exists() {
+        $this->assertNotNull( get_post( $this->post_id ) );
+    }
+}
+```
+
+### setUpBeforeClass
+
+```php
+class DatabaseTest extends WP_UnitTestCase {
+
+    private static $table_name;
+
+    public static function setUpBeforeClass(): void {
+        parent::setUpBeforeClass();
+
+        global $wpdb;
+        self::$table_name = $wpdb->prefix . 'test_table';
+
+        // Tábla létrehozása egyszer
+        $wpdb->query( "CREATE TABLE " . self::$table_name . " (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255)
+        )" );
+    }
+
+    public static function tearDownAfterClass(): void {
+        global $wpdb;
+        $wpdb->query( "DROP TABLE IF EXISTS " . self::$table_name );
+
+        parent::tearDownAfterClass();
+    }
+}
+```
+
+## Data Providers
+
+```php
+class ValidationTest extends WP_UnitTestCase {
+
+    /**
+     * @dataProvider emailProvider
+     */
+    public function test_email_validation( string $email, bool $expected ) {
+        $this->assertEquals( $expected, is_email( $email ) !== false );
+    }
+
+    public function emailProvider(): array {
+        return [
+            'valid email'      => [ 'test@example.com', true ],
+            'invalid email'    => [ 'invalid-email', false ],
+            'another valid'    => [ 'user@domain.org', true ],
+            'empty string'     => [ '', false ],
+            'with subdomain'   => [ 'test@sub.example.com', true ],
+        ];
+    }
+}
+```
+
+## Mocking
+
+### Mock objektumok
+
+```php
+public function test_with_mock() {
+    $mock = $this->createMock( MyService::class );
+
+    $mock->expects( $this->once() )
+         ->method( 'getData' )
+         ->willReturn( [ 'key' => 'value' ] );
+
+    $result = $mock->getData();
+
+    $this->assertEquals( [ 'key' => 'value' ], $result );
+}
+```
+
+### Stub objektumok
+
+```php
+public function test_with_stub() {
+    $stub = $this->createStub( Repository::class );
+
+    $stub->method( 'find' )
+         ->willReturn( new User( [ 'name' => 'John' ] ) );
+
+    $service = new UserService( $stub );
+    $user    = $service->getUser( 1 );
+
+    $this->assertEquals( 'John', $user->name );
+}
+```
+
+### WordPress függvények mocking
+
+```php
+// WP_Mock könyvtár használatával
+public function test_wp_function_mock() {
+    \WP_Mock::userFunction( 'get_option' )
+        ->once()
+        ->with( 'my_option' )
+        ->andReturn( 'my_value' );
+
+    $result = get_option( 'my_option' );
+
+    $this->assertEquals( 'my_value', $result );
+}
+```
+
+## Hook tesztelés
+
+```php
+class HooksTest extends WP_UnitTestCase {
+
+    public function test_filter_modifies_content() {
+        // Filter regisztrálása (pluginban)
+        add_filter( 'the_content', function( $content ) {
+            return $content . '<p>Added by plugin</p>';
+        } );
+
+        $result = apply_filters( 'the_content', 'Original' );
+
+        $this->assertStringContainsString( 'Added by plugin', $result );
+    }
+
+    public function test_action_is_fired() {
+        $fired = false;
+
+        add_action( 'my_plugin_action', function() use ( &$fired ) {
+            $fired = true;
+        } );
+
+        do_action( 'my_plugin_action' );
+
+        $this->assertTrue( $fired );
+    }
+}
+```
+
+## Coverage (lefedettség)
+
+### Coverage futtatás
+
+```bash
+# HTML report
+./vendor/bin/phpunit --coverage-html coverage/
+
+# Text output
+./vendor/bin/phpunit --coverage-text
+
+# Clover XML (CI-hez)
+./vendor/bin/phpunit --coverage-clover coverage.xml
+```
+
+### Coverage szűrés
+
+```xml
+<coverage>
+    <include>
+        <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+        <file>./src/bootstrap.php</file>
+        <directory>./src/views</directory>
+    </exclude>
+</coverage>
+```
+
+## CI/CD integráció
+
+### GitHub Actions
+
+```yaml
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Install WP Test Suite
+        run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit --coverage-clover coverage.xml
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+```
+
+## Hasznos parancsok
+
+```bash
+# Összes teszt futtatása
+./vendor/bin/phpunit
+
+# Specifikus teszt fájl
+./vendor/bin/phpunit tests/Unit/MyTest.php
+
+# Specifikus teszt metódus
+./vendor/bin/phpunit --filter test_my_method
+
+# Testsuite futtatása
+./vendor/bin/phpunit --testsuite Unit
+
+# Verbose output
+./vendor/bin/phpunit --verbose
+
+# Stop on failure
+./vendor/bin/phpunit --stop-on-failure
+```
+
+## Források
+
+- [PHPUnit hivatalos oldal](https://phpunit.de/)
+- [PHPUnit dokumentáció](https://docs.phpunit.de/)
+- [WordPress Test Handbook](https://make.wordpress.org/core/handbook/testing/automated-testing/phpunit/)
+- [WP Test Utils](https://github.com/Yoast/wp-test-utils)

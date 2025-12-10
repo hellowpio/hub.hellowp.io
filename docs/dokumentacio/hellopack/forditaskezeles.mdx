@@ -1,0 +1,254 @@
+---
+title: Fordításkezelés
+description: HelloPack központosított fordításkezelő rendszer használata
+keywords:
+  - hellopack
+  - fordítás
+  - translation
+  - nyelvi fájlok
+  - loco translate
+sidebar_label: Fordításkezelés
+sidebar_position: 6
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
+
+# <FontAwesomeIcon icon="fa-duotone fa-language text-primary" /> HelloPack Fordításkezelő
+
+A HelloPack 2.2.0 verziójától kezdve egy teljes körű fordításkezelő rendszert kínál, amely lehetővé teszi a bővítmények és témák fordításainak központosított kezelését, telepítését és frissítését.
+
+## Áttekintés
+
+A fordításkezelő rendszer a következő előnyöket nyújtja:
+
+- **Központosított tárolás**: Külön könyvtár (`wp-content/languages/hellowp/`) a fordítások számára
+- **Biztonságos frissítések**: WordPress automatikus frissítések nem írják felül a HelloPack fordításokat
+- **Egy kattintásos telepítés**: Fordítások egyszerű telepítése és frissítése
+- **Loco Translate integráció**: Fordítások szerkesztése közvetlenül a Loco Translate pluginból
+- **Hangnem választás**: Formális/informális hangnem támogatása (magyar, német, stb.)
+
+## Fordítások telepítése
+
+### 1. Fordítások böngészése
+
+Navigálj a **HelloPack → Fordítások** menüpontra a WordPress adminban.
+
+<BrowserWindow url="https://peldaweboldal.hu/wp-admin/admin.php?page=hellopack-translations">
+  <img src="/img/forditasok.png" alt="HelloPack fordítások kezelő felület"></img>
+</BrowserWindow>
+
+A fordítások oldalon található:
+- **Keresőmező**: Bővítmény/téma név vagy text domain alapján kereshetsz
+- **Nyelv szűrő**: Szűrhetsz a kívánt nyelvre (pl. Magyar)
+- **Típus váltó**: Válthatsz bővítmények és témák fordításai között
+
+### 2. Fordítás telepítése
+
+1. Keresd meg a kívánt bővítményt vagy témát
+2. Válaszd ki a nyelvet a legördülő menüből
+3. Válaszd ki a hangnemet (ha elérhető):
+   - **Formális**: Magázó forma (Ön, Önnek)
+   - **Informális**: Tegező forma (Te, Neked)
+4. Kattints a **Telepítés** gombra
+5. Várj míg a telepítés befejeződik
+
+:::tip Hangnem választás
+A hangnem választás jelenleg a magyar és német nyelvnél érhető el. Ha más nyelvet választasz, a hangnem választó nem jelenik meg.
+:::
+
+### 3. Fordítás frissítése
+
+Ha egy fordításnak új verziója érhető el:
+1. A **Telepítés** gomb helyett **Frissítés** gomb jelenik meg
+2. Kattints a **Frissítés** gombra
+3. A rendszer letölti és telepíti az új verziót
+
+### 4. Fordítás törlése
+
+Egy telepített fordítás törléséhez:
+1. Kattints a **Törlés** gombra a fordítás mellett
+2. Erősítsd meg a törlést
+3. A fordítás fájlok eltávolításra kerülnek
+
+## HelloPack fordítási könyvtár
+
+### Könyvtárstruktúra
+
+A HelloPack fordítások a következő könyvtárstruktúrában tárolódnak:
+
+```
+wp-content/languages/hellowp/
+├── plugins/
+│   ├── elementor-pro-hu_HU.mo
+│   ├── elementor-pro-hu_HU.po
+│   ├── elementor-pro-hu_HU.l10n.php
+│   ├── acf-pro-hu_HU.mo
+│   └── ...
+└── themes/
+    ├── hello-elementor-hu_HU.mo
+    └── ...
+```
+
+### Fájl típusok
+
+A fordítási könyvtár három típusú fájlt tartalmaz:
+
+- **`.po` fájl**: Szerkeszthető fordítási fájl (gettext formátum)
+- **`.mo` fájl**: Lefordított bináris fájl (WordPress által használt)
+- **`.l10n.php` fájl**: PHP array formátumú fordítás (WordPress 6.5+ gyorsabb betöltés)
+
+:::info WordPress 6.5+ optimalizáció
+A `.l10n.php` fájlok jelentősen gyorsabb betöltési időt biztosítanak WordPress 6.5 és újabb verziókon. A HelloPack automatikusan létrehozza ezeket a fájlokat.
+:::
+
+## Loco Translate integráció
+
+A HelloPack automatikusan integrálódik a **Loco Translate** pluginnal, ha az telepítve van.
+
+### Automatikus szinkronizálás
+
+A rendszer automatikusan:
+1. **Szimbolikus linkeket** hoz létre a HelloPack fordításokból a Loco könyvtárába
+2. Ha a symlink nem működik, **másolja** a fájlokat
+3. **Kétirányú szinkronizálást** biztosít: Loco-ban végzett módosítások visszakerülnek a HelloPack könyvtárba
+
+### Fordítások szerkesztése Loco-val
+
+1. Telepíts egy fordítást a HelloPack fordítás kezelőből
+2. Nyisd meg a **Loco Translate → Plugins** vagy **Themes** menüt
+3. Válaszd ki a bővítményt/témát
+4. A HelloPack fordítások **"Custom"** helyként jelennek meg
+5. Szerkeszd a fordításokat a megszokott módon
+6. Mentés után a változások automatikusan visszakerülnek a HelloPack könyvtárba
+
+:::tip Együttműködés
+A Loco Translate saját "Custom" könyvtára (`wp-content/languages/loco/`) mellett működik a HelloPack könyvtár. Mindkettő használható egymás mellett.
+:::
+
+## Fordítás prioritás
+
+A WordPress a következő sorrendben keresi a fordításokat:
+
+1. **HelloPack fordítások** (`wp-content/languages/hellowp/`)
+2. WordPress rendszer fordítások (`wp-content/languages/plugins/` vagy `/themes/`)
+3. Bővítmény/téma saját fordítások (plugin/theme könyvtárban)
+
+:::success Prioritás
+A HelloPack fordítások **mindig elsőbbséget élveznek**, így garantált, hogy a HelloPack fordítások betöltődnek, még ha más forrásból is elérhető fordítás.
+:::
+
+## Keresés és szűrés
+
+### Keresés név vagy text domain alapján
+
+A keresőmező használatával kereshetsz:
+- **Bővítmény/téma név szerint**: pl. "Elementor"
+- **Text domain szerint**: pl. "elementor-pro"
+- **Leírás tartalom szerint**: A keresés a bővítmény leírásában is keres
+
+### Nyelv szűrés
+
+A nyelv szűrővel:
+1. Válaszd ki a kívánt nyelvet a legördülő menüből
+2. Csak az adott nyelven elérhető fordítások jelennek meg
+3. "Összes nyelv" választásával minden elérhető fordítás látható
+
+## Tömeges műveletek
+
+### Összes fordítás frissítése
+
+Hamarosan elérhető funkció: Egyetlen kattintással frissítheted az összes telepített fordítást.
+
+### Exportálás és importálás
+
+Tervezett funkció: Fordítások mentése és visszaállítása backup-ból.
+
+## Technikai információk
+
+### Rendszerkövetelmények
+
+- **WordPress**: 5.1 vagy újabb
+- **PHP**: 7.4 vagy újabb
+- **Lemezterület**: Változó (fordításonként ~100KB - 2MB)
+- **Loco Translate** (opcionális): Bármely verzió
+
+### Kompatibilitás
+
+A fordításkezelő kompatibilis:
+- ✅ WordPress 6.5+ (optimalizált `.l10n.php` támogatással)
+- ✅ WordPress 5.1 - 6.4 (hagyományos `.mo` fájlokkal)
+- ✅ Multisite telepítésekkel
+- ✅ Összes népszerű fordítás pluginnal (Loco Translate, WPML, Polylang, stb.)
+
+## Hibaelhárítás
+
+### Fordítások nem jelennek meg
+
+Ha a fordítások nem töltődnek be:
+
+1. **Ellenőrizd a fájljogosultságokat**:
+   ```bash
+   chmod 755 wp-content/languages/hellowp/
+   chmod 644 wp-content/languages/hellowp/plugins/*.mo
+   ```
+
+2. **Töröld a WordPress cache-t**:
+   - Használj cache plugin-t a cache törléséhez
+   - Vagy deaktiváld/aktiváld újra a bővítményt
+
+3. **Ellenőrizd a debug log-ot**:
+   - Engedélyezd a WordPress debug módot
+   - Nézd meg a `wp-content/debug.log` fájlt
+
+### Loco Translate nem látja a fordításokat
+
+Ha a Loco Translate nem mutatja a HelloPack fordításokat:
+
+1. **Ellenőrizd hogy a Loco Translate aktív-e**
+2. **Frissítsd az oldalt** (Ctrl+F5 vagy Cmd+Shift+R)
+3. **Nézd meg a Custom lokációt** a Loco Translate-ben
+4. **Ellenőrizd a szimbolikus linkeket**:
+   ```bash
+   ls -la wp-content/languages/loco/plugins/
+   ```
+
+### "Cannot write file" hiba
+
+Ha nem tudod telepíteni a fordításokat:
+
+1. **Fájljogosultságok ellenőrzése**:
+   ```bash
+   chown -R www-data:www-data wp-content/languages/hellowp/
+   ```
+
+2. **WordPress fájlrendszer típusa**:
+   - Ellenőrizd hogy a `FS_METHOD` helyes-e a `wp-config.php`-ban
+   - Lehet hogy FTP credentials szükségesek
+
+## Gyakori kérdések
+
+### Mi a különbség a HelloPack és a WordPress fordítások között?
+
+A WordPress automatikus fordítás frissítések **felülírhatják** a fordításokat. A HelloPack fordítások egy **védett könyvtárban** vannak, így biztonságban maradnak.
+
+### Használhatok egyéni fordításokat a HelloPack mellett?
+
+Igen! A HelloPack fordítások elsőbbséget élveznek, de használhatsz más forrásból származó fordításokat is. A WordPress merge-eli őket.
+
+### Mi történik ha törlöm a HelloPack plugint?
+
+A fordítások megmaradnak a `wp-content/languages/hellowp/` könyvtárban. Ha újratelepíted a HelloPack-et, továbbra is használhatod őket.
+
+### Létrehozhatok saját fordításokat?
+
+Igen! Használd a Loco Translate-et vagy másold be a saját `.po/.mo` fájljaidat a `wp-content/languages/hellowp/plugins/` vagy `/themes/` könyvtárba.
+
+### Támogatja a WP-CLI-t?
+
+Tervezett funkció a WP-CLI parancsok támogatása fordítások kezelésére.
+
+---
+
+**Utoljára frissítve**: 2025. október 21.
+**HelloPack verzió**: 2.2.0+

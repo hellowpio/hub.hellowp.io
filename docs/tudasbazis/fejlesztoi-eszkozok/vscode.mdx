@@ -1,0 +1,406 @@
+---
+title: Visual Studio Code
+description: A legnépszerűbb kódszerkesztő WordPress fejlesztéshez, hasznos bővítményekkel és beállításokkal.
+keywords:
+  - vscode
+  - visual studio code
+  - ide
+  - kódszerkesztő
+  - wordpress fejlesztés
+sidebar_label: VS Code
+sidebar_position: 23
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-code text-primary" /> Visual Studio Code
+
+A [Visual Studio Code](https://code.visualstudio.com/) (VS Code) a Microsoft által fejlesztett ingyenes, nyílt forráskódú kódszerkesztő. Gyors, testreszabható és rengeteg bővítménnyel rendelkezik, ami ideálissá teszi WordPress fejlesztéshez.
+
+![VS Code a gyakorlatban](/img/pelda-konyvtar.png)
+
+## Miért VS Code?
+
+- **Ingyenes és nyílt forráskódú** - Korlátlanul használható bármilyen projekthez
+- **Könnyű és gyors** - Gyorsan indul és reagál, még nagyobb projekteknél is
+- **Beépített Git támogatás** - Verziókezelés közvetlenül a szerkesztőből
+- **Integrált terminál** - Parancssor a szerkesztőn belül
+- **IntelliSense** - Intelligens kódkiegészítés és hibakeresés
+- **Gazdag bővítményrendszer** - Több ezer bővítmény WordPress fejlesztéshez
+
+## Telepítés
+
+Töltsd le a VS Code-ot a hivatalos oldalról: [code.visualstudio.com](https://code.visualstudio.com/)
+
+Elérhető Windows, macOS és Linux rendszerekre.
+
+### Telepítés parancssorból (macOS)
+
+```bash
+# Homebrew használatával
+brew install --cask visual-studio-code
+```
+
+### Telepítés parancssorból (Linux)
+
+```bash
+# Ubuntu/Debian
+sudo apt install code
+
+# Snap használatával
+sudo snap install code --classic
+```
+
+## Ajánlott bővítmények WordPress fejlesztéshez
+
+### PHP fejlesztés
+
+#### PHP Intelephense
+
+A legjobb PHP nyelvi szerver VS Code-hoz. Intelligens kódkiegészítést, definícióra ugrást és hibakeresést biztosít.
+
+```
+ext install bmewburn.vscode-intelephense-client
+```
+
+**Beállítások (settings.json):**
+```json
+{
+    "intelephense.environment.phpVersion": "8.2",
+    "intelephense.files.associations": ["*.php", "*.module", "*.inc"],
+    "intelephense.stubs": [
+        "apache",
+        "bcmath",
+        "bz2",
+        "Core",
+        "curl",
+        "date",
+        "dom",
+        "fileinfo",
+        "filter",
+        "gd",
+        "hash",
+        "iconv",
+        "intl",
+        "json",
+        "libxml",
+        "mbstring",
+        "mcrypt",
+        "mysql",
+        "mysqli",
+        "password",
+        "pcntl",
+        "pcre",
+        "PDO",
+        "pdo_mysql",
+        "Phar",
+        "readline",
+        "regex",
+        "session",
+        "SimpleXML",
+        "soap",
+        "sockets",
+        "sodium",
+        "SPL",
+        "standard",
+        "superglobals",
+        "tokenizer",
+        "wordpress",
+        "xml",
+        "xmlreader",
+        "xmlwriter",
+        "zip",
+        "zlib"
+    ]
+}
+```
+
+#### PHP Debug
+
+Xdebug integráció VS Code-hoz a hibakereséshez.
+
+```
+ext install xdebug.php-debug
+```
+
+**launch.json konfiguráció:**
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}"
+            }
+        }
+    ]
+}
+```
+
+#### PHP CS Fixer
+
+Automatikus kódformázás PHP szabványok szerint.
+
+```
+ext install junstyle.php-cs-fixer
+```
+
+### WordPress specifikus
+
+#### WordPress Snippets
+
+Gyakran használt WordPress kódrészletek gyors beszúrása.
+
+```
+ext install wordpresstoolbox.wordpress-toolbox
+```
+
+#### WordPress Hooks IntelliSense
+
+IntelliSense támogatás WordPress hook-okhoz (action és filter).
+
+```
+ext install developer.developer-wordpress-hooks-intellisense
+```
+
+#### PHP DocBlocker
+
+Automatikus DocBlock generálás PHP függvényekhez és osztályokhoz.
+
+```
+ext install neilbrayfield.php-docblocker
+```
+
+### Frontend fejlesztés
+
+#### ESLint
+
+JavaScript kódellenőrzés és formázás.
+
+```
+ext install dbaeumer.vscode-eslint
+```
+
+#### Prettier
+
+Kódformázó több nyelvhez (JS, CSS, HTML, stb.).
+
+```
+ext install esbenp.prettier-vscode
+```
+
+#### Tailwind CSS IntelliSense
+
+Ha Tailwind CSS-t használsz, ez a bővítmény nélkülözhetetlen.
+
+```
+ext install bradlc.vscode-tailwindcss
+```
+
+### Hasznos általános bővítmények
+
+#### GitLens
+
+Fejlett Git integráció - ki, mikor és miért módosította a kódot.
+
+```
+ext install eamodio.gitlens
+```
+
+#### Auto Rename Tag
+
+HTML/XML tag-ek automatikus átnevezése.
+
+```
+ext install formulahendry.auto-rename-tag
+```
+
+#### DotENV
+
+Szintaxis kiemelés .env fájlokhoz.
+
+```
+ext install mikestead.dotenv
+```
+
+#### EditorConfig
+
+EditorConfig támogatás a projekt-szintű kódformázási szabályokhoz.
+
+```
+ext install editorconfig.editorconfig
+```
+
+## Ajánlott beállítások
+
+Hozz létre egy `.vscode/settings.json` fájlt a projektedben:
+
+```json
+{
+    // Editor beállítások
+    "editor.fontSize": 14,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    // PHP beállítások
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+        "editor.formatOnSave": false
+    },
+
+    // Fájl társítások
+    "files.associations": {
+        "*.php": "php",
+        "*.module": "php"
+    },
+
+    // Kizárt mappák
+    "files.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/vendor": true
+    },
+
+    // Keresésből kizárt mappák
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/wp-includes": true,
+        "**/wp-admin": true
+    }
+}
+```
+
+## Hasznos billentyűparancsok
+
+| Parancs | Windows/Linux | macOS |
+|---------|---------------|-------|
+| Parancs paletta | `Ctrl+Shift+P` | `Cmd+Shift+P` |
+| Gyors fájlnyitás | `Ctrl+P` | `Cmd+P` |
+| Keresés fájlokban | `Ctrl+Shift+F` | `Cmd+Shift+F` |
+| Terminál megnyitása | `Ctrl+` ` | `Cmd+` ` |
+| Definícióra ugrás | `F12` | `F12` |
+| Több kurzor | `Ctrl+D` | `Cmd+D` |
+| Sor kommentelése | `Ctrl+/` | `Cmd+/` |
+| Fájl mentése | `Ctrl+S` | `Cmd+S` |
+| Összes mentése | `Ctrl+K S` | `Cmd+Option+S` |
+| Oldalsáv be/ki | `Ctrl+B` | `Cmd+B` |
+
+## Munkafolyamatok
+
+### WordPress plugin fejlesztés
+
+1. Nyisd meg a plugin mappáját VS Code-ban
+2. Használd az integrált terminált a WP-CLI parancsokhoz
+3. A PHP Intelephense automatikusan felismeri a WordPress függvényeket
+4. Állítsd be a hibakeresést Xdebug-gal
+
+### Sage téma fejlesztés
+
+```json
+// .vscode/settings.json a Sage témához
+{
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+    },
+    "files.associations": {
+        "*.blade.php": "blade"
+    }
+}
+```
+
+Telepítsd a Blade Formatter bővítményt:
+```
+ext install shufo.vscode-blade-formatter
+```
+
+### Bedrock projekt
+
+```json
+// .vscode/settings.json Bedrock projekthez
+{
+    "intelephense.environment.includePaths": [
+        "web/wp",
+        "web/app/plugins",
+        "web/app/themes"
+    ],
+    "php.validate.executablePath": "/usr/local/bin/php"
+}
+```
+
+## VS Code a terminálon
+
+A VS Code telepít egy `code` parancsot is:
+
+```bash
+# Mappa megnyitása
+code /path/to/project
+
+# Fájl megnyitása
+code file.php
+
+# Aktuális mappa megnyitása
+code .
+
+# Új ablakban megnyitás
+code -n /path/to/project
+
+# Összehasonlítás
+code --diff file1.php file2.php
+```
+
+## Workspace beállítások
+
+Több mappát is megnyithatsz egyetlen workspace-ben. Hozz létre egy `.code-workspace` fájlt:
+
+```json
+{
+    "folders": [
+        {
+            "name": "Plugin",
+            "path": "wp-content/plugins/my-plugin"
+        },
+        {
+            "name": "Theme",
+            "path": "wp-content/themes/my-theme"
+        }
+    ],
+    "settings": {
+        "editor.tabSize": 4
+    }
+}
+```
+
+## Távoli fejlesztés
+
+A VS Code támogatja a távoli fejlesztést SSH-n, Docker-en vagy WSL-en keresztül.
+
+### Remote - SSH
+
+```
+ext install ms-vscode-remote.remote-ssh
+```
+
+Használatával közvetlenül szerkesztheted a szerveren lévő fájlokat.
+
+### Dev Containers
+
+```
+ext install ms-vscode-remote.remote-containers
+```
+
+Docker konténerben futó fejlesztési környezethez.
+
+## Források
+
+- [VS Code dokumentáció](https://code.visualstudio.com/docs)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/vscode)
+- [VS Code billentyűparancsok](https://code.visualstudio.com/docs/getstarted/keybindings)
+- [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/)

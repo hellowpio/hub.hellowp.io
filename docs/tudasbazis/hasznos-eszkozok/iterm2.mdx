@@ -1,0 +1,294 @@
+---
+title: iTerm2 - Terminál macOS-re
+description: iTerm2 terminál használata macOS-en - a beépített Terminal app legjobb alternatívája fejlesztőknek.
+keywords:
+  - iterm2
+  - terminal
+  - terminál
+  - macos
+  - command line
+sidebar_label: iTerm2
+sidebar_position: 12
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-rectangle-terminal text-primary" /> iTerm2 - Terminál macOS-re
+
+Az **iTerm2** az alapértelmezett Terminal alkalmazás legjobb helyettesítője macOS-en. Ingyenes, nyílt forráskódú és tele van olyan funkciókkal, amiket nem is tudtál, hogy hiányolsz.
+
+:::tip Miért válaszd az iTerm2-t?
+- **Ingyenes és nyílt forráskódú** - GPL-2.0 licenc
+- **Split panes** - Több terminál egy ablakban
+- **Hotkey ablak** - Bármikor elérhető egy gombnyomásra
+- **Képek megjelenítése** - Közvetlenül a terminálban
+:::
+
+---
+
+## Főbb funkciók
+
+### Panelek és ablakok
+
+- **Split Panes** - Osszd fel a terminált vízszintesen és függőlegesen
+- **Tabs** - Több munkamenet egy ablakban
+- **Multiple windows** - Több ablak egyszerre
+- **Inactive dimming** - Inaktív panelek halványítása
+
+### Hotkey ablak
+
+Regisztrálj egy gyorsbillentyűt, amely bármikor előhívja az iTerm2-t:
+- Visor/Guake/Yakuake stílusú működés
+- Dedikált hotkey ablak
+- Egyetlen gombnyomásra elérhető terminál
+
+### Keresés
+
+- **Regex keresés** - Reguláris kifejezésekkel
+- **Highlight matches** - Találatok kiemelése
+- **Search history** - Keresési előzmények
+
+### Autocomplete
+
+Automatikus kiegészítés:
+- Korábbi parancsok alapján
+- Fájlnevek alapján
+- Felhasználói szótár alapján
+
+### Shell integráció
+
+Fejlett shell integráció, amely lehetővé teszi:
+- Parancs kimenetek külön kezelését
+- Automatikus profil váltást
+- Értesítések hosszú futású parancsokról
+
+### Képek megjelenítése
+
+Az iTerm2 képes képek megjelenítésére közvetlenül a terminálban:
+- PNG, JPEG, GIF támogatás
+- Animált GIF-ek is működnek!
+- `imgcat` parancs használatával
+
+### Jelszókezelő
+
+Beépített jelszókezelő:
+- macOS Keychain integráció
+- Biztonságos tárolás
+- Csak jelszó prompt-nál aktiválódik
+
+---
+
+## Rendszerkövetelmények
+
+| Követelmény | Minimum |
+|-------------|---------|
+| **macOS verzió** | 10.14 (Mojave) vagy újabb |
+| **Architektúra** | Intel és Apple Silicon |
+
+---
+
+## Telepítés
+
+### Homebrew-val (ajánlott)
+
+```bash
+brew install --cask iterm2
+```
+
+### Közvetlen letöltés
+
+1. Látogass el: [iterm2.com/downloads](https://iterm2.com/downloads.html)
+2. Töltsd le a Stable verziót
+3. Húzd az Applications mappába
+
+### Verziók
+
+| Verzió | Leírás |
+|--------|--------|
+| **Stable** | Éles használatra ajánlott |
+| **Beta** | Új funkciók tesztelése |
+| **Nightly** | Legfrissebb fejlesztések |
+
+---
+
+## Első lépések
+
+### 1. Shell integráció telepítése
+
+1. Indítsd el az iTerm2-t
+2. **iTerm2** → **Install Shell Integration**
+3. Kövesd az utasításokat
+
+### 2. Hotkey ablak beállítása
+
+1. **Preferences** → **Keys** → **Hotkey**
+2. Pipáld be: **Show/hide all windows with a system-wide hotkey**
+3. Állítsd be a kívánt billentyűkombinációt (pl. `Ctrl + ~`)
+
+### 3. Panelek használata
+
+| Gyorsbillentyű | Művelet |
+|----------------|---------|
+| `Cmd + D` | Függőleges felosztás |
+| `Cmd + Shift + D` | Vízszintes felosztás |
+| `Cmd + [` / `Cmd + ]` | Váltás panelek között |
+| `Cmd + Opt + Arrow` | Navigáció panelek között |
+
+### 4. Tab-ok kezelése
+
+| Gyorsbillentyű | Művelet |
+|----------------|---------|
+| `Cmd + T` | Új tab |
+| `Cmd + W` | Tab bezárása |
+| `Cmd + Number` | Adott tab-ra ugrás |
+| `Cmd + Shift + [` / `]` | Váltás tab-ok között |
+
+---
+
+## Testreszabás
+
+### Profilok
+
+Hozz létre különböző profilokat:
+- Színséma
+- Font
+- Ablakméret
+- Shell
+- Indítási parancs
+
+1. **Preferences** → **Profiles**
+2. Kattints a **+** gombra
+3. Állítsd be a kívánt opciókat
+
+### Színsémák
+
+Beépített és letölthető témák:
+
+1. **Preferences** → **Profiles** → **Colors**
+2. **Color Presets...** → Válassz témát
+3. Vagy importálj: [iterm2colorschemes.com](https://iterm2colorschemes.com/)
+
+### Népszerű témák
+
+- **Solarized Dark/Light**
+- **Dracula**
+- **One Dark**
+- **Nord**
+- **Gruvbox**
+
+### Fontok
+
+Ajánlott fontok (Nerd Font variánsok):
+- **MesloLGS NF** - Powerlevel10k ajánlott
+- **Fira Code** - Ligatúrákkal
+- **JetBrains Mono**
+- **Hack**
+
+---
+
+## Prompt testreszabás
+
+### Oh My Zsh
+
+```bash
+# Telepítés
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### Powerlevel10k
+
+```bash
+# Telepítés Oh My Zsh-val
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# Állítsd be a témát ~/.zshrc-ben
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+### Starship
+
+```bash
+# Telepítés
+brew install starship
+
+# Add hozzá a ~/.zshrc végéhez
+eval "$(starship init zsh)"
+```
+
+---
+
+## Hasznos funkciók
+
+### imgcat - Képek megjelenítése
+
+```bash
+# Shell integráció telepítése után
+imgcat image.png
+```
+
+### it2copy / it2paste
+
+```bash
+# Szöveg másolása a vágólapra
+echo "Hello" | it2copy
+
+# Vágólap tartalom beillesztése
+it2paste
+```
+
+### Broadcast input
+
+Ugyanaz a bemenet több panelbe egyszerre:
+1. **Shell** → **Broadcast Input** → **Broadcast Input to All Panes in Current Tab**
+2. Minden panel megkapja amit beírsz
+
+### Instant Replay
+
+Tekintsd vissza a terminál előzményeit:
+1. `Cmd + Opt + B` - Instant Replay indítása
+2. Nyilakkal navigálj az időben
+3. `Esc` - Kilépés
+
+---
+
+## WordPress fejlesztéshez
+
+### Hasznos aliasok
+
+Add hozzá a `~/.zshrc` vagy `~/.bashrc` fájlhoz:
+
+```bash
+# WordPress CLI gyorsbillentyűk
+alias wpp="wp plugin"
+alias wpt="wp theme"
+alias wpu="wp user"
+alias wpdb="wp db"
+
+# Laravel Valet
+alias valet-wp="valet park && valet link"
+
+# Composer
+alias c="composer"
+alias ci="composer install"
+alias cu="composer update"
+```
+
+---
+
+## Alternatívák
+
+| Eszköz | Előny |
+|--------|-------|
+| **Warp** | AI asszisztens, modern |
+| **Alacritty** | GPU-gyorsított, gyors |
+| **Kitty** | GPU-gyorsított, sok funkció |
+| **Terminal.app** | Beépített, nincs telepítés |
+
+---
+
+## Kapcsolódó linkek
+
+- [iTerm2 hivatalos oldal](https://iterm2.com/)
+- [iTerm2 letöltés](https://iterm2.com/downloads.html)
+- [iTerm2 dokumentáció](https://iterm2.com/documentation.html)
+- [iTerm2 színsémák](https://iterm2colorschemes.com/)

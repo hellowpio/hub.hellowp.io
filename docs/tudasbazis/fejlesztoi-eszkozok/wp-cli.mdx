@@ -1,0 +1,721 @@
+---
+title: WP-CLI
+description: WordPress parancssori kezelése WP-CLI segítségével.
+keywords:
+  - wp-cli
+  - cli
+  - parancssori
+  - wordpress
+  - automatizálás
+sidebar_label: WP-CLI
+sidebar_position: 25
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-terminal text-primary" /> WP-CLI - WordPress Parancssori Eszköz
+
+A [WP-CLI](https://wp-cli.org/) a hivatalos parancssori eszköz WordPress kezeléséhez. Lehetővé teszi a WordPress telepítését, frissítését, bővítmények és témák kezelését, adatbázis műveleteket és sok mást - mindezt a böngésző használata nélkül.
+
+## Miért WP-CLI?
+
+- **Gyors** - Sokkal gyorsabb, mint a webes felület
+- **Automatizálható** - Scriptek és CI/CD integráció
+- **Tömeges műveletek** - Több site kezelése egyszerre
+- **SSH elérés** - Távoli szervereken is működik
+- **Bővíthető** - Egyedi parancsok írhatók
+
+## Telepítés
+
+### Linux/macOS
+
+```bash
+# Letöltés
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+# Jogosultság
+chmod +x wp-cli.phar
+
+# Áthelyezés
+sudo mv wp-cli.phar /usr/local/bin/wp
+
+# Ellenőrzés
+wp --info
+```
+
+### macOS (Homebrew)
+
+```bash
+brew install wp-cli
+```
+
+### Windows
+
+```powershell
+# Scoop-pal
+scoop install wp-cli
+
+# Chocolatey-vel
+choco install wp-cli
+```
+
+### Composer
+
+```bash
+composer global require wp-cli/wp-cli-bundle
+```
+
+### Docker
+
+```bash
+docker run -it --rm \
+  -v $(pwd):/var/www/html \
+  wordpress:cli wp --info
+```
+
+## Alapvető parancsok
+
+### WordPress telepítés
+
+```bash
+# WordPress letöltése
+wp core download --locale=hu_HU
+
+# wp-config.php létrehozása
+wp config create \
+  --dbname=wordpress \
+  --dbuser=root \
+  --dbpass=password \
+  --dbhost=localhost
+
+# Adatbázis létrehozása
+wp db create
+
+# WordPress telepítése
+wp core install \
+  --url="http://localhost" \
+  --title="My WordPress Site" \
+  --admin_user=admin \
+  --admin_password=password \
+  --admin_email=admin@example.com
+```
+
+### Verzió információk
+
+```bash
+# WordPress verzió
+wp core version
+
+# WP-CLI verzió
+wp cli version
+
+# PHP verzió
+wp cli info
+```
+
+## Bővítmények kezelése
+
+### Listázás
+
+```bash
+# Összes bővítmény
+wp plugin list
+
+# Aktív bővítmények
+wp plugin list --status=active
+
+# Frissítendő bővítmények
+wp plugin list --update=available
+
+# Táblázat formátum
+wp plugin list --format=table
+
+# JSON formátum
+wp plugin list --format=json
+```
+
+### Telepítés
+
+```bash
+# Plugin telepítése
+wp plugin install akismet
+
+# Telepítés és aktiválás
+wp plugin install woocommerce --activate
+
+# Adott verzió telepítése
+wp plugin install akismet --version=5.0
+
+# ZIP fájlból
+wp plugin install /path/to/plugin.zip
+
+# URL-ből
+wp plugin install https://example.com/plugin.zip
+```
+
+### Aktiválás és deaktiválás
+
+```bash
+# Aktiválás
+wp plugin activate akismet
+
+# Deaktiválás
+wp plugin deactivate akismet
+
+# Összes plugin deaktiválása
+wp plugin deactivate --all
+```
+
+### Frissítés
+
+```bash
+# Egy plugin frissítése
+wp plugin update akismet
+
+# Összes plugin frissítése
+wp plugin update --all
+
+# Dry run (mit frissítene)
+wp plugin update --all --dry-run
+```
+
+### Törlés
+
+```bash
+# Plugin törlése
+wp plugin delete akismet
+
+# Deaktiválás és törlés
+wp plugin deactivate akismet && wp plugin delete akismet
+```
+
+## Témák kezelése
+
+```bash
+# Téma listázás
+wp theme list
+
+# Téma telepítése
+wp theme install flavor --activate
+
+# Téma frissítése
+wp theme update flavor
+
+# Összes téma frissítése
+wp theme update --all
+
+# Téma törlése
+wp theme delete flavor
+
+# Aktív téma
+wp theme status
+```
+
+## WordPress core kezelés
+
+```bash
+# Core frissítése
+wp core update
+
+# Adott verzióra frissítés
+wp core update --version=6.4.2
+
+# Core újratelepítése
+wp core download --force
+
+# Adatbázis frissítése (major update után)
+wp core update-db
+
+# Core integritás ellenőrzése
+wp core verify-checksums
+```
+
+## Felhasználók kezelése
+
+### Listázás
+
+```bash
+# Összes felhasználó
+wp user list
+
+# Adminok
+wp user list --role=administrator
+
+# JSON formátum
+wp user list --format=json
+```
+
+### Létrehozás
+
+```bash
+# Új felhasználó
+wp user create john john@example.com --role=author
+
+# Jelszóval
+wp user create john john@example.com --role=editor --user_pass=securepass
+
+# Admin létrehozása
+wp user create admin admin@example.com --role=administrator --user_pass=adminpass
+```
+
+### Módosítás
+
+```bash
+# Jelszó változtatás
+wp user update admin --user_pass=newpassword
+
+# Email változtatás
+wp user update admin --user_email=new@example.com
+
+# Szerep változtatás
+wp user set-role john administrator
+```
+
+### Törlés
+
+```bash
+# Felhasználó törlése (tartalom átadással)
+wp user delete john --reassign=1
+
+# Tartalom nélkül törlés
+wp user delete john --yes
+```
+
+## Adatbázis műveletek
+
+### Alapok
+
+```bash
+# Adatbázis export
+wp db export backup.sql
+
+# Adatbázis import
+wp db import backup.sql
+
+# SQL lekérdezés
+wp db query "SELECT * FROM wp_options LIMIT 10"
+
+# Tábla optimalizálás
+wp db optimize
+
+# Tábla javítás
+wp db repair
+```
+
+### Search-Replace
+
+```bash
+# URL csere
+wp search-replace 'http://old-domain.com' 'https://new-domain.com'
+
+# Dry run
+wp search-replace 'http://old-domain.com' 'https://new-domain.com' --dry-run
+
+# Specifikus táblákban
+wp search-replace 'old' 'new' wp_posts wp_postmeta
+
+# Regex használata
+wp search-replace 'old' 'new' --regex
+
+# Serialized data kezelése
+wp search-replace 'old' 'new' --precise
+```
+
+### Prefix kezelés
+
+```bash
+# Prefix megjelenítése
+wp db prefix
+
+# Export specifikus táblákkal
+wp db export --tables=wp_posts,wp_postmeta
+```
+
+## Opciók kezelése
+
+```bash
+# Opció lekérése
+wp option get siteurl
+
+# Opció beállítása
+wp option update blogname "My New Site Name"
+
+# JSON opció beállítása
+wp option update my_option '{"key":"value"}' --format=json
+
+# Opció törlése
+wp option delete my_option
+
+# Összes opció (autoload)
+wp option list --autoload=yes
+```
+
+## Tartalom kezelés
+
+### Bejegyzések
+
+```bash
+# Post listázás
+wp post list
+
+# Post létrehozása
+wp post create --post_type=post --post_title="Hello World" --post_status=publish
+
+# Post létrehozása fájlból
+wp post create ./post-content.txt --post_title="My Post" --post_status=publish
+
+# Post törlése
+wp post delete 123
+
+# Összes vázlat törlése
+wp post delete $(wp post list --post_status=draft --format=ids)
+
+# Post meta
+wp post meta get 123 _thumbnail_id
+wp post meta update 123 custom_field "value"
+```
+
+### Taxonómiák
+
+```bash
+# Kategória létrehozása
+wp term create category "My Category" --slug=my-category
+
+# Címke létrehozása
+wp term create post_tag "My Tag"
+
+# Term listázás
+wp term list category
+
+# Term törlése
+wp term delete category 5
+```
+
+### Média
+
+```bash
+# Kép importálása
+wp media import ./image.jpg --post_id=123
+
+# URL-ből importálás
+wp media import https://example.com/image.jpg
+
+# Thumbnail újragenerálás
+wp media regenerate
+
+# Specifikus méret
+wp media regenerate --image_size=thumbnail
+
+# Média listázás
+wp media list
+```
+
+## Cache kezelés
+
+```bash
+# Object cache törlése
+wp cache flush
+
+# Transient törlése
+wp transient delete --all
+
+# Lejárt transient-ek törlése
+wp transient delete --expired
+
+# Rewrite szabályok frissítése
+wp rewrite flush
+```
+
+## Cron kezelés
+
+```bash
+# Cron események listázása
+wp cron event list
+
+# Cron futtatása
+wp cron event run --due-now
+
+# Specifikus esemény futtatása
+wp cron event run wp_scheduled_delete
+
+# Cron ütemezések
+wp cron schedule list
+```
+
+## Multisite
+
+```bash
+# Site listázás
+wp site list
+
+# Új site létrehozása
+wp site create --slug=newsite --title="New Site"
+
+# Site törlése
+wp site delete 2 --yes
+
+# Parancs futtatása minden site-on
+wp site list --field=url | xargs -I {} wp --url={} plugin update --all
+
+# Network admin
+wp network meta get 1 site_name
+```
+
+## WP-CLI konfigurációs fájl
+
+### wp-cli.yml (projekt szintű)
+
+```yaml
+# wp-cli.yml
+path: public
+url: https://example.com
+user: admin
+
+# Parancs alias-ok
+@staging:
+  ssh: staging@server.com/var/www/staging
+  url: https://staging.example.com
+
+@production:
+  ssh: prod@server.com/var/www/production
+  url: https://example.com
+
+# Alapértelmezett értékek
+core download:
+  locale: hu_HU
+
+plugin install:
+  activate: true
+```
+
+### Globális konfiguráció
+
+`~/.wp-cli/config.yml`:
+
+```yaml
+# Globális beállítások
+color: true
+disabled_commands:
+  - db drop
+
+# SSH beállítások
+ssh:
+  default: my-server.com/var/www/html
+```
+
+## SSH alias-ok
+
+```bash
+# wp-cli.yml
+@staging:
+  ssh: user@staging-server.com/var/www/html
+
+# Használat
+wp @staging plugin list
+wp @staging db export - > staging-backup.sql
+```
+
+## Egyedi parancsok
+
+### Egyszerű parancs
+
+```php
+<?php
+/**
+ * Plugin Name: My CLI Commands
+ */
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+
+    /**
+     * Prints a greeting.
+     *
+     * ## OPTIONS
+     *
+     * <name>
+     * : The name of the person to greet.
+     *
+     * ## EXAMPLES
+     *
+     *     wp greet John
+     *
+     * @when after_wp_load
+     */
+    function my_cli_greet_command( $args, $assoc_args ) {
+        list( $name ) = $args;
+        WP_CLI::success( "Hello, {$name}!" );
+    }
+
+    WP_CLI::add_command( 'greet', 'my_cli_greet_command' );
+}
+```
+
+### Osztály alapú parancs
+
+```php
+<?php
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+
+    class My_Plugin_CLI {
+
+        /**
+         * Clears all plugin data.
+         *
+         * ## OPTIONS
+         *
+         * [--yes]
+         * : Skip confirmation.
+         *
+         * ## EXAMPLES
+         *
+         *     wp myplugin clear --yes
+         */
+        public function clear( $args, $assoc_args ) {
+            WP_CLI::confirm( 'Are you sure you want to clear all data?', $assoc_args );
+
+            // Törlési logika...
+
+            WP_CLI::success( 'All data cleared!' );
+        }
+
+        /**
+         * Shows plugin status.
+         */
+        public function status( $args, $assoc_args ) {
+            $data = [
+                [ 'Setting' => 'API Key', 'Value' => get_option( 'my_api_key', 'Not set' ) ],
+                [ 'Setting' => 'Cache', 'Value' => get_option( 'my_cache_enabled' ) ? 'Enabled' : 'Disabled' ],
+            ];
+
+            WP_CLI\Utils\format_items( 'table', $data, [ 'Setting', 'Value' ] );
+        }
+    }
+
+    WP_CLI::add_command( 'myplugin', 'My_Plugin_CLI' );
+}
+```
+
+## Hasznos scriptek
+
+### Backup script
+
+```bash
+#!/bin/bash
+# backup.sh
+
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_DIR="/backups/wordpress"
+
+# Adatbázis backup
+wp db export "${BACKUP_DIR}/db_${DATE}.sql"
+
+# Fájlok backup
+tar -czf "${BACKUP_DIR}/files_${DATE}.tar.gz" wp-content/uploads
+
+# Régi backupok törlése (30 napnál régebbiek)
+find "${BACKUP_DIR}" -type f -mtime +30 -delete
+
+echo "Backup complete: ${DATE}"
+```
+
+### Update script
+
+```bash
+#!/bin/bash
+# update.sh
+
+# Maintenance mode bekapcsolása
+wp maintenance-mode activate
+
+# Core frissítés
+wp core update
+wp core update-db
+
+# Plugin frissítések
+wp plugin update --all
+
+# Téma frissítések
+wp theme update --all
+
+# Cache törlés
+wp cache flush
+wp rewrite flush
+
+# Maintenance mode kikapcsolása
+wp maintenance-mode deactivate
+
+echo "Updates complete!"
+```
+
+### Staging sync script
+
+```bash
+#!/bin/bash
+# sync-from-production.sh
+
+# Production adatbázis lekérése
+wp @production db export - | wp @staging db import -
+
+# URL csere
+wp @staging search-replace 'https://example.com' 'https://staging.example.com'
+
+# Admin jelszó reset staging-en
+wp @staging user update admin --user_pass=stagingpass
+
+echo "Sync complete!"
+```
+
+## Scaffold parancsok
+
+```bash
+# Plugin scaffold
+wp scaffold plugin my-plugin
+
+# Téma scaffold
+wp scaffold _s my-theme
+
+# Child téma
+wp scaffold child-theme my-child --parent_theme=flavor
+
+# Post type
+wp scaffold post-type book --plugin=my-plugin
+
+# Taxonomy
+wp scaffold taxonomy genre --post_types=book --plugin=my-plugin
+
+# Block
+wp scaffold block my-block --plugin=my-plugin
+```
+
+## Package kezelés
+
+```bash
+# Telepített package-ek
+wp package list
+
+# Package telepítése
+wp package install wp-cli/doctor-command
+
+# Package frissítése
+wp package update
+
+# Package eltávolítása
+wp package uninstall wp-cli/doctor-command
+```
+
+### Hasznos package-ek
+
+| Package | Parancs |
+|---------|---------|
+| **doctor** | `wp doctor check` - Egészség ellenőrzés |
+| **profile** | `wp profile` - Teljesítmény profiling |
+| **dist-archive** | `wp dist-archive` - Plugin/téma archívum |
+| **find** | `wp find` - WordPress telepítések keresése |
+
+## Források
+
+- [WP-CLI hivatalos oldal](https://wp-cli.org/)
+- [WP-CLI dokumentáció](https://developer.wordpress.org/cli/commands/)
+- [WP-CLI GitHub](https://github.com/wp-cli/wp-cli)
+- [WP-CLI package index](https://wp-cli.org/package-index/)
+- [WP-CLI handbook](https://make.wordpress.org/cli/handbook/)
