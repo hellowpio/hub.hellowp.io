@@ -11,6 +11,7 @@ sidebar_position: 1
 ---
 
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+import BrowserWindow from "@site/src/components/BrowserWindow";
 
 # <FontAwesomeIcon icon="fa-duotone fa-download text-primary" /> HelloPack letöltése és telepítése
 
@@ -21,37 +22,50 @@ A HelloPack csomagkezelő segítségével egyszerűen kezelheted a prémium Word
 ### 1. Bejelentkezés a HelloConsole-ba
 
 Lépj be a HelloWP.io felületére:
+
 - **URL**: [https://hellowp.io/hu/helloconsole/](https://hellowp.io/hu/helloconsole/)
 - Jelentkezz be a HelloWP fiókodba
 
 ### 2. HelloPack központ megnyitása
 
 - Kattints a **HelloPack** kártyára a dashboardon
-- Vagy menj közvetlenül: [HelloPack központ](https://hellowp.io/hu/helloconsole/hellopack-kozpont/)
+- Vagy menj közvetlenül: [HelloPack központ](https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/)
 
 ### 3. Csomagkezelő letöltése
 
 - Kattints a **„Csomagkezelő letöltése"** gombra
 - A böngésző letölti a `hellopack-client.zip` fájlt
 
+<BrowserWindow url="https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/">
+  <img
+    src="/img/csomagkezelo-letoltese.png"
+    alt="HelloPack csomagkezelő letöltése"
+  ></img>
+</BrowserWindow>
+
 :::warning Safari felhasználóknak (macOS)
 A Safari böngésző alapértelmezetten automatikusan kitömöríti a ZIP fájlokat letöltés után. Ez problémát okozhat:
 
 **Probléma:**
+
 - Ha korábban már letöltötted a HelloPack-et, a Safari `hellopack-client-1`, `hellopack-client-2`, stb. nevű mappákat hoz létre
 - Ezeket a mappákat **nem szabad** újra becsomagolni és feltölteni
 
 **Megoldás:**
+
 1. **Kapcsold ki az automatikus kitömörítést** a Safariban:
+
    - Safari → Beállítások → Általános
    - Vedd ki a pipát: "Biztonságos fájlok megnyitása letöltés után"
 
 2. **Vagy használj másik böngészőt** (Chrome, Firefox, Edge)
 
 **Fontos:** A bővítmény csak akkor működik megfelelően, ha a könyvtárstruktúra így néz ki:
+
 ```
 wp-content/plugins/hellopack-client/
 ```
+
 :::
 
 ## <FontAwesomeIcon icon="fa-duotone fa-plug" /> Telepítés
@@ -59,9 +73,11 @@ wp-content/plugins/hellopack-client/
 ### Módszer 1: WordPress admin felület (Ajánlott)
 
 1. **Navigálj a bővítmények oldalra**
+
    - WordPress admin → **Bővítmények** → **Új bővítmény telepítése**
 
 2. **Töltsd fel a ZIP fájlt**
+
    - Kattints a **„Feltöltés"** fülre
    - Kattints a **„Fájl kiválasztása"** gombra
    - Válaszd ki a letöltött `hellopack-client.zip` fájlt
@@ -108,6 +124,7 @@ A telepítés után **aktiválnod kell a HelloPack licencet** a bővítmények h
 **Ok:** Korábban már telepítetted a HelloPack-et.
 
 **Megoldás:**
+
 1. Töröld a régi verziót: **Bővítmények** → HelloPack → **Törlés**
 2. Telepítsd újra a fenti módszerek valamelyikével
 
@@ -116,6 +133,7 @@ A telepítés után **aktiválnod kell a HelloPack licencet** a bővítmények h
 **Ok:** A feltölthető fájl mérete túl kicsi a szerver beállításaiban.
 
 **Megoldás:**
+
 1. Használd az **FTP/SFTP feltöltést** (lásd fent)
 2. Vagy növeld meg a `upload_max_filesize` értéket a `php.ini`-ben
 
@@ -124,6 +142,7 @@ A telepítés után **aktiválnod kell a HelloPack licencet** a bővítmények h
 **Ok:** Helytelen könyvtárstruktúra.
 
 **Ellenőrzés:**
+
 ```bash
 # SSH-n keresztül:
 ls -la wp-content/plugins/hellopack-client/
