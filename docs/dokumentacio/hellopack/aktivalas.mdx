@@ -24,10 +24,7 @@ A HelloPack telepítése után aktiválnod kell a licencet, hogy hozzáférj a p
 3. Vagy közvetlenül: [API-kulcskészítő](https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/)
 
 <BrowserWindow url="https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/">
-  <img
-    src="/img/apikulcs-keszites.png"
-    alt="HelloPack API-kulcskészítő pozíció"
-  ></img>
+  <img src="/img/hellopack-aktivalas-1.png" alt="HelloPack API-kulcskészítő pozíció"></img>
 </BrowserWindow>
 
 ### API-kulcs generálása
@@ -35,30 +32,22 @@ A HelloPack telepítése után aktiválnod kell a licencet, hogy hozzáférj a p
 **Kövesd az alábbi lépéseket:**
 
 1. **Domain megadása**
-
    - Add meg a weboldalad domain címét
    - Példa: `pelda-weboldal.hu`
-   - ⚠️ **NE használj** `https://`, `http://` vagy egyéb előtagokat speciális karaktereket
-   - Elfogadott formátumok: `domain.hu | sub.domain.hu | domain.hu/almappa | domain.hu:8080 | *.domain.hu`
+   - ⚠️ **NE használj** `https://`, `http://` vagy egyéb előtagokat
 
-2. **Automatikus lejárat (opcionális)**
-
-   - Ha szeretnéd beállíthatod mikor járjon le a kulcs, ehhez töltsd ki az **Automatikus lejárat** mezőt
+2. **Bővítmények kiválasztása**
+   - Válaszd ki a kívánt bővítményeket
+   - Vagy válaszd: **„Mindhez"** (ajánlott)
 
 3. **Kulcs létrehozása**
-
    - Kattints: **„Új API-kulcs készítése"**
-   - Az **API kulcs** mezőben található kulcsot másold a végólapra.
-   - Az API kulcs onnantól érvényes, ha az **„Új API-kulcs készítése"** gombot megnyomtad, és sikeresen megjelent az API-kulcsaid listában.
+   - Várj míg a rendszer generálja a kulcsot
 
-4. **API-kulcsaid táblázat**
-   - Göress le egészen az API-kulcsaid táblázatig
-   - Kattints az API oszlop alatti **sárga másolás ikonra** 📋 abban a sorban amelyik domainhoz tartozó kulcsot szeretnéd másolni
+4. **Kulcs másolása**
+   - Görj az oldal aljára
+   - Kattints a domain neve melletti **sárga másolás ikonra** 📋
    - Az API-kulcs a vágólapra került
-
-<BrowserWindow url="https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/">
-  <img src="/img/kulcs-masolas.png" alt="HelloPack API-kulcs másolás"></img>
-</BrowserWindow>
 
 :::warning Domain név egyezés
 A megadott domain névnek **pontosan egyeznie** kell a WordPress weboldal címével:
@@ -71,10 +60,7 @@ A HelloPack automatikusan észleli a WordPress domain címet. Ellenőrizheted a 
 :::
 
 <BrowserWindow url="https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/">
-  <img
-    src="/img/optimized-API kulcs generalas.gif"
-    alt="API-kulcs generálás lépései"
-  ></img>
+  <img src="/img/optimized-API kulcs generalas.gif" alt="API-kulcs generálás lépései"></img>
 </BrowserWindow>
 
 ## <FontAwesomeIcon icon="fa-duotone fa-plug" /> 2. lépés: HelloPack aktiválása WordPressben
@@ -82,16 +68,13 @@ A HelloPack automatikusan észleli a WordPress domain címet. Ellenőrizheted a 
 ### API-kulcs beillesztése
 
 1. **Navigálj a HelloPack beállításokhoz**
-
    - WordPress admin → **HelloPack** menüpont
 
 2. **Illeszd be az API-kulcsot**
-
    - Másold be a kimásolt API-kulcsot az **„API-kulcs"** mezőbe
    - Ellenőrizd a **„Domain"** mező tartalmát (automatikusan kitöltött)
 
 3. **Aktiválás**
-
    - Kattints: **„Változtatások mentése"** vagy **„API-kulcs aktiválása"**
    - Várj néhány másodpercet
 
@@ -107,11 +90,10 @@ A HelloPack automatikusan észleli a WordPress domain címet. Ellenőrizheted a 
 ✅ A HelloPack most már aktív a weboldalon!
 
 **Következő lépések:**
-
 - 📦 [Bővítmények letöltése →](/docs/dokumentacio/hellopack/bovitmenyek-letoltese)
 - 🔧 [Bővítmények telepítése →](/docs/dokumentacio/hellopack/bovitmenyek-telepitese)
 - 🔄 [Bővítmények frissítése →](/docs/dokumentacio/hellopack/bovitmenyek-frissitese)
-  :::
+:::
 
 ## <FontAwesomeIcon icon="fa-duotone fa-triangle-exclamation text-warning" /> Hibaelhárítás
 
@@ -120,28 +102,22 @@ A HelloPack automatikusan észleli a WordPress domain címet. Ellenőrizheted a 
 Ha a **„Sikertelen aktiválás"** vagy hasonló hibaüzenetet kapsz:
 
 <BrowserWindow url="https://weboldalad.hu/wp-admin/admin.php?page=hellopack">
-  <img
-    src="/img/aktivalas-figyelem.png"
-    alt="Sikertelen HelloPack aktiválás"
-  ></img>
+  <img src="/img/aktivalas-figyelem.png" alt="Sikertelen HelloPack aktiválás"></img>
 </BrowserWindow>
 
 **Ellenőrzési lépések:**
 
 1. **Domain név egyezés**
-
    - Az API-kulcs generálásakor megadott domain **pontosan** egyezik a WordPress domain-nel?
    - Ellenőrizd: HelloPack oldal → **„Domain"** mező
    - `www.` előtag egyezik?
 
 2. **API-kulcs helyes?**
-
    - Teljes kulcsot kimásoltad? (nem vágódott le részlet)
    - Nincs szóköz az elején/végén?
    - Próbálj új API-kulcsot generálni
 
 3. **Szerver kapcsolat**
-
    - A szerver eléri a `hellowp.io` API-t?
    - Tűzfal/biztonsági plugin nem blokkolja?
 
@@ -154,7 +130,6 @@ Ha a **„Sikertelen aktiválás"** vagy hasonló hibaüzenetet kapsz:
 **Ok:** Túl sok weboldalon aktiváltad már az API-kulcsot.
 
 **Megoldás:**
-
 1. Lépj be a [HelloConsole](https://hellowp.io/hu/helloconsole/hellopack-kozpont/api-creator/)-ba
 2. Töröld a nem használt aktiválásokat
 3. Vagy vásárolj magasabb szintű csomagot több aktiváláshoz
@@ -164,7 +139,6 @@ Ha a **„Sikertelen aktiválás"** vagy hasonló hibaüzenetet kapsz:
 **Ok:** Böngésző probléma vagy jogosultság.
 
 **Megoldás:**
-
 1. **Manuális másolás:**
    - Jelöld ki az API-kulcsot az egérrel
    - Ctrl+C (Windows) vagy Cmd+C (Mac)
@@ -183,19 +157,14 @@ Ha korábban a **main/subAPI rendszert** használtad, migráld az új API-kulcs 
    - Erősítsd meg a műveletet
 
 <BrowserWindow url="https://weboldalad.hu/wp-admin/admin.php?page=hellopack">
-  <img
-    src="/img/helyi-beallitasok-torlese.png"
-    alt="Helyi beállítások törlése"
-  ></img>
+  <img src="/img/helyi-beallitasok-torlese.png" alt="Helyi beállítások törlése"></img>
 </BrowserWindow>
 
 2. **Új API-kulcs létrehozása**
-
    - Kövesd a fenti [1. lépés](#1-lépés-api-kulcs-létrehozása) útmutatót
    - Másold ki az új API-kulcsot
 
 3. **Aktiválás**
-
    - Illeszd be az új API-kulcsot a HelloPack beállításokban
    - Kattints: **„API-kulcs aktiválása"**
 
@@ -205,12 +174,11 @@ Ha korábban a **main/subAPI rendszert** használtad, migráld az új API-kulcs 
 
 :::info Miért migrálj?
 Az új API-kulcs rendszer:
-
 - ✅ Egyszerűbb kezelés
 - ✅ Biztonságosabb
 - ✅ Gyorsabb aktiválás
 - ✅ Jobb hibakezelés
-  :::
+:::
 
 ## <FontAwesomeIcon icon="fa-duotone fa-circle-info" /> További segítség
 
