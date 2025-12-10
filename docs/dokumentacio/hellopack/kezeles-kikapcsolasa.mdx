@@ -11,36 +11,16 @@ sidebar_position: 8
 ---
 
 import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
-import BrowserWindow from "@site/src/components/BrowserWindow";
 
 # <FontAwesomeIcon icon="fa-duotone fa-tags text-primary" /> HelloPack bővítmények kezelésének kikapcsolása
 
 Szeretnéd beállítani, hogy a HelloPack ne kezeljen egy bővítményt a csomagkezelővel vagy kikapcsolni egy speciális modult?
 
-A HelloPack három módot kínál a bővítménykezelés kikapcsolására
+A HelloPack két módot kínál a bővítménykezelés kikapcsolására: alapvető csomagkezelés letiltása és modulrendszer kezelése.
 
-## Módszer 1: Bővítmény csomagkezelés kikapcsolása a Hellopack felületén keresztül
+## Módszer 1: Bővítmény csomagkezelés kikapcsolása (Alapértelmezett)
 
-A Hellopack csomagkezelőn keresztül lehetőséged van az egyes bővítmények esetében kikapcsolni a Hellopack license kezelését. Ehhez navigálj a **WordPress admin -> Hellopack -> Modulok** menüpontba.
-
-<BrowserWindow url="https://www.weboldaladcime.hu">
-  <img
-    src="/img/bovitmeny-license-kikapcsolas.png"
-    alt="HelloPack-bovitmeny-modul-kikapcsolas"
-  ></img>
-</BrowserWindow>
-
-A Bővítménymodulok listában elérhető bővítményeknél kapcsold ki azokat ahol a saját kulcsodat szeretnéd használni.
-A Sablonok esetében ugyan úgy lehetséges a csomagkezelön keresztül is, ilyenkor a Sablonmodulok részt keresd.
-
-<BrowserWindow url="https://www.weboldaladcime.hu">
-  <img
-    src="/img/sablonmodulok-kikapcsolasa.png"
-    alt="HelloPack-sablon-modul-kikapcsolas"
-  ></img>
-</BrowserWindow>
-
-## Módszer 2: Bővítmény csomagkezelés kikapcsolása wp-config módosításával
+A HelloPack kikapcsolja azoknak a bővítményeknek az alapvető csomagkezelését, amiket a `HP_DISABLE_PLUGINS` konstansban definiálunk.
 
 ### Használata
 
@@ -87,19 +67,16 @@ A következő modulok kapcsolhatók ki:
 ### Példák
 
 **Csak az Elementor Pro modul kikapcsolása:**
-
 ```php title="wp-config.php"
 define( 'HP_DISABLE_MODULES', 'elementor-pro' );
 ```
 
 **Több modul kikapcsolása:**
-
 ```php title="wp-config.php"
 define( 'HP_DISABLE_MODULES', 'elementor-pro, wp-rocket, fluent-crm' );
 ```
 
 **Kombinált használat (csomagkezelés + modulok):**
-
 ```php title="wp-config.php"
 // Alapvető csomagkezelés kikapcsolása
 define( 'HP_DISABLE_PLUGINS', 'some-plugin' );
@@ -110,12 +87,12 @@ define( 'HP_DISABLE_MODULES', 'elementor-pro, wp-rocket' );
 
 ## A két módszer közötti különbség
 
-| Funkció                   | HP_DISABLE_PLUGINS | HP_DISABLE_MODULES |
-| ------------------------- | ------------------ | ------------------ |
-| Alapvető frissítéskezelés | ❌ Kikapcsolva     | ✅ Aktív marad     |
-| Speciális licenckezelés   | ✅ Aktív marad     | ❌ Kikapcsolva     |
-| Fordítások kezelése       | ✅ Aktív marad     | ❌ Kikapcsolva     |
-| Egyedi frissítési logika  | ✅ Aktív marad     | ❌ Kikapcsolva     |
+| Funkció | HP_DISABLE_PLUGINS | HP_DISABLE_MODULES |
+|---------|-------------------|-------------------|
+| Alapvető frissítéskezelés | ❌ Kikapcsolva | ✅ Aktív marad |
+| Speciális licenckezelés | ✅ Aktív marad | ❌ Kikapcsolva |
+| Fordítások kezelése | ✅ Aktív marad | ❌ Kikapcsolva |
+| Egyedi frissítési logika | ✅ Aktív marad | ❌ Kikapcsolva |
 
 :::warning Fontos
 Ha egy bővítményt mind a két konstansban megadsz, akkor teljesen kikapcsolódik a HelloPack kezelése.
@@ -142,7 +119,6 @@ define( 'HP_DISABLE_MODULES', 'elementor-pro' );
 ```
 
 :::note Verziók
-
 - **HP_DISABLE_PLUGINS**: Minimum HelloPack 1.2.5 verzió szükséges
 - **HP_DISABLE_MODULES**: Minimum HelloPack 2.1.0 verzió szükséges
-  :::
+:::
