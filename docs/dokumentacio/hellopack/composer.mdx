@@ -1,0 +1,81 @@
+---
+title: Composer
+description: HelloPack bővítmények és témák telepítése Composer csomagkezelővel.
+keywords:
+  - hellopack
+  - composer
+  - függőségkezelő
+  - php
+sidebar_label: Composer
+sidebar_position: 13
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-box-open text-primary" /> Composer
+
+## Mi az a Composer?
+
+A Composer egy függőségkezelő PHP-hoz. Segítségével parancssorból telepítheted és frissítheted a HelloPack bővítményeket és témákat.
+
+---
+
+## Telepítés lépései
+
+### 1. API token létrehozása
+
+Hozz létre egy API tokent az [API-kulcskészítőben](/dokumentacio/api/api-kulcs-keszito) a hitelesítéshez.
+
+### 2. Token beállítása
+
+Állítsd be a tokent globálisan (cseréld ki a `YOUR_JWT_TOKEN` részt a saját tokenedre):
+
+```bash
+composer config -g http-basic.composer.hellowp.io token YOUR_JWT_TOKEN
+```
+
+### 3. Repository hozzáadása
+
+Add hozzá a HelloPack repository-t a projektedhez:
+
+```bash
+composer config repositories.hellopack composer https://composer.hellowp.io
+```
+
+### 4. Csomag telepítése
+
+Telepítsd a kívánt bővítményt vagy témát (cseréld ki a `SLUG`-ot a csomag nevére):
+
+**Bővítmény telepítése:**
+
+```bash
+composer require hellopack/SLUG
+```
+
+**Téma telepítése:**
+
+```bash
+composer require hellopack-theme/SLUG
+```
+
+---
+
+## HelloPack Client
+
+A `hellopack/hellopack-client` egy speciális csomag, amely a HelloPack Client bővítményt telepíti. Ez a bővítmény szükséges a prémium pluginok és témák frissítéskezeléséhez WordPress-ben.
+
+**Legújabb verzió telepítése:**
+
+```bash
+composer require hellopack/hellopack-client
+```
+
+**Specifikus verzió telepítése:**
+
+```bash
+composer require hellopack/hellopack-client:2.3.7
+```
+
+:::info
+A client csomag az összes elérhető verziót tartalmazza (2.2.4 - 2.3.7).
+:::
