@@ -1,0 +1,184 @@
+---
+title: Composer
+description: PHP függőségkezelő eszköz WordPress projektekhez - pluginok, témák és könyvtárak kezelése.
+keywords:
+  - composer
+  - php
+  - függőségkezelő
+  - csomagkezelő
+  - wordpress
+sidebar_label: Composer
+sidebar_position: 6
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-box-open text-primary" /> Composer
+
+A [Composer](https://getcomposer.org) a PHP ökoszisztéma szabványos függőségkezelő eszköze. Lehetővé teszi, hogy deklaráld a projekted által igényelt függvénykönyvtárakat, és automatikusan telepíti azokat a projektedbe.
+
+## Miért használj Composert?
+
+- **Függőségkezelés** - Automatikusan kezeli a csomagok közötti függőségeket
+- **Verziókezelés** - Pontos verziómegkötésekkel garantálhatod a kompatibilitást
+- **Autoloading** - PSR-4 autoloading támogatás egyetlen `require` sorral
+- **Reprodukálhatóság** - A `composer.lock` biztosítja, hogy minden környezetben ugyanazok a verziók legyenek
+
+## Telepítés
+
+### macOS (Homebrew)
+
+```bash
+brew install composer
+```
+
+### Linux
+
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+php -r "unlink('composer-setup.php');"
+```
+
+### Windows
+
+Töltsd le és futtasd a [Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe) telepítőt.
+
+## Alapvető parancsok
+
+```bash
+# Új projekt inicializálása
+composer init
+
+# Függőségek telepítése (composer.lock alapján)
+composer install
+
+# Függőségek frissítése
+composer update
+
+# Új csomag hozzáadása
+composer require vendor/package
+
+# Csomag eltávolítása
+composer remove vendor/package
+
+# Elérhető frissítések listázása
+composer outdated
+
+# Autoloader újragenerálása
+composer dump-autoload
+```
+
+## Composer és WordPress
+
+A Composer különösen hasznos WordPress fejlesztéshez:
+
+### Ingyenes pluginok és témák
+
+A [WPackagist](/tudasbazis/fejlesztoi-eszkozok/wpackagist) repository lehetővé teszi, hogy a wordpress.org-on elérhető összes ingyenes plugint és témát Composerrel telepítsd.
+
+### Prémium pluginok és témák
+
+A **HelloPack** saját Composer repository-t biztosít a prémium bővítmények és témák telepítéséhez.
+
+:::tip HelloPack Composer integráció
+A HelloPack előfizetéssel elérhető prémium pluginokat és témákat közvetlenül Composerrel telepítheted. Részletes útmutató: [HelloPack Composer dokumentáció](/dokumentacio/hellopack/composer)
+:::
+
+### Modern WordPress boilerplate-ek
+
+Számos modern WordPress fejlesztői keretrendszer épül Composerre:
+
+- [Bedrock](/tudasbazis/fejlesztoi-eszkozok/bedrock) - A Roots csapat modern WordPress boilerplate-je
+- [Acorn](/tudasbazis/fejlesztoi-eszkozok/acorn) - Laravel komponensek WordPress-hez
+
+## Példa composer.json
+
+```json
+{
+    "name": "my-company/wordpress-site",
+    "description": "WordPress projekt Composerrel",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "composer/installers": "^2.0",
+        "wpackagist-plugin/wordpress-seo": "^22.0",
+        "wpackagist-plugin/contact-form-7": "^5.8"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
+```
+
+## Verziókezelési szintaxis
+
+| Szintaxis | Jelentés |
+|-----------|----------|
+| `1.2.3` | Pontosan ez a verzió |
+| `>=1.2.3` | Minimum verzió |
+| `^1.2.3` | Kompatibilis verziók (1.x.x, de nem 2.0) |
+| `~1.2.3` | Következő jelentős verzióig (1.2.x) |
+| `1.2.*` | Bármely 1.2.x verzió |
+| `*` | Bármely verzió |
+| `dev-main` | Fejlesztői branch |
+
+## Tippek és best practice-ek
+
+### composer.lock commitolása
+
+A `composer.lock` fájlt **mindig** commitold a verziókezelőbe. Ez garantálja, hogy minden fejlesztő és a production környezet is pontosan ugyanazokat a verziókat használja.
+
+### Production telepítés
+
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
+A `--no-dev` kihagyja a fejlesztői függőségeket, az `--optimize-autoloader` pedig gyorsabb autoloadinget eredményez.
+
+### Privát repository hitelesítés
+
+```bash
+# Globális hitelesítés beállítása
+composer config -g http-basic.example.com username password
+
+# Vagy auth.json fájllal (ne commitold!)
+{
+    "http-basic": {
+        "example.com": {
+            "username": "user",
+            "password": "token"
+        }
+    }
+}
+```
+
+## Források
+
+- [Composer hivatalos dokumentáció](https://getcomposer.org/doc/)
+- [Packagist - PHP Package Repository](https://packagist.org)
+- [WPackagist - WordPress Composer Repository](/tudasbazis/fejlesztoi-eszkozok/wpackagist)
+- [HelloPack Composer](/dokumentacio/hellopack/composer)
