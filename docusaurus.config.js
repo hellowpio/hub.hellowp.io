@@ -235,6 +235,10 @@ const config = {
                 label: "Kapcsolat",
                 href: "https://hellowp.io/hu/kapcsolat/",
               },
+              {
+                label: "WordPress hírek",
+                href: "https://helloblog.io/hu/",
+              },
             ],
           },
         ],
