@@ -363,40 +363,97 @@ html[data-theme="dark"] .try-hasura-div_QpRH .arrow_pHav path {
 
 /* WordPress embed */
 
-.wp-embed{
-  padding: 15px;
-  border-radius: 10px;
-  border:3px solid !important;
-  font-size: 16px !important;
-
+.wp-embed {
+  margin: 1rem 0;
 }
 
-html[data-theme="light"] .wp-embed{
-  border-color: #ebedf0 !important; 
+.wp-embed-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ebedf0;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-html[data-theme="dark"] .wp-embed{
+.wp-embed-card:hover {
+  border-color: #3273dc;
+  box-shadow: 0 2px 8px rgba(50, 115, 220, 0.15);
+  text-decoration: none;
+  color: inherit;
+}
+
+.wp-embed-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+
+.wp-embed-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.wp-embed-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.wp-embed-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.wp-embed-description {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.wp-embed-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.wp-embed-rating {
+  color: #ffb900;
+}
+
+.wp-embed-loading {
+  padding: 1rem;
+  color: #888;
+  font-style: italic;
+}
+
+html[data-theme="dark"] .wp-embed-card {
   background-color: #1b1b1d;
-  border-color: #444950 !important; 
+  border-color: #444950;
 }
 
-html[data-theme="dark"] .wp-embed-heading a, html[data-theme="dark"] .wp-embed-excerpt{
-color: #e3e3e3;
+html[data-theme="dark"] .wp-embed-card:hover {
+  border-color: #5a9cff;
 }
 
-.wp-embed-footer {
-  margin-top: 10px !important;
+html[data-theme="dark"] .wp-embed-title {
+  color: #e3e3e3;
 }
 
-.plugin-download.button.download-button.button-large{
-  background-color: #3273dc !important;
-  border: none;
-  box-shadow: none;
-  text-shadow: none !important;
+html[data-theme="dark"] .wp-embed-description {
+  color: #aaa;
 }
 
-.plugin-download.button.download-button.button-large:hover{
-  background-color: #2b62bb !important;
+html[data-theme="dark"] .wp-embed-meta {
+  color: #888;
 }
 
 /* Content slider */

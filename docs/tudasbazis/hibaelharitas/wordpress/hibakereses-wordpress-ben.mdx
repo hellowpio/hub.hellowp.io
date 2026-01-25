@@ -15,11 +15,11 @@ import WPEmbed from "@site/src/components/WPEmbed";
 
 A PHP kód hibakeresése minden projekt része, azonban a WordPress speciális hibakereső rendszerekkel rendelkezik, amelyek egyszerűsítik a folyamatot és szabványosítják a kódot a WordPress alaprendszer, bővítmények és sablonok terén. Ezen az oldalon bemutatjuk a WordPress különböző hibakereső eszközeit, és hogy hogyan lehetsz produktívabb a kódolás során, valamint hogyan lehet javítani a kód általános minőségét és interoperabilitását.
 
-A nem programozóknak vagy általános felhasználóknak ezeket az opciókat használhatják az hibákról részletes információk megjelenítéséhez.
+A nem programozóknak vagy általános felhasználóknak ezeket az opciókat használhatják a hibákról részletes információk megjelenítéséhez.
 
 ## Példa wp-config.php a hibakereséshez
 
-```php config.php
+```php wp-config.php
 // WP_DEBUG mód engedélyezése
 define( 'WP_DEBUG', true );
 
@@ -36,20 +36,20 @@ define( 'SCRIPT_DEBUG', true );
 ```
 
 :::note
-MEGJEGYZÉS: Ezt be kell szúrni a wp-config.php fájlban található /_ That's all, stop editing! Happy blogging. _/ SOR ELŐTT.
+MEGJEGYZÉS: Ezt be kell szúrni a wp-config.php fájlban található /* That's all, stop editing! Happy publishing. */ SOR ELŐTT.
 :::
 
 ## WP_DEBUG
 
 A `WP_DEBUG` egy PHP állandó (állandó globális változó), amelyet használhatunk a WordPress összes részén a "debug" mód aktiválásához. Alapértelmezésben hamisnak tekinthető, és általában az `wp-config.php` fájlban van beállítva true értékre a WordPress fejlesztési verzióiban.
 
-```php config.php
+```php wp-config.php
 // WP_DEBUG mód engedélyezése
 define( 'WP_DEBUG', true );
 
 ```
 
-```php config.php
+```php wp-config.php
 // WP_DEBUG mód letiltása
 define( 'WP_DEBUG', false );
 
@@ -77,7 +77,7 @@ Fontos megjegyezni, hogy ezzel a beállítással lehetővé válik a naplófájl
 
 Amikor az értéke igazra (`TRUE`) van állítva, a napló a tartalomkönyvtárban (általában `wp-content/debug.log`) lesz mentve a webhely fájlrendszerében. Egyébként meg lehet adni egy érvényes fájl elérési útvonalát, hogy máshova lehessen menteni a fájlt.
 
-```php config.php
+```php wp-config.php
 define( 'WP_DEBUG_LOG', true );
 // - vagy -
 define( 'WP_DEBUG_LOG', '/tmp/wp-errors.log' );
@@ -91,7 +91,7 @@ A `WP_DEBUG_LOG` funkció használatához a WP_DEBUG-nak (`TRUE`) be kell lennie
 
 A `WP_DEBUG_DISPLAY` egy másik kiegészítője a `WP_DEBUG`-nak, amely szabályozza, hogy a hibakereső üzenetek megjelenjenek-e az oldal HTML-jében vagy sem. Az alapértelmezett érték "TRUE", ami megjeleníti a hibákat és figyelmeztetéseket, amint létrejönnek. Ha ezt az értéket hamisra ("FALSE") állítod, akkor az összes hibát elrejti. Ezt együtt kell használni a `WP_DEBUG_LOG` funkcióval, hogy a hibákat később áttekinthesd.
 
-```php config.php
+```php wp-config.php
 define( 'WP_DEBUG_DISPLAY', false );
 ```
 
@@ -103,7 +103,7 @@ A `WP_DEBUG_DISPLAY` funkció használatához a `WP_DEBUG`-nak (true) be kell le
 
 A `SCRIPT_DEBUG` egy kapcsolódó állandó, amely arra kényszeríti a WordPress-t, hogy a core CSS- és JavaScript fájljainak "fejlesztői" verzióját használja a normál, tömörített verziók helyett. Ez hasznos lehet, ha teszteled a beépített .js vagy .css fájlok módosításait. Az alapértelmezett érték hamis "FALSE".
 
-```php config.php
+```php wp-config.php
 define( 'SCRIPT_DEBUG', true );
 ```
 
@@ -111,7 +111,7 @@ define( 'SCRIPT_DEBUG', true );
 
 A SAVEQUERIES definíció egy tömbben menti el az adatbázis-lekérdezéseket, és ezt a tömböt meg lehet jeleníteni a lekérdezések elemzéséhez. Az igaz értékre állított állandó minden lekérdezést eltárol, hogy mennyi ideig tartott a végrehajtása, és melyik függvény hívta meg.
 
-```php config.php
+```php wp-config.php
 define( 'SAVEQUERIES', true );
 ```
 
@@ -120,6 +120,30 @@ A tömb a globális `$wpdb->queries` változóban van tárolva.
 :::note
 Ez hatással lesz a webhely teljesítményére, ezért győződj meg róla, hogy kikapcsolod, amikor nem a hibakeresési folyamat része.
 :::
+
+## WP_DISABLE_FATAL_ERROR_HANDLER
+
+A WordPress 5.2 óta a rendszer beépített fatális hiba helyreállítási móddal rendelkezik. Ha fatális PHP hiba történik, a WordPress megpróbálja helyreállítani az oldalt és emailt küld az adminisztrátornak. Fejlesztés közben hasznos lehet ezt kikapcsolni, hogy a tényleges hibát lásd.
+
+```php wp-config.php
+define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );
+```
+
+## WP_DEVELOPMENT_MODE
+
+A WordPress 6.3 óta elérhető ez az állandó, amely jelzi a WordPress-nek, hogy fejlesztési módban fut. Ez befolyásolja bizonyos gyorsítótárak működését (pl. a theme.json cache kikapcsolása).
+
+```php wp-config.php
+define( 'WP_DEVELOPMENT_MODE', 'all' );
+```
+
+Lehetséges értékek:
+- `'core'` - WordPress mag fejlesztése
+- `'plugin'` - Bővítmény fejlesztése
+- `'theme'` - Sablon fejlesztése
+- `'all'` - Minden fejlesztési mód aktív
+
+A beállítás a `wp_get_development_mode()` függvénnyel lekérdezhető, így a bővítmények és sablonok is reagálhatnak rá.
 
 ## Hibakeresést segítő bővítmények
 
