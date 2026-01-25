@@ -16,7 +16,12 @@ const config = {
   projectName: "support.hellowp.io", // Usually your repo name.
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
+  },
 
   i18n: {
     defaultLocale: "hu",
@@ -200,6 +205,10 @@ const config = {
               {
                 label: "Gyakori kérdések",
                 to: "/docs/sugo/egyeb",
+              },
+              {
+                label: "Hibakeresés és logolás",
+                to: "/docs/tudasbazis/hibaelharitas/wordpress/hibakereses-wordpress-ben",
               },
             ],
           },
