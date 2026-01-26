@@ -20,7 +20,7 @@
     "@docusaurus/plugin-google-gtag": "^3.9.2",
     "@docusaurus/preset-classic": "^3.9.2",
     "@docusaurus/theme-search-algolia": "^3.9.2",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
     "docusaurus-plugin-sass": "^0.2.6",
