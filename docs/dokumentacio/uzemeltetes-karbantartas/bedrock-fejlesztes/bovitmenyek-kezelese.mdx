@@ -1,0 +1,146 @@
+---
+title: Bővítmények kezelése
+description: Bővítmények telepítése, frissítése és eltávolítása Bedrock alapú WordPress oldalakon - Composer és nem Composer bővítmények kezelése.
+keywords:
+  - bedrock bővítmények
+  - composer plugin
+  - wordpress bővítmény
+  - wpackagist
+  - prémium bővítmény
+sidebar_label: Bővítmények kezelése
+sidebar_position: 5
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-puzzle-piece text-primary" /> Bővítmények kezelése
+
+**Hogyan telepíts, frissíts és kezelj bővítményeket Bedrock alapú WordPress oldalakon**
+
+A Bedrocknál a bővítmények kezelése Composeren keresztül történik. Ez elsőre szokatlan lehet, de sokkal megbízhatóbb és biztonságosabb, mint az admin felületi telepítés.
+
+:::warning Fontos
+A WordPress admin felületen **nem lehet** bővítményeket telepíteni vagy frissíteni. Ez szándékos - a biztonság és a nyomonkövethetőség érdekében minden a Composeren és a Git-en keresztül történik.
+:::
+
+---
+
+## Composer bővítmény telepítése
+
+A WordPress.org-on elérhető bővítmények a [WordPress Packagist](https://wpackagist.org/) (wpackagist) szolgáltatáson keresztül Composer csomagként is elérhetők.
+
+### Telepítés
+
+```bash
+# Például: Advanced Custom Fields telepítése
+composer require wpackagist-plugin/advanced-custom-fields
+
+# WooCommerce telepítése
+composer require wpackagist-plugin/woocommerce
+```
+
+A bővítmény neve mindig a WordPress.org-on használt slug (URL-ben látható név).
+
+### Frissítés
+
+```bash
+# Egy adott bővítmény frissítése
+composer update wpackagist-plugin/advanced-custom-fields
+
+# Minden bővítmény frissítése
+composer update
+```
+
+### Eltávolítás
+
+```bash
+composer remove wpackagist-plugin/advanced-custom-fields
+```
+
+### Változások commitolása
+
+Bővítmény telepítése, frissítése vagy törlése után **mindig** commitold a változásokat:
+
+```bash
+git add composer.json composer.lock
+git commit -m "feat: Advanced Custom Fields bővítmény hozzáadása"
+git push origin main
+```
+
+:::tip A composer.lock fontossága
+A `composer.lock` fájl rögzíti a pontos verziókat. Ha ezt commitolod, minden fejlesztő és a szerver **ugyanazt a verziót** fogja használni. Soha ne tedd a `.gitignore`-ba!
+:::
+
+---
+
+## Prémium (nem Composer) bővítmények kezelése
+
+Néhány prémium bővítmény (pl. egyes fizetős témák vagy bővítmények) nem érhető el Composer csomagon keresztül. Ezeket a következőképpen kezeljük:
+
+### 1. lehetőség: Saját Composer repó (ajánlott)
+
+Egyes prémium bővítmények (pl. ACF Pro, Gravity Forms) saját Composer repót biztosítanak. Ezeket a `composer.json` `repositories` részébe kell felvenni. Ha ilyen bővítményre van szükséged, **jelezd a HelloWP csapatának**, és beállítjuk.
+
+### 2. lehetőség: Bővítmény hozzáadása a repóhoz
+
+Ha a bővítmény semmilyen Composer forrásból nem elérhető, közvetlenül a repóba helyezhető:
+
+```bash
+# 1. Csomagold ki a bővítményt a megfelelő mappába
+#    web/app/plugins/bovitmeny-neve/
+
+# 2. Commitold a repóba
+git add web/app/plugins/bovitmeny-neve/
+git commit -m "feat: Prémium bővítmény hozzáadása (nem Composer)"
+git push origin main
+```
+
+:::warning Nem Composer bővítmények frissítése
+A repóba manuálisan behelyezett bővítményeket manuálisan kell frissíteni: letöltöd az új verziót, felülírod a mappát, és commitolod. A Composer nem fogja automatikusan kezelni ezeket.
+:::
+
+### 3. lehetőség: Must-Use (mu-plugins) bővítmények
+
+Kritikus bővítmények, amelyeknek mindig aktívnak kell lenniük, a `web/app/mu-plugins/` mappába kerülhetnek. Ezeket a WordPress automatikusan betölti, nem kell aktiválni őket az admin felületen.
+
+```bash
+# Must-Use bővítmény hozzáadása
+git add web/app/mu-plugins/egyedi-funkcio.php
+git commit -m "feat: egyedi funkció hozzáadása mu-plugin-ként"
+git push origin main
+```
+
+---
+
+## Témák kezelése
+
+A témák kezelése ugyanúgy működik, mint a bővítményeké:
+
+```bash
+# WordPress.org téma telepítése
+composer require wpackagist-theme/flavor
+
+# Egyedi téma - közvetlenül a repóban
+# web/app/themes/egyedi-tema/
+```
+
+---
+
+## Bővítmény keresése
+
+Bővítmény slug-ot a következő helyeken találsz:
+
+- **WordPress.org**: A bővítmény URL-jéből (pl. `wordpress.org/plugins/advanced-custom-fields/` → `advanced-custom-fields`)
+- **WPackagist**: [wpackagist.org](https://wpackagist.org/) - keresés és böngészés
+- **Packagist**: [packagist.org](https://packagist.org/) - ha a bővítmény saját Composer csomagot biztosít
+
+---
+
+## Összefoglaló táblázat
+
+| Bővítmény típus | Telepítés módja | Frissítés módja |
+|-----------------|----------------|-----------------|
+| WordPress.org (ingyenes) | `composer require wpackagist-plugin/...` | `composer update` |
+| Prémium (Composer repóval) | `composer require` + saját repó | `composer update` |
+| Prémium (nincs Composer) | Kézi másolás a `web/app/plugins/`-ba | Kézi felülírás + commit |
+| Must-Use bővítmény | `web/app/mu-plugins/` mappába | Kézi módosítás + commit |

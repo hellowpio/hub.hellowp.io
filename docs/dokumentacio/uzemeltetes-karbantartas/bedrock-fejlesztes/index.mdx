@@ -1,0 +1,93 @@
+---
+title: Bedrock alapú WordPress fejlesztés
+description: A Roots Bedrock egy modern, nagyvállalati szintű WordPress fejlesztési keretrendszer, amelyet a világ legnagyobb vállalatai is használnak.
+keywords:
+  - bedrock
+  - roots
+  - wordpress
+  - composer
+  - modern wordpress
+  - nagyvállalati
+sidebar_label: Bedrock fejlesztés
+sidebar_position: 10
+---
+
+import DocCardList from "@theme/DocCardList";
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-cubes text-primary" /> Bedrock alapú WordPress fejlesztés
+
+**Modern, nagyvállalati szintű WordPress keretrendszer az üzemeltetett oldalakhoz**
+
+A [Roots Bedrock](https://roots.io/bedrock/) egy nyílt forráskódú WordPress keretrendszer, amely a hagyományos WordPress telepítést modern szoftverfejlesztési gyakorlatokra cseréli. A Bedrock a Composer csomagkezelőre épít, verziókezelt konfigurációt használ, és elkülöníti a WordPress magot az egyedi kódtól.
+
+A HelloWP-nél fokozatosan térünk át a Bedrock alapú rendszerekre az üzemeltetett oldalaknál, mert ez biztosítja a legmagasabb szintű biztonságot, nyomonkövethetőséget és megbízhatóságot.
+
+:::tip Fontos
+A HelloWP csapata elvégzi a teljes Bedrock telepítést és konfigurációt az üzemeltetett oldalakon. A fejlesztők egy teljesen beállított Git repót kapnak, amellyel azonnal dolgozhatnak.
+:::
+
+---
+
+## Kik használják a Bedrock-ot?
+
+A Roots Bedrock-ot a világ legismertebb vállalatai és szervezetei használják WordPress projektjeikhez:
+
+| Szervezet | Iparág |
+|-----------|--------|
+| **NASA** | Űrkutatás, kormányzat |
+| **Mercedes-Benz** | Autóipar |
+| **Disney** | Szórakoztatóipar |
+| **Toyota** | Autóipar |
+| **Sony** | Elektronika, szórakoztatás |
+| **HBO** | Média, streaming |
+| **Hulu** | Média, streaming |
+| **Zillow** | Ingatlan |
+| **Amnesty International** | Nemzetközi szervezet |
+| **Goodwill** | Non-profit |
+| **US Government** | Kormányzat |
+
+:::info Miért választják a nagyok?
+Ezek a szervezetek nem véletlenül használják a Bedrock-ot. A nagyvállalati környezetben alapvető követelmény a verziókezelés, a reprodukálhatóság, a biztonsági audit és a szabványos deployment folyamat. A Bedrock mindezeket alapból biztosítja.
+:::
+
+---
+
+## Mi a különbség a hagyományos WordPress-hez képest?
+
+| Szempont | Hagyományos WordPress | Bedrock |
+|----------|----------------------|---------|
+| **Telepítés** | FTP feltöltés, kézi másolás | Composer + Git |
+| **Frissítés** | Admin felületen kattintgatás | `composer update` parancs |
+| **Verziókezelés** | Nehéz, kaotikus | Minden változás nyomon követhető |
+| **Biztonság** | Webroot = WordPress gyökér | Webroot elkülönített, [`.env` fájl](/docs/tudasbazis/fejlesztoi-eszkozok/dotenv) |
+| **Környezetek** | Egy konfig mindenre | Külön fejlesztői, staging, éles |
+| **Bővítmények** | Kézi letöltés, zip feltöltés | Composer csomagkezelés |
+| **Visszaállítás** | Biztonsági mentésből, ha van | Git revert, azonnali |
+
+---
+
+## Hogyan működik nálunk?
+
+1. **A HelloWP beállítja a Bedrock környezetet** a szerveren
+2. **A fejlesztő kap egy Git repót**, amely már teljesen konfigurálva van
+3. **A fejlesztő a repóban dolgozik** (bővítmények, téma, konfiguráció)
+4. **Push után automatikusan deployolódik** az éles szerverre
+5. **Minden változás nyomon követhető** a Git történetben
+
+---
+
+## Dokumentáció
+
+Az alábbi útmutatók segítenek megérteni és használni a Bedrock alapú rendszert:
+
+<DocCardList />
+
+---
+
+## Kapcsolat
+
+Kérdésed van a Bedrock alapú fejlesztéssel kapcsolatban?
+
+- **Email**: support@hellowp.io
+- **Fejlesztői támogatás**: A HelloWP csapata segít a Bedrock környezet megértésében és használatában

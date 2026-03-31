@@ -1,0 +1,152 @@
+---
+title: CI/CD és deployment
+description: Automatikus deployment, CI/CD pipeline és zero-downtime élesítés Bedrock alapú WordPress oldalakon.
+keywords:
+  - ci/cd
+  - deployment
+  - zero-downtime
+  - automatikus deploy
+  - github actions
+sidebar_label: CI/CD és deployment
+sidebar_position: 6
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-rocket text-primary" /> CI/CD és deployment
+
+**Automatikus deployment és zero-downtime élesítés**
+
+A HelloWP által üzemeltetett Bedrock oldalakon a deployment teljesen automatikus. Nem kell FTP-vel fájlokat feltölteni, nem kell a szerverre bejelentkezni - a kód push után automatikusan megjelenik az éles oldalon.
+
+---
+
+## Hogyan működik a deployment?
+
+### Az egyszerű verzió
+
+```
+Fejlesztő commitol → Push a Git repóba → Szerver automatikusan frissül
+```
+
+### A részletes folyamat
+
+1. **Fejlesztő push-ol** a GitHub repóba (main vagy staging branch-re)
+2. **A szerver észleli** a változást (webhook)
+3. **Új release mappa** jön létre a szerveren
+4. **Composer install** lefut - a függőségek telepítésre kerülnek
+5. **Szimlink váltás** - az új verzió lesz az aktív
+6. **Kész** - az oldal az új kóddal fut
+
+---
+
+## Zero-downtime deployment
+
+A hagyományos WordPress frissítésnél a fájlok egyenként cserélődnek, ami alatt az oldal **hibás állapotban** lehet (pl. félig frissített bővítmény). A Bedrock deploymentnél ez nem fordulhat elő.
+
+### Hogyan valósul meg?
+
+A szerveren a deployment könyvtárstruktúra így néz ki:
+
+```
+site/
+├── current → releases/20240315143022   # Szimlink az aktív verzióra
+├── releases/
+│   ├── 20240315143022/                 # Legújabb (aktív)
+│   ├── 20240314091500/                 # Előző
+│   └── 20240312163045/                 # Korábbi
+└── shared/
+    ├── .env                            # Megosztott konfigurációi
+    └── web/app/uploads/                # Megosztott feltöltések
+```
+
+- Minden deploy egy **új mappát** hoz létre a `releases/` alatt
+- A `current` szimlink azonnal átvált az új mappára
+- Az átváltás **atomi művelet** - nincs köztes, hibás állapot
+- Ha valami nem stimmel, a szimlink visszaállítása másodpercek kérdése
+
+:::tip Miért fontos ez?
+Egy webshop esetén a zero-downtime deployment azt jelenti, hogy a vásárlók **soha** nem látnak hibaoldalt frissítés közben. Nincs "karbantartás alatt" állapot.
+:::
+
+---
+
+## Mi történik hiba esetén?
+
+### Automatikus visszaállítás
+
+Ha a deployment során hiba történik (pl. a Composer nem tud telepíteni egy csomagot), a régi verzió **aktív marad**. Az oldal nem áll le, a látogatók nem észlelnek semmit.
+
+### Manuális visszaállítás
+
+Ha egy sikeres deployment után derül ki a hiba, a HelloWP csapata másodpercek alatt visszaállíthatja az előző verziót.
+
+Fejlesztőként a Git-ben is visszavonhatod a változást:
+
+```bash
+# Az utolsó commit visszavonása (új committal)
+git revert HEAD
+git push origin main
+# → Automatikus deploy a visszavont állapottal
+```
+
+---
+
+## CI/CD pipeline
+
+A HelloWP szerverei alapértelmezetten egyszerű webhook alapú deploymentet használnak. Összetettebb projekteknél GitHub Actions alapú CI/CD pipeline is beállítható.
+
+### Alap webhook deployment
+
+```
+Push → Webhook → Deploy
+```
+
+- Egyszerű, gyors, megbízható
+- Minden push-ra automatikusan fut
+- A legtöbb projekthez elegendő
+
+### GitHub Actions pipeline (összetett projektek)
+
+```
+Push → GitHub Actions → Tesztek → Build → Deploy
+```
+
+Ezt akkor érdemes használni, ha:
+- Automatikus teszteket szeretnél futtatni minden push előtt
+- Frontend build lépés szükséges (pl. npm build)
+- Több környezetre (staging + éles) kell deployolni
+- Code review kötelező a main branch-be mergelésnél
+
+:::info Beállítás
+Ha szükséged van GitHub Actions pipeline-ra, jelezd a HelloWP csapatának, és beállítjuk a projekted igényei szerint.
+:::
+
+---
+
+## Fejlesztői környezetek
+
+| Környezet | Branch | Deploy | Cél |
+|-----------|--------|--------|-----|
+| **Lokális** | bármelyik | - | Fejlesztés, tesztelés |
+| **Staging** | `staging` | Automatikus | Ügyfél jóváhagyás, tesztelés |
+| **Éles** | `main` | Automatikus | Publikus oldal |
+
+---
+
+## Best practices
+
+### Tesztelj deployolás előtt
+
+- Lokálisan ellenőrizd, hogy `composer install` hiba nélkül lefut
+- Nézd meg az oldalt lokálisan, mielőtt push-olsz
+
+### Kis, gyakori deployok
+
+- Inkább kis módosításokat push-olj gyakran, mint nagy változásokat ritkán
+- Egy commit = egy logikai változás
+- Ha valami elromlik, könnyebb megtalálni a hibát kis commitokban
+
+### Ne push-olj pénteken
+
+Klasszikus szabály: ha nem muszáj, pénteken ne élesíts nagy változtatásokat. Ha probléma van, a hétvégén nehezebb kezelni.

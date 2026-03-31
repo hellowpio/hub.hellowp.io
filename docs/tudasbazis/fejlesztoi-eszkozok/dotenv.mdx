@@ -1,0 +1,207 @@
+---
+title: Dotenv (.env)
+description: Környezeti változók kezelése .env fájlokkal WordPress és Bedrock projektekben - biztonságos konfiguráció és jelszókezelés.
+keywords:
+  - dotenv
+  - .env
+  - környezeti változók
+  - environment variables
+  - konfiguráció
+  - bedrock
+sidebar_label: Dotenv (.env)
+sidebar_position: 7
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-file-shield text-primary" /> Dotenv (.env)
+
+A [Dotenv](https://github.com/vlucas/phpdotenv) egy PHP könyvtár, amely lehetővé teszi, hogy az alkalmazás konfigurációját (adatbázis jelszavak, API kulcsok, titkos kulcsok) egy `.env` fájlban tárold a forráskódon kívül. A [Bedrock](./bedrock.mdx) alapértelmezetten használja.
+
+## Miért fontos?
+
+A hagyományos WordPress-nél minden érzékeny adat a `wp-config.php` fájlban van, ami a kód része. Ez több problémát okoz:
+
+- **Jelszavak a Git repóban** - Bárki, aki hozzáfér a repóhoz, látja az adatbázis jelszót
+- **Egy konfig minden környezetre** - Fejlesztői és éles beállítások keverednek
+- **Biztonsági kockázat** - A `wp-config.php` a webroot-ban van, webszerver-hiba esetén elérhető
+
+A `.env` fájl megoldja ezeket:
+
+- **Nem kerül a Git repóba** (a `.gitignore` kizárja)
+- **Minden környezetnek saját `.env` fájlja van**
+- **A webroot felett helyezkedik el** (Bedrocknál)
+
+## Hogyan működik?
+
+### .env fájl felépítése
+
+A `.env` fájl egyszerű `KULCS=érték` párokból áll:
+
+```env
+# Adatbázis beállítások
+DB_NAME='wordpress'
+DB_USER='wp_user'
+DB_PASSWORD='titkos_jelszo'
+DB_HOST='localhost'
+DB_PREFIX='wp_'
+
+# WordPress környezet
+WP_ENV='development'
+WP_HOME='https://example.com'
+WP_SITEURL="${WP_HOME}/wp"
+
+# Debug
+WP_DEBUG=true
+WP_DEBUG_LOG=true
+
+# API kulcsok
+GOOGLE_MAPS_API_KEY='AIza...'
+SMTP_PASSWORD='smtp_jelszo'
+```
+
+### Hivatkozás más változókra
+
+A `.env` fájlban hivatkozhatsz korábban definiált változókra:
+
+```env
+WP_HOME='https://example.com'
+WP_SITEURL="${WP_HOME}/wp"
+```
+
+### Kommentek
+
+A `#` karakterrel kezdődő sorok kommentek:
+
+```env
+# Ez egy komment
+DB_NAME='wordpress'  # Sor végi komment is működik
+```
+
+## Bedrock .env fájl
+
+A Bedrock `.env` fájlja a következő változókat tartalmazza:
+
+```env
+DB_NAME='adatbazis_neve'
+DB_USER='adatbazis_felhasznalo'
+DB_PASSWORD='adatbazis_jelszo'
+DB_HOST='localhost'
+DB_PREFIX='wp_'
+
+WP_ENV='development'
+WP_HOME='https://example.com'
+WP_SITEURL="${WP_HOME}/wp"
+
+# Salt kulcsok (generáld: https://roots.io/salts.html)
+AUTH_KEY='generalt-kulcs'
+SECURE_AUTH_KEY='generalt-kulcs'
+LOGGED_IN_KEY='generalt-kulcs'
+NONCE_KEY='generalt-kulcs'
+AUTH_SALT='generalt-kulcs'
+SECURE_AUTH_SALT='generalt-kulcs'
+LOGGED_IN_SALT='generalt-kulcs'
+NONCE_SALT='generalt-kulcs'
+```
+
+:::tip Salt kulcsok
+A Bedrock-hoz a salt kulcsokat a [roots.io/salts.html](https://roots.io/salts.html) oldalon generálhatod, amely rögtön `.env` formátumban adja az eredményt.
+:::
+
+## Környezetek kezelése
+
+Minden környezetnek (fejlesztői, staging, éles) saját `.env` fájlja van, különböző beállításokkal:
+
+| Változó | Fejlesztői | Staging | Éles |
+|---------|-----------|---------|------|
+| `WP_ENV` | `development` | `staging` | `production` |
+| `WP_HOME` | `https://local.example.com` | `https://staging.example.com` | `https://example.com` |
+| `WP_DEBUG` | `true` | `true` | `false` |
+| `DB_NAME` | `wp_dev` | `wp_staging` | `wp_production` |
+
+## .env.example
+
+A repóban egy `.env.example` fájl tartalmazza a szükséges változók listáját **értékek nélkül** (vagy példaértékekkel). Ez segíti az új fejlesztőket:
+
+```env
+DB_NAME='adatbazis_neve'
+DB_USER='felhasznalonev'
+DB_PASSWORD='jelszo'
+DB_HOST='localhost'
+
+WP_ENV='development'
+WP_HOME='https://local.example.com'
+WP_SITEURL="${WP_HOME}/wp"
+```
+
+Új fejlesztő belépésekor:
+
+```bash
+cp .env.example .env
+# Szerkeszd a .env fájlt a saját beállításaiddal
+```
+
+## Biztonsági szabályok
+
+### Soha ne commitold a .env fájlt
+
+A `.gitignore` fájlnak tartalmaznia kell:
+
+```
+.env
+```
+
+:::warning Fontos
+Ha a `.env` fájl **valaha** bekerült a Git történetbe, az abban lévő jelszavak kompromittáltnak tekintendők. Ilyenkor minden jelszót és kulcsot cserélni kell.
+:::
+
+### A .env fájl helye
+
+A Bedrocknál a `.env` fájl a projekt gyökerében van, ami a webroot (`web/`) **felett** helyezkedik el. Így a webszerver nem tudja kiszolgálni.
+
+```
+projekt/
+├── .env            # ← Itt van, NEM érhető el böngészőből
+├── web/            # ← A webszerver csak ezt a mappát szolgálja ki
+│   └── ...
+└── ...
+```
+
+### Jogosultságok
+
+Az éles szerveren a `.env` fájl jogosultsága:
+
+```bash
+chmod 600 .env      # Csak a tulajdonos olvashatja
+```
+
+## PHP-ben való használat
+
+A Bedrock automatikusan betölti a `.env` fájlt. Ha egyedi PHP kódban szeretnéd elérni a változókat:
+
+```php
+// Környezeti változó olvasása
+$db_name = env('DB_NAME');
+$api_key = env('GOOGLE_MAPS_API_KEY');
+
+// Vagy PHP natív módszerrel
+$db_name = getenv('DB_NAME');
+$db_name = $_ENV['DB_NAME'];
+```
+
+## Összehasonlítás: wp-config.php vs .env
+
+| Szempont | wp-config.php | .env + Bedrock |
+|----------|--------------|----------------|
+| Jelszavak helye | A kódban, Git repóban | Külön fájlban, repón kívül |
+| Környezetek | Egy fájl, kézi átírás | Környezetenként külön .env |
+| Biztonság | Webroot-ban | Webroot felett |
+| Új fejlesztő belépése | Jelszavakat kell megosztani | `.env.example` másolása |
+| Titkos kulcsok cseréje | Commit + deploy szükséges | Csak a .env fájl szerkesztése |
+
+## Források
+
+- [PHP dotenv GitHub](https://github.com/vlucas/phpdotenv)
+- [Bedrock dokumentáció](https://roots.io/bedrock/docs/)
+- [Salt kulcs generátor](https://roots.io/salts.html)
+- [Twelve-Factor App - Config](https://12factor.net/config)
