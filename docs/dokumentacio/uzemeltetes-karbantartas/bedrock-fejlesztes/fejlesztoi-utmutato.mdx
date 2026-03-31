@@ -1,0 +1,183 @@
+---
+title: Fejlesztői útmutató
+description: Hogyan kell dolgozni egy HelloWP által üzemeltetett Bedrock alapú WordPress oldallal - lépésről lépésre a fejlesztők számára.
+keywords:
+  - bedrock fejlesztés
+  - git workflow
+  - wordpress fejlesztő
+  - bedrock munkamenet
+sidebar_label: Fejlesztői útmutató
+sidebar_position: 4
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-code text-primary" /> Fejlesztői útmutató
+
+**Hogyan dolgozz egy HelloWP által üzemeltetett Bedrock alapú WordPress oldallal**
+
+:::tip Mielőtt elkezded
+A HelloWP munkatársai elvégeznek **minden szükséges telepítést, konfigurációt és háttérmunkát** az üzemeltetett oldalakon. Te, mint fejlesztő, egy **teljesen beállított Git repót kapsz**, amellyel azonnal elkezdhetsz dolgozni. Nem kell Bedrock-ot telepítened, szervert konfigurálnod vagy deployment pipeline-t építened.
+:::
+
+---
+
+## Amit kapsz
+
+Amikor egy HelloWP által üzemeltetett Bedrock oldallal kezdesz dolgozni, a következőket kapod:
+
+- **Git repó URL** - A projekt GitHub repójának elérhetősége
+- **Hozzáférés a repóhoz** - GitHub meghívó a szervezethez vagy a repóhoz
+- **Működő fejlesztői környezet leírás** - Hogyan indítsd el lokálisan
+
+A repó már tartalmazza:
+- A teljes Bedrock struktúrát
+- Az összes szükséges bővítményt és témát
+- A konfigurációs fájlokat
+- A deployment beállításokat
+
+---
+
+## Első lépések
+
+### 1. Repó klónozása
+
+```bash
+git clone git@github.com:hellowpio/projekt-neve.git
+cd projekt-neve
+```
+
+### 2. Függőségek telepítése
+
+```bash
+composer install
+```
+
+Ez letölti a WordPress core-t, az összes bővítményt és témát a `composer.lock` alapján.
+
+### 3. Környezeti fájl létrehozása
+
+```bash
+cp .env.example .env
+```
+
+Szerkeszd a [`.env` fájlt](/docs/tudasbazis/fejlesztoi-eszkozok/dotenv) a saját lokális beállításaiddal (adatbázis, URL stb.).
+
+### 4. Lokális fejlesztés indítása
+
+A lokális fejlesztéshez szükséges beállításokat a repó `README.md` fájlja tartalmazza, mivel ez projektenként eltérhet.
+
+---
+
+## Napi munkamenet
+
+### Módosítás elvégzése
+
+```bash
+# 1. Friss kód lekérése
+git pull origin main
+
+# 2. Függőségek szinkronizálása (ha változtak)
+composer install
+
+# 3. Dolgozz a kódon (téma, bővítmény, konfiguráció)
+
+# 4. Változások stage-elése
+git add web/app/themes/tema-neve/
+
+# 5. Commit leírással
+git commit -m "feat: termékoldal redesign mobil nézethez"
+
+# 6. Push a távoli repóba
+git push origin main
+```
+
+### Commit üzenetek formátuma
+
+Használd a következő prefixeket:
+
+| Prefix | Mikor használd |
+|--------|----------------|
+| `feat:` | Új funkció hozzáadása |
+| `fix:` | Hibajavítás |
+| `update:` | Meglévő funkció módosítása |
+| `style:` | Vizuális módosítás |
+| `refactor:` | Kód átszervezés, funkció nem változik |
+| `docs:` | Dokumentáció módosítás |
+
+**Példák:**
+```
+feat: WooCommerce egyedi szállítási módszer hozzáadása
+fix: kosár oldal ár formázási hiba javítása
+update: footer copyright évszám automatizálása
+```
+
+---
+
+## Mappastruktúra
+
+Fejlesztőként a következő mappák érdekesek számodra:
+
+```
+projekt/
+├── config/                     # WordPress konfiguráció
+│   ├── application.php         # Általános beállítások
+│   └── environments/
+│       ├── development.php     # Fejlesztői beállítások
+│       ├── staging.php         # Staging beállítások
+│       └── production.php      # Éles beállítások
+├── web/
+│   └── app/                    # ← ITT DOLGOZOL
+│       ├── themes/             # Témák
+│       ├── plugins/            # Egyedi bővítmények (mu-plugins is lehet)
+│       └── uploads/            # Feltöltött fájlok (NE COMMITOLJ IDE)
+├── composer.json               # Függőségek listája
+├── composer.lock               # Pontos verziók (MINDIG COMMITOLD)
+└── .env                        # Lokális beállítások (NE COMMITOLD)
+```
+
+:::warning Ne commitold
+- `.env` - Jelszavakat tartalmaz
+- `web/app/uploads/` - Médiafájlok, nem tartoznak a kódhoz
+- `vendor/` - Composer telepíti, nem kell a repóba
+:::
+
+---
+
+## Branch stratégia
+
+A HelloWP által üzemeltetett oldalakon a branch stratégia projektenként eltérhet. Az alapértelmezett:
+
+| Branch | Cél | Deploy |
+|--------|-----|--------|
+| `main` | Éles kód | Automatikus deploy az éles szerverre |
+| `staging` | Tesztelés (ha van) | Automatikus deploy a staging szerverre |
+| `feature/*` | Fejlesztés alatt álló funkciók | Nincs automatikus deploy |
+
+```bash
+# Új funkció fejlesztése
+git checkout -b feature/uj-funkcio
+# ... dolgozol ...
+git push origin feature/uj-funkcio
+# → Pull Request a main-be
+```
+
+---
+
+## Gyakori kérdések
+
+### Hol van a WordPress admin?
+
+A Bedrock alapú oldalakon az admin felület a `/wp/wp-admin/` útvonalon érhető el (nem a szokásos `/wp-admin/` útvonalon).
+
+### Módosíthatom a WordPress core fájlokat?
+
+**Nem.** A WordPress core a `vendor/` és `web/wp/` mappákban van, amelyeket a Composer kezel. Ezeket a mappákat nem szabad kézzel módosítani.
+
+### Mi történik push után?
+
+A HelloWP szerverei automatikusan deployolják a kódot. A push utáni néhány másodpercen belül a változások megjelennek az éles (vagy staging) szerveren.
+
+### Segítséget kérhetek?
+
+Igen! Ha bármiben elakadsz, keress minket a **support@hellowp.io** címen. A HelloWP csapata segít minden Bedrock-kal kapcsolatos kérdésben.

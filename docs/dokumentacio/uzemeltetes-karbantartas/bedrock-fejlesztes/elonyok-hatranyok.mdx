@@ -1,0 +1,107 @@
+---
+title: Előnyök és hátrányok
+description: A Bedrock alapú WordPress előnyei és hátrányai összehasonlítva a hagyományos WordPress telepítéssel.
+keywords:
+  - bedrock előnyök
+  - bedrock hátrányok
+  - wordpress összehasonlítás
+  - composer
+sidebar_label: Előnyök és hátrányok
+sidebar_position: 2
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-scale-balanced text-primary" /> Előnyök és hátrányok
+
+**Objektív összehasonlítás a hagyományos WordPress és a Bedrock között**
+
+---
+
+## Előnyök
+
+### <FontAwesomeIcon icon="fa-duotone fa-check-circle text-success" /> Verziókezelés és nyomonkövethetőség
+
+- Minden módosítás Git-ben rögzítve, évekre visszamenőleg
+- Pontosan látható, ki, mikor és mit változtatott
+- Bármely korábbi állapot visszaállítható pillanatok alatt
+- A teljes projekt történetét bármikor auditálni lehet
+
+### <FontAwesomeIcon icon="fa-duotone fa-check-circle text-success" /> Fokozott biztonság
+
+- A WordPress core, bővítmények és konfigurációs fájlok a webroot felett vannak, közvetlenül nem elérhetők
+- Jelszavak és érzékeny adatok [`.env` fájlban](/docs/tudasbazis/fejlesztoi-eszkozok/dotenv), nem a kódban
+- A `wp-content/uploads` az egyetlen írható mappa a webroot-ban
+- Nincs admin felületi bővítménytelepítés, ami csökkenti a támadási felületet
+
+### <FontAwesomeIcon icon="fa-duotone fa-check-circle text-success" /> Függőségkezelés Composerrel
+
+- Bővítmények és témák verziózott Composer csomagként kezelve
+- Egy paranccsal frissíthető az egész rendszer
+- Nincs "eltűnt bővítmény" vagy "nem kompatibilis verzió" probléma
+- A `composer.lock` fájl garantálja a reprodukálhatóságot
+
+### <FontAwesomeIcon icon="fa-duotone fa-check-circle text-success" /> Környezetek elkülönítése
+
+- Külön konfiguráció fejlesztéshez, staginghez és éles környezethez
+- Környezetfüggő beállítások (debug mód, cache, adatbázis) automatikusan kezelve
+- Nem fordulhat elő, hogy éles szerveren marad bekapcsolva a debug mód
+
+### <FontAwesomeIcon icon="fa-duotone fa-check-circle text-success" /> Automatikus deployment
+
+- Push után az oldal automatikusan frissül a szerveren
+- Zero-downtime deployment lehetőség
+- Nem kell FTP-zni vagy a szerverre bejelentkezni
+
+### <FontAwesomeIcon icon="fa-duotone fa-check-circle text-success" /> Csapatmunka
+
+- Több fejlesztő párhuzamosan, konfliktusmentesen dolgozhat
+- Code review lehetőség minden módosításnál
+- Branching stratégia: fejlesztés, tesztelés, élesítés elkülönítve
+
+---
+
+## Hátrányok
+
+### <FontAwesomeIcon icon="fa-duotone fa-triangle-exclamation text-warning" /> Magasabb belépési küszöb
+
+- A fejlesztőknek ismerniük kell a Git alapjait
+- Composer és parancssor használata szükséges
+- Nem elég az admin felületen "kattintgatni"
+
+:::info Ezt megoldjuk
+A HelloWP csapata teljes mértékben beállítja a környezetet, és a [fejlesztői útmutatóban](/docs/dokumentacio/uzemeltetes-karbantartas/bedrock-fejlesztes/fejlesztoi-utmutato) lépésről lépésre leírjuk a munkamenetet.
+:::
+
+### <FontAwesomeIcon icon="fa-duotone fa-triangle-exclamation text-warning" /> Admin felületi korlátozások
+
+- Bővítményeket és témákat **nem lehet** a WordPress admin felületéről telepíteni vagy frissíteni
+- A frissítések Composeren keresztül történnek
+- Az ügyfélnek vagy a projekt menedzsernek jelezni kell, ha új bővítményre van szükség
+
+### <FontAwesomeIcon icon="fa-duotone fa-triangle-exclamation text-warning" /> Nem Composer-kompatibilis bővítmények
+
+- Néhány prémium bővítmény nem érhető el Composer csomag formájában
+- Ezeket külön kell kezelni (a megoldást a [Bővítmények kezelése](/docs/dokumentacio/uzemeltetes-karbantartas/bedrock-fejlesztes/bovitmenyek-kezelese) oldalon írjuk le)
+
+### <FontAwesomeIcon icon="fa-duotone fa-triangle-exclamation text-warning" /> Fejlesztői eszközök szükségesek
+
+- A fejlesztőnek lokálisan szüksége van Git-re, Composer-re és PHP-re
+- Nem lehet "csak gyorsan" belenyúlni FTP-n a kódba
+
+---
+
+## Összefoglalás
+
+| Szempont | Értékelés |
+|----------|-----------|
+| Biztonság | Jelentősen jobb |
+| Nyomonkövethetőség | Összehasonlíthatatlanul jobb |
+| Megbízhatóság | Magasabb szintű |
+| Csapatmunka | Professzionális |
+| Tanulási görbe | Meredekebb, de kezelhető |
+| Admin felületi szabadság | Korlátozottabb |
+
+:::tip Végső szó
+A hátrányok szinte kizárólag a tanulási görbével kapcsolatosak. A Bedrock nem bonyolultabb, csak **más**. Amint a fejlesztő megszokja a munkafolyamatot (általában 1-2 nap), már nem akar visszatérni a hagyományos módszerhez.
+:::

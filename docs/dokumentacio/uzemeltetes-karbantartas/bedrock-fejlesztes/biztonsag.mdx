@@ -1,0 +1,109 @@
+---
+title: Biztonság
+description: Miért biztonságosabb a Bedrock alapú WordPress, és hogyan védi a weboldaladat a nagyvállalati szintű felépítés.
+keywords:
+  - bedrock biztonság
+  - wordpress biztonság
+  - webroot
+  - env
+  - nagyvállalati biztonság
+sidebar_label: Biztonság
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-shield-halved text-primary" /> Biztonság
+
+**Nagyvállalati szintű biztonsági felépítés WordPress oldalakhoz**
+
+A Bedrock az egyik legfontosabb előnye a biztonságban rejlik. Nem véletlenül használják a NASA, a Mercedes-Benz, a Disney és más nagyvállalatok - ezeknél a szervezeteknél a biztonság nem opcionális, hanem alapvető követelmény.
+
+---
+
+## Miért biztonságosabb a Bedrock?
+
+### <FontAwesomeIcon icon="fa-duotone fa-folder-tree text-success" /> Elkülönített mappastruktúra
+
+A hagyományos WordPress esetén minden fájl - a WordPress core, a bővítmények, a konfiguráció és a feltöltött fájlok - egyetlen mappában van, amit a webszerver kiszolgál. Ez azt jelenti, hogy a böngészőből **potenciálisan elérhető** mindegyik.
+
+A Bedrock megváltoztatja ezt:
+
+```
+projekt/                    # Nem elérhető a böngészőből
+├── config/                 # Konfiguráció - NEM elérhető
+├── vendor/                 # Composer csomagok - NEM elérhető
+├── .env                    # Jelszavak - NEM elérhető
+└── web/                    # Csak ez a mappa érhető el (webroot)
+    ├── wp/                 # WordPress core
+    ├── app/                # Bővítmények és témák
+    └── index.php
+```
+
+:::warning A hagyományos WordPress sebezhetősége
+A hagyományos telepítésnél a `wp-config.php` (ami az adatbázis jelszót tartalmazza) a webroot-ban van. Egyetlen webszerver-konfigurációs hiba, és a jelszavaid nyilvánosak lehetnek. A Bedrocknál ez a fájl a webroot **felett** van, tehát a webszerveren keresztül elérhetetlen.
+:::
+
+### <FontAwesomeIcon icon="fa-duotone fa-key text-success" /> Környezeti változók (.env)
+
+Az érzékeny adatok (adatbázis jelszó, API kulcsok, titkos kulcsok) nem a kódban vannak, hanem egy [`.env` fájlban](/docs/tudasbazis/fejlesztoi-eszkozok/dotenv):
+
+- A `.env` fájl **nem kerül a Git repóba** (tehát senki nem látja a jelszavakat a kódban)
+- Minden környezetnek (fejlesztői, staging, éles) saját `.env` fájlja van
+- A jelszavak **soha nem utaznak** a kóddal együtt
+
+### <FontAwesomeIcon icon="fa-duotone fa-ban text-success" /> Nincs admin felületi bővítménytelepítés
+
+A hagyományos WordPress-nél bárki, akinek admin hozzáférése van, telepíthet bővítményeket. Ez komoly biztonsági kockázat:
+
+- Ismeretlen forrásból származó bővítmények malware-t tartalmazhatnak
+- Nem ellenőrzött bővítmények sebezhetőségeket nyithatnak
+- Nincs auditálható nyom arról, ki mit telepített
+
+A Bedrocknál a bővítmények **kizárólag Composeren keresztül** telepíthetők, ami azt jelenti, hogy:
+- Minden bővítmény ellenőrizhető és jóváhagyható
+- A telepítés nyomon követhető a Git történetben
+- Nem lehet "véletlenül" kártékony bővítményt felrakni
+
+### <FontAwesomeIcon icon="fa-duotone fa-lock text-success" /> Csak olvasható fájlrendszer
+
+Az éles szerveren a kód csak olvasható. A `web/app/uploads` az egyetlen mappa, ahová írni lehet. Ez azt jelenti, hogy:
+
+- Egy feltört bővítményen keresztül **nem lehet fájlokat módosítani**
+- Hátsó ajtók (backdoor-ok) nem helyezhetők el a kódban
+- A malware nem tud beágyazódni a témafájlokba
+
+### <FontAwesomeIcon icon="fa-duotone fa-fingerprint text-success" /> Auditálhatóság
+
+Mivel minden változás Git-en keresztül történik:
+
+- Pontosan látható, ki és mikor módosított bármit
+- Biztonsági audit során egyértelműen kimutatható, mikor történt egy változás
+- Gyanús módosítás esetén azonnal visszakövethető, ki volt a felelős
+- A teljes kódbázis bármely korábbi állapota ellenőrizhető
+
+---
+
+## Összehasonlítás
+
+| Biztonsági szempont | Hagyományos WordPress | Bedrock |
+|--------------------|-----------------------|---------|
+| Konfigurációs fájlok helye | Webroot-ban, elérhető | Webroot felett, védett |
+| Jelszavak tárolása | `wp-config.php`-ban, a kóddal együtt | `.env` fájlban, a repón kívül |
+| Bővítménytelepítés | Bárki az admin felületen | Csak Composerrel, ellenőrzötten |
+| Fájlmódosítás élesben | Lehetséges | Csak olvasható |
+| Módosítások nyomonkövetése | Nincs | Teljes Git történet |
+| Biztonsági audit | Nehéz, manuális | Automatizálható, átlátható |
+
+---
+
+## Miért fontos ez a nagyvállalatoknál?
+
+A nagyvállalati környezetben a biztonság nem egyéni döntés, hanem szabályozott folyamat:
+
+- **Compliance követelmények** - Sok iparágban kötelező a változáskezelés dokumentálása
+- **Audit trail** - Ellenőröknek be kell tudni mutatni, ki mit módosított
+- **Incidenskezelés** - Biztonsági esemény esetén percek alatt visszakövethető a probléma forrása
+- **Felelősség** - Minden módosítás egy konkrét személyhez köthető
+
+A Bedrock ezeket a követelményeket alapból teljesíti - ezért választják a NASA, a Disney és más nagyszervezetek is.
