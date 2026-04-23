@@ -1,0 +1,267 @@
+---
+title: Windows Terminal + OpenSSH
+description: Windows Terminal + beépített OpenSSH kliens - mindennapi SSH munkához HelloHost szerverekhez. Profile setup, split pane, tippek.
+keywords:
+  - windows terminal
+  - openssh
+  - ssh
+  - powershell
+  - windows
+sidebar_label: Windows Terminal + OpenSSH
+sidebar_position: 3
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-terminal text-primary" /> Windows Terminal + OpenSSH
+
+A **Windows Terminal** a Microsoft hivatalos modern terminálja Windows 10/11-re. Natív PowerShell, CMD, WSL és Git Bash shellt egyetlen tab-os ablakban kezeled, és a Windows 10 1809+ óta beépített OpenSSH kliens segítségével közvetlenül csatlakozol HelloHost szerverekhez — **nem kell semmilyen extra eszköz**.
+
+Ez a megoldás a **mindennapi workflow**-ra ajánlott: kódírás, deploy parancsok, log követés, gyors SSH bejelentkezések.
+
+:::tip Előfeltétel
+Mielőtt elkezded, hozz létre egy SSH kulcspárt és add hozzá a HelloHost felülethez — részletek: [SSH kulcs generálás](./ssh-kulcs-generalas).
+:::
+
+## Telepítés
+
+### Windows 11
+
+A Windows Terminal alapból telepítve van. Keresd a Start menüben: **Terminal** (nem "Windows Terminal" — a 11-es verzióban csak "Terminal").
+
+### Windows 10
+
+Microsoft Store-ból:
+
+1. Nyisd meg a [Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701)-t
+2. Keress rá: **Windows Terminal**
+3. **Get** gomb a telepítéshez
+
+Parancssorból (winget):
+
+```powershell
+winget install Microsoft.WindowsTerminal
+```
+
+### OpenSSH ellenőrzés
+
+```powershell
+ssh -V
+```
+
+Helyes output: `OpenSSH_for_Windows_9.x.x.x`. Ha hiányzik, telepítsd:
+
+```powershell
+# Rendszergazda PowerShell
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+```
+
+## Első futtatás
+
+Indítsd el a Windows Terminal-t. Alapból PowerShell nyit egy új tab-ba. A hivatalos HelloHost szerverhez kapcsolódás:
+
+```powershell
+ssh -p 10009 felhasznalo@2a01-4f9-5a-4651--108.ssh.hellohost.io
+```
+
+A `-p` porttal, majd `user@host` formában. Első alkalommal megerősíti a host key-t (`yes`), aztán a passphrase-szel bejelentkezel.
+
+## `~/.ssh/config` — aliasok
+
+Hogy ne kelljen minden alkalommal a hosszú címet beírni, szerkeszd a `C:\Users\<user>\.ssh\config` fájlt (ha még nincs, hozd létre):
+
+```text
+Host wphu
+    HostName 2a01-4f9-5a-4651--108.ssh.hellohost.io
+    Port 10009
+    User voytachadev-hellodevs-dev
+    IdentityFile ~/.ssh/id_ed25519
+    AddKeysToAgent yes
+
+Host hellohost-root
+    HostName 2a01-4f9-5a-4651--103.ssh.hellohost.io
+    Port 10005
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+Ezután elég:
+
+```powershell
+ssh wphu
+```
+
+## Windows Terminal profil HelloHost-hoz
+
+Beveheted az SSH parancsot saját **Terminal profile**-ként, így egy új tab megnyitásával azonnal be vagy jelentkezve:
+
+1. Windows Terminal: **Settings** (Ctrl+,)
+2. Bal oldalt a shell-ek alatt: **Add a new profile** → **New empty profile**
+3. Állítsd be:
+   - **Name**: `wphu SSH`
+   - **Command line**: `ssh wphu` (vagy `ssh voytachadev-hellodevs-dev@2a01-4f9-5a-4651--108.ssh.hellohost.io -p 10009`)
+   - **Icon**: ideiglenes ikonok, pl. `🌐` vagy letöltött fájl
+   - **Color scheme**: pl. `One Half Dark`
+4. **Save**
+
+Új ablakban a lefele nyíl menüből már választható `wphu SSH` — automatikusan csatlakozik.
+
+### settings.json közvetlenül
+
+A **Settings → Open JSON file** gombbal a teljes config előjön. Példa HelloHost profil:
+
+```json
+{
+    "name": "HelloHost: wphu",
+    "commandline": "ssh wphu",
+    "icon": "🌐",
+    "colorScheme": "One Half Dark",
+    "hidden": false,
+    "guid": "{YOUR-UUID-HERE}"
+}
+```
+
+A `guid` mezőhöz használj egy új UUID-t (pl. PowerShell: `[guid]::NewGuid()`).
+
+## Split pane
+
+Windows Terminal támogat **split pane**-t: egyetlen tab-ban több shell/session párhuzamosan.
+
+| Művelet | Billentyűkombináció |
+|---------|---------------------|
+| Vízszintes split | `Alt+Shift+-` |
+| Függőleges split | `Alt+Shift++` |
+| Pane-ek között navigálás | `Alt+nyíl` |
+| Aktív pane bezárása | `Ctrl+Shift+W` |
+| Pane átméretezés | `Alt+Shift+nyíl` |
+
+Hasznos pl. fele a kód, fele log `tail -f`.
+
+## ssh-agent szolgáltatás
+
+Hogy ne kelljen minden session-ben passphrase-t beírni, indítsd el az ssh-agent service-t:
+
+```powershell
+# Rendszergazda PowerShell
+Set-Service ssh-agent -StartupType Automatic
+Start-Service ssh-agent
+```
+
+Add hozzá a kulcsot (egyszer, boot után):
+
+```powershell
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+```
+
+Ellenőrzés:
+
+```powershell
+ssh-add -l
+```
+
+## Hasznos Windows Terminal beállítások
+
+A `settings.json` globális szekciójában:
+
+```json
+{
+    "copyOnSelect": true,
+    "copyFormatting": "none",
+    "defaultProfile": "{PowerShell-GUID}",
+    "profiles": {
+        "defaults": {
+            "font": {
+                "face": "Cascadia Code",
+                "size": 11
+            },
+            "padding": "8",
+            "cursorShape": "bar",
+            "antialiasingMode": "cleartype",
+            "scrollbarState": "visible"
+        }
+    }
+}
+```
+
+- **`copyOnSelect: true`** — szöveg kijelölésével automatikusan vágólapra kerül (Linux terminál workflow)
+- **`Cascadia Code`** — Microsoft saját programming font-ja ligature támogatással
+- **`cursorShape: bar`** — vékony cursor, terminálhoz jobb látvány
+
+## Tippek gyakori workflow-khoz
+
+### WordPress debug.log live nézegetés
+
+```powershell
+ssh wphu "tail -f /home/felhasznalo/webapps/site/wp-content/debug.log"
+```
+
+`Ctrl+C` a leállításhoz — a nginx error log ugyanígy:
+
+```powershell
+ssh wphu "tail -f /home/felhasznalo/logs/nginx/site_error.log"
+```
+
+### Port forward lokális MySQL kliens-hez
+
+Ha remote MySQL-hez lokális MySQL Workbench-ből szeretnél csatlakozni, egy port forward-ot indíthatsz:
+
+```powershell
+ssh -L 3307:localhost:3306 wphu
+```
+
+Ezután a MySQL Workbench host: `127.0.0.1`, port: `3307`, user/jelszó: a szerver MySQL credential-jei.
+
+### Több szerveren egyszerre futtatott parancs
+
+```powershell
+@("wphu", "hellohost-root") | ForEach-Object {
+    Write-Host "=== $_ ===" -ForegroundColor Green
+    ssh $_ "uptime; df -h / | tail -1"
+}
+```
+
+### Rendszergazdai új Terminal ablak egy kattintással
+
+Ha gyakran kell admin PowerShell, hozd létre a parancsot:
+
+```powershell
+Start-Process wt -Verb RunAs
+```
+
+## Hibák
+
+### "could not resolve hostname"
+
+A config-ban elgépelted a hostnevet, vagy nincs internet. Próbáld ki:
+
+```powershell
+Resolve-DnsName 2a01-4f9-5a-4651--108.ssh.hellohost.io
+```
+
+Ha DNS feloldás nincs, nem az SSH problémája.
+
+### "Permission denied (publickey)"
+
+A publikus kulcsod még nem jutott el a szerverre, vagy nem a megfelelő kulcsot küldi a kliens. Részletek: [SSH kulcs generálás → Hibák](./ssh-kulcs-generalas#hibák-és-megoldásaik).
+
+### Magyar karakterek hibásan jelennek meg
+
+Legyél biztos benne, hogy UTF-8 kódolás van:
+
+```powershell
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+```
+
+Permanensen a PowerShell profilba:
+
+```powershell
+notepad $PROFILE
+# add hozzá az UTF-8 sort, mentés
+```
+
+## Mikor ne ezt használd?
+
+- **Ha sok párhuzamos session-t kezelsz és GUI session manager kell** → [MobaXterm](./mobaxterm)
+- **Ha kódot szerkesztesz szerveren** → [VS Code + Remote - SSH](./vscode-remote-ssh)
+- **Ha drag & drop fájlátvitel kell** → [WinSCP](./winscp)
+- **Ha Linux-szerű teljes környezet kell** → [WSL2](./wsl2)

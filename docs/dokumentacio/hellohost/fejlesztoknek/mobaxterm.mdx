@@ -1,0 +1,185 @@
+---
+title: MobaXterm
+description: MobaXterm - mindent-egyben Windows SSH kliens HelloHost szerverekhez. Tab-ek, SFTP oldalsáv, X11 forwarding, macro-k, párhuzamos sessionök.
+keywords:
+  - mobaxterm
+  - ssh
+  - sftp
+  - x11
+  - windows
+  - multi session
+sidebar_label: MobaXterm
+sidebar_position: 6
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-window-restore text-info" /> MobaXterm
+
+A **MobaXterm** egy Windows-only, mindent-egyben SSH kliens, amit főleg üzemeltetők és hálózati mérnökök használnak. Egyetlen alkalmazásban ad: tab-os SSH terminált, beépített SFTP oldalsávot, X11 szervert (grafikus Linux alkalmazások), port forwarding UI-t, session manager-t és makrókat.
+
+A HelloHost szempontjából akkor érdemes, ha **sok párhuzamos szerverkapcsolatot kezelsz**, vagy Windows-only üzemeltetőként nem akarsz waterfall terminál + SFTP kliens + kulcskezelő kombinációt használni.
+
+## Verziók
+
+| Verzió | Ár | Korlátok |
+|--------|-----|----------|
+| **Home Edition** | Ingyenes | Max 12 mentett session, max 4 SSH tunnel, max 2 daemon, nincs personal branding |
+| **Professional Edition** | Egyszeri fizetés (~$69) | Korlátlan, custom branding, komerciális use |
+
+Hobbi fejlesztőknek / 1-2 szerveres setup-hoz a Home bőven elég. Ha HelloHost-on 12+ szervered van, akkor merülj el a Professional-ba, vagy használj egy másik clienst.
+
+## Telepítés
+
+Letöltés: [mobaxterm.mobatek.net](https://mobaxterm.mobatek.net/download.html)
+
+Két verzió elérhető:
+
+- **Portable edition** — nem kell telepíteni, ZIP-ből indítható. USB pendrive-ra is rámehet.
+- **Installer edition** — klasszikus .msi telepítő
+
+Parancssoros:
+
+```powershell
+winget install Mobatek.MobaXterm
+```
+
+## Első session
+
+1. Indítsd el a MobaXterm-et
+2. Felső sávban: **Session** (vagy Ctrl+Shift+N)
+3. Bal oldalt: **SSH**
+4. Beállítások:
+   - **Remote host**: `2a01-4f9-5a-4651--108.ssh.hellohost.io`
+   - **Specify username** — pipa → `voytachadev-hellodevs-dev`
+   - **Port**: `10009`
+5. **Advanced SSH settings** tab:
+   - **Use private key** — pipa → tallózd ki a kulcsot (OpenSSH `id_ed25519` vagy `.ppk`)
+6. **Bookmark settings** tab:
+   - **Session name**: `wphu HelloHost`
+7. **OK**
+
+Session mentődik bal oldalt a **Sessions** paneljére. Dupla kattintás → csatlakozás.
+
+## SFTP oldalsáv
+
+MobaXterm egyik killer feature-je: amikor SSH-n belépsz, **bal oldalt automatikusan megjelenik** a remote könyvtár SFTP-n keresztül.
+
+- **Drag & drop** kétirányban: Windows Explorer-ből bedobod a fájlt → MobaXterm uploadol
+- Inline szerkesztés: dupla klikk egy fájlra → megnyitja a MobaXterm szerkesztőben, mentés után automatikusan uploadol
+- Szimultán terminál + fájlfa navigáció
+
+Kikapcsolás: **View → SFTP browser** (ha zavar és csak terminált szeretnél).
+
+## Beépített eszközök
+
+A MobaXterm tartalmaz egy **Cygwin-alapú Unix környezetet** beépítve. A terminálban:
+
+```bash
+ls -la
+grep -r "search" .
+rsync -avz local/ user@host:/remote/
+ssh-keygen -t ed25519
+```
+
+Mind működik — nem kell WSL-t telepíteni ha csak parancssori Linux tool-ok kellenek alkalmanként.
+
+Előre telepített eszközök: `curl`, `wget`, `rsync`, `ssh`, `scp`, `sftp`, `git`, `vim`, `nano`, `grep`, `sed`, `awk`, `find`, `tar`, `zip`, `openssl`, `perl`, `python`, és még sok.
+
+## X11 forwarding
+
+Ha egy grafikus Linux alkalmazást akarsz a szerveren futtatni és Windows képernyőn látni (pl. grafikus adatbázis adminer, diagnózis tool), a MobaXterm beépített X11 szerverével egyszerűsödik:
+
+1. A session létrehozásakor: **Advanced SSH settings → X11-Forwarding** — pipa
+2. Kapcsolódj be
+3. A szerveren: `sudo apt install xeyes` (vagy bármi grafikus), futtasd `xeyes &`
+4. Windows ablakként megjelenik
+
+HelloHost-on ritkán kell ez, de ha esetleg GUI-s diagnózis tool (pl. MySQL Workbench a szerverről), működik.
+
+## Port forwarding UI
+
+**Tools → MobaSSHTunnel** vagy: `Tunneling` gomb
+
+Vizuális port forward konfig:
+
+- **Local port forwarding** (L): lokális port → remote host:port
+- **Remote port forwarding** (R): remote port → lokális
+- **Dynamic SOCKS proxy** (D): lokális SOCKS proxy az egész TCP forgalomhoz
+
+Példa: lokális MySQL Workbench → remote MySQL:
+
+- **Local port**: `3307`
+- **SSH server**: `2a01-4f9-5a-4651--108.ssh.hellohost.io:10009`
+- **User**: `voytachadev-hellodevs-dev`
+- **Remote server**: `127.0.0.1:3306`
+
+Kattintás a **Start** gombra, a forward-tunnel fut amíg MobaXterm fut.
+
+## Macros és scripts
+
+Ha ismétlődő feladatot kell csinálni SSH-n belül (pl. WP cache ürítés + plugin list), rögzíthetsz **macro**-t:
+
+1. Csatlakozva egy session-hez
+2. Felső sávban: **Macros → Start recording** (piros gomb)
+3. Csinálj valamit a terminálban
+4. **Stop recording**
+5. Mentsd el a macro-t név szerint
+
+Később: **Macros → Play** → lefuttatja a parancsokat.
+
+Scripts-ek: **Settings → Scripts** — egyszerűbb bash scripteket futtathat lokálisan vagy remote-on a MobaXterm shell-jével.
+
+## Multi-exec (paranccsal egyszerre több szerveren)
+
+Üzemeltetői killer feature: egyszerre futtatsz ugyanazt a parancsot több csatlakozott session-ön.
+
+1. Csatlakozz be 2+ SSH session-be
+2. Felső sávban a kis **Multi-exec** ikon (vagy Settings → Keyboard shortcuts-ban állítható)
+3. **Activate multi-exec** gomb megnyomása
+4. A parancsod gépelése az ÖSSZES aktív session-re elmegy
+5. Pl. `uptime` → minden szerver uptime-ja egyszerre
+
+Óvatosan használd destruktív parancsokkal.
+
+## Beépített SFTP kliens
+
+A beépített SFTP sidebar mellett van egy **dedikált MobaXterm SFTP kliens** is (File → MobaXterm → SFTP). Ez egy teljes kétablakos fájlkezelő, hasonló a WinSCP-hez:
+
+- Kétoldali lokális/remote nézet
+- Drag & drop
+- Szinkronizáció
+
+Ha MobaXterm-et használsz fő SSH kliensnek, nem kell külön WinSCP.
+
+## Hibák
+
+### "Could not load your SSH private key"
+
+Valószínűleg rossz formátum. Próbáld:
+
+1. Futtasd a beépített PuTTYgen-t: **Tools → MobaKeyGen**
+2. **Load existing key** → válaszd ki az `id_ed25519`-et
+3. Ha passphrase-t kér, add meg
+4. **Save private key** → `.ppk` formátum
+5. MobaXterm-ben a `.ppk`-t add meg kulcsként
+
+### Portable edition session fájlok
+
+A portable verzió alapból a ZIP mappában tárolja a session-öket. Ha USB pendrive-on hordod, viheted tovább, különben érdemes egy stabil helyre kicsomagolni (nem Downloads).
+
+### Terminál scrolling gyenge
+
+**Settings → Terminal → Scrollback** buffer növelés (default 2000 sor, tedd 10000-re hosszú log néző sessionökhöz).
+
+### MobaXterm lassú indulás
+
+Ha már sok mentett session van, az első indításnál lassú. Nem sok megoldás — Professional gyorsabb indexálással.
+
+## Mikor ne ezt használd?
+
+- **Kevés szerver, csak terminál kell** → [Windows Terminal + OpenSSH](./windows-terminal) (natív, gyorsabb, egyszerűbb)
+- **Fő munkád kódszerkesztés** → [VS Code + Remote - SSH](./vscode-remote-ssh)
+- **Csak fájlátvitel** → [WinSCP](./winscp) (specializált, gyorsabb sync)
+- **Teljes Linux environment** → [WSL2](./wsl2)
+- **12+ mentett session kell és fizetni nem akarsz** → [Windows Terminal](./windows-terminal) aliasokkal, vagy [Termius](https://termius.com/) (freemium)
