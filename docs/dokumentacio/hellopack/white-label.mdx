@@ -16,36 +16,96 @@ import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
 
 ## Mire jó a White-label funkció?
 
-A white-label funkció egy olyan eszköz, amely lehetővé teszi a fejlesztők számára, hogy testreszabják a terméküket úgy, hogy azok a saját márkaidentitásuknak feleljenek meg, és ne az eredeti termék nevét vagy logóját használják. Ezáltal az eredeti termék eltávolítható, vagy az eredeti fejlesztői által javasolt megjelenéstől eltérő módon jeleníthető meg. A whitelabel funkció használata különösen hasznos lehet azoknak a vállalkozásoknak, akik saját brandjüket szeretnék erősíteni.
+A white-label funkció lehetővé teszi a fejlesztők és ügynökségek számára, hogy a HelloPack csomagkezelőt a saját márkaidentitásukhoz igazítsák: kicserélhető a plugin neve, logója és a támogatási URL, valamint elrejthetők a hellowp.io-ra mutató külső hivatkozások és a HelloPack saját marketing-tartalmai. Különösen hasznos azoknak, akik végfelhasználó/ügyfél környezetben használják a HelloPack-et és nem akarják mutatni az eredeti brand-et.
 
-## Hogyan aktiválhatod a white-label funkciót?
-
-Az aktiváláshoz a wp-config.php fájlba kell beilleszteni a
-
-```php title="wp-config.php"
-define('HELLOPACK_WHITELABEL', true);
-```
-
-sort a `/* That's all, stop editing! Happy publishing. */` sor fölé. Ezzel a HelloPack vizuális megjelenése módosíthatóvá válik.
-
-## HelloPack megjelenésének módosítása
-
-Miután a HELLOPACK_WHITELABEL konstans bekerült a wp-config.php-ba, a HelloPack minden szöveges része módosíthatóvá válik. A szöveg módosításához a WordPress nyelvrendszerét használhatod.
-
-### Szöveg átírása WordPress adminból LOCO bővítmény segítségével.
-
-1. Telepítsd és aktiváld a LOCO Translate bővítményt a WordPress admin felületén keresztül.
-2. A WordPress admin felületén kattints a LOCO Translate menüpontra.
-3. Válaszd ki a HelloPack bővítményt a projektlistából, majd válaszd ki a nyelvet.
-4. Keresd meg a szövegrészletet, amelyet módosítani szeretnél, majd kattints rá.
-5. Írd be az új fordítást a jobb oldali szerkesztő mezőbe, majd kattints a Mentés gombra.
-
-### Szöveg átírása manuálisan
-
-A wp-content/plugins/hellopack-client/languages mappából másold le a gépedre a nyelvi fájlokat. Módosítsd a szöveget például POEdit segítségével és másold vissza a wp-content/languages/plugins/ mappába a hellopack-client-hu_HU.po (magyar esetén) fájlt.
-
-:::caution Figyelem
-Annak érdekében, hogy a HelloPack frissítése ne írja felül a módosításokat, győződj meg róla, hogy a fordítás a `wp-content/languages/plugins` – mappában van. LOCO: Áthelyezés fül (fordítási nézetben)
+:::info Verzió
+A `NAME`, `LOGO_URL` és `SUPPORT_URL` konstansok **HelloPack Client 3.0.6** verziótól érhetők el. A `HELLOPACK_WHITELABEL` master switch korábbi verziókban is működött, de csak részleges branding-elrejtést végzett.
 :::
 
-**A LOCO bővítményre csak a szöveg módosításáig van szükség, a későbbiekben nincs.**
+## Aktiválás
+
+A white-label funkciót egyetlen konstans kapcsolja be a `wp-config.php` fájlban:
+
+```php title="wp-config.php"
+define( 'HELLOPACK_WHITELABEL', true );
+```
+
+A sort a `/* That's all, stop editing! Happy publishing. */` **fölé** illeszd be.
+
+Önmagában ez a konstans már:
+
+- elrejti a HelloPack logót, és helyette a "HelloPack" feliratot mutatja a SPA fejlécében,
+- elrejti a hellowp.io-ra mutató Documentation és Support footer linkeket,
+- elrejti az About oldal "Why HelloWP Package Manager?" és "What HelloPack does" brand-story szekcióit,
+- elrejti a license-aktiváló képernyőn az "Open API Key Generator" gombot (mert hellowp.io-specifikus),
+- törli a plugin leírását, szerzőjét és külső URL-jeit a WordPress plugin listából.
+
+## Saját brand beállítása (opcionális konstansok)
+
+Az alábbi három konstans tetszőlegesen kombinálható — csak amit beállítasz, az íródik felül.
+
+### Saját megjelenítendő név
+
+```php title="wp-config.php"
+define( 'HELLOPACK_WHITELABEL_NAME', 'Acme Updater' );
+```
+
+Ez a név jelenik meg:
+
+- a WordPress **plugin lista** oldalán a "HelloPack Client" helyett,
+- a WordPress **bal oldali admin menüben** a "HelloPack" helyett,
+- a HelloPack admin felület **fejlécében** (ha nincs egyedi logó megadva),
+- minden olyan szövegben, ami a termékre hivatkozik (pl. _"Manage your **Acme Updater** API connection..."_, _"Browse, install and update plugins from the **Acme Updater** library."_, diagnosztikai header, bug report payload).
+
+### Saját logó
+
+```php title="wp-config.php"
+define( 'HELLOPACK_WHITELABEL_LOGO_URL', 'https://acme.test/wp-content/uploads/acme-logo.svg' );
+```
+
+A megadott URL képe jelenik meg a HelloPack admin felület fejlécében a HelloPack logó helyett. SVG és raszter formátum egyaránt használható; magasság automatikusan 28px-re skálázódik.
+
+Ha nincs megadva `LOGO_URL` de van `NAME`, akkor a fejlécben a név szövegként jelenik meg.
+
+### Saját support URL
+
+```php title="wp-config.php"
+define( 'HELLOPACK_WHITELABEL_SUPPORT_URL', 'https://acme.test/support' );
+```
+
+Ezzel a HelloPack admin **footer-ben és az About oldalon** a Support link a saját URL-edre fog mutatni a `https://hellowp.io/hu/tamogatas/` helyett. Ha **nem** állítod be, a Support link teljesen eltűnik white-label módban (csak a Documentation linkkel együtt rejtjük el).
+
+## Teljes konfigurációs példa
+
+```php title="wp-config.php"
+define( 'HELLOPACK_WHITELABEL', true );
+define( 'HELLOPACK_WHITELABEL_NAME', 'Acme Updater' );
+define( 'HELLOPACK_WHITELABEL_LOGO_URL', 'https://acme.test/wp-content/uploads/acme-logo.svg' );
+define( 'HELLOPACK_WHITELABEL_SUPPORT_URL', 'https://acme.test/support' );
+```
+
+## Mit NEM cserél a white-label?
+
+- **A plugin könyvtárnevét** (`wp-content/plugins/hellopack-client/`) — ez technikai azonosító, megváltoztatása megszakítaná a frissítéseket.
+- **A REST API namespace-t** (`/wp-json/hellopack/v1/...`) — kompatibilitás miatt fix.
+- **Az API token forrását** — a token továbbra is a hellowp.io-n generálódik (kivéve, ha külön agency/reseller flow-t használtok). A licenc-aktiváló képernyőn csak az "Open API Key Generator" gomb tűnik el, a tokent kézzel be kell illeszteni.
+
+## Szöveg-szintű finomhangolás (fordítással)
+
+Ha a fent felsorolt konstansokon túl is finomítani szeretnél (pl. konkrét feliratokat átírni magyarul vagy a saját márkára), azt a WordPress fordítórendszerével teheted meg.
+
+### LOCO Translate bővítménnyel
+
+1. Telepítsd és aktiváld a LOCO Translate bővítményt a WordPress admin felületén.
+2. LOCO Translate menü → válaszd ki a HelloPack bővítményt a projektlistából, majd a nyelvet.
+3. Keresd meg a módosítandó szöveget, írd át a jobb oldali szerkesztő mezőben, majd Mentés.
+
+### Manuálisan, .po fájllal
+
+A `wp-content/plugins/hellopack-client/languages` mappából másold le a `.po` fájlt, módosítsd POEdit-tel, majd a fordítást másold a `wp-content/languages/plugins/hellopack-client-hu_HU.po` (magyar esetén) helyre.
+
+:::caution Frissítés-biztos hely
+A módosított fordítás **csak akkor marad meg** plugin frissítés után, ha a `wp-content/languages/plugins` mappában van. LOCO esetén az _Áthelyezés_ fül (fordítási nézetben) ezt automatikusan elintézi.
+:::
+
+A LOCO bővítményre csak a fordítás módosításának idejére van szükség — utána eltávolítható.
