@@ -1,0 +1,241 @@
+---
+title: SSH kulcs generálás
+description: SSH kulcspár létrehozása (ed25519) macOS, Linux és Windows alatt. Publikus kulcs feltöltése a HelloHost felületre.
+keywords:
+  - ssh
+  - ssh-keygen
+  - ed25519
+  - publikus kulcs
+  - privát kulcs
+  - ssh-agent
+sidebar_label: SSH kulcs generálás
+sidebar_position: 1
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-key text-warning" /> SSH kulcs generálás
+
+A HelloHost szerverekhez **jelszó nélküli, kulcs-alapú SSH hitelesítést** használunk. Ehhez szükséged van egy SSH kulcspárra: egy **privát** kulcsra (soha nem hagyja el a gépedet) és egy **publikus** kulcsra (ezt töltöd fel a HelloHost felületre).
+
+Ez a dokumentum végigvezet a kulcs létrehozásán macOS, Linux és Windows rendszeren, és megmutatja hogyan add hozzá a HelloHost-hoz.
+
+## Miért ed25519?
+
+Három algoritmust támogat az OpenSSH: RSA, ECDSA és **ed25519**. A HelloHost ed25519-et használ és ezt ajánljuk:
+
+- Kisebb kulcsméret (68 karakter a publikus), ugyanakkor erősebb mint egy 3072-bites RSA
+- Gyorsabb a kulcs kiállítás és a hitelesítés
+- Modern, biztonságos szabvány – a GitHub és a GitLab is alapértelmezetten ezt javasolja
+- OpenSSH 6.5 óta (2014) támogatott – minden modern rendszer tudja
+
+:::warning Régi RSA kulcsok
+Ha van már RSA kulcsod, továbbra is működik, de új kulcsnál mindig ed25519-et hozz létre.
+:::
+
+## Kulcs generálása macOS / Linux alatt
+
+Nyiss egy terminált és futtasd:
+
+```bash
+ssh-keygen -t ed25519 -C "nev@hellohost"
+```
+
+A `-C` opció a kulcshoz tartozó kommentár – az email címed vagy egy azonosító, ami megjelenik az `authorized_keys` fájlban, hogy később felismerd.
+
+A parancs 3 kérdést tesz fel:
+
+1. **Fájl útvonala** – `[Enter]` megnyomásával fogadd el az alapértelmezett `~/.ssh/id_ed25519`-et. Ha több kulcsod is lesz, adj különálló nevet (pl. `~/.ssh/hellohost_ed25519`).
+2. **Passphrase** (jelmondat) – **erősen ajánlott** megadni. Ha a privát kulcsodhoz valaki hozzáfér, a passphrase egy extra védelmi réteg. Ne spórolj vele.
+3. **Passphrase megerősítése** – írd be újra.
+
+A parancs végén ezt látod:
+
+```text
+Your identification has been saved in /Users/te/.ssh/id_ed25519
+Your public key has been saved in /Users/te/.ssh/id_ed25519.pub
+```
+
+:::info Két fájl keletkezett
+- `id_ed25519` – a **privát** kulcs. Soha ne oszd meg, ne commiteld git-be, ne másold át üzeneten.
+- `id_ed25519.pub` – a **publikus** kulcs. Ezt töltöd fel a szerverre / HelloHost-ra.
+:::
+
+## Kulcs generálása Windows alatt
+
+Windows 10/11-en már **beépített OpenSSH** kliens van, így nincs szükség külső eszközre.
+
+### PowerShell / Windows Terminal
+
+Nyiss egy PowerShell ablakot és futtasd:
+
+```powershell
+ssh-keygen -t ed25519 -C "nev@hellohost"
+```
+
+A folyamat ugyanaz, mint macOS / Linux alatt. A kulcsok a `C:\Users\<felhasznalonev>\.ssh\` mappába kerülnek.
+
+:::tip Git for Windows
+Ha Git for Windows-t használsz, a Git Bash terminálban is futtathatod ugyanezt a parancsot, ugyanúgy működik.
+:::
+
+### PuTTY (régi verziók)
+
+Ha valamiért PuTTY-t használsz (pl. régebbi Windows), a **PuTTYgen** alkalmazással készítheted el a kulcsot:
+
+1. Indítsd el a PuTTYgen-t
+2. Válaszd az **EdDSA** típust, az `Ed25519 (255 bits)` görbével
+3. Kattints a **Generate** gombra, mozgasd az egeret a terület felett entrópiához
+4. Add meg a passphrase-t
+5. **Save private key** – mentse `.ppk` formátumban (PuTTY saját formátuma)
+6. A felső szövegdobozban megjelenik a publikus kulcs OpenSSH formátumban – ezt másold ki
+
+Bővebben a PuTTY használatáról: [SSH használat Windows-on](./ssh-hasznalat-windows).
+
+## Kulcs hozzáadása az ssh-agent-hez
+
+Az ssh-agent a memóriában tartja a privát kulcsod passphrase-ét, így a session során nem kell újra és újra beírnod.
+
+### macOS
+
+macOS Keychain-be mentve a passphrase perzisztens marad (reboot után is):
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+### Linux
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+Ha a session lejár, újra be kell írnod. Perzisztens megoldáshoz állítsd be a `~/.ssh/config`-ban (lásd alább).
+
+### Windows (PowerShell)
+
+Windows-on először engedélyezni kell az OpenSSH Authentication Service-t:
+
+```powershell
+# Rendszergazda PowerShell
+Set-Service ssh-agent -StartupType Automatic
+Start-Service ssh-agent
+```
+
+Ezután a szokásos parancs:
+
+```powershell
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+```
+
+## Publikus kulcs feltöltése a HelloHost-ra
+
+1. Jelentkezz be a [cloud.hellohost.io](https://cloud.hellohost.io) felületre
+2. Menj egy szerver oldalára → **SSH Keys** tab
+3. Kattints az **Add SSH Key** gombra
+4. **Name**: egy felismerhető név (pl. `macbook-pro`, `home-desktop`)
+5. **Public Key**: illeszd be a publikus kulcs tartalmát
+
+A publikus kulcs tartalmát így másold ki:
+
+**macOS:**
+
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+**Linux (Wayland/X11):**
+
+```bash
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+# vagy
+wl-copy < ~/.ssh/id_ed25519.pub
+```
+
+**Windows PowerShell:**
+
+```powershell
+Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | Set-Clipboard
+```
+
+Majd **Ctrl+V / Cmd+V** a HelloHost űrlapba.
+
+:::warning Helyes formátum
+A publikus kulcs **egyetlen sor**, ezzel kezdődik: `ssh-ed25519 AAAAC3...` és végződik a kommentáriddal. Ne ékezetes karakterekkel mókolj, és **soha ne** illeszd be a privát kulcsot (`id_ed25519`, prefix nélkül).
+:::
+
+Mentés után néhány másodpercen belül megjelenik a szerveren, és próbálkozhatsz az SSH bejelentkezéssel:
+
+```bash
+ssh -p <port> <user>@<szerver-ssh-host>
+```
+
+A portot és a hostnevet a szerver oldalán a **Configuration** szekcióban találod.
+
+## `~/.ssh/config` – host aliasok
+
+Ha több szerverhez is csatlakozol, vagy nem default porton mennek, érdemes a `~/.ssh/config`-ot használni. Windows alatt a `C:\Users\<user>\.ssh\config` helyen.
+
+Példa:
+
+```text
+Host wphu
+    HostName 2a01-4f9-5a-4651--108.ssh.hellohost.io
+    Port 10009
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+    AddKeysToAgent yes
+    UseKeychain yes
+```
+
+Ezután elég:
+
+```bash
+ssh wphu
+```
+
+Az `AddKeysToAgent yes` + `UseKeychain yes` beállítás miatt az első bejelentkezésnél a passphrase-t beírod, utána a keychain megjegyzi.
+
+## Biztonsági checklist
+
+- [x] **Passphrase használata** – ne legyen jelszó nélküli kulcsod (legalább 12 karakter)
+- [x] **ed25519 algoritmus** – ne RSA-1024, ne DSA
+- [x] **Privát kulcs jogosultság** – `~/.ssh/id_ed25519` legyen `600` (csak te olvashatod, senki más)
+- [x] **Authorized_keys ellenőrzése** – a szerveren néha nézd át, hogy csak a várt kulcsok vannak-e
+- [x] **Forgó kulcsok** – évente új kulcsot, régiek törlése a HelloHost SSH Keys listából
+- [ ] **Privát kulcs NE legyen** git-ben, felhő szinkronban, üzenetben, pendrive-on
+
+## Hibák és megoldásaik
+
+### "Permission denied (publickey)"
+
+- A publikus kulcs nincs (még) hozzáadva a szerverhez → ellenőrizd a HelloHost SSH Keys tabot
+- A kliens nem a megfelelő privát kulcsot küldi → `ssh -v ...` indítással láthatod, melyik kulcsokat próbálja; megoldás: `~/.ssh/config`-ban `IdentityFile` explicit megadása
+- A privát kulcs jogosultsága túl nyitott → `chmod 600 ~/.ssh/id_ed25519`
+
+### "Bad owner or permissions on /home/.../.ssh/authorized_keys"
+
+Az SSH szigorú a jogosultságokkal a szerveren:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
+### "Could not open a connection to your authentication agent"
+
+Az ssh-agent nem fut. Lásd a fenti [ssh-agent szekciót](#kulcs-hozzáadása-az-ssh-agent-hez).
+
+### Kulcs típus hiba ("no matching host key type found")
+
+Régi SSH kliens nem ismer ed25519-et. Frissítsd a kliensoldali OpenSSH-t, vagy ideiglenes megoldásként a `~/.ssh/config`-ba:
+
+```text
+Host <név>
+    HostKeyAlgorithms +ssh-rsa,ssh-ed25519
+```
+
+## Következő lépés
+
+Windows alatt egy teljes gyakorlati útmutató az SSH használathoz: [SSH használat Windows-on](./ssh-hasznalat-windows).

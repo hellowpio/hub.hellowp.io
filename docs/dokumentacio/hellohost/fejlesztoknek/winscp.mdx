@@ -1,0 +1,226 @@
+---
+title: WinSCP
+description: WinSCP grafikus SFTP/SCP kliens - fájlátvitel HelloHost szerverekhez drag & drop módon, könyvtár szinkronizáció, PuTTY integráció.
+keywords:
+  - winscp
+  - sftp
+  - scp
+  - fájlátvitel
+  - windows
+  - gui
+sidebar_label: WinSCP
+sidebar_position: 5
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-folders text-primary" /> WinSCP
+
+A **WinSCP** az egyik legelterjedtebb ingyenes Windows SFTP/SCP kliens. Kétablakos fájlkezelővel, drag & drop támogatással, könyvtár-szinkronizációval és Git-hez hasonló diff nézettel. Ha grafikus felületet szeretnél a fájlkezeléshez parancssor helyett, ez a legjobb választás.
+
+## Telepítés
+
+Letöltés: [winscp.net](https://winscp.net/eng/download.php)
+
+Alternatíva parancssorból:
+
+```powershell
+winget install WinSCP.WinSCP
+# vagy
+choco install winscp
+```
+
+:::warning Telepítő reklámok
+A WinSCP telepítője jó ideje tartalmaz "Recommended software" oldalt — **olvasd el a lépéseket**, és ne csak Next-eld. Alapértelmezetten nincs bundleware, de néha Skype/Avira féle javaslat jön.
+:::
+
+## Első session létrehozása
+
+WinSCP indításakor automatikusan felnyílik a **Login** ablak. Új site:
+
+1. **New Site**
+2. **File protocol**: `SFTP`
+3. **Host name**: `2a01-4f9-5a-4651--108.ssh.hellohost.io`
+4. **Port number**: `10009` (HelloHost port)
+5. **User name**: pl. `voytachadev-hellodevs-dev`
+6. **Password**: üresen hagyva — kulcsot használunk
+7. **Advanced → SSH → Authentication**:
+   - **Private key file**: válaszd ki a kulcsot
+
+## OpenSSH kulcs használata WinSCP-ben
+
+A WinSCP **.ppk** (PuTTY) formátumot preferál, de natív `id_ed25519` is működik.
+
+### Natív OpenSSH kulcs közvetlenül
+
+Az újabb WinSCP verziók támogatják a közvetlen OpenSSH kulcsot:
+
+- **Advanced → SSH → Authentication → Private key file**: `%USERPROFILE%\.ssh\id_ed25519`
+- Ha passphrase van rajta, WinSCP elkéri csatlakozáskor (vagy Pageant-tól olvassa)
+
+### Konvertálás .ppk-ra (ha szükséges)
+
+Régebbi WinSCP-vel:
+
+1. WinSCP → **Tools → Run PuTTYgen**
+2. PuTTYgen-ben: **File → Load private key** → válaszd ki az `id_ed25519`-et
+3. Adj meg a passphrase-t, ha van
+4. **Save private key** → `.ppk` kiterjesztéssel (pl. `id_ed25519.ppk`)
+5. WinSCP-ben ezt a `.ppk`-t add meg
+
+### Pageant integráció
+
+Ha fut a Pageant (PuTTY SSH agentje):
+
+- **Advanced → SSH → Authentication → Attempt authentication using Pageant** — pipa
+- Többé nem kell private key file-t megadni, Pageant kiszolgálja
+
+Pageant helyett használhatod a Windows natív OpenSSH ssh-agent service-t is — újabb WinSCP verziók értik.
+
+## Site mentése
+
+A Login ablakban a **Save** gomb:
+
+- **Save session as**: `HelloHost - wphu` (vagy tetszőleges név)
+- **Save password**: **NE** használd (jelszót nem használunk)
+- A mentett session bal oldali listából legközelebb egy kattintással elérhető
+
+## Kezelés
+
+### Kétablakos nézet
+
+A WinSCP bal oldalon a lokális gépet, jobb oldalon a remote szervert mutatja. Alapértelmezett "Commander" interface.
+
+- **F5** — másolás a forrás oldalról a cél oldalra
+- **F6** — áthelyezés
+- **F7** — új mappa
+- **F8 / Delete** — törlés
+- **F2** — átnevezés
+- **Drag & drop** működik
+
+### Norton Commander nézet vs Explorer nézet
+
+**Options → Preferences → Environment → Interface → User interface style**:
+
+- **Commander** (default) — kétablakos, klasszikus
+- **Explorer** — egyablakos, mint a Windows File Explorer
+
+### Szinkronizáció (sync)
+
+Kritikus feature deployhoz:
+
+1. **Commands → Synchronize** (vagy Ctrl+S)
+2. Célterület: **Remote directory** vagy **Local directory** (attól függően milyen irányba akarsz másolni)
+3. **Direction**:
+   - **Remote** — lokális változások feltöltése a szerverre
+   - **Local** — remote változások letöltése
+   - **Both** — kétirányú
+4. **Mode**:
+   - **Synchronize files** — fájlokat hasonlítja
+   - **Mirror files** — forrás oldal azonos állapot (törli a célról azokat, amik forráson nincsenek)
+5. **Start**
+
+Preview ablak megmutatja, miket fog módosítani. **OK** gombbal lefut.
+
+### Diff nézet szerkesztés előtt
+
+Ha egy fájlt szerkeszteni akarsz és tudni a remote vs lokális változásokat:
+
+1. Jobb klikk a fájlon
+2. **File Custom Commands → Compare** (vagy hasonló)
+3. Beálítható a külső diff tool, pl. Beyond Compare, WinMerge
+
+### Távoli fájl szerkesztése
+
+Duplán a fájlra → lenyitja az alapértelmezett szerkesztővel (WordPad, Notepad), VS Code is konfigurálható:
+
+**Options → Preferences → Editors → Add → External editor → External editor**: `code.exe` (VS Code)
+
+Mentéskor WinSCP automatikusan feltölti a szerverre.
+
+## Automatizáció script-ekkel
+
+A WinSCP támogatja a scripted transfer-t. Pl. `deploy.txt`:
+
+```text
+open sftp://voytachadev-hellodevs-dev@2a01-4f9-5a-4651--108.ssh.hellohost.io:10009/ -hostkey="*" -privatekey="C:\Users\te\.ssh\id_ed25519.ppk"
+cd /home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev/wp-content/themes/
+synchronize remote C:\dev\mytheme mytheme -delete
+exit
+```
+
+Futtatás:
+
+```powershell
+winscp.com /script=deploy.txt
+```
+
+PowerShell-ből automatizációhoz: [WinSCP .NET assembly](https://winscp.net/eng/docs/library).
+
+## PuTTY integráció
+
+Ha telepítve van a PuTTY, WinSCP-n belül nyithatsz SSH session-t ugyanarra a kapcsolatra:
+
+1. Csatlakozva vagy egy site-hoz
+2. **Commands → Open Terminal** (vagy Ctrl+P)
+3. PuTTY nyílik a jelenlegi session credential-jeivel
+
+Vagy WinSCP-n belüli Terminal ablak:
+
+- **Options → Preferences → Commander → Remote terminal pane** → pipa
+- Alsó panel terminál-módban
+
+## Munkafolyamat példák
+
+### Gyors téma módosítás deploy-olása
+
+1. Lokális WinSCP bal oldal: `C:\dev\mytheme\`
+2. Remote jobb oldal: `/home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev/wp-content/themes/mytheme/`
+3. **Keep remote directory up to date** (Commands menü) — WinSCP figyel lokális változásokat és autosync
+4. Szerkeszted lokálisan VS Code-ban, WinSCP automatikusan upload
+
+### Backup letöltés a szerverről
+
+1. Remote oldal: `/home/voytachadev-hellodevs-dev/backups/`
+2. Lokális oldal: `C:\backups\`
+3. Drag & drop, vagy F5
+
+### Fájl egy-gombos szerkesztés
+
+- Jobb klikk PHP fájlra → **Edit** → VS Code nyílik a remote-ról másolt fájllal
+- Mentés → WinSCP kérdezi: upload-oljam? → **Yes**
+- Készen vagy
+
+## Hibák
+
+### "Host key not verified"
+
+Első csatlakozáskor normál — fogadd el.
+
+Ha később változik a host key ("The server's host key does not match the one cached"), vagy újraprovisionáltak, vagy támadás. A HelloHost-on ha újra provisioningeltél, **Cache the host key** gombbal elfogadhatod.
+
+### "Cannot open remote file for reading"
+
+Jogosultsági probléma — a fájl a szerveren olyan user tulajdonú, amilyenként nem vagy bejelentkezve. Root session-re válts.
+
+### Lassú átvitel
+
+Kis fájlok ezrei (pl. `node_modules`) lassúak SFTP-n. Két trükk:
+
+1. **Transfer settings → Performance → Optimize connection buffer size** — pipa
+2. Nagy mappák áthelyezéséhez: zippeld a szerveren (`tar -czf ...`), mozdítsd a archívumot, kicsomagolás a célon
+
+### Magyar ékezetes fájlnevek
+
+**Options → Preferences → Environment → Interface → Locale** — magyar, vagy UTF-8 encoding kényszerítése:
+
+**Advanced site settings → Environment → Transfer**:
+
+- **Remote directory**: `.`  
+- **Filename**: `UTF-8` — akkor, ha a szerver UTF-8-ot használ (modern Linux igen)
+
+## Mikor ne ezt használd?
+
+- **Ha terminállal tudsz dolgozni** → [Windows Terminal + OpenSSH](./windows-terminal) (`scp` / `sftp` parancsok)
+- **Ha kódot szerkesztesz és VS Code-ot használsz** → [VS Code + Remote - SSH](./vscode-remote-ssh) (remote-ban szerkeszted, WinSCP felesleges)
+- **Ha Linux-szerű környezet kell** → [WSL2](./wsl2) + natív `rsync` / `scp`

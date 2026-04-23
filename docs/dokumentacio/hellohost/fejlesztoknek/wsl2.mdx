@@ -1,0 +1,334 @@
+---
+title: WSL2 (Ubuntu Windows-on)
+description: Windows Subsystem for Linux 2 - valódi Linux kernel Windows alatt. rsync, ansible, natív OpenSSH, dev workflow HelloHost szerverekhez.
+keywords:
+  - wsl
+  - wsl2
+  - ubuntu
+  - linux
+  - windows
+  - rsync
+  - ansible
+  - dev workflow
+sidebar_label: WSL2
+sidebar_position: 7
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-linux text-primary" /> WSL2 (Ubuntu Windows-on)
+
+A **Windows Subsystem for Linux 2** a Microsoft hivatalos megoldása Windows 10/11-en futó Linux kernelre. WSL2 egy könnyűsúlyú virtuális gép, amiben teljes Ubuntu (vagy Debian, Alma, Fedora stb.) fut — saját fájlrendszerrel, saját csomagkezelővel, saját OpenSSH-val.
+
+Ha a napi munkád magasabb szintű Unix eszközökre (rsync, ansible, make, jq, perl-script), vagy bash scriptekre támaszkodik, és nem akarsz dual-boot / VM / Mac-re váltani, **WSL2 a legjobb Windows-on elérhető dev environment**.
+
+## Miért WSL2?
+
+Előnyei a natív Windows OpenSSH-hoz képest (amiből semmit nem vitatunk el):
+
+- **rsync** — natívan, nagy könyvtárak szinkronizálásához (nginx konfig deploy, backup mirror)
+- **ssh-copy-id** — egy parancs a publikus kulcs feltöltéséhez (Windows OpenSSH-ból hiányzik)
+- **ansible** — infrastruktúra-as-code eszközökhöz
+- **make, cmake, gcc** — build chain ha natív binárisokat build-elsz Linux-ra
+- **Bash scriptek** — változtatás nélkül futnak; Windows-on a CRLF és path-szeparátor gondokat megoldja
+- **systemd** (WSL2 1.0+) — szolgáltatásokat tud futtatni lokálisan
+- **docker-compose** — docker bevonható (Docker Desktop-tól)
+
+## Telepítés
+
+### Windows 11 vagy Windows 10 2004+
+
+Rendszergazda PowerShell:
+
+```powershell
+wsl --install
+```
+
+Alapértelmezetten **Ubuntu**-t telepít. Újraindítás után elindul az Ubuntu telepítő, kér egy **user nevet** és **jelszót** (ez a Linux user, nem a Windows user).
+
+:::tip Ha más distro kell
+Elérhető disztribúciók listája:
+```powershell
+wsl --list --online
+```
+Telepítés egy adott distróból: `wsl --install -d Ubuntu-22.04`
+:::
+
+### Ellenőrzés
+
+```powershell
+wsl --version
+# WSL version: 2.x.x
+# Kernel version: 5.15.x
+# WSLg version: 1.x.x
+```
+
+Minden Ubuntu futtatása:
+
+```powershell
+wsl
+```
+
+## Első beállítás Ubuntu-n
+
+A WSL Ubuntu első indítása utáni teendők:
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+
+# Alapvető eszközök
+sudo apt install -y git curl wget unzip rsync jq openssh-client htop
+
+# Ha ansible kell
+sudo apt install -y ansible
+
+# Ha Node.js
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+## SSH kulcs WSL-en
+
+Két opció:
+
+### 1. Saját kulcs a WSL-en (ajánlott)
+
+```bash
+ssh-keygen -t ed25519 -C "te@wsl"
+```
+
+Majd a publikus kulcsot (`~/.ssh/id_ed25519.pub`) feltöltöd a HelloHost-ra ugyanúgy, mint bármely Linux-on. Részletek: [SSH kulcs generálás](./ssh-kulcs-generalas).
+
+### 2. Windows kulcs megosztása WSL-lel
+
+Ha már van Windows-on egy kulcsod és nem akarsz másikat, symlink-eld a WSL `~/.ssh`-ot a Windows-éba:
+
+```bash
+# WSL bash
+rm -rf ~/.ssh
+ln -s /mnt/c/Users/<WindowsUser>/.ssh ~/.ssh
+```
+
+**Figyelem**: a jogosultságokat manuálisan kell beállítani, mert Windows fájlrendszer más perm model-t használ:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+chmod 600 ~/.ssh/config 2>/dev/null || true
+```
+
+Ha SSH "bad permissions" hibát kap, valamiért a Windows mount perm-et nem respektálja a WSL, akkor inkább a külön WSL-es kulcs (1. opció).
+
+:::tip ssh-copy-id használata
+Ha HelloHost-ra egyszeri kulcs feltöltést szeretnél a UI helyett:
+
+```bash
+ssh-copy-id -i ~/.ssh/id_ed25519.pub -p 10009 root@2a01-4f9-5a-4651--108.ssh.hellohost.io
+```
+
+Ez a parancs bejelentkezik jelszóval egyszer, és hozzáfűzi a publikus kulcsot az `authorized_keys`-hez. HelloHost-on a szervert előbb connect-elni kell egy másik kulccsal.
+:::
+
+## Munkafolyamat példák
+
+### rsync deploy
+
+Klasszikus Linux use case — lokális mappa szinkronizálása a szerverre:
+
+```bash
+rsync -avz --delete \
+    --exclude=node_modules \
+    --exclude=.git \
+    ./mytheme/ \
+    wphu:/home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev/wp-content/themes/mytheme/
+```
+
+A `wphu` itt a `~/.ssh/config`-ban definiált alias.
+
+### Ansible playbook több szerverre
+
+Ha Ansible inventory-t használsz több HelloHost szerverre:
+
+```yaml
+# inventory.yml
+all:
+  hosts:
+    wphu:
+      ansible_host: 2a01-4f9-5a-4651--108.ssh.hellohost.io
+      ansible_port: 10009
+      ansible_user: root
+    hellohost-103:
+      ansible_host: 2a01-4f9-5a-4651--103.ssh.hellohost.io
+      ansible_port: 10005
+      ansible_user: root
+```
+
+```bash
+ansible -i inventory.yml all -m ping
+ansible-playbook -i inventory.yml update-wp-salts.yml
+```
+
+Windows-natív PowerShell-ből Ansible nem megy — WSL-ben viszont natívan fut.
+
+### Bash script ütemezéshez
+
+```bash
+cat > ~/bin/backup-wphu.sh <<'EOF'
+#!/bin/bash
+set -euo pipefail
+DATE=$(date +%Y%m%d-%H%M%S)
+ssh wphu "cd webapps/voytachadev.hellodevs.dev && wp db export - --allow-root | gzip" \
+  > ~/backups/wphu-${DATE}.sql.gz
+echo "Backup saved: wphu-${DATE}.sql.gz"
+EOF
+chmod +x ~/bin/backup-wphu.sh
+```
+
+Futtatás: `~/bin/backup-wphu.sh`. Cron-nal ütemezés (ha WSL-ben engedélyezed a systemd cron-t).
+
+## Fájlrendszer kereszt-hozzáférés
+
+### WSL fájlok Windows-ról
+
+A WSL home-jához Windows-ból a `\\wsl.localhost\Ubuntu\home\<username>\` UNC path-on jutsz. Pl. VS Code-ban a **File → Open Folder** → `\\wsl.localhost\Ubuntu\home\te\projects\mytheme`.
+
+A gyorsabb elérés: **Windows Explorer navigációs sávban** írd be: `\\wsl.localhost\Ubuntu\home\` — be is pin-elhető Quick Access-be.
+
+### Windows fájlok WSL-ből
+
+A Windows meghajtókat a `/mnt/` alá csatolja a WSL:
+
+```bash
+cd /mnt/c/Users/te/Desktop
+ls
+```
+
+**Performance megjegyzés**: a `/mnt/c/` FS access SZIGNIFIKÁNSAN lassabb mint a natív `/home/te/`. Ha nagy projekten dolgozol, tartsd a WSL home-ban, ne a Windows oldalon.
+
+## VS Code + WSL
+
+A VS Code-nak van kifejezett **WSL extension**-je (ms-vscode-remote.remote-wsl), ami a WSL-en belülről indítja a VS Code Server-t. Így a lokális VS Code ablak szerkeszti a WSL-en belüli fájlokat natív Linux sebességgel.
+
+1. VS Code → **Extensions** → keresd: `WSL`
+2. Microsoft hivatalos → **Install**
+3. WSL Ubuntu terminálban: `cd ~/projects/mytheme && code .`
+4. VS Code új ablakban nyit, bal alsóban `WSL: Ubuntu` státusz
+
+A WSL-es VS Code-ból természetesen Remote-SSH-val HelloHost-ra is mehetsz, ha úgy akarod — de egyszerűbb WSL Ubuntu terminálból `ssh wphu`-t futtatni.
+
+## Docker Desktop + WSL2
+
+Ha Docker Desktop-ot telepítesz, default backend a WSL2. Ez azt jelenti, hogy a `docker` CLI a WSL Ubuntu-ból natívan működik:
+
+```bash
+docker ps
+docker-compose up -d
+```
+
+Ha a HelloHost szerveren is Docker-t üzemeltetsz, lokálisan WSL2 + Docker Desktop kombó a leggördülékenyebb.
+
+## WSL konfiguráció
+
+### .wslconfig — globális WSL beállítás
+
+`C:\Users\<WindowsUser>\.wslconfig`:
+
+```ini
+[wsl2]
+memory=8GB
+processors=4
+swap=2GB
+localhostForwarding=true
+```
+
+A WSL VM-hez allokált erőforrások. Default: a Windows gép RAM-jának 50%-a. Dev-re 4-8 GB bőven elég.
+
+### /etc/wsl.conf — distro-szintű beállítás
+
+Ubuntu-n belül `/etc/wsl.conf`:
+
+```ini
+[boot]
+systemd=true
+
+[network]
+generateHosts = false
+
+[interop]
+enabled = true
+appendWindowsPath = true
+```
+
+`systemd=true` engedi a modern cron/systemd-based szolgáltatásokat.
+
+## WSL parancsok cheatsheet
+
+```powershell
+wsl                                  # alapértelmezett distro indítása
+wsl -d Ubuntu                        # specifikus distro
+wsl --list --verbose                 # futó distrók
+wsl --shutdown                       # MINDEN distro leállítása (gyors restart után)
+wsl --terminate Ubuntu               # csak egy distro leállítása
+wsl --update                         # WSL kernel frissítés
+wsl --export Ubuntu backup.tar       # teljes distro mentése
+wsl --import Ubuntu2 C:\wsl\ubuntu2 backup.tar  # visszaimportálás új néven
+wsl --unregister Ubuntu2             # törlés
+```
+
+## Hibák
+
+### "WslRegisterDistribution failed with error: 0x80370102"
+
+Virtualizáció nincs engedélyezve a BIOS-ban. Boot → BIOS/UEFI → **Intel VT-x / AMD-V** engedélyezése.
+
+### Internet nem megy WSL-ből
+
+Valószínűleg VPN vagy AV interferencia. Próbáld:
+
+```powershell
+wsl --shutdown
+Get-NetAdapter | Where-Object { $_.Name -like "*WSL*" } | Restart-NetAdapter
+wsl
+```
+
+Hosszabb távon: **Settings → Windows Subsystem for Linux** oldal → kapcsolj a **Mirrored networking**-re (Windows 11).
+
+### DNS nem működik
+
+`/etc/resolv.conf` sérül WSL reboot után. Fixálás:
+
+```bash
+sudo bash -c 'cat > /etc/wsl.conf <<EOF
+[network]
+generateResolvConf = false
+EOF'
+sudo rm /etc/resolv.conf
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
+sudo chattr +i /etc/resolv.conf  # lefagyasztja a fájlt, WSL nem írja felül
+```
+
+### Nagy disk usage (ext4.vhdx)
+
+A WSL virtual disk `ext4.vhdx` nő fájlokkal, de nem zsugorodik auto. Ha nagyon felduzzadt:
+
+```powershell
+wsl --shutdown
+# Majd futtasd a Hyper-V Optimize-VHD-t (csak Pro/Enterprise-en)
+# Vagy WSL restart + disk trim
+wsl --manage Ubuntu --set-sparse true
+```
+
+Home editions-ön egyszerűbb: export + unregister + import új helyre.
+
+## Mikor ne ezt használd?
+
+- **Csak gyors SSH és nem akarsz egy 4 GB-os Linuxot** → [Windows Terminal + OpenSSH](./windows-terminal)
+- **Kódot szerkesztesz és remote minden** → [VS Code + Remote - SSH](./vscode-remote-ssh)
+- **GUI SFTP kliens kell** → [WinSCP](./winscp)
+- **Csak sok session manager** → [MobaXterm](./mobaxterm)
+
+## Tipp: kombinálj
+
+A legjobb workflow gyakran a kombinált: **WSL Ubuntu** a fő munkához, **Windows Terminal**-ban tab-ként futtatod, és szerveroldalon dolgozol **SSH / VS Code Remote-SSH** kombóval. Minden eszköz a helyén.

@@ -1,0 +1,225 @@
+---
+title: VS Code + Remote - SSH
+description: Visual Studio Code Remote-SSH extension - kód szerkesztése közvetlenül a HelloHost szerveren, beépített terminállal és debuggerrel.
+keywords:
+  - vs code
+  - visual studio code
+  - remote ssh
+  - remote development
+  - wordpress development
+sidebar_label: VS Code + Remote - SSH
+sidebar_position: 4
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-code text-info" /> VS Code + Remote - SSH
+
+A **Visual Studio Code Remote - SSH** extension lehetővé teszi, hogy a VS Code **szerveroldali komponense** a HelloHost szerveren fusson, míg a grafikus felülete lokálisan marad. Így szerkesztheted a WordPress fájlokat (PHP, JS, CSS) úgy, mintha helyben lennének — **lokális Git szinkron nélkül, közvetlenül a szerveren**.
+
+Ez a legjobb választás, ha aktívan fejleszted a szerveren futó WP témát/plugint.
+
+:::tip Előfeltétel
+Mielőtt elkezded, hozz létre SSH kulcspárt és add hozzá a HelloHost felülethez — részletek: [SSH kulcs generálás](./ssh-kulcs-generalas). A legjobb UX-hez állítsd be a `~/.ssh/config` alias-okat is.
+:::
+
+## Hogy működik?
+
+Amikor először csatlakozol egy szerverhez, a VS Code:
+
+1. Elindítja a **VS Code Server**-t a szerveren (~150 MB-os csomag, egyszer)
+2. Lokális VS Code ↔ remote Server kommunikáció egy SSH tunnelen át
+3. Fájlok, terminál, extension-ek, debug mind szerveroldalon futnak
+4. Billentyűzet, szerkesztőablak lokálisan
+
+Az eredmény: olyan gyors, mintha helyben dolgoznál, miközben a fájlok a HelloHost-on vannak.
+
+## Telepítés
+
+### VS Code
+
+Ha nincs VS Code-od: [code.visualstudio.com](https://code.visualstudio.com).
+
+### Remote - SSH extension
+
+1. Indítsd el a VS Code-ot
+2. **Extensions** panel (bal oldali `Ctrl+Shift+X`)
+3. Keress rá: `Remote - SSH`
+4. Microsoft hivatalos extension → **Install**
+
+Alternatíva CLI-ből:
+
+```powershell
+code --install-extension ms-vscode-remote.remote-ssh
+```
+
+Felvesz egy **Remote Explorer** ikont a bal oldali sávba (monitor + kis kör), és egy **zöld "><" gombot** a bal alsó sarokba.
+
+## Csatlakozás HelloHost szerverhez
+
+### 1. ~/.ssh/config előkészítése
+
+Ajánlott, hogy a `~/.ssh/config`-ban (`C:\Users\<user>\.ssh\config` Windows-on) már be legyen állítva a szerver:
+
+```text
+Host wphu
+    HostName 2a01-4f9-5a-4651--108.ssh.hellohost.io
+    Port 10009
+    User voytachadev-hellodevs-dev
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+### 2. Remote Explorer-ben
+
+1. Kattints a bal oldali **Remote Explorer** ikonra
+2. A bal alsó sarokban felugrik a konfig-olvasás és megjelenik a `wphu` host
+3. Kattints a **hover "->"** ikonra: **Connect to Host in New Window**
+4. Első alkalommal: bejelentkezés → host key megerősítés → passphrase
+5. A VS Code telepíti a server komponenst (néhány másodperc)
+6. Megnyílik egy új ablak, bal alsó sarokban: **SSH: wphu**
+
+### 3. Mappa nyitása a szerveren
+
+**File → Open Folder** → pl. `/home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev`
+
+Megjelenik a fájlfa a WordPress installálással. `Ctrl+`` megnyit egy remote terminált.
+
+### 4. Alternatív: közvetlen parancsból
+
+```powershell
+code --remote ssh-remote+wphu /home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev
+```
+
+## WordPress-specifikus extensions (remote-on)
+
+Miután a remote ablak nyitva, a lokálisan telepített extension-ek **nem** aktívak automatikusan — a server oldalon kell őket telepíteni (egyszer, session-enként mehet):
+
+### Ajánlott remote extensions WP fejlesztéshez
+
+- **PHP Intelephense** — gyors PHP nyelv szerver, navigálás, autocomplete
+- **WordPress Snippets** (Wordpress.Wordpress) — WP függvények snippet-je
+- **WordPress Hooks IntelliSense** — `add_action` / `add_filter` hívásokhoz
+- **Error Lens** — inline hiba jelölés
+- **GitLens** — bővített git integráció
+- **Better Comments** — strukturált kommentelés
+- **Thunder Client** — beépített REST tesztelő
+- **Prettier** — JS/CSS/Markdown formázás
+- **PHP DocBlocker** — docblock generálás
+
+A bal oldali Extensions panelen megnézheted a **"Local"** vs **"SSH: wphu"** szekciókat, és `Install in SSH: wphu` gomb a remote telepítéshez.
+
+## Munkafolyamat példák
+
+### Inline PHP szerkesztés
+
+Nyisd meg pl. `wp-content/themes/flatsome/functions.php`. Ha van PHP Intelephense telepítve remote-on, `Ctrl+hover` függvényre → ugrik a definícióra, a szerver kódbázisában.
+
+### Beépített terminál WP-CLI-hez
+
+`Ctrl+`` megnyit egy remote terminált. A WP-CLI hívások közvetlenül a szerveren futnak:
+
+```bash
+wp user list --allow-root
+wp plugin update --all --allow-root
+wp cache flush --allow-root
+```
+
+### Debug.log követés külön panelen
+
+Terminál-splittel (`Ctrl+\`):
+
+- Bal: `tail -f wp-content/debug.log`
+- Jobb: az aktuális parancsaid
+
+### Gyors WordPress konfiguráció
+
+`.vscode/settings.json` a project root-ban:
+
+```json
+{
+    "files.associations": {
+        "*.php": "php"
+    },
+    "intelephense.stubs": [
+        "wordpress",
+        "wordpress-globals",
+        "woocommerce"
+    ],
+    "editor.formatOnSave": false,
+    "[php]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "files.exclude": {
+        "**/wp-admin": false,
+        "**/wp-includes": false,
+        "**/.git": true
+    }
+}
+```
+
+Ezzel a PHP Intelephense érti a WP globálisokat és nem vakon ugrik függvényekre.
+
+## Port forwarding VS Code-ból
+
+Ha a szerveren fut egy dev server (pl. `npm run dev` egy build tool-ban), a VS Code automatikusan felajánlja a port forward-ot:
+
+1. A terminálban indíts el egy webszerver (`php -S localhost:8000` vagy `npm run dev`)
+2. VS Code észleli és egy popup feldob: **Open in Browser** / **Preview**
+3. Lokális böngésződ nyílik, a kérés tunnelt a szerverre
+
+Manuálisan: **Ports** tab a terminál panel alján → **Forward a port**.
+
+## Hasznos VS Code billentyűkombinációk
+
+| Művelet | Windows/Linux | macOS |
+|---------|---------------|-------|
+| Command palette | `Ctrl+Shift+P` | `Cmd+Shift+P` |
+| Terminal megnyitása | `` Ctrl+` `` | `` Cmd+` `` |
+| Quick file open | `Ctrl+P` | `Cmd+P` |
+| Global search | `Ctrl+Shift+F` | `Cmd+Shift+F` |
+| Go to definition | `F12` | `F12` |
+| Rename symbol | `F2` | `F2` |
+| Remote - SSH parancsok | `Ctrl+Shift+P` → "Remote-SSH:" | ugyanaz |
+
+## Hibák
+
+### "Could not establish connection"
+
+1. Először ellenőrizd, hogy az `ssh wphu` parancs sima terminálból működik. Ha nem, nem a VS Code-ban van a baj.
+2. A VS Code Output panel: **Remote - SSH** csatornán nézd meg, melyik lépésnél akad el.
+3. `F1 → Remote-SSH: Kill VS Code Server on Host` és újra próbáld.
+
+### "Cannot establish connection: The SSH extension timed out"
+
+Régi szerver, lassú I/O, vagy nagy home dir. Növeld a timeout-ot:
+
+```json
+"remote.SSH.connectTimeout": 60
+```
+
+### Lassú szerkesztés
+
+- **Nagy mappa** — `files.watcherExclude` settings-be rakj `**/node_modules`-t és `**/wp-content/uploads`-ot
+- **Sok extension remote-on** — tarts csak fontosak telepítve server oldalon
+- **Slow Intelephense** — `intelephense.trace.server: off` kikapcsolja a verbose log-t
+
+### "Your workspace root is read-only"
+
+Ha FTP-ből vagy SFTP-ből read-only mount-ként érzékeli. A HelloHost szerveren ez nem fordul elő, de ha igen: ellenőrizd a mappa írhatóságát `ls -la`-val.
+
+### Passphrase bekéri minden session-nél
+
+Nem fut az ssh-agent. Indítsd el a service-t ([Windows Terminal dokumentáció](./windows-terminal#ssh-agent-szolgáltatás)).
+
+## Security megjegyzés
+
+A VS Code Server a szerveren fut root/user jogosultsággal (attól függően kivel jelentkezel be). **Ne telepíts kétes extension-t remote-ra** — kód futtat a szerveren.
+
+A VS Code Server adatai a `~/.vscode-server/` mappában vannak. Szerver disk-et foglal, kb. 200 MB + extensionök.
+
+## Mikor ne ezt használd?
+
+- **Gyors SSH csak terminálhoz** → [Windows Terminal + OpenSSH](./windows-terminal)
+- **Csak fájlmásolás kell, kódszerkesztés nem** → [WinSCP](./winscp)
+- **Sok párhuzamos server admin session** → [MobaXterm](./mobaxterm)

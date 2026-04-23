@@ -1,0 +1,340 @@
+---
+title: SSH használat Windows-on
+description: Beépített OpenSSH kliens használata Windows 10/11 alatt - csatlakozás HelloHost szerverekhez, fájlmásolás (scp/sftp), ssh-agent, config fájl, PuTTY alternatíva.
+keywords:
+  - ssh
+  - windows
+  - openssh
+  - powershell
+  - scp
+  - sftp
+  - putty
+  - wsl
+sidebar_label: SSH használat Windows-on
+sidebar_position: 2
+---
+
+import FontAwesomeIcon from "@site/src/components/FontAwesomeIcon";
+
+# <FontAwesomeIcon icon="fa-duotone fa-desktop text-primary" /> SSH használat Windows-on
+
+Windows 10/11-en a Microsoft **beépített OpenSSH klienst** szállít – ugyanazokkal a parancsokkal dolgozhatsz, mint macOS / Linux alatt. Nincs szükség PuTTY-ra, WinSCP-re vagy egyéb külső eszközre.
+
+Ez az útmutató bemutatja, hogyan csatlakozz HelloHost szerverekhez PowerShell-ből és Windows Terminal-ból, hogyan másolj fájlokat, és hogyan automatizáld a munkafolyamatod.
+
+## Előfeltételek
+
+### OpenSSH kliens jelenléte
+
+Windows 10 1809+ és Windows 11 alapból tartalmazza. Ellenőrizni PowerShell-ben:
+
+```powershell
+ssh -V
+```
+
+Ha ezt látod: `OpenSSH_for_Windows_9.x.x.x` – kész vagy. Ha `'ssh' is not recognized` hibát kapsz, telepítsd:
+
+```powershell
+# Rendszergazda PowerShell
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+```
+
+### SSH kulcs
+
+Ha még nincs SSH kulcspárod, először olvasd el a [SSH kulcs generálás](./ssh-kulcs-generalas) oldalt.
+
+## Csatlakozás szerverhez
+
+A HelloHost felületén a szerver oldalán a **Configuration** szekcióban találod:
+
+- **IP Address**: pl. `2a01:4f9:5a:4651::108`
+- **SSH Host**: pl. `2a01-4f9-5a-4651--108.ssh.hellohost.io:10009`
+
+Az SSH Host tartalmazza a portot is a `:` után. A kapcsolódás így néz ki:
+
+```powershell
+ssh -p 10009 <felhasznalo>@2a01-4f9-5a-4651--108.ssh.hellohost.io
+```
+
+Pl. WordPress app tulajdonos userként:
+
+```powershell
+ssh -p 10009 voytachadev-hellodevs-dev@2a01-4f9-5a-4651--108.ssh.hellohost.io
+```
+
+Első csatlakozásnál host key fingerprint ellenőrzést kér:
+
+```text
+The authenticity of host '[...]:10009 ([...])' can't be established.
+ED25519 key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Ha ez az első kapcsolódás, írd be `yes`. A fingerprint elmentésre kerül a `%USERPROFILE%\.ssh\known_hosts` fájlba.
+
+:::warning Man-in-the-middle védelem
+Ha később ugyanerre a szerverre csatlakozol és hirtelen más fingerprintet kapsz ("REMOTE HOST IDENTIFICATION HAS CHANGED!"), **ne fogadd el**. Vagy a szervert újra provisionálták (legitim eset, töröld a régi bejegyzést a `known_hosts`-ból), vagy támadás történt.
+:::
+
+## Fájlmásolás
+
+### scp – egyszerű másolás
+
+**Feltöltés (local → server):**
+
+```powershell
+scp -P 10009 C:\dev\backup.sql voytachadev-hellodevs-dev@2a01-4f9-5a-4651--108.ssh.hellohost.io:/home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev/
+```
+
+**Letöltés (server → local):**
+
+```powershell
+scp -P 10009 voytachadev-hellodevs-dev@2a01-4f9-5a-4651--108.ssh.hellohost.io:/home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev/wp-config.php C:\dev\
+```
+
+**Egész mappa (rekurzívan):**
+
+```powershell
+scp -P 10009 -r C:\dev\wp-content\themes\mytheme voytachadev-hellodevs-dev@...:/home/voytachadev-hellodevs-dev/webapps/voytachadev.hellodevs.dev/wp-content/themes/
+```
+
+:::tip Nagy `-P`
+A `scp` **nagybetűs** `-P` opcióval veszi a portot (szemben az `ssh`-val, ami kisbetűs `-p`-t használ). Gyakori tévesztés forrása.
+:::
+
+### sftp – interaktív fájlkezelő
+
+Az `sftp` parancssoros fájlkezelőt ad, FTP-szerű szintaxissal:
+
+```powershell
+sftp -P 10009 voytachadev-hellodevs-dev@2a01-4f9-5a-4651--108.ssh.hellohost.io
+```
+
+Belül a gyakori parancsok:
+
+| Parancs | Leírás |
+|---------|--------|
+| `ls` | Remote mappa listázása |
+| `lls` | **Lokális** mappa listázása |
+| `cd <dir>` | Remote könyvtárváltás |
+| `lcd <dir>` | Lokális könyvtárváltás |
+| `get <fájl>` | Letöltés a remote-ról |
+| `put <fájl>` | Feltöltés a local-ról |
+| `mget *.sql` | Több fájl letöltése |
+| `bye` / `exit` | Kilépés |
+
+## `~/.ssh/config` – egyszerűsített kapcsolódás
+
+A `C:\Users\<user>\.ssh\config` fájlba felvehetsz aliasokat, hogy ne kelljen minden parancsnál a hosszú hostnevet és portot beírni.
+
+```text
+Host wphu
+    HostName 2a01-4f9-5a-4651--108.ssh.hellohost.io
+    Port 10009
+    User voytachadev-hellodevs-dev
+    IdentityFile ~/.ssh/id_ed25519
+    AddKeysToAgent yes
+
+Host hellohost-root
+    HostName 2a01-4f9-5a-4651--103.ssh.hellohost.io
+    Port 10005
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+Ezután csak:
+
+```powershell
+ssh wphu
+scp -P file.txt wphu:~
+```
+
+Vigyázz: `scp`-nél a `-P`-t továbbra is megadhatod, vagy a config-ból viszi. Preferált forma:
+
+```powershell
+scp file.txt wphu:~/
+```
+
+## ssh-agent Windows alatt
+
+Az ssh-agent a memóriában tartja a privát kulcs passphrase-ét, így a session során nem kell mindig beírnod.
+
+### Szolgáltatás engedélyezése
+
+```powershell
+# Rendszergazda PowerShell
+Set-Service ssh-agent -StartupType Automatic
+Start-Service ssh-agent
+```
+
+### Kulcs hozzáadása
+
+```powershell
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+```
+
+Itt adja meg passphrase-t, aztán amíg a ssh-agent szolgáltatás fut, nem kérdezi újra.
+
+### Tárolt kulcsok listája
+
+```powershell
+ssh-add -l
+```
+
+### Kulcs törlése
+
+```powershell
+ssh-add -d $env:USERPROFILE\.ssh\id_ed25519
+# vagy mindet:
+ssh-add -D
+```
+
+## Windows Terminal
+
+Ha jobb terminál élményt szeretnél, telepítsd a [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701)-t a Microsoft Store-ból. Támogatja:
+
+- Tab-ok és split pane
+- Témák (Dracula, Solarized stb.)
+- Copy/paste helyes kezelése
+- Unicode és emoji rendering
+- Konfigurálható billentyűkombinációk
+
+A PowerShell, CMD, WSL és Git Bash mind ugyanabban a Terminal ablakban futtathatók, saját tab-okban.
+
+## WSL alternatíva
+
+Ha gyakran dolgozol Linux környezetben, érdemes megfontolni a **WSL2** (Windows Subsystem for Linux) használatát. Ez egy valódi Linux kernel Windows alatt, az Ubuntu környezettel és parancssorral.
+
+Előnyei SSH szempontból:
+
+- Ugyanaz az OpenSSH, mint natív Linux-on
+- `ssh-copy-id` parancs (Windows natív OpenSSH-ból hiányzik)
+- Linux-specifikus eszközök (rsync, fswatch, stb.)
+- Bash script-ek változtatás nélkül
+
+Telepítés:
+
+```powershell
+# Rendszergazda PowerShell
+wsl --install
+```
+
+Ezután az Ubuntu/WSL terminálban úgy dolgozol, mint bármelyik Linux gépen. A `~/.ssh/` mappa a WSL-en BELÜLI saját, nem a Windows-é – a kulcsokat külön kell generálnod vagy átmásolnod.
+
+:::tip Shared Windows kulcs
+Ha egyetlen SSH kulcsot akarsz használni Windows és WSL alatt egyaránt, szimbolikus linkkel teheted meg:
+
+```bash
+ln -s /mnt/c/Users/<user>/.ssh ~/.ssh
+```
+
+A jogosultságokat (`chmod 700 ~/.ssh`, `chmod 600 ~/.ssh/id_ed25519`) a WSL oldalon kell helyesen beállítani, különben OpenSSH megtagadja.
+:::
+
+## PuTTY – ha kell
+
+A PuTTY Windows-specifikus SSH kliens, amit régen szinte mindenki használt. Ma már a beépített OpenSSH jobb, de ha valamiért PuTTY-t kell használnod:
+
+### Csatlakozás
+
+1. Nyisd meg a PuTTY-t
+2. **Host Name**: `felhasznalo@2a01-4f9-5a-4651--108.ssh.hellohost.io`
+3. **Port**: `10009`
+4. **Connection → SSH → Auth → Credentials**: **Private key file** – válaszd ki a `.ppk` kulcsot (PuTTY saját formátuma, lásd [SSH kulcs generálás](./ssh-kulcs-generalas))
+5. Mentéshez **Session** panelen **Save** gomb
+6. **Open** a kapcsolódáshoz
+
+### OpenSSH kulcs konvertálás .ppk-ra
+
+Ha már van OpenSSH-formátumú kulcsod (`id_ed25519`), a PuTTYgen-be betölthető és `.ppk` formátumban elmenthető:
+
+1. PuTTYgen → **Conversions → Import key**
+2. Válaszd ki az `id_ed25519`-et
+3. Írd be a passphrase-t
+4. **Save private key** `.ppk` formátumban
+
+### Pageant – PuTTY ssh-agent megfelelője
+
+A **Pageant** a PuTTY ssh-agent-je. A Windows tálcáról futtatod, és betölti a passphrase-t. Dupla kattintás a tálca ikonra → **Add Key** → `.ppk` fájl.
+
+### WinSCP – grafikus fájlkezelő
+
+Ha grafikus felületet szeretnél az `scp` / `sftp` helyett:
+
+1. [WinSCP](https://winscp.net/) letöltés és telepítés
+2. Új session: **Host name**, **Port**, **User name**, **Advanced → SSH → Authentication → Private key file** (`.ppk`)
+3. Kétoldalas fájlkezelő ablak, drag & drop támogatással
+
+## Gyakori hibák Windows-on
+
+### "Bad owner or permissions on ...ssh/config"
+
+A Windows default jogosultságok túl nyitottak. PowerShell-ben:
+
+```powershell
+icacls $env:USERPROFILE\.ssh /inheritance:r
+icacls $env:USERPROFILE\.ssh /grant:r "$($env:USERNAME):(OI)(CI)F"
+```
+
+Ez eltávolítja az öröklött jogokat és csak a saját fiókodnak ad teljes hozzáférést.
+
+### Path separator keverés
+
+PowerShell-ben a `\` és `/` is működik az OpenSSH kliensnek, de `scp`-nél a remote path mindig Unix-formátumú:
+
+```powershell
+# ROSSZ
+scp C:\file.txt user@host:\home\user\
+# JÓ
+scp C:\file.txt user@host:/home/user/
+```
+
+### CRLF vs LF line endings
+
+Ha Windows-on szerkesztesz bash scripteket és átmásolod szerverre, CRLF line endinggel érkezhetnek, ami `bad interpreter: No such file or directory` hibát okoz. Megoldás:
+
+- Szerkesztéshez VS Code-ban állítsd az **End of Line** beállítást `LF`-re
+- A `.gitattributes` fájlba: `*.sh text eol=lf`
+- Ha már elrontottad, a szerveren: `dos2unix script.sh`
+
+### "Could not connect to authentication agent" ssh-add parancsnál
+
+Az ssh-agent szolgáltatás nem fut. Futtasd rendszergazda PowerShell-ből:
+
+```powershell
+Start-Service ssh-agent
+Set-Service ssh-agent -StartupType Automatic
+```
+
+### Localhost IP vs hostname SSH config-ban
+
+Ha a HelloHost az SSH hostot `2a01-4f9-5a-4651--108.ssh.hellohost.io` formában adja (IPv6-ból származtatva), és a gépeden nincs IPv6 kapcsolat, a DNS feloldás IPv4-es proxyra fog mutatni, ami automatikus. Nincs extra teendő.
+
+## Hasznos parancsok gyűjteménye
+
+```powershell
+# Kapcsolódás verbose módon (hibakereséshez)
+ssh -v wphu
+
+# Távoli parancs futtatása bejelentkezés nélkül
+ssh wphu "ls -la /home/user/webapps"
+
+# Port forwarding (pl. lokális MySQL → szerver MySQL)
+ssh -L 3307:localhost:3306 wphu
+
+# Távoli fájl gyors nézése
+ssh wphu "tail -f /home/user/logs/nginx/app_error.log"
+
+# Kulcs fingerprint kijelzése
+ssh-keygen -lf $env:USERPROFILE\.ssh\id_ed25519.pub
+```
+
+## Összefoglaló
+
+Windows alatt a modern workflow:
+
+1. ✅ **Natív OpenSSH** – nincs szükség PuTTY-ra új projekteknél
+2. ✅ **Windows Terminal** – jobb UX mint a klasszikus PowerShell ablak
+3. ✅ **`~/.ssh/config`** – mindent aliasolj be, ne legyen hosszú parancssor
+4. ✅ **ssh-agent szolgáltatás** – egyszer add meg a passphrase-t, szolgáltatás marad
+5. ✅ **WSL2** – Linux-kompatibilitás ha kell
